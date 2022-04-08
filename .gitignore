@@ -5,7 +5,7 @@ application/cache/*
 
 application/logs/*
 !application/logs/index.html
-
+qr_code/
 !application/*/.htaccess
 
 composer.lock
