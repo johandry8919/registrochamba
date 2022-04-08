@@ -1,0 +1,30 @@
+.container{
+	width: 90%;
+    margin: 0 auto;
+}
+
+.padding{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.completar{
+	max-width: 960px !important;
+}
+
+.img-fluid{
+	width: 250px;
+	height: auto;
+}
+.img-fluid2{
+	margin: 0 auto;
+}
+
+.zindex{
+	z-index: 0 !important;
+}
+
+.card .footer{
+	padding-left: 20px;
+	padding-bottom: 20px;
+}

@@ -1,0 +1,99 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+/*
+| -------------------------------------------------------------------------
+| URI ROUTING
+| -------------------------------------------------------------------------
+| This file lets you re-map URI requests to specific controller functions.
+|
+| Typically there is a one-to-one relationship between a URL string
+| and its corresponding controller class/method. The segments in a
+| URL normally follow this pattern:
+|
+|	example.com/class/method/id/
+|
+| In some instances, however, you may want to remap this relationship
+| so that a different class/function is called than the one
+| corresponding to the URL.
+|
+| Please see the user guide for complete details:
+|
+|	https://codeigniter.com/user_guide/general/routing.html
+|
+| -------------------------------------------------------------------------
+| RESERVED ROUTES
+| -------------------------------------------------------------------------
+|
+| There are three reserved routes:
+|
+|	$route['default_controller'] = 'welcome';
+|
+| This route indicates which controller class should be loaded if the
+| URI contains no data. In the above example, the "welcome" class
+| would be loaded.
+|
+|	$route['404_override'] = 'errors/page_missing';
+|
+| This route will tell the Router which controller/method to use if those
+| provided in the URL cannot be matched to a valid route.
+|
+|	$route['translate_uri_dashes'] = FALSE;
+|
+| This is not exactly a route, but allows you to automatically route
+| controller and method names that contain dashes. '-' isn't a valid
+| class or method name character, so it requires translation.
+| When you set this option to TRUE, it will replace ALL dashes in the
+| controller and method URI segments.
+|
+| Examples:	my-controller/index	-> my_controller/index
+|		my-controller/my-method	-> my_controller/my_method
+*/
+$route['default_controller'] = 'Cusuarios';
+
+/*Cusuarios*/
+$route['registro'] = 'Cusuarios';
+$route['iniciosesion'] = 'Cusuarios/VinicioSesion';
+$route['recuperarclave'] = 'Cusuarios/VrecuperarClave';
+$route['reiniciarclavelink/(:any)/(:any)'] = 'Cusuarios/reiniciarclavelink/$1/$2';//link
+$route['registroexito'] = 'Cusuarios/VregistroExito';
+$route['inicio'] = 'Cusuarios/Vinicio';
+/*Cusuarios*/
+
+
+
+/*Cchambistas*/
+$route['cambiarclave'] = 'Cchambistas/VcambiarClave';
+$route['datospersonales'] = 'Cchambistas/Vdatospersonales';
+$route['formacionacademica'] = 'Cchambistas/Vformacionacademica';
+$route['formacionacademicaform'] = 'Cchambistas/Vformacionacademica_form';
+$route['formacionacademicaform/(:num)'] = 'Cchambistas/Vformacionacademica_form/$1';
+$route['experiencialaboral'] = 'Cchambistas/Vexperiencialaboral';
+$route['experiencialaboralform/(:num)'] = 'Cchambistas/Vexperiencialaboral_form/$1';
+$route['experiencialaboralform'] = 'Cchambistas/Vexperiencialaboral_form';
+$route['descargarpdfusuario'] = 'Cchambistas/pdf';
+$route['eliminarexp/(:num)'] = 'Cchambistas/eliminarexp/$1';
+$route['eliminaracademico/(:num)'] = 'Cchambistas/eliminaracademico/$1';
+$route['redessociales'] = 'Cchambistas/Vredessociales';
+$route['brigadas'] = 'Cchambistas/Vbrigadas';
+$route['productivo'] = 'Cchambistas/Vproductivo';
+$route['eliminarchamba/(:num)'] = 'Cchambistas/eliminarchamba/$1';
+$route['eliminarbrigada/(:num)'] = 'Cchambistas/eliminarbrigada/$1';
+$route['eliminarvivienda/(:num)'] = 'Cchambistas/eliminarvivienda/(:num)';
+$route['insercion'] = 'Cchambistas/Vinsercion';
+$route['cv'] = 'Cchambistas/Vcv';
+$route['viviendajoven'] = 'Cchambistas/Vviviendajoven';
+$route['consulta/(:any)'] = 'Cchambistas/consulta/$1';
+
+
+/*Cchambistas*/
+
+
+/*Administrador*/
+$route['adm'] = 'Cadministrador/VinicioSesion';
+$route['inicioadm'] = 'Cadministrador/inicio';
+/*Administrador*/
+
+
+$route['404_override'] = '';
+$route['translate_uri_dashes'] = FALSE;
