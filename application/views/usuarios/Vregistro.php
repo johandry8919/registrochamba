@@ -2,7 +2,7 @@
 
 <body class="signup-page">
     <div class="container signup-box">
-        <div class="logo">
+    <div class="logo">
             <a href="javascript:void(0);"><img src="<?php echo base_url();?>img/logo-nuevo-chamba-250-79.png" class="img-fluid" alt="Responsive image"></a>
             <!--<a href="javascript:void(0);">Chamba<b>Juvenil</b></a>-->
             <!--<small>Admin BootStrap Based - Material Design</small>-->
@@ -20,7 +20,7 @@
                         <div class="col-md-6">
                             <div class="input-group">
                                 <span class="input-group-addon">
-                                    <i class="material-icons">person</i>
+                                    <i class="material-icons">persona</i>
                                 </span>
                                 <div class="form-line">
                                   <select class="form-control" id="nac" name="nac" required>
