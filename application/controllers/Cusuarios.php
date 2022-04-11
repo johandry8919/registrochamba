@@ -74,7 +74,7 @@ class Cusuarios extends CI_Controller {
 
 	public function VinicioSesion()
 	{
-        $this->load->view('layouts/head');
+        //$this->load->view('layouts/head');
 		$this->load->view('usuarios/VinicioSesion');
 	}
 
@@ -379,6 +379,8 @@ class Cusuarios extends CI_Controller {
         //reglas de validación
 
 
+
+  
         if ($this->form_validation->run() === FALSE) {
 
             $this->session->set_flashdata('mensajeerror', 'Inicio de Sesión incorrecto, intente de nuevo.');

@@ -1,64 +1,139 @@
-﻿
+﻿<!doctype html>
+<html lang="es" dir="ltr">
 
-<body class="login-page">
-    <div class="container login-box">
-        <div class="logo">
-            <a href="javascript:void(0);"><img src="<?php echo base_url();?>/img/logo-nuevo-chamba-250-79.png" class="img-fluid" alt="Responsive image"></a>
-            <!--<small>Admin BootStrap Based - Material Design</small>-->
+<head>
+
+    <!-- META DATA -->
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Registro de la Mission Chamba Juvenil">
+    <meta name="author" content="Spruko Technologies Private Limited">
+    <meta name="keywords" content="Empleo Venezuela, chamba, Saber y Trabajo">
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>favicon.png" />
+
+    <!-- TITLE -->
+    <title>Chamba Juvenil</title>
+
+    <!-- BOOTSTRAP CSS -->
+    <link id="style" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- STYLE CSS -->
+    <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo base_url();?>assets/css/dark-style.css" rel="stylesheet" />
+    <link href="<?php echo base_url();?>assets/css/transparent-style.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>assets/css/skin-modes.css" rel="stylesheet" />
+
+    <!--- FONT-ICONS CSS -->
+    <link href="<?php echo base_url();?>/assets/css/icons.css" rel="stylesheet" />
+
+    <!-- COLOR SKIN CSS -->
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="<?php echo base_url();?>/assets/colors/color1.css" />
+
+</head>
+
+<body class="app sidebar-mini ltr">
+
+    <!-- BACKGROUND-IMAGE -->
+    <div class="login-img">
+
+        <!-- GLOABAL LOADER -->
+        <div id="global-loader">
+            <img src="<?php echo base_url();?>assets/images/loader.svg" class="loader-img" alt="Loader">
         </div>
-        <div class="card-header bg-cyan padding">
-          <h5 class="text-center">Inicio de Sesión</h5>
-        </div>        
-        <div class="card">
-            <div class="body">
-                <form id="sign_in" method="POST" action="<?php echo base_url();?>Cusuarios/ingresarUsuario">
-                    <!--<div class="msg">Inicio de Sesión</div>-->
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                              <input type="email" class="form-control" id="email" name="email" value="<?php echo set_value('email');?>" maxlength="60" placeholder="Correo" required autofocus>
-                            <?php echo form_error('email');?>
-                        </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input type="password" class="form-control" id="password" name="password" value="<?php echo set_value('password');?>" maxlength="16" placeholder="Clave" required autofocus>
-                            <?php echo form_error('password');?>
-                        </div>
-                    </div>
-                    <div class="row">
-                    
-                        <div class="col-xs-8 p-t-5">
-                            <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                            <label for="rememberme">Recordar</label>
-                        </div>
+        <!-- /GLOABAL LOADER -->
 
-                        <div class="row" id="loader_romel" style="display: none;">
-                            <div class="col-md-4 col-md-offset-5">
-                                <div class="preloader pl-size-xl">
-                                    <div class="spinner-layer">
-                                        <div class="circle-clipper left">
-                                            <div class="circle"></div>
+        <!-- PAGE -->
+        <div class="page">
+            <div class="">
+
+                <!-- CONTAINER OPEN -->
+                <div class="col col-login mx-auto mt-7">
+                    <div class="text-center">
+                        <img src="<?php echo base_url();?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50"
+                        style="
+  height:200px; 
+
+
+
+">
+                    </div>
+                </div>
+
+                <div class="container-login100">
+                    <div class="wrap-login100 p-6">
+                        <form class="login100-form validate-form" id="sign_in" method="POST" action="<?php echo base_url();?>Cusuarios/ingresarUsuario">
+                            <span class="login100-form-title pb-5">
+                                Inicio de Sesión
+                            </span>
+                            <div class="panel panel-primary">
+                                <div class="tab-menu-heading">
+                                    <div class="tabs-menu1">
+                                        <!-- Tabs -->
+                                        <ul class="nav panel-tabs">
+                                            <li class="mx-0"><a href="#tab5" class="active" data-bs-toggle="tab">Persona</a></li>
+                                            <!--li class="mx-0"><a href="#tab6" data-bs-toggle="tab">Institución</a></li-->
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel-body tabs-menu-body p-0 pt-5">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="tab5">
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 form-control ms-0" name="email"  type="email" placeholder="Correo electrónico" id="email" value="<?php echo set_value('email');?>">
+                                                <?php echo form_error('email');?>
+                                           
+                                            </div>
+                                            <div class="wrap-input100 validate-input input-group" id="Password-toggle">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="<?php echo set_value('password');?>" maxlength="16" placeholder="Contraseña" required autofocus id="password" n type="password" placeholder="Password">
+                                            </div>
+                                            <div class="text-end pt-4">
+                                                <p class="mb-0"><a href="<?php echo base_url();?>recuperarclave" class="text-primary ms-1">Olvido su contraseña?</a></p>
+                                            </div>
+                                            <div class="container-login100-form-btn">
+
+
+                                                <button type="submit" href="index.html" class="login100-form-btn btn-primary">
+                                                        Ingresar
+                                                </button>
+                                            </div>
+                                            <div class="text-center pt-3">
+                                                <p class="text-dark mb-0">No estas registrado?<a href="<?php echo base_url();?>" class="text-primary ms-1">Registrar</a></p>
+                                            </div>
+                                           
                                         </div>
-                                        <div class="circle-clipper right">
-                                            <div class="circle"></div>
+                                        <div class="tab-pane" id="tab6">
+                                            <div id="mobile-num" class="wrap-input100 validate-input input-group mb-4">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <span>+91</span>
+                                                </a>
+                                                <input class="input100 border-start-0 form-control ms-0">
+                                            </div>
+                                            <div id="login-otp" class="justify-content-around mb-5">
+                                                <input class="form-control text-center w-15" id="txt1" maxlength="1">
+                                                <input class="form-control text-center w-15" id="txt2" maxlength="1">
+                                                <input class="form-control text-center w-15" id="txt3" maxlength="1">
+                                                <input class="form-control text-center w-15" id="txt4" maxlength="1">
+                                            </div>
+                                            <span>Note : Login with registered mobile number to generate OTP.</span>
+                                            <div class="container-login100-form-btn ">
+                                                <a href="javascript:void(0)" class="login100-form-btn btn-primary" id="generate-otp">
+                                                    Proceed
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>                            
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-green waves-effect" id="boton" type="botton">Ingresar</button>
-                        </div>
-                    </div>
-
-                  <?php if($this->session->flashdata('mensajeexito')){ ?>
+                            <?php if($this->session->flashdata('mensajeexito')){ ?>
                         <div class="row">
                           <div class="col-md-12">
                               <div class="alert alert-success">  <?php echo $this->session->flashdata('mensajeexito'); ?></div>
@@ -81,36 +156,43 @@
                         </div>
                   <?php }?>
                   
-                </form>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6">
-                            <a href="<?php echo base_url();?>registro">Registrate</a>
-                        </div>
-                        <div class="col-xs-6 align-right">
-                            <a href="<?php echo base_url();?>recuperarclave">Olvido su contraseña?</a>
-                        </div>
-                    </div>                
+                        </form>
+                    </div>
+                </div>
+                <!-- CONTAINER CLOSED -->
             </div>
         </div>
+        <!-- End PAGE -->
+
     </div>
+    <!-- BACKGROUND-IMAGE CLOSED -->
 
-    <!-- Jquery Core Js -->
-    <script src="<?php echo base_url();?>plugins/jquery/jquery.min.js"></script>
+    <!-- JQUERY JS -->
+    <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
 
-    <!-- Bootstrap Core Js -->
-    <script src="<?php echo base_url();?>plugins/bootstrap/js/bootstrap.js"></script>
+    <!-- BOOTSTRAP JS -->
+    <script src="<?php echo base_url();?>assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Waves Effect Plugin Js -->
-    <script src="<?php echo base_url();?>plugins/node-waves/waves.js"></script>
+    <!-- SHOW PASSWORD JS -->
+    <script src="<?php echo base_url();?>assets/js/show-password.min.js"></script>
 
-    <!-- Validation Plugin Js -->
-    <script src="<?php echo base_url();?>plugins/jquery-validation/jquery.validate.js"></script>
-    
-    <script src="<?php echo base_url();?>plugins/jquery-validation/localization/messages_es.js"></script>
+    <!-- GENERATE OTP JS -->
+    <script src="<?php echo base_url();?>assets/js/generate-otp.js"></script>
 
-    <!-- Custom Js -->
-    <script src="<?php echo base_url();?>js/admin.js"></script>
-    <script src="<?php echo base_url();?>js/pages/examples/sign-in.js"></script>
+    <!-- Perfect SCROLLBAR JS-->
+    <script src="<?php echo base_url();?>assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+
+    <!-- Color Theme js -->
+    <script src="<?php echo base_url();?>assets/js/themeColors.js"></script>
+
+    <!-- CUSTOM JS -->
+    <script src="<?php echo base_url();?>assets/js/custom.js"></script>
+
 </body>
 
 </html>
+
+
+
+
