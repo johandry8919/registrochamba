@@ -1,7 +1,7 @@
 
     <section class="container">
 
-        <div class="body-img">
+        <div class="body">
             <div class="page">
              
                     <?php if ($this->session->flashdata('mensajeexito')) { ?>
