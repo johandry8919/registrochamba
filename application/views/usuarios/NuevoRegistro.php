@@ -59,7 +59,7 @@
                         <!--- Nacionalida -->
                         <div class="input-group-addon">
                             <ul class="">
-                                <li class="mx-0"><a href="#tab5" class="active" data-bs-toggle="tab">Nacionalida</a></li>
+                                <li class="mx-0"><a href="#tab5" class="active" data-bs-toggle="tab">Nacionalidad</a></li>
 
                             </ul>
                         </div>
