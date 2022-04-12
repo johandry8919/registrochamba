@@ -58,7 +58,8 @@
                 <!-- CONTAINER OPEN -->
                 <div class="container-login100">
                     <div class="wrap-login100 p-6">
-                        <form class="login100-form validate-form">
+                        <form   class="login100-form validate-form" id="forgot_password" method="POST" action="<?php echo base_url();?>Cusuarios/recuperarClave" method="POST">
+
                             <span class="login100-form-title pb-5">
                                 Recuperar contraseña
                             </span>
@@ -67,32 +68,55 @@
                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                     <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                 </a>
-                                <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email">
+                                <input class="input100 border-start-0 ms-0 form-control" type="email" name="email" placeholder="Email" required autofocus>
                             </div>
                             <div class="submit">
-                                <a class="btn btn-primary d-grid" href="index.html">Reiniciar Contraseña</a>
+                            <button class="btn btn-primary d-grid col" id="boton" type="botton">Reiniciar Contraseña</button>
+                              
                             </div>
+                           
+                      
+                            <?php if(isset($mensaje)){ ?>
+                            <div class="row">
+                              <div class="col-md-12">
+                                  <div class="alert alert-danger"> <?php echo $mensaje; ?></div>
+                              </div>
+                            </div>
+                      <?php }?>
+                        <div class="row" id="loader_romel" style="display: none;">
+                            <div class="col-md-4 col-md-offset-5">
+                                <div class="preloader pl-size-xl">
+                                    <div class="spinner-layer">
+                                        <div class="circle-clipper left">
+                                            <div class="circle"></div>
+                                        </div>
+                                        <div class="circle-clipper right">
+                                            <div class="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>                            
+                            </div>
+                        </div>
+                        <?php if($this->session->flashdata('mensajeexito')){ ?>
+                        <div class="row">
+                          <div class="col-md-12">
+                              <div class="alert alert-success">  <?php echo $this->session->flashdata('mensajeexito'); ?></div>
+                          </div>
+                        </div>
+                  <?php }?>
+                  <?php if($this->session->flashdata('mensajeerror')){ ?>
+                        <div class="row">
+                          <div class="col-md-12">
+                              <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
+                          </div>
+                        </div>
+                        <br>
+                  <?php }?> 
                             <div class="text-center mt-4">
-                                <p class="text-dark mb-0">Forgot It?<a class="text-primary ms-1" href="login.html">Send me Back</a></p>
+                                <p class="text-dark mb-0"><a class="text-primary ms-1" href="<?php echo base_url();?>">Iniciar Sesión</a></p>
                             </div>
                             <label class="login-social-icon"><span>OR</span></label>
-                            <div class="d-flex justify-content-center">
-                                <a href="javascript:void(0)">
-                                    <div class="social-login me-4 text-center">
-                                        <i class="fa fa-google"></i>
-                                    </div>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <div class="social-login me-4 text-center">
-                                        <i class="fa fa-facebook"></i>
-                                    </div>
-                                </a>
-                                <a href="javascript:void(0)">
-                                    <div class="social-login text-center">
-                                        <i class="fa fa-twitter"></i>
-                                    </div>
-                                </a>
-                            </div>
+                          
                         </form>
                     </div>
                 </div>
