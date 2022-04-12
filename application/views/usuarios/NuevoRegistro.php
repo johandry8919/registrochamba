@@ -46,7 +46,8 @@
             <div class="container  mx-auto justify-content-center ">
                 <div class="col col-login">
                     <div class="text-center">
-                        <a href="javascript:void(0);"><img src="<?php echo base_url(); ?>img/logo-nuevo-chamba-250-79.png" class="img-fluid" alt="Responsive image"></a>
+                        <a href="javascript:void(0);"><img src="<?php echo base_url(); ?>img/logo-nuevo-chamba-250-79.png" class="header-brand-img" alt="" width="50" style="
+  height:100px; "></a>
                     </div>
                 </div>
                 <div class="wrap-login100 p-6">
