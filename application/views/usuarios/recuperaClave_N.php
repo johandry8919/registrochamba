@@ -41,7 +41,7 @@
             <div class="container  mx-auto  ">
                 <div class="col col-login">
                     <div class="text-center">
-                        <a href="javascript:void(0);"><img src="<?php echo base_url(); ?>img/logo-nuevo-chamba-250-79.png" class="header-brand-img" alt="" width="50" style="
+                        <a href="javascript:void(0);"><img src="<?php echo base_url(); ?>img/logo-nuevo-chamba-250-79.png" class="header-brand-img" alt="" width="80" style="
   height:100px; "></a>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                         <br>
                   <?php }?> 
                             <div class="text-center mt-4">
-                                <p class="text-dark mb-0"><a class="text-primary ms-1" href="<?php echo base_url();?>">Iniciar Sesión</a></p>
+                                <p class="text-dark mb-0"><a class="text-primary ms-1" href="<?php echo base_url();?>iniciosesion">Iniciar Sesión</a></p>
                             </div>
                             <label class="login-social-icon"><span>OR</span></label>
                           
