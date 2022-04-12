@@ -68,15 +68,23 @@
                     <div class="main-container container-fluid">
 
                         <!-- PAGE-HEADER -->
-                        <!--div class="page-header">
+                        <div class="page-header">
+
+                            <?php  if(isset($breadcrumb)): ?>
                             <h1 class="page-title">Empty</h1>
                             <div>
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="javascript:void(0)">Pages</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Empty</li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0)"> <?php echo  $breadcrumb->menu ?></a></li>
+                                    <li class="breadcrumb-item active" aria-current="page"><?php
+                                    if(isset($breadcrumb->menu_seleccion )): 
+                                     echo $breadcrumb->menu_seleccion;                                      
+                                    endif; 
+                                     ?></li>
                                 </ol>
                             </div>
-                        </div> -->
+
+                            <?php  endif; ?>
+                        </div> 
                         <!-- PAGE-HEADER END -->
 
                         <!-- ROW-1 OPEN -->
