@@ -115,7 +115,7 @@
                                     <div class="text-center mt-4">
                                         <p class="text-dark mb-0"><a class="text-primary ms-1" href="<?php echo base_url(); ?>iniciosesion">Iniciar Sesión</a></p>
                                     </div>
-                                    <label class="login-social-icon"><span>OR</span></label>
+  
 
                                 </form>
                             </div>

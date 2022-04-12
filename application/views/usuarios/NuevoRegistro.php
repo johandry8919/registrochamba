@@ -32,6 +32,13 @@
     <!-- COLOR SKIN CSS -->
     <link id="theme" rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>/assets/colors/color1.css" />
 
+
+    <style type="text/css">
+.error{
+    color: red;
+}
+
+    </style>
 </head>
 
 <body class="app sidebar-mini ltr">
@@ -133,7 +140,8 @@
                                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                             </a>
                                             <input class="input100 border-start-0 ms-0 form-control" type="email" id="passwordr" maxlength="100" id="emailr" name="emailr" value="<?php echo set_value('emailr'); ?>" placeholder="Repetir Correo" required>
-                                            <?php echo form_error('emailr'); ?>
+                                            <div class="invalid-feedback">Please select a valid state.</div>
+                                            <?php echo form_error('email'); ?>
                                         </div>
 
 
@@ -188,7 +196,7 @@
                              -->
                                 <div class="container-login100-form-btn">
                                     <button id="boton" type="botton" class="login100-form-btn btn-primary">
-                                        Register
+                                        Registrar
                                     </button>
                                 </div>
                                 <div class="m-t-25 m-b--5 p-2 align-center text-center">
@@ -229,6 +237,14 @@
 
     <!-- CUSTOM JS -->
     <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
+
+        <!-- Validation Plugin Js -->
+        <script src="<?php echo base_url();?>plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="<?php echo base_url();?>plugins/jquery-validation/localization/messages_es.js"></script>
+
+    <!-- Custom Js -->
+    <script src="<?php echo base_url();?>js/admin.js"></script>
+    <script src="<?php echo base_url();?>js/pages/examples/sign-up.js"></script>
 </body>
 
 </html>
