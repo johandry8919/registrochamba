@@ -30,110 +30,110 @@
 </head>
 
 <body class="app sidebar-mini ltr">
-<div class="login-img">
-       <div id="global-loader">
+    <div class="login-img">
+        <div id="global-loader">
             <img src="<?php echo base_url(); ?>assets/images/loader.svg" class="loader-img" alt="Loader">
         </div>
 
-    <div class="body">
-        <div class="page">
+        <div class="body">
+            <div class="page">
 
-            <div class="container  mx-auto  ">
-                <div class="col col-login">
-                    <div class="text-center">
-                        <a href="javascript:void(0);"><img src="<?php echo base_url(); ?>img/logo-nuevo-chamba-250-79.png" class="header-brand-img" alt="" width="80" style="
+                <div class="container  mx-auto  ">
+                    <div class="col col-login">
+                        <div class="text-center">
+                            <a href="javascript:void(0);"><img src="<?php echo base_url(); ?>img/logo-nuevo-chamba-250-79.png" class="header-brand-img" alt="" width="80" style="
   height:100px; "></a>
+                        </div>
                     </div>
-                </div>
-               
-                <div class="">
 
-                <!-- CONTAINER OPEN -->
-                <div class="col col-login mx-auto">
-                    <div class="text-center">
-                        <img src="../assets/images/brand/logo-white.png" class="header-brand-img m-0" alt="">
-                    </div>
-                </div>
+                    <div class="">
 
-                <!-- CONTAINER OPEN -->
-                <div class="container-login100">
-                    <div class="wrap-login100 p-6">
-                        <form   class="login100-form validate-form" id="forgot_password" method="POST" action="<?php echo base_url();?>Cusuarios/recuperarClave" method="POST">
+                        <!-- CONTAINER OPEN -->
+                        <div class="col col-login mx-auto">
+                            <div class="text-center">
+                                <img src="../assets/images/brand/logo-white.png" class="header-brand-img m-0" alt="">
+                            </div>
+                        </div>
 
-                            <span class="login100-form-title pb-5">
-                                Recuperar contraseña
-                            </span>
-                            <p class="text-muted">Ingrese la dirección de correo electrónico registrada en su cuenta</p>
-                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                    <i class="zmdi zmdi-email" aria-hidden="true"></i>
-                                </a>
-                                <input class="input100 border-start-0 ms-0 form-control" type="email" name="email" placeholder="Email" required autofocus>
-                            </div>
-                            <div class="submit">
-                            <button class="btn btn-primary d-grid col" id="boton" type="botton">Reiniciar Contraseña</button>
-                              
-                            </div>
-                           
-                      
-                            <?php if(isset($mensaje)){ ?>
-                            <div class="row">
-                              <div class="col-md-12">
-                                  <div class="alert alert-danger"> <?php echo $mensaje; ?></div>
-                              </div>
-                            </div>
-                      <?php }?>
-                        <div class="row" id="loader_romel" style="display: none;">
-                            <div class="col-md-4 col-md-offset-5">
-                                <div class="preloader pl-size-xl">
-                                    <div class="spinner-layer">
-                                        <div class="circle-clipper left">
-                                            <div class="circle"></div>
+                        <!-- CONTAINER OPEN -->
+                        <div class="container-login100">
+                            <div class="wrap-login100 p-6">
+                                <form class="login100-form validate-form" id="forgot_password" method="POST" action="<?php echo base_url(); ?>Cusuarios/recuperarClave" method="POST">
+
+                                    <span class="login100-form-title pb-5">
+                                        Recuperar contraseña
+                                    </span>
+                                    <p class="text-muted">Ingrese la dirección de correo electrónico registrada en su cuenta</p>
+                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                            <i class="zmdi zmdi-email" aria-hidden="true"></i>
+                                        </a>
+                                        <input class="input100 border-start-0 ms-0 form-control" type="email" name="email" placeholder="Email" required autofocus>
+                                    </div>
+                                    <div class="submit">
+                                        <button class="btn btn-primary d-grid col" id="boton" type="botton">Reiniciar Contraseña</button>
+
+                                    </div>
+
+
+                                    <?php if (isset($mensaje)) { ?>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="alert alert-danger"> <?php echo $mensaje; ?></div>
+                                            </div>
                                         </div>
-                                        <div class="circle-clipper right">
-                                            <div class="circle"></div>
+                                    <?php } ?>
+                                    <div class="row" id="loader_romel" style="display: none;">
+                                        <div class="col-md-4 col-md-offset-5">
+                                            <div class="preloader pl-size-xl">
+                                                <div class="spinner-layer">
+                                                    <div class="circle-clipper left">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                    <div class="circle-clipper right">
+                                                        <div class="circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>                            
+                                    <?php if ($this->session->flashdata('mensajeexito')) { ?>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?></div>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                    <?php if ($this->session->flashdata('mensajeerror')) { ?>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
+                                            </div>
+                                        </div>
+                                        <br>
+                                    <?php } ?>
+                                    <div class="text-center mt-4">
+                                        <p class="text-dark mb-0"><a class="text-primary ms-1" href="<?php echo base_url(); ?>iniciosesion">Iniciar Sesión</a></p>
+                                    </div>
+                                    <label class="login-social-icon"><span>OR</span></label>
+
+                                </form>
                             </div>
                         </div>
-                        <?php if($this->session->flashdata('mensajeexito')){ ?>
-                        <div class="row">
-                          <div class="col-md-12">
-                              <div class="alert alert-success">  <?php echo $this->session->flashdata('mensajeexito'); ?></div>
-                          </div>
-                        </div>
-                  <?php }?>
-                  <?php if($this->session->flashdata('mensajeerror')){ ?>
-                        <div class="row">
-                          <div class="col-md-12">
-                              <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
-                          </div>
-                        </div>
-                        <br>
-                  <?php }?> 
-                            <div class="text-center mt-4">
-                                <p class="text-dark mb-0"><a class="text-primary ms-1" href="<?php echo base_url();?>iniciosesion">Iniciar Sesión</a></p>
-                            </div>
-                            <label class="login-social-icon"><span>OR</span></label>
-                          
-                        </form>
                     </div>
+
+
+
+
+
+
+
                 </div>
             </div>
 
-
-
-                      
-                      
-
-
-            </div>
         </div>
 
     </div>
-
-</div>
 
 
 
