@@ -261,8 +261,23 @@ class Cchambistas extends CI_Controller
         }
         //}
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vdatospersonales', $datos);
+        //$this->load->view('layouts/head');
+        //$this->load->view('chambistas/Vdatospersonales', $datos);
+
+        
+        $output = [
+            "title"             => "Datos personales",
+             "vista_principal"   => "chambistas/datos_personales",
+          
+             
+        // "librerias_css" => [recurso("datatable_css"),recurso("datepicker_css")],
+         "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js")],
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
+
+
+        ];
+
+        $this->load->view("main", $output);
     }
 
     public function Vredessociales()

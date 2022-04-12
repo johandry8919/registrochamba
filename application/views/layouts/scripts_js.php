@@ -1,19 +1,11 @@
-<script type="text/javascript" src="<?php echo recurso("jquery_js"); ?>"></script>
-<script type="text/javascript" src="<?php echo recurso("jquery_slimscroll_js"); ?>"></script>
-<script type="text/javascript" src="<?php echo recurso("jquery_stickykit_js"); ?>"></script>
-<script type="text/javascript" src="<?php echo recurso("popper_js"); ?>"></script>
-<script type="text/javascript" src="<?php echo recurso("bootstrap_js"); ?>"></script>
-<script type="text/javascript" src="<?php echo recurso("style_switcher_js"); ?>"></script>
-<script type="text/javascript" src="<?php echo recurso("sweetalert_js"); ?>"></script>
+
 
 <?php if (isset($datepicker) && $datepicker): ?>
     <script type="text/javascript" src="<?php echo recurso("datepicker_js"); ?>"></script>
     <script type="text/javascript" src="<?php echo recurso("datepicker_es_js"); ?>"></script>
 <?php endif; ?>
 
-<?php if (isset($colorpicker) && $colorpicker): ?>
-    <script type="text/javascript" src="<?php echo recurso("colorpicker_js"); ?>"></script>
-<?php endif; ?>
+
 
 <?php if (isset($librerias_js)): ?>
     <?php foreach($librerias_js as $libreria_js): ?>
@@ -33,10 +25,7 @@
     </script>
 <?php endif; ?>
 
-<script type="text/javascript" src="<?php echo recurso("main_js"); ?>"></script>
-<script type="text/javascript" src="<?php echo recurso("waves_js"); ?>"></script>
 
-<script type="text/javascript" src="<?php echo recurso("sidebar_js"); ?>"></script>
 
 
 

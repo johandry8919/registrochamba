@@ -72,6 +72,11 @@ class Cusuarios extends CI_Controller {
         $this->load->view('usuarios/VvalidarCuenta');
     }
 
+
+    public function home()
+    {
+        $this->load->view('principal/main');
+    }
 	public function VinicioSesion()
 	{
         //$this->load->view('layouts/head');
