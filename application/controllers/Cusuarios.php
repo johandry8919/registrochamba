@@ -80,8 +80,8 @@ class Cusuarios extends CI_Controller {
 
 	public function VrecuperarClave()
 	{
-        $this->load->view('layouts/head');
-		$this->load->view('usuarios/VrecuperarClave');
+        // $this->load->view('layouts/head');
+		$this->load->view('usuarios/recuperaClave_N');
 	}
 
     public function VregistroExito()
