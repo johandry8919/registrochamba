@@ -12,25 +12,25 @@
     <meta name="keywords" content="Empleo Venezuela, chamba, Saber y Trabajo">
 
     <!-- FAVICON -->
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url();?>favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>favicon.png" />
 
     <!-- TITLE -->
     <title>Chamba Juvenil</title>
 
     <!-- BOOTSTRAP CSS -->
-    <link id="style" href="<?php echo base_url();?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="style" href="<?php echo base_url(); ?>assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- STYLE CSS -->
-    <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet" />
-    <link href="<?php echo base_url();?>assets/css/dark-style.css" rel="stylesheet" />
-    <link href="<?php echo base_url();?>assets/css/transparent-style.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>assets/css/skin-modes.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/style.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/dark-style.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>assets/css/transparent-style.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>assets/css/skin-modes.css" rel="stylesheet" />
 
     <!--- FONT-ICONS CSS -->
-    <link href="<?php echo base_url();?>/assets/css/icons.css" rel="stylesheet" />
+    <link href="<?php echo base_url(); ?>/assets/css/icons.css" rel="stylesheet" />
 
     <!-- COLOR SKIN CSS -->
-    <link id="theme" rel="stylesheet" type="text/css" media="all" href="<?php echo base_url();?>/assets/colors/color1.css" />
+    <link id="theme" rel="stylesheet" type="text/css" media="all" href="<?php echo base_url(); ?>/assets/colors/color1.css" />
 
 </head>
 
@@ -41,7 +41,7 @@
 
         <!-- GLOABAL LOADER -->
         <div id="global-loader">
-            <img src="<?php echo base_url();?>assets/images/loader.svg" class="loader-img" alt="Loader">
+            <img src="<?php echo base_url(); ?>assets/images/loader.svg" class="loader-img" alt="Loader">
         </div>
         <!-- /GLOABAL LOADER -->
 
@@ -52,8 +52,7 @@
                 <!-- CONTAINER OPEN -->
                 <div class="col col-login mx-auto mt-7">
                     <div class="text-center">
-                        <img src="<?php echo base_url();?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50"
-                        style="
+                        <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50" style="
   height:200px; 
 
 
@@ -64,7 +63,7 @@
 
                 <div class="container-login100">
                     <div class="wrap-login100 p-6">
-                        <form class="login100-form validate-form" id="sign_in" method="POST" action="<?php echo base_url();?>Cusuarios/ingresarUsuario">
+                        <form class="login100-form validate-form" id="sign_in" method="POST" action="<?php echo base_url(); ?>Cusuarios/ingresarUsuario">
                             <span class="login100-form-title pb-5">
                                 Inicio de Sesión
                             </span>
@@ -85,30 +84,30 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="email"  type="email" placeholder="Correo electrónico" id="email" value="<?php echo set_value('email');?>">
-                                                <?php echo form_error('email');?>
-                                           
+                                                <input class="input100 border-start-0 form-control ms-0" name="email" type="email" placeholder="Correo electrónico" id="email" value="<?php echo set_value('email'); ?>">
+                                                <?php echo form_error('email'); ?>
+
                                             </div>
                                             <div class="wrap-input100 validate-input input-group" id="Password-toggle">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="<?php echo set_value('password');?>" maxlength="16" placeholder="Contraseña" required autofocus id="password" n type="password" placeholder="Password">
+                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="<?php echo set_value('password'); ?>" maxlength="16" placeholder="Contraseña" required autofocus id="password" n type="password" placeholder="Password">
                                             </div>
                                             <div class="text-end pt-4">
-                                                <p class="mb-0"><a href="<?php echo base_url();?>recuperarclave" class="text-primary ms-1">Olvido su contraseña?</a></p>
+                                                <p class="mb-0"><a href="<?php echo base_url(); ?>recuperarclave" class="text-primary ms-1">Olvido su contraseña?</a></p>
                                             </div>
                                             <div class="container-login100-form-btn">
 
 
                                                 <button type="submit" href="index.html" class="login100-form-btn btn-primary">
-                                                        Ingresar
+                                                    Ingresar
                                                 </button>
                                             </div>
                                             <div class="text-center pt-3">
-                                                <p class="text-dark mb-0">No estas registrado?<a href="<?php echo base_url();?>" class="text-primary ms-1">Registrar</a></p>
+                                                <p class="text-dark mb-0">No estas registrado?<a href="<?php echo base_url(); ?>" class="text-primary ms-1">Registrar</a></p>
                                             </div>
-                                           
+
                                         </div>
                                         <div class="tab-pane" id="tab6">
                                             <div id="mobile-num" class="wrap-input100 validate-input input-group mb-4">
@@ -133,29 +132,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php if($this->session->flashdata('mensajeexito')){ ?>
-                        <div class="row">
-                          <div class="col-md-12">
-                              <div class="alert alert-success">  <?php echo $this->session->flashdata('mensajeexito'); ?></div>
-                          </div>
-                        </div>
-                  <?php }?>
-                  <?php if($this->session->flashdata('mensajeerror')){ ?>
-                        <div class="row">
-                          <div class="col-md-12">
-                              <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
-                          </div>
-                        </div>
-                        <br>
-                  <?php }?> 
-                  <?php if(isset($mensaje2)){ ?>
-                        <div class="row">
-                          <div class="col-md-12">
-                              <div class="alert alert-success"> <?php echo $mensaje2; ?></div>
-                          </div>
-                        </div>
-                  <?php }?>
-                  
+                            <?php if ($this->session->flashdata('mensajeexito')) { ?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?></div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            <?php if ($this->session->flashdata('mensajeerror')) { ?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
+                                    </div>
+                                </div>
+                                <br>
+                            <?php } ?>
+                            <?php if (isset($mensaje2)) { ?>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="alert alert-success"> <?php echo $mensaje2; ?></div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+
                         </form>
                     </div>
                 </div>
@@ -168,31 +167,27 @@
     <!-- BACKGROUND-IMAGE CLOSED -->
 
     <!-- JQUERY JS -->
-    <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
 
     <!-- BOOTSTRAP JS -->
-    <script src="<?php echo base_url();?>assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="<?php echo base_url();?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- SHOW PASSWORD JS -->
-    <script src="<?php echo base_url();?>assets/js/show-password.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/show-password.min.js"></script>
 
     <!-- GENERATE OTP JS -->
-    <script src="<?php echo base_url();?>assets/js/generate-otp.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/generate-otp.js"></script>
 
     <!-- Perfect SCROLLBAR JS-->
-    <script src="<?php echo base_url();?>assets/plugins/p-scroll/perfect-scrollbar.js"></script>
+    <script src="<?php echo base_url(); ?>assets/plugins/p-scroll/perfect-scrollbar.js"></script>
 
     <!-- Color Theme js -->
-    <script src="<?php echo base_url();?>assets/js/themeColors.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/themeColors.js"></script>
 
     <!-- CUSTOM JS -->
-    <script src="<?php echo base_url();?>assets/js/custom.js"></script>
+    <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 
 </body>
 
 </html>
-
-
-
-

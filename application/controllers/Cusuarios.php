@@ -18,8 +18,8 @@ class Cusuarios extends CI_Controller {
         if ($this->session->userdata('id_usuario')) {
             redirect('inicio');
         }        
-        $this->load->view('layouts/head');
-		$this->load->view('usuarios/Vregistro');
+        // $this->load->view('layouts/head');
+		$this->load->view('usuarios/NuevoRegistro');
 	}
 
     public function Vinicio()
@@ -85,8 +85,8 @@ class Cusuarios extends CI_Controller {
 
 	public function VrecuperarClave()
 	{
-        $this->load->view('layouts/head');
-		$this->load->view('usuarios/VrecuperarClave');
+        // $this->load->view('layouts/head');
+		$this->load->view('usuarios/recuperaClave_N');
 	}
 
     public function VregistroExito()
