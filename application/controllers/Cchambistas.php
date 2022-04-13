@@ -145,9 +145,16 @@ class Cchambistas extends CI_Controller
 
         $res = $this->Musuarios->getUsuariosVivienda();
         $data['viviendajoven'] = $res;
+        $output = [
+            "title"             => "Viviendajoven",
+             "vista_principal"   => "chambistas/Viviendajoven",
+             "viviendajoven" => $res,
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vviviendajoven', $data);
+
+        ];
+
+        $this->load->view("main", $output);
     }
 
 
