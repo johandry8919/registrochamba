@@ -1,37 +1,13 @@
 
 <?php //phpinfo(); exit?>
 
-<body class="theme-cyan">
-    <!-- Page Loader -->
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader pl-size-xl">
-                <div class="spinner-layer pl-purple">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Espere por favor...</p>
-        </div>
-    </div>
+
+  
     <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
     <!-- Search Bar -->
-    <div class="search-bar">
-        <div class="search-icon">
-            <i class="material-icons">search</i>
-        </div>
-        <input type="text" placeholder="START TYPING...">
-        <div class="close-search">
-            <i class="material-icons">close</i>
-        </div>
-    </div>
 
 
 
@@ -39,12 +15,7 @@
     <section class="content">
         <div class="container-fluid">
 
-        <div class="block-header">
-            <ol class="breadcrumb breadcrumb-col-pink">
-                <li><a href="<?php echo base_url();?>inicio"><i class="material-icons">home</i> Inicio</a></li>
-                <li class="active"><a href="<?php echo base_url();?>datospersonales"><i class="material-icons">library_books</i> Datos Personales</a></li>                
-            </ol>
-        </div>
+      
 
         <?php if($this->session->flashdata('mensajeexito')){ ?>
         <div class="row">
@@ -78,78 +49,82 @@
             <div class="row clearfix">
                 <div class="col-xs-12">
                     <div class="card">
-                        <div class="header">
+                        <div class="card-header">
                             <div class="row clearfix">
-                                <div class="col-xs-12 col-sm-6">
-                                    <h2>Datos Personales</h2>
+                        		<div class="card-title">Datos Personales</div>
+
+                                  
                                 </div>
                             </div>
 
-                        </div>
-                        <div class="body">
+                 
+                        <div class="card-body">
                             <div id="real_time_chart" class="">
                                 
                                     <form id="datospersonales" method="POST" action="<?php echo base_url();?>Cchambistas/datospersonales">
-                                        <div class="row clearfix">
+                                        <div class="row ">
                                             <div class="col-md-6">
-                                                <b>Nombres</b>
-                                                <div class="input-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" id="nombres" name="nombres" maxlength="30" required autofocus value="<?php if(isset($registroviejo->nombres)) echo ucwords($registroviejo->nombres);?>">
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Nombre</label> 
+                                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                            <i class="mdi mdi-account" aria-hidden="true"></i>
+                                                        </a>
+                                                        <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30"  name="nombres" value="<?php if(isset($registroviejo->nombres)) echo ucwords($registroviejo->nombres);?>" placeholder="Ingrese su Nombre" required autofocus>
+                                                       
                                                     </div>
+            
                                                 </div>
-                                            </div>
+                                                      
+                                                
+
+                                            </div><!--col-->
+
                                             <div class="col-md-6">
-                                                <b>Apellidos</b>
-                                                <div class="input-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" id="apellidos" name="apellidos" maxlength="30" required autofocus value="<?php if(isset($registroviejo->apellidos)) echo ucwords($registroviejo->apellidos);?>">
+
+                                                <div class="form-group">
+                                                    <label class="form-label">Apellidos</label> 
+                                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                            <i class="mdi mdi-account" aria-hidden="true"></i>
+                                                        </a>
+                                                        <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos" maxlength="30"  name="apellidos" value="<?php if(isset($registroviejo->apellidos)) echo ucwords($registroviejo->apellidos);?>" placeholder="Ingreses sus Apellidos" required autofocus>
+                                                       
                                                     </div>
+            
                                                 </div>
-                                            </div>
+                                                      
+                                                
+
+                                            </div><!--col-->
+                                        
                                         </div><!--row-->
 
-                                        <div class="row clearfix">
-                                    <!--   <div class="col-md-6">
-                                            <b>Nacionalidad</b>
-                                                <div class="input-group">
-                                                    <div class="form-line">                                            
-                                                        <select class="form-control show-tick" id="nac" name="nac">
-                                                        <option value="">Nacionalidad</option>
-                                                        <option <?php if(isset($registroviejo->cedula)){ if($registroviejo->cedula[0]=='V'){echo 'selected';}}?> value="V">Venezolano(a)</option>
-                                                        <option <?php if(isset($registroviejo->cedula)){ if($registroviejo->cedula[0]=='E'){echo 'selected';}}?> value="E">Extranjero(a)</option>
-                                                        
-                                                        
-                                                        </select>
-                                                    </div>
-                                                    
-                                                </div>                                                
-                                            </div>
+                                        <div class="row ">
                                             <div class="col-md-6">
-                                                <b>Cédula</b>
-                                                <div class="input-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" id="cedula" name="cedula" maxlength="8" required autofocus value="<?php if(isset($registroviejo->cedula)) echo substr($registroviejo->cedula,1);?>">
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                                        </div><!--row-->
 
-                                        <div class="row clearfix">
-                                            <div class="col-md-6">
-                                                <b>F. Nacimiento</b>
-                                                <div class="input-group">
-                                                    <div class="form-line">
-                                                        <input type="date" class="datepicker form-control" id="datepicker" name="datepicker" required autofocus value="<?php if(isset($registroviejo->fecha_nac)) echo $registroviejo->fecha_nac;?>">
+                                                <div class="form-group">
+                                                    <label class="form-label">Fecha de Nacimiento</label> 
+                                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                            <i class="mdi mdi-account" aria-hidden="true"></i>
+                                                        </a>
+                                                        <input class="input100 border-start-0 ms-0 form-control" type="date" id="datepicker"   name="datepicker" value="<?php if(isset($registroviejo->fecha_nac)) echo ucwords($registroviejo->fecha_nac);?>" placeholder="F. Nacimiento" required autofocus>
+                                                       
                                                     </div>
+            
                                                 </div>
-                                            </div>
+                                                      
+                                                
+
+                                            </div><!--col-->
 
                                             <div class="col-md-6">
-                                                <b>Estado Civil</b>
-                                                <div class="input-group">
-                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" id="estcivil" name="estcivil">
+
+                                                         <div class="form-group">
+                                                    <label class="form-label">Estado civil</label>
+                                                        <select class="form-control form-select"  id="estcivil" name="estcivil">
                                                             <option value="">Seleccione una opción</option>
                                                             <option <?php if(isset($registroviejo->estcivil)){ if(trim($registroviejo->estcivil)=='casado'){echo 'selected';}}?> value="casado">Casado(A)</option>
                                                             <option <?php if(isset($registroviejo->estcivil)){ if(trim($registroviejo->estcivil)=='soltero'){echo 'selected';}}?> value="soltero">Soltero(A)</option>
@@ -157,46 +132,60 @@
                                                             <option <?php if(isset($registroviejo->estcivil)){ if(trim($registroviejo->estcivil)=='viudo'){echo 'selected';}}?> value="viudo">Viudo(A)</option>
                                                             <option <?php if(isset($registroviejo->estcivil)){ if(trim($registroviejo->estcivil)=='divorciado'){echo 'selected';}}?> value="divorciado">Divorciado(A)</option>
                                                         </select>
-                                                    </div>
-                                                </div>
-                                             
-                                            </div>                                            
-                                            <!--<div class="col-md-6">
-                                                <b>Correo</b>
-                                                <div class="input-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" id="correo" name="correo" maxlength="50" required autofocus value="<?php if(isset($registroviejo->correo)) echo $registroviejo->correo;?>">
-                                                    </div>
-                                                </div>
-                                            </div> -->
+                                               
+                                                
+
+                                            </div><!--col-->
+                                        
                                         </div><!--row-->
 
-                                        <div class="row clearfix">
+                                      
+                                        <div class="row ">
                                             <div class="col-md-6">
-                                                <b>Telf Móvil</b>
-                                                <div class="input-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" id="telf_movil" name="telf_movil" maxlength="11" required autofocus value="<?php if(isset($registroviejo->telf_cel)) echo $registroviejo->telf_cel;?>">
-                                                    </div>
-                                                </div>
-                                            </div>
 
+                                                <div class="form-group">
+                                                    <label class="form-label">Telf Móvil</label> 
+                                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                            <i class="mdi mdi-account" aria-hidden="true"></i>
+                                                        </a>
+                                                        <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil" maxlength="11"  name="telf_movil" value="<?php if(isset($registroviejo->telf_cel)) echo ucwords($registroviejo->telf_cel);?>" placeholder="Ingrese su telefono" required autofocus>
+                                                       
+                                                    </div>
+            
+                                                </div>
+                                                      
+                                                
+
+                                            </div><!--col-->
 
                                             <div class="col-md-6">
-                                                <b>Telf Local</b>
-                                                <div class="input-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" id="telf_local" name="telf_local" maxlength="11" required autofocus value="<?php if(isset($registroviejo->telf_local)) echo $registroviejo->telf_local;?>">
-                                                    </div>
-                                                </div>
-                                            </div>
 
+                                                <div class="form-group">
+                                                    <label class="form-label">Telf Local</label> 
+                                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                            <i class="mdi mdi-account" aria-hidden="true"></i>
+                                                        </a>
+                                                        <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local" maxlength="30"  name="telf_local" value="<?php if(isset($registroviejo->telf_local)) echo ucwords($registroviejo->telf_local);?>" placeholder="Telefono Local" required autofocus>
+                                                       
+                                                    </div>
+            
+                                                </div>
+                                                      
+                                                
+
+                                            </div><!--col-->
+                                        
                                         </div><!--row-->
+                                        
 
-                                        <div class="row clearfix">
+                                      
+
+                                        <div class="row ">
                                             <div class="col-md-4">
                                                 <b>Estado</b>
-                                                <div class="input-group">
+                                                <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_estado" name="cod_estado">
                                                         <option value="">Seleccione una opción</option>
@@ -217,7 +206,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <b>Municipio</b>
-                                                <div class="input-group">
+                                                <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_municipio" name="cod_municipio">
                                                         <option value="">Seleccione un Municipio</option>
@@ -238,7 +227,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <b>Parroquia</b>
-                                                <div class="input-group">
+                                                <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_parroquia" name="cod_parroquia">
                                                         <option value="">Seleccione una Parroquia</option>
@@ -258,10 +247,10 @@
                                                 
                                             </div>
                                         </div><!--row-->
-                                        <div class="row clearfix">
+                                        <div class="row ">
                                             <div class="col-md-4">
                                                 <b>Dirección Especifica</b>
-                                                <div class="input-group">
+                                                <div class="form-group">
                                                     <div class="form-line">
                                                     <textarea maxlength="255" rows="4" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..."><?php if(isset($registroviejo->direccion)) echo $registroviejo->direccion;?></textarea>
                                                     </div>
@@ -269,10 +258,10 @@
                                                 
                                             </div>
                                         </div>
-                                        <div class="row clearfix">   
+                                        <div class="row ">   
                                             <div class="col-md-4">
                                                 <b>Comunidad Aborigen</b>
-                                                <div class="input-group">
+                                                <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="aborigen" name="aborigen">
                                                         <option value="">Seleccione una opción</option>
@@ -294,7 +283,7 @@
                                             </div>
                                             <div class="col-md-4">
                                             <b>Cantidad de hijos</b>
-                                                <div class="input-group">
+                                                <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="hijo" name="hijo">
                                                     <?php
@@ -318,7 +307,7 @@
                                             </div>
                                             <div class="col-md-4">
                                             <b>Situación actual empleo</b>
-                                                <div class="input-group">
+                                                <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="empleo" name="empleo">
                                                                 <option value="">Seleccione una opción</option>
@@ -331,10 +320,10 @@
                                                 
                                             </div>
 
-                                            <div class="row clearfix zindex">
+                                            <div class="row  justify-content-center align-items-center ">
                                                 <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
                                                     <b>¿Se encuentra Estudiando?</b><br>
-                                                    <div class="input-group">
+                                                    <div class="form-group">
                                                         <div class="form-line">
                                                             <input name="estudio" type="radio" id="estudio" value="si" <?php if(isset($registroviejo->estudio)){ if(trim($registroviejo->estudio)=='si'){echo 'checked';}}?> />
                                                             <label for="estudio">Si</label>
@@ -354,7 +343,7 @@
                                                     </div> -->
 
                                                     <b>¿Se encuentra inscrito en el CNE?</b><br>
-                                                    <div class="input-group">
+                                                    <div class="form-group">
                                                         <div class="form-line">
                                                             <input name="cne" type="radio" id="cne" value="si" <?php if(isset($registroviejo->cne)){ if(trim($registroviejo->cne)=='si'){echo 'checked';}}?> />
                                                             <label for="cne">Si</label>
@@ -364,7 +353,7 @@
                                                     </div>
 
                                                     <b>Género</b><br>
-                                                    <div class="input-group">
+                                                    <div class="form-group">
                                                         <div class="form-line">
                                                             <input name="genero" type="radio" id="genero" value="F" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='F'){echo 'checked';}}?>/>
                                                             <label for="genero">Femenino</label>
@@ -376,28 +365,14 @@
                                                 </div>
                                             </div>
                                         </div><!--row-->
-                                        <div class="row">
-
-                                            <div class="row" id="loader_romel" style="display: none;">
-                                                <div class="col-md-4 col-md-offset-5">
-                                                    <div class="preloader pl-size-xl">
-                                                        <div class="spinner-layer">
-                                                            <div class="circle-clipper left">
-                                                                <div class="circle"></div>
-                                                            </div>
-                                                            <div class="circle-clipper right">
-                                                                <div class="circle"></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>                            
-                                                </div>
+                                 
+                                        <div class="row  justify-content-center  mt-2">
+                                            <div class="col-md-4 ">
+                                                <button class="btn btn-primary btn-block" id="boton" type="botton">Guardar</button>
                                             </div>
 
-                                            <div class="col-xs-6 col-xs-offset-3 col-md-offset-3">
-                                                <button class="btn btn-block bg-green waves-effect" id="boton" type="botton">Guardar</button>
-                                            </div>
                                         </div>
-
+                                      
                                     </form>                       
                             </div>
 

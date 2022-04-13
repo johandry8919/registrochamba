@@ -261,19 +261,29 @@ class Cchambistas extends CI_Controller
         }
         //}
 
+
         //$this->load->view('layouts/head');
         //$this->load->view('chambistas/Vdatospersonales', $datos);
      $breadcrumb =(object) [
-                "menu" => "Registro y actualizacion"
+                "menu" => "Registro y actualizacion",
+                "menu_seleccion" => "Datos Personales"
      
                     ];
         
+                  
         $output = [
             "title"            => "Datos personales",
              "vista_principal" => "chambistas/datos_personales",
-             "breadcrumb"        =>   $breadcrumb,
+             "breadcrumb"      =>   $breadcrumb,
+             "estados"         => $estados,
+             "aborigenes"      => $aborigenes,
+             "registroviejo"   =>  $datos['registroviejo'],
+
+
           
-           "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js")],
+           "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js")],
+
+
            "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
 
 
