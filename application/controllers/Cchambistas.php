@@ -143,8 +143,12 @@ class Cchambistas extends CI_Controller
             redirect('iniciosesion');
         }
 
+    
+
+
+
         $res = $this->Musuarios->getUsuariosVivienda();
-        
+       
 
         // $this->load->view('layouts/head');
         // $this->load->view('chambistas/Vviviendajoven',$data);
@@ -152,6 +156,9 @@ class Cchambistas extends CI_Controller
             "title"             => "Viviendajoven",
              "vista_principal"   => "chambistas/Viviendajoven",
              "viviendajoven" => $res,
+           
+            
+             
 
           
              
@@ -164,6 +171,7 @@ class Cchambistas extends CI_Controller
 
         $this->load->view("main", $output);
     }
+
 
 
     public function eliminarexp()
@@ -320,8 +328,26 @@ class Cchambistas extends CI_Controller
         $res = $this->Musuarios->getBrigadasUsuario();
         $data['brigadas'] = $res;
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vbrigadas', $data);
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/Vbrigadas', $data);
+        $output = [
+            "title"             => "Viviendajoven",
+             "vista_principal"   => "chambistas/brigadas",
+            
+           
+            
+             
+
+          
+             
+        // "librerias_css" => [recurso("datatable_css"),recurso("datepicker_css")],
+        //  "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js")],
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
+
+
+        ];
+
+        $this->load->view("main", $output);
     }
 
     public function Vproductivo()
@@ -466,8 +492,16 @@ class Cchambistas extends CI_Controller
                     redirect('viviendajoven');
                 }
             } else {
-                $this->session->set_flashdata('mensajeerror', 'Solo puedes registrar una opción, puedes eliminarla y crear una nueva');
-                redirect('viviendajoven');
+              
+
+                $data = array(
+                    'vivienda' => $this->input->post('vivienda'),
+                    'codigo' => $this->session->userdata('codigo'),
+           
+                );
+                $this->Musuarios->udapteUsuariosVivienda($data);
+                $this->session->set_flashdata('mensajeexito', 'Datos guardados correctamente.');
+                    redirect('inicio');
             }
         }
     }
