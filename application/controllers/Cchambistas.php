@@ -324,8 +324,15 @@ class Cchambistas extends CI_Controller
         $res = $this->Musuarios->getBrigadasUsuario();
         $data['brigadas'] = $res;
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vbrigadas', $data);
+        $output = [
+            "title"            => "brigadas",
+             "vista_principal" => "chambistas/brigadas",
+             "brigadas"        => $data['brigadas'] = $res,
+
+
+
+        ];
+         $this->load->view("main", $output);
     }
 
     public function Vproductivo()
@@ -410,8 +417,11 @@ class Cchambistas extends CI_Controller
                 //Chamba Vuelta al Campo
                 'id_brigada' => $this->input->post('id_brigada'),
                 'codigo' => $this->session->userdata('codigo'),
-                'id_usuario' => $this->session->userdata('id_usuario')
+                // 'id_usuario' => $this->session->userdata('id_usuario')
+
+                
             );
+            print_r($data);
 
             if (!$this->Musuarios->getBrigadasUsuario($data)) {
 
@@ -423,8 +433,15 @@ class Cchambistas extends CI_Controller
                     redirect('brigadas');
                 }
             } else {
-                $this->session->set_flashdata('mensajeerror', 'Solo puedes registrar una opción, puedes eliminarla y crear una nueva');
-                redirect('brigadas');
+
+                $data = array(
+                    'id_brigada' => $this->input->post('id_brigada'),
+                    'codigo' => $this->session->userdata('codigo'),
+           
+                );
+                $this->Musuarios->udapteUsuariosbrigadas($data);
+                $this->session->set_flashdata('mensajeexito', 'Datos guardados correctamente.');
+                    redirect('inicio');
             }
         }
     }
@@ -469,9 +486,18 @@ class Cchambistas extends CI_Controller
                     $this->session->set_flashdata('mensajeerror', 'Ocurrio un error guardando intente de nuevo.');
                     redirect('viviendajoven');
                 }
+
+                //actuaiza
             } else {
-                $this->session->set_flashdata('mensajeerror', 'Solo puedes registrar una opción, puedes eliminarla y crear una nueva');
-                redirect('viviendajoven');
+
+                $data = array(
+                    'vivienda' => $this->input->post('vivienda'),
+                    'codigo' => $this->session->userdata('codigo'),
+           
+                );
+                $this->Musuarios->udapteUsuariosVivienda($data);
+                $this->session->set_flashdata('mensajeexito', 'Datos guardados correctamente.');
+                    redirect('inicio');
             }
         }
     }
