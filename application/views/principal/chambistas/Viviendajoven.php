@@ -113,14 +113,15 @@
                                     </label>
                                 </div>
 
-                                <div class="container-login100-form-btn pt-3 pb-3 m-2">
+                               
+                            </div>
+                        </div>
+                        <div class="container-login100-form-btn pt-3 pb-3 m-2">
                                     <?php if (isset($acausuario->id_usu_aca)) echo trim(ucwords($acausuario->id_usu_aca)); ?>
                                     <button id="boton" type="botton" class="login100-form-btn btn-primary">
                                         Guardar
                                     </button>
                                 </div>
-                            </div>
-                        </div>
 
                     </div>
 
