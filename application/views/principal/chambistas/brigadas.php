@@ -10,7 +10,7 @@
             <?php if ($this->session->flashdata('mensajeerror')) { ?>
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
+                        <div class="btn btn-info"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
                     </div>
                 </div>
                 <br>
