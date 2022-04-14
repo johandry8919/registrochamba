@@ -32,10 +32,10 @@
         <div class="card">
             <div class="card-body">
                 <div class="header">
-                    <div class="row clearfix">
-                        <div class="col-md-12">
-                            <h2 class="p-3 card-title">Vivienda Joven</h2>
-                        </div>
+                    <div class="card-title">
+                        
+                            Vivienda Joven
+                        
                     </div>
                 </div>
 

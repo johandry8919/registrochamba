@@ -108,7 +108,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Brigadas</h4>
+               <div class="card-title"> Brigadas</div>
             </div>
             <form id="formacionacademica" method="POST" action="<?php echo base_url(); ?>Cchambistas/registrobrigadas">
 
