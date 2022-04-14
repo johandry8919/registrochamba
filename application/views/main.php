@@ -161,9 +161,12 @@
     <!-- Sticky js -->
     <script src="<?php echo base_url();?>/assets/js/sticky.js"></script>
 
-
+    <script src="<?php echo base_url();?>/assets/plugins/bootstrap-select/bootstrap-select.min.css"></script>
+    <script src="<?php echo base_url();?>/assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
 
 	<?php $this->load->view("layouts/scripts_js"); ?>
+   
+<script src="../assets/js/select2.js"></script>
 
 </body>
 

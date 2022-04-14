@@ -324,8 +324,17 @@ class Cchambistas extends CI_Controller
         $res = $this->Musuarios->getBrigadasUsuario();
         $data['brigadas'] = $res;
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vbrigadas', $data);
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/Vbrigadas', $data);
+        $output = [
+            "title"            => "brigadas",
+             "vista_principal" => "chambistas/brigadas",
+             "brigadas"        => $data['brigadas'] = $res,
+
+
+
+        ];
+         $this->load->view("main", $output);
     }
 
     public function Vproductivo()
@@ -469,9 +478,18 @@ class Cchambistas extends CI_Controller
                     $this->session->set_flashdata('mensajeerror', 'Ocurrio un error guardando intente de nuevo.');
                     redirect('viviendajoven');
                 }
+
+                //actuaiza
             } else {
-                $this->session->set_flashdata('mensajeerror', 'Solo puedes registrar una opción, puedes eliminarla y crear una nueva');
-                redirect('viviendajoven');
+
+                $data = array(
+                    'vivienda' => $this->input->post('vivienda'),
+                    'codigo' => $this->session->userdata('codigo'),
+           
+                );
+                $this->Musuarios->udapteUsuariosVivienda($data);
+                $this->session->set_flashdata('mensajeexito', 'Datos guardados correctamente.');
+                    redirect('inicio');
             }
         }
     }

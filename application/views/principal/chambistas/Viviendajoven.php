@@ -1,7 +1,7 @@
 <section class="container">
 
 
-    <div class="page">
+    <div class="">
 
         <?php if ($this->session->flashdata('mensajeexito')) { ?>
             <div class="row">
@@ -43,8 +43,7 @@
 
                     <h3 class="text-center card-text mb-3">Elije una opción del Plan Vivienda Joven:</h3>
                 </div>
-
-
+                
                 <?php
                 $vivienda1 = "";
                 $vivienda2 = "";
@@ -52,10 +51,12 @@
                 $vivienda4 = "";
                 ?>
                 <?php if (isset($viviendajoven)) {
+                    
 
                     /* var_dump($usuarioacademico); */
                     if (isset($viviendajoven) and $viviendajoven != "") {
 
+                       
 
                         switch ($viviendajoven->vivienda) {
                             case 1:
@@ -79,9 +80,9 @@
                     <div class="conatiner-fluid">
                         <div class="row justify-content-center">
                             <div class="col-12 col-ms-8 col-lg-6">
-                                <div class="form-group">
-                                    <label class="custom-switch form-switch me-5">
-                                        <input <?php echo $vivienda1 ?> for="vivienda" type="radio" name="vivienda" id="vivienda1" value="1" class="custom-switch-input">
+                            <div class="form-group">
+                                    <label for="vivienda1" class="custom-switch form-switch me-5">
+                                        <input <?php echo $vivienda1 ?> type="radio" name="vivienda" id="vivienda1" value="1" class="custom-switch-input">
                                         <span class="custom-switch-indicator custom-switch-indicator-md"></span>
                                         <span class="custom-switch-description">Mi terreno propio Autoconstrucción</span>
                                     </label>
@@ -97,8 +98,8 @@
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="vivienda3" class="custom-switch form-switch me-3">
-                                        <input <?php echo $vivienda3 ?>type="radio" name="vivienda" id="vivienda3" value="3" class="custom-switch-input">
+                                    <label for="vivienda3" class="custom-switch form-switch me-5">
+                                        <input <?php echo $vivienda3 ?> type="radio" name="vivienda" id="vivienda3" value="3" class="custom-switch-input">
                                         <span class="custom-switch-indicator custom-switch-indicator-md"></span>
                                         <span class="custom-switch-description">Adjudicación GMVV</span>
                                     </label>
