@@ -905,6 +905,18 @@ class Musuarios extends CI_Model
 		  return FALSE;
 		}
 	  }
+	  public function udapteUsuariosbrigadas($data){
+
+		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
+	
+		$this->db->update('public.tbl_usuarios_brigadas', $data);
+		  
+		if ($this->db->affected_rows()) {
+		  return TRUE;
+		}else {
+		  return FALSE;
+		}
+	  }
 
 
 	public function getBrigadasUsuario(){
