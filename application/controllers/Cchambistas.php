@@ -420,6 +420,7 @@ class Cchambistas extends CI_Controller
                 'id_brigada' => $this->input->post('id_brigada'),
                 'codigo' => $this->session->userdata('codigo'),
                 'id_usuario' => $this->session->userdata('id_usuario')
+                
             );
 
             if (!$this->Musuarios->getBrigadasUsuario($data)) {
