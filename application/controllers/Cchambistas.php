@@ -417,7 +417,7 @@ class Cchambistas extends CI_Controller
                 //Chamba Vuelta al Campo
                 'id_brigada' => $this->input->post('id_brigada'),
                 'codigo' => $this->session->userdata('codigo'),
-                // 'id_usuario' => $this->session->userdata('id_usuario')
+              'id_usuario' => $this->session->userdata('id_usuario')
 
                 
             );

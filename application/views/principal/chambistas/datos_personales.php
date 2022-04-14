@@ -184,7 +184,7 @@
 
                                         <div class="row ">
                                             <div class="col-md-4">
-                                                <b>Estado</b>
+                                                <label  class="form-label">Estado</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_estado" name="cod_estado">
@@ -205,7 +205,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <b>Municipio</b>
+                                                <label  class="form-label">Municipio</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_municipio" name="cod_municipio">
@@ -226,7 +226,7 @@
                                                 
                                             </div>
                                             <div class="col-md-4">
-                                                <b>Parroquia</b>
+                                                <label  class="form-label">Parroquia</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_parroquia" name="cod_parroquia">
@@ -248,8 +248,21 @@
                                             </div>
                                         </div><!--row-->
                                         <div class="row ">
+
                                             <div class="col-md-4">
-                                                <b>Dirección Especifica</b>
+                                                <label class="form-label"> Profesión Oficio</label>
+                                                <div class="form-group">
+                                           
+                                                        <select required class="form-control show-tick" id="id_profesion" name="id_profesion">
+                                                            <option value="">Seleccione una Profesión u Oficio</option>
+                                                        </select>   
+                                             
+                                                </div>
+                                                
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <label class="form-label"> Dirección Especifica</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                     <textarea maxlength="255" rows="4" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..."><?php if(isset($registroviejo->direccion)) echo $registroviejo->direccion;?></textarea>
@@ -260,7 +273,7 @@
                                         </div>
                                         <div class="row ">   
                                             <div class="col-md-4">
-                                                <b>Comunidad Aborigen</b>
+                                                <label  class="form-label"> Comunidad Aborigen</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="aborigen" name="aborigen">
@@ -282,7 +295,7 @@
                                                 
                                             </div>
                                             <div class="col-md-4">
-                                            <b>Cantidad de hijos</b>
+                                            <label  class="form-label">Cantidad de hijos</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="hijo" name="hijo">
@@ -306,7 +319,7 @@
                                                 
                                             </div>
                                             <div class="col-md-4">
-                                            <b>Situación actual empleo</b>
+                                            <label  class="form-label">Situación actual empleo</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="empleo" name="empleo">
@@ -322,7 +335,7 @@
 
                                             <div class="row  justify-content-center align-items-center ">
                                                 <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
-                                                    <b>¿Se encuentra Estudiando?</b><br>
+                                                    <label  class="form-label">¿Se encuentra Estudiando?</label><br>
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <input name="estudio" type="radio" id="estudio" value="si" <?php if(isset($registroviejo->estudio)){ if(trim($registroviejo->estudio)=='si'){echo 'checked';}}?> />
@@ -342,7 +355,7 @@
                                                         </div>
                                                     </div> -->
 
-                                                    <b>¿Se encuentra inscrito en el CNE?</b><br>
+                                                    <label  class="form-label">¿Se encuentra inscrito en el CNE?</label><br>
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <input name="cne" type="radio" id="cne" value="si" <?php if(isset($registroviejo->cne)){ if(trim($registroviejo->cne)=='si'){echo 'checked';}}?> />
@@ -352,7 +365,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <b>Género</b><br>
+                                                    <label  class="form-label">Género</label><br>
                                                     <div class="form-group">
                                                         <div class="form-line">
                                                             <input name="genero" type="radio" id="genero" value="F" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='F'){echo 'checked';}}?>/>
