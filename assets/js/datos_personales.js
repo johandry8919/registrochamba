@@ -27,12 +27,12 @@ else {
      type: "post",
      beforeSend: function () {
          $("#cod_municipio").html('<option>cargando municipios...</option>');
-         $("#cod_municipio").selectpicker('refresh');
+         //$("#cod_municipio").selectpicker('refresh');
      },
      success: function (respuesta1) {
 
          $("#cod_municipio").html(respuesta1.htmloption1);
-         $("#cod_municipio").selectpicker('refresh');
+         //$("#cod_municipio").selectpicker('refresh');
      },
      error: function (xhr, err) {
          alert("readyState =" + xhr.readyState + " estado =" + xhr.status + "respuesta =" + xhr.responseText);
@@ -58,11 +58,11 @@ else {
      type: "post",
      beforeSend: function () {
          $("#cod_parroquia").html('<option>cargando parroquias...</option>');
-         $("#cod_parroquia").selectpicker('refresh');
+         //$("#cod_parroquia").selectpicker('refresh');
      },
      success: function (respuesta2) {
          $("#cod_parroquia").html(respuesta2.htmloption2);
-         $("#cod_parroquia").selectpicker('refresh');
+       //  $("#cod_parroquia").selectpicker('refresh');
      },
      error: function (xhr, err) {
          alert("readyState =" + xhr.readyState + " estado =" + xhr.status + "respuesta =" + xhr.responseText);

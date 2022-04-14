@@ -106,9 +106,9 @@
 
                                                 <div class="form-group">
                                                     <label class="form-label">Fecha de Nacimiento</label> 
-                                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                    <div class="wrap-input100 validate-input input-group" >
                                                         <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                            <i class="mdi mdi-account" aria-hidden="true"></i>
+                                                            <i class="fe fe-calendar" aria-hidden="true"></i>
                                                         </a>
                                                         <input class="input100 border-start-0 ms-0 form-control" type="date" id="datepicker"   name="datepicker" value="<?php if(isset($registroviejo->fecha_nac)) echo ucwords($registroviejo->fecha_nac);?>" placeholder="F. Nacimiento" required autofocus>
                                                        
@@ -147,7 +147,7 @@
                                                     <label class="form-label">Telf Móvil</label> 
                                                     <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                         <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                            <i class="mdi mdi-account" aria-hidden="true"></i>
+                                                            <i class="fe fe-phone" aria-hidden="true"></i>
                                                         </a>
                                                         <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil" maxlength="11"  name="telf_movil" value="<?php if(isset($registroviejo->telf_cel)) echo ucwords($registroviejo->telf_cel);?>" placeholder="Ingrese su telefono" required autofocus>
                                                        
@@ -165,7 +165,7 @@
                                                     <label class="form-label">Telf Local</label> 
                                                     <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                         <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                            <i class="mdi mdi-account" aria-hidden="true"></i>
+                                                            <i class="fe fe-phone-call" aria-hidden="true"></i>
                                                         </a>
                                                         <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local" maxlength="30"  name="telf_local" value="<?php if(isset($registroviejo->telf_local)) echo ucwords($registroviejo->telf_local);?>" placeholder="Telefono Local" required autofocus>
                                                        
