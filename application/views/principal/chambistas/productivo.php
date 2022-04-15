@@ -3,7 +3,7 @@
 <script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>plugins/jquery-validation/jquery.validate.js"></script>
 
-<section>
+<section class="body">
     <?php if ($this->session->flashdata('mensajeexito')) { ?>
         <div class="row">
             <div class="col-md-12">
@@ -31,12 +31,7 @@
     <div class="row clearfix">
         <div class="col-xs-12">
             <div class="card">
-                <div class="header">
-                    <div class="row clearfix">
-                        <div class="col-md-3">
-                            <h2>Productivo</h2>
-                        </div>
-                        <div class="col-6">
+            <div class="col-6">
                             <?php
                             if (isset($usuarioproductivo)) {
                             ?>
@@ -56,6 +51,12 @@
                         </div>
 
                     <?php } ?>
+                <div class="header">
+                    <div class="row clearfix">
+                        <div class="col-md-3">
+                            <h2>Productivo</h2>
+                        </div>
+                     
                     </div>
 
                 </div>
@@ -326,7 +327,7 @@
                                     <b>Indica tu produccion de ciclos cortos</b>
                                     <div class="input-group">
                                         <div class="form-line">
-                                            <input type="text" class="form-control" id="rubro" name="rubro" maxlength="100" required autofocus value="<?php if (isset($registroviejo->nombres)) echo ucwords($registroviejo->nombres); ?>">
+                                            <input type="text" class="form-control" id="rubro" name="rubro" maxlength="100" required  autofocus value="<?php if (isset($registroviejo->nombres)) echo ucwords($registroviejo->nombres); ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -351,16 +352,16 @@
 
 
                             </div>
-                            <div>
+                           
+
+                            <!--fin del  row-->
+                        </div>
+                        <div class="col-12 col-lg-12 m-2">
                                 <?php if (isset($acausuario->id_usu_aca)) echo trim(ucwords($acausuario->id_usu_aca)); ?>
                                 <button id="boton" type="botton" class="login100-form-btn btn-primary">
                                     Guardar
                                 </button>
                             </div>
-
-                            <!--fin del  row-->
-                        </div>
-
 
                 </div>
             </div>
