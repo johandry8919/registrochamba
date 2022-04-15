@@ -353,9 +353,7 @@ class Cchambistas extends CI_Controller
             "title"            => "productivo",
              "vista_principal" => "chambistas/productivo",
              "usuarioproductivo"        => $data['usuarioproductivo'],
-             "librerias_js" => [recurso("joandry_js")],
-            //  "selet_js" => [recurso("bootstrap-select_js")],
-
+             
 
 
         ];
