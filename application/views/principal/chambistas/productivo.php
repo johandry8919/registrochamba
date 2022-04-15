@@ -12,40 +12,29 @@
 
 <section class="container-fluid">
 <?php if ($this->session->flashdata('mensajeexito')) { ?>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?></div>
-            </div>
-        </div>
-    <?php } ?>
-    <?php if ($this->session->flashdata('mensajeerror')) { ?>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
-            </div>
-        </div>
-        <br>
-    <?php } ?>
-    <?php if ($this->session->flashdata('mensaje')) { ?>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-warning"> <?php echo $this->session->flashdata('mensaje'); ?></div>
-            </div>
-        </div>
-        <br>
-    <?php } ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?></div>
+                    </div>
+                </div>
+            <?php } ?>
+            <?php if ($this->session->flashdata('mensajeerror')) { ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
+                    </div>
+                </div>
+                <br>
+            <?php } ?>
+            
 
     <div class="card">
-        <div class="card-header"><h4>Productivo</h4></div>
-        <div class="col-12 m-3">
-    
-
-    <form id="formacionacademica" method="POST" action="<?php echo base_url(); ?>Cchambistas/registroproductivo">
-    <div class="card-title">¿En cuál Chamba deseas incorporarte?</div>
-
-
-       <div class="container">
-       <div class="form-group-100">
+        
+        <div class="col-12 body ">
+        <div class="card-title">Productivo</div>
+        <form id="formacionacademica" method="POST" action="<?php echo base_url(); ?>Cchambistas/registroproductivo">
+        <div class="card-header">¿En cuál Chamba deseas incorporarte?</div>
+       <div class="form-group">
             <select class="form-control select2 form-select" data-placeholder="Choose one" id="tipo_chamba" name="tipo_chamba" required>
                 <option value="">Seleccione una opción</option>
                 <option value="0">-Ninguno-</option>
@@ -58,8 +47,7 @@
                 <option value="7">Chamba Técnica y Oficios</option>
                 <option value="8">Chamba Delivery</option>
             </select>
-        </div>
-    </div>
+ 
     <!-- Chamba Vuelta al Campo -->
     <div id="chamba1" class="ocultarmotrar">
 
@@ -322,7 +310,7 @@
 
     </div>
 
-<div class="col-12 mt-3">
+<div class="col-12 mt-3 mb-3">
     <?php if (isset($acausuario->id_usu_aca)) echo trim(ucwords($acausuario->id_usu_aca)); ?>
     <button id="boton" type="botton" class="login100-form-btn btn-primary">
         Guardar
@@ -332,8 +320,11 @@
 
 </form>
 
+    
 
-</div>
+    
+
+    </div>
     </div>
 
 
