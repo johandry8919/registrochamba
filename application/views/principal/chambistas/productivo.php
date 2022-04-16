@@ -31,9 +31,11 @@
     <div class="card">
         
         <div class="col-12 body ">
-        <div class="card-title">Productivo</div>
+        <div class="card-header">
+            <div class="card-title">Productivo</div>
+        </div>
         <form id="formacionacademica" method="POST" action="<?php echo base_url(); ?>Cchambistas/registroproductivo">
-        <div class="card-header">¿En cuál Chamba deseas incorporarte?</div>
+        <div class="card-title">¿En cuál Chamba deseas incorporarte?</div>
        <div class="form-group">
             <select class="form-control select2 form-select" data-placeholder="Choose one" id="tipo_chamba" name="tipo_chamba" required>
                 <option value="">Seleccione una opción</option>
