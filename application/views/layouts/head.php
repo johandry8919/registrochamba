@@ -19,7 +19,7 @@
     <link href="<?php echo base_url();?>plugins/node-waves/waves.css" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="<?php echo base_url();?>plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="<?php echo base_url();?>plugins/animate-css/animate.css" rel="stylesheet" /> 
 
     <!-- daterange picker -->   
     <link rel="stylesheet" href="<?php echo base_url();?>bower_components/select2/dist/css/select2.min.css">
