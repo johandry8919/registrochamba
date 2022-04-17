@@ -1,5 +1,5 @@
 
-<?php //phpinfo(); exit?>
+<?php      ?>
 
 
   
@@ -10,8 +10,34 @@
     <!-- Search Bar -->
 
 
+    <style>
+        body { margin: 0; padding: 0; }
+       
+        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
 
-
+        .geocoder {
+        position: absolute;
+        z-index: 1;
+       width: 50%;
+        left: 50%;
+        margin: -25%;
+        top: 10px; 
+    }
+    .contenedor-mapa{
+        margin-top: -75px;
+        
+        margin-left: -25%;
+ 
+    }
+    .mapboxgl-ctrl-geocoder {
+        min-width: 100%;
+    }
+    #map {
+        margin-top: 75px;
+    }
+    </style>
+<!--script src="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.css" rel="stylesheet" /-->
     <section class="content">
         <div class="container-fluid">
 
@@ -102,7 +128,7 @@
                                         </div><!--row-->
 
                                         <div class="row ">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
 
                                                 <div class="form-group">
                                                     <label class="form-label">Fecha de Nacimiento</label> 
@@ -120,7 +146,20 @@
 
                                             </div><!--col-->
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Edad</label> 
+                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                        <i class="fe fe-calendar" aria-hidden="true"></i>
+                                                    </a>
+                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="edad" maxlength="2"  name="edad" value="<?php if(isset($registroviejo->edad)) echo ucwords($registroviejo->edad);?>" placeholder="edad" required autofocus>
+                                                   
+                                                </div>
+        
+                                            </div>
+                                        </div><!--col-->
+                                            <div class="col-md-4">
 
                                                          <div class="form-group">
                                                     <label class="form-label">Estado civil</label>
@@ -253,8 +292,27 @@
                                                 <label class="form-label"> Profesión Oficio</label>
                                                 <div class="form-group">
                                            
+
+                                                
                                                         <select required class="form-control show-tick" id="id_profesion" name="id_profesion">
                                                             <option value="">Seleccione una Profesión u Oficio</option>
+
+                                                           
+                                                     
+                                                         <?php if(isset($profesion_oficio)): ?>
+                                                            <?php foreach ($profesion_oficio as $key => $profesion):?>
+                                                               
+                                                                <?php  if($registroviejo->id_profesion_oficio == $profesion->id_profesion):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
                                                         </select>   
                                              
                                                 </div>
@@ -332,6 +390,7 @@
                                                 </div>
                                                 
                                             </div>
+                                      
 
                                             <div class="row  justify-content-center align-items-center ">
                                                 <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
@@ -378,7 +437,8 @@
                                                 </div>
                                             </div>
                                         </div><!--row-->
-                                 
+                                
+                                                 
                                         <div class="row  justify-content-center  mt-2">
                                             <div class="col-md-4 ">
                                                 <button class="btn btn-primary btn-block" id="boton" type="botton">Guardar</button>
@@ -388,12 +448,33 @@
                                       
                                     </form>                       
                             </div>
-
-                        
+               
                         </div>
                     </div>
                 </div>              
             </div>
         </div>
+   
+            
+
+                
+   
+       
+            
+
+        <!--script>
+            var map = new maplibregl.Map({
+            container: 'map',
+            style:
+            'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
+            center: [12.550343, 55.665957],
+            zoom: 8
+            });
+             
+            var marker = new maplibregl.Marker()
+            .setLngLat([12.550343, 55.665957])
+            .addTo(map);
+            </script-->
+
     </section>
     <script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>

@@ -16,6 +16,7 @@ class Cchambistas extends CI_Controller
         $this->load->library('email');
         $this->load->library('form_validation');
         $this->load->library('ciqrcode');
+        $this->load->model('Mprofesion_oficio');
         //$this->load->library('security');
         //$this->output->enable_profiler(TRUE);
     }
@@ -268,6 +269,10 @@ class Cchambistas extends CI_Controller
         }
         //}
 
+        $profesiones= $this->Mprofesion_oficio->getprofesion();
+
+    
+ 
 
         //$this->load->view('layouts/head');
         //$this->load->view('chambistas/Vdatospersonales', $datos);
@@ -285,6 +290,7 @@ class Cchambistas extends CI_Controller
              "estados"         => $estados,
              "aborigenes"      => $aborigenes,
              "registroviejo"   =>  $datos['registroviejo'],
+             "profesion_oficio" =>    $profesiones,
 
 
           
@@ -683,7 +689,8 @@ class Cchambistas extends CI_Controller
         $this->form_validation->set_rules('estcivil', 'Estado Civil', 'trim|required|strip_tags');
         $this->form_validation->set_rules('aborigen', 'Aborigen', 'trim|required|strip_tags');
         $this->form_validation->set_rules('hijo', 'Hijos', 'trim|required|numeric|strip_tags');
-
+        $this->form_validation->set_rules('id_profesion', 'Profesion', 'trim|numeric|required|strip_tags');
+        $this->form_validation->set_rules('edad', 'Edad', 'trim|numeric|required|strip_tags');
         $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
         //delimitadores de errores
 
@@ -700,6 +707,7 @@ class Cchambistas extends CI_Controller
             $this->session->set_flashdata('mensajeerror', $mensaje_error);
             redirect('datospersonales');
         } else {
+
 
             $data = array(
                 'nombres' => $this->input->post('nombres'),
@@ -724,7 +732,9 @@ class Cchambistas extends CI_Controller
                 'genero' => $this->input->post('genero'),
                 'estcivil' => $this->input->post('estcivil'),
                 'aborigen' => $this->input->post('aborigen'),
-                'hijo' => $this->input->post('hijo')
+                'hijo' => $this->input->post('hijo'),
+                'id_profesion_oficio' => $this->input->post('id_profesion'),
+                'edad' => $this->input->post('edad'),
                 /* 			'id_productiva' => $this->input->post('productiva'),
 			'id_subproductiva' => $this->input->post('id_subact_productiva'),
 			'sembrar' => $this->input->post('sembrar'),

@@ -6,6 +6,8 @@ $('#estcivil').change(function(){
     $("#guevo").selectpicker('refresh');
  });
 
+
+
  $("#cod_estado").change(function(){
      buscarMunicipios();
  });
@@ -73,27 +75,27 @@ else {
 }
 
 
-function buscarProfesionOficio() {
-    let id_profesion = $("#id_profesion").val();
+function obtenerProfesionOficio() {
+   
   
     
 
      $.ajax({
          dataType: "json",
     
-         url: base_url+"Cchambistas/getParroquias",
+         url: base_url+"/ajax/Cprofesion_oficio/obtener_prefesion",
          type: "post",
          beforeSend: function () {
-             $("#cod_parroquia").html('<option>cargando parroquias...</option>');
+             $("#id_profesion").html('<option>cargando Profesion..</option>');
              //$("#cod_parroquia").selectpicker('refresh');
          },
-         success: function (respuesta2) {
-             $("#cod_parroquia").html(respuesta2.htmloption2);
-           //  $("#cod_parroquia").selectpicker('refresh');
+         success: function (respuesta) {
+             console.log(respuesta)
+             $("#id_profesion").html(respuesta.html1);
+          
          },
          error: function (xhr, err) {
-             alert("readyState =" + xhr.readyState + " estado =" + xhr.status + "respuesta =" + xhr.responseText);
-             //alert("ocurrio un error intente de nuevo");
+             alert("ocurrio un error intente de nuevo");
          }
      });
     

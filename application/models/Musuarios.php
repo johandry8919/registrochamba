@@ -278,8 +278,11 @@ class Musuarios extends CI_Model
 				'estcivil' => $data['estcivil'],
 				'aborigen' => $data['aborigen'],
 				'hijo' => $data['hijo'],
+				'hijo' => $data['hijo'],
 				'codigo' => $this->session->userdata('codigo'),
-				'id_usuario' => $this->session->userdata('id_usuario')
+				'id_usuario' => $this->session->userdata('id_usuario'),
+				 'id_profesion_oficio' => $data['id_profesion_oficio'],
+				 'edad' => $data['edad']
 		);
 
 /* 		$profesion = array(
@@ -447,7 +450,9 @@ class Musuarios extends CI_Model
 				'aborigen' => $data['aborigen'],
 				'hijo' => $data['hijo'],
 				'codigo' => $this->session->userdata('codigo'),
-				'id_usuario' => $this->session->userdata('id_usuario')
+				'id_usuario' => $this->session->userdata('id_usuario'),
+				'id_profesion_oficio' => $data['id_profesion_oficio'],
+				'edad' => $data['edad']
 		);
 
 		$this->db->where('codigo', $jovenes['codigo']);

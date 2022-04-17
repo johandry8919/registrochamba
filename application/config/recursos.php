@@ -8,11 +8,13 @@
     $config['recursos']['bootstrap-datepicker_js'] = "plugins/bootstrap-datepicker/js/bootstrap-datepicker.js?v=1.0.5";
     $config['recursos']['bootstrap-material-datetimepicker_js'] = "plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js?v=1.0.";
     $config['recursos']['bootstrap-select_js'] = "plugins/bootstrap-select/js/bootstrap-select.js?v=1.0.";
+    $config['recursos']['chart_js'] = "assets/js/chart.js?v=1.0.";
+
 
     
     // JS - librería propios
     $config['recursos']['validacion_datospersonales_js'] = "js/pages/examples/datospersonales.js?v=1.0.5";
-    $config['recursos']['datospersonales_js'] = "assets/js/datos_personales.js?v=1.0.5";
+    $config['recursos']['datospersonales_js'] = "assets/js/datos_personales.js?v=1.0.6";
 
 
    
