@@ -352,8 +352,18 @@ class Cchambistas extends CI_Controller
         $data['usuarioproductivo'] = $res;
         //var_dump($data['redesusuario']);exit;
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vproductivo', $data);
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/Vproductivo', $data);
+
+        $output = [
+            "title"            => "productivo",
+             "vista_principal" => "chambistas/productivo",
+             "usuarioproductivo"        => $data['usuarioproductivo'],
+             
+
+
+        ];
+         $this->load->view("main", $output);
     }
     public function Vinsercion()
     {

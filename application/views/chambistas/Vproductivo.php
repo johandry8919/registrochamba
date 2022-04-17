@@ -143,7 +143,7 @@
                                     </div>
                                 </div>
 
-                                <div id="vuelta-al-campo" class="ocultarMostrar">
+                                <div id="vuelta-al-campo" class="ocultarMostrar " >
 
                                     <div class="row clearfix">
                                         <div class="col-md-6 col-md-offset-3">
@@ -325,6 +325,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                                 <div id="agrourbana" class="ocultarMostrar">
 
                                     <div class="row clearfix">
