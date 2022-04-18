@@ -1,11 +1,11 @@
 <section class="container-fluid">
 
-    <div class="col-xs-12 col-md-12 text-center">
+    <div class="col-xs-12 col-md-12 text-center ">
         <?php if ($this->session->flashdata('mensajeexito')) { ?>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 mb-3">
                     <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+
                     </div>
                 </div>
             </div>
@@ -31,62 +31,61 @@
         <?php } ?>
 
         <div class="card">
-            
+
 
 
 
             <div class="card-body">
-           
+
                 <div class="card-header">
                     <div class="card-title"> Progreso de Perfil:</div>
-                    
+
 
                 </div>
-              
+
 
                 <div class="container-fluid">
-               
-                    <div class="row ">
+
+                    <!-- <div class="row ">
                         <div class="col-12">
                             <p class="font-bold requerido">Requerido (<span class="aste">*</span>)</p>
                          
                         </div>
 
-                    </div>
+                    </div> -->
                     <div class="col-12">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated  mt-2 mb-3 <?php if ($porcentaje_perfil == 100) {
-                                                echo "bg-green-1";
-                                            } else {
-                                                echo "bg-blue-1";
-                                            } ?>  " style="width: <?php echo $porcentaje_perfil; ?>%; ">
-               
-                    <?php echo $porcentaje_perfil; ?>%
-               
+                        <div class="progress-bar progress-bar-striped progress-bar-animated  mt-2 mb-3 <?php if ($porcentaje_perfil == 100) {
+                                                                                                            echo "bg-green-1";
+                                                                                                        } else {
+                                                                                                            echo "bg-blue-1";
+                                                                                                        } ?>  " style="width: <?php echo $porcentaje_perfil; ?>%; ">
+
+                            <?php echo $porcentaje_perfil; ?>%
+
                         </div>
                         <?php
-                                if ($porcentaje_perfil == 100) {
-                                    echo '<div mb-3 class="knob-label">Perfil completado en un 100%.</div>';
-                                } else {
-                                    echo '<div class="knob-label">Debe Completar el 100% de los datos requeridos para ser seleccionado.</div>';
-                                }
-                                ?>
+                        if ($porcentaje_perfil == 100) {
+                            echo '<div mb-3 class="card-text">Perfil completado en un 100%.</div>';
+                        } else {
+                            echo '<div class="card-text">Debe Completar el 100% de los datos requeridos para ser seleccionado.</div>';
+                        }
+                        ?>
 
-                                <?php if (isset($porcentaje_perfil) and $porcentaje_perfil == 100) { ?>
-                                    <br>
-                                    <a target="_blank" href="<?php echo base_url() ?>descargarpdfusuario" class="btn bg-cyan btn-block btn-lg waves-effect">Descargar Curriculum</a>
-                                <?php } ?>
+
                     </div>
 
 
 
                 </div>
-
+                <!-- Datos Personales -->
                 <div class="col-12 col-lg-12 mt-2">
 
                     <?php if (isset($personal) and !empty($personal)) { ?>
-                        <div class="alert bg-green alert-dismissible efectohover" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                            <abbr title="Se añade a tu CV ">Datos Personales</abbr><span class="aste">*</span> <a href="<?php echo base_url() ?>datospersonales" class="alert-link">Listo</a>.
+
+                        <div role="alert" class="col-12  d-grid gap-2 text-wrap">
+                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>datospersonales" class="link-primary text-white"><abbr title="Se añade a tu CV ">Datos Personales</abbr>: Listo</a>
+                            </button>
+
                         </div>
                     <?php } else { ?>
 
@@ -100,10 +99,11 @@
 
 
                     <?php } ?>
+                    <!-- Formación Académica -->
 
                     <?php if (isset($usuarioacademico) and !empty($usuarioacademico)) { ?>
                         <div class="col-12  d-grid gap-2 text-wrap">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>formacionacademica" class="link-danger "><abbr title="Se añade a tu CV ">Formación Académica</abbr>: Presiona Aquí</a>
+                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>formacionacademica" class="link-primary text-white"><abbr title="Se añade a tu CV ">Formación Académica</abbr>: Listo</a>
                             </button>
 
                         </div>
@@ -116,8 +116,8 @@
                     <?php } ?>
 
                     <?php if (isset($redessociales) and !empty($redessociales)) { ?>
-                        <div class="col-12  d-grid gap-2 text-wrap">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>redessociales" class="link-primary"><abbr title="Se añade a tu CV ">redessociales</abbr>: Presiona Aquí</a>
+                        <div class="col-12  d-grid gap-2 text-wrap ">
+                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>redessociales" class="link-primary text-white"><abbr title="Se añade a tu CV ">redessociales</abbr>: Listo</a>
                             </button>
 
                         </div>
@@ -134,7 +134,7 @@
                     <?php if (isset($usuarioproductivo) and !empty($usuarioproductivo)) { ?>
 
                         <div class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>productivo" class="link-primary"><abbr title="Se añade a tu CV ">Productivo - Emprender</abbr>: Presiona Aquí</a>
+                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>productivo" class="link-primary text-white"><abbr title="Se añade a tu CV ">Productivo - Emprender</abbr>: Listo</a>
                             </button>
 
                         </div>
@@ -148,7 +148,7 @@
 
                     <?php if (isset($usuariobrigada) and !empty($usuariobrigada)) { ?>
                         <div class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>brigadas" class="link-primary"><abbr title="Se añade a tu CV ">Organizativo - Brigadas</abbr>: Presiona Aquí</a>
+                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>brigadas" class="link-primary text-white"><abbr title="Se añade a tu CV ">Organizativo - Brigadas</abbr>: Listo</a>
                             </button>
 
                         </div>
@@ -159,6 +159,14 @@
 
                         </div>
                     <?php } ?>
+                    <!-- Descargar Curriculum -->
+
+                    <div class="col-12">
+                        <?php if (isset($porcentaje_perfil) and $porcentaje_perfil == 100) { ?>
+                            <br>
+                            <a target="_blank" href="<?php echo base_url() ?>descargarpdfusuario" class="btn bg-cyan btn-block btn-lg waves-effect">Descargar Curriculum</a>
+                        <?php } ?>
+                    </div>
 
 
 

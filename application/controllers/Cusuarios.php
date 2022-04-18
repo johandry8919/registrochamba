@@ -61,31 +61,30 @@ class Cusuarios extends CI_Controller {
         }
 
 
-        if($data['porcentaje_perfil']){
-            $this->load->view('layouts/head');     
-            $this->load->view('chambistas/Vinicio',$data);
-            // $output = [
-            //     "title"             => "Inicio",
-            //      "vista_principal"   => "chambistas/inicio",
-            //      "personal"               => $data['personal'],
-            //       "usuario"               => $data['usuario'],
-            //       "usuarioexperiencia"     => $data['porcentaje_perfil'],
-            //       "usuarioacademico"     => $data['usuarioexperiencia'],
-            //       "redessociales"     => $data['redessociales'],
-            //       "usuarioproductivo"     => $data['usuarioproductivo'],
-            //       "usuariovivienda"     => $data['usuariovivienda'],
-            //       "usuariobrigada"     => $data['usuariobrigada'],
-            //       "porcentaje_perfil"     => $data['porcentaje_perfil'],
+            // $this->load->view('layouts/head');     
+            // $this->load->view('chambistas/Vinicio',$data);
+            $output = [
+                "title"             => "Inicio",
+                 "vista_principal"   => "chambistas/inicio",
+                 "personal"               => $data['personal'],
+                  "usuario"               => $data['usuario'],
+                  "usuarioexperiencia"     => $data['porcentaje_perfil'],
+                  "usuarioacademico"     => $data['usuarioexperiencia'],
+                  "redessociales"     => $data['redessociales'],
+                  "usuarioproductivo"     => $data['usuarioproductivo'],
+                  "usuariovivienda"     => $data['usuariovivienda'],
+                  "usuariobrigada"     => $data['usuariobrigada'],
+                  "porcentaje_perfil"     => $data['porcentaje_perfil'],
 
-            //       "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js")],
+                  "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js")],
                
                
     
-            // ];
+            ];
            
 
-            //  $this->load->view("main", $output);
-        }
+             $this->load->view("main", $output);
+        
 
         
 
