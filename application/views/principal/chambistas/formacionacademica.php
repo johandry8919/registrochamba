@@ -38,7 +38,7 @@
                 ?>
 
             </div>
-            <div class="col-12 col-ms-8 col-lg-12 ">
+            <div class="col-12 col-md-12 col-lg-12 ">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Basic Edit Table</h3>
@@ -68,18 +68,18 @@
                                                 echo '<td>' . $usuaca->centro_educ . '</td>';
                                                 echo '<td>' . $usuaca->nivel . ' - ' . $usuaca->nombre . '</td>';
                                                 echo '<td>' . $usuaca->rango_fecha . '</td>';
-                                                echo '<td name="bstable-actions>';
+                                                echo '<td >';
                                                 echo '<div class="btn-list">';
                                                 echo '<button type="button" class="btn btn-sm btn-primary ">';
-                                                echo '<span class="fe fe-edit">';
-                                                echo '<a class="text-white" href="' . base_url() . 'formacionacademicaform/' . $usuaca->id_usu_aca . '">Edit</a>';
+                                                echo '<span class="fs-6">';
+                                                echo '<a class="text-white" href="' . base_url() . 'formacionacademicaform/' . $usuaca->id_usu_aca . '">&#9998;</a>';
                                                 echo '</span ">';
 
                                                 echo '</button ">';
 
                                                 echo '<button  type="button" class="btn  btn-sm btn-danger ">';
-                                                echo '<span class="fe fe-trash-2">';
-                                                echo '<a class="text-white" href="' . base_url() . 'eliminaracademico/' . $usuaca->id_usu_aca . '">Delet</a>';
+                                                echo '<span class="fs-6">';
+                                                echo '<a class="text-white" href="' . base_url() . 'eliminaracademico/' . $usuaca->id_usu_aca . '">&#9747;</a>';
                                                 echo '</span ">';
 
                                                 echo '</button ">';
