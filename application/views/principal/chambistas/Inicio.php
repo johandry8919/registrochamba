@@ -159,6 +159,40 @@
 
                         </div>
                     <?php } ?>
+                    <!-- Social - Vivienda Joven -->
+                    <?php if (isset($usuariovivienda) and !empty($usuariovivienda)) { ?>
+                        <div class="col-12  d-grid gap-2 ">
+                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>viviendajoven" class="link-primary text-white"><abbr title="Se añade a tu CV ">Social - Vivienda Joven</abbr>: Listo</a>
+                            </button>
+
+                        </div>
+                                    
+                                <?php } else { ?>
+                                    <div role="alert" class="col-12  d-grid gap-2 ">
+                            <button class="btn btn-warning-light mb-2"><a href="<?php echo base_url() ?>viviendajoven" class="link-danger"><abbr title="Se añade a tu CV ">Social - Vivienda Joven</abbr>:(*) Presiona Aquí</a>
+                            </button>
+
+                        </div>
+                               
+                                <?php } ?>
+
+                                <!-- Experiencia Laboral -->
+                                <?php if (isset($usuarioexperiencia) and !empty($usuarioexperiencia)) { ?>
+                                    <div class="col-12  d-grid gap-2 ">
+                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>experiencialaboral" class="link-primary text-white"><abbr title="Se añade a tu CV ">Experiencia Laboral</abbr>: Listo</a>
+                            </button>
+
+                        </div>
+                                 
+                                <?php } else { ?>
+                                    <div role="alert" class="col-12  d-grid gap-2 ">
+                            <button class="btn btn-warning-light mb-2"><a href="<?php echo base_url() ?>experiencialaboral" class="link-danger"><abbr title="Se añade a tu CV ">Experiencia Laboral</abbr>:(*) Presiona Aquí</a>
+                            </button>
+
+                        </div>
+                               
+                                   
+                                <?php } ?>
                     <!-- Descargar Curriculum -->
 
                     <div class="col-12">
