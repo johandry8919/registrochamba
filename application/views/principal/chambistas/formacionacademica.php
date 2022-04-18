@@ -1,4 +1,4 @@
-<section class="container-fluid">
+<section class="container">
     <div class="row">
         <div class="mb-2 col-12 col-md-6 text-wrap">
 
@@ -93,22 +93,7 @@
                                             }
                                         }
                                         ?>
-                                        <!-- <td name="bstable-actions">
-                                            <div class="btn-list">
-                                                <button id="bEdit" type="button" class="btn btn-sm btn-primary">
-                                                    <span class="fe fe-edit"> </span>
-                                                </button>
-                                                <button id="bDel" type="button" class="btn  btn-sm btn-danger">
-                                                    <span class="fe fe-trash-2"> </span>
-                                                </button>
-                                                <button id="bAcep" type="button" class="btn  btn-sm btn-primary" style="display:none;">
-                                                    <span class="fe fe-check-circle"> </span>
-                                                </button>
-                                                <button id="bCanc" type="button" class="btn  btn-sm btn-danger" style="display:none;">
-                                                    <span class="fe fe-x-circle"> </span>
-                                                </button>
-                                            </div>
-                                        </td> -->
+                                       
                                     </tr>
 
                                 </tbody>
@@ -123,43 +108,3 @@
         </div>
 </section>
 
-<script type="text/javascript">
-    var base_url = "<?php echo base_url(); ?>";
-</script>
-<!-- Jquery Core Js -->
-<script src="<?php echo base_url(); ?>plugins/jquery/jquery.min.js"></script>
-
-<!-- Bootstrap Core Js -->
-<script src="<?php echo base_url(); ?>plugins/bootstrap/js/bootstrap.js"></script>
-
-<!-- Select Plugin Js -->
-<script src="<?php echo base_url(); ?>plugins/bootstrap-select/js/bootstrap-select.js"></script>
-
-<!-- Slimscroll Plugin Js -->
-<script src="<?php echo base_url(); ?>plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-
-<!-- Waves Effect Plugin Js -->
-<script src="<?php echo base_url(); ?>plugins/node-waves/waves.js"></script>
-
-<!-- Custom Js -->
-<script src="<?php echo base_url(); ?>plugins/momentjs/moment.js"></script>
-<script src="<?php echo base_url(); ?>plugins/autosize/autosize.js"></script>
-<script src="<?php echo base_url(); ?>plugins/bootstrap-select/js/bootstrap-select.js"></script>
-<script src="<?php echo base_url(); ?>plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-<script src="<?php echo base_url(); ?>plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-
-<script src="<?php echo base_url(); ?>js/admin.js"></script>
-<script src="<?php echo base_url(); ?>js/pages/forms/basic-form-elements.js"></script>
-
-<!-- Demo Js -->
-<!--     <script src="<?php echo base_url(); ?>js/demo.js"></script> -->
-
-<script src="<?php echo base_url(); ?>plugins/jquery-validation/jquery.validate.js"></script>
-
-<script src="<?php echo base_url(); ?>plugins/jquery-validation/localization/messages_es.js"></script>
-
-<script src="<?php echo base_url(); ?>js/pages/examples/datospersonales.js"></script>
-
-
-
-</script>
