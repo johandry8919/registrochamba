@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-md-12 text-center ">
         <?php if ($this->session->flashdata('mensajeexito')) { ?>
             <div class="row">
-                <div class="col-md-12 mb-3">
+                <div class="col-md-12 mb-2">
                     <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?>
 
                     </div>
@@ -46,15 +46,8 @@
 
                 <div class="container-fluid">
 
-                    <!-- <div class="row ">
-                        <div class="col-12">
-                            <p class="font-bold requerido">Requerido (<span class="aste">*</span>)</p>
-                         
-                        </div>
-
-                    </div> -->
                     <div class="col-12">
-                        <div class="progress-bar progress-bar-striped progress-bar-animated  mt-2 mb-3 <?php if ($porcentaje_perfil == 100) {
+                        <div class="progress-bar progress-bar-striped progress-bar-animated   mb-2 <?php if ($porcentaje_perfil == 100) {
                                                                                                             echo "bg-green-1";
                                                                                                         } else {
                                                                                                             echo "bg-blue-1";
@@ -145,6 +138,7 @@
 
                         </div>
                     <?php } ?>
+                    <!-- Organizativo - Brigadas -->
 
                     <?php if (isset($usuariobrigada) and !empty($usuariobrigada)) { ?>
                         <div class="col-12  d-grid gap-2 ">

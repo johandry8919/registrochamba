@@ -89,7 +89,7 @@
                                 <?php }
                                 if(count($usuarioacademico) <'5'){?>
                                 <div class="col-xs-12 col-sm-6">
-                                    <a href="<?php echo base_url()?>formacionacademicaform" class="btn bg-cyan btn-block btn-lg waves-effect" style="margin: 20px auto;">Agregar</a>
+                                    <a href="<?php echo base_url()?>formacionacademicaform" class="btn btn-primary btn-block " style="margin: 20px auto;">Agregar</a>
                                 </div>
                                 <?php } ?>
                             </div>
