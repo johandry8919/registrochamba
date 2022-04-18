@@ -817,11 +817,29 @@ class Cchambistas extends CI_Controller
 
         $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademico();
 
-        $data['usuarioacademico'] = $usuarioacademico;
+        // $data['usuarioacademico'] = $usuarioacademico;
 
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vformacionacademica', $data);
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/Vformacionacademica', $data);
+        $output = [
+            "title"            => "formacionacademica",
+             "vista_principal" => "chambistas/formacionacademica",
+             "usuarioacademico"      => $data['usuarioacademico']= $usuarioacademico,
+             
+            
+
+
+          
+           "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js")],
+
+
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
+
+
+        ];
+
+        $this->load->view("main", $output);
     }
 
     public function Vformacionacademica_form()
@@ -840,8 +858,23 @@ class Cchambistas extends CI_Controller
         $data['areaform'] = $res2;
         //var_dump($data['acausuario']);exit;
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vformacionacademica_form', $data);
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/Vformacionacademica_form', $data);
+
+        $output = [
+            "title"            => "formacionacademicaform",
+             "vista_principal" => "chambistas/formacionacademicaform",
+             "areaform"      => $data['areaform'] = $res2,
+
+           "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js")],
+
+
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
+
+
+        ];
+
+        $this->load->view("main", $output);
     }
 
 
