@@ -40,9 +40,6 @@
             </div>
             <div class="col-12 col-md-12 col-lg-12 ">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Basic Edit Table</h3>
-                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered border text-nowrap mb-0" id="basic-edit">
