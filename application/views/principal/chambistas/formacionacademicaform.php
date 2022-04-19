@@ -1,12 +1,35 @@
 <section class="container">
+    <?php if ($this->session->flashdata('mensajeexito')) { ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?></div>
+            </div>
+        </div>
+    <?php } ?>
+    <?php if ($this->session->flashdata('mensajeerror')) { ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
+            </div>
+        </div>
+        <br>
+    <?php } ?>
+    <?php if ($this->session->flashdata('mensaje')) { ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning"> <?php echo $this->session->flashdata('mensaje'); ?></div>
+            </div>
+        </div>
+        <br>
+    <?php } ?>
     <div class="card">
         <div class="body">
             <div class="card-header">
                 <div class="card-title">Formación Académica</div>
             </div>
-            <div class="container fluid">
-                <form action="">
-                    <div class="row mt-2  justify-content-center">
+            <div class="container-fluid">
+                <form id="formacionacademica" method="POST" action="<?php echo base_url(); ?>Cchambistas/registroformacionacademica">
+                    <div class="row mt-2  ">
                         <div class=" col-12 col-lg-6 ">
                             <div class="form-group">
                                 <label class="form-label">Centro educativo</label>
@@ -81,7 +104,7 @@
                         <div class="col-md-12 ">
 
                             <div class="form-group">
-                            <label class="form-label">Estado</label>
+                                <label class="form-label">Estado</label>
 
                                 <input name="id_estado_inst" type="radio" id="estudio" value="1" <?php if (isset($acausuario->id_estado_inst)) {
                                                                                                         if (trim($acausuario->id_estado_inst) == '1') {
@@ -106,6 +129,28 @@
                             </div>
                         </div>
 
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="form-group">
+                                <label>Rango Fecha:</label>
+
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-top" id="reservation" name="rango_fecha" value="<?php if (isset($acausuario->rango_fecha)) echo $acausuario->rango_fecha; ?>">
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="col-12 mt-3 mb-3">
+                            <?php if (isset($acausuario->id_usu_aca)) echo trim(ucwords($acausuario->id_usu_aca)); ?>
+                            <button id="boton" type="botton" class="login100-form-btn btn-primary">
+                                Guardar
+                            </button>
+                        </div>
+
+
+
                         <!-- row -->
                     </div>
                 </form>
@@ -116,3 +161,113 @@
         </div>
     </div>
 </section>
+
+    <!-- Jquery Core Js -->
+    <script src="<?php echo base_url();?>plugins/jquery/jquery.min.js"></script>
+    <!-- Slimscroll Plugin Js -->
+    <script src="<?php echo base_url();?>plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="<?php echo base_url();?>plugins/node-waves/waves.js"></script>
+
+    <!-- Custom Js -->
+        <script src="<?php echo base_url();?>plugins/momentjs/moment.js"></script>
+        <script src="<?php echo base_url();?>plugins/autosize/autosize.js"></script>
+
+    <script src="<?php echo base_url();?>plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>       
+
+    <script src="<?php echo base_url();?>js/admin.js"></script> 
+    <script src="<?php echo base_url();?>js/pages/forms/basic-form-elements.js"></script>
+
+    <!-- Demo Js -->
+<!--     <script src="<?php echo base_url();?>js/demo.js"></script> -->
+
+    <script src="<?php echo base_url();?>plugins/jquery-validation/jquery.validate.js"></script>
+    
+    <script src="<?php echo base_url();?>plugins/jquery-validation/localization/messages_es.js"></script>
+
+    <script src="<?php echo base_url();?>js/pages/examples/formacionacademica.js"></script>
+
+    <!-- Select2 -->
+    <script src="<?php echo base_url();?>bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="<?php echo base_url();?>bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+<script>
+
+    //Initialize Select2 Elements
+    $('.select2').select2()
+    $('#reservation').daterangepicker()
+
+
+    $('#reservation').daterangepicker(
+      {
+        ranges   : {
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment(),
+        locale: {
+            format: 'DD/MM/YYYY',
+            applyLabel: "Aceptar",
+            customRangeLabel: "Fecha Inicio - Final",
+            "daysOfWeek": [
+            "Do",
+            "Lu",
+            "Ma",
+            "Mi",
+            "Ju",
+            "Vi",
+            "Sa"
+            ],
+            "monthNames": [
+            "Enero",
+            "Febrero",
+            "Marzo",
+            "Abril",
+            "Mayo",
+            "Junio",
+            "Julio",
+            "Agosto",
+            "Septiembre",
+            "Octubre",
+            "Noviembre",
+            "Diciembre"
+        ],
+        }
+      }
+    )
+
+$('.datepicker').bootstrapMaterialDatePicker({
+    format: 'YYYY-MM-DD',
+    time: false,
+    maxDate: moment(),
+    language: 'es',
+    defaultDate:'2000-06-01'
+});
+
+$('#start').bootstrapMaterialDatePicker({
+    changeYear: true,    
+    changeMonth: true,
+    changeDays: false,
+    format: 'MM-YY',
+    showButtonPanel: false,
+    time: false,
+    maxDate: moment(),
+    onClose: function( selectedDate ) {
+        $( "#end" ).bootstrapMaterialDatePicker( "option", "maxDate", selectedDate );
+    }
+});
+
+$('#end').bootstrapMaterialDatePicker({
+    format: 'MM-YY',
+    dayViewHeaderFormat: 'MMMM YYYY',
+    viewMode: 'month',
+    time: false,
+    maxDate: moment(),
+    defaultDate: "+1w",
+    changeMonth: false,
+    numberOfMonths: 3,
+    onClose: function( selectedDate ) {
+    $( "#start" ).bootstrapMaterialDatePicker( "option", "minDate", selectedDate );
+    }    
+}); 
+
+    </script>
