@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container-fluid">
     <?php if ($this->session->flashdata('mensajeexito')) { ?>
         <div class="row">
             <div class="col-md-12">
@@ -129,7 +129,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-6 ">
                             <div class="form-group">
                                 <label>Rango Fecha:</label>
 
@@ -137,7 +137,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control pull-top" id="reservation" name="rango_fecha" value="<?php if (isset($acausuario->rango_fecha)) echo $acausuario->rango_fecha; ?>">
+                                    <input type="text" class="form-control pull-buttom" id="reservation" name="rango_fecha" value="<?php if (isset($acausuario->rango_fecha)) echo $acausuario->rango_fecha; ?>">
                                 </div>
                                
                             </div>
@@ -168,106 +168,13 @@
     <script src="<?php echo base_url();?>plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
     <!-- Waves Effect Plugin Js -->
     <script src="<?php echo base_url();?>plugins/node-waves/waves.js"></script>
-
     <!-- Custom Js -->
         <script src="<?php echo base_url();?>plugins/momentjs/moment.js"></script>
         <script src="<?php echo base_url();?>plugins/autosize/autosize.js"></script>
-
-    <script src="<?php echo base_url();?>plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>       
-
-    <script src="<?php echo base_url();?>js/admin.js"></script> 
-    <script src="<?php echo base_url();?>js/pages/forms/basic-form-elements.js"></script>
-
-    <!-- Demo Js -->
-<!--     <script src="<?php echo base_url();?>js/demo.js"></script> -->
-
-    <script src="<?php echo base_url();?>plugins/jquery-validation/jquery.validate.js"></script>
-    
-    <script src="<?php echo base_url();?>plugins/jquery-validation/localization/messages_es.js"></script>
-
-    <script src="<?php echo base_url();?>js/pages/examples/formacionacademica.js"></script>
 
     <!-- Select2 -->
     <script src="<?php echo base_url();?>bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="<?php echo base_url();?>bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-<script>
+    <script src="<?php echo base_url(); ?>assets/js/calendario.js"></script>
 
-    //Initialize Select2 Elements
-    $('.select2').select2()
-    $('#reservation').daterangepicker()
-
-
-    $('#reservation').daterangepicker(
-      {
-        ranges   : {
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment(),
-        locale: {
-            format: 'DD/MM/YYYY',
-            applyLabel: "Aceptar",
-            customRangeLabel: "Fecha Inicio - Final",
-            "daysOfWeek": [
-            "Do",
-            "Lu",
-            "Ma",
-            "Mi",
-            "Ju",
-            "Vi",
-            "Sa"
-            ],
-            "monthNames": [
-            "Enero",
-            "Febrero",
-            "Marzo",
-            "Abril",
-            "Mayo",
-            "Junio",
-            "Julio",
-            "Agosto",
-            "Septiembre",
-            "Octubre",
-            "Noviembre",
-            "Diciembre"
-        ],
-        }
-      }
-    )
-
-$('.datepicker').bootstrapMaterialDatePicker({
-    format: 'YYYY-MM-DD',
-    time: false,
-    maxDate: moment(),
-    language: 'es',
-    defaultDate:'2000-06-01'
-});
-
-$('#start').bootstrapMaterialDatePicker({
-    changeYear: true,    
-    changeMonth: true,
-    changeDays: false,
-    format: 'MM-YY',
-    showButtonPanel: false,
-    time: false,
-    maxDate: moment(),
-    onClose: function( selectedDate ) {
-        $( "#end" ).bootstrapMaterialDatePicker( "option", "maxDate", selectedDate );
-    }
-});
-
-$('#end').bootstrapMaterialDatePicker({
-    format: 'MM-YY',
-    dayViewHeaderFormat: 'MMMM YYYY',
-    viewMode: 'month',
-    time: false,
-    maxDate: moment(),
-    defaultDate: "+1w",
-    changeMonth: false,
-    numberOfMonths: 3,
-    onClose: function( selectedDate ) {
-    $( "#start" ).bootstrapMaterialDatePicker( "option", "minDate", selectedDate );
-    }    
-}); 
-
-    </script>

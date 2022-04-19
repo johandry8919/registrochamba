@@ -4,7 +4,7 @@
         <div class="mb-2 col-12 col-md-6 text-wrap">
 
             <?php
-            if (isset($usuarioacademico) and count($usuarioacademico) < '5') {
+            if (isset($usuarioexperiencia) and count($usuarioexperiencia) < '5') {
             ?>
 
                 <div class="alert alert-info"> <strong>Importante:</strong> Solo podras agregar máximo 5 opciones.</div>
@@ -28,11 +28,11 @@
 
             <div class="col-12 ">
                 <?php
-                if (isset($usuarioacademico) and count($usuarioacademico) < '5') {
+                if (isset($usuarioexperiencia) and count($usuarioexperiencia) < '5') {
                 ?>
 
                     <div class="">
-                        <a href="<?php echo base_url() ?>formacionacademicaform" class="btn btn-primary btn-block " style="margin: 20px auto;">Agregar</a>
+                        <a href="<?php echo base_url()?>experiencialaboralform" class="btn btn-primary btn-block " style="margin: 20px auto;">Agregar</a>
                     </div>
                 <?php
                 }
@@ -47,38 +47,39 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Centro Educativo</th>
-                                        <th>Nivel Educativo</th>
-                                        <th>Período</th>
-
+                                        <th>Empresa </th>
+                                        <th>Cargo</th>
+                                        <th>Periodo</th>
                                         <th name="bstable-actions">Actions</th>
+
+                                        
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <?php
-
-                                        if (isset($usuarioacademico) and $usuarioacademico != "") {
-                                            $i = 1;
-                                            foreach ($usuarioacademico as $key => $usuaca) {
-                                                echo '<tr>';
-                                                echo '<th scope="row">' . $i . '</th>';
-                                                echo '<td>' . $usuaca->centro_educ . '</td>';
-                                                echo '<td>' . $usuaca->nivel . ' - ' . $usuaca->nombre . '</td>';
-                                                echo '<td>' . $usuaca->rango_fecha . '</td>';
+                                    <?php
+                                    /* var_dump($usuarioacademico); */
+                                    if(isset($usuarioexperiencia) and $usuarioexperiencia!=""){
+                                            $i=1;
+                                        foreach ($usuarioexperiencia as $key => $usuexp) {
+                                            echo '<tr>';
+                                                echo '<th scope="row">'.$i.'</th>';
+                                                echo '<td>'.$usuexp->empresa.'</td>';
+                                                echo '<td>'.$usuexp->cargo.'</td>';
+                                                echo '<td>'.$usuexp->rango_fecha.'</td>';
                                                 echo '<td >';
                                                 
                                                 echo '<div class="btn-list">';
                                                 echo '<button type="button" class="btn btn-sm btn-primary ">';
                                                 echo '<span class="fs-6">';
-                                                echo '<a class="text-white" href="' . base_url() . 'formacionacademicaform/' . $usuaca->id_usu_aca . '">&#9998;</a>';
+                                                echo '<a class="text-white" href="' . base_url() . 'experiencialaboralform/' . $usuexp->id__exp_lab . '">&#9998;</a>';
                                                 echo '</span ">';
 
                                                 echo '</button ">';
 
                                                 echo '<button  type="button" class="btn  btn-sm btn-danger ">';
                                                 echo '<span class="fs-6">';
-                                                echo '<a class="text-white" href="' . base_url() . 'eliminaracademico/' . $usuaca->id_usu_aca . '">&#9747;</a>';
+                                                echo '<a class="text-white" href="' . base_url() . 'eliminarexp/' . $usuexp->id__exp_lab . '">&#9747;</a>';
                                                 echo '</span ">';
 
                                                 echo '</button ">';
@@ -87,11 +88,12 @@
 
 
                                                 echo '</td>';
-                                                echo '</tr>';
-                                                $i++;
-                                            }
+                                            echo '</tr>';
+                                            $i++;
                                         }
-                                        ?>
+                                            
+                                    }
+                                ?>
                                        
                                     </tr>
 
