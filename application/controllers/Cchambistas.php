@@ -811,19 +811,15 @@ class Cchambistas extends CI_Controller
             $res = $this->Musuarios->getExpLaboralID($id__exp_lab);
             $data['expusuario'] = $res;
         }
-        //var_dump($data['expusuario']);exit;
+        // var_dump($data['expusuario']);exit;
 
         // $this->load->view('layouts/head');
         // $this->load->view('chambistas/Vexperiencialaboral_form', $data);
         
-
-
-        // $this->load->view('layouts/head');
-        // $this->load->view('chambistas/Vexperiencialaboral', $data);
         $output = [
             "title"            => "experiencialaboral",
              "vista_principal" => "chambistas/experiencialaboralform",
-             "expusuario"        => $data,
+             "expusuario"        =>$data,
              
 
 
