@@ -1,5 +1,6 @@
 <section class="container-fluid">
-     <div class="overlay"></div>
+    <div class="overlay"></div>
+
     <?php if ($this->session->flashdata('mensajeexito')) { ?>
         <div class="row">
             <div class="col-md-12">
@@ -28,8 +29,9 @@
             <div class="card-header">
                 <div class="card-title">Experiencia Laboral</div>
             </div>
+
             <div class="container-fluid">
-                <form id="experiencialaboral" method="POST" action="<?php echo base_url();?>Cchambistas/registroexperiencialaboral">
+                <form id="experiencialaboral" method="POST" action="<?php echo base_url(); ?>Cchambistas/registroexperiencialaboral">
                     <div class="row mt-2  ">
 
                         <!-- Empresa -->
@@ -38,7 +40,7 @@
                             <div class="form-group">
                                 <label class="form-label">Empresa</label>
 
-                                <input type="text" placeholder="Empresa" class=" form-control" id="empresa" name="empresa" maxlength="100"  autofocus value="<?php if (isset($expusuario->empresa)) echo ucwords($expusuario->empresa); ?>">
+                                <input required type="text" placeholder="Empresa" class=" form-control" id="empresa" name="empresa" maxlength="100" autofocus value="<?php if (isset($expusuario->empresa)) echo ucwords($expusuario->empresa); ?>">
                             </div>
 
 
@@ -50,7 +52,7 @@
                             <div class="form-group">
                                 <label class="form-label">Cargo</label>
 
-                                <input type="text" placeholder="Cargo" class=" form-control" id="cargo" name="cargo" maxlength="50"  autofocus value="<?php if(isset($expusuario->cargo)) echo ucwords($expusuario->cargo);?>">
+                                <input required type="text" placeholder="Cargo" class=" form-control" id="cargo" name="cargo" maxlength="50" autofocus value="<?php if (isset($expusuario->cargo)) echo ucwords($expusuario->cargo); ?>">
                             </div>
 
 
@@ -62,7 +64,7 @@
                             <div class="form-group">
                                 <label class="form-label">Sector de la empresa</label>
 
-                                <select class="form-control"id="area" name="area" >
+                                <select required class="form-control" id="area" name="area">
                                     <option value="">Seleccione una opción</option>
 
 
@@ -147,19 +149,19 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-calendar"></i>
                                     </div>
-                                    <input type="text" class="form-control pull-right" id="reservation" name="rango_fecha" value="<?php if (isset($expusuario->rango_fecha)) echo $expusuario->rango_fecha; ?>">
+                                    <input required type="text" class="form-control pull-right" id="reservation" name="rango_fecha" value="<?php if (isset($expusuario->rango_fecha)) echo $expusuario->rango_fecha; ?>">
                                 </div>
                                 <!-- /.input group -->
                             </div>
                         </div>
 
                         <div class="col-12 col-md-6 align-items-start align-self-start text-start ">
-                        <label class="">Funciones y logros del cargo:</label>
-                           
+                            <label class="">Funciones y logros del cargo:</label>
+
                             <div class="input-group">
-                                
-                                    <textarea  rows="5" class="form-control no-resize zindex" name="funciones" id="funciones" cols="" maxlength="250" placeholder="Funciones y logros del cargo"  aria-required="true" aria-invalid="false"><?php if (isset($expusuario->funciones)) echo trim(ucwords($expusuario->funciones)); ?></textarea>
-                               
+
+                                <textarea rows="5" class="form-control no-resize zindex" name="funciones" id="funciones" cols="" maxlength="250" placeholder="Funciones y logros del cargo" required aria-required="true" aria-invalid="false"><?php if (isset($expusuario->funciones)) echo trim(ucwords($expusuario->funciones)); ?></textarea>
+
                             </div>
 
                         </div>
@@ -168,17 +170,12 @@
 
 
                         </div>
-                        <div class="col-md-6 col-md-offset-3">
-                                                <div class="form-group">
-                                                    <input required type="checkbox" id="exp_lab" name="exp_lab" value="1">
-                                                    <label for="exp_lab">Marca esta opción sino tienes ninguna Experiencia Laboral</label>
-                                                </div>
-                                            </div>
+
 
                         <div class=" col-12 col-lg-6 ">
                             <div class="custom-controls-stacked">
                                 <label class="custom-control custom-checkbox-lg">
-                                    <input type="checkbox" class="custom-control-input" id="exp_lab" name="exp_lab" value="1" >
+                                    <input type="checkbox" class="custom-control-input" id="exp_lab" name="exp_lab" value="1">
                                     <span class="custom-control-label">Marca esta opción sino tienes ninguna Experiencia Laboral</span>
                                 </label>
 
@@ -187,13 +184,13 @@
 
                         </div>
                         <div class="col-xs-6 col-md-offset-3 mb-2">
-                                                <input  type="hidden" id="id__exp_lab" name="id__exp_lab" value="<?php if(isset($expusuario->id__exp_lab)) echo trim(ucwords($expusuario->id__exp_lab));?>">
-                                                <button class="login100-form-btn btn-primary" id="boton" type="botton">Guardar</button>
-                                            </div>
+                            <input type="hidden" id="id__exp_lab" name="id__exp_lab" value="<?php if (isset($expusuario->id__exp_lab)) echo trim(ucwords($expusuario->id__exp_lab)); ?>">
+                            <button class="login100-form-btn btn-primary" id="boton" type="botton">Guardar</button>
+                        </div>
 
 
 
-                    
+
 
 
 
