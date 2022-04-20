@@ -5,11 +5,6 @@
 
 
 
-
-
-
-
-
 <section class="container-fluid">
     <?php if ($this->session->flashdata('mensajeexito')) { ?>
         <div class="row">
@@ -34,42 +29,39 @@
         </div>
         <br>
     <?php } ?>
+    <div class="row">
+    <div class="col-md-6 col-12 mb-2 ">
+                            <div class="alert alert-info "> <strong>Importante:</strong> Solo puedes seleccionar una opción </div>
+                        </div>
+    </div>
     <div class="row clearfix">
         <div class="col-xs-12">
             <div class="card">
                 <div class="body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="alert alert-primary"> <strong>Importante:</strong> Solo puedes seleccionar una opción </div>
-                        </div>
-                    </div>
+                   
                     <?php
                     if (isset($usuarioproductivo)) {
                     ?>
                         <div class="container-fluid">
-                        <div class="row  mt-3 mb-2 align-items-center justify-content-center ">
-                            <div class="col-12 col-sm-5 col-md-6 col-lg-3 text-center text-success fs-5">Seleccionaste</div>
-                            <div class="col-12 text-center col-sm-6 col-md-6 col-lg-4 text-success fs-5">
+                        <div class="row  mt-2 mb-2  ">
+                            <div class="col-12 border alert alert-success  col-md-6 col-lg-6 ">Seleccionaste: <?php
+                                if (isset($usuarioproductivo) and $usuarioproductivo != "") {
+                                    echo "$usuarioproductivo->nombre_chamba"; 
+                                }
+                                ?>
                                 <?php
                                 if (isset($usuarioproductivo) and $usuarioproductivo != "") {
-                                    echo "$usuarioproductivo->nombre_chamba";
-
-
-
                                     
+                                    echo '<a href="'.base_url().'eliminarchamba/'.$usuarioproductivo->id_chamba.'"><i class=" btn-close fs-6" aria-label="Close"></i></a>';
+
+                                   
+                                   
                                 }
                                 ?>
-                            </div>
+                                </div>
+                        
                            <div class="col-1 col-lg-1 ">
-                            <?php
-                                if (isset($usuarioproductivo) and $usuarioproductivo != "") {
-                                    
-                                    echo '<a href="'.base_url().'eliminarchamba/'.$usuarioproductivo->id_chamba.'"><i class=" btn-close text-center  " aria-label="Close"></i></a>';
-
-                                   
-                                   
-                                }
-                                ?>
+                            
                               
                             </div> 
                         </div>
@@ -78,12 +70,12 @@
 
                     <div class="card">
 
-                        <div class="col-12 body ">
+                        <div class="body ">
                             <div class="card-header">
                                 <div class="card-title">Productivo</div>
                             </div>
                             <form id="formacionacademica" method="POST" action="<?php echo base_url(); ?>Cchambistas/registroproductivo">
-                                <div class="card-title">¿En cuál Chamba deseas incorporarte?</div>
+                                <div class="card-title text-center">¿En cuál Chamba deseas incorporarte?</div>
                                 <div class="form-group">
                                     <select class="form-select" aria-label="Default select example" data-placeholder="Choose one" id="tipo_chamba" name="tipo_chamba" required>
                                         <option value="">Seleccione una opción</option>

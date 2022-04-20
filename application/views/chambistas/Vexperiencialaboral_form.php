@@ -107,7 +107,7 @@
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="area" name="area">
                                                             <option value="">Seleccione una opción</option>
-                                                            <!-- <option selected value='1'>Educación Básica Primaria</option>  -->
+                
                                                             
                                                             <option <?php if(isset($expusuario->area) and $expusuario->area=='1'){ echo 'selected';}?> value="1">Agricultura / Pesca / Ganadería</option>
                                                             <option <?php if(isset($expusuario->area) and $expusuario->area=='2'){ echo 'selected';}?> value="2">Construcción / obras</option>

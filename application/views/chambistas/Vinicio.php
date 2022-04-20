@@ -15,20 +15,7 @@
             <p>Espere por favor...</p>
         </div>
     </div>
-    <!-- #END# Page Loader -->
-    <!-- Overlay For Sidebars -->
-    <div class="overlay"></div>
-    <!-- #END# Overlay For Sidebars -->
-    <!-- Search Bar -->
-    <div class="search-bar">
-        <div class="search-icon">
-            <i class="material-icons">search</i>
-        </div>
-        <input type="text" placeholder="START TYPING...">
-        <div class="close-search">
-            <i class="material-icons">close</i>
-        </div>
-    </div>
+
 
     <?php include('nav.php'); ?>
 
@@ -38,12 +25,7 @@
     <section class="content">
         <div class="container-fluid">
 
-            <div class="block-header">
-                <ol class="breadcrumb breadcrumb-col-pink">
-                    <li><a href="javascript:void(0);"><i class="material-icons">home</i> Inicio</a></li>
-                    <li class="active"><i class="material-icons">library_books</i> Mi Perfil</li>
-                </ol>
-            </div>
+      
 
             <div class="row clearfix">
 
