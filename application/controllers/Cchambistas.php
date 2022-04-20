@@ -134,8 +134,16 @@ class Cchambistas extends CI_Controller
         if (!$this->session->userdata('id_usuario')) {
             redirect('iniciosesion');
         }
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/VcambiarClave');
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/VcambiarClave');
+        $output = [
+            "title"             => "cambiarClave",
+             "vista_principal"   => "chambistas/cambiarClave",
+             
+
+        ];
+
+        $this->load->view("main", $output);
     }
 
     public function Vviviendajoven()
