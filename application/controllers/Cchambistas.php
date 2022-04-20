@@ -316,8 +316,17 @@ class Cchambistas extends CI_Controller
         $data['redesusuario'] = $res;
         //var_dump($data['redesusuario']);exit;
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vredessociales', $data);
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/Vredessociales', $data);
+        $output = [
+            "title"            => "redessociales",
+             "vista_principal" => "chambistas/redessociales",
+             "redesusuario"     => $data['redesusuario'] = $res,
+             
+
+
+        ];
+        $this->load->view("main", $output);
     }
 
     public function Vbrigadas()
