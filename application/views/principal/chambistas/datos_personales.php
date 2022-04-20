@@ -10,32 +10,7 @@
     <!-- Search Bar -->
 
 
-    <style>
-        body { margin: 0; padding: 0; }
-       
-        #map { position: absolute; top: 0; bottom: 0; width: 100%; }
-
-        .geocoder {
-        position: absolute;
-        z-index: 1;
-       width: 50%;
-        left: 50%;
-        margin: -25%;
-        top: 10px; 
-    }
-    .contenedor-mapa{
-        margin-top: -75px;
-        
-        margin-left: -25%;
- 
-    }
-    .mapboxgl-ctrl-geocoder {
-        min-width: 100%;
-    }
-    #map {
-        margin-top: 75px;
-    }
-    </style>
+    
 <!--script src="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.css" rel="stylesheet" /-->
     <section class="content">
@@ -180,7 +155,7 @@
 
                                       
                                         <div class="row ">
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
 
                                                 <div class="form-group">
                                                     <label class="form-label">Telf Móvil</label> 
@@ -198,7 +173,7 @@
 
                                             </div><!--col-->
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
 
                                                 <div class="form-group">
                                                     <label class="form-label">Telf Local</label> 
@@ -215,11 +190,147 @@
                                                 
 
                                             </div><!--col-->
+                                            <div class="col-md-4">
+                                                <label class="form-label"> Profesión Oficio</label>
+                                                <div class="form-group">
+                                           
+
+                                                
+                                                        <select required class="form-control show-tick" id="id_profesion" name="id_profesion">
+                                                            <option value="">Seleccione una Profesión u Oficio</option>
+
+                                                           
+                                                     
+                                                         <?php if(isset($profesion_oficio)): ?>
+                                                            <?php foreach ($profesion_oficio as $key => $profesion):?>
+                                                               
+                                                                <?php  if($registroviejo->id_profesion_oficio == $profesion->id_profesion):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+                                                        </select>   
+                                             
+                                                </div>
+                                                
+                                            </div>
+
                                         
                                         </div><!--row-->
                                         
 
                                       
+
+                               
+                                     
+                                        <div class="row ">   
+                                            <div class="col-md-4">
+                                                <label  class="form-label"> Comunidad Aborigen</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" id="aborigen" name="aborigen">
+                                                        <option value="">Seleccione una opción</option>
+                                                    <?php
+                                                        if(isset($aborigenes)){
+                                                            foreach ($aborigenes as $key => $aborigen) {
+                                                                if($aborigen->id_aborigen==$registroviejo->aborigen){
+                                                                    echo "<option selected value='".$aborigen->id_aborigen."'>".$aborigen->nombre."</option>";
+                                                                }else{
+                                                                    echo "<option value='".$aborigen->id_aborigen."'>".$aborigen->nombre."</option>";                                                                    
+                                                                }
+                                                            }
+                                                        }
+                                                    ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                            <label  class="form-label">Cantidad de hijos</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" id="hijo" name="hijo">
+                                                    <?php
+                                                        for ($i=0; $i < 16; $i++) { 
+                                                            if($i==$registroviejo->hijo){
+                                                                if($i==0){
+                                                                    echo "<option selected value='".$i."'>--Ninguno--</option>";
+                                                                }else{
+                                                                    echo "<option selected value='".$i."'>".$i."</option>"; 
+                                                                }
+                                                            }else{
+                                                                echo "<option value='".$i."'>".$i."</option>";                                                                    
+                                                            }
+                                                        }
+                                                        
+                                                    ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                            <label  class="form-label">Situación actual empleo</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" id="empleo" name="empleo">
+                                                                <option value="">Seleccione una opción</option>
+                                                                <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='no-tengo-empleo') echo "selected";?> value="no-tengo-empleo">No tengo empleo</option>
+                                                                <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='buscando-empleo') echo "selected";?> value="buscando-empleo">Estoy buscando trabajo</option>
+                                                                <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='estoy-trabajando') echo "selected";?> value="estoy-trabajando">Estoy Trabajando actualmente</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                      
+
+                                           
+                                        </div><!--row-->
+                                        <div class="row ">
+                                            <div class="col-md-4 ">
+                                                <label  class="form-label">¿Se encuentra Estudiando?</label><br>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input name="estudio" type="radio" id="estudio" value="si" <?php if(isset($registroviejo->estudio)){ if(trim($registroviejo->estudio)=='si'){echo 'checked';}}?> />
+                                                        <label for="estudio">Si</label>
+                                                        <input name="estudio" type="radio" id="estudio2" value="no" <?php if(isset($registroviejo->estudio)){ if(trim($registroviejo->estudio)=='no'){echo 'checked';}}?> />
+                                                        <label for="estudio2">No</label><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 ">
+
+                                                <label  class="form-label">¿Se encuentra inscrito en el CNE?</label><br>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input name="cne" type="radio" id="cne" value="si" <?php if(isset($registroviejo->cne)){ if(trim($registroviejo->cne)=='si'){echo 'checked';}}?> />
+                                                        <label for="cne">Si</label>
+                                                        <input name="cne" type="radio" id="cne2" value="no" <?php if(isset($registroviejo->cne)){ if(trim($registroviejo->cne)=='no'){echo 'checked';}}?>/>
+                                                        <label for="cne2">No</label><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 ">
+                                                <label  class="form-label">Género</label><br>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input name="genero" type="radio" id="genero" value="F" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='F'){echo 'checked';}}?>/>
+                                                        <label for="genero">Femenino</label>
+                                                        <input name="genero" type="radio" id="genero2" value="M" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='M'){echo 'checked';}}?>/>
+                                                        <label for="genero2">Masculino</label><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div><!--row-->
 
                                         <div class="row ">
                                             <div class="col-md-4">
@@ -286,158 +397,55 @@
                                                 
                                             </div>
                                         </div><!--row-->
-                                        <div class="row ">
-
-                                            <div class="col-md-4">
-                                                <label class="form-label"> Profesión Oficio</label>
-                                                <div class="form-group">
-                                           
-
-                                                
-                                                        <select required class="form-control show-tick" id="id_profesion" name="id_profesion">
-                                                            <option value="">Seleccione una Profesión u Oficio</option>
-
-                                                           
-                                                     
-                                                         <?php if(isset($profesion_oficio)): ?>
-                                                            <?php foreach ($profesion_oficio as $key => $profesion):?>
-                                                               
-                                                                <?php  if($registroviejo->id_profesion_oficio == $profesion->id_profesion):?>
-                                                                
-                                                                 
-                                                                 
-                                                                    <?php    echo "<option selected value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";     
-                                                               else:
-                                                                    echo "<option value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";
-                                                                endif;
-                                                           endforeach;
-                                                        endif;
-                                                    ?>
-                                                        </select>   
-                                             
-                                                </div>
-                                                
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <label class="form-label"> Dirección Especifica</label>
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                    <textarea maxlength="255" rows="4" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..."><?php if(isset($registroviejo->direccion)) echo $registroviejo->direccion;?></textarea>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="row ">   
-                                            <div class="col-md-4">
-                                                <label  class="form-label"> Comunidad Aborigen</label>
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" id="aborigen" name="aborigen">
-                                                        <option value="">Seleccione una opción</option>
-                                                    <?php
-                                                        if(isset($aborigenes)){
-                                                            foreach ($aborigenes as $key => $aborigen) {
-                                                                if($aborigen->id_aborigen==$registroviejo->aborigen){
-                                                                    echo "<option selected value='".$aborigen->id_aborigen."'>".$aborigen->nombre."</option>";
-                                                                }else{
-                                                                    echo "<option value='".$aborigen->id_aborigen."'>".$aborigen->nombre."</option>";                                                                    
-                                                                }
-                                                            }
-                                                        }
-                                                    ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="col-md-4">
-                                            <label  class="form-label">Cantidad de hijos</label>
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" id="hijo" name="hijo">
-                                                    <?php
-                                                        for ($i=0; $i < 16; $i++) { 
-                                                            if($i==$registroviejo->hijo){
-                                                                if($i==0){
-                                                                    echo "<option selected value='".$i."'>--Ninguno--</option>";
-                                                                }else{
-                                                                    echo "<option selected value='".$i."'>".$i."</option>"; 
-                                                                }
-                                                            }else{
-                                                                echo "<option value='".$i."'>".$i."</option>";                                                                    
-                                                            }
-                                                        }
-                                                        
-                                                    ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                            <div class="col-md-4">
-                                            <label  class="form-label">Situación actual empleo</label>
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" id="empleo" name="empleo">
-                                                                <option value="">Seleccione una opción</option>
-                                                                <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='no-tengo-empleo') echo "selected";?> value="no-tengo-empleo">No tengo empleo</option>
-                                                                <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='buscando-empleo') echo "selected";?> value="buscando-empleo">Estoy buscando trabajo</option>
-                                                                <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='estoy-trabajando') echo "selected";?> value="estoy-trabajando">Estoy Trabajando actualmente</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                      
-
-                                            <div class="row  justify-content-center align-items-center ">
-                                                <div class="col-xs-6 col-xs-offset-3 col-md-4 col-md-offset-4">
-                                                    <label  class="form-label">¿Se encuentra Estudiando?</label><br>
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <input name="estudio" type="radio" id="estudio" value="si" <?php if(isset($registroviejo->estudio)){ if(trim($registroviejo->estudio)=='si'){echo 'checked';}}?> />
-                                                            <label for="estudio">Si</label>
-                                                            <input name="estudio" type="radio" id="estudio2" value="no" <?php if(isset($registroviejo->estudio)){ if(trim($registroviejo->estudio)=='no'){echo 'checked';}}?> />
-                                                            <label for="estudio2">No</label><br>
-                                                        </div>
-                                                    </div>
-
-                                                    <!--<b>¿Se encuentra Desempleado?</b><br>
-                                                    <div class="input-group">
-                                                        <div class="form-line">
-                                                            <input name="desempleado" type="radio" id="desempleado" value="si" <?php if(isset($registroviejo->desempleado)){ if(trim($registroviejo->desempleado)=='si'){echo 'checked';}}?> />
-                                                            <label for="desempleado">Si</label>
-                                                            <input name="desempleado" type="radio" id="desempleado2" value="no" <?php if(isset($registroviejo->desempleado)){ if(trim($registroviejo->desempleado)=='no'){echo 'checked';}}?> />
-                                                            <label for="desempleado2">No</label><br>
-                                                        </div>
-                                                    </div> -->
-
-                                                    <label  class="form-label">¿Se encuentra inscrito en el CNE?</label><br>
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <input name="cne" type="radio" id="cne" value="si" <?php if(isset($registroviejo->cne)){ if(trim($registroviejo->cne)=='si'){echo 'checked';}}?> />
-                                                            <label for="cne">Si</label>
-                                                            <input name="cne" type="radio" id="cne2" value="no" <?php if(isset($registroviejo->cne)){ if(trim($registroviejo->cne)=='no'){echo 'checked';}}?>/>
-                                                            <label for="cne2">No</label><br>
-                                                        </div>
-                                                    </div>
-
-                                                    <label  class="form-label">Género</label><br>
-                                                    <div class="form-group">
-                                                        <div class="form-line">
-                                                            <input name="genero" type="radio" id="genero" value="F" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='F'){echo 'checked';}}?>/>
-                                                            <label for="genero">Femenino</label>
-                                                            <input name="genero" type="radio" id="genero2" value="M" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='M'){echo 'checked';}}?>/>
-                                                            <label for="genero2">Masculino</label><br>
-                                                        </div>
-                                                    </div>
-                                               
-                                                </div>
-                                            </div>
-                                        </div><!--row-->
+                                   
                                 
+                            <div class="row "> 
+                                <div class="col-md-4">
+                                    <label class="form-label"> Dirección Especifica</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                        <textarea maxlength="255" rows="4" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..."><?php if(isset($registroviejo->direccion)) echo $registroviejo->direccion;?></textarea>
+                                        </div>
+                                    </div>
+
+                            
+
+                                        <div class="form-group">
+                                            <label class="form-label">Latitud</label> 
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="mdi mdi-map" aria-hidden="true"></i>
+                                                </a>
+                                                <input readonly  class="input100 border-start-0 ms-0 form-control" type="text" id="latitud"   name="latitud" value="<?php if(isset($registroviejo->latitud)) echo ucwords($registroviejo->latitud);?>" placeholder="latitud" required autofocus>
+                                               
+                                            </div>
+    
+                                        </div>
+                                              
+                                        
+
+                                        <div class="form-group">
+                                            <label class="form-label">Longitud</label> 
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="mdi mdi-map" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud"   name="longitud" value="<?php if(isset($registroviejo->longitud)) echo ucwords($registroviejo->longitud);?>" placeholder="longitud" required autofocus>
+                                               
+                                            </div>
+    
+                                        </div>
+                                
+                                    
+                                </div>
+                                <div class="col-md-8 justify-content-center">
+                                    <div class="small">Seleccione en el mapa su ubicación exacta</div>
+                                    <div id="map"></div>
+                             
+                                    <pre id="coordinates" class="coordinates"></pre>
+                                </div>
+      
+                            </div>
                                                  
                                         <div class="row  justify-content-center  mt-2">
                                             <div class="col-md-4 ">
@@ -449,6 +457,7 @@
                                     </form>                       
                             </div>
                
+
                         </div>
                     </div>
                 </div>              
@@ -457,24 +466,10 @@
    
             
 
-                
-   
+
        
             
 
-        <!--script>
-            var map = new maplibregl.Map({
-            container: 'map',
-            style:
-            'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
-            center: [12.550343, 55.665957],
-            zoom: 8
-            });
-             
-            var marker = new maplibregl.Marker()
-            .setLngLat([12.550343, 55.665957])
-            .addTo(map);
-            </script-->
 
     </section>
     <script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>
