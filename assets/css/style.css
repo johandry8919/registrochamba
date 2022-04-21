@@ -156,13 +156,13 @@ License        :   Licensed under ThemeForest License
 /*Transparent variables*/
 /* ###### Bootstrap ###### */
 :root {
-    --primary-bg-color: #6c5ffc;
+    --primary-bg-color: #72177b;
     --primary-bg-hover: #233ac5;
     --primary-bg-border: #5161c1;
     --dark-body: #292e4a;
     --dark-border: #30314e;
-    --dark-primary: #6c5ffc;
-    --transparent-primary: #6c5ffc;
+    --dark-primary: #72177b;
+    --transparent-primary: #72177b;
     --transparent-body: #584cd9;
     --transparent-theme: rgba(0, 0, 0, 0.2);
     --transparent-border: rgba(255, 255, 255, 0.1);
@@ -182,7 +182,7 @@ License        :   Licensed under ThemeForest License
     --white: #ffffff;
     --gray: #6c757d;
     --gray-dark: #343a40;
-    --primary: #6c5ffc;
+    --primary: #72177b;
     --secondary: #6c757d;
     --success: #28a745;
     --info: #17a2b8;

@@ -708,6 +708,9 @@ class Cchambistas extends CI_Controller
         $this->form_validation->set_rules('hijo', 'Hijos', 'trim|required|numeric|strip_tags');
         $this->form_validation->set_rules('id_profesion', 'Profesion', 'trim|numeric|required|strip_tags');
         $this->form_validation->set_rules('edad', 'Edad', 'trim|numeric|required|strip_tags');
+        $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
+
         $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
         //delimitadores de errores
 
@@ -851,7 +854,7 @@ class Cchambistas extends CI_Controller
         $output = [
             "title"            => "formacionacademica",
              "vista_principal" => "chambistas/formacionacademica",
-             "usuarioacademico"      => $data['usuarioacademico']= $usuarioacademico,
+             "usuarioacademico"      =>  $usuarioacademico,
              
             
 

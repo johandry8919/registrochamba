@@ -106,19 +106,21 @@
                             <div class="form-group">
                                 <label class="form-label">Estado</label>
 
-                                <input name="id_estado_inst" type="radio" id="estudio" value="1" <?php if (isset($acausuario->id_estado_inst)) {
+                                <input name="id_estado_inst"   onclick="click_estado_formacion(this);"  type="radio" id="estudio" value="1" <?php if (isset($acausuario->id_estado_inst)) {
                                                                                                         if (trim($acausuario->id_estado_inst) == '1') {
                                                                                                             echo 'checked';
                                                                                                         }
                                                                                                     } ?> />
                                 <label for="estudio">Culminado</label>
-                                <input name="id_estado_inst" type="radio" id="estudio2" value="2" <?php if (isset($acausuario->id_estado_inst)) {
+                                <input name="id_estado_inst"  onclick="click_estado_formacion(this);" type="radio" id="estudio2" value="2" <?php if (isset($acausuario->id_estado_inst)) {
                                                                                                         if (trim($acausuario->id_estado_inst) == '2') {
                                                                                                             echo 'checked';
                                                                                                         }
                                                                                                     } ?> />
                                 <label for="estudio2">Cursando</label>
-                                <input name="id_estado_inst" type="radio" id="estudio3" value="3" <?php if (isset($acausuario->id_estado_inst)) {
+                                <input name="id_estado_inst" onclick="click_estado_formacion(this);"
+                                
+                                type="radio" id="estudio3" value="3" <?php if (isset($acausuario->id_estado_inst)) {
                                                                                                         if (trim($acausuario->id_estado_inst) == '3') {
                                                                                                             echo 'checked';
                                                                                                         }
@@ -129,6 +131,23 @@
                             </div>
                         </div>
 
+                    <div class="row">
+
+                        <div class="col-md-6 c-estudios d-none">
+                            <div class="form-group">
+                                <label class="form-label">Desea Continuar los estudios</label>
+
+                                <select class="form-control" id="id_area_form" name="id_area_form">
+                                    <option value="">Seleccione una opción</option>
+                                   
+                                    <option value="1">Si</option>
+                                    <option value="2">No</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                    </div>
                         <div class="col-md-6 ">
                             <div class="form-group">
                                 <label>Rango Fecha:</label>

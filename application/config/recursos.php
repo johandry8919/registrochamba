@@ -19,10 +19,11 @@
     $config['recursos']['mapa_mabox_js'] = "assets/js/mapa_mabox.js?v=1.0.4".time();
   
     $config['recursos']['mapa_mabox_css'] = "assets/css/mapa_mabox.css?v=1.0.4.".time();
-
+    $config['recursos']['estructuras_js'] = "assets/js/estructuras.js?v=1.0.6".time();
+    
    
         // css - librería sassets\plugins\mapbox
-    $config['recursos']['style_css'] = "assets/css/style.min.css?v=1.0.5";
+    $config['recursos']['style_css'] = "assets/css/style.min.css?v=1.0.5".time();;
     $config['recursos']['login_css'] = "assets/css/login.min.css?v=1.0.0";
     $config['recursos']['mapbox_css'] = "assets/plugins/mapbox/maplibre-gl.css?v=1.0.5";
     

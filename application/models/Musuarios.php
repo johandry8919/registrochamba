@@ -93,6 +93,7 @@ class Musuarios extends CI_Model
 
 
 		if ($resultado->result() > 0) {
+
 			return $resultado->result();
 		}else{
 			return FALSE;

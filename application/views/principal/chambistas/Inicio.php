@@ -94,7 +94,10 @@
                     <?php } ?>
                     <!-- Formación Académica -->
 
-                    <?php if (isset($usuarioacademico) and !empty($usuarioacademico)) { ?>
+                    <?php
+               
+                    
+                    if (isset($usuarioacademico) and !empty($usuarioacademico)) { ?>
                         <div class="col-12  d-grid gap-2 text-wrap">
                             <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>formacionacademica" class="link-primary text-white"><abbr title="Se añade a tu CV ">Formación Académica</abbr>: Listo</a>
                             </button>

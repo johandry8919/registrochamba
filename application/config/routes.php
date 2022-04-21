@@ -97,3 +97,7 @@ $route['inicioadm'] = 'Cadministrador/inicio';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+//Estructuras
+
+$route['estructura/registro'] = 'Cadministrador/VinicioSesion';

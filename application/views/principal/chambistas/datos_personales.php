@@ -294,6 +294,38 @@
 
                                            
                                         </div><!--row-->
+                                                              
+                                        <div class="row ">   
+                                            <div class="col-md-4">
+                                                <label  class="form-label">Movimiento Religioso</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
+                                                        <option value="">Seleccione una opción</option>
+                                                        <option value="0">Ninguno</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-md-4">
+                                            <label  class="form-label">Movimiento Sociales</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control show-tick" id="movimiento_sociales" name="movimiento_sociales">
+                                                            <option value="">Seleccione una opción</option>
+                                                            <option value="0">Ninguno</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                         
+                                      
+
+                                           
+                                        </div><!--row-->
                                         <div class="row ">
                                             <div class="col-md-4 ">
                                                 <label  class="form-label">¿Se encuentra Estudiando?</label><br>

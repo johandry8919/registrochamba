@@ -35,6 +35,8 @@ class Cusuarios extends CI_Controller {
         $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademico();
         $redessociales = $this->Musuarios->getRedesSociales();
 
+ 
+
         //
         $usuarioproductivo = $this->Musuarios->getUsuariosProductivo();
         $usuariovivienda = $this->Musuarios->getUsuariosVivienda();
@@ -68,8 +70,8 @@ class Cusuarios extends CI_Controller {
                  "vista_principal"   => "chambistas/inicio",
                  "personal"               => $data['personal'],
                   "usuario"               => $data['usuario'],
-                  "usuarioexperiencia"     => $data['porcentaje_perfil'],
-                  "usuarioacademico"     => $data['usuarioexperiencia'],
+                  "usuarioexperiencia"     => $data['usuarioexperiencia'],
+                  "usuarioacademico"     => $data['usuarioacademico'],
                   "redessociales"     => $data['redessociales'],
                   "usuarioproductivo"     => $data['usuarioproductivo'],
                   "usuariovivienda"     => $data['usuariovivienda'],

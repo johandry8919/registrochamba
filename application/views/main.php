@@ -58,8 +58,16 @@
             <!-- /app-Header -->
 
             <!--APP-SIDEBAR Menu Lateral-->
-    		<?php $this->load->view("layouts/menu_lateral"); ?>
 
+            <?php    if(isset($menu_lateral) && $menu_lateral=='estructuras'): 
+            
+            $this->load->view("layouts/estructuras/menu_lateral");                                           
+            else:
+    		$this->load->view("layouts/menu_lateral"); 
+
+            endif;
+
+            ?>
             <!--app-content open-->
             <div class="main-content app-content mt-0">
                 <div class="side-app">
@@ -166,7 +174,7 @@
 
 	<?php $this->load->view("layouts/scripts_js"); ?>
    
-<script src="../assets/js/select2.js"></script>
+
 
 </body>
 
