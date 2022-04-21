@@ -37,7 +37,7 @@ class Cusuarios extends CI_Controller {
 
  
 
-        //
+        
         $usuarioproductivo = $this->Musuarios->getUsuariosProductivo();
         $usuariovivienda = $this->Musuarios->getUsuariosVivienda();
         $usuariobrigada = $this->Musuarios->getBrigadasUsuario();
