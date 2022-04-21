@@ -837,7 +837,7 @@ class Cchambistas extends CI_Controller
         $id__exp_lab = strip_tags(trim($this->uri->segment(2)));
         if (isset($id__exp_lab) and $id__exp_lab != "") {
             $res = $this->Musuarios->getExpLaboralID($id__exp_lab);
-            $data['expusuario'] = $res;
+         
         }
         // var_dump($data['expusuario']);exit;
 
@@ -847,7 +847,7 @@ class Cchambistas extends CI_Controller
         $output = [
             "title"            => "experiencialaboral",
              "vista_principal" => "chambistas/experiencialaboralform",
-             "expusuario"        =>$data,
+             "expusuario"        =>$res,
              
 
 
@@ -911,7 +911,8 @@ class Cchambistas extends CI_Controller
         $output = [
             "title"            => "formacionacademicaform",
              "vista_principal" => "chambistas/formacionacademicaform",
-             "areaform"      => $data['areaform'] = $res2,
+             "areaform"      =>  $res2,
+             "acausuario" => $res,
 
            "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js")],
 

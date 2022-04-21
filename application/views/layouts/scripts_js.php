@@ -9,7 +9,7 @@
 
 <?php if (isset($librerias_js)): ?>
     <?php foreach($librerias_js as $libreria_js): ?>
-        <script type="text/javascript" src="<?php echo $libreria_js; ?>"></script>
+        <script type="text/javascript" src="<?php echo  base_url().$libreria_js; ?>"></script>
     <?php endforeach; ?>
 <?php endif; ?>
 
@@ -32,6 +32,6 @@
 
 <?php if (isset($ficheros_js)): ?>
     <?php foreach($ficheros_js as $fichero_js): ?>
-        <script type="text/javascript" src="<?php echo $fichero_js; ?>"></script>
+        <script type="text/javascript" src="<?php echo base_url().$fichero_js; ?>"></script>
     <?php endforeach; ?>
 <?php endif; ?>

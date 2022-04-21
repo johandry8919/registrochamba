@@ -61,7 +61,9 @@
 
             <?php    if(isset($menu_lateral) && $menu_lateral=='estructuras'): 
             
-            $this->load->view("layouts/estructuras/menu_lateral");                                           
+            $this->load->view("layouts/estructuras/menu_lateral");    
+           elseif( isset($menu_lateral) && $menu_lateral=='admin'):           
+            $this->load->view("layouts/admin/menu_lateral");                                
             else:
     		$this->load->view("layouts/menu_lateral"); 
 
