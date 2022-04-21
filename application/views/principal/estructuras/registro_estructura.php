@@ -422,7 +422,7 @@
                         <div class="row justify-content-center "> 
                         <div class="col-md-8 justify-content-center">
                                     <div class="small">Seleccione en el mapa su ubicación exacta</div>
-                                    <div id="map"></div>
+                                    <div class="border border-3" id="map"></div>
                              
                                     <pre id="coordinates" class="coordinates"></pre>
                                 </div>
