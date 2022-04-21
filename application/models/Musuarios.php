@@ -923,17 +923,9 @@ class Musuarios extends CI_Model
 		  return FALSE;
 		}
 	  }
+		
 
-		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
-	
-		$this->db->update('public.tbl_usuarios_viviendas', $data);
-		  
-		if ($this->db->affected_rows()) {
-		  return TRUE;
-		}else {
-		  return FALSE;
-		}
-	  }
+	  
 
 	public function getBrigadasUsuario(){
 		$this->db->limit(1);
