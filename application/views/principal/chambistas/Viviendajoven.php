@@ -1,7 +1,7 @@
 <section class="container">
 
 
-    <div class="">
+    <div class="page">
 
         <?php if ($this->session->flashdata('mensajeexito')) { ?>
             <div class="row">
@@ -14,6 +14,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="btn btn-info"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
+                    <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
                 </div>
             </div>
             <br>
@@ -32,13 +33,17 @@
         <div class="card">
             <div class="card-body">
                 <div class="header">
-                    <div class="card-title">
-
-                        Vivienda Joven
-
+                    <div class="row clearfix">
+                        <div class="col-md-12">
+                            <h2 class="p-3 card-title">Vivienda Joven</h2>
+                        </div>
                     </div>
                 </div>
 
+                <div class="text-center mt-5">
+
+                    <h3 class="text-center card-text mb-3">Elije una opción del Plan Vivienda Joven:</h3>
+                </div>
 
 
                 <?php
@@ -49,10 +54,8 @@
                 ?>
                 <?php if (isset($viviendajoven)) {
 
-
                     /* var_dump($usuarioacademico); */
                     if (isset($viviendajoven) and $viviendajoven != "") {
-
 
 
                         switch ($viviendajoven->vivienda) {
@@ -74,16 +77,12 @@
 
                 <form id="formacionacademica" method="POST" action="<?php echo base_url(); ?>Cchambistas/registrovivienda" class=" " style="">
 
-                    <div class="conatiner">
+                    <div class="conatiner-fluid">
                         <div class="row justify-content-center">
-                            <div class="text-center ">
-
-                                <div class=" card-title mb-3">Elije una opción del Plan Vivienda Joven:</div>
-                            </div>
-                            <div class="col-12 col-md-8 col-lg-6">
+                            <div class="col-12 col-ms-8 col-lg-6">
                                 <div class="form-group">
-                                    <label for="vivienda1" class="custom-switch form-switch me-5">
-                                        <input <?php echo $vivienda1 ?> type="radio" name="vivienda" id="vivienda1" value="1" class="custom-switch-input">
+                                    <label class="custom-switch form-switch me-5">
+                                        <input <?php echo $vivienda1 ?> for="vivienda" type="radio" name="vivienda" id="vivienda1" value="1" class="custom-switch-input">
                                         <span class="custom-switch-indicator custom-switch-indicator-md"></span>
                                         <span class="custom-switch-description">Mi terreno propio Autoconstrucción</span>
                                     </label>
@@ -99,8 +98,8 @@
                                     </label>
                                 </div>
                                 <div class="form-group">
-                                    <label for="vivienda3" class="custom-switch form-switch me-5">
-                                        <input <?php echo $vivienda3 ?> type="radio" name="vivienda" id="vivienda3" value="3" class="custom-switch-input">
+                                    <label for="vivienda3" class="custom-switch form-switch me-3">
+                                        <input <?php echo $vivienda3 ?>type="radio" name="vivienda" id="vivienda3" value="3" class="custom-switch-input">
                                         <span class="custom-switch-indicator custom-switch-indicator-md"></span>
                                         <span class="custom-switch-description">Adjudicación GMVV</span>
                                     </label>
@@ -114,14 +113,13 @@
                                     </label>
                                 </div>
 
-
+                                <div class="container-login100-form-btn pt-3 pb-3 m-2">
+                                    <?php if (isset($acausuario->id_usu_aca)) echo trim(ucwords($acausuario->id_usu_aca)); ?>
+                                    <button id="boton" type="botton" class="login100-form-btn btn-primary">
+                                        Guardar
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="container-login100-form-btn pt-3 pb-3 m-2">
-                            <?php if (isset($acausuario->id_usu_aca)) echo trim(ucwords($acausuario->id_usu_aca)); ?>
-                            <button id="boton" type="botton" class="login100-form-btn btn-primary">
-                                Guardar
-                            </button>
                         </div>
 
                     </div>
