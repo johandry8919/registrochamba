@@ -1,5 +1,4 @@
-<section class="container-login100">
-
+<section class="container">
 
     <div class="card ">
         <div class=" mb-4">
@@ -68,7 +67,7 @@
 
                                 </div>
 
-                                <div class="col-12 mt-3 mb-3">
+                                <div class="col-12 mt-3 mb-6">
 
                                     <button id="boton" type="botton" class="login100-form-btn btn-primary">
                                         Guardar
@@ -87,6 +86,7 @@
 
     </div>
 </section>
+<script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>
 <script src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
 <!-- SHOW PASSWORD JS -->
 <script src="<?php echo base_url(); ?>assets/js/show-password.min.js"></script>
