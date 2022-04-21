@@ -7,7 +7,12 @@
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
 <!-- #END# Overlay For Sidebars -->
+<!-- Search Bar -->
 
+
+
+<!--script src="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.js"></script>
+<link href="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.css" rel="stylesheet" /-->
 <section class="content">
     <div class="container-fluid">
 
@@ -47,7 +52,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row clearfix">
-                            <div class="card-title">Datos Personales</div>
+                            <div class="card-title">DATOS DE LA EMPRESA U ORGANISMO</div>
 
                               
                             </div>
@@ -57,7 +62,7 @@
                     <div class="card-body">
                         <div id="real_time_chart" class="">
                             
-                                <form id="datospersonales" method="POST" action="<?php echo base_url();?>Cchambistas/datospersonales">
+                                <form >
                                     <div class="row ">
                                         <div class="col-md-6">
 
@@ -101,14 +106,15 @@
                                         <div class="col-md-4">
 
                                             <div class="form-group">
-                                                <label class="form-label">Fecha de Nacimiento</label> 
-                                                <div class="wrap-input100 validate-input input-group" >
+                                                <label class="form-label">Cedula</label> 
+                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                     <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                        <i class="fe fe-calendar" aria-hidden="true"></i>
+                                                        <i class="mdi mdi-account" aria-hidden="true"></i>
                                                     </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" type="date" id="datepicker"   name="datepicker" value="<?php if(isset($registroviejo->fecha_nac)) echo ucwords($registroviejo->fecha_nac);?>" placeholder="F. Nacimiento" required autofocus>
+                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos" maxlength="30"  name="apellidos" value="<?php if(isset($registroviejo->apellidos)) echo ucwords($registroviejo->apellidos);?>" placeholder="Ingreses Cedula" required autofocus>
                                                    
                                                 </div>
+                                              
         
                                             </div>
                                                   
