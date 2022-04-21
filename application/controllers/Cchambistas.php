@@ -134,8 +134,16 @@ class Cchambistas extends CI_Controller
         if (!$this->session->userdata('id_usuario')) {
             redirect('iniciosesion');
         }
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/VcambiarClave');
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/VcambiarClave');
+        $output = [
+            "title"             => "cambiarClave",
+             "vista_principal"   => "chambistas/cambiarClave",
+             
+
+        ];
+
+        $this->load->view("main", $output);
     }
 
     public function Vviviendajoven()
@@ -323,8 +331,17 @@ class Cchambistas extends CI_Controller
         $data['redesusuario'] = $res;
         //var_dump($data['redesusuario']);exit;
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vredessociales', $data);
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/Vredessociales', $data);
+        $output = [
+            "title"            => "redessociales",
+             "vista_principal" => "chambistas/redessociales",
+             "redesusuario"     => $data['redesusuario'] = $res,
+             
+
+
+        ];
+        $this->load->view("main", $output);
     }
 
     public function Vbrigadas()
