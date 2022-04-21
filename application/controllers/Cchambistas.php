@@ -167,6 +167,7 @@ class Cchambistas extends CI_Controller
     }
 
 
+
     public function eliminarexp()
     {
         if (!$this->session->userdata('id_usuario')) {
