@@ -25,8 +25,8 @@
         <div class="card-body">
             <div class="card-header  text-center"><div class="card-title">Cambio de Contraseña</div></div>
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-8">
+                <div class="row justify-content-center mt-2">
+                    <div class="col-12 col-md-8">
                         <form class="login100-form validate-form" id="cambioClave" method="POST" action="<?php echo base_url(); ?>Cchambistas/cambiarClave">
                       
                           
