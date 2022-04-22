@@ -15,6 +15,31 @@ class Cadmin extends CI_Controller {
 	public function index()
 	{
        
+        $estados = $this->Musuarios->getEstados();
+
+        $datos['estados'] = $estados;
+
+        $breadcrumb =(object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Inicio"
+ 
+                ];
+    
+
+
+     
+        $output = [
+            "menu_lateral"=>"admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Registro de estructuras",
+             "vista_principal"   => "admin/inicio",
+     
+
+     
+
+        ];
+
+        $this->load->view("main", $output);
 	}
 
     public function registro_estructura()
@@ -62,4 +87,50 @@ class Cadmin extends CI_Controller {
        
 	}
 
+
+    
+    public function registro_empresas()
+  
+	{
+        $estados = $this->Musuarios->getEstados();
+
+        $datos['estados'] = $estados;
+
+        $breadcrumb =(object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Registro de empresas"
+ 
+                ];
+    
+
+
+     
+        $output = [
+            "menu_lateral"=>"admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Registro  de empresas",
+             "vista_principal"   => "admin/registro_empresas",
+     
+           "ficheros_js" => [],
+           "estados"          => $estados,
+
+            
+           "librerias_css" => [recurso("mapbox_css")],
+
+         
+           "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
+            recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
+            recurso("mapbox_js"), recurso("mapa_mabox_js"),
+        ],
+
+
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")],
+           "ficheros_css" => [recurso("mapa_mabox_css")],
+
+
+        ];
+
+        $this->load->view("main", $output);
+       
+	}
 }

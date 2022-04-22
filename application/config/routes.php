@@ -93,7 +93,8 @@ $route['consulta/(:any)'] = 'Cchambistas/consulta/$1';
 $route['adm'] = 'Cadministrador/VinicioSesion';
 $route['inicioadm'] = 'Cadministrador/inicio';
 $route['admin/registro/estructuras'] = 'Cadmin/registro_estructura';
-
+$route['admin/registro/empresas'] = 'Cadmin/registro_empresas';
+$route['admin'] = 'Cadmin';
 
 /*Administrador*/
 
