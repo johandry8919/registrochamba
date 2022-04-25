@@ -2,7 +2,7 @@
 
 application/cache/*
 !application/cache/index.html
-
+desarrollo/*
 application/logs/*
 !application/logs/index.html
 qr_code/
