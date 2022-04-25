@@ -834,6 +834,7 @@ class Cchambistas extends CI_Controller
             redirect('iniciosesion');
         }
         $data = [];
+        $res =[];
         $id__exp_lab = strip_tags(trim($this->uri->segment(2)));
         if (isset($id__exp_lab) and $id__exp_lab != "") {
             $res = $this->Musuarios->getExpLaboralID($id__exp_lab);
