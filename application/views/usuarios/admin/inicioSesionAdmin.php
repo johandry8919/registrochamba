@@ -139,74 +139,16 @@
                                             <div class="container-login100-form-btn">
 
 
-                                                <button type="submit" href="index.html" class="login100-form-btn btn-primary">
+                                                <a type="submit" href="<?php echo base_url(); ?>admin/inicio" class="login100-form-btn btn-primary">
                                                     Ingresar
-                                                </button>
+</a>
                                             </div>
-                                            <div class="text-center pt-3">
-                                                <p class="text-dark mb-0">No estas registrado?<a href="<?php echo base_url(); ?>" class="text-primary ms-1">Registrar</a></p>
-                                            </div>
+                                         
                                             </form>
                                         </div>
                                
-                                        <div class="tab-pane " id="tab6">
-                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
-                                                </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="emaile" type="emaile" placeholder="Correo electrónico" id="emaile" value="<?php echo set_value('email'); ?>">
-                                              
+                               
 
-                                            </div>
-                                            <div class="wrap-input100 validate-input input-group" id="Password-toggle">
-                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
-                                                </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="passworde" value="<?php echo set_value('password'); ?>" maxlength="16" placeholder="Contraseña" required  id="passworde"  type="password" placeholder="Password">
-                                            </div>
-                                            <div class="text-end pt-4">
-                                                <p class="mb-0"><a href="<?php echo base_url(); ?>recuperarclave" class="text-primary ms-1">Olvido su contraseña?</a></p>
-                                            </div>
-                                            <div class="container-login100-form-btn">
-
-
-                                                <a href="<?php echo base_url(); ?>estructuras/inicio"  class=" btn btn-block login100-form-btn2 btn-primary">
-                                                    Ingresar
-                                                </a>
-                                            </div>
-                                       
-
-                                        </div>
-
-
-                                        <div class="tab-pane " id="tab7">
-                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
-                                                </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="emaile" type="email3" placeholder="Correo electrónico" id="email3" value="<?php echo set_value('email'); ?>">
-                                              
-
-                                            </div>
-                                            <div class="wrap-input100 validate-input input-group" id="Password-toggle">
-                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
-                                                </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="password3" value="<?php echo set_value('password'); ?>" maxlength="16" placeholder="Contraseña" required  id="password3"  type="password" placeholder="Password">
-                                            </div>
-                                            <div class="text-end pt-4">
-                                                <p class="mb-0"><a href="<?php echo base_url(); ?>recuperarclave" class="text-primary ms-1">Olvido su contraseña?</a></p>
-                                            </div>
-                                            <div class="container-login100-form-btn">
-
-
-                                                <a href="<?php echo base_url(); ?>empresas/inicio"  class=" btn btn-block login100-form-btn2 btn-primary">
-                                                    Ingresar
-                                                </a>
-                                            </div>
-                                          
-
-                                        </div>
                                     </div>
                                 </div>
                             </div>

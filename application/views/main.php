@@ -63,7 +63,10 @@
             
             $this->load->view("layouts/estructuras/menu_lateral");    
            elseif( isset($menu_lateral) && $menu_lateral=='admin'):           
-            $this->load->view("layouts/admin/menu_lateral");                                
+            $this->load->view("layouts/admin/menu_lateral");   
+            elseif( isset($menu_lateral) && $menu_lateral=='empresas'):           
+                $this->load->view("layouts/empresas/menu_lateral");                                
+                                   
             else:
     		$this->load->view("layouts/menu_lateral"); 
 
@@ -157,14 +160,21 @@
 
 
 
-
+  
     <script src="<?php echo base_url();?>plugins/jquery-validation/jquery.validate.js"></script>
     <script src="<?php echo base_url();?>plugins/jquery-validation/localization/messages_es.js"></script>
     <!-- Color Theme js -->
+    <!-- chart temporal -->
+    <script src="<?php echo base_url();?>assets/plugins/chart/Chart.bundle.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/chart/rounded-barchart.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/chart/utils.js"></script>
+    <script src="<?php echo base_url();?>/assets/js/admin.js"></script>
     <script src="<?php echo base_url();?>assets/js/themeColors.js"></script>
 
     <!-- CUSTOM JS -->
     <script src="<?php echo base_url();?>assets/js/custom.js"></script>
+
+    <script type="text/javascript" src="https://popupsmart.com/freechat.js"></script><script> window.start.init({ title: "Hola Como estas? ✌️", message: "¿Cómo podemos ayudarte? Simplemente envíenos un mensaje ahora para obtener ayuda.", color: "#FA764F", position: "right", placeholder: "ingresa tu mensaje", withText: "escribe a qui", viaWhatsapp: "O escribe  via Whatsapp", gty: "Go to your", awu: "and write us", connect: "Connect now",  button: "Pregunta aqui", device: "everywhere",  services: [{"name":"whatsapp","content":null}]})</script>
 
 
 
@@ -176,7 +186,6 @@
 
 	<?php $this->load->view("layouts/scripts_js"); ?>
    
-
 
 </body>
 

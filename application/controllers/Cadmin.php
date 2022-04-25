@@ -29,6 +29,7 @@ class Cadmin extends CI_Controller {
         $breadcrumb =(object) [
             "menu" => "Admin",
             "menu_seleccion" => "Inicio"
+           
  
                 ];
     
@@ -40,6 +41,7 @@ class Cadmin extends CI_Controller {
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "Registro de estructuras",
              "vista_principal"   => "admin/inicio",
+             "librerias_js" => [recurso("admin_js") ]
      
 
      
@@ -59,6 +61,7 @@ class Cadmin extends CI_Controller {
         $breadcrumb =(object) [
             "menu" => "Admin",
             "menu_seleccion" => "Registro de estructuras"
+        
  
                 ];
     

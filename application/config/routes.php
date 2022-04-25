@@ -89,14 +89,15 @@ $route['consulta/(:any)'] = 'Cchambistas/consulta/$1';
 /*Cchambistas*/
 
 
-/*Administrador*/
+/*Administrador
 $route['adm'] = 'Cadministrador/VinicioSesion';
+
+$route['inicioadm'] = 'Cadmin/inicio';*/
 $route['admin/login'] = 'Cadmin/login';
-$route['inicioadm'] = 'Cadministrador/inicio';
 $route['admin/registro/estructuras'] = 'Cadmin/registro_estructura';
 $route['admin/registro/empresas'] = 'Cadmin/registro_empresas';
 $route['admin/registro/universidades'] = 'Cadmin/registro_universidades';
-
+$route['admin/inicio'] = 'Cadmin';
 $route['admin'] = 'Cadmin';
 
 /*Administrador*/
@@ -106,9 +107,21 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //Estructuras
-
+$route['estructuras/registro/estructuras'] = 'Estructuras/registro_estructura';
+$route['estructuras/registro/empresas'] = 'Estructuras/registro_empresas';
+$route['estructuras/registro/universidades'] = 'Estructuras/registro_universidades';
 $route['estructuras/inicio'] = 'Estructuras';
 
 /*Cestructuras*/
 
-/*Cestructuras*/
+
+//Estructuras
+$route['estructuras/registro/estructuras'] = 'Estructuras/registro_estructura';
+$route['estructuras/registro/empresas'] = 'Estructuras/registro_empresas';
+$route['estructuras/registro/universidades'] = 'Estructuras/registro_universidades';
+$route['estructuras/inicio'] = 'Estructuras';
+
+/*Empresas*/
+$route['empresas/inicio'] = 'Empresas';
+$route['empresas/nuevaoferta'] = 'Empresas/nuevaoferta';
+/*Empresas*/
