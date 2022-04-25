@@ -124,7 +124,7 @@
                                     <div class="tabs-menu1">
                                         <!-- Tabs -->
                                         <ul class="nav panel-tabs">
-                                            <li class="mx-0"><a href="#tab5" class="active" data-bs-toggle="tab">Persona</a></li>
+                                            <li class="mx-0"><a href="#tab5" class="active" data-bs-toggle="tab">Chambista</a></li>
                                             <li class="mx-0"><a href="#tab6" data-bs-toggle="tab">Estructura</a></li>
                                             <li class="mx-0"><a href="#tab7" data-bs-toggle="tab">Institución/Empresas</a></li>
                                         </ul>
@@ -140,7 +140,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="email" type="email" placeholder="Correo electrónico" id="email" value="<?php echo set_value('email'); ?>">
+                                                <input class="input100 border-start-0 form-control ms-0" name="email" type="email" placeholder="Correo electrónico" id="email" value="test1@gmail.com">
                                                 <?php echo form_error('email'); ?>
 
                                             </div>
@@ -148,7 +148,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="<?php echo set_value('password'); ?>" maxlength="16" placeholder="Contraseña" required autofocus id="password" n type="password" placeholder="Password">
+                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="123456" maxlength="16" placeholder="Contraseña" required autofocus id="password" n type="password" placeholder="Password">
                                             </div>
                                             <div class="text-end pt-4">
                                                 <p class="mb-0"><a href="<?php echo base_url(); ?>recuperarclave" class="text-primary ms-1">Olvido su contraseña?</a></p>
@@ -161,7 +161,7 @@
                                                 </button>
                                             </div>
                                             <div class="text-center pt-3">
-                                                <p class="text-dark mb-0">No estas registrado?<a href="<?php echo base_url(); ?>" class="text-primary ms-1">Registrar</a></p>
+                                                <p class="text-dark mb-0">No estas registrado?<a href="<?php echo base_url(); ?>registro" class="text-primary ms-1">Registrar</a></p>
                                             </div>
                                             </form>
                                         </div>

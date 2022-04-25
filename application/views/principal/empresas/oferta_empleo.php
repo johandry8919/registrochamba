@@ -169,6 +169,7 @@
 
                                         <select class="form-control" id="id_instruccion" name="id_instruccion">
                                             <option value="">Seleccione una opción</option>
+                                            <option value="">Indiferente</option>
                                             <option value="">Masculino</option>
                                             <option value="">Femenino</option>
                                         </select>
@@ -217,12 +218,12 @@
                                 <div class="col-md-4">
 
                                     <div class="form-group">
-                                        <label class="form-label">Cargo</label>
+                                        <label class="form-label">Cantidad de oferta</label>
                                         <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="Cargo" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="Cantidad" required autofocus>
 
                                         </div>
 

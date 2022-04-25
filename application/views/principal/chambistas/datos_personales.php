@@ -302,7 +302,11 @@
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
                                                         <option value="">Seleccione una opción</option>
-                                                        <option value="0">Ninguno</option>
+                                                        <option value="">Ninguno</option>
+                                                     
+                                                        <option value="0">Catolico</option>
+                                                        <option value="0">Cristiano</option>
+                                                        <option value="">Otro</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -314,8 +318,56 @@
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="movimiento_sociales" name="movimiento_sociales">
                                                             <option value="">Seleccione una opción</option>
-                                                            <option value="0">Ninguno</option>
+                                                            <option value="1">Movimientos de la Juventud.</option>
+                                                            <option value="2">Movimientos de las Mujeres y del Feminismo</option>
+                                                            <option value="3">Clase Obrera.
+                                                            </option>
 
+                                                            <option value="4">Comunas y Comuneros.
+
+                                                            </option>
+                                                            <option value="5">Salud
+
+                                                            </option>
+                                                            <option value="6">Educación
+
+                                                            </option>
+                                                            <option value="7">Comunicadores
+
+                                                            </option>
+                                                            <option value="8">Cultura
+
+
+                                                            </option>
+                                                            <option value="9">Deportistas
+
+
+                                                            </option>
+                                                            <option value="10">Campesinos
+
+
+                                                            </option>
+                                                            <option value="11">Defensa de los Derechos Humanos
+
+
+                                                            </option>
+                                                            <option value="12">Originarios de los Pueblos Indígenas de Venezuela
+
+                                                            </option>
+                                                            <option value="13">Religiosos del País
+
+                                                            </option>
+
+                                                            <option value="14">Sexodiversidad
+
+                                                            </option>
+                                                            <option value="15">Defensa de los Animales
+
+                                                            </option>
+                                                            <option value="16">Profesionales y Técnicos del País
+
+
+                                                            </option>
                                                         </select>
                                                     </div>
                                                 </div>

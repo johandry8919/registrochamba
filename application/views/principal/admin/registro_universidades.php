@@ -8,7 +8,7 @@
 <!-- #END# Overlay For Sidebars -->
 
 <section class="content">
-    <div class="container-fluid">
+    <div class="container">
 
 
 
@@ -130,7 +130,7 @@
 
 
                                 <div class="col-md-4 ">
-                                    <label class="form-label">Sector De Especializacion</label>
+                                    <label class="form-label">Sector de Especialización</label>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
@@ -145,7 +145,7 @@
 
                                 </div>
                                 <div class="col-md-4 ">
-                                    <label class="form-label">Tipo De institucion</label>
+                                    <label class="form-label">Tipo de institución</label>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
@@ -257,76 +257,8 @@
                                 <!--col-->
 
 
-                                <div class="col-md-4 ">
-                                    <div class="form-group">
-                                        <label class="form-label">Nivel de Estudios</label>
-
-                                        <select class="form-control" id="id_instruccion" name="id_instruccion">
-                                            <option value="">Seleccione una opción</option>
-                                            <!-- <option selected value='1'>Educación Básica Primaria</option>  -->
-                                            <option <?php if (isset($acausuario->id_instruccion) and $acausuario->id_instruccion == '1') {
-                                                        echo 'selected';
-                                                    } ?> value='1'>Educación Básica Primaria</option>
-                                            <option <?php if (isset($acausuario->id_instruccion) and $acausuario->id_instruccion == '2') {
-                                                        echo 'selected';
-                                                    } ?> value='2'>Educación Básica Secundaria</option>
-                                            <option <?php if (isset($acausuario->id_instruccion) and $acausuario->id_instruccion == '3') {
-                                                        echo 'selected';
-                                                    } ?> value='3'>Bachillerato / Educación Media</option>
-                                            <option <?php if (isset($acausuario->id_instruccion) and $acausuario->id_instruccion == '4') {
-                                                        echo 'selected';
-                                                    } ?> value='4'>Educación Técnico/Profesional</option>
-                                            <option <?php if (isset($acausuario->id_instruccion) and $acausuario->id_instruccion == '5') {
-                                                        echo 'selected';
-                                                    } ?> value='5'>Universidad</option>
-                                            <option <?php if (isset($acausuario->id_instruccion) and $acausuario->id_instruccion == '1') {
-                                                        echo 'selected';
-                                                    } ?> value='6'>Postgrado</option>
-                                        </select>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Carrera Profesional</label>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <select class="form-control show-tick" id="movimiento_sociales" name="movimiento_sociales">
-                                                <option value="">Seleccione una opción</option>
-                                                <option value="0">Responsable Estadal de la Gran Misión Chamba Juvenil Saber y Trabajo</option>
-                                                <option value="0">Responsable de Sala de la Gran Misión Chamba Juvenil Saber y Trabajo</option>
-                                                <option value="0">Responsable Municipal de la GMCJSYT</option>
-                                                <option value="0">Responsable Parroquial de la GMCJSYT</option>
-                                                <option value="0">Responsable Vertice 1 ( Registro y Actualizacion de Datos)</option>
-                                                <option value="0">Responsable Vértice 2 (Organizativo - Brigadas)</option>
-                                                <option value="0">Responsable Vértice 3 (Formación)</option>
-                                                <option value="0">Responsable Vértice 4 (Inserción Laboral)</option>
-                                                <option value="0">Responsable Vértice 5 (Productivo - Emprendimiento)</option>
-                                                <option value="0">Estructura Parroquial (Brigadista)</option>
-                                                <option value="0">Responsable Vértice 6 (En lo Social -Vivienda)</option>
-                                                <option value="0">Responsable Vértice 7 (Debate Nacional de Ley)</option>
-                                                <option value="0">Responsable Vértice 8 (Comunicacional).</option>
-
-
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-label">Profesión u Oficio </label>
-                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="fa fa-ship" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-ship" aria-label="fa fa-ship"></i>
-                                            </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="" maxlength="30" name="" value="" placeholder="Profesión u Oficio" required autofocus>
-
-                                        </div>
-
-                                    </div>
-                                </div>
+                         
+                           
                                 <div class="col-md-4">
 
                                     <div class="form-group">
@@ -378,55 +310,8 @@
 
                                 </div>
 
-                                <div class="col-md-4">
+                    
 
-                                    <div class="form-group">
-                                        <label class="form-label">Característica del empleo</label>
-                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="mdi mdi-account" aria-hidden="true"></i>
-                                            </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="Característica del empleo" required autofocus>
-
-                                        </div>
-
-                                    </div>
-
-
-
-                                </div>
-                                <div class="col-md-4">
-
-                                    <div class="form-group">
-                                        <label class="form-label">Fecha de Nacimiento</label>
-                                        <div class="wrap-input100 validate-input input-group">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="fe fe-calendar" aria-hidden="true"></i>
-                                            </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="date" id="datepicker" name="datepicker" value="" placeholder="F. Nacimiento" required autofocus>
-
-                                        </div>
-
-                                    </div>
-
-
-
-                                </div>
-                                <!--col-->
-
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-label">Edad</label>
-                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="fe fe-calendar" aria-hidden="true"></i>
-                                            </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="edad" maxlength="2" name="edad" value="" placeholder="edad" required autofocus>
-
-                                        </div>
-
-                                    </div>
-                                </div>
                                 <!--col-->
                                 <div class="col-md-4">
 
@@ -452,6 +337,8 @@
                             </div>
                             <!--row-->
                             <div class="row">
+                                <div class="text-center card-title">UBICACIÓN DE LA INSTITUCIÓN/EMPRESA</div>
+
                                 <div class="col-md-4">
                                     <label class="form-label">Estado</label>
                                     <div class="form-group">
@@ -517,61 +404,63 @@
 
                                 </div>
                             </div>
-
-
-                    </div>
-
-
-
-
-
-
-
-                    <div class="row  mt-5 ">
-                        <div class="col-md-5">
-
-                            <label class="form-label"> Dirección Especifica</label>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <textarea maxlength="255" rows="1" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..."><?php if (isset($registroviejo->direccion)) echo $registroviejo->direccion; ?></textarea>
-                                </div>
-                            </div>
-
-                            <div class="">
-                                <div class="form-group">
-                                    <label class="form-label">Latitud</label>
-                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                            <i class="mdi mdi-map" aria-hidden="true"></i>
-                                        </a>
-                                        <input readonly class="input100 border-start-0 ms-0 form-control" type="text" id="latitud" name="latitud" value="<?php if (isset($registroviejo->latitud)) echo ucwords($registroviejo->latitud); ?>" placeholder="latitud" required autofocus>
-
+                            <div class="row  mt-5 ">
+                                <div class="col-md-5">
+        
+                                    <label class="form-label"> Dirección Especifica</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <textarea maxlength="255" rows="1" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..."><?php if (isset($registroviejo->direccion)) echo $registroviejo->direccion; ?></textarea>
+                                        </div>
                                     </div>
-
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <label class="form-label">Longitud</label>
-                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                            <i class="mdi mdi-map" aria-hidden="true"></i>
-                                        </a>
-                                        <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud" name="longitud" value="<?php if (isset($registroviejo->longitud)) echo ucwords($registroviejo->longitud); ?>" placeholder="longitud" required autofocus>
-
+        
+                                    <div class="">
+                                        <div class="form-group">
+                                            <label class="form-label">Latitud</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="mdi mdi-map" aria-hidden="true"></i>
+                                                </a>
+                                                <input readonly class="input100 border-start-0 ms-0 form-control" type="text" id="latitud" name="latitud" value="<?php if (isset($registroviejo->latitud)) echo ucwords($registroviejo->latitud); ?>" placeholder="latitud" required autofocus>
+        
+                                            </div>
+        
+                                        </div>
+        
+        
+        
+                                        <div class="form-group">
+                                            <label class="form-label">Longitud</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="mdi mdi-map" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud" name="longitud" value="<?php if (isset($registroviejo->longitud)) echo ucwords($registroviejo->longitud); ?>" placeholder="longitud" required autofocus>
+        
+                                            </div>
+        
+                                        </div>
+        
                                     </div>
-
                                 </div>
-
+                                <div class="col-lg-6  ">
+                                    <div class="card-text">Seleccione en el mapa su ubicación exacta</div>
+                                    <div class="" id="map"></div>
+        
+                                    <pre id="coordinates" class="coordinates"></pre>
+                                </div>
+        
+        
+        
+        
+        
+        
+        
+        
                             </div>
-                        </div>
-                        <div class="col-lg-6  ">
-                            <div class="card-text">Seleccione en el mapa su ubicación exacta</div>
-                            <div class="" id="map"></div>
+        
 
-                            <pre id="coordinates" class="coordinates"></pre>
-                        </div>
+                    </div> <!-- /CARF BODY -->
 
 
 
@@ -579,9 +468,7 @@
 
 
 
-
-                    </div>
-
+                  
 
 
                     <div class="row  justify-content-center  mt-2 mb-2">
@@ -598,8 +485,7 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
+ 
 
 
 

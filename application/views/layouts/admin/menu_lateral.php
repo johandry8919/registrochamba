@@ -57,7 +57,10 @@
                                         class="side-menu__label">Consultas</span><i
                                         class="angle fe fe-eye"></i></a>
                                 <ul class="slide-menu">
-                                    
+                                                     
+                                    <li ><a href="#"
+                                        class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
+                                        >Chambista</a></li>
                                     <li ><a href="#"
                                             class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
                                             >Estructura</a></li>
@@ -93,7 +96,9 @@
                                          <li><a href="<?php echo base_url();?>/admin/registro/universidades"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
                                          >Centro de Estuios y Universidades</a></li>
-                               
+                                         <li ><a href="#"
+                                            class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
+                                            >Chambista</a></li>
 
                                   
                                 </ul>

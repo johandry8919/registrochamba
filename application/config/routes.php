@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Cusuarios';
+$route['default_controller'] = 'Cusuarios/Vinicio';
 
 /*Cusuarios*/
 $route['registro'] = 'Cusuarios';
@@ -58,6 +58,7 @@ $route['recuperarclave'] = 'Cusuarios/VrecuperarClave';
 $route['reiniciarclavelink/(:any)/(:any)'] = 'Cusuarios/reiniciarclavelink/$1/$2';//link
 $route['registroexito'] = 'Cusuarios/VregistroExito';
 $route['inicio'] = 'Cusuarios/Vinicio';
+
 /*Cusuarios*/
 
 
