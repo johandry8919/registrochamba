@@ -91,6 +91,7 @@ $route['consulta/(:any)'] = 'Cchambistas/consulta/$1';
 
 /*Administrador*/
 $route['adm'] = 'Cadministrador/VinicioSesion';
+$route['admin/login'] = 'Cadmin/login';
 $route['inicioadm'] = 'Cadministrador/inicio';
 $route['admin/registro/estructuras'] = 'Cadmin/registro_estructura';
 $route['admin/registro/empresas'] = 'Cadmin/registro_empresas';
@@ -105,4 +106,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 //Estructuras
 
-$route['estructura/registro'] = 'Cadministrador/VinicioSesion';
+$route['estructuras/inicio'] = 'Estructuras';
+
+/*Cestructuras*/
+
+/*Cestructuras*/

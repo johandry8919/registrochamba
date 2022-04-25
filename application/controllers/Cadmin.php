@@ -12,6 +12,13 @@ class Cadmin extends CI_Controller {
         //$this->output->enable_profiler(TRUE);
     }
 
+
+    public function login()
+	{
+        //$this->load->view('layouts/head');
+		$this->load->view('usuarios/admin/inicioSesionAdmin');
+	}
+
 	public function index()
 	{
        
@@ -51,7 +58,7 @@ class Cadmin extends CI_Controller {
 
         $breadcrumb =(object) [
             "menu" => "Admin",
-            "menu_seleccion" => "Registro"
+            "menu_seleccion" => "Registro de estructuras"
  
                 ];
     

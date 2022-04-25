@@ -16,6 +16,24 @@ class Estructuras extends CI_Controller
 
     public function index()
     {
+        
+        $breadcrumb =(object) [
+            "menu" => "Estructuras",
+            "menu_seleccion" => "Inicio"
+                 ];
+    
+        $output = [
+            "menu_lateral" => "estructuras",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Inicio",
+            "vista_principal"   => "estructuras/inicio",
+            "librerias_js" => [],
+             "ficheros_js" => [],
+            "ficheros_css" => [],
+
+
+        ];
+        $this->load->view("main", $output);
     }
 
     public function registro()
@@ -54,9 +72,6 @@ class Estructuras extends CI_Controller
  
             "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")],
             "ficheros_css" => [recurso("mapa_mabox_css")],
-
-
-
 
 
         ];

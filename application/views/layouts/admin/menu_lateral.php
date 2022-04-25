@@ -48,9 +48,9 @@
                                         
                             <li class="slide <?php if($this->uri->segment(1)=='datospersonales' || $this->uri->segment(1)=='formacionacademica' || $this->uri->segment(1)=='formacionacademicaform' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
                                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
-                                        class="side-menu__icon fe fe-user-plus"></i><span
+                                        class="side-menu__icon fe fe-eye"></i><span
                                         class="side-menu__label">Consultas</span><i
-                                        class="angle fe fe-chevron-right"></i></a>
+                                        class="angle fe fe-eye"></i></a>
                                 <ul class="slide-menu">
                                     
                                     <li ><a href="<?php echo base_url();?>/admin/consultas/estructuras"
@@ -72,7 +72,7 @@
 
                             <li class="slide <?php if($this->uri->segment(1)=='datospersonales' || $this->uri->segment(1)=='formacionacademica' || $this->uri->segment(1)=='formacionacademicaform' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
                                 <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
-                                        class="side-menu__icon fe fe-user-plus"></i><span
+                                        class="side-menu__icon fe fe-database"></i><span
                                         class="side-menu__label">Reportes</span><i
                                         class="angle fe fe-chevron-right"></i></a>
                                 <ul class="slide-menu">

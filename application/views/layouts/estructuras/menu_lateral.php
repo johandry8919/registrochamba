@@ -4,7 +4,7 @@
                     <div class="side-header pt-6">
                         <a class="header-brand1" href="<?php echo base_url();?>">
                           
-                            <img src="<?php echo base_url();?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50"
+                            <img src="<?php echo base_url();?>/img/logo-principal.png" class="header-brand-img" alt="" width="50"
                             style="height:100px; " class="header-brand-img light-logo1 "
                                 alt="logo">
                         </a>
@@ -22,9 +22,34 @@
                         
                             <li class="slide">
                                 <a class="side-menu__item 
-                                 <?php if($this->uri->segment(1)=='registro_estructura' || $this->uri->segment(1)=='registro_estructura') echo 'active';?>
-                                " data-bs-toggle="slide" href="<?php echo base_url();?>/admin/registro/estructuras"><i class="side-menu__icon fe fe-user"></i><span class="side-menu__label">Registro de estructura</span></a>
+                                 <?php if($this->uri->segment(1)=='inicio' || $this->uri->segment(1)=='inicio') echo 'active';?>
+                                " data-bs-toggle="slide" href="<?php echo base_url();?>estructuras/inicio"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Incio</span></a>
                             </li>
+
+                            <li class="slide <?php if($this->uri->segment(1)=='datospersonales' || $this->uri->segment(1)=='formacionacademica' || $this->uri->segment(1)=='formacionacademicaform' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
+                                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
+                                        class="side-menu__icon fe fe-user-plus"></i><span
+                                        class="side-menu__label">Registros</span><i
+                                        class="angle fe fe-chevron-right"></i></a>
+                                <ul class="slide-menu">
+                                    
+                                    <li ><a href="<?php echo base_url();?>admin/registro/estructuras"
+                                            class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
+                                            >Estructura</a></li>
+                                            
+                                    <li><a href="<?php echo base_url();?>admin/registro/empresas"
+                                     class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
+                                         >Empresas u organismo publico</a></li>
+
+                                         <li><a href="<?php echo base_url();?>admin/registro/universidades"
+                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
+                                         >Centro de Estuios y Universidades</a></li>
+                               
+
+                                  
+                                </ul>
+                            </li>
+
                         </ul>
                         <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
                                 width="24" height="24" viewBox="0 0 24 24">
