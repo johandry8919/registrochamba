@@ -140,4 +140,43 @@ class Cadmin extends CI_Controller {
         $this->load->view("main", $output);
        
 	}
+
+    public function registro_universidades(){
+        $estados = $this->Musuarios->getEstados();
+        $datos['estados'] = $estados;
+        
+        $breadcrumb =(object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Registro de universidades"
+ 
+                ];
+    
+        $output = [
+            "menu_lateral"=>"admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Registro  de universidades",
+             "vista_principal"   => "admin/registro_universidades",
+             "estados"          => $estados,
+     
+           "ficheros_js" => [],
+       
+            
+           "librerias_css" => [recurso("mapbox_css")],
+
+         
+           "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
+            recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
+            recurso("mapbox_js"), recurso("mapa_mabox_js"),
+        ],
+
+
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")],
+           "ficheros_css" => [recurso("mapa_mabox_css")],
+
+
+        ];
+
+        $this->load->view("main", $output);
+
+    }
 }
