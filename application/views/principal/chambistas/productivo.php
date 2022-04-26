@@ -5,7 +5,7 @@
 
 
 
-<section class="container-fluid">
+<section class="container">
     <?php if ($this->session->flashdata('mensajeexito')) { ?>
         <div class="row">
             <div class="col-md-12">
@@ -30,41 +30,38 @@
         <br>
     <?php } ?>
     <div class="row">
-    <div class="col-md-6 col-12 mb-2 ">
-                            <div class="alert alert-info "> <strong>Importante:</strong> Solo puedes seleccionar una opción </div>
-                        </div>
+        <div class="col-md-6 col-12 mb-2 ">
+            <div class="alert alert-info "> <strong>Importante:</strong> Solo puedes seleccionar una opción </div>
+        </div>
     </div>
-    <div class="row clearfix">
+    <div class="row ">
         <div class="col-xs-12">
             <div class="card">
                 <div class="body">
-                   
+
                     <?php
                     if (isset($usuarioproductivo)) {
                     ?>
                         <div class="container-fluid">
-                        <div class="row  mt-2 mb-2  ">
-                            <div class="col-12 border alert alert-success  col-md-6 col-lg-6 ">Seleccionaste: <?php
-                                if (isset($usuarioproductivo) and $usuarioproductivo != "") {
-                                    echo "$usuarioproductivo->nombre_chamba"; 
-                                }
-                                ?>
-                                <?php
-                                if (isset($usuarioproductivo) and $usuarioproductivo != "") {
-                                    
-                                    echo '<a href="'.base_url().'eliminarchamba/'.$usuarioproductivo->id_chamba.'"><i class=" btn-close fs-6" aria-label="Close"></i></a>';
+                            <div class="row  mt-2 mb-2  ">
+                                <div class="col-12 border alert alert-success  col-md-6 col-lg-6 ">Seleccionaste: <?php
+                                                                                                                    if (isset($usuarioproductivo) and $usuarioproductivo != "") {
+                                                                                                                        echo "$usuarioproductivo->nombre_chamba";
+                                                                                                                    }
+                                                                                                                    ?>
+                                    <?php
+                                    if (isset($usuarioproductivo) and $usuarioproductivo != "") {
 
-                                   
-                                   
-                                }
-                                ?>
+                                        echo '<a href="' . base_url() . 'eliminarchamba/' . $usuarioproductivo->id_chamba . '"><i class=" btn-close fs-6" aria-label="Close"></i></a>';
+                                    }
+                                    ?>
                                 </div>
-                        
-                           <div class="col-1 col-lg-1 ">
-                            
-                              
-                            </div> 
-                        </div>
+
+                                <div class="col-1 col-lg-1 ">
+
+
+                                </div>
+                            </div>
                         </div>
                     <?php } ?>
 
@@ -90,267 +87,284 @@
                                         <option value="8">Chamba Delivery</option>
                                     </select>
 
-                                    <!-- Chamba Vuelta al Campo -->
-                                    <div id="chamba1" class="ocultarmotrar">
+                                    <div class="container">
+                                        <div class="row justify-content-center ">
 
-                                        <div class="form-label">¿Dispone de terreno para la siembra?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="terreno_siembra" name="terreno_siembra" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input type="radio" id="terreno_siembra" name="terreno_siembra" class="custom-switch-input" checked="" value="no">
+                                            <!-- Chamba Vuelta al Campo -->
+                                            <div class="col-md-12">
+                                                <div id="chamba1" class="ocultarmotrar">
 
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
+                                                    <div class="form-label">¿Dispone de terreno para la siembra?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="terreno_siembra" name="terreno_siembra" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input type="radio" id="terreno_siembra" name="terreno_siembra" class="custom-switch-input" checked="" value="no">
 
-
-
-
-                                        <div class="form-label">¿Actualmente estas sembrando?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input value="si" type="radio" id="sembrando" name="sembrando" class="custom-switch-input">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input value="no" type="radio" id="sembrando" name="sembrando" class="custom-switch-input" checked="">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
 
 
 
-                                        <div class="form-group">
-                                            <b>Indica que rubros produces</b>
-                                            <div class="input-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" id="rubro" name="rubro" maxlength="100" required autofocus value="<?php if (isset($registroviejo->nombres)) echo ucwords($registroviejo->nombres); ?>">
+
+                                                    <div class="form-label">¿Actualmente estas sembrando?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input value="si" type="radio" id="sembrando" name="sembrando" class="custom-switch-input">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input value="no" type="radio" id="sembrando" name="sembrando" class="custom-switch-input" checked="">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+
+
+
+                                                    <div class="form-group">
+                                                        <b>Indica que rubros produces</b>
+                                                        <div class="input-group">
+                                                            <div class="form-line">
+                                                                <input type="text"
+                                                                placeholder=" que rubros produces"
+                                                                class="form-control" id="rubro" name="rubro" maxlength="100" required autofocus value="<?php if (isset($registroviejo->nombres)) echo ucwords($registroviejo->nombres); ?>">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-label">¿Requiere Financiamiento?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="financiamiento" name="financiamiento" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input value="no" type="radio" id="financiamiento" name="financiamiento" class="custom-switch-input" checked="">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+
+
+
+                                                </div>
+
+                                            </div>
+                                            <!-- Chamba Pesquera y Acuícola -->
+                                            <div class="col-md-12">
+                                                <div id="chamba2" class="ocultarmotrar">
+                                                    <div class="form-label">¿Eres inspector?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="pesquera_inspector_pescador" name="pesquera_inspector_pescador" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input type="radio" id="pesquera_inspector_pescador" name="pesquera_inspector_pescador" class="custom-switch-input" checked="" value="no">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+
+
+                                                    <div class="form-label">¿Requieres refrigeración?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="pesquera_refrigeracion" name="pesquera_refrigeracion" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input type="radio" value="no" id="pesquera_refrigeracion" name="pesquera_refrigeracion" class="custom-switch-input" checked="">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-label">¿Requiere Financiamiento?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="pesquera_financiamiento" name="pesquera_financiamiento" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input type="radio" value="no" id="pesquera_financiamiento" name="pesquera_financiamiento" class="custom-switch-input" checked="">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Chamba Emprender e Innovar -->
+
+                                            <div class="col-md-12">
+                                                <div id="chamba3" class="ocultarmotrar">
+                                                    <div class="form-label">¿Tienes un emprendimiento?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="emprendimiento" name="emprendimiento" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input type="radio" value="no" id="emprendimiento" name="emprendimiento" class="custom-switch-input" checked="">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-label">¿Deseas iniciar un emprendimiento??</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="iniciar_emprendimiento" name="iniciar_emprendimiento" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input type="radio" value="no" id="iniciar_emprendimiento" name="iniciar_emprendimiento" class="custom-switch-input" checked="">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-label">¿Estas registrado como empresa?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="emprendimiento_empresa" name="emprendimiento_empresa" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input type="radio" value="no" id="emprendimiento_empresa" name="emprendimiento_empresa" class="custom-switch-input" checked="">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-label">¿Requiere Financiamiento?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="financiamiento-emprendimiento" name="financiamiento-emprendimiento" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input type="radio" value="no" id="financiamiento-emprendimiento" name="financiamiento-emprendimiento" class="custom-switch-input" checked="">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <div class="col-md-12">
+                                                <div id="chamba4" class="ocultarmotrar">
+
+                                                    <div class="form-label">¿Dispones de Espacios o Terrenos?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="agrourbana-terrenos" name="agrourbana-terrenos" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input type="radio" id="agrourbana-terrenos" name="agrourbana-terrenos" class="custom-switch-input" checked="" value="no">
+
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+
+
+
+
+                                                    <div class="form-label">¿Deseas activar patio productivo?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input value="si" type="radio" id="agrourbana-patio" name="agrourbana-patio" class="custom-switch-input">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input value="no" type="radio" id="agrourbana-patio" name="agrourbana-patio" class="custom-switch-input" checked="">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+
+
+
+                                                    <div class="form-group">
+                                                        <b>Indica tu produccion de ciclos cortos</b>
+                                                        <div class="input-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control" id="rubro" name="rubro" maxlength="100" required autofocus value="<?php if (isset($registroviejo->nombres)) echo ucwords($registroviejo->nombres); ?>">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-label">¿Requiere Financiamiento?</div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch me-5">
+                                                            <input type="radio" id="financiamiento-agrourbana" name="financiamiento-agrourbana" class="custom-switch-input" value="si">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">Si</span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="custom-switch form-switch">
+                                                            <input value="no" type="radio" id="financiamiento-agrourbana" name="financiamiento-agrourbana" class="custom-switch-input" checked="">
+                                                            <span class="custom-switch-indicator custom-switch-indicator-md"></span>
+                                                            <span class="custom-switch-description">No</span>
+                                                        </label>
+                                                    </div>
+
+
+
                                                 </div>
                                             </div>
                                         </div>
-
-
-                                        <div class="form-label">¿Requiere Financiamiento?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="financiamiento" name="financiamiento" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input value="no" type="radio" id="financiamiento" name="financiamiento" class="custom-switch-input" checked="">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-
-
-
-                                    </div>
-                                    <!-- Chamba Pesquera y Acuícola -->
-                                    <div id="chamba2" class="ocultarmotrar">
-                                        <div class="form-label">¿Eres inspector?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="pesquera_inspector_pescador" name="pesquera_inspector_pescador" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input type="radio" id="pesquera_inspector_pescador" name="pesquera_inspector_pescador" class="custom-switch-input" checked="" value="no">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-
-
-                                        <div class="form-label">¿Requieres refrigeración?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="pesquera_refrigeracion" name="pesquera_refrigeracion" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input type="radio" value="no" id="pesquera_refrigeracion" name="pesquera_refrigeracion" class="custom-switch-input" checked="">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-label">¿Requiere Financiamiento?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="pesquera_financiamiento" name="pesquera_financiamiento" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input type="radio" value="no" id="pesquera_financiamiento" name="pesquera_financiamiento" class="custom-switch-input" checked="">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-
                                     </div>
 
-
-                                    <!-- Chamba Emprender e Innovar -->
-
-                                    <div id="chamba3" class="ocultarmotrar">
-                                        <div class="form-label">¿Tienes un emprendimiento?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="emprendimiento" name="emprendimiento" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input type="radio" value="no" id="emprendimiento" name="emprendimiento" class="custom-switch-input" checked="">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-label">¿Deseas iniciar un emprendimiento??</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="iniciar_emprendimiento" name="iniciar_emprendimiento" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input type="radio" value="no" id="iniciar_emprendimiento" name="iniciar_emprendimiento" class="custom-switch-input" checked="">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-label">¿Estas registrado como empresa?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="emprendimiento_empresa" name="emprendimiento_empresa" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input type="radio" value="no" id="emprendimiento_empresa" name="emprendimiento_empresa" class="custom-switch-input" checked="">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-label">¿Requiere Financiamiento?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="financiamiento-emprendimiento" name="financiamiento-emprendimiento" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input type="radio" value="no" id="financiamiento-emprendimiento" name="financiamiento-emprendimiento" class="custom-switch-input" checked="">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-
-                                    </div>
-
-
-
-
-                                    <div id="chamba4" class="ocultarmotrar">
-
-                                        <div class="form-label">¿Dispones de Espacios o Terrenos?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="agrourbana-terrenos" name="agrourbana-terrenos" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input type="radio" id="agrourbana-terrenos" name="agrourbana-terrenos" class="custom-switch-input" checked="" value="no">
-
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-
-
-
-
-                                        <div class="form-label">¿Deseas activar patio productivo?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input value="si" type="radio" id="agrourbana-patio" name="agrourbana-patio" class="custom-switch-input">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input value="no" type="radio" id="agrourbana-patio" name="agrourbana-patio" class="custom-switch-input" checked="">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-
-
-
-                                        <div class="form-group">
-                                            <b>Indica tu produccion de ciclos cortos</b>
-                                            <div class="input-group">
-                                                <div class="form-line">
-                                                    <input type="text" class="form-control" id="rubro" name="rubro" maxlength="100" required autofocus value="<?php if (isset($registroviejo->nombres)) echo ucwords($registroviejo->nombres); ?>">
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="form-label">¿Requiere Financiamiento?</div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch me-5">
-                                                <input type="radio" id="financiamiento-agrourbana" name="financiamiento-agrourbana" class="custom-switch-input" value="si">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">Si</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="custom-switch form-switch">
-                                                <input value="no" type="radio" id="financiamiento-agrourbana" name="financiamiento-agrourbana" class="custom-switch-input" checked="">
-                                                <span class="custom-switch-indicator custom-switch-indicator-md"></span>
-                                                <span class="custom-switch-description">No</span>
-                                            </label>
-                                        </div>
-
-
-
-                                    </div>
 
                                     <div class="col-12 mt-3 mb-3">
                                         <?php if (isset($acausuario->id_usu_aca)) echo trim(ucwords($acausuario->id_usu_aca)); ?>
