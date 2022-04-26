@@ -1,7 +1,7 @@
 <section class="container">
 
 
-    <div class="page">
+    <div class="">
 
         <?php if ($this->session->flashdata('mensajeexito')) { ?>
             <div class="row">
