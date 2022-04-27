@@ -154,10 +154,18 @@ class Cchambistas extends CI_Controller
 
         $res = $this->Musuarios->getUsuariosVivienda();
         $data['viviendajoven'] = $res;
+        $breadcrumb =(object) [
+            "menu" => "Registro viviendajoven",
+            "menu_seleccion" => "viviendajoven"
+ 
+                ];
+    
         $output = [
             "title"             => "Viviendajoven",
              "vista_principal"   => "chambistas/Viviendajoven",
              "viviendajoven" => $res,
+             "breadcrumb"  => $breadcrumb,
+
            "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
 
 
@@ -352,6 +360,12 @@ class Cchambistas extends CI_Controller
             redirect('iniciosesion');
         }
 
+        $breadcrumb =(object) [
+            "menu" => "brigadas",
+            "menu_seleccion" => "Brigadas"
+ 
+                ];
+
         $res = $this->Musuarios->getBrigadasUsuario();
         $data['brigadas'] = $res;
 
@@ -359,6 +373,7 @@ class Cchambistas extends CI_Controller
             "title"            => "brigadas",
              "vista_principal" => "chambistas/brigadas",
              "brigadas"        => $data['brigadas'] = $res,
+             "breadcrumb"      =>   $breadcrumb,
 
 
 
@@ -379,11 +394,17 @@ class Cchambistas extends CI_Controller
 
         // $this->load->view('layouts/head');
         // $this->load->view('chambistas/Vproductivo', $data);
+        $breadcrumb =(object) [
+            "menu" => "Registro productivo",
+            "menu_seleccion" => "productivo"
+ 
+                ];
 
         $output = [
             "title"            => "productivo",
              "vista_principal" => "chambistas/productivo",
              "usuarioproductivo"        => $data['usuarioproductivo'],
+             "breadcrumb"      =>   $breadcrumb,
              
 
 
@@ -424,8 +445,21 @@ class Cchambistas extends CI_Controller
         $data['usuarioacademico'] = $usuarioacademico;
         $data['redessociales'] = $redessociales;
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vcv', $data);
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/Vcv', $data);
+        $output = [
+            "title"            => "Vcv",
+             "vista_principal" => "chambistas/Vcv",
+             "personal"        => $data,
+             "usuario"        => $data,
+             "usuarioacademico"        => $data,
+             "redessociales"        => $data,
+            
+             
+
+
+        ];
+         $this->load->view("main", $output);
     }
 
     public function registrobrigadas()
