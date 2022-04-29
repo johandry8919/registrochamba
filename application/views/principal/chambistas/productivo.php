@@ -6,6 +6,12 @@
 
 
 <section class="container">
+ <!-- <?php  print_r($sectorProductivo)?> -->
+
+           
+    
+    
+     
     <?php if ($this->session->flashdata('mensajeexito')) { ?>
         <div class="row">
             <div class="col-md-12">
@@ -303,14 +309,14 @@
                                                   <div class="form-label list-inline">¿Estás Desarrollando un Proyecto Innovador o Tecnológico?</div>
                                                     <div class="form-group">
                                                         <label class="custom-switch form-switch me-5">
-                                                            <input type="radio" id="Tecnológico" name="Tecnológico" class="custom-switch-input" value="si">
+                                                            <input type="radio" id="proyecto_tecnologico" name="proyecto_tecnologico" class="custom-switch-input" value="si">
                                                             <span class="custom-switch-indicator custom-switch-indicator-md"></span>
                                                             <span class="custom-switch-description">Si</span>
                                                         </label>
                                                     </div>
                                                     <div class="form-group">
                                                         <label class="custom-switch form-switch">
-                                                            <input type="radio" value="no" id="Tecnológico" name="Tecnológico" class="custom-switch-input" checked="">
+                                                            <input type="radio" value="no" id="proyecto_tecnologico" name="proyecto_tecnologico" class="custom-switch-input" checked="">
                                                             <span class="custom-switch-indicator custom-switch-indicator-md"></span>
                                                             <span class="custom-switch-description">No</span>
                                                         </label>
@@ -322,39 +328,29 @@
                                                   <div class="col-md-6 mt-3">
                                                
                                                 <div class="form-label">¿En cuál área te desarrollas como Emprendedor?</div>
-                                                <select class="form-select" aria-label="Default select example" data-placeholder="Choose one" id="Emprendedor" name="Emprendedor" required>
-                                        <option value="">Seleccione una opción</option>
-                                        <option value="1">Deporte, Cultura y Recreación</option>
-                                        <option value="2">Albañilería</option>
-                                        <option value="3">Carpintería</option>
-                                        <option value="4">Comercio</option>
-                                        <option value="5">Comida Rápida</option>
-                                        <option value="6">Construcción</option>
-                                        <option value="7">Corte y costura</option>
-                                        <option value="8">Decoración, Arreglos y Manualidades</option>
-                                        <option value="9">Dj</option>
-                                        <option value="10">Elaboración de productos de limpieza</option>
-                                        <option value="11">Educación</option>
-                                        <option value="12">Electricista</option>
-                                        <option value="13">Electrónica</option>
-                                        <option value="14">Estética y Belleza</option>
-                                        <option value="15">Herrería</option>
-                                        <option value="16">Informática</option>
-                                        <option value="17">Marquetería, cristalería</option>
-                                        <option value="18">Mecánica</option>
-                                        <option value="19">Panadería</option>
-                                        <option value="20">Peluquería y Barbería</option>
-                                        <option value="21">Piñatería</option>
-                                        <option value="22">Plomería</option>
-                                        <option value="23">Profesional Independiente</option>
-                                        <option value="24">Publicidad</option>
-                                        <option value="25">Repostería</option>
-                                        <option value="26">Salud</option>
-                                        <option value="27">Telecomunicaciones</option>
-                                        
-                                        <option value="28">Otros</option>
-                                       
-                                    </select>
+                                                       <select required class="form-control show-tick" id="emprendedor_nombre" name="emprendedor_nombre">
+                                                            <option value="0">Seleccione una Profesión u Oficio</option>
+
+                                                           
+                                                     
+                                                         <?php if(isset($emprendedor)): ?>
+                                                            <?php foreach ($emprendedor as $key => $profesion):?>
+                                                               
+                                                                <?php  if($registroviejo->id_profesion_oficio == $profesion->id):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$profesion->id."'>".$profesion->Area."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$profesion->id."'>".$profesion->Area."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+                                                        </select>   
+                                             
+                                              
+                                               
                                                 </div>
 
 
@@ -366,7 +362,10 @@
                                                
                                                 <div class="form-label">Qué estás Desarrollando o Fabricando?</div>
                                                 
-                                                <input class="input200 border-start-0 form-control ms-0" type="text" placeholder="Qué estás Desarrollando o Fabricando?">
+                                                <input
+                                                class="input200 border-start-0 form-control ms-0" name="queEstaDesarroLLando"
+                                                id="queEstaDesarroLLando" type="text" placeholder="Qué estás Desarrollando o Fabricando?"
+                                                >
                                              
 
                                                 
@@ -379,15 +378,27 @@
                                                 
                                               
                                                 <div class="form-label">A qué Sector Productivo Pertenece?</div>
-                                                <select class="form-select" aria-label="Default select example" data-placeholder="Choose one" id="" name="" required>
-                                        <option value="">Seleccione una opción</option>
-                                        <option value="1">Agrícola</option>
-                                        <option value="2">Industrial</option>
-                                        <option value="3">Servicio</option>
-                                        <option value="4">Pesquera</option>
-                                        <option value="5">Comercial</option>
-                                       
-                                    </select>
+                                             
+                                                <select required class="form-control show-tick " id="Sector_Productivo" name="SectorProductivo">
+                                                            <option value="0">Seleccione una Profesión u Oficio</option>
+
+                                                           
+                                                     
+                                                         <?php if(isset($sectorProductivo)): ?>
+                                                            <?php foreach ($sectorProductivo as $key => $Sector):?>
+                                                               
+                                                                <?php  if($registroviejo->id_profesion_oficio == $Sector->id):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$Sector->id."'>".$Sector->productivo."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$Sector->id."'>".$Sector->productivo."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+                                                        </select>   
                                                 </div>
 
                                              
@@ -396,43 +407,26 @@
                                                 <div class="col-md-8 mt-3">
                                                
                                                 <div class="form-label">¿En Cuál de los Servicios Profesionales desea Incorporarse a Través de la Gran Misión Chamba Juvenil?</div>
-                                                <select class="form-select" aria-label="Default select example" data-placeholder="Choose one" id="" name="" required>
-                                        <option value="">Seleccione una opción</option>
-                                        <option value="1">Educación</option>
-                                        <option value="2">Salud</option>
-                                        <option value="3">Ingeniero</option>
-                                        <option value="4">Arquitecto</option>
-                                        <option value="5">Agrónomo</option>
-                                        <option value="6">Veterinario</option>
-                                        <option value="7">Construcción</option>
-                                        <option value="8">Farmacéutico</option>
-                                        <option value="9">Administrador</option>
-                                        <option value="10">Economista</option>
-                                        <option value="11">Contador Público</option>
-                                        <option value="12">Estadístico</option>
-                                        <option value="13">Sociólogo</option>
-                                        <option value="14">Abogado</option>
-                                        <option value="15">Informática y Tecnología</option>
-                                        <option value="16">Comunicación y Medios</option>
-                                        <option value="17">Arte y Diseño</option>
-                                        <option value="18">Hotelería, Turismo y Gastronomía</option>
-                                        <option value="19">Trabajador Social</option>
-                                        <option value="20">Seguridad</option>
-                                        <option value="21">Sector Petrolero</option>
-                                        <option value="22">Energía Eléctrica</option>
-                                        <option value="23">Carpinterí</option>
-                                        <option value="24">Albañilería</option>
-                                        <option value="25">Mecánica</option>
-                                        <option value="26">Plomería</option>
-                                        <option value="27">Electricista</option>
-                                        <option value="28">Electrónica</option>
-                                        <option value="29">Herrería</option>
-                                        <option value="30">Comercio</option>
-                                        <option value="31">Bancaria</option>
-                                        <option value="32">Deporte, Cultura y Recreación</option>
-                                        <option value="33">Otros</option>
-                                       
-                                    </select>
+                                                <select required class="form-control show-tick" id="idservicios" name="idservicios">
+                                                            <option value="">Seleccione una Profesión u Oficio</option>
+
+                                                           
+                                                     
+                                                         <?php if(isset($profesion_oficio)): ?>
+                                                            <?php foreach ($profesion_oficio as $key => $profesion):?>
+                                                               
+                                                                <?php  if($registroviejo->id_profesion_oficio == $profesion->id_profesion):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+                                                        </select>   
                                                 </div>
                                             </div>
                                                 </div>
