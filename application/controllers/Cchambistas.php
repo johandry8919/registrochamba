@@ -387,9 +387,24 @@ class Cchambistas extends CI_Controller
         if (!$this->session->userdata('id_usuario')) {
             redirect('iniciosesion');
         }
+        $registronuevo = $this->Musuarios->getUsuarioRegistradoPersonal();
+        if ($registronuevo) {
+            //$this->session->set_flashdata('mensaje', 'Datos Personales');                    
+            $datos['registroviejo'] = $registronuevo;
+        } else {
+            $registroviejo = $this->Mpcj->getUsuarioRegistradoPcjViejo();
+            $datos['registroviejo'] = $registroviejo;
+            if ($registroviejo) {
+                $this->session->set_flashdata('mensaje', 'Usted ya se encontraba registrado previamente por favor complete sus datos para poder ser tomado en cuenta');
+            }
+        }
 
         $res = $this->Musuarios->getUsuariosProductivo();
         $data['usuarioproductivo'] = $res;
+        $profesiones= $this->Mprofesion_oficio->getprofesion();
+
+        $emprendedor= $this->Mprofesion_oficio->emprendedor();
+        $SectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
         //var_dump($data['redesusuario']);exit;
 
         // $this->load->view('layouts/head');
@@ -405,6 +420,10 @@ class Cchambistas extends CI_Controller
              "vista_principal" => "chambistas/productivo",
              "usuarioproductivo"        => $data['usuarioproductivo'],
              "breadcrumb"      =>   $breadcrumb,
+             "emprendedor" => $emprendedor,
+             "profesion_oficio"   => $profesiones,
+             "registroviejo"   =>  $datos['registroviejo'],
+             "sectorProductivo" => $SectorProductivo
              
 
 
@@ -448,12 +467,13 @@ class Cchambistas extends CI_Controller
         // $this->load->view('layouts/head');
         // $this->load->view('chambistas/Vcv', $data);
         $output = [
-            "title"            => "Vcv",
-             "vista_principal" => "chambistas/Vcv",
+            "title"            => "Cv",
+             "vista_principal" => "chambistas/Cv",
              "personal"        => $data,
              "usuario"        => $data,
-             "usuarioacademico"        => $data,
-             "redessociales"        => $data,
+             "usuarioexperiencia" =>$data,
+             "usuarioacademico"    => $data,
+             "redessociales"       => $data,
             
              
 
@@ -603,6 +623,10 @@ class Cchambistas extends CI_Controller
         $this->form_validation->set_rules('agrourbana-patio', 'Patio', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('agrourbana-rubro', 'Rubro', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('financiamiento-agrourbana', 'Agrourbana', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('id_area_desarrollo_emprendedor', 'emprendedor_nombre', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('que_esta_desarrollando', 'queEstaDesarroLLando', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('id_sector_productivo', 'SectorProductivo', 'trim|min_length[2]|strip_tags');
+    
 
         $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
         //delimitadores de errores
@@ -642,6 +666,19 @@ class Cchambistas extends CI_Controller
                 'agrourbana-patio' => $this->input->post('agrourbana-patio'),
                 'agrourbana-rubro' => $this->input->post('agrourbana-rubro'),
                 'financiamiento-agrourbana' => $this->input->post('financiamiento-agrourbana'),
+                // Emprendedor
+                'id_area_desarrollo_emprendedor' => $this->input->post('emprendedor_nombre'),
+                // queEstaDesarroLLando
+                'que_esta_desarrollando' => $this->input->post('queEstaDesarroLLando'),
+                // desarrollo_proyecto_tecnologico
+                'desarrollo_proyecto_tecnologico' => $this->input->post('proyecto_tecnologico'),
+                // id_servicios_profesionales
+                'id_servicios_profesionales' => $this->input->post('idservicios'),
+                // Sector_Productivo
+                'id_sector_productivo' => $this->input->post('SectorProductivo'),
+
+
+
 
                 'codigo' => $this->session->userdata('codigo'),
                 'id_usuario' => $this->session->userdata('id_usuario')
@@ -899,7 +936,7 @@ class Cchambistas extends CI_Controller
 
         $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademico();
 
-        // $data['usuarioacademico'] = $usuarioacademico;
+        $data['usuarioacademico'] = $usuarioacademico;
 
 
         // $this->load->view('layouts/head');
@@ -947,13 +984,13 @@ class Cchambistas extends CI_Controller
         $output = [
             "title"            => "formacionacademicaform",
              "vista_principal" => "chambistas/formacionacademicaform",
-             "areaform"      =>  $res2,
+             "areaform"      =>  $data,
              "acausuario" => $acausuario,
 
            "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js")],
 
 
-           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
+          
 
 
         ];

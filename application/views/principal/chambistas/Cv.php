@@ -41,7 +41,7 @@
                
                     <div class="card">
                         <div class="header">
-                            <div class="card-title h1 m-2">CV virtual</div>
+                            <div class="card-title h3 m-2">CV virtual</div>
 
                         </div>
                         <div class="card-body">
@@ -75,7 +75,11 @@
     <script type="text/javascript">
         var base_url = "<?php echo base_url(); ?>";
     </script>
-   
+    <!--     <script src="<?php echo base_url(); ?>js/demo.js"></script> -->
+
+  
+
+
 
 
 
