@@ -4,7 +4,7 @@
                     <div class="side-header pt-6">
                         <a class="header-brand1" href="<?php echo base_url();?>">
                           
-                            <img src="<?php echo base_url();?>/img/logo-principal.png" class="header-brand-img" alt="" width="50"
+                            <img src="<?php echo base_url();?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50"
                             style="height:100px; " class="header-brand-img light-logo1 "
                                 alt="logo">
                         </a>
