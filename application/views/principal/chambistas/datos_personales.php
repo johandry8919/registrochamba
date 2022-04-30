@@ -294,6 +294,7 @@
 
                                            
                                         </div><!--row-->
+                                       
                                                               
                                         <div class="row ">   
                                             <div class="col-md-4">
@@ -301,12 +302,23 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
-                                                        <option value="">Seleccione una opción</option>
-                                                        <option value="">Ninguno</option>
+                                                        <option value="0">Seleccione una opción</option>
+                                                    
                                                      
-                                                        <option value="0">Catolico</option>
-                                                        <option value="0">Cristiano</option>
-                                                        <option value="">Otro</option>
+                                                        <?php if(isset($movimientogeligioso)): ?>
+                                                            <?php foreach ($movimientogeligioso as $key => $geligioso):?>
+                                                               
+                                                                <?php  if($registroviejo->id_movimiento_religioso == $geligioso->id_religion):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$geligioso->id_religion."'>".$geligioso->religion."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$geligioso->id_religion."'>".$geligioso->religion."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -316,58 +328,23 @@
                                             <label  class="form-label">Movimiento Sociales</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <select class="form-control show-tick" id="movimiento_sociales" name="movimiento_sociales">
+                                                        <select class="form-control show-tick" id="id_movimiento_sociales" name="id_movimiento_sociales">
                                                             <option value="">Seleccione una opción</option>
-                                                            <option value="1">Movimientos de la Juventud.</option>
-                                                            <option value="2">Movimientos de las Mujeres y del Feminismo</option>
-                                                            <option value="3">Clase Obrera.
-                                                            </option>
-
-                                                            <option value="4">Comunas y Comuneros.
-
-                                                            </option>
-                                                            <option value="5">Salud
-
-                                                            </option>
-                                                            <option value="6">Educación
-
-                                                            </option>
-                                                            <option value="7">Comunicadores
-
-                                                            </option>
-                                                            <option value="8">Cultura
-
-
-                                                            </option>
-                                                            <option value="9">Deportistas
-
-
-                                                            </option>
-                                                            <option value="10">Campesinos
-
-
-                                                            </option>
-                                                            <option value="11">Defensa de los Derechos Humanos
-
-
-                                                            </option>
-                                                            <option value="12">Originarios de los Pueblos Indígenas de Venezuela
-
-                                                            </option>
-                                                            <option value="13">Religiosos del País
-
-                                                            </option>
-
-                                                            <option value="14">Sexodiversidad
-
-                                                            </option>
-                                                            <option value="15">Defensa de los Animales
-
-                                                            </option>
-                                                            <option value="16">Profesionales y Técnicos del País
-
-
-                                                            </option>
+                                                            <?php if(isset($movimientos)): ?>
+                                                            <?php foreach ($movimientos as $key => $movimiento):?>
+                                                               
+                                                                <?php  if($registroviejo->id_movimiento_sociales == $movimiento->id_movimiento):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$movimiento->id_movimiento."'>".$movimiento->sociales."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$movimiento->id_movimiento."'>".$movimiento->sociales."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+                                                           
                                                         </select>
                                                     </div>
                                                 </div>
@@ -492,15 +469,14 @@
                                         </div>
                                     </div>
 
-                            
-
+                                               
                                         <div class="form-group">
                                             <label class="form-label">Latitud</label> 
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="mdi mdi-map" aria-hidden="true"></i>
                                                 </a>
-                                                <input readonly  class="input100 border-start-0 ms-0 form-control" type="text" id="latitud"   name="latitud" value="<?php if(isset($registroviejo->latitud)) echo ucwords($registroviejo->latitud);?>" placeholder="latitud" required autofocus>
+                                                <input readonly  class="input100 border-start-0 ms-0 form-control" type="text" id="latitud"   name="latitud" value="<?php if(isset($registroviejo->latitud))echo ($registroviejo->latitud);?>" placeholder="latitud" required autofocus>
                                                
                                             </div>
     
@@ -514,7 +490,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="mdi mdi-map" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud"   name="longitud" value="<?php if(isset($registroviejo->longitud)) echo ucwords($registroviejo->longitud);?>" placeholder="longitud" required autofocus>
+                                                <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud"   name="longitud" value="<?php if(isset($registroviejo->longitud))echo($registroviejo->longitud);?>" placeholder="" required autofocus>
                                                
                                             </div>
     
@@ -532,7 +508,7 @@
                             </div>
                                                  
                                         <div class="row  justify-content-center  mt-2">
-                                            <div class="col-md-4 ">
+                                            <div class="col-12 col-lg-12 ">
                                                 <button class="btn btn-primary btn-block" id="boton" type="botton">Guardar</button>
                                             </div>
 

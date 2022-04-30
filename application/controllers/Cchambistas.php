@@ -287,6 +287,8 @@ class Cchambistas extends CI_Controller
         //}
 
         $profesiones= $this->Mprofesion_oficio->getprofesion();
+        $movimiento_geligioso= $this->Mprofesion_oficio->movimiento_geligioso();
+        $movimiento_sociales= $this->Mprofesion_oficio->movimiento_sociales();
 
     
  
@@ -308,6 +310,8 @@ class Cchambistas extends CI_Controller
              "aborigenes"      => $aborigenes,
              "registroviejo"   =>  $datos['registroviejo'],
              "profesion_oficio" =>    $profesiones,
+             "movimientogeligioso" =>$movimiento_geligioso,
+             "movimientos" => $movimiento_sociales,
             
             
              "librerias_css" =>[] ,
@@ -405,6 +409,7 @@ class Cchambistas extends CI_Controller
 
         $emprendedor= $this->Mprofesion_oficio->emprendedor();
         $SectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+       
         //var_dump($data['redesusuario']);exit;
 
         // $this->load->view('layouts/head');
@@ -423,7 +428,8 @@ class Cchambistas extends CI_Controller
              "emprendedor" => $emprendedor,
              "profesion_oficio"   => $profesiones,
              "registroviejo"   =>  $datos['registroviejo'],
-             "sectorProductivo" => $SectorProductivo
+             "sectorProductivo" => $SectorProductivo,
+            
              
 
 
@@ -831,8 +837,16 @@ class Cchambistas extends CI_Controller
                 'cod_municipio' => $this->input->post('cod_municipio'),
                 'cod_parroquia' => $this->input->post('cod_parroquia'),
                 'direccion' => $this->input->post('direccion'),
+                // longitud
+                'latitud' => $this->input->post('latitud'),
+                'longitud' => $this->input->post('longitud'),
+
                 'estudio' => $this->input->post('estudio'),
                 'empleo' => $this->input->post('empleo'),
+                'id_movimiento_religioso' => $this->input->post('id_movimiento_religioso'),
+                'id_movimiento_sociales' => $this->input->post('id_movimiento_sociales'),
+               
+
                 /* 			'instruccion' => $this->input->post('instruccion'),
 			'estado_inst' => $this->input->post('estado_inst'), */
                 /* 			'organizacion' => $this->input->post('organizacion'),
@@ -843,6 +857,7 @@ class Cchambistas extends CI_Controller
                 'aborigen' => $this->input->post('aborigen'),
                 'hijo' => $this->input->post('hijo'),
                 'id_profesion_oficio' => $this->input->post('id_profesion'),
+                // movimiento_religioso
                 'edad' => $this->input->post('edad'),
                 /* 			'id_productiva' => $this->input->post('productiva'),
 			'id_subproductiva' => $this->input->post('id_subact_productiva'),

@@ -2,16 +2,18 @@
             var input_latitud = document.getElementById("latitud");
             var input_longitud = document.getElementById("longitud");
             var coordinates = document.getElementById('coordinates');
+            console.log(input_latitud.value)
     
 
 
     
             if(navigator.geolocation){
-        var latitud = '8.2321';
-        var  longitud ='-66.406';
+        var latitud = '';
+        var  longitud ='';
         var success = (position) =>{
-            latitud = position.coords.latitude;
-            longitud = position.coords.longitude;
+            console.log(position)
+            latitud = position.coords = input_latitud.value;
+            longitud = position.coords = input_longitud.value;
             agregarMapa(latitud,longitud)
 
             input_latitud.value = latitud;
@@ -29,7 +31,7 @@
  
 
 
-    function agregarMapa(lat='8.2321',long='-66.406'){
+    function agregarMapa(lat='',long=''){
 
         if (!mapboxgl.supported()) {
             alert('Your browser does not support MapLibre GL');
@@ -98,6 +100,7 @@
 
     //marquer
   map.on('click',  (e)=> {
+      console.log(e)
   
 
         let latc=e.lngLat.wrap().lat;
@@ -150,6 +153,7 @@
     
     
     map.on('click',  (e)=> {
+        console.log(e)
   
 
         let latc=e.lngLat.wrap().lat;

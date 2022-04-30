@@ -269,6 +269,7 @@ class Musuarios extends CI_Model
 				'telf_cel' => $data['telf_movil'],
 				'telf_local' => $data['telf_local'],
 				'empleo' => $data['empleo'],
+				'id_movimiento_religioso' => $data['movimiento_religioso'],
 				'codigoestado' => $data['cod_estado'],
 				'codigomunicipio' => $data['cod_municipio'],
 				'codigoparroquia' => $data['cod_parroquia'],                
@@ -283,6 +284,7 @@ class Musuarios extends CI_Model
 				'codigo' => $this->session->userdata('codigo'),
 				'id_usuario' => $this->session->userdata('id_usuario'),
 				 'id_profesion_oficio' => $data['id_profesion_oficio'],
+				 
 				 'edad' => $data['edad']
 		);
 
@@ -432,6 +434,13 @@ class Musuarios extends CI_Model
 	}
 
 	public function actualizarPersonales($data){
+			// 		guardar una latitud, por ejemplo, tomada del Google Maps, 
+			$latitud = $data['latitud'];
+			$longitud = $data['longitud'];
+		
+			$latitud = number_format($latitud, 18, '.', '.');
+			$longitud = number_format($longitud, 18, '.', '.');
+
 			$jovenes = array(
 				/* 'nac' => $data['nac'], */
 				'nombres' => $data['nombres'],
@@ -449,10 +458,15 @@ class Musuarios extends CI_Model
 				'genero' => $data['genero'],
 				'estcivil' => $data['estcivil'],
 				'aborigen' => $data['aborigen'],
+				'id_movimiento_religioso' => $data['id_movimiento_religioso'],
+				'id_movimiento_sociales' => $data['id_movimiento_sociales'],
+
 				'hijo' => $data['hijo'],
 				'codigo' => $this->session->userdata('codigo'),
 				'id_usuario' => $this->session->userdata('id_usuario'),
 				'id_profesion_oficio' => $data['id_profesion_oficio'],
+				'longitud' => $longitud,
+				'latitud' => $latitud,
 				'edad' => $data['edad']
 		);
 
