@@ -260,6 +260,11 @@ class Musuarios extends CI_Model
 	}
 
 	public function registrarPersonales($data){
+		$latitud = $data['latitud'];
+			$longitud = $data['longitud'];
+		
+			$latitud = number_format($latitud,7, '.', '.');
+			$longitud = number_format($longitud, 7, '.', '.');
 
 		$jovenes = array(
 				/* 'nac' => $data['nac'], */
@@ -280,9 +285,14 @@ class Musuarios extends CI_Model
 				'aborigen' => $data['aborigen'],
 				'hijo' => $data['hijo'],
 				'hijo' => $data['hijo'],
+				'id_movimiento_religioso' => $data['id_movimiento_religioso'],
+				'id_movimiento_sociales' => $data['id_movimiento_sociales'],
+				'longitud' => $longitud,
+				'latitud' => $latitud,
 				'codigo' => $this->session->userdata('codigo'),
 				'id_usuario' => $this->session->userdata('id_usuario'),
 				 'id_profesion_oficio' => $data['id_profesion_oficio'],
+				 
 				 'edad' => $data['edad']
 		);
 
@@ -432,6 +442,13 @@ class Musuarios extends CI_Model
 	}
 
 	public function actualizarPersonales($data){
+			// 		guardar una latitud, por ejemplo, tomada del Google Maps, 
+			$latitud = $data['latitud'];
+			$longitud = $data['longitud'];
+		
+			$latitud = number_format($latitud, 8, '.', '.');
+			$longitud = number_format($longitud, 8, '.', '.');
+
 			$jovenes = array(
 				/* 'nac' => $data['nac'], */
 				'nombres' => $data['nombres'],
@@ -449,10 +466,15 @@ class Musuarios extends CI_Model
 				'genero' => $data['genero'],
 				'estcivil' => $data['estcivil'],
 				'aborigen' => $data['aborigen'],
+				'id_movimiento_religioso' => $data['id_movimiento_religioso'],
+				'id_movimiento_sociales' => $data['id_movimiento_sociales'],
 				'hijo' => $data['hijo'],
+				'longitud' => $longitud,
+				'latitud' => $latitud,
 				'codigo' => $this->session->userdata('codigo'),
 				'id_usuario' => $this->session->userdata('id_usuario'),
 				'id_profesion_oficio' => $data['id_profesion_oficio'],
+			
 				'edad' => $data['edad']
 		);
 
