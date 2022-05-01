@@ -287,6 +287,8 @@ class Cchambistas extends CI_Controller
         //}
 
         $profesiones= $this->Mprofesion_oficio->getprofesion();
+        $movimiento_religioso= $this->Mprofesion_oficio->movimiento_religioso();
+        $movimiento_sociales= $this->Mprofesion_oficio->movimiento_sociales();
 
     
  
@@ -308,6 +310,8 @@ class Cchambistas extends CI_Controller
              "aborigenes"      => $aborigenes,
              "registroviejo"   =>  $datos['registroviejo'],
              "profesion_oficio" =>    $profesiones,
+             "movimientogeligioso" =>$movimiento_religioso,
+             "movimientos" => $movimiento_sociales,
             
             
              "librerias_css" =>[] ,
@@ -405,6 +409,7 @@ class Cchambistas extends CI_Controller
 
         $emprendedor= $this->Mprofesion_oficio->emprendedor();
         $SectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+       
         //var_dump($data['redesusuario']);exit;
 
         // $this->load->view('layouts/head');
@@ -423,7 +428,8 @@ class Cchambistas extends CI_Controller
              "emprendedor" => $emprendedor,
              "profesion_oficio"   => $profesiones,
              "registroviejo"   =>  $datos['registroviejo'],
-             "sectorProductivo" => $SectorProductivo
+             "sectorProductivo" => $SectorProductivo,
+            
              
 
 
@@ -799,6 +805,8 @@ class Cchambistas extends CI_Controller
         $this->form_validation->set_rules('edad', 'Edad', 'trim|numeric|required|strip_tags');
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_movimiento_religioso', 'Movimiento religioso', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_movimiento_sociales', 'Movimiento Sociales', 'trim|required|strip_tags');
 
         $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
         //delimitadores de errores
@@ -833,6 +841,12 @@ class Cchambistas extends CI_Controller
                 'direccion' => $this->input->post('direccion'),
                 'estudio' => $this->input->post('estudio'),
                 'empleo' => $this->input->post('empleo'),
+                'id_movimiento_religioso' => $this->input->post('id_movimiento_religioso'),
+                'id_movimiento_sociales' => $this->input->post('id_movimiento_sociales'),
+                 'latitud' => $this->input->post('latitud'),
+                'longitud' => $this->input->post('longitud'),
+               
+
                 /* 			'instruccion' => $this->input->post('instruccion'),
 			'estado_inst' => $this->input->post('estado_inst'), */
                 /* 			'organizacion' => $this->input->post('organizacion'),
@@ -843,6 +857,7 @@ class Cchambistas extends CI_Controller
                 'aborigen' => $this->input->post('aborigen'),
                 'hijo' => $this->input->post('hijo'),
                 'id_profesion_oficio' => $this->input->post('id_profesion'),
+                // movimiento_religioso
                 'edad' => $this->input->post('edad'),
                 /* 			'id_productiva' => $this->input->post('productiva'),
 			'id_subproductiva' => $this->input->post('id_subact_productiva'),

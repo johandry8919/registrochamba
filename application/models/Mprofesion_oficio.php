@@ -55,5 +55,33 @@ class Mprofesion_oficio extends CI_Model
 		else
 			return [];
 	}
+	public function movimiento_religioso(){
+
+
+
+		$this->db->select('*');
+		$this->db->from('tbl_movimiento_religioso');
+		$this->db->order_by('tbl_movimiento_religioso', 'ASC');
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) 
+			return $query->result();
+		else
+			return [];
+	}
+	public function movimiento_sociales(){
+
+
+
+		$this->db->select('*');
+		$this->db->from('tbl_movimiento_sociales');
+		$this->db->order_by('tbl_movimiento_sociales', 'ASC');
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) 
+			return $query->result();
+		else
+			return [];
+	}
 
 }
