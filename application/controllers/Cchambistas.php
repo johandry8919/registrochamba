@@ -1167,7 +1167,7 @@ class Cchambistas extends CI_Controller
 
     public function getMunicipios()
     {
-        sleep(rand(1,4));
+    
         $data = array(
             'codigoestado' => $this->input->post('codigoestado'),
         );
@@ -1184,7 +1184,7 @@ class Cchambistas extends CI_Controller
 
     public function getParroquias()
     {
-	sleep(rand(1,4));
+
         $data = array(
             'codigoestado' => $this->input->post('codigoestado'),
             'codigomunicipio' => $this->input->post('codigomunicipio'),
@@ -1194,7 +1194,7 @@ class Cchambistas extends CI_Controller
 
         $html2 = '<option value="">Seleccione una parroquia</option>';
         for ($i = 0; $i < count($parroquias, 0); $i++) {
-            $html2 .= "<option value=" . $parroquias[$i]->codigoparroquia . ">" . ucwords(mb_strtolower($parroquias[$i]->nombre)) . "</option>";
+            $html2 .= "<option value=" . $parroquias[$i]->codigoparroquia . "  data-latitud=".$parroquias[$i]->latitud."  data-longitud=".$parroquias[$i]->longitud." >" . ucwords(mb_strtolower($parroquias[$i]->nombre)) . "</option>";
         }
         $respuesta2 = array("htmloption2" => $html2);
         echo json_encode($respuesta2);

@@ -42,6 +42,29 @@
                 
             }
            
+            $("#cod_estado").change(function(){
+                let latitud_e = $('option:selected', $(this)).attr('data-latitud');
+                let longitud_e = $('option:selected', $(this)).attr('data-longitud');
+
+                agregarMapa(latitud_e,longitud_e,zoom=6)
+    
+                input_latitud.value = latitud;
+                input_longitud.value = longitud;
+            });
+
+  
+            $("#cod_parroquia").change(function(){
+                let latitud_e = $('option:selected', $(this)).attr('data-latitud');
+                let longitud_e = $('option:selected', $(this)).attr('data-longitud');
+
+                agregarMapa(latitud_e,longitud_e,zoom=12)
+    
+                input_latitud.value = latitud;
+                input_longitud.value = longitud;
+            });
+
+
+            
            
         }
  
@@ -56,7 +79,7 @@
  
 
 
-    function agregarMapa(lat='8.2321',long='-66.406'){
+    function agregarMapa(lat='8.2321',long='-66.406', zoom=13){
 
         if (!mapboxgl.supported()) {
             alert('Your browser does not support MapLibre GL');
@@ -68,7 +91,7 @@
                     container: 'map', // container ID
                     style: 'mapbox://styles/mapbox/streets-v11', // style URL
                     center: [long,lat], // starting position [lng, lat]
-                    zoom: 13 // starting zoom
+                    zoom: zoom // starting zoom
                 });
              
              var marker=   new mapboxgl.Marker({

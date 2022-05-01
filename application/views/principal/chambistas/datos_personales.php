@@ -404,9 +404,9 @@
                                                         if(isset($estados)){
                                                             foreach ($estados as $key => $estado) {
                                                                 if(isset($registroviejo->codigoestado) and $registroviejo->codigoestado == $estado->codigoestado){
-                                                                    echo "<option selected value='".$estado->codigoestado."'>".$estado->nombre."</option>";     
+                                                                    echo "<option selected value='".$estado->codigoestado."  data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." '>".$estado->nombre."</option>";     
                                                                 }else{
-                                                                    echo "<option value='".$estado->codigoestado."'>".$estado->nombre."</option>";
+                                                                    echo "<option value='".$estado->codigoestado."' data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";
                                                                 }
                                                             }
                                                         }
@@ -444,7 +444,7 @@
                                                         <option value="">Seleccione una Parroquia</option>
                                                         <?php
                                                             if(isset($registroviejo->parroquia)){
-                                                                echo "<option selected value='".$registroviejo->codigoparroquia."'>".$registroviejo->parroquia."</option>";     
+                                                                echo "<option selected value='".$registroviejo->codigoparroquia." data-latitud=".$registroviejo->latitud."  data-longitud=".$registroviejo->longitud."  '>".$registroviejo->parroquia."</option>";     
                                                             }
                                                         ?>
                                                         </select>

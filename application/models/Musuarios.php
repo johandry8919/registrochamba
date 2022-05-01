@@ -1014,7 +1014,7 @@ class Musuarios extends CI_Model
 		if ($query->num_rows() > 0) 
 			return $query->result();
 		else
-			return false;
+			return [];
 	}
 
 	public function getParroquias($data){
@@ -1022,7 +1022,7 @@ class Musuarios extends CI_Model
 		$codigoestado = $data['codigoestado'];
 		$codigomunicipio = $data['codigomunicipio'];
 
-		$this->db->select('codigoparroquia, nombre');
+		$this->db->select('*');
 		$this->db->from('tbl_parroquia');
 		$this->db->order_by('nombre', 'ASC');
 		$this->db->where('codigoestado', $codigoestado);
@@ -1032,7 +1032,7 @@ class Musuarios extends CI_Model
 		if ($query->num_rows() > 0) 
 			return $query->result();
 		else
-			return false;
+			return [];
 	}
 
 	public function verificarCodigoUsuario($codigo){
