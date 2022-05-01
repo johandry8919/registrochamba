@@ -260,6 +260,11 @@ class Musuarios extends CI_Model
 	}
 
 	public function registrarPersonales($data){
+		$latitud = $data['latitud'];
+			$longitud = $data['longitud'];
+		
+			$latitud = number_format($latitud,7, '.', '.');
+			$longitud = number_format($longitud, 7, '.', '.');
 
 		$jovenes = array(
 				/* 'nac' => $data['nac'], */
@@ -269,7 +274,6 @@ class Musuarios extends CI_Model
 				'telf_cel' => $data['telf_movil'],
 				'telf_local' => $data['telf_local'],
 				'empleo' => $data['empleo'],
-				'id_movimiento_religioso' => $data['movimiento_religioso'],
 				'codigoestado' => $data['cod_estado'],
 				'codigomunicipio' => $data['cod_municipio'],
 				'codigoparroquia' => $data['cod_parroquia'],                
@@ -281,6 +285,10 @@ class Musuarios extends CI_Model
 				'aborigen' => $data['aborigen'],
 				'hijo' => $data['hijo'],
 				'hijo' => $data['hijo'],
+				'id_movimiento_religioso' => $data['id_movimiento_religioso'],
+				'id_movimiento_sociales' => $data['id_movimiento_sociales'],
+				'longitud' => $longitud,
+				'latitud' => $latitud,
 				'codigo' => $this->session->userdata('codigo'),
 				'id_usuario' => $this->session->userdata('id_usuario'),
 				 'id_profesion_oficio' => $data['id_profesion_oficio'],
@@ -438,8 +446,8 @@ class Musuarios extends CI_Model
 			$latitud = $data['latitud'];
 			$longitud = $data['longitud'];
 		
-			$latitud = number_format($latitud, 18, '.', '.');
-			$longitud = number_format($longitud, 18, '.', '.');
+			$latitud = number_format($latitud, 8, '.', '.');
+			$longitud = number_format($longitud, 8, '.', '.');
 
 			$jovenes = array(
 				/* 'nac' => $data['nac'], */
@@ -460,13 +468,13 @@ class Musuarios extends CI_Model
 				'aborigen' => $data['aborigen'],
 				'id_movimiento_religioso' => $data['id_movimiento_religioso'],
 				'id_movimiento_sociales' => $data['id_movimiento_sociales'],
-
 				'hijo' => $data['hijo'],
+				'longitud' => $longitud,
+				'latitud' => $latitud,
 				'codigo' => $this->session->userdata('codigo'),
 				'id_usuario' => $this->session->userdata('id_usuario'),
 				'id_profesion_oficio' => $data['id_profesion_oficio'],
-				'longitud' => $longitud,
-				'latitud' => $latitud,
+			
 				'edad' => $data['edad']
 		);
 

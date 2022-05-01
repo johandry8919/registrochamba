@@ -805,6 +805,8 @@ class Cchambistas extends CI_Controller
         $this->form_validation->set_rules('edad', 'Edad', 'trim|numeric|required|strip_tags');
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_movimiento_religioso', 'Movimiento religioso', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_movimiento_sociales', 'Movimiento Sociales', 'trim|required|strip_tags');
 
         $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
         //delimitadores de errores
@@ -837,14 +839,12 @@ class Cchambistas extends CI_Controller
                 'cod_municipio' => $this->input->post('cod_municipio'),
                 'cod_parroquia' => $this->input->post('cod_parroquia'),
                 'direccion' => $this->input->post('direccion'),
-                // longitud
-                'latitud' => $this->input->post('latitud'),
-                'longitud' => $this->input->post('longitud'),
-
                 'estudio' => $this->input->post('estudio'),
                 'empleo' => $this->input->post('empleo'),
                 'id_movimiento_religioso' => $this->input->post('id_movimiento_religioso'),
                 'id_movimiento_sociales' => $this->input->post('id_movimiento_sociales'),
+                 'latitud' => $this->input->post('latitud'),
+                'longitud' => $this->input->post('longitud'),
                
 
                 /* 			'instruccion' => $this->input->post('instruccion'),

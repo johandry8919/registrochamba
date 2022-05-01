@@ -301,8 +301,8 @@
                                                 <label  class="form-label">Movimiento Religioso</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
-                                                        <option value="0">Seleccione una opción</option>
+                                                        <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso" require>
+                                                        <option value="" >Seleccione una opción</option>
                                                     
                                                      
                                                         <?php if(isset($movimientogeligioso)): ?>
@@ -476,7 +476,8 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="mdi mdi-map" aria-hidden="true"></i>
                                                 </a>
-                                                <input readonly  class="input100 border-start-0 ms-0 form-control" type="text" id="latitud"   name="latitud" value="<?php if(isset($registroviejo->latitud))echo ($registroviejo->latitud);?>" placeholder="latitud" required autofocus>
+                                                <input readonly  class="input100 border-start-0 ms-0 form-control" type="text" id="latitud"   name="latitud" value="<?php if(isset($registroviejo->latitud))
+                                                echo$registroviejo->latitud?>" placeholder="latitud" required autofocus>
                                                
                                             </div>
     
@@ -490,7 +491,8 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="mdi mdi-map" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud"   name="longitud" value="<?php if(isset($registroviejo->longitud))echo($registroviejo->longitud);?>" placeholder="" required autofocus>
+                                                <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud"   name="longitud" value="<?php if(isset($registroviejo->longitud))
+                                                echo$registroviejo->longitud?>" placeholder="longitud" required autofocus>
                                                
                                             </div>
     
