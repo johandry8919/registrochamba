@@ -55,13 +55,13 @@ class Mprofesion_oficio extends CI_Model
 		else
 			return [];
 	}
-	public function movimiento_geligioso(){
+	public function movimiento_religioso(){
 
 
 
 		$this->db->select('*');
-		$this->db->from('tbl_movimiento_geligioso');
-		$this->db->order_by('tbl_movimiento_geligioso', 'ASC');
+		$this->db->from('tbl_movimiento_religioso');
+		$this->db->order_by('tbl_movimiento_religioso', 'ASC');
 		$query = $this->db->get();
 
 		if ($query->num_rows() > 0) 

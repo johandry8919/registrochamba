@@ -287,7 +287,7 @@ class Cchambistas extends CI_Controller
         //}
 
         $profesiones= $this->Mprofesion_oficio->getprofesion();
-        $movimiento_geligioso= $this->Mprofesion_oficio->movimiento_geligioso();
+        $movimiento_religioso= $this->Mprofesion_oficio->movimiento_religioso();
         $movimiento_sociales= $this->Mprofesion_oficio->movimiento_sociales();
 
     
@@ -310,7 +310,7 @@ class Cchambistas extends CI_Controller
              "aborigenes"      => $aborigenes,
              "registroviejo"   =>  $datos['registroviejo'],
              "profesion_oficio" =>    $profesiones,
-             "movimientogeligioso" =>$movimiento_geligioso,
+             "movimientogeligioso" =>$movimiento_religioso,
              "movimientos" => $movimiento_sociales,
             
             
