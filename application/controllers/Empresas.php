@@ -66,12 +66,12 @@ class Empresas extends CI_Controller
            "estados"          => $estados,
 
             
-           "librerias_css" => [recurso("mapbox_css")],
+           "librerias_css" => [],
 
          
            "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
             recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
-            recurso("mapbox_js"), recurso("mapa_mabox_js"),
+             recurso("mapa_mabox_js"),
         ],
 
 
