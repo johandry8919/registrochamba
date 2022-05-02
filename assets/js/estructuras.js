@@ -87,7 +87,7 @@
                                   }).then((result) => {
                                     /* Read more about isConfirmed, isDenied below */
                                     if (result.isConfirmed) {
-                                       alert("aqui redirecionas")
+                                        $(location).attr('href',base_url+"admin/estructuras")
                                     }
                                   })
                                
