@@ -11,7 +11,7 @@
 <section class="content">
     
 
-  
+
 
     <?php if($this->session->flashdata('mensajeexito')){ ?>
     <div class="row">
@@ -89,7 +89,9 @@
                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                             </a>
-                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos"
+                            <input class="input100 border-start-0 ms-0 form-control"
+                            data-parsley-error-message="Este campo es requerido"
+                            type="text" id="apellidos"
                                 maxlength="30" name="apellidos" value="" placeholder="Ingreses sus Apellidos" required
                                 autofocus>
             
@@ -112,8 +114,8 @@
                                 <i class="fa fa-address-card" data-bs-toggle="tooltip" title=""
                                     data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
                             </a>
-                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos"
-                                maxlength="30" name="apellidos" value="" placeholder="Cédula de Identidad" required
+                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="cedula"
+                                maxlength="30" name="cedula" value="" placeholder="Cédula de Identidad" required
                                 autofocus>
             
                         </div>

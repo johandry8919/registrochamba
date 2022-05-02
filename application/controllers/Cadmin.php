@@ -102,7 +102,34 @@ class Cadmin extends CI_Controller {
 	}
 
 
+
+    public function crearEstructura(){
+
+        
+
+       // echo "esto es lo que recibe".$this->input->post('fname');
+       
+       $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
+
+
+       $this->form_validation->set_error_delimiters('*', '');
+       //delimitadores de errores
+
+       //reglas de validación
+       $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+       //reglas de validación
+
+       if ($this->form_validation->run() === FALSE) {
+            $mensaje_error = validation_errors();
+        
+            echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
+
+    }else{
+  
+        echo  json_encode(["resultado" =>true,"mensaje"=>"registro exitoso"]);
+    }
     
+}
     public function registro_empresas()
   
 	{

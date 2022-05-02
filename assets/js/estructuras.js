@@ -24,9 +24,13 @@
                 if (currentIndex === 0) {
                     var fname = $('#nombres').parsley();
                     var lname = $('#apellidos').parsley();
-                    if (fname.isValid() && lname.isValid()) {
+                    var cedula =  $('#cedula').parsley();
+
+
+                    if (fname.isValid() && lname.isValid() && cedula.isValid()) {
                         return true;
                     } else {
+                        cedula.validate();
                         fname.validate();
                         lname.validate();
                     }
@@ -53,9 +57,58 @@
             }
         },
 
+
 		onFinished: function (event, currentIndex) {
 
-			alert("aqui guardar por ajax o por post")
+            var fname = $('#nombres').val();
+            var lname = $('#apellidos').val();
+            var cedula =  $('#cedula').val();
+            $.ajax({
+                dataType: "json",
+                data: {"fname": fname,
+                        "cedula":cedula,
+                       lname:lname
+            
+            },
+                url: base_url+"Cadmin/crearEstructura",
+                type: "post",
+                beforeSend: function () {
+                  
+                    //$("#cod_municipio").selectpicker('refresh');
+                },
+                success: function (respuesta) {
+
+                            if(respuesta.resultado==true){
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Registro Exitoso',
+                                    text: "Presione OK para continuar",
+                                  }).then((result) => {
+                                    /* Read more about isConfirmed, isDenied below */
+                                    if (result.isConfirmed) {
+                                       alert("aqui redirecionas")
+                                    }
+                                  })
+                               
+                            }else{
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Oops...',
+                                    text: respuesta.mensaje,
+                                  })
+                               
+
+                            }
+                    console.log(respuesta)
+           
+                  
+
+                },
+                error: function (xhr, err) {
+                    alert("ocurrio un error intente de nuevo");
+                }
+            });
 		 },
 	
 		

@@ -13,7 +13,7 @@
     $config['recursos']['jquery_easing_js'] = "assets/js/jquery.easing.min.js?v=1.0.";
     $config['recursos']['jquery_steps_js'] = "assets/plugins/jquery-steps/jquery.steps.min.js?sv=1.0.";
     $config['recursos']['parsleyjs_js'] = "assets/plugins/parsleyjs/parsley.min.js";
-
+    $config['recursos']['sweetalert2_js'] = "assets/plugins/sweetalert2/sweetalert2.min.js";
 
     
     // JS - librería propios
@@ -33,5 +33,6 @@
     $config['recursos']['style_css'] = "assets/css/style.min.css?v=1.0.5".time();;
     $config['recursos']['login_css'] = "assets/css/login.min.css?v=1.0.0";
     $config['recursos']['mapbox_css'] = "assets/plugins/mapbox/maplibre-gl.css?v=1.0.5";
+
     
 ?>
