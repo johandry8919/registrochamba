@@ -89,7 +89,7 @@
                 <!-- CONTAINER OPEN -->
                 <div class="col col-login mx-auto mt-7">
                     <div class="text-center">
-                        <img src="<?php echo base_url(); ?>/img/logo-principal.png" class="header-brand-img" alt="" width="50" style="
+                        <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50" style="
   height:200px; 
 
 
