@@ -409,8 +409,7 @@ class Cchambistas extends CI_Controller
 
         $emprendedor= $this->Mprofesion_oficio->emprendedor();
         $SectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
-       
-        //var_dump($data['redesusuario']);exit;
+ 
 
         // $this->load->view('layouts/head');
         // $this->load->view('chambistas/Vproductivo', $data);

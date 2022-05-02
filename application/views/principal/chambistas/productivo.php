@@ -333,7 +333,11 @@
 
                                                            
                                                      
-                                                         <?php if(isset($emprendedor)): ?>
+                                                         <?php 
+                                                       
+                                                         
+                                                         if(isset($emprendedor)): ?>
+                                                            
                                                             <?php foreach ($emprendedor as $key => $profesion):?>
                                                                
                                                                 <?php  if($registroviejo->id_profesion_oficio == $profesion->id):?>
@@ -365,6 +369,11 @@
                                                 <input
                                                 class="input200 border-start-0 form-control ms-0" name="queEstaDesarroLLando"
                                                 id="queEstaDesarroLLando" type="text" placeholder="Qué estás Desarrollando o Fabricando?"
+                                                
+                                                value="<?php
+                                                        if(isset($usuarioproductivo) and $usuarioproductivo != "") {
+                                                         echo "$usuarioproductivo->que_esta_desarrollando";} ?>"
+
                                                 >
                                              
 
