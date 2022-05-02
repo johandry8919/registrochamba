@@ -74,7 +74,7 @@ class Cadmin extends CI_Controller {
             "title"             => "Registro de estructuras",
              "vista_principal"   => "admin/registro_estructura",
      
-           "ficheros_js" => [recurso("registro_estructuras_js") ],
+      
            "estados"          => $estados,
 
             
@@ -82,13 +82,17 @@ class Cadmin extends CI_Controller {
 
          
            "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
-            recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
-             recurso("mapa_mabox_js"),
+           recurso("jquery_steps_js"),  recurso("parsleyjs_js"),
+            recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),recurso("jquery_easing_js")
+
+            
+     
         ],
 
 
-           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")],
-           "ficheros_css" => [recurso("mapa_mabox_css")],
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js"),
+           recurso("estructuras_js"), recurso("mapa_mabox_js")],
+           "ficheros_css" => [recurso("mapa_mabox_css"),recurso("estructuras_css")],
 
 
         ];

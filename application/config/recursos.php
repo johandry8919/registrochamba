@@ -10,6 +10,10 @@
     $config['recursos']['bootstrap-select_js'] = "plugins/bootstrap-select/js/bootstrap-select.js?v=1.0.";
     $config['recursos']['chart_js'] = "assets/js/chart.js?v=1.0.";
     $config['recursos']['mapbox_js'] = "assets/plugins/mapbox/maplibre-gl.js?v=1.0.5";
+    $config['recursos']['jquery_easing_js'] = "assets/js/jquery.easing.min.js?v=1.0.";
+    $config['recursos']['jquery_steps_js'] = "assets/plugins/jquery-steps/jquery.steps.min.js?sv=1.0.";
+    $config['recursos']['parsleyjs_js'] = "assets/plugins/parsleyjs/parsley.min.js";
+
 
     
     // JS - librería propios
@@ -20,6 +24,7 @@
   
     $config['recursos']['mapa_mabox_css'] = "assets/css/mapa_mabox.css?v=1.0.4.".time();
     $config['recursos']['estructuras_js'] = "assets/js/estructuras.js?v=1.0.6".time();
+    $config['recursos']['estructuras_css'] = "assets/css/estructuras.css?v=1.0.6".time();
     $config['recursos']['registro_estructuras_js'] = "assets/js/registro_estructuras.js?v=1.0.6".time();
     $config['recursos']['admin_js'] = "assets/js/admin.js?v=1.0.6".time();
     

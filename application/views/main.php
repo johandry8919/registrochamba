@@ -32,12 +32,14 @@
     <!-- COLOR SKIN CSS -->
     <link id="theme" rel="stylesheet" type="text/css" media="all"
         href="<?php echo base_url();?>/assets/colors/color1.css" />
-
+    <!--maxbox 
         <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
         <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css' rel='stylesheet' />
         <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
-    <?php $this->load->view("layouts/estilos_css"); ?>
+    -->
+    
+        <?php $this->load->view("layouts/estilos_css"); ?>
 
 
 </head>
@@ -144,6 +146,7 @@
 
     <!-- JQUERY JS -->
     <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
+
 
     <!-- BOOTSTRAP JS -->
     <script src="<?php echo base_url();?>assets/plugins/bootstrap/js/popper.min.js"></script>
