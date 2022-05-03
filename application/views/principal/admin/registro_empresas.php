@@ -1,4 +1,4 @@
-<?php      ?>
+
 
 
 
@@ -8,39 +8,8 @@
 <!-- #END# Overlay For Sidebars -->
 
 <section class="content">
-    <div class="container-fluid">
-
-
-
-        <?php if ($this->session->flashdata('mensajeexito')) { ?>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
-        <?php if ($this->session->flashdata('mensajeerror')) { ?>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    </div>
-                </div>
-            </div>
-            <br>
-        <?php } ?>
-        <?php if ($this->session->flashdata('mensaje')) { ?>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="alert alert-info"> <?php echo $this->session->flashdata('mensaje'); ?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-                    </div>
-                </div>
-            </div>
-            <br>
-        <?php } ?>
+    <div class="">
+   
         <div class="row clearfix">
             <div class="col-xs-4">
                 <div class="card">
@@ -52,13 +21,16 @@
                         </div>
                     </div>
 
-
+               
                     <div class="card-body">
+                        <div id="wizard2">
 
-
-                        <form>
+                    
+                            <h3>Datos de la empresa</h3>
+                            <section>
+                        
                             <div class="row">
-                                <div class=" text-center card-title">DATOS DE LA EMPRESA U ORGANISMO</div>
+                                <div class=" text-center card-title"></div>
 
                                 <div class=" col-md-4">
 
@@ -112,70 +84,7 @@
 
                                 </div>
 
-                                <div class="col-md-4">
-                                    <label class="form-label">Estado</label>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <select class="form-control show-tick" id="cod_estado" name="cod_estado">
-                                                <option value="">Seleccione una opción</option>
-                                                <?php
-                                                if (isset($estados)) {
-                                                    foreach ($estados as $key => $estado) {
-                                                        if (isset($registroviejo->codigoestado) and $registroviejo->codigoestado == $estado->codigoestado) {
-                                                            echo "<option selected value='" . $estado->codigoestado . "'>" . $estado->nombre . "</option>";
-                                                        } else {
-                                                            echo "<option value='" . $estado->codigoestado . "'>" . $estado->nombre . "</option>";
-                                                        }
-                                                    }
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <label class="form-label">Municipio</label>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <select class="form-control show-tick" id="cod_municipio" name="cod_municipio">
-                                                <option value="">Seleccione un Municipio</option>
-                                                <?php
-                                                if (isset($registroviejo->municipio)) {
-                                                    echo "<option selected value='" . $registroviejo->codigomunicipio . "'>" . $registroviejo->municipio . "</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <?php
-                                        if (isset($registroviejo->estado)) {
-                                            echo '<small>Seleccione un estado para cambiar</small>';
-                                        }
-                                        ?>
-                                    </div>
-
-                                </div>
-                                <div class="col-md-4">
-                                    <label class="form-label">Parroquia</label>
-                                    <div class="form-group">
-                                        <div class="form-line">
-                                            <select class="form-control show-tick" id="cod_parroquia" name="cod_parroquia">
-                                                <option value="">Seleccione una Parroquia</option>
-                                                <?php
-                                                if (isset($registroviejo->parroquia)) {
-                                                    echo "<option selected value='" . $registroviejo->codigoparroquia . "'>" . $registroviejo->parroquia . "</option>";
-                                                }
-                                                ?>
-                                            </select>
-                                        </div>
-                                        <?php
-                                        if (isset($registroviejo->estado)) {
-                                            echo '<small>Seleccione un estado para cambiar</small>';
-                                        }
-                                        ?>
-                                    </div>
-
-                                </div>
+                             
                                 <!-- Correo -->
                                 <div class="col-md-4">
                                     <label class="form-label">Correo</label>
@@ -258,9 +167,10 @@
 
                             </div>
                             <!--row -->
+                           </section>
 
-
-                            <div class=" row mt-5 ">
+                           <h3>Datos representante de la empresa</h3>
+                           <section> <div class=" row mt-5 ">
                                 <div class="text-center card-title">DATOS DEL REPRESENTANTE DE LA EMPRESA</div>
                                 <div class=" col-md-4">
 
@@ -349,7 +259,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone-call" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local" maxlength="30" name="telf_local" value="<?php if (isset($registroviejo->telf_local)) echo ucwords($registroviejo->telf_local); ?>" placeholder="Telefono Local" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local" maxlength="30" name="telf_local" value="<?php if (isset($datos_empresa->telf_local)) echo ucwords($datos_empresa->telf_local); ?>" placeholder="Telefono Local" required autofocus>
 
                                         </div>
 
@@ -401,31 +311,97 @@
 
                             </div>
                             <!--row-->
+                        </section>
 
+              
+                    <h3>Dirección -Geolocalización</h3>
+                    <section>
 
-                    </div>
+                        <div class="row">
 
-
-
-
+                            <div class="col-md-4">
+                                <label  class="form-label">Estado</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control show-tick" id="cod_estado" name="cod_estado">
+                                        <option value="">Seleccione una opción</option>
+                                    <?php
+                                        if(isset($estados)){
+                                            foreach ($estados as $key => $estado) {
+                                                if(isset($datos_empresa->codigoestado) and $datos_empresa->codigoestado == $estado->codigoestado){
+                                                    echo "<option selected value='".$estado->codigoestado."'  data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";     
+                                                }else{
+                                                    echo "<option value='".$estado->codigoestado."' data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";
+                                                }
+                                            }
+                                        }
+                                    ?>
+                                        </select>
+                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label  class="form-label">Municipio</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control show-tick" id="cod_municipio" name="cod_municipio">
+                                        <option value="">Seleccione un Municipio</option>
+                                        <?php
+                                            if(isset($datos_empresa->municipio)){
+                                                echo "<option selected value='".$datos_empresa->codigomunicipio."'>".$datos_empresa->municipio."</option>";     
+                                            }
+                                        ?>
+                                        </select>
+                                    </div>
+                                    <?php
+                                        if(isset($datos_empresa->estado)){
+                                        echo '<small>Seleccione un estado para cambiar</small>'; 
+                                        }
+                                    ?>                                                    
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <label  class="form-label">Parroquia</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control show-tick" id="cod_parroquia" name="cod_parroquia">
+                                        <option value="">Seleccione una Parroquia</option>
+                                        <?php
+                                            if(isset($datos_empresa->parroquia)){
+                                                echo "<option selected value='".$datos_empresa->codigoparroquia."' data-latitud=".$datos_empresa->latitud."  data-longitud=".$datos_empresa->longitud."  >".$datos_empresa->parroquia."</option>";     
+                                            }
+                                        ?>
+                                        </select>
+                                    </div>
+                                    <?php
+                                        if(isset($datos_empresa->estado)){
+                                        echo '<small>Seleccione un estado para cambiar</small>'; 
+                                        }
+                                    ?>
+                                </div>
+                                
+                            </div>
+                        </div>
                     <div class="row ">
 
-                        <div class="row justify-content-center mt-5 ">
-                            <div class="col-lg-10 ">
+                        <div class="row justify-content-center  ">
+                            <div class="col-lg-12 ">
                                 <div class="small">Seleccione en el mapa su ubicación exacta</div>
                                 <div class="" id="map"></div>
 
                                 <pre id="coordinates" class="coordinates"></pre>
+                                <button type="button" id="seleccion-ubicacion" class="btn btn-icon ubicacion-c btn-success"  data-bs-toggle="tooltip" data-bs-placement="top" title="Tu ubicación"><i class="fe fe-map-pin"></i></button>
                             </div>
 
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label class="form-label">Latitud</label>
-                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                    <div class="wrap-input100 validate-input input-group">
                                         <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                             <i class="mdi mdi-map" aria-hidden="true"></i>
                                         </a>
-                                        <input readonly class="input100 border-start-0 ms-0 form-control" type="text" id="latitud" name="latitud" value="<?php if (isset($registroviejo->latitud)) echo ucwords($registroviejo->latitud); ?>" placeholder="latitud" required autofocus>
+                                        <input  readonly class="input100 border-start-0 ms-0 form-control" type="text" id="latitud" name="latitud" value="" placeholder="latitud" required >
 
                                     </div>
 
@@ -435,11 +411,11 @@
 
                                 <div class="form-group">
                                     <label class="form-label">Longitud</label>
-                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                    <div class="wrap-input100 validate-input input-group" >
                                         <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                             <i class="mdi mdi-map" aria-hidden="true"></i>
                                         </a>
-                                        <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud" name="longitud" value="<?php if (isset($registroviejo->longitud)) echo ucwords($registroviejo->longitud); ?>" placeholder="longitud" required autofocus>
+                                        <input readonly class="input100 border-start-0 ms-0 form-control"  type="text" id="longitud" name="longitud" value="" placeholder="longitud" required >
 
                                     </div>
 
@@ -456,15 +432,14 @@
 
 
                     </div>
+                </section>
 
-                    <div class="row  justify-content-center  mt-2 mb-2">
-                        <div class="col-md-8 ">
-                            <button class="btn btn-primary btn-block" id="boton" type="botton">Guardar</button>
-                        </div>
+            </div>
+                </div>
+                    
 
-                    </div>
-
-                    </form>
+                
+                 
                 </div>
 
 
@@ -482,6 +457,3 @@
 
 
 </section>
-<script type="text/javascript">
-    var base_url = "<?php echo base_url(); ?>";
-</script>

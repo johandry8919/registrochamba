@@ -8,6 +8,7 @@ class Cadmin extends CI_Controller {
         $this->load->model('Musuarios');
         $this->load->library('email');
         $this->load->library('form_validation'); 
+        $this->load->model('Mprofesion_oficio');
         //$this->load->library('security');
         //$this->output->enable_profiler(TRUE);
     }
@@ -143,7 +144,7 @@ class Cadmin extends CI_Controller {
  
                 ];
     
-
+        $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
 
      
         $output = [
@@ -151,8 +152,9 @@ class Cadmin extends CI_Controller {
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "Registro  de empresas",
              "vista_principal"   => "admin/registro_empresas",
+             "sectorProductivo" => $sectorProductivo,
      
-           "ficheros_js" => [],
+           
            "estados"          => $estados,
 
             
@@ -161,11 +163,13 @@ class Cadmin extends CI_Controller {
          
            "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
             recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
-             recurso("mapa_mabox_js"),
+            recurso("jquery_steps_js"),  recurso("parsleyjs_js"),recurso("jquery_easing_js")
         ],
 
 
-           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")],
+           "ficheros_js" => [   recurso("registro_empresas_admin_js"),recurso("mapa_mabox_js")],
+
+           
            "ficheros_css" => [recurso("mapa_mabox_css")],
 
 

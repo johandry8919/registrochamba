@@ -20,17 +20,18 @@
     $config['recursos']['validacion_datospersonales_js'] = "js/pages/examples/datospersonales.js?v=1.0.5";
     $config['recursos']['datospersonales_js'] = "assets/js/datos_personales.js?v=1.0.6";
 
-    $config['recursos']['mapa_mabox_js'] = "assets/js/mapa_mabox.js?v=1.0.4".time();
+    $config['recursos']['mapa_mabox_js'] = "assets/js/mapa_mabox.js?v=1.0.4";
   
     $config['recursos']['mapa_mabox_css'] = "assets/css/mapa_mabox.css?v=1.0.4.".time();
     $config['recursos']['estructuras_js'] = "assets/js/estructuras.js?v=1.0.6".time();
-    $config['recursos']['estructuras_css'] = "assets/css/estructuras.css?v=1.0.6".time();
-    $config['recursos']['registro_estructuras_js'] = "assets/js/registro_estructuras.js?v=1.0.6".time();
+    $config['recursos']['estructuras_css'] = "assets/css/estructuras.css?v=1.0.6";
+    $config['recursos']['registro_estructuras_js'] = "assets/js/registro_estructuras.js?v=1.0.6";
     $config['recursos']['admin_js'] = "assets/js/admin.js?v=1.0.6".time();
-    
-   
+    $config['recursos']['registro_empresas_admin_js'] = "assets/js/registro_empresas_admin.js?v=1.0.6".time();
+    $config['recursos']['area_formacion_js'] = "assets/js/area_formacion.js?v=1.0.6";
+ 
         // css - librería sassets\plugins\mapbox
-    $config['recursos']['style_css'] = "assets/css/style.min.css?v=1.0.5".time();;
+    $config['recursos']['style_css'] = "assets/css/style.min.css?v=1.0.5";
     $config['recursos']['login_css'] = "assets/css/login.min.css?v=1.0.0";
     $config['recursos']['mapbox_css'] = "assets/plugins/mapbox/maplibre-gl.css?v=1.0.5";
 

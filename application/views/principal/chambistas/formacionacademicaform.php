@@ -182,7 +182,7 @@
 </section>
 
     <!-- Jquery Core Js -->
-    <script src="<?php echo base_url();?>plugins/jquery/jquery.min.js"></script>
+
     <!-- Slimscroll Plugin Js -->
     <script src="<?php echo base_url();?>plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
     <!-- Waves Effect Plugin Js -->
@@ -195,5 +195,4 @@
     <script src="<?php echo base_url();?>bower_components/select2/dist/js/select2.full.min.js"></script>
     <script src="<?php echo base_url();?>bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-    <script src="<?php echo base_url(); ?>assets/js/calendario.js"></script>
 

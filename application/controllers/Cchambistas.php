@@ -992,8 +992,9 @@ class Cchambistas extends CI_Controller
             $acausuario = $this->Musuarios->getAcademicaID($id_usu_aca);
     
         }
-        $res2 = $this->Musuarios->getAreaForm();
-        $data['areaform'] = $res2;
+   
+    
+     
         //var_dump($data['acausuario']);exit;
 
         // $this->load->view('layouts/head');
@@ -1002,10 +1003,11 @@ class Cchambistas extends CI_Controller
         $output = [
             "title"            => "formacionacademicaform",
              "vista_principal" => "chambistas/formacionacademicaform",
-             "areaform"      =>  $data,
+             "areaform"      =>   $this->Musuarios->getAreaForm(),
              "acausuario" => $acausuario,
 
            "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js")],
+           "ficheros_js" => [recurso("area_formacion_js")]
 
 
           
