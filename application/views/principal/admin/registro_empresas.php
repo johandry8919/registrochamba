@@ -102,22 +102,28 @@
 
 
                                 <div class="col-md-4 ">
-                                    <label class="form-label">sector economico o servicios</label>
+                                    <label class="form-label">Sector economico</label>
                                     <div class="form-group">
-                                        <div class="form-line">
-                                            <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
-                                                <option value="">Seleccione una opción</option>
-                                                <option value="1">Estructura Estadal</option>
-                                                <option value="2">Estructura Municipal</option>
-                                                <option value="3">Estructura Parroquial</option>
+                                        <select required class="form-control show-tick " id="Sector_Productivo" name="SectorProductivo">
+                                            <option value="0">Seleccione una Profesión u Oficio</option>
 
-                                            </select>
-                                        </div>
+                                           
+                                     
+                                         <?php if(isset($sectorProductivo)): ?>
+                                            <?php foreach ($sectorProductivo as $key => $Sector):?>
+                                               
+                                                <?php 
+                                                    echo "<option value='".$Sector->id."'>".$Sector->productivo."</option>";
+                                         
+                                           endforeach;
+                                        endif;
+                                    ?>
+                                        </select>  
                                     </div>
 
                                 </div>
                                 <div class="col-md-4 ">
-                                    <label class="form-label">Activida Economica</label>
+                                    <label class="form-label">Actividad Economica</label>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">

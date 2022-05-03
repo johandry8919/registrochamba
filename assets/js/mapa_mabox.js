@@ -1,4 +1,4 @@
-$(function () {
+
 	var input_latitud = document.getElementById("latitud");
 	var input_longitud = document.getElementById("longitud");
 	var coordinates = document.getElementById("coordinates");
@@ -61,19 +61,21 @@ $(function () {
 		let longitud_e = $("option:selected", $(this)).attr("data-longitud");
 
 		agregarMapa(latitud_e, longitud_e, (zoom = 6));
-
-		input_latitud.value = latitud;
-		input_longitud.value = longitud;
+        console.log(latitud_e)
+	
+		input_latitud.value = latitud_e;
+		input_longitud.value = latitud_e;
 	});
 
 	$("#cod_parroquia").change(function () {
 		let latitud_e = $("option:selected", $(this)).attr("data-latitud");
 		let longitud_e = $("option:selected", $(this)).attr("data-longitud");
+        console.log(latitud_e)
 
 		agregarMapa(latitud_e, longitud_e, (zoom = 12));
 
-		input_latitud.value = latitud;
-		input_longitud.value = longitud;
+		input_latitud.value = latitud_e;
+		input_longitud.value = latitud_e;
 	});
 
 	
@@ -185,5 +187,4 @@ $(function () {
 	}
 
     
-});
 
