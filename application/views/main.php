@@ -84,7 +84,7 @@
                 <div class="side-app">
 
                     <!-- CONTAINER -->
-                    <div class="main-container container-fluid">
+                    <div class="main-container ">
 
                         <!-- PAGE-HEADER -->
                         <div class="page-header">

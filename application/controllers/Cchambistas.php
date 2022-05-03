@@ -781,6 +781,8 @@ class Cchambistas extends CI_Controller
             redirect('iniciosesion');
         }
 
+      
+
         $this->form_validation->set_rules('nombres', 'Nombres', 'trim|required|strip_tags');
         $this->form_validation->set_rules('apellidos', 'Apellidos', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado', 'Estado', 'trim|numeric|required|strip_tags');
@@ -867,6 +869,8 @@ class Cchambistas extends CI_Controller
 			'tipo_institucion' => $this->input->post('tipo_institucion'),
 			'nombre_inst' => $this->input->post('nombre_inst') */
             );
+
+     
 
             if (!$this->Musuarios->getUsuarioRegistradoPersonal()) {
 

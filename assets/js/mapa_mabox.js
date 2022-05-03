@@ -77,7 +77,28 @@
         }
  
  
+        function seleccionar_tu_ubicacion(){
 
+            if ("geolocation" in navigator) {
+         
+                navigator.geolocation.getCurrentPosition((pos)=>{
+
+                    agregarMapa(pos.coords.latitude,pos.coords.longitude)
+               
+                   
+                input_latitud.value = pos.coords.latitude;
+                input_longitud.value = pos.coords.longitude;
+                 
+
+                   
+                });
+
+              } else {
+
+                console.log("el navegador no soporta la geolocalización")
+                /* el navegador no soporta la geolocalización*/
+              }
+}
 
     function agregarMapa(lat='8.2321',long='-66.406', zoom=13){
 
@@ -99,6 +120,20 @@
                     })
                     .setLngLat([long,lat])
                     .addTo(map);
+
+                    function onDragEnd() {
+                        var lngLat = marker.getLngLat();
+                        coordinates.style.display = 'block';
+                        coordinates.innerHTML =
+                        'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
+                    
+                        console.log(lngLat)
+                        input_latitud.value =  lngLat.lat ;
+                        input_longitud.value =  lngLat.lng ;
+                        }
+                         
+                      
+                        marker.on('dragend', onDragEnd);
                      
                     
 
@@ -132,23 +167,12 @@
    function  agregarMarker(lat,lon,map,marker){
 
 
-    function onDragEnd() {
-    var lngLat = marker.getLngLat();
-    coordinates.style.display = 'block';
-    coordinates.innerHTML =
-    'Longitude: ' + lngLat.lng + '<br />Latitude: ' + lngLat.lat;
-
     
-    input_latitud.value =  lngLat.lat ;
-    input_longitud.value =  lngLat.lng ;
-    }
-     
-    marker.on('dragend', onDragEnd);
 
 
     //marquer
   map.on('click',  (e)=> {
-      console.log(e)
+     
   
 
         let latc=e.lngLat.wrap().lat;

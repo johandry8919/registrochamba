@@ -446,9 +446,7 @@ class Musuarios extends CI_Model
 			$latitud = $data['latitud'];
 			$longitud = $data['longitud'];
 		
-			$latitud = number_format($latitud, 8, '.', '.');
-			$longitud = number_format($longitud, 8, '.', '.');
-
+			
 			$jovenes = array(
 				/* 'nac' => $data['nac'], */
 				'nombres' => $data['nombres'],

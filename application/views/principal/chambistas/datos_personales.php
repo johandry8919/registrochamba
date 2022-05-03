@@ -14,7 +14,7 @@
 <!--script src="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.css" rel="stylesheet" /-->
     <section class="content">
-        <div class="container-fluid">
+        <div class="">
 
       
 
@@ -404,7 +404,7 @@
                                                         if(isset($estados)){
                                                             foreach ($estados as $key => $estado) {
                                                                 if(isset($registroviejo->codigoestado) and $registroviejo->codigoestado == $estado->codigoestado){
-                                                                    echo "<option selected value='".$estado->codigoestado."  data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." '>".$estado->nombre."</option>";     
+                                                                    echo "<option selected value='".$estado->codigoestado."'  data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";     
                                                                 }else{
                                                                     echo "<option value='".$estado->codigoestado."' data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";
                                                                 }
@@ -444,7 +444,7 @@
                                                         <option value="">Seleccione una Parroquia</option>
                                                         <?php
                                                             if(isset($registroviejo->parroquia)){
-                                                                echo "<option selected value='".$registroviejo->codigoparroquia." data-latitud=".$registroviejo->latitud."  data-longitud=".$registroviejo->longitud."  '>".$registroviejo->parroquia."</option>";     
+                                                                echo "<option selected value='".$registroviejo->codigoparroquia."' data-latitud=".$registroviejo->latitud."  data-longitud=".$registroviejo->longitud."  >".$registroviejo->parroquia."</option>";     
                                                             }
                                                         ?>
                                                         </select>
@@ -468,7 +468,6 @@
                                         <textarea maxlength="255" rows="4" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..."><?php if(isset($registroviejo->direccion)) echo $registroviejo->direccion;?></textarea>
                                         </div>
                                     </div>
-
                                                
                                         <div class="form-group">
                                             <label class="form-label">Latitud</label> 
@@ -492,7 +491,7 @@
                                                     <i class="mdi mdi-map" aria-hidden="true"></i>
                                                 </a>
                                                 <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud"   name="longitud" value="<?php if(isset($registroviejo->longitud))
-                                                echo$registroviejo->longitud?>" placeholder="longitud" required autofocus>
+                                                echo $registroviejo->longitud?>" placeholder="longitud" required autofocus>
                                                
                                             </div>
     
@@ -505,6 +504,8 @@
                                     <div id="map"></div>
                              
                                     <pre id="coordinates" class="coordinates"></pre>
+                                    <button type="button" onclick="seleccionar_tu_ubicacion()" class="btn btn-icon ubicacion-c btn-success"  data-bs-toggle="tooltip" data-bs-placement="top" title="Tu ubicación"><i class="fe fe-map-pin"></i></button>
+
                                 </div>
       
                             </div>

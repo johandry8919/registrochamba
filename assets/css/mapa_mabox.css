@@ -16,7 +16,32 @@ body { margin: 0; padding: 0; }
 #map {  width: 100%;    
      min-height: 400px;}
 
+.ubicacion-c{
+  position: absolute;
 
+  left: 15px;
+  margin: 0;
+  top:20px;
+  padding: 5px 10px;
+
+}
+
+@media screen 
+and (device-width: 375px) 
+
+  {
+
+    .ubicacion-c{
+      position: absolute;
+    
+      left: 15px;
+      margin: 0;
+      top:80px;
+      padding: 5px 10px;
+    
+    }
+    
+}
      .coordinates {
         background: rgba(0, 0, 0, 0.5);
         color: #fff;
