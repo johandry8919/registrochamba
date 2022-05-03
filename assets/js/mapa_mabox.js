@@ -34,7 +34,7 @@ $(function () {
 		};
 
 		navigator.geolocation.getCurrentPosition(success, function (msg) {
-		//	agregarMapa(latitud, longitud);
+			agregarMapa(latitud, longitud);
 		});
 
         
