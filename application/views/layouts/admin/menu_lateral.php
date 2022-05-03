@@ -33,13 +33,16 @@
                                         class="angle fe fe-chevron-right"></i></a>
                                 <ul class="slide-menu">
                                     
+                                <li><a href="<?php echo base_url();?>admin/registro/empresas"
+                                     class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
+                                         >Empresas u organismo publico</a></li>
+
+                                         
                                     <li ><a href="<?php echo base_url();?>admin/registro/estructuras"
                                             class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
                                             >Estructura</a></li>
                                             
-                                    <li><a href="<?php echo base_url();?>admin/registro/empresas"
-                                     class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
-                                         >Empresas u organismo publico</a></li>
+                                
 
                                          <li><a href="<?php echo base_url();?>admin/registro/universidades"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
