@@ -1,3 +1,4 @@
+
 <?php      ?>
 
 
@@ -8,7 +9,7 @@
 <!-- #END# Overlay For Sidebars -->
 
 <section class="content">
-     <?php print_r($registroviejo)?>
+   
    
 
 
@@ -50,7 +51,7 @@
                     <div class="card-header border-bottom-0">
                         <div class="card-title">
                             Registro de estructuras
-                            <?php print_r($registroviejo) ?>
+                            
                         </div>
                     </div>
                     <div class="card-body">
@@ -104,7 +105,8 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="cedula" maxlength="30" name="cedula" value="" placeholder="Cédula de Identidad" required autofocus data-parsley-error-message="Este campo es requerido">
+                                                <input  class="input100 border-start-0 ms-0 form-control" type="text" id="cedula" maxlength="30" name="cedula" value="" placeholder="Cédula de Identidad" required autofocus data-parsley-error-message="Este campo es requerido"
+                                                >
 
                                             </div>
 
@@ -120,7 +122,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
                                                 </a>
-                                                <select class=" form-control show-tick" id="id_nivel_academico" name="academico" data-parsley-error-message="Este campo es requerido" required autofocus >
+                                                <select class=" form-control show-tick" id="id_nivel_academico" name="id_nivel_academico" data-parsley-error-message="Este campo es requerido" required autofocus >
                                                     <option value="">Seleccione una opción</option>
                                                     <?php if(isset($academica)): ?>
                                                             <?php foreach ($academica as $key => $academicas):?>
@@ -233,14 +235,34 @@
                                         </div>
                                     </div>
                                     <!--col-->
+                                   
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label class="form-label">Profesión u Oficio *</label>
+                                            <label class="form-label">Profesión u Oficio </label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="fa fa-ship" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-ship" aria-label="fa fa-ship"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="profesion" maxlength="30" name="profesion" value="" placeholder="profesion" required autofocus data-parsley-error-message="Este campo es requerido">
+                                            
+                                                    <select class="form-control show-tick" id="id_profesion_oficio" name="id_profesion_oficio" data-parsley-error-message="Este campo es requerido" required autofocus>
+                                                    <option value="">Seleccione una opción</option>
+                                                    <?php if(isset($responsabilidad_estructuras)): ?>
+                                                            <?php foreach ($profesion_oficio as $key => $profesion):?>
+                                                               
+                                                                <?php  if($profesion_oficio == $id_profesion_oficio):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+
+
+                                                </select>
 
                                             </div>
 
@@ -261,7 +283,7 @@
                                         <label class="form-label">¿responsabilidad que desempeña dentro de su estructura ?</label>
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <select class="form-control show-tick" id="cod_responsabilidad" name="estructura_res" data-parsley-error-message="Este campo es requerido" required autofocus>
+                                                <select class="form-control show-tick" id="cod_responsabilidad" name="cod_responsabilidad" data-parsley-error-message="Este campo es requerido" required autofocus>
                                                     <option value="">Seleccione una opción</option>
                                                     <?php if(isset($responsabilidad_estructuras)): ?>
                                                             <?php foreach ($responsabilidad_estructuras as $key => $movimiento):?>
@@ -288,11 +310,11 @@
                                         <label class="form-label">¿A que estructura Pertenece?</label>
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <select class="form-control show-tick" id="cd_structura" name="id_estructura" data-parsley-error-message="Este campo es requerido" required autofocus>
+                                                <select class="form-control show-tick" id="id_estructura" name="id_estructura" data-parsley-error-message="Este campo es requerido" required autofocus>
                                                     <option value="">Seleccione una opción</option>
-                                                    <option value="1">Estructura Estadal</option>
-                                                    <option value="2">Estructura Municipal</option>
-                                                    <option value="3">Estructura Parroquial</option>
+                                                    <option value="Estadal">Estructura Estadal</option>
+                                                    <option value="Municipal">Estructura Municipal</option>
+                                                    <option value="Parroquial">Estructura Parroquial</option>
 
                                                 </select>
                                             </div>
@@ -337,73 +359,78 @@
                                 <!--row-->
 
                                 <div class="row">
-                                    <div class="col-12 col-md-4 mt-4">
-                                        <label class="form-label">Estado</label>
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <select class="form-control show-tick" id="cod_estado" name="cod_estado" data-parsley-error-message="Este campo es requerido" required autofocus>
-                                                    <option value="">Seleccione una opción</option>
-                                                    <?php
-                                                    if (isset($estados)) {
-                                                        foreach ($estados as $key => $estado) {
-                                                            if (isset($registroviejo->codigoestado) and $registroviejo->codigoestado == $estado->codigoestado) {
-                                                                echo "<option selected value='" . $estado->codigoestado . "'>" . $estado->nombre . "</option>";
-                                                            } else {
-                                                                echo "<option value='" . $estado->codigoestado . "'>" . $estado->nombre . "</option>";
-                                                            }
-                                                        }
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 col-md-4 mb-2">
-                                        <label class="form-label">Si pertenece a la Estructura Municipal, Indicar ¿A que Municipio
-                                            Pertenece?</label>
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <select class="form-control show-tick" id="cod_municipio" name="codigomunicipio" data-parsley-error-message="Este campo es requerido" required autofocus>
-                                                    <option value="">Seleccione un Municipio</option>
-                                                    <?php
-                                                    if (isset($registroviejo->municipio)) {
-                                                        echo "<option selected value='" . $registroviejo->codigomunicipio . "'>" . $registroviejo->municipio . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <?php
-                                            if (isset($registroviejo->estado)) {
-                                                echo '<small>Seleccione un estado para cambiar</small>';
+                                <div class="col-md-4">
+                                <label  class="form-label">Estado</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control show-tick" 
+                                        
+                                        data-parsley-error-message="Este campo es requerido"
+                                        id="cod_estado" name="cod_estado" required>
+                                        <option value="">Seleccione una opción</option>
+                                    <?php
+                                        if(isset($estados)){
+                                            foreach ($estados as $key => $estado) {
+                                                if(isset($datos_empresa->codigoestado) and $datos_empresa->codigoestado == $estado->codigoestado){
+                                                    echo "<option selected value='".$estado->codigoestado."'  data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";     
+                                                }else{
+                                                    echo "<option value='".$estado->codigoestado."' data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";
+                                                }
                                             }
-                                            ?>
-                                        </div>
+                                        }
+                                    ?>
+                                        </select>
+                                     </div>
+                                </div>
+                            </div>
 
-                                    </div>
-
-                                    <div class="col-12 col-md-4 mb-2">
-                                        <label class="form-label">Si pertenece a la Estructura Parroquial, Indicar ¿A que Parroquia
-                                            Pertenece?</label>
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <select class="form-control show-tick" id="cod_parroquia" name="cod_parroquia" data-parsley-error-message="Este campo es requerido" required autofocus>
-                                                    <option value="">Seleccione una Parroquia</option>
-                                                    <?php
-                                                    if (isset($registroviejo->parroquia)) {
-                                                        echo "<option selected value='" . $registroviejo->codigoparroquia . "'>" . $registroviejo->parroquia . "</option>";
-                                                    }
-                                                    ?>
-                                                </select>
-                                            </div>
-                                            <?php
-                                            if (isset($registroviejo->estado)) {
-                                                echo '<small>Seleccione un estado para cambiar</small>';
+                            <div class="col-md-4">
+                                <label  class="form-label">Municipio</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select
+                                        data-parsley-error-message="Este campo es requerido" required
+                                        class="form-control show-tick" id="cod_municipio" name="cod_municipio"    required                                     data-parsley-error-message="Este campo es requerido">
+                                        <option value="">Seleccione un Municipio</option>
+                                        <?php
+                                            if(isset($datos_empresa->municipio)){
+                                                echo "<option selected value='".$datos_empresa->codigomunicipio."'>".$datos_empresa->municipio."</option>";     
                                             }
-                                            ?>
-                                        </div>
-
+                                        ?>
+                                        </select>
                                     </div>
+                                    <?php
+                                        if(isset($datos_empresa->estado)){
+                                        echo '<small>Seleccione un estado para cambiar</small>'; 
+                                        }
+                                    ?>                                                    
+                                </div>
+                                
+                            </div>
+
+                            <div class="col-md-4">
+                                <label  class="form-label">Parroquia</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control show-tick"
+                                        data-parsley-error-message="Este campo es requerido"
+                                        id="cod_parroquia" name="cod_parroquia" required>
+                                        <option value="">Seleccione una Parroquia</option>
+                                        <?php
+                                            if(isset($datos_empresa->parroquia)){
+                                                echo "<option selected value='".$datos_empresa->codigoparroquia."' data-latitud=".$datos_empresa->latitud."  data-longitud=".$datos_empresa->longitud."  >".$datos_empresa->parroquia."</option>";     
+                                            }
+                                        ?>
+                                        </select>
+                                    </div>
+                                    <?php
+                                        if(isset($datos_empresa->estado)){
+                                        echo '<small>Seleccione un estado para cambiar</small>'; 
+                                        }
+                                    ?>
+                                </div>
+                                
+                            </div>
 
 
                                 </div>
@@ -466,8 +493,7 @@
                             <h3>Asignación de contraseña</h3>
                             <section>
 
-                                <h2 class="fs-title">Crear cuenta de usuario </h2>
-                                <h3 class="fs-subtitle">Credenciales de estructura</h3>
+                                
                                 <div class="form-group">
                                     <input type="email" id="correo2" name="email2" class="form-control" placeholder="Email" data-parsley-error-message="Este campo es requerido" required autofocus />
                                 </div>
@@ -483,6 +509,8 @@
         </div>
 
     </form>
+
+
 
 
 
