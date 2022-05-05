@@ -40,7 +40,10 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus>
+                                            <input
+                                            data-parsley-error-message="Este campo es requerido"
+
+                                            class="input100 border-start-0 ms-0 form-control" type="text" id="razon_social" maxlength="30" name="razon_social" value="" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus>
 
                                         </div>
 
@@ -58,7 +61,10 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus>
+                                            <input
+                                            data-parsley-error-message="Este campo es requerido"
+
+                                            class="input100 border-start-0 ms-0 form-control" type="text" id="rif" maxlength="30" name="rif" value="" placeholder="RIF" required autofocus>
 
                                         </div>
 
@@ -75,26 +81,32 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil" maxlength="11" name="telf_movil" value="" placeholder="Ingrese su telefono" required autofocus>
+                                            <input 
+                                            
+                                            data-parsley-error-message="Este campo es requerido"
+
+                                            class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil" maxlength="11" name="telf_movil" value="" placeholder="Ingrese su telefono" required autofocus>
 
                                         </div>
-
                                     </div>
-
-
-                                </div>
+                               </div>
 
                              
                                 <!-- Correo -->
                                 <div class="col-md-4">
                                     <label class="form-label">Correo</label>
                                     <div class="form-group">
+                                        <div class="form-line">
                                         <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email">
+                                            <input
+                                            data-parsley-error-message="Este campo es requerido"
+                                            
+                                            class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email" id="email" required>
                                         </div>
+                                    </div>
                                     </div>
 
 
@@ -104,7 +116,10 @@
                                 <div class="col-md-4 ">
                                     <label class="form-label">Sector economico</label>
                                     <div class="form-group">
-                                        <select required class="form-control show-tick " id="Sector_Productivo" name="SectorProductivo">
+                                        <select
+                                        data-parsley-error-message="Este campo es requerido"
+
+                                        required class="form-control show-tick " id="sector_economico" name="sector_economico" required>
                                             <option value="0">Seleccione una Profesión u Oficio</option>
 
                                            
@@ -126,7 +141,11 @@
                                     <label class="form-label">Actividad Economica</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
+                                            <select
+                                            required
+                                            data-parsley-error-message="Este campo es requerido"
+
+                                            class="form-control show-tick" id="actividad_economica" name="actividad_economica">
                                                 <option value="">Seleccione una opción</option>
                                                 <option value="1">PÚBICA</option>
                                                 <option value="2">PRIVADA</option>
@@ -175,9 +194,9 @@
                             <!--row -->
                            </section>
 
-                           <h3>Datos representante de la empresa</h3>
+                           <h3 class="text-center">Datos representante de la empresa</h3>
                            <section> <div class=" row mt-5 ">
-                                <div class="text-center card-title">DATOS DEL REPRESENTANTE DE LA EMPRESA</div>
+
                                 <div class=" col-md-4">
 
                                     <div class="form-group">
@@ -186,7 +205,9 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="Ingrese su Nombre" required autofocus>
+                                            <input 
+                                            data-parsley-error-message="Este campo es requerido"
+                                            class="input100 border-start-0 ms-0 form-control" type="text" id="nombre_representante" maxlength="30" name="nombres" value="" placeholder="Ingrese su Nombre" required autofocus>
 
                                         </div>
 
@@ -205,7 +226,9 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos" maxlength="30" name="apellidos" value="" placeholder="Ingreses sus Apellidos" required autofocus>
+                                            <input
+                                            data-parsley-error-message="Este campo es requerido"
+                                            class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos_representante" maxlength="30" name="apellidos_representante" value="" placeholder="Ingreses sus Apellidos" required autofocus>
 
                                         </div>
 
@@ -222,7 +245,9 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos" maxlength="30" name="apellidos" value="" placeholder="Cédula de Identidad" required autofocus>
+                                            <input 
+                                            data-parsley-error-message="Este campo es requerido"
+                                            class="input100 border-start-0 ms-0 form-control" type="text" id="cedula_representante" maxlength="30" name="cedula_representante" value="" placeholder="Cédula de Identidad" required autofocus>
 
                                         </div>
 
@@ -246,7 +271,9 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil" maxlength="11" name="telf_movil" value="" placeholder="Ingrese su telefono" required autofocus>
+                                            <input 
+                                            data-parsley-error-message="Este campo es requerido"
+                                            class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil_representante" maxlength="11" name="telf_movil_representante" value="" placeholder="Ingrese su telefono" required autofocus>
 
                                         </div>
 
@@ -265,7 +292,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone-call" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local" maxlength="30" name="telf_local" value="<?php if (isset($datos_empresa->telf_local)) echo ucwords($datos_empresa->telf_local); ?>" placeholder="Telefono Local" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local_representante" maxlength="30" name="telf_local_representante" value="<?php if (isset($datos_empresa->telf_local)) echo ucwords($datos_empresa->telf_local); ?>" placeholder="Telefono Local" required autofocus>
 
                                         </div>
 
@@ -282,7 +309,9 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email">
+                                            <input
+                                            data-parsley-error-message="Este campo es requerido"
+                                            class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email" id="email_representante" name="email_representante" required>
                                         </div>
                                     </div>
 
@@ -302,7 +331,9 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="Cargo" required autofocus>
+                                            <input 
+                                            data-parsley-error-message="Este campo es requerido"
+                                            class="input100 border-start-0 ms-0 form-control" type="text" id="cargo" maxlength="30" name="cargo" value="" placeholder="Cargo" required autofocus>
 
                                         </div>
 
@@ -329,7 +360,10 @@
                                 <label  class="form-label">Estado</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <select class="form-control show-tick" id="cod_estado" name="cod_estado">
+                                        <select class="form-control show-tick" 
+                                        
+                                        data-parsley-error-message="Este campo es requerido"
+                                        id="cod_estado" name="cod_estado" required>
                                         <option value="">Seleccione una opción</option>
                                     <?php
                                         if(isset($estados)){
@@ -350,7 +384,9 @@
                                 <label  class="form-label">Municipio</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <select class="form-control show-tick" id="cod_municipio" name="cod_municipio">
+                                        <select
+                                        data-parsley-error-message="Este campo es requerido" required
+                                        class="form-control show-tick" id="cod_municipio" name="cod_municipio"    required                                     data-parsley-error-message="Este campo es requerido">
                                         <option value="">Seleccione un Municipio</option>
                                         <?php
                                             if(isset($datos_empresa->municipio)){
@@ -371,7 +407,9 @@
                                 <label  class="form-label">Parroquia</label>
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <select class="form-control show-tick" id="cod_parroquia" name="cod_parroquia">
+                                        <select class="form-control show-tick"
+                                        data-parsley-error-message="Este campo es requerido"
+                                        id="cod_parroquia" name="cod_parroquia" required>
                                         <option value="">Seleccione una Parroquia</option>
                                         <?php
                                             if(isset($datos_empresa->parroquia)){

@@ -23,30 +23,59 @@
 			if (currentIndex < newIndex) {
 				// Step 1 form validation
 				if (currentIndex === 0) {
-					var fname = $("#nombres").parsley();
-					var lname = $("#apellidos").parsley();
-					var cedula = $("#cedula").parsley();
+					var razon_social = $("#razon_social").parsley();
+					var rif = $("#rif").parsley();
+				
+					var telf_movil = $("#telf_movil").parsley();
+					var email = $("#email").parsley();
+					var sector_economico = $("#sector_economico").parsley();
+					var actividad_economica = $("#actividad_economica").parsley();
 
-					return true;
-					if (fname.isValid() && lname.isValid() && cedula.isValid()) {
+
+
+
+					if (razon_social.isValid() && rif.isValid() 
+					     && telf_movil.isValid()   && email.isValid() 
+						&& sector_economico.isValid()  && actividad_economica.isValid()     ) {
+							
 						return true;
 					} else {
-						cedula.validate();
-						fname.validate();
-						lname.validate();
+					
+						razon_social.validate();
+						rif.validate();				
+						telf_movil.validate();
+						email.validate();
+						sector_economico.validate();
+						actividad_economica.validate();
 					}
 				}
 				// Step 2 form validation
 				if (currentIndex === 1) {
-					return true;
-					/*  var email = $('#email').parsley();
-                    if (email.isValid()) {
+
+					var nombre_representante = $("#nombre_representante").parsley();
+					var apellidos_representante = $("#apellidos_representante").parsley();
+				
+					var cedula_representante = $("#cedula_representante").parsley();
+					var telf_movil_representante = $("#telf_movil_representante").parsley();
+					var email_representante = $("#email_representante").parsley();
+					var cargo = $("#cargo").parsley();
+					 var email_representante = $('#email_representante').parsley();
+
+
+                    if (nombre_representante.isValid(),apellidos_representante.isValid(),
+					cedula_representante.isValid(),telf_movil_representante.isValid(),
+					email_representante.isValid(), cargo.isValid()) {
                         return true;
                     } else {
-                        email.validate();
+						nombre_representante.validate();
+						apellidos_representante.validate();
+						cedula_representante.validate();
+						telf_movil_representante.validate();
+						email_representante.validate();
+						cargo.validate();
                     }
 
-					*/
+					
 				}
 				// Always allow step back to the previous step even if the current step is not valid.
 			} else {
