@@ -79,18 +79,12 @@ class Cadmin extends CI_Controller {
         $responsabilidad_estructuras= $this->Estructuras_model->responsabilidad_estructuras();
         $instruccion_academica= $this->Estructuras_model->instruccion_academica();
        
-       
-        
-     
-
-       
-
+      
         $breadcrumb =(object) [
             "menu" => "Admin",
             "menu_seleccion" => "Registro de estructuras"
         
- 
-                ];
+                 ];
 
      
         $output = [
@@ -172,27 +166,66 @@ class Cadmin extends CI_Controller {
              echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
  
      }else{
+
+        $rol_usuario=3;
+   //verificar que el usuario no exita. si exite no debes registrarse
+   $validacion_usuario = $this->Estructuras_model->verificarSiUsuarioExiste('V'.$this->input->post('cedula'),strtoupper(trim($this->input->post('email1'))),$rol_usuario);
+  
+
+     // si el cedula de usuario existe 
+    if($validacion_usuario){
+        echo  json_encode(["resultado" =>false,"mensaje"=> "la cedula o correo ya se  encuentra registrado"]);
+        exit;
+    }
+
+    if( $this->Estructuras_model->verificarSiUsuarioExisteEstructura('V'.$this->input->post('cedula'),strtoupper(trim($this->input->post('email1'))))){
+        echo  json_encode(["resultado" =>false,"mensaje"=> "la cedula o correo ya se  encuentra registrado en la estructura"]);
+        exit;
+    }
+
+
+ 
+    $datos_usuario['codigo'] = generar_uuid();
+    $datos_usuario['cedula'] = strtoupper('V'.$this->input->post('cedula'));
+    $datos_usuario['email'] = strtoupper($this->input->post('email1'));
+    //encriptacion
+    $pass_cifrado = password_hash($this->input->post('pass'),PASSWORD_DEFAULT);
+    $datos_usuario['password'] = $pass_cifrado;
+    $datos_usuario['activo'] = 0;
+    $datos_usuario['registro_anterior'] = 0;
+    $datos_usuario['id_rol'] = 3;
+
+
+   
+   //REGISTRo de usuario DE ESTRUCTURA en la tabla usuario
+       $id_usuario_registro= $this->Musuarios->registrarUsuario($datos_usuario);
+   
+
+
+
+        //REGISTRI DE ESTRUCTURA
          $data = array(
              'nombre' => $this->input->post('nombres'),
              'apellidos' => $this->input->post('apellidos'),
-             'email1' => $this->input->post('email1'),
-             'telf_movil' => $this->input->post('telf_movil'),
-             'telf_local' => $this->input->post('telf_local'),
-             'cedula' => $this->input->post('cedula'),
-             'Fecha_nac' => $this->input->post('Fecha_nac'),
+             'email' => strtoupper($this->input->post('email1')),
+             'tlf_celular' => $this->input->post('telf_movil'),
+             'tlf_coorparativo' => $this->input->post('telf_local'),
+             'cedula' =>'V'.$this->input->post('cedula'),
+             'fecha_nac' => $this->input->post('fecha_nac'),
              'edad' => $this->input->post('edad'),
-             'profesion' => $this->input->post('profesion'),
-             'academico' => $this->input->post('academico'),
-             'cod_estado' => $this->input->post('cod_estado'),
+             'id_profesion_oficio' => $this->input->post('profesion'),
+             'id_nivel_academico' => $this->input->post('academico'),
+             'codigoestado' => $this->input->post('cod_estado'),
              'codigomunicipio' => $this->input->post('codigomunicipio'),
-             'cod_parroquia' => $this->input->post('cod_parroquia'),
+             'codigoparroquia' => $this->input->post('cod_parroquia'),
              'direccion' => $this->input->post('direccion'),
-             'estructura_res' => $this->input->post('estructura_res'),
+             'id_responsabilidad_estructura' => $this->input->post('estructura_res'),
              'talla_pantalon' => $this->input->post('talla_pantalon'),
              'talla_camisa' => $this->input->post('talla_camisa'),
              'latitud' => $this->input->post('latitud'),
              'longitud' => $this->input->post('longitud'),
-             
+             'id_usuario' =>$id_usuario_registro,
+             "id_usuario_registro" => 2,             
              
              
          );

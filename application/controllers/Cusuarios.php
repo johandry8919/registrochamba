@@ -330,7 +330,7 @@ class Cusuarios extends CI_Controller {
                 $datos['registro_anterior'] = 1;
             }
 
-            	$validacion2 = $this->Musuarios->verificarCedulaRegistroSistema($datos);//verificar si el usuario esta registrado en el sistema por la cedula
+            	$validacion = $this->Musuarios->verificarCedulaRegistroSistema($datos);//verificar si el usuario esta registrado en el sistema por la cedula
             	//var_dump($validacion2);exit;
             	if (!$validacion2) {//si es TRUE esta registrado en el sistema
             		

@@ -79,7 +79,22 @@
 				}
 				// Always allow step back to the previous step even if the current step is not valid.
 			} else {
-				return true;
+
+
+				if (razon_social.isValid() && rif.isValid() 
+				&& telf_movil.isValid()   && email.isValid() 
+			   && sector_economico.isValid()  && actividad_economica.isValid()     ) {
+				   
+			   return true;
+		   } else {
+		   
+			   razon_social.validate();
+			   rif.validate();				
+			   telf_movil.validate();
+			   email.validate();
+			   sector_economico.validate();
+			   actividad_economica.validate();
+		   }
 			}
 		},
 

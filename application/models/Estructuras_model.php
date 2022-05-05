@@ -66,14 +66,14 @@
             
 
 
-            $estrutura = array(
+         /*   $estrutura = array(
                 "nombre" => $data['nombre'],
                 "apellidos" => $data['apellidos'],
-                "email" => $data['email1'],
+                "" => $data['email1'],
                 "tlf_celular" => $data['telf_movil'],
                 "tlf_coorparativo" => $data['telf_local'],
                 "cedula" => $data['cedula'],
-                "Fecha_nac" => $data['Fecha_nac'],
+                "fecha_nac" => $data['fecha_nac'],
                 "edad" => $data['edad'],
                 "id_profesion_oficio" => $data['profesion'],
                 "id_nivel_academico" => $data['academico'],
@@ -89,9 +89,9 @@
                 "id_usuario" => 2,
                 "id_usuario_registro" => 2,
 
-            );
+            );*/
             $this->db->trans_begin();
-            $this->db->insert('tbl_estructuras', $estrutura);
+            $this->db->insert('tbl_estructuras', $data);
             if ($this->db->trans_status() === FALSE)
 		{
 			$this->db->trans_rollback();
@@ -103,12 +103,48 @@
 			return true;
 		}
 
-         
-           
+                   
 
         }
 
-      
+        public function verificarSiUsuarioExiste($cedula,$correo,$rol_usuario){
+
+            $this->db->limit(1);
+            $this->db->select('count(*) AS cantidad');
+            $this->db->from('public.tbl_usuarios');
+            $this->db->where('cedula',$cedula);
+            $this->db->or_where('email', $correo);
+           // $this->db->where('id_rol', $rol_usuario);
+            $resultado = $this->db->get();
+    
+            $fila = $resultado->row();
+    
+            if ($fila->cantidad > 0) {
+                return TRUE;
+            }else{
+                return FALSE;
+            }
+        }
+
+    public function verificarSiUsuarioExisteEstructura($cedula,$correo){
+
+        $this->db->limit(1);
+        $this->db->select('count(*) AS cantidad');
+        $this->db->from('public.tbl_estructuras');
+        $this->db->where('cedula',$cedula);
+        $this->db->or_where('email', $correo);
+       // $this->db->where('id_rol', $rol_usuario);
+        $resultado = $this->db->get();
+
+        $fila = $resultado->row();
+
+        if ($fila->cantidad > 0) {
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
+
 
  
     }

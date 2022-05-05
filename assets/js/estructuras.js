@@ -43,13 +43,13 @@
 					var talla_camisa = $("#talla_camisa").parsley();
 					var latitud = $("#latitud").parsley();
 					var longitud = $("#longitud").parsley();
-					var Password = $("#pass").parsley();
+				
 
 					
 
 
 
-					if (nombres.validate() && apellidos.validate() && cedula.validate() && telf_movil.validate() && telf_local.validate() && email1.validate() && Fecha_nac.validate() && edad.validate() && academico.validate() && profesion.validate() && estado.validate() && municipio.validate() && parroquia.validate() && direccion.validate() && cod_responsabilidad.validate() && cd_structura.validate() && talla_pantalon.validate() && talla_camisa.validate() && latitud.validate() && longitud.validate() && Password.validate()) {
+					if (nombres.validate() && apellidos.validate() && cedula.validate() && telf_movil.validate() && telf_local.validate() && email1.validate() && Fecha_nac.validate() && edad.validate() && academico.validate() && profesion.validate() && estado.validate() && municipio.validate() && parroquia.validate() && direccion.validate() && cod_responsabilidad.validate() && cd_structura.validate() && talla_pantalon.validate() && talla_camisa.validate() && latitud.validate() && longitud.validate() ) {
                        
 
 						return true;
@@ -75,12 +75,14 @@
                         talla_camisa.validate();
                         latitud.validate();
                         longitud.validate();
-						Password.validate();
+
 						
 					}
 				}
 				// Step 2 form validation
 				if (currentIndex === 1) {
+
+				
 					return true;
 					/*  var email = $('#email').parsley();
                     if (email.isValid()) {
@@ -93,6 +95,7 @@
 				}
 				// Always allow step back to the previous step even if the current step is not valid.
 			} else {
+			
 				return true;
 			}
 		},
@@ -118,6 +121,7 @@
             var talla_camisa = $("#talla_camisa").val();
             var latitud = $("#latitud").val();
             var longitud = $("#longitud").val();
+			var pass = $("#pass").val();
 			
 			
 			$.ajax({

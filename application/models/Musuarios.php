@@ -994,7 +994,9 @@ class Musuarios extends CI_Model
 		else
 		{
 		        $this->db->trans_commit();
-		        return TRUE;
+	            $insert_id = $this->db->insert_id();
+
+				return  $insert_id;
 		}		
 	}
 
