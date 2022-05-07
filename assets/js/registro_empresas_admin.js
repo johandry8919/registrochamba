@@ -41,10 +41,25 @@
 						return true;
 					} else {
 					
-						razon_social.validate();
-						rif.validate();				
-						telf_movil.validate();
-						email.validate();
+						if(!razon_social.isValid())
+							$('#razon_social').removeClass('is-valid').addClass('is-invalid  error-input');
+						
+						
+						if(!rif.isValid())
+							$('#rif').removeClass('is-valid').addClass('is-invalid  error-input');
+						
+						
+						if(!telf_movil.isValid())
+							$('#telf_movil').removeClass('is-valid').addClass('is-invalid  error-input');
+						
+						if(!email.isValid())
+							$('#email').removeClass('is-valid').addClass('is-invalid  error-input');
+						
+								
+				
+				
+
+						
 						sector_economico.validate();
 						actividad_economica.validate();
 					}
@@ -67,13 +82,31 @@
 					email_representante.isValid(), cargo.isValid()) {
                         return true;
                     } else {
-						nombre_representante.validate();
-						apellidos_representante.validate();
-						cedula_representante.validate();
-						telf_movil_representante.validate();
-						email_representante.validate();
-						cargo.validate();
-                    }
+
+						if(!nombre_representante.isValid())
+						$('#nombre_representante').removeClass('is-valid').addClass('is-invalid  error-input');
+						
+
+						if(!apellidos_representante.isValid())
+						$('#apellidos_representante').removeClass('is-valid').addClass('is-invalid  error-input');
+						
+						if(!cedula_representante.isValid())
+						$('#cedula_representante').removeClass('is-valid').addClass('is-invalid  error-input');
+												
+						if(!telf_movil_representante.isValid())
+						$('#telf_movil_representante').removeClass('is-valid').addClass('is-invalid  error-input');
+						
+						if(!email_representante.isValid())
+						$('#email_representante').removeClass('is-valid').addClass('is-invalid  error-input');
+						
+						if(!cargo.isValid())
+						$('#cargo').removeClass('is-valid').addClass('is-invalid  error-input');
+						
+
+					}
+					
+				
+					
 
 					
 				}
@@ -97,7 +130,6 @@
 		   }
 			}
 		},
-
 		onFinished: function (event, currentIndex) {
 			var fname = $("#nombres").val();
 			var lname = $("#apellidos").val();
@@ -137,6 +169,72 @@
 			});
 		},
 	});
+
+
+	//validacion
+	$('#razon_social').on('keyup', function () {
+		"use strict";
+		var nombres = $(this).val();
+		var expresion = /^[a-zA-Z\s]*$/;
+	  
+		if (expresion.test(nombres)) {
+			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
+				
+		}
+	});
+
+	$('#razon_social, #nombre_representante, #apellidos_representante, #cargo').on('keyup', function () {
+		"use strict";
+		var nombres = $(this).val();
+		var expresion = /^[a-zA-Z\s]*$/;
+	  
+		if (expresion.test(nombres)) {
+			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
+				
+		}
+	});
+
+
+
+	$(' #telf_movil_representante, #telf_movil, #cedula_representante').on('keyup', function () {
+		"use strict";
+		var nombres = $(this).val();
+		var expresion = /^\d{7,11}$/;
+	  
+		if (expresion.test(nombres)) {
+			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
+				
+		}
+	});
+
+	$('#rif').on('keyup', function () {
+		"use strict";
+		var nombres = $(this).val();
+		var expresion = /^[a-zA-Z\s]*$/;
+	  
+		if (expresion.test(nombres)) {
+			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
+				
+		}
+	});
+
+
+	
+	$('#email, #email_representante').on('keyup', function () {
+		"use strict";
+		var nombres = $(this).val();
+		var expresion = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+	  
+		if (expresion.test(nombres)) {
+			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
+				
+		}
+	});
+	
+	
+	
+
+	
 
 	// DROPIFY
 	$(".dropify-clear").on("click", function () {

@@ -71428,3 +71428,32 @@ textarea.form-control {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+
+.valid-input{
+
+    color: green;
+    font-size:12px;
+    font-weight: bold;
+
+    margin-left:10px;
+    padding-top:10px;
+    padding-left:10px;
+    border-radius:5px;
+    border:1px solid green;
+
+ }
+
+ .error-input{
+     
+
+  color: red;
+    font-size:12px;
+    font-weight: bold;
+
+    margin-left:10px;
+    padding-top:10px;
+    padding-left:10px;
+    border-radius:5px;
+    border:1px solid red;
+}
