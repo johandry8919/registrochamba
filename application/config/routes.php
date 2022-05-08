@@ -101,6 +101,7 @@ $route['admin/registro/universidades'] = 'Cadmin/registro_universidades';
 $route['admin/inicio'] = 'Cadmin';
 $route['admin'] = 'Cadmin';
 
+$route['admin/empresas'] = 'Cadmin/listar_empresas_entes';
 /*Administrador*/
 
 

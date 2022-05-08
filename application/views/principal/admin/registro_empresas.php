@@ -24,7 +24,7 @@
                
                     <div class="card-body">
                         <div id="wizard2">
-
+                  
                     
                             <h3>Datos de la empresa</h3>
                             <section>
@@ -343,6 +343,27 @@
 
                                 </div>
 
+                                   <!--col-->
+                                   <div class="col-md-4">
+
+                                    <div class="form-group">
+                                        <label class="form-label">Asignar Contraseña</label>
+                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                <i class="mdi mdi-account" aria-hidden="true"></i>
+                                            </a>
+                                            <input 
+                                            data-parsley-error-message="Este campo es requerido"
+                                            class="input100 border-start-0 ms-0 form-control" type="text" id="password" maxlength="30" name="password" value="" placeholder="Ingrese una contraseña" required autofocus>
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+
                                 <!--col-->
 
 
@@ -351,7 +372,7 @@
                         </section>
 
               
-                    <h3>Dirección -Geolocalización</h3>
+                    <h3>Dirección Empresa -Geolocalización</h3>
                     <section>
 
                         <div class="row">
@@ -426,6 +447,12 @@
                                 </div>
                                 
                             </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="">Direccion de la empresa</label>
+                                    <input type="text" class="form-control" id="direccion_empresa">
+                                </div>
+                            </div>
                         </div>
                     <div class="row ">
 
@@ -474,10 +501,10 @@
 
                         </div>
 
-
+                     
                     </div>
                 </section>
-
+    
             </div>
                 </div>
                     

@@ -113,31 +113,71 @@
 				// Always allow step back to the previous step even if the current step is not valid.
 			} else {
 
-
-				if (razon_social.isValid() && rif.isValid() 
-				&& telf_movil.isValid()   && email.isValid() 
-			   && sector_economico.isValid()  && actividad_economica.isValid()     ) {
+				var cod_estado = $("#cod_estado").parsley();
+				var cod_municipio = $("#cod_municipio").parsley();		
+				var cod_parroquia = $("#cod_parroquia").parsley();
+				var latitud = $("#latitud").parsley();
+				var longitud = $("#longitud").parsley();
+	
+				if (cod_estado.isValid() && cod_municipio.isValid() 
+				&& cod_parroquia.isValid()   ) {
 				   
 			   return true;
 		   } else {
-		   
-			   razon_social.validate();
-			   rif.validate();				
-			   telf_movil.validate();
-			   email.validate();
-			   sector_economico.validate();
-			   actividad_economica.validate();
+
+			if(!cod_estado.isValid())
+			$('#cod_estado').removeClass('is-valid').addClass('is-invalid  error-input');
+			
+			if(!cod_municipio.isValid())
+			$('#cod_municipio').removeClass('is-valid').addClass('is-invalid  error-input');
+			
+			if(!cod_parroquia.isValid())
+			$('#cod_parroquia').removeClass('is-valid').addClass('is-invalid  error-input');
+			
 		   }
 			}
 		},
 		onFinished: function (event, currentIndex) {
-			var fname = $("#nombres").val();
-			var lname = $("#apellidos").val();
-			var cedula = $("#cedula").val();
-			$.ajax({
+			//var form_data = $( "#wizard2" ).serialize();
+		
+			var razon_social = $("#razon_social").val();
+			var rif = $("#rif").val();
+			var telf_movil = $("#telf_movil").val();
+			var email = $("#email").val();
+			var sector_economico = $("#sector_economico").val();
+			var actividad_economica = $("#actividad_economica").val();
+
+			var nombre_representante = $("#nombre_representante").val();
+			var apellidos_representante = $("#apellidos_representante").val();
+		
+			var cedula_representante = $("#cedula_representante").val();
+			var telf_movil_representante = $("#telf_movil_representante").val();
+			var email_representante = $("#email_representante").val();
+			var cargo = $("#cargo").val();
+		
+			 var cod_estado = $("#cod_estado").val();
+			 var cod_municipio = $("#cod_municipio").val();		
+			 var cod_parroquia = $("#cod_parroquia").val();
+			 var latitud = $("#latitud").val();
+			 var longitud = $("#longitud").val();
+			 var telf_local_representante = $("#telf_local_representante").val();
+			 var direccion_empresa= $("#direccion_empresa").val();
+			 var instagram= $("#instagram").val();
+			 var twitter= $("#twitter").val();
+			 var facebook= $("#facebook").val();
+			 var password= $("#password").val();
+			 
+			 
+		$.ajax({
 				dataType: "json",
-				data: { fname: fname, cedula: cedula, lname: lname },
-				url: base_url + "Cadmin/crearEstructura",
+				data: {razon_social, rif,telf_movil, email, sector_economico,actividad_economica,
+					nombre_representante,apellidos_representante,cedula_representante,telf_movil_representante,
+					email_representante,cargo,cod_estado,cod_municipio,
+					cod_parroquia,latitud,longitud,telf_local_representante,
+					direccion_empresa,instagram,twitter,facebook,password
+				
+				},
+				url: base_url + "Cadmin/crearEmpresas",
 				type: "post",
 				beforeSend: function () {
 					//$("#cod_municipio").selectpicker('refresh');
@@ -149,9 +189,9 @@
 							title: "Registro Exitoso",
 							text: "Presione OK para continuar",
 						}).then((result) => {
-							/* Read more about isConfirmed, isDenied below */
+						
 							if (result.isConfirmed) {
-								$(location).attr("href", base_url + "admin/estructuras");
+								$(location).attr("href", base_url + "admin/empresas");
 							}
 						});
 					} else {
@@ -164,9 +204,13 @@
 					console.log(respuesta);
 				},
 				error: function (xhr, err) {
+					console.log(xhr);
+					console.log(err);
 					alert("ocurrio un error intente de nuevo");
 				},
 			});
+
+			
 		},
 	});
 
