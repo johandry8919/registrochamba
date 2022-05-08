@@ -136,7 +136,7 @@ class Cadmin extends CI_Controller {
         $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
         $this->form_validation->set_rules('nombres', 'nombres', 'trim|required|strip_tags');
         $this->form_validation->set_rules('apellidos', 'apellidos', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('email1', 'email', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_movil', 'telf movil', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_local', 'telf local', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');
@@ -187,7 +187,7 @@ class Cadmin extends CI_Controller {
  
     // $datos_usuario['codigo'] = generar_uuid();
     $datos_usuario['cedula'] = strtoupper('V'.$this->input->post('cedula'));
-    $datos_usuario['email'] = strtoupper($this->input->post('email1'));
+    $datos_usuario['email'] = strtoupper($this->input->post('correo1'));
     //encriptacion
     $pass_cifrado = password_hash($this->input->post('pass'),PASSWORD_DEFAULT);
     $datos_usuario['password'] = $pass_cifrado;
@@ -204,7 +204,7 @@ class Cadmin extends CI_Controller {
        $datas = array(
         'nombre' => $this->input->post('nombres'),
         'apellidos' => $this->input->post('apellidos'),
-        'email' => $this->input->post('email1'),
+        'email' => $this->input->post('correo1'),
         'tlf_celular' => $this->input->post('telf_movil'),
         'tlf_coorparativo' => $this->input->post('telf_local'),
         'cedula' => $this->input->post('cedula'),
