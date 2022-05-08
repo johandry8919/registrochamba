@@ -64,19 +64,25 @@ class Cadmin extends CI_Controller {
     public function registro_estructura()
   
 	{
-    //    if (!$this->session->userdata('id_usuario')) {
-    //         redirect('iniciosesion');
-    //     } 
 
-
-       
-        $estados = $this->Musuarios->getEstados();
+      $estados = $this->Musuarios->getEstados();
         $responsabilidad_estructuras= $this->Estructuras_model->responsabilidad_estructuras();
         $instruccion_academica= $this->Estructuras_model->instruccion_academica();
         $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
         $profesion_oficio= $this->Estructuras_model->profesion_oficio();
-
+        $persona= $this->Estructuras_model->getUsuarioRegistradoPersonal();
+        
+       
+        
         $datos['profesion_oficio'] = $profesion_oficio;
+        $res =[];
+        $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
+        if (isset($id__exp_lab) and $id__exp_lab != "") {
+          $res =  $this->Estructuras_model->getEditEstruturaID($id__exp_lab);
+           json_encode($res);
+           
+         
+        }
        
       
         $breadcrumb =(object) [
@@ -96,6 +102,9 @@ class Cadmin extends CI_Controller {
             "estados"          => $estados,
             "sectorProductivo" => $sectorProductivo,
             'profesion_oficio' => $profesion_oficio,
+            "datos" => $res,
+            "persona" => $persona,
+            
 
             
            "librerias_css" => [],
@@ -124,16 +133,10 @@ class Cadmin extends CI_Controller {
 
     public function crearEstructura(){
 
-
-
-
-
         $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
         $this->form_validation->set_rules('nombres', 'nombres', 'trim|required|strip_tags');
         $this->form_validation->set_rules('apellidos', 'apellidos', 'trim|required|strip_tags');
-
         $this->form_validation->set_rules('email1', 'email', 'trim|required|strip_tags');
-       
         $this->form_validation->set_rules('telf_movil', 'telf movil', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_local', 'telf local', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');
@@ -143,10 +146,8 @@ class Cadmin extends CI_Controller {
         $this->form_validation->set_rules('cod_estado', 'estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'municipio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_parroquia', 'parroquia', 'trim|required|strip_tags');
-
         $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
-
-        $this->form_validation->set_rules('id_estructura', 'estructura_responsabilidad', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('id_estructura', 'estructura_responsabilidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
          
@@ -184,22 +185,22 @@ class Cadmin extends CI_Controller {
 
 
  
-    $datos_usuario['codigo'] = generar_uuid();
+    // $datos_usuario['codigo'] = generar_uuid();
     $datos_usuario['cedula'] = strtoupper('V'.$this->input->post('cedula'));
     $datos_usuario['email'] = strtoupper($this->input->post('email1'));
     //encriptacion
     $pass_cifrado = password_hash($this->input->post('pass'),PASSWORD_DEFAULT);
     $datos_usuario['password'] = $pass_cifrado;
     $datos_usuario['activo'] = 0;
-    $datos_usuario['registro_anterior'] = 0;
+    // $datos_usuario['registro_anterior'] = 0;
     $datos_usuario['id_rol'] = 3;
+
+ 
 
 
    
    //REGISTRo de usuario DE ESTRUCTURA en la tabla usuario
        $id_usuario_registro= $this->Musuarios->registrarUsuario($datos_usuario);
-      
-       
        $datas = array(
         'nombre' => $this->input->post('nombres'),
         'apellidos' => $this->input->post('apellidos'),
@@ -221,23 +222,45 @@ class Cadmin extends CI_Controller {
         'talla_camisa' => $this->input->post('talla_camisa'),
         'latitud' => $this->input->post('latitud'),
         'longitud' => $this->input->post('longitud'),
-        'id_usuario' =>  $id_usuario_registro,) ;
-        
-        
-        $datas = $this->Estructuras_model->post_crearEstructura($datas);
-         echo  json_encode(["resultado" =>true,"mensaje"=>"registro exitoso"]);
-   
+        'id_usuario' =>  $id_usuario_registro,
+      
+    );
 
-             
+      
+       
+      
 
         
-
-         
-         
-   
         
-     }
+        if ($this->Estructuras_model->getUsuarioRegistradoPersonal()) {
+
+            if ($this->Estructuras_model->post_crearEstructura($datas)) {
+                $this->session->set_flashdata('mensajeexito', 'Datos guardados correctamente.');
+                echo  json_encode(["resultado" =>true,"mensaje"=> "Datos guardados correctamente."]);
+                
+                
+            } else {
+                $this->session->set_flashdata('mensajeerror', 'Ocurrio un error guardando intente de nuevo.');
+
+                echo  json_encode(["resultado" =>false,"mensaje"=> "Ocurrio un error guardando intente de nuevo."]);
+            }
+        } else {
+            if ($this->Estructuras_model->actualizarPersonales($datas)) {
+                $this->session->set_flashdata('mensajeexito', 'Datos actualizados correctamente.');
+                echo  json_encode(["resultado" =>true,"mensaje"=> "Datos actualizados correctamente."]);
+                
+            } else {
+                $this->session->set_flashdata('mensajeerror', 'Ocurrio un error actualizando intente de nuevo.');
+               
+            }
+        }
+     
     }
+}
+        
+         
+   
+
 
     public function crearEmpresas(){
    
@@ -409,6 +432,15 @@ class Cadmin extends CI_Controller {
 
     }
     public function estructuras(){
+        // if (!$this->session->userdata(59049)) {
+        //     redirect('iniciosesion');
+        // 
+
+       
+
+
+        $estruturas = $this->Estructuras_model->getestructuras();
+      
 
         $breadcrumb =(object) [
             "menu" => "Admin",
@@ -423,6 +455,9 @@ class Cadmin extends CI_Controller {
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "estructuras",
             "vista_principal"   => "admin/estructuras",
+            'estruturas' => $estruturas,
+            
+            
             
             
            "librerias_css" => [],

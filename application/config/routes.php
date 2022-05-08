@@ -96,6 +96,7 @@ $route['adm'] = 'Cadministrador/VinicioSesion';
 $route['inicioadm'] = 'Cadmin/inicio';*/
 $route['admin/login'] = 'Cadmin/login';
 $route['admin/registro/estructuras'] = 'Cadmin/registro_estructura';
+$route['admin/registro/estructuras/(:num)'] = 'Cadmin/registro_estructura/$1';
 $route['admin/registro/empresas'] = 'Cadmin/registro_empresas';
 $route['admin/registro/universidades'] = 'Cadmin/registro_universidades';
 $route['admin/inicio'] = 'Cadmin';

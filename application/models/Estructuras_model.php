@@ -75,6 +75,43 @@
 
         }
 
+        public function actualizarPersonales($data){
+            $datas = array(
+
+                'nombres' => $data['nombres'],
+				'apellidos' => $data['apellidos'],
+				'fecha_nac' => $data['datepicker'],
+                'cedula' => $data['cedula'],
+                'tlf_celular' => $data['tlf_celular'],
+                'tlf_fijo' => $data['tlf_fijo'],
+                'email' => $data['email'],
+                'direccion' => $data['direccion'],
+                'id_profesion_oficio' => $data['id_profesion_oficio'],
+                'id_responsabilidad_estructuras' => $data['id_responsabilidad_estructuras'],
+                'id_instruccion' => $data['id_instruccion'],
+                'id_estructura' => $data['id_estructura'],
+                'id_usuario' => $data['id_usuario'],
+                'id_estructura' => $data['id_estructura'],
+              
+
+
+            );
+            $this->db->where('id_usuario', $data['id_usuario']);
+            $this->db->update('tbl_estructuras', $datas);
+            return true;
+
+
+
+
+
+
+           
+
+
+            
+            
+        }
+
         public function verificarSiUsuarioExiste($cedula,$correo,$rol_usuario){
 
             $this->db->limit(1);
@@ -113,9 +150,63 @@
         }
     }
 
+    // hacer un get a tbl_estructuras para  ver todo lo datos de la tabla
+    
+    public function getestructuras() {
+       
+        $this->db->select('*');
+        $this->db->from('public.tbl_estructuras');
+        $this->db->order_by('tbl_estructuras', 'ASC');
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) 
+            return $query->result();
+        else
+            return FALSE;
+
+       
+    }
+
+   
+
+ 
+	public function getEditEstruturaID($id){
+        $this->db->select('*');
+        $this->db->from('public.tbl_estructuras');
+        $this->db->where('id_usuario',$id);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) 
+            return $query->row();
+        else{
+            return FALSE;
+        }
 
  
     }
+
+    public function getUsuarioRegistradoPersonal(){
+
+        $this->db->select('*');
+        $this->db->from('public.tbl_estructuras');
+    
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) 
+            return $query->result();
+        else{
+            return FALSE;
+        }
+
+                                                      
+    }
+		
+	}
+
+
+
+
+    
+
+
 
 
 ?>

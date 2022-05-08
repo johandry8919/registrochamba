@@ -263,8 +263,8 @@ class Musuarios extends CI_Model
 		$latitud = $data['latitud'];
 			$longitud = $data['longitud'];
 		
-			$latitud = number_format($latitud,7, '.', '.');
-			$longitud = number_format($longitud, 7, '.', '.');
+			$latitud = number_format($latitud,18, '.', '.');
+			$longitud = number_format($longitud, 18, '.', '.');
 
 		$jovenes = array(
 				/* 'nac' => $data['nac'], */
@@ -984,7 +984,7 @@ class Musuarios extends CI_Model
 
 		$this->db->trans_begin();
 
-			$this->db->insert('public.tbl_usuarios',$datos);
+			$this->db->insert('public.usuarios_admin',$datos);
 
 		if ($this->db->trans_status() === FALSE)
 		{
