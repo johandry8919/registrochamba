@@ -54,9 +54,10 @@
 
 
                     <div class="card-body">
+                        <div id="#alerta"></div>
 
 
-                        <form>
+                        <form method="POST" id="formulario">
                             <div class="row">
                                 <div class=" text-center card-title">DATOS DE LA INSTITUCION</div>
 
@@ -68,7 +69,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="razon_social" maxlength="30" name="razon_social" value="" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -86,7 +87,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="rif" maxlength="30" name="rif" value="" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus data-parsley-error-message="Este campo es requerido" data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -103,7 +104,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil" maxlength="11" name="telf_movil" value="" placeholder="Ingrese su telefono" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="tlf_celular" maxlength="11" name="tlf_celular" value="" placeholder="Ingrese su telefono" required autofocus data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -121,7 +122,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email">
+                                            <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email" name="email" id="email">
                                         </div>
                                     </div>
 
@@ -133,7 +134,7 @@
                                     <label class="form-label">Sector de Especialización</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
+                                            <select class="form-control show-tick" id="id_especializacion" name="id_especializacion">
                                                 <option value="">Seleccione una opción</option>
                                                 <option value="1">Estructura Estadal</option>
                                                 <option value="2">Estructura Municipal</option>
@@ -148,7 +149,7 @@
                                     <label class="form-label">Tipo de institución</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
+                                            <select class="form-control show-tick" id="actividad_economica" name="actividad_economica">
                                                 <option value="">Seleccione una opción</option>
                                                 <option value="1">PÚBICA</option>
                                                 <option value="2">PRIVADA</option>
@@ -207,7 +208,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="Ingrese su Nombre" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombre_representante" maxlength="30" name="nombre_representante" value="" placeholder="Ingrese su Nombre" required autofocus>
 
                                         </div>
 
@@ -226,7 +227,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos" maxlength="30" name="apellidos" value="" placeholder="Ingreses sus Apellidos" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos_representante" maxlength="30" name="apellidos_representante" value="" placeholder="Ingreses sus Apellidos" required autofocus>
 
                                         </div>
 
@@ -243,7 +244,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos" maxlength="30" name="apellidos" value="" placeholder="Cédula de Identidad" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="cedula_representante" maxlength="30" name="cedula_representante" value="" placeholder="Cédula de Identidad" required autofocus>
 
                                         </div>
 
@@ -267,7 +268,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil" maxlength="11" name="telf_movil" value="" placeholder="Ingrese su telefono" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil_representante" maxlength="11" name="telf_movil_representante" value="" placeholder="Ingrese su telefono" required autofocus>
 
                                         </div>
 
@@ -286,7 +287,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone-call" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local" maxlength="30" name="telf_local" value="<?php if (isset($registroviejo->telf_local)) echo ucwords($registroviejo->telf_local); ?>" placeholder="Telefono Local" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local_representante" maxlength="30" name="telf_local_representante" value="<?php if (isset($registroviejo->telf_local)) echo ucwords($registroviejo->telf_local); ?>" placeholder="Telefono Local" required autofocus>
 
                                         </div>
 
@@ -303,7 +304,8 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email">
+                                            <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email"
+                                            name="email_representante" id="email_representante">
                                         </div>
                                     </div>
 
@@ -321,11 +323,29 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30" name="nombres" value="" placeholder="Cargo" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="cargo" maxlength="30" name="cargo" value="" placeholder="Cargo" required autofocus>
 
                                         </div>
 
                                     </div>
+
+
+
+                                </div>
+                                <div class="col-12 col-md-7">
+                                <div class="form-group">
+                                        <label class="form-label">Contraseña</label>
+                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                <i class="mdi mdi-account" aria-hidden="true"></i>
+                                            </a>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="password" maxlength="30" name="password" value="" placeholder="Ingreses sus Contraseña" required autofocus>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                             
 
 
 
@@ -473,7 +493,7 @@
 
                     <div class="row  justify-content-center  mt-2 mb-2">
                         <div class="col-md-8 ">
-                            <button class="btn btn-primary btn-block" id="boton" type="botton">Guardar</button>
+                            <button class="btn btn-primary btn-block" id="button" type="button">Guardar</button>
                         </div>
 
                     </div>

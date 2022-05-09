@@ -27,6 +27,25 @@
 
         
         }
+            //pos_crearUniversidades
+    public function pos_crearUniversidades($data) {
+
+      
+        $this->db->trans_begin();
+        $this->db->insert('tbl_empresas_entes', $data);
+        if ($this->db->trans_status() === FALSE)
+    {
+        $this->db->trans_rollback();
+        return false;
+    }
+    else
+    {
+        $this->db->trans_commit();
+        return true;
+    }
+
+    }
+		
 
         public function verificarSiExiste($campo,$valor){
 
