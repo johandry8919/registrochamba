@@ -61,20 +61,19 @@
                                         class="angle fe fe-eye"></i></a>
                                 <ul class="slide-menu">
                                                      
-                                    <li ><a href="#"
-                                        class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
-                                        >Chambista</a></li>
-                                    <li ><a href="#"
+                              
+                                    <li ><a href="<?php echo base_url();?>admin/estructuras"
                                             class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
                                             >Estructura</a></li>
                                             
-                                    <li><a href="#"
+                                            <li><a href="#"
+                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
+                                         >Centro de Estuios y Universidades</a></li> 
+                                    <li><a href="<?php echo base_url();?>admin/empresas"
                                      class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
                                          >Empresas u organismo publico</a></li>
 
-                                         <li><a href="#"
-                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
-                                         >Centro de Estuios y Universidades</a></li>
+                                  
                                
 
                                   

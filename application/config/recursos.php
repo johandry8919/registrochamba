@@ -30,7 +30,8 @@
     $config['recursos']['registro_empresas_admin_js'] = "assets/js/registro_empresas_admin.js?v=1.0.6";
     $config['recursos']['area_formacion_js'] = "assets/js/area_formacion.js?v=1.0.6";
     $config['recursos']['lista_empresas_js'] = "assets/js/lista_empresas.js?v=1.0.6".time();
-    
+    $config['recursos']['listar_estructura_js'] = "assets/js/listar_estructura.js?v=1.0.6".time();
+
         // css - librería sassets\plugins\mapbox
     $config['recursos']['style_css'] = "assets/css/style.min.css?v=1.0.5";
     $config['recursos']['login_css'] = "assets/css/login.min.css?v=1.0.0";

@@ -1,5 +1,4 @@
 
-
 var idioma_espanol = {
     "sProcessing":     "Procesando...",
   "sLengthMenu": 'Mostrar <select>'+
@@ -33,9 +32,8 @@ var idioma_espanol = {
   scrollX: "100%"
 }
 
-var table = $('#basic-datatable').DataTable({
+var table = $('#basic-edit').DataTable({
     dom: 'Bfrtip',
     buttons: ['copy', 'excel', 'pdf', 'colvis'],
     language: idioma_espanol
 });
-

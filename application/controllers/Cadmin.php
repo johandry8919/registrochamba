@@ -309,7 +309,8 @@ class Cadmin extends CI_Controller {
           $data = array(
 
             "id_tipo_empresas_universidades"=>1,
-            "tipo_empresa"          => $this->input->post('sector_economico'),
+            "tipo_empresa"          => 1,
+            "id_sector_economico"          => $this->input->post('sector_economico'),
             "id_usuario_registro"   =>$id_usuario_registro,
             "nombre_razon_social"   =>$nombre_razon_social,
             "rif"=>$rif,
@@ -400,6 +401,8 @@ class Cadmin extends CI_Controller {
 
     public function listar_empresas_entes(){
 
+
+       $empresas = $this->Empresas_entes_model->obtener_empresas();
         $breadcrumb =(object) [
             "menu" => "Admin",
             "menu_seleccion" => "Empresas registradas"
@@ -407,12 +410,15 @@ class Cadmin extends CI_Controller {
  
                 ];
 
+              
      
         $output = [
             "menu_lateral"=>"admin",
             "breadcrumb"      =>   $breadcrumb,
-            "title"             => "estructuras",
+            "title"             => "Empresas/Entes",
+            "datatable"             => true,
             "vista_principal"   => "admin/listar_empresas",
+            "empresas" =>$empresas,
             
             
            "librerias_css" => [],
@@ -452,6 +458,7 @@ class Cadmin extends CI_Controller {
      
         $output = [
             "menu_lateral"=>"admin",
+            "datatable"      =>true,
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "estructuras",
             "vista_principal"   => "admin/estructuras",
@@ -463,18 +470,12 @@ class Cadmin extends CI_Controller {
            "librerias_css" => [],
 
          
-           "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
-           recurso("jquery_steps_js"),  recurso("parsleyjs_js"),
-            recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),recurso("jquery_easing_js")
-
-            
+           "librerias_js" => [
      
         ],
 
 
-           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js"),
-           recurso("estructuras_js"), recurso("mapa_mabox_js")],
-           "ficheros_css" => [recurso("mapa_mabox_css"),recurso("estructuras_css")],
+           "ficheros_js" => [recurso("listar_estructura_js")],
 
 
         ];

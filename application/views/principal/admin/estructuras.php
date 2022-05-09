@@ -55,14 +55,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                             
                                         <?php
 
                                         if (isset($estruturas) and $estruturas ) {
                                             $i = 1;
                                             foreach ($estruturas as $key => $usuaca) {
                                                 echo '<tr>';
-                                                echo '<th scope="row">' . $i . '</th>';
+                                                echo '<td scope="row">' . $i . '</td>';
                                                 echo '<td>' .$usuaca->nombre . '</td>';
                                                 echo '<td>' . $usuaca->apellidos.'</td>';
                                                 echo '<td>' .$usuaca->cedula . '</td>';
@@ -95,7 +95,7 @@
                                         }
                                         ?>
                                        
-                                    </tr>
+                                  
 
                                 </tbody>
                             </table>

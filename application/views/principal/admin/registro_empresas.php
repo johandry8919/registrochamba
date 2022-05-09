@@ -147,9 +147,9 @@
 
                                             class="form-control show-tick" id="actividad_economica" name="actividad_economica">
                                                 <option value="">Seleccione una opción</option>
-                                                <option value="1">PÚBICA</option>
-                                                <option value="2">PRIVADA</option>
-                                                <option value="3">MIXTA</option>
+                                                <option value="PÚBICA">PÚBICA</option>
+                                                <option value="PRIVADA">PRIVADA</option>
+                                                <option value="MIXTA">MIXTA</option>
 
                                             </select>
                                         </div>
