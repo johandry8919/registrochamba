@@ -703,4 +703,53 @@ class Cadmin extends CI_Controller {
     }
         
     }
+
+
+
+public function universidad(){
+    // if (!$this->session->userdata(59049)) {
+    //     redirect('iniciosesion');
+    // 
+
+   
+
+
+    $estruturas = $this->Estructuras_model->getestructuras();
+  
+
+    $breadcrumb =(object) [
+        "menu" => "Admin",
+        "menu_seleccion" => "Registro de estructuras"
+    
+
+            ];
+
+ 
+    $output = [
+        "menu_lateral"=>"admin",
+        "datatable"      =>true,
+        "breadcrumb"      =>   $breadcrumb,
+        "title"             => "universidad",
+        "vista_principal"   => "admin/universidad",
+        'estruturas' => $estruturas,
+        
+        
+        
+        
+       "librerias_css" => [],
+
+     
+       "librerias_js" => [
+ 
+    ],
+
+
+       "ficheros_js" => [recurso("listar_estructura_js")],
+
+
+    ];
+
+    $this->load->view("main", $output);
+    
+}
 }
