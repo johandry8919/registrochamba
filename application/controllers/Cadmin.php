@@ -501,6 +501,7 @@ class Cadmin extends CI_Controller {
                 ];
     
         $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+        
 
      
         $output = [
@@ -538,6 +539,7 @@ class Cadmin extends CI_Controller {
     public function registro_universidades(){
         $estados = $this->Musuarios->getEstados();
         $datos['estados'] = $estados;
+        $empresas = $this->Empresas_entes_model->obtener_empresas();
         
         $breadcrumb =(object) [
             "menu" => "Admin",
@@ -551,6 +553,7 @@ class Cadmin extends CI_Controller {
             "title"             => "Registro  de universidades",
              "vista_principal"   => "admin/registro_universidades",
              "estados"          => $estados,
+             "empresas"         => $empresas,
              
      
            "ficheros_js" => [],
@@ -582,6 +585,16 @@ class Cadmin extends CI_Controller {
         $this->form_validation->set_rules('razon_social', 'nombres', 'trim|required|strip_tags');
         $this->form_validation->set_rules('rif', 'rif', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('telf_local_representante', 'telf local representante', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_especializacion', 'especializacion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('email_representante', 'email del representante', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cargo', 'cargo', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('direccion','direccion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_estado','Estado', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_municipio', 'Municipio', 'trim|required|strip_tags');
+
+
 
 
         
@@ -710,11 +723,8 @@ public function universidad(){
     // if (!$this->session->userdata(59049)) {
     //     redirect('iniciosesion');
     // 
-
-   
-
-
-    $estruturas = $this->Estructuras_model->getestructuras();
+    
+    $empresas = $this->Empresas_entes_model->obtener_empresas();
   
 
     $breadcrumb =(object) [
@@ -731,7 +741,7 @@ public function universidad(){
         "breadcrumb"      =>   $breadcrumb,
         "title"             => "universidad",
         "vista_principal"   => "admin/universidad",
-        'estruturas' => $estruturas,
+        'empresas' => $empresas,
         
         
         

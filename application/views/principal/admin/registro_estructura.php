@@ -508,6 +508,8 @@
                                         echo '<div class="form-group">';
                                         echo '<input id="pass" type="password" name="Password" class="form-control" placeholder="Password" data-parsley-error-message="Este campo es requerido" required autofocus>';
                                         echo '</div>';
+                                     
+                                        
                                         echo '</section>';
 
 
@@ -517,6 +519,11 @@
                                         echo '<div class="form-group">';
                                         echo '<input type="email" id="correo2" name="email2" class="form-control" placeholder="Email" data-parsley-error-message="Este campo es requerido" required autofocus />';
                                         echo '</div>';
+                                        echo '</section>';
+
+                                   
+                                        
+
                                        
                                     }?>
 
