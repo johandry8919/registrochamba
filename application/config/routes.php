@@ -115,6 +115,7 @@ $route['estructuras/registro/empresas'] = 'Estructuras/registro_empresas';
 $route['estructuras/registro/universidades'] = 'Estructuras/registro_universidades';
 $route['estructuras/inicio'] = 'Estructuras';
 $route['admin/estructuras'] = 'Cadmin/estructuras';
+$route['admin/universidad'] = 'Cadmin/universidad';
 
 /*Cestructuras*/
 

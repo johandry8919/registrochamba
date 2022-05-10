@@ -78,6 +78,9 @@ $(document).ready(function() {
                     'cedula_representante': $('#cedula_representante').val(),
                     'nombre_representante': $('#nombre_representante').val(),
                     'apellido_representante': $('#apellido_representante').val(),
+                    'email': $('#email').val(),
+                    'id_especializacion': $('#id_especializacion').val(),
+                  
                     'latitud': $('#latitud').val(),
                     'longitud': $('#longitud').val(),
                     'email': $('#email').val(),
@@ -113,7 +116,7 @@ $(document).ready(function() {
                         }).then((result) => {
                             /* Read more about isConfirmed, isDenied below */
                             if (result.isConfirmed) {
-                                $(location).attr("href", base_url + "admin/universidades");
+                                $(location).attr("href", base_url + "admin/universidad");
                             }
                         });
     
