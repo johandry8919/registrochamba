@@ -110,6 +110,7 @@
                                         </div>
                                     </div>
                                    
+                                   
                                     <div class="col-md-6">
                                         <div class="form-group ">
                                             <label class="form-label">Nivel academico</label>
@@ -120,17 +121,17 @@
                                                     <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
                                                 </a>
                                                 <select class=" form-control show-tick" id="id_nivel_academico" name="id_nivel_academico" data-parsley-error-message="Este campo es requerido" required autofocus >
-                                                    <option value="">Seleccione una opción</option>
+                                                    <option value="">Selecciones una opción</option>
                                                     <?php if(isset($academica)): ?>
                                                             <?php foreach ($academica as $key => $academicas):?>
                                                                
-                                                                <?php  if($registroviejo->id_instruccion == $academicas->id_nivel_academico):?>
+                                                                <?php  if($academicas->id_instruccion == $datos->id_nivel_academico):?>
                                                                 
                                                                  
                                                                  
                                                                     <?php    echo "<option selected value='".$academicas->id_instruccion."'>".$academicas->nivel."</option>";     
                                                                else:
-                                                                    echo "<option value='".$academicas->id_instruccion."'>".$academicas->descricionnnivel."</option>";
+                                                                    echo "<option value='".$academicas->id_instruccion."'>".$academicas->nivel."</option>";
                                                                 endif;
                                                            endforeach;
                                                         endif;

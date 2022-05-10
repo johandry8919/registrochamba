@@ -196,7 +196,7 @@
 					//$("#cod_municipio").selectpicker('refresh');
 				},
 				success: function (respuesta) {
-					console.log(respuesta);
+					
 
 					if (respuesta.resultado == true) {
 						Swal.fire({
