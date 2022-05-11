@@ -83,5 +83,19 @@ class Mprofesion_oficio extends CI_Model
 		else
 			return [];
 	}
+	public function especializacion(){
+
+
+
+		$this->db->select('*');
+		$this->db->from('tbl_sector_de_especializacion');
+		$this->db->order_by('tbl_sector_de_especializacion', 'ASC');
+		$query = $this->db->get();
+
+		if ($query->num_rows() > 0) 
+			return $query->result();
+		else
+			return [];
+	}
 
 }

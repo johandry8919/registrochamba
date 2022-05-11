@@ -208,7 +208,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="fe fe-calendar" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" type="date" id="datepicker" name="fecha_nac" value="<?php if(isset($datos->fecha_nac)) echo ucwords($datos->fecha_nac);?>" placeholder="F. Nacimiento" required autofocus data-parsley-error-message="Este campo es requerido">
+                                                <input class="input100 border-start-0 ms-0 form-control" type="date" id="fecha_nac" name="fecha_nac" value="<?php if(isset($datos->fecha_nac)) echo ucwords($datos->fecha_nac);?>" placeholder="F. Nacimiento" required autofocus data-parsley-error-message="Este campo es requerido">
 
                                             </div>
 
@@ -282,7 +282,7 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <select class="form-control show-tick" id="cod_responsabilidad" name="cod_responsabilidad" data-parsley-error-message="Este campo es requerido" required autofocus>
-                                                    <option value="">Seleccione una opción</option>
+                                                    <option value="/*/*">Seleccione una opción</option>
                                                     <?php if(isset($responsabilidad_estructuras)): ?>
                                                             <?php foreach ($responsabilidad_estructuras as $key => $movimiento):?>
                                                                
@@ -309,7 +309,7 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <select class="form-control show-tick" id="id_estructura" name="id_estructura" data-parsley-error-message="Este campo es requerido" required autofocus>
-                                                    <option value="">Seleccione una opción</option>
+                                                    <option value="/**/">Seleccione una opción</option>
                                                     <option <?php if (isset($datos->tipo_estructura) and $datos->tipo_estructura == 'Estadal') {
                                                 echo 'selected';
                                             } ?> value="Estadal">Estructura Estadal</option>
@@ -332,7 +332,7 @@
                                             <label class="form-label">Talla de pantalon</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
+                                                <i class="fa fa-user-md" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-user-md" aria-label="fa fa-user-md"></i>
                                                 </a>
                                                 <input class="input100 border-start-0 ms-0 form-control" type="text" id="talla_pantalon" maxlength="30" name="talla_pantalon" value="<?php if(isset($datos->talla_pantalon)) echo ucwords($datos->talla_pantalon);?>" placeholder="Talla de pantalon" required autofocus data-parsley-error-message="Este campo es requerido"/>
 
@@ -345,7 +345,7 @@
                                             <label class="form-label">Talla de Camisa</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
+                                                <i class="fa fa-user-md" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-user-md" aria-label="fa fa-user-md"></i>
                                                 </a>
                                                 <input class="input100 border-start-0 ms-0 form-control" type="text" id="talla_camisa" maxlength="30" name="talla_camisa" value="<?php if(isset($datos->talla_camisa)) echo ucwords($datos->talla_camisa);?>" placeholder="talla_camisa" required autofocus data-parsley-error-message="Este campo es requerido">
 
@@ -372,7 +372,7 @@
                                         
                                         data-parsley-error-message="Este campo es requerido"
                                         id="cod_estado" name="cod_estado" required>
-                                        <option value="">Seleccione una opción</option>
+                                        <option value="Estado">Seleccione una opción</option>
                                     <?php
                                         if(isset($estados)){
                                             foreach ($estados as $key => $estado) {
@@ -396,7 +396,7 @@
                                         <select
                                         data-parsley-error-message="Este campo es requerido" required
                                         class="form-control show-tick" id="cod_municipio" name="cod_municipio"    required                                     data-parsley-error-message="Este campo es requerido">
-                                        <option value="">Seleccione un Municipio</option>
+                                        <option value="municipio">Seleccione un Municipio</option>
                                         <?php
                                             if(isset($datos_empresa->municipio)){
                                                 echo "<option selected value='".$datos_empresa->codigomunicipio."'>".$datos_empresa->municipio."</option>";     
@@ -420,7 +420,7 @@
                                         <select class="form-control show-tick"
                                         data-parsley-error-message="Este campo es requerido"
                                         id="cod_parroquia" name="cod_parroquia" required>
-                                        <option value="">Seleccione una Parroquia</option>
+                                        <option value="parroquia">Seleccione una Parroquia</option>
                                         <?php
                                             if(isset($datos_empresa->parroquia)){
                                                 echo "<option selected value='".$datos_empresa->codigoparroquia."' data-latitud=".$datos_empresa->latitud."  data-longitud=".$datos_empresa->longitud."  >".$datos_empresa->parroquia."</option>";     

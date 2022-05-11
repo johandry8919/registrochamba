@@ -98,9 +98,10 @@
                                          <li><a href="<?php echo base_url();?>/admin/registro/universidades"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
                                          >Centro de Estuios y Universidades</a></li>
-                                         <li ><a href="#"
+                                         <li ><a href="hola"
                                             class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
                                             >Chambista</a></li>
+                                           
 
                                   
                                 </ul>
