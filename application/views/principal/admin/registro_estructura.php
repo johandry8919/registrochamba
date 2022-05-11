@@ -282,7 +282,7 @@
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <select class="form-control show-tick" id="cod_responsabilidad" name="cod_responsabilidad" data-parsley-error-message="Este campo es requerido" required autofocus>
-                                                    <option value="/*/*">Seleccione una opción</option>
+                                                    <option value="">Seleccione una opción</option>
                                                     <?php if(isset($responsabilidad_estructuras)): ?>
                                                             <?php foreach ($responsabilidad_estructuras as $key => $movimiento):?>
                                                                

@@ -543,7 +543,7 @@ class Cadmin extends CI_Controller {
     public function registro_universidades(){
         $estados = $this->Musuarios->getEstados();
         $datos['estados'] = $estados;
-        $especializacions= $this->Mprofesion_oficio->especializacion();
+    
         $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
         $empresas = $this->Empresas_entes_model->obtener_univerdidad();
         
@@ -560,8 +560,7 @@ class Cadmin extends CI_Controller {
              "vista_principal"   => "admin/registro_universidades",
              "estados"          => $estados,
              "empresas"         => $empresas,
-             "especializacion" => $especializacions,
-                "sectorProductivo" => $sectorProductivo,
+             "sectorProductivo" => $sectorProductivo,
              
      
            "ficheros_js" => [],
