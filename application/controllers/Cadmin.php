@@ -137,16 +137,18 @@ class Cadmin extends CI_Controller {
     public function crearEstructura(){
         //delimitadores de errores
 
-        $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
         $this->form_validation->set_rules('nombres', 'nombres', 'trim|required|strip_tags');
+    
         $this->form_validation->set_rules('apellidos', 'apellidos', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_nivel_academico', 'academico', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_movil', 'telf movil', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_local', 'telf local', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('fecha_nac', 'fecha de naciminto', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_profesion_oficio', 'id_profesion_oficio', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('id_nivel_academico', 'academico', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado', 'estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'municipio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_parroquia', 'parroquia', 'trim|required|strip_tags');
@@ -501,6 +503,7 @@ class Cadmin extends CI_Controller {
                 ];
     
         $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+       
         
 
      
@@ -510,6 +513,7 @@ class Cadmin extends CI_Controller {
             "title"             => "Registro  de empresas",
              "vista_principal"   => "admin/registro_empresas",
              "sectorProductivo" => $sectorProductivo,
+             
      
            
            "estados"          => $estados,
@@ -539,7 +543,9 @@ class Cadmin extends CI_Controller {
     public function registro_universidades(){
         $estados = $this->Musuarios->getEstados();
         $datos['estados'] = $estados;
-        $empresas = $this->Empresas_entes_model->obtener_empresas();
+        $especializacions= $this->Mprofesion_oficio->especializacion();
+        $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+        $empresas = $this->Empresas_entes_model->obtener_univerdidad();
         
         $breadcrumb =(object) [
             "menu" => "Admin",
@@ -554,6 +560,8 @@ class Cadmin extends CI_Controller {
              "vista_principal"   => "admin/registro_universidades",
              "estados"          => $estados,
              "empresas"         => $empresas,
+             "especializacion" => $especializacions,
+                "sectorProductivo" => $sectorProductivo,
              
      
            "ficheros_js" => [],
@@ -587,15 +595,12 @@ class Cadmin extends CI_Controller {
         $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_local_representante', 'telf local representante', 'trim|required|strip_tags');
         $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('id_especializacion', 'especializacion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('sector_economico', 'especializacion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email_representante', 'email del representante', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cargo', 'cargo', 'trim|required|strip_tags');
         $this->form_validation->set_rules('direccion','direccion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado','Estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'Municipio', 'trim|required|strip_tags');
-
-
-
 
         
         $this->form_validation->set_error_delimiters('*', '');
@@ -613,118 +618,119 @@ class Cadmin extends CI_Controller {
         }
 
         $id_usuario_registro=2;
-        //REGISTRI DE eEMPRESA
-        $rif = $this->input->post('rif');
-        $nombre_razon_social = $this->input->post('razon_social');
-        $rif = $this->input->post('rif');
-        $email_universidad =$this->input->post('email');
-        $email_representante = $this->input->post('email_representante');
-        $cedula_representante = $this->input->post('cedula_representante');
-    
-        $password = password_hash($this->input->post('password'),PASSWORD_DEFAULT);
-        $data = array(
+          //REGISTRI DE eEMPRESA
+          $rif = $this->input->post('rif');
+          $nombre_razon_social = $this->input->post('razon_social');
+          $rif = $this->input->post('rif');
+          $email_empresa =$this->input->post('email');
+          $email_representante = $this->input->post('email_representante');
+          $cedula_representante = $this->input->post('cedula_representante');
+      
+          $password = password_hash($this->input->post('password'),PASSWORD_DEFAULT);
+          $data = array(
 
-          "id_tipo_empresas_universidades"=>2,
-          "tipo_empresa"          => 2,
-          "id_sector_economico"          => $this->input->post('sector_economico'),
-          "id_usuario_registro"   =>$id_usuario_registro,
-          "nombre_razon_social"   =>$nombre_razon_social,
-          "rif"=>$rif,
-          "tlf_celular"   =>$this->input->post('tlf_celular'),
+            "id_tipo_empresas_universidades"=>2,
+            "tipo_empresa"          => 2,
+            "id_sector_economico"          => $this->input->post('sector_economico'),
+            "id_usuario_registro"   =>$id_usuario_registro,
+            "nombre_razon_social"   =>$nombre_razon_social,
+            "rif"=>$rif,
+            "tlf_celular"   =>$this->input->post('tlf_celular'),
 
-          "actividad_economica"=> $this->input->post('actividad_economica'),
-          "email"        =>$email_universidad ,
+            "actividad_economica"=> $this->input->post('actividad_economica'),
+            "email"        =>$email_empresa ,
 
-          "instagram"    =>$this->input->post('instagram'),
-          "twitter"      => $this->input->post('twitter'),
-          "facebook"     =>$this->input->post('facebook'),
+            "instagram"    =>$this->input->post('instagram'),
+            "twitter"      => $this->input->post('twitter'),
+            "facebook"     =>$this->input->post('facebook'),
 
-          "codigoestado"      =>$this->input->post('cod_estado'),
-          "codigomunicipio"   =>$this->input->post('cod_municipio'),
-          "codigoparroquia"   =>$this->input->post('cod_parroquia'),
+            "codigoestado"      =>$this->input->post('cod_estado'),
+            "codigomunicipio"   =>$this->input->post('cod_municipio'),
+            "codigoparroquia"   =>$this->input->post('cod_parroquia'),
 
-          "latitud"   =>$this->input->post('latitud'),
-          "longitud"  =>$this->input->post('longitud')
+            "latitud"   =>$this->input->post('latitud'),
+            "longitud"  =>$this->input->post('longitud')
 
- 
-        );
+   
+          );
 
-        //comprobar si nombre de la empresa esta registrado
-        $exite_razon_social=$this->Empresas_entes_model->verificarSiExiste("nombre_razon_social", $nombre_razon_social);
-        if($exite_razon_social){
-          echo  json_encode(["resultado" =>false,"mensaje"=> "nombre o razon social  $nombre_razon_social ya se encuentra registrado"]);
-          exit;
-        }      
-        //comprobar si el rif existe
-        $rifexiste=$this->Empresas_entes_model->verificarSiExiste("rif",$rif);
-        if($rifexiste){
-          echo  json_encode(["resultado" =>false,"mensaje"=> "El rif nro $rif la empresa ya se encuentra registrado"]);
-          exit;
+          
+          //comprobar si nombre de la empresa esta registrado
+          $exite_razon_social=$this->Empresas_entes_model->verificarSiExiste("nombre_razon_social", $nombre_razon_social);
+          if($exite_razon_social){
+            echo  json_encode(["resultado" =>false,"mensaje"=> "nombre o razon social  $nombre_razon_social ya se encuentra registrado"]);
+            exit;
+          }      
+          //comprobar si el rif existe
+          $rifexiste=$this->Empresas_entes_model->verificarSiExiste("rif",$rif);
+          if($rifexiste){
+            echo  json_encode(["resultado" =>false,"mensaje"=> "El rif nro $rif la empresa ya se encuentra registrado"]);
+            exit;
+          }
+          // comprobar si el correo existe
+          $correoexiste=$this->Empresas_entes_model->verificarSiExiste("email", $email_empresa );
+          if($correoexiste){
+            echo  json_encode(["resultado" =>false,"mensaje"=> "el email  $email_empresa  ya se encuentra registrado"]);
+            exit;
+          }
+
+          // comprobar si el correo del representante existe
+          $correo_r_existe=$this->Representante_empresas_entes_model->verificarSiExiste("email", $email_representante  );
+          if($correo_r_existe){
+            echo  json_encode(["resultado" =>false,"mensaje"=> "el email de representante  $email_representante  ya se encuentra registrado"]);
+            exit;
+          }
+
+        // comprobar si la cedula del representante existe
+        $cedula_r_existe=$this->Representante_empresas_entes_model->verificarSiExiste("cedula",$cedula_representante);
+        if($cedula_r_existe){
+            echo  json_encode(["resultado" =>false,"mensaje"=> "La cedula del representante  $cedula_representante  ya se encuentra registrado"]);
+            exit;
         }
-        // comprobar si el correo existe
-        $correoexiste=$this->Empresas_entes_model->verificarSiExiste("email", $email_universidad );
-        if($correoexiste){
-          echo  json_encode(["resultado" =>false,"mensaje"=> "el email  $email_universidad  ya se encuentra registrado"]);
-          exit;
-        }
+          //registrar usuario **
 
-        // comprobar si el correo del representante existe
-        $correo_r_existe=$this->Representante_empresas_entes_model->verificarSiExiste("email", $email_representante  );
-        if($correo_r_existe){
-          echo  json_encode(["resultado" =>false,"mensaje"=> "el email de representante  $email_representante  ya se encuentra registrado"]);
-          exit;
-        }
+          $id_usuario =$this->Usuarios_admin_model->post_regitrar([
+              "id_rol"  =>5,
+              "cedula"  =>$cedula_representante,
+              "email"   =>$email_representante,
+              "password"=>$password,
+          ]);
 
-      // comprobar si la cedula del representante existe
-      $cedula_r_existe=$this->Representante_empresas_entes_model->verificarSiExiste("cedula",$cedula_representante);
-      if($cedula_r_existe){
-          echo  json_encode(["resultado" =>false,"mensaje"=> "La cedula del representante  $cedula_representante  ya se encuentra registrado"]);
-          exit;
-      }
-        //registrar usuario **
 
-        $id_usuario =$this->Usuarios_admin_model->post_regitrar([
-            "id_rol"  =>6,
-            "cedula"  =>$cedula_representante,
-            "email"   =>$email_representante,
-            "password"=>$password,
+          //Se registra la empresa o ente
+         $id_empresa=  $this->Empresas_entes_model->pos_crearUniversidades($data);
+
+         
+        //registrar representante
+        $this->Representante_empresas_entes_model->post_regitrar([
+            "id_empresas_entes "    =>$id_empresa,
+            "id_usuario "           =>$id_usuario,
+            "cedula "               =>$cedula_representante,
+            "id_usuario_registro "  =>$id_usuario_registro,
+            "nombre"                =>$this->input->post('nombre_representante'),
+            "apellidos"             =>$this->input->post('apellidos_representante'),
+            "tlf_celular"           =>$this->input->post('telf_movil_representante'),
+            "tlf_local"             =>$this->input->post('telf_local_representante'),
+            "email "                =>$email_representante,
+            "cargo "                =>$this->input->post('cargo')
+
         ]);
 
+             echo  json_encode(["resultado" =>true,"mensaje"=> 'registro exitoso, presione OK para continuar']);
 
-        //Se registra la empresa o ente
-       $id_empresa=  $this->Empresas_entes_model->pos_crearUniversidades($data);
-       if($id_empresa){
-           
-        echo  json_encode(["resultado" =>true,"mensaje"=> 'registro exitoso, presione OK para continuar']);
-
-       
-      //registrar representante
-      $this->Representante_empresas_entes_model->post_regitrar([
-        //   "id_empresas_entes "    =>$id_empresa,
-          "id_usuario "           =>$id_usuario,
-          "cedula "               =>$cedula_representante,
-          "id_usuario_registro "  =>$id_usuario_registro,
-          "nombre"                =>$this->input->post('nombre_representante'),
-          "apellidos"             =>$this->input->post('apellidos_representante'),
-          "tlf_celular"           =>$this->input->post('telf_movil_representante'),
-          "tlf_local"             =>$this->input->post('telf_local_representante'),
-          "email "                =>$email_representante,
-          "cargo "                =>$this->input->post('cargo')
-
-      ]);
-
-    }
+    
         
     }
 
 
 
-public function universidad(){
+public function universidades(){
     // if (!$this->session->userdata(59049)) {
     //     redirect('iniciosesion');
     // 
     
-    $empresas = $this->Empresas_entes_model->obtener_empresas();
+    $univerdidade = $this->Empresas_entes_model->obtener_univerdidad();
+    
   
 
     $breadcrumb =(object) [
@@ -739,22 +745,26 @@ public function universidad(){
         "menu_lateral"=>"admin",
         "datatable"      =>true,
         "breadcrumb"      =>   $breadcrumb,
-        "title"             => "universidad",
-        "vista_principal"   => "admin/universidad",
-        'empresas' => $empresas,
+        "title"             => "universidades",
+        "vista_principal"   => "admin/universidades",
+        'univerdidad' => $univerdidade,
+       
         
         
         
-        
-       "librerias_css" => [],
+        "librerias_css" => [],
 
-     
-       "librerias_js" => [
- 
-    ],
+         
+        "librerias_js" => [],
 
 
-       "ficheros_js" => [recurso("listar_estructura_js")],
+        "ficheros_js" => [recurso("lista_empresas_js")],
+      
+        "ficheros_css" => [],
+
+
+
+       
 
 
     ];

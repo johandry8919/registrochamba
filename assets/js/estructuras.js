@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 (function ($) {
 	
 	"use strict";
@@ -33,7 +27,7 @@
 					var apellidos = $("#apellidos").parsley();
 
 					var cedula = $("#cedula").parsley();
-					var fecha_nac = $("#datepicker").parsley();
+					var fecha_nac = $("#fecha_nac").parsley();
 					var id_nivel_academico = $("#id_nivel_academico").parsley();
 					var telf_movil = $("#telf_movil").parsley();
 					var telf_local = $("#telf_local").parsley();
@@ -45,6 +39,7 @@
 						nombres.isValid() &&
 						apellidos.isValid() &&
 						cedula.isValid() &&
+						
 						
 						id_nivel_academico.isValid() &&
 						telf_movil.isValid() &&
@@ -72,7 +67,7 @@
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
 						// if (!fecha_nac.isValid())
-						// 	$("#datepicker")
+						// 	$("#fecha_nac")
 						// 		.removeClass("is-valid")
 						// 		.addClass("is-invalid  error-input");
 						if (!telf_movil.isValid())
@@ -124,14 +119,41 @@
 					) {
 						return true;
 					} else {
-						cod_responsabilidad.validate();
-						id_estructura.validate();
-						talla_pantalon.validate();
-						talla_camisa.validate();
-						cod_estado.validate();
-						cod_municipio.validate();
-						cod_parroquia.validate();
-						direccion.validate();
+						console.log("invalido")
+						if (!cod_responsabilidad.isValid())
+							$("#cod_responsabilidad")
+								.removeClass("is-valid")
+								.addClass("is-invalid  error-input");
+						if (!id_estructura.isValid())
+							$("#id_estructura")
+								.removeClass("is-valid")
+								.addClass("is-invalid  error-input");
+						if (!talla_pantalon.isValid())
+							$("#talla_pantalon")
+								.removeClass("is-valid")
+								.addClass("is-invalid  error-input");
+						if (!talla_camisa.isValid())
+							$("#talla_camisa")
+								.removeClass("is-valid")
+								.addClass("is-invalid  error-input");
+						if (!cod_estado.isValid())
+							$("#cod_estado")
+								.removeClass("is-valid")
+								.addClass("is-invalid  error-input");
+						if (!cod_municipio.isValid())
+							$("#cod_municipio")
+								.removeClass("is-valid")
+								.addClass("is-invalid  error-input");
+						if (!cod_parroquia.isValid())
+							$("#cod_parroquia")
+								.removeClass("is-valid")
+								.addClass("is-invalid  error-input");
+						if (!direccion.isValid())
+							$("#direccion")
+								.removeClass("is-valid")
+								.addClass("is-invalid  error-input");
+
+						
 						// latitud.validate();
 						// longitud.validate();
 					}
@@ -147,7 +169,7 @@
 			var apellidos = $("#apellidos").val();
 			var telf_movil = $("#telf_movil").val();
 			var telf_local = $("#telf_local").val();
-			var fecha_nac = $("#datepicker").val();
+			var fecha_nac = $("#fecha_nac").val();
 			var correo1 = $("#correo1").val();
 			var edad = $("#edad").val();
 			var id_profesion_oficio = $("#id_profesion_oficio").val();
@@ -414,23 +436,19 @@ $("#nombres,#apellidos,#id_nivel_academico,#id_profesion_oficio").on(
 	}
 );
 
-// fecha_nac
-// $("#datepicker").on("keyup", function () {
-// 	"use strict";
-// 	var fecha_nac = $(this).val();
-// 	var expresion = /^\d{2}\/\d{2}\/\d{4}$/;
 
-// 	if (expresion.test(fecha_nac)) {
-// 		$(this)
-// 			.removeClass("is-invalid error-input")
+//  $("#fecha_nac").on("keyup", function () {
+//  	"use strict";
+//  	var fecha_nac = $(this).val();
+//  	var expresion = /^\d{2}\/\d{2}\/\d{4}$/;
+
+//  	if (expresion.test(fecha_nac)) {
+//  		$(this)
+//  			.removeClass("is-invalid error-input") 			.addClass("is-valid valid-input"); 	} else { 		$(this) 			.removeClass("is-invalid error-input")
 // 			.addClass("is-valid valid-input");
-// 	} else {
-// 		$(this)
-// 			.removeClass("is-invalid error-input")
-// 			.addClass("is-valid valid-input");
-// 		$("#datepicker").removeClass("is-valid").addClass("is-invalid");
-// 	}
-// });
+// 		$("#fecha_nac").removeClass("is-valid").addClass("is-invalid");
+//  	}
+//  });
 
 //Correo
 $("#correo1").on("keyup", function () {
@@ -488,7 +506,8 @@ $("#id_nivel_academico").on("change", function () {
 $("#id_profesion_oficio").on("change", function () {
 	"use strict";
 	var profesion_oficio = $(this).val();
-	var expresion = /^\d{1}$/;
+	// var expresion = /^\d{1}$/;
+	var expresion = /^[a-zA-Z0-9\s]*$/;
 
 	if (expresion.test(profesion_oficio)) {
 		$(this)
@@ -501,6 +520,139 @@ $("#id_profesion_oficio").on("change", function () {
 		$("#id_profesion_oficio").removeClass("is-valid").addClass("is-invalid");
 	}
 });
+$("#cod_responsabilidad").on("change", function () {
+	"use strict";
+	var cod_responsabilidad = $(this).val();
+	// var expresion = /^\d{1}$/;
+	var expresion = /^[a-zA-Z0-9\s]*$/;
 
 
+	if (expresion.test(cod_responsabilidad)) {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	} else {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+		$("#cod_responsabilidad").removeClass("is-valid").addClass("is-invalid");
+	}
+});
+$("#talla_pantalon").on("change", function () {
+	"use strict";
+	var talla_pantalon = $(this).val();
+	// var expresion = /^\d{1}$/;
+	var expresion = /^[a-zA-Z0-9\s]*$/;
 
+
+	if (expresion.test(talla_pantalon)) {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	} else {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+		$("#talla_pantalon").removeClass("is-valid").addClass("is-invalid");
+	}
+});
+$("#talla_camisa").on("change", function () {
+	"use strict";
+	var talla_camisa = $(this).val();
+	// var expresion = /^\d{1}$/;
+	var expresion = /^[a-zA-Z0-9\s]*$/;
+
+
+	if (expresion.test(talla_camisa)) {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	} else {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+		$("#talla_camisa").removeClass("is-valid").addClass("is-invalid");
+	}
+});
+$("#id_estructura").on("change", function () {
+	"use strict";
+	var id_estructura = $(this).val();
+	// var expresion = /^\d{1}$/;
+	var expresion = /^[a-zA-Z0-9\s]*$/;
+
+
+	if (expresion.test(id_estructura)) {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	} else {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+		$("#id_estructura").removeClass("is-valid").addClass("is-invalid");
+	}
+});
+
+//Estado
+$("#cod_estado").on("change", function () {
+	"use strict";
+	var estado = $(this).val();
+	var expresion = /^\d{1}$/;
+
+	if (expresion.test(estado)) {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	} else {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	}
+});
+$("#cod_municipio").on("change", function () {
+	"use strict";
+	var cod_municipio = $(this).val();
+	var expresion = /^\d{1}$/;
+
+	if (expresion.test(cod_municipio)) {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	} else {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	}
+});
+$("#cod_parroquia").on("change", function () {
+	"use strict";
+	var cod_parroquia = $(this).val();
+	var expresion = /^\d{1}$/;
+
+	if (expresion.test(cod_parroquia)) {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	} else {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	}
+});
+
+//Dirección Especifica
+$("#direccion").on("keyup", function () {
+	"use strict";
+	var direccion_especifica = $(this).val();
+	var expresion = /^[a-zA-Z0-9\s]*$/;
+
+	if (expresion.test(direccion_especifica)) {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	} else {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	}
+});

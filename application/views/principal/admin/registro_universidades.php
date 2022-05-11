@@ -9,6 +9,7 @@
 
 <section class="content">
     <div class="container">
+        
 
         <?php if ($this->session->flashdata('mensajeexito')) { ?>
             <div class="row">
@@ -52,7 +53,7 @@
 
 
                     <div class="card-body">
-                        <div id="#alerta"></div>
+                       
 
 
                         <form method="POST" id="formulario">
@@ -126,18 +127,24 @@
 
 
                                 </div>
+                               
 
 
                                 <div class="col-md-4 ">
                                     <label class="form-label">Sector de Especialización</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" id="id_especializacion" name="id_especializacion" data-parsley-error-message="Este campo es requerido">
+                                            <select class="form-control show-tick" id="sector_economico" name="sector_economico" data-parsley-error-message="Este campo es requerido">
                                                 <option value="">Seleccione una opción</option>
-                                                <option value="1">Estructura Estadal</option>
-                                                <option value="2">Estructura Municipal</option>
-                                                <option value="3">Estructura Parroquial</option>
-
+                                                <?php if(isset($sectorProductivo)): ?>
+                                            <?php foreach ($sectorProductivo as $key => $Sector):?>
+                                               
+                                                <?php 
+                                                    echo "<option value='".$Sector->id."'>".$Sector->productivo."</option>";
+                                         
+                                           endforeach;
+                                        endif;
+                                    ?>
                                             </select>
                                         </div>
                                     </div>
@@ -149,9 +156,9 @@
                                         <div class="form-line">
                                             <select class="form-control show-tick" id="actividad_economica" name="actividad_economica" data-parsley-error-message="Este campo es requerido">
                                                 <option value="">Seleccione una opción</option>
-                                                <option value="1">PÚBICA</option>
-                                                <option value="2">PRIVADA</option>
-                                                <option value="3">MIXTA</option>
+                                                <option value="PUBLICA">PÚBICA</option>
+                                                <option value="PRIVADA">PRIVADA</option>
+                                                <option value="MIXTA">MIXTA</option>
 
                                             </select>
                                         </div>
@@ -197,7 +204,7 @@
 
 
                             <div class=" row mt-5 ">
-                                <div class="text-center card-title">DATOS DEL REPRESENTANTE DE LA INSTITUCION</div>
+                                <div class="text-center card-title"> DEL REPRESENTANTE DE LA INSTITUCION</div>
                                 <div class=" col-md-4">
 
                                     <div class="form-group">
@@ -352,119 +359,138 @@
 
                     </div>
                     <!--row-->
-                    <div class="row">
-                        <div class="text-center card-title">UBICACIÓN DE LA INSTITUCIÓN/EMPRESA</div>
 
-                        <div class="col-md-4">
-                            <label class="form-label">Estado</label>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <select class="form-control show-tick" data-parsley-error-message="Este campo es requerido" id="cod_estado" name="cod_estado" required>
+                    <div class="row m-2">
+                                <div class="col-md-4">
+                                <label  class="form-label">Estado</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control show-tick" 
+                                        
+                                        data-parsley-error-message="Este campo es requerido"
+                                        id="cod_estado" name="cod_estado" required>
                                         <option value="">Seleccione una opción</option>
-                                        <?php
-                                        if (isset($estados)) {
+                                    <?php
+                                        if(isset($estados)){
                                             foreach ($estados as $key => $estado) {
-                                                if (isset($estado->codigoestado) and $estado->codigoestado == $datos->codigoestado) {
-                                                    echo "<option selected value='" . $estado->codigoestado . "'  data-latitud=" . $estado->latitud . "  data-longitud=" . $estado->longitud . " >" . $estado->nombre . "</option>";
-                                                } else {
-                                                    echo "<option value='" . $estado->codigoestado . "' data-latitud=" . $estado->latitud . "  data-longitud=" . $estado->longitud . " >" . $estado->nombre . "</option>";
+                                                if(isset($estado->codigoestado) and $estado->codigoestado == $datos->codigoestado){
+                                                    echo "<option selected value='".$estado->codigoestado."'  data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";     
+                                                }else{
+                                                    echo "<option value='".$estado->codigoestado."' data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";
                                                 }
                                             }
                                         }
-                                        ?>
-                                    </select>
+                                    ?>
+                                        </select>
+                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-4">
-                            <label class="form-label">Municipio</label>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <select data-parsley-error-message="Este campo es requerido" required class="form-control show-tick" id="cod_municipio" name="cod_municipio" required data-parsley-error-message="Este campo es requerido">
+                            <div class="col-md-4">
+                                <label  class="form-label">Municipio</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select
+                                        data-parsley-error-message="Este campo es requerido" required
+                                        class="form-control show-tick" id="cod_municipio" name="cod_municipio"    required                                     data-parsley-error-message="Este campo es requerido">
                                         <option value="">Seleccione un Municipio</option>
                                         <?php
-                                        if (isset($datos_empresa->municipio)) {
-                                            echo "<option selected value='" . $datos_empresa->codigomunicipio . "'>" . $datos_empresa->municipio . "</option>";
-                                        }
+                                            if(isset($datos_empresa->municipio)){
+                                                echo "<option selected value='".$datos_empresa->codigomunicipio."'>".$datos_empresa->municipio."</option>";     
+                                            }
                                         ?>
-                                    </select>
+                                        </select>
+                                    </div>
+                                    <?php
+                                        if(isset($datos->estado)){
+                                        echo '<small>Seleccione un estado para cambiar</small>'; 
+                                        }
+                                    ?>                                                    
                                 </div>
-                                <?php
-                                if (isset($datos->estado)) {
-                                    echo '<small>Seleccione un estado para cambiar</small>';
-                                }
-                                ?>
+                                
                             </div>
 
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label">Parroquia</label>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <select class="form-control show-tick" data-parsley-error-message="Este campo es requerido" id="cod_parroquia" name="cod_parroquia" required>
+                            <div class="col-md-4">
+                                <label  class="form-label">Parroquia</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control show-tick"
+                                        data-parsley-error-message="Este campo es requerido"
+                                        id="cod_parroquia" name="cod_parroquia" required>
                                         <option value="">Seleccione una Parroquia</option>
                                         <?php
-                                        if (isset($datos_empresa->parroquia)) {
-                                            echo "<option selected value='" . $datos_empresa->codigoparroquia . "' data-latitud=" . $datos_empresa->latitud . "  data-longitud=" . $datos_empresa->longitud . "  >" . $datos_empresa->parroquia . "</option>";
-                                        }
+                                            if(isset($datos_empresa->parroquia)){
+                                                echo "<option selected value='".$datos_empresa->codigoparroquia."' data-latitud=".$datos_empresa->latitud."  data-longitud=".$datos_empresa->longitud."  >".$datos_empresa->parroquia."</option>";     
+                                            }
                                         ?>
-                                    </select>
+                                        </select>
+                                    </div>
+                                    <?php
+                                        if(isset($datos_empresa->estado)){
+                                        echo '<small>Seleccione un estado para cambiar</small>'; 
+                                        }
+                                    ?>
                                 </div>
-                                <?php
-                                if (isset($datos_empresa->estado)) {
-                                    echo '<small>Seleccione un estado para cambiar</small>';
-                                }
-                                ?>
+                                
                             </div>
 
-                        </div>
-                    </div>
-                    <div class="row  mt-5 ">
-                        <div class="col-md-5">
 
-                            <label class="form-label"> Dirección Especifica</label>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <textarea maxlength="255" rows="1" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..."><?php if (isset($registroviejo->direccion)) echo $registroviejo->direccion; ?></textarea>
                                 </div>
-                            </div>
+                                <!--row-->
 
-                            <div class="">
-                                <div class="form-group">
-                                    <label class="form-label">Latitud</label>
-                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                            <i class="mdi mdi-map" aria-hidden="true"></i>
-                                        </a>
-                                        <input readonly class="input100 border-start-0 ms-0 form-control" type="text" id="latitud" name="latitud" value="<?php if (isset($registroviejo->latitud)) echo ucwords($registroviejo->latitud); ?>" placeholder="latitud" required autofocus>
+
+
+
+                                <div class="row m-2">
+                                    <div class="col-md-4 col-12">
+                                        <label class="form-label"> Dirección Especifica</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea maxlength="255" rows="2" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="100" placeholder="Por favor indica donde resides..." data-parsley-error-message="Este campo es requerido" required autofocus><?php if (isset($datos->direccion)) echo $datos->direccion; ?></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Latitud</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="mdi mdi-map" aria-hidden="true"></i>
+                                                </a>
+                                                <input readonly class="input100 border-start-0 ms-0 form-control" type="text" id="latitud" name="latitud" value="<?php if (isset($datos->latitud))
+                                                                                                                                                                        echo $datos->latitud ?>" placeholder="latitud" required autofocus>
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div class="form-group">
+                                            <label class="form-label">Longitud</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="mdi mdi-map" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud" name="longitud" value="<?php if (isset($datos->longitud))
+                                                                                                                                                                        echo $datos->longitud ?>" placeholder="longitud" required autofocus data-parsley-error-message="Este campo es requerido" required autofocus>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                    <div class="col-md-8 justify-content-center">
+                                        <div class="small">Seleccione en el mapa su ubicación exacta</div>
+                                        <div id="map"></div>
+
+                                        <pre id="coordinates" class="coordinates"></pre>
+                                        <button type="button" id="seleccion-ubicacion" class="btn btn-icon ubicacion-c btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tu ubicación"><i class="fe fe-map-pin"></i></button>
 
                                     </div>
 
                                 </div>
-
-
-
-                                <div class="form-group">
-                                    <label class="form-label">Longitud</label>
-                                    <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                            <i class="mdi mdi-map" aria-hidden="true"></i>
-                                        </a>
-                                        <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud" name="longitud" value="<?php if (isset($registroviejo->longitud)) echo ucwords($registroviejo->longitud); ?>" placeholder="longitud" required autofocus>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-6  ">
-                            <div class="card-text">Seleccione en el mapa su ubicación exacta</div>
-                            <div class="" id="map"></div>
-
-                            <pre id="coordinates" class="coordinates"></pre>
-                        </div>
+                    
 
 
 
@@ -472,8 +498,14 @@
 
 
 
-
+                                                
+                <div class="row  justify-content-center  mt-2 mb-2">
+                    <div class="col-md-8 ">
+                        <button class="btn btn-primary btn-block" id="button" type="button">Guardar</button>
                     </div>
+
+                </div>
+
 
 
                 </div> <!-- /CARF BODY -->
@@ -487,15 +519,8 @@
 
 
 
-                <div class="row  justify-content-center  mt-2 mb-2">
-                    <div class="col-md-8 ">
-                        <button class="btn btn-primary btn-block" id="button" type="button">Guardar</button>
-                    </div>
-
-                </div>
-
-                </form>
-            </div>
+        </form>
+        </div>
 
 
         </div>
