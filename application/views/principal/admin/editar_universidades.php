@@ -9,10 +9,9 @@
 
 <section class="content">
     <div class="container">
-
-    
         
 
+    
         <?php if ($this->session->flashdata('mensajeexito')) { ?>
             <div class="row">
                 <div class="col-md-4">
@@ -65,12 +64,12 @@
                                 <div class=" col-md-4">
 
                                     <div class="form-group">
-                                        <label class="form-label">Nombre o Razon Social</label>
+                                        <label class="form-label">NOMBRE O RAZÓN SOCIAL</label>
                                         <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="razon_social" maxlength="30" name="razon_social" value="" placeholder="Nombre O Razon Social" required autofocus data-parsley-error-message="Este campo es requerido">
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="razon_social" maxlength="30" name="razon_social" value="<?php if(isset($datos->nombre_razon_social)) echo ucwords($datos->nombre_razon_social);?>" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -88,7 +87,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="rif" maxlength="30" name="rif" value="" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus data-parsley-error-message="Este campo es requerido" data-parsley-error-message="Este campo es requerido">
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="rif" maxlength="30" name="rif" value="<?php if(isset($datos->rif)) echo ucwords($datos->rif);?>" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus data-parsley-error-message="Este campo es requerido" data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -105,7 +104,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="tlf_celular" maxlength="11" name="tlf_celular" value="" placeholder="Ingrese su telefono" required autofocus data-parsley-error-message="Este campo es requerido">
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="tlf_celular" maxlength="11" name="tlf_celular" value="<?php if(isset($datos->tlf_celular)) echo ucwords($datos->tlf_celular);?>" placeholder="Ingrese su telefono" required autofocus data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -124,7 +123,7 @@
                                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                             </a>
                                             <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email" name="email" id="email"
-                                            value=""data-parsley-error-message="Este campo es requerido">
+                                            value="<?php if(isset($datos->email)) echo ucwords($datos->email);?>"data-parsley-error-message="Este campo es requerido">
                                         </div>
                                     </div>
 
@@ -140,14 +139,20 @@
                                             <select class="form-control show-tick" id="sector_economico" name="sector_economico" data-parsley-error-message="Este campo es requerido">
                                                 <option value="">Seleccione una opción</option>
                                                 <?php if(isset($sectorProductivo)): ?>
-                                            <?php foreach ($sectorProductivo as $key => $Sector):?>
-                                               
-                                                <?php 
-                                                    echo "<option value='".$Sector->id."'>".$Sector->productivo."</option>";
-                                         
-                                           endforeach;
-                                        endif;
-                                    ?>
+                                                            <?php foreach ($sectorProductivo as $key => $profesion):?>
+                                                               
+                                                                <?php  if($profesion->id == $datos->id_sector_economico):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$profesion->id."'>".$profesion->productivo."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$profesion->id."'>".$profesion->productivo."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+
                                             </select>
                                         </div>
                                     </div>
@@ -159,9 +164,16 @@
                                         <div class="form-line">
                                             <select class="form-control show-tick" id="actividad_economica" name="actividad_economica" data-parsley-error-message="Este campo es requerido">
                                                 <option value="">Seleccione una opción</option>
-                                                <option value="PUBLICA">PÚBICA</option>
-                                                <option value="PRIVADA">PRIVADA</option>
-                                                <option value="MIXTA">MIXTA</option>
+                                              
+                                                <option <?php if (isset($datos->actividad_economica) and $datos->actividad_economica == 'PUBLICA') {
+                                                echo 'selected';
+                                            } ?> value="PUBLICA">PUBLICA</option>
+                                    <option <?php if (isset($datos->actividad_economica) and $datos->actividad_economica == 'PRIVADA') {
+                                                echo 'selected';
+                                            } ?> value="PRIVADA">PRIVADA</option>
+                                    <option <?php if (isset($datos->actividad_economica) and $datos->actividad_economica == 'MIXTA') {
+                                                echo 'selected';
+                                            } ?> value="MIXTA">MIXTA</option>
 
                                             </select>
                                         </div>
@@ -177,7 +189,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1"><i class="fe fe-instagram" data-bs-toggle="tooltip" title="" data-bs-original-title="fe fe-instagram" aria-label="fe fe-instagram"></i></span>
-                                            <input id="instagram" name="instagram" maxlength="100" autofocus value="" type="text" class="form-control" placeholder="instagram" aria-label="instagram" aria-describedby="basic-addon1" data-parsley-error-message="Este campo es requerido">
+                                            <input id="instagram" name="instagram" maxlength="100" autofocus value="<?php if (isset($datos->instagram)) echo ucwords($datos->instagram); ?>" type="text" class="form-control" placeholder="instagram" aria-label="instagram" aria-describedby="basic-addon1" data-parsley-error-message="Este campo es requerido">
                                         </div>
                                     </div>
                                 </div>
@@ -186,7 +198,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1"><i class="fe fe-twitter" data-bs-toggle="tooltip" data-bs-original-title="fe fe-twitter" aria-label="fe fe-twitter"></i></span>
-                                            <input id="twitter" name="twitter" maxlength="100" autofocus value="" type="text" class="form-control" placeholder="Twitter" aria-label="Twitter" aria-describedby="basic-addon1" data-parsley-error-message="Este campo es requerido">
+                                            <input id="twitter" name="twitter" maxlength="100" autofocus value="<?php if (isset($datos->twitter)) echo ucwords($datos->twitter); ?>" type="text" class="form-control" placeholder="Twitter" aria-label="Twitter" aria-describedby="basic-addon1" data-parsley-error-message="Este campo es requerido">
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +208,7 @@
                                     <div class="form-group">
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1"><i class="fe fe-facebook" data-bs-toggle="tooltip" data-bs-original-title="fe fe-facebook" aria-label="fe fe-facebook"></i></span>
-                                            <input id="facebook" name="facebook" maxlength="200" autofocus value="" type="text" class="form-control" placeholder="facebook" aria-label="facebook" aria-describedby="basic-addon1" data-parsley-error-message="Este campo es requerido">
+                                            <input id="facebook" name="facebook" maxlength="200" autofocus value="<?php if (isset($datos->facebook)) echo ucwords($datos->facebook); ?>" type="text" class="form-control" placeholder="facebook" aria-label="facebook" aria-describedby="basic-addon1" data-parsley-error-message="Este campo es requerido">
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +219,7 @@
 
 
                             <div class=" row mt-5 ">
-                                <div class="text-center card-title"> DEL REPRESENTANTE DE LA INSTITUCION</div>
+                                <div class="text-center card-title"> REPRESENTANTE DE LA INSTITUCION</div>
                                 <div class=" col-md-4">
 
                                     <div class="form-group">
@@ -216,7 +228,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombre_representante" maxlength="30" name="nombre_representante" value="" placeholder="Ingrese su Nombre" required autofocus data-parsley-error-message="Este campo es requerido">
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombre_representante" maxlength="30" name="nombre_representante" value="<?php if(isset($datos->noombre_representante)) echo ucwords($datos->noombre_representante);?>" placeholder="Ingrese su Nombre" required autofocus data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -235,7 +247,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos_representante" maxlength="30" name="apellidos_representante" value="" placeholder="Ingreses sus Apellidos" required autofocus data-parsley-error-message="Este campo es requerido">
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos_representante" maxlength="30" name="apellidos_representante" value="<?php if(isset($datos->apellido_representante)) echo ucwords($datos->apellido_representante);?>" placeholder="Ingreses sus Apellidos" required autofocus >
 
                                         </div>
 
@@ -252,7 +264,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="cedula_representante" maxlength="30" name="cedula_representante" value="" placeholder="Cédula de Identidad" required autofocus data-parsley-error-message="Este campo es requerido">
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="cedula_representante" maxlength="30" name="cedula_representante" value="<?php if(isset($datos->celular_representante)) echo ucwords($datos->celular_representante);?>" placeholder="Cédula de Identidad" required autofocus data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -295,7 +307,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone-call" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local_representante" maxlength="30" name="telf_local_representante" value="" placeholder="Telefono Local" required autofocus data-parsley-error-message="Este campo es requerido">
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local_representante" maxlength="30" name="telf_local_representante" value="<?php if(isset($datos->tlf_local_representante)) echo ucwords($datos->tlf_local_representante);?>" placeholder="Telefono Local" required autofocus data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -312,7 +324,8 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="zmdi zmdi-email" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email" name="email_representante" id="email_representante">
+                                            <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email" name="email_representante" id="email_representante"
+                                            value="<?php if(isset($datos->email_representante)) echo ucwords($datos->email_representante);?>">
                                         </div data-parsley-error-message="Este campo es requerido">
                                     </div>
 
@@ -322,7 +335,7 @@
 
 
                                 <!--col-->
-                                <div class="col-md-6">
+                                <div class="col-md-6 col-12 col-lg-6">
 
                                     <div class="form-group">
                                         <label class="form-label">Cargo</label>
@@ -330,7 +343,7 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="cargo" maxlength="30" name="cargo" value="" placeholder="Cargo" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="cargo" maxlength="30" name="cargo" value="<?php if(isset($datos->cargo)) echo ucwords($datos->cargo);?>" placeholder="Cargo" required autofocus>
 
                                         </div>
 
@@ -339,18 +352,7 @@
 
 
                                 </div>
-                                <div class="col-12 col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-label">Contraseña</label>
-                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="password" maxlength="30" name="password" value="" placeholder="Ingreses sus Contraseña" required autofocus>
-                                           
-
-                                        </div>
-
-                                    </div>
-                                </div>
+                           
 
 
 
@@ -405,10 +407,10 @@
                                         </select>
                                     </div>
                                     <?php
-                                        if(isset($datos->codigoestado)){
+                                        if(isset($datos->codigomunicipio)){
                                         echo '<small>Seleccione un estado para cambiar</small>'; 
                                         }
-                                    ?>                                                    
+                                    ?>                                               
                                 </div>
                                 
                             </div>
@@ -422,22 +424,20 @@
                                         id="cod_parroquia" name="cod_parroquia" required>
                                         <option value="">Seleccione una Parroquia</option>
                                         <?php
-                                            if(isset($datos->codigoparroquia)){
-                                                echo "<option selected value='".$datos->codigoparroquia."' data-latitud=".$datos->latitud."data-longitud=".$datos->longitud."  >".$datos->codigoparroquia."</option>";     
+                                            if(isset($datos->parroquia)){
+                                                echo "<option selected value='".$datos->codigoparroquia."' data-latitud=".$datos->latitud."  data-longitud=".$datos->longitud."  >".$datos->parroquia."</option>";     
                                             }
                                         ?>
                                         </select>
                                     </div>
                                     <?php
-                                        if(isset($datos_empresa->estado)){
+                                        if(isset($datos->codigoparroquia)){
                                         echo '<small>Seleccione un estado para cambiar</small>'; 
                                         }
                                     ?>
                                 </div>
                                 
                             </div>
-
-                         
 
 
                                 </div>
@@ -510,6 +510,10 @@
                     </div>
 
                 </div>
+
+                
+                <input type="hidden" name="id_empresas_entes" id="id_empresas_entes" value="<?php echo $datos->id_empresas_entes; ?>">
+               
 
 
 

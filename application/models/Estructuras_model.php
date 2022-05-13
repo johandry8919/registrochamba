@@ -198,9 +198,23 @@
 
                                                       
     }
+    public function update_Estructura($datos){
+        //actualizar estructura
+        //por la cedula del usuario
+        $this->db->where('cedula', $datos['cedula']);
+        $this->db->where('email', $datos['email']);
+        $this->db->update('tbl_estructuras', $datos);
+
+        if($this->db->affected_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+        
 
 
 	}
+}
 
 
 
