@@ -60,7 +60,22 @@
         <div class="page-main">
 
             <!-- app-Header  menu superior-->
-            <?php $this->load->view("layouts/menu_superior"); ?>
+            
+            <?php    if(isset($menu_lateral) && $menu_lateral=='estructuras'): 
+            
+           $this->load->view("layouts/menu_superior"); 
+           elseif( isset($menu_lateral) && $menu_lateral=='admin'):           
+          $this->load->view("layouts/admin/menu_superior");
+            elseif( isset($menu_lateral) && $menu_lateral=='empresas'):           
+               $this->load->view("layouts/menu_superior");                            
+                                   
+            else:
+                $this->load->view("layouts/menu_superior");
+
+            endif;
+
+            ?>
+         
             <!-- /app-Header -->
 
             <!--APP-SIDEBAR Menu Lateral-->

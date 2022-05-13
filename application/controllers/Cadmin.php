@@ -16,25 +16,21 @@ class Cadmin extends CI_Controller {
         $this->load->model('Representante_empresas_entes_model');
         $this->load->model('Usuarios_admin_model');
       
-
+       
         
         //$this->load->library('security');
         //$this->output->enable_profiler(TRUE);
     }
 
 
-    public function login()
-	{
-        //$this->load->view('layouts/head');
-		$this->load->view('usuarios/admin/inicioSesionAdmin');
-	}
-
-	public function index()
+    public function index()
 	{
        
-        $estados = $this->Musuarios->getEstados();
 
-        $datos['estados'] = $estados;
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+     
 
         $breadcrumb =(object) [
             "menu" => "Admin",
@@ -43,8 +39,6 @@ class Cadmin extends CI_Controller {
  
                 ];
     
-
-
      
         $output = [
             "menu_lateral"=>"admin",
@@ -60,10 +54,230 @@ class Cadmin extends CI_Controller {
 
         $this->load->view("main", $output);
 	}
+    public function login()
+	{
+
+        
+        //$this->load->view('layouts/head');
+		$this->load->view('usuarios/admin/inicioSesionAdmin');
+	}
+
+   public function listar_usuarios_admin(){
+
+
+    $usuarios=$this->Usuarios_admin_model->obtener_usuarios(2);
+
+    
+    $breadcrumb =(object) [
+        "menu" => "Admin",
+        "menu_seleccion" => "Registro de estructuras"
+    
+             ];
+
+ 
+    $output = [
+        "menu_lateral"=>"admin",
+        "breadcrumb"      =>   $breadcrumb,
+        "title"             => "Usuarios",
+         "vista_principal"   => "admin/listar_usuarios",
+         "usuarios" => $usuarios,
+
+        
+
+        
+       "librerias_css" => [],
+
+     
+       "librerias_js" => [       
+ 
+    ],
+
+
+       "ficheros_js" => [recurso("listar_usuario_admin_js")],
+       "ficheros_css" => [],
+
+
+    ];
+
+    $this->load->view("main", $output);
+
+   }
+    public function cerrar_sesion()
+	{
+
+        $this->session->unset_userdata('id_usuario');
+        $this->session->unset_userdata('cedula');
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('activo');
+        $this->session->unset_userdata('id_rol');
+
+
+        redirect("admin/login");
+	}
+
+    
+    public function validarSession()
+	{
+        
+        $this->form_validation->set_rules('email', 'email', 'trim|strip_tags|valid_email|min_length[3]|max_length[60]|required');
+        //$this->form_validation->set_rules('password', 'password', 'trim|strip_tags|min_length[6]|max_length[16]|required');
+        //validaciones
+        //delimitadores de errores
+        $this->form_validation->set_error_delimiters('*', '*');
+        //delimitadores de errores
+        //reglas de validación
+        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+
+        //reglas de validación
+
+
+
+  
+        if (!$this->form_validation->run()) {
+            $mensaje_error = validation_errors();
+            
+            echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
+      
+
+        } 
+
+            $email = strtoupper($this->input->post('email'));
+            //encriptamos clave codeigniter
+
+            $password = trim($this->input->post('password'));
+
+            $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email);
+     
+            if ($resultado) {
+          
+                if (password_verify($password,$resultado->password) && $resultado->id_rol=2) {
+
+                    $s_usuario = array(
+                        'id_usuario' => $resultado->id_usuarios_admin,
+                        'cedula' => $resultado->cedula,
+                        'email' => $resultado->email,
+                        'activo' => $resultado->activo,
+                        'fecha_reg' => $resultado->created_on,
+                        'id_rol' => $resultado->id_rol
+                    );
+
+                 
+                    //SI ES IGUAAL A CERO MUESTRA VISTA DONDE ACTIVA LA CUENTA A TRAVES DEL CODIGO O PERMITE REENVIAR EMAIL
+
+                    //SINO ENVIA A LA VISTA DE CHAMBA
+                    if ($resultado->activo==0) {
+                        //$this->session->set_flashdata('mensaje', 'Debes completar tus datos para poder realizar una publicación');
+                        //redirect('Cusuarios/VvalidarCuenta');
+                                 
+                    echo  json_encode(["resultado" =>false,"mensaje"=> "La Cuenta de usuario no se encuenta activa"]);
+                    exit;
+
+                    }else{
+                        $this->session->set_userdata($s_usuario);
+                        echo  json_encode(["resultado" =>true,"mensaje"=>' Ingreso exitoso']);
+                        exit;
+
+                    }
+
+                } else {
+                    //mando a la vista de error
+           
+                        echo  json_encode(["resultado" =>false,"mensaje"=>'Email o Clave incorrectas']);
+                        exit;
+                
+                }
+            } else {
+           
+                echo  json_encode(["resultado" =>false,"mensaje"=>'Email o Clave incorrectas']);
+                exit;
+            }
+        
+	}
+
+
+    public function registro_usuarios(){
+
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+
+        $breadcrumb =(object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Registrar usuario admin"
+            
+                ];
+         
+        $output = [
+            "menu_lateral"=>"admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Registro de usuario",
+             "vista_principal"   => "admin/registro_usuarios",
+             "librerias_js" => [recurso("admin_registrar_usuario_js") ]
+     
+        ];
+
+        $this->load->view("main", $output);
+
+        
+        }
+
+
+        public function crear_usuario(){
+            $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|strip_tags');
+            $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
+            $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
+            $this->form_validation->set_rules('password', 'password', 'trim|required|strip_tags');
+        
+         
+            $this->form_validation->set_error_delimiters('*', '');
+            //delimitadores de errores
+     
+            //reglas de validación
+            $this->form_validation->set_message('required', 'El campo %s es requerido');
+            //reglas de validación
+     
+            if (!$this->form_validation->run()) {
+                 $mensaje_error = validation_errors();
+             
+                 echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
+                 exit;
+              }
+
+              
+              $email = trim(strtoupper($this->input->post('email')));
+              //encriptamos clave codeigniter
+  
+       
+  
+              $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email);
+              if($resultado ){
+                echo  json_encode(["resultado" =>false,"mensaje"=> "EL email ya se encuentra registrado" ]);
+                exit;
+              }
+
+
+              $pass_cifrado = password_hash(trim($this->input->post('password')),PASSWORD_DEFAULT);
+          $id_usuario =$this->Usuarios_admin_model->post_regitrar([
+              "nombre" =>$this->input->post('password'),
+            "id_rol"  =>$this->input->post('id_rol'),
+            "cedula"  =>$this->input->post('cedula'),
+            "email"   =>$email,
+            "password"=>$pass_cifrado
+        ]);
+
+
+        echo  json_encode(["resultado" =>true,"mensaje"=> "Registro exitoso" ]);
+        
+        }
+
 
     public function registro_estructura()
   
 	{
+
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
 
       $estados = $this->Musuarios->getEstados();
 
@@ -136,6 +350,12 @@ class Cadmin extends CI_Controller {
 
     public function crearEstructura(){
         //delimitadores de errores
+
+
+        if (!$this->session->userdata('id_rol')) {
+            echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
+            exit();
+        }
 
         $this->form_validation->set_rules('nombres', 'nombres', 'trim|required|strip_tags');
     
@@ -271,6 +491,10 @@ class Cadmin extends CI_Controller {
     public function crearEmpresas(){
    
    
+        if (!$this->session->userdata('id_rol')) {
+            echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
+            exit();
+        }
         //delimitadores de errores
         $this->form_validation->set_rules('rif', 'rif', 'trim|required|strip_tags');
         $this->form_validation->set_rules('nombre_representante', 'nombre_representante', 'trim|required|strip_tags');
@@ -408,6 +632,10 @@ class Cadmin extends CI_Controller {
     public function listar_empresas_entes(){
 
 
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+
        $empresas = $this->Empresas_entes_model->obtener_empresas();
         $breadcrumb =(object) [
             "menu" => "Admin",
@@ -444,9 +672,9 @@ class Cadmin extends CI_Controller {
 
     }
     public function estructuras(){
-        // if (!$this->session->userdata(59049)) {
-        //     redirect('iniciosesion');
-        // 
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
 
        
 
@@ -492,6 +720,10 @@ class Cadmin extends CI_Controller {
     public function registro_empresas()
   
 	{
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+
         $estados = $this->Musuarios->getEstados();
 
         $datos['estados'] = $estados;
@@ -588,7 +820,10 @@ class Cadmin extends CI_Controller {
     }
     public function crearUniversidades(){
         
-        
+        if (!$this->session->userdata('id_rol')) {
+            echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
+            exit();
+        }
         $this->form_validation->set_rules('razon_social', 'nombres', 'trim|required|strip_tags');
         $this->form_validation->set_rules('rif', 'rif', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');

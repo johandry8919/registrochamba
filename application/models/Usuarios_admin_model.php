@@ -41,5 +41,35 @@
         }
 
 
+        public function obtener_usuarios($id_rol){
+
+            $this->db->where('id_rol', $id_rol);
+            $query = $this->db->get("usuarios_admin");
+    
+            if ($query->num_rows()) $valor = $query->result();
+            else $valor = [];
+    
+
+            return $valor;
+        }
+
+
+
+      
+
+        public function validarEmailUsuario($email){
+            
+            $this->db->where('upper(email)', $email);
+            $query = $this->db->get("usuarios_admin");
+    
+            if ($query->num_rows()) $valor = $query->row();
+            else $valor = false;
+    
+
+            return $valor;
+        }
+        
+
+
 
     }
