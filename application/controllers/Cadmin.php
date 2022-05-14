@@ -504,7 +504,7 @@ class Cadmin extends CI_Controller {
         }
 
         
-         $id_usuario_registro=$this->session->userdata('id_usuario'));
+         $id_usuario_registro=$this->session->userdata('id_usuario');
           //REGISTRI DE eEMPRESA
           $rif = $this->input->post('rif');
           $nombre_razon_social = $this->input->post('razon_social');
