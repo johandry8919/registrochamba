@@ -99,12 +99,12 @@
 
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label class="form-label">Telf Móvil</label>
+                                        <label class="form-label">Telf Móvil Empresa</label>
                                         <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone" aria-hidden="true"></i>
-                                            </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="tlf_celular" maxlength="11" name="tlf_celular" value="<?php if(isset($datos->tlf_celular)) echo ucwords($datos->tlf_celular);?>" placeholder="Ingrese su telefono" required autofocus data-parsley-error-message="Este campo es requerido">
+                                            </a> 
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="tlf_celular" maxlength="11" name="tlf_celular" value="<?php if(isset($datos->tlf_celular_empresa)) echo ucwords($datos->tlf_celular_empresa);?>" placeholder="Ingrese su telefono" required autofocus data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -288,7 +288,14 @@
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fe fe-phone" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil_representante" maxlength="11" name="telf_movil_representante" value="" placeholder="Ingrese su telefono" required autofocus data-parsley-error-message="Este campo es requerido">
+                                            <input class="input100 border-start-0 ms-0 form-control"
+                                             type="text" id="telf_movil_representante" 
+                                             maxlength="11" name="telf_movil_representante" 
+                                             value="<?php if(isset($datos->celular_representante)) echo ucwords($datos->celular_representante);?>
+                                             
+                                             " 
+                                             
+                                             placeholder="Ingrese su telefono" required autofocus data-parsley-error-message="Este campo es requerido">
 
                                         </div>
 
@@ -401,7 +408,7 @@
                                         <option value="">Seleccione un Municipio</option>
                                         <?php
                                             if(isset($datos->codigomunicipio)){
-                                                echo "<option selected value='".$datos->codigomunicipio."'>".$datos->codigomunicipio."</option>";     
+                                                echo "<option selected value='".$datos->codigomunicipio."'>".$datos->nombre_municipio."</option>";     
                                             }
                                         ?>
                                         </select>
@@ -424,8 +431,8 @@
                                         id="cod_parroquia" name="cod_parroquia" required>
                                         <option value="">Seleccione una Parroquia</option>
                                         <?php
-                                            if(isset($datos->parroquia)){
-                                                echo "<option selected value='".$datos->codigoparroquia."' data-latitud=".$datos->latitud."  data-longitud=".$datos->longitud."  >".$datos->parroquia."</option>";     
+                                            if(isset($datos->codigoparroquia)){
+                                                echo "<option selected value='".$datos->codigoparroquia."' data-latitud=".$datos->latitud."  data-longitud=".$datos->longitud."  >".$datos->nombre_parroquia."</option>";     
                                             }
                                         ?>
                                         </select>

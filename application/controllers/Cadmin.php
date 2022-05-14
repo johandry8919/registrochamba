@@ -1136,7 +1136,7 @@ public function editar_universidades(){
     if (isset($id__exp_lab) and $id__exp_lab != "") {
       $res =  $this->Empresas_entes_model->obtener_representante_universidad($id__exp_lab);
       
-       json_encode($res);
+    
       
        
      
