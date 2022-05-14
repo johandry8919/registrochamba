@@ -34,7 +34,17 @@
 
 </head>
 
-<body class="app sidebar-mini ltr">
+
+<style>
+body {
+  heigh:665px;
+  background-image: url("<?php echo base_url(); ?>img/fondo.jpg")  !important;
+  background-size: 10rem;
+  
+}
+
+</style>
+<body class="">
 
     <!-- BACKGROUND-IMAGE -->
     <div class="login-img">
@@ -105,13 +115,8 @@
                 <!-- CONTAINER OPEN -->
                 <div class="col col-login mx-auto mt-7">
                     <div class="text-center">
-                        <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50" style="
-  height:200px; 
-
-
-
-">
-                    </div>
+                    <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50" style="">
+                          </div>
                 </div>
 
                 <div class="container-login100">
