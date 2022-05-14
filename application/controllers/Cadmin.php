@@ -279,7 +279,7 @@ class Cadmin extends CI_Controller {
             redirect('admin/login');
         }
 
-      $estados = $this->Musuarios->getEstados();
+        $estados = $this->Musuarios->getEstados();
 
         $responsabilidad_estructuras= $this->Estructuras_model->responsabilidad_estructuras();
 
@@ -288,18 +288,16 @@ class Cadmin extends CI_Controller {
         $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
         $profesion_oficio= $this->Estructuras_model->profesion_oficio();
         $persona= $this->Estructuras_model->getUsuarioRegistradoPersonal();
-        
-       
-        
-        $datos['profesion_oficio'] = $profesion_oficio;
         $res =[];
         $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
         if (isset($id__exp_lab) and $id__exp_lab != "") {
           $res =  $this->Estructuras_model->getEditEstruturaID($id__exp_lab);
            json_encode($res);
-           
-         
         }
+        
+       
+        
+        $datos['profesion_oficio'] = $profesion_oficio;
        
       
         $breadcrumb =(object) [
@@ -320,6 +318,7 @@ class Cadmin extends CI_Controller {
             "sectorProductivo" => $sectorProductivo,
             'profesion_oficio' => $profesion_oficio,
             "datos" => $res,
+           
             "persona" => $persona,
             
 
@@ -451,35 +450,13 @@ class Cadmin extends CI_Controller {
         'id_usuario' =>  $id_usuario_registro,
       
     );
+  
 
-      
-       
-      
-
+    $this->Estructuras_model->post_crearEstructura($datas);
+    echo  json_encode(["resultado" =>true,"mensaje"=> "Datos guardados correctamente."]);
         
         
-        if ($this->Estructuras_model->getUsuarioRegistradoPersonal()) {
-
-            if ($this->Estructuras_model->post_crearEstructura($datas)) {
-                $this->session->set_flashdata('mensajeexito', 'Datos guardados correctamente.');
-                echo  json_encode(["resultado" =>true,"mensaje"=> "Datos guardados correctamente."]);
-                
-                
-            } else {
-                $this->session->set_flashdata('mensajeerror', 'Ocurrio un error guardando intente de nuevo.');
-
-                echo  json_encode(["resultado" =>false,"mensaje"=> "Ocurrio un error guardando intente de nuevo."]);
-            }
-        } else {
-            if ($this->Estructuras_model->actualizarPersonales($datas)) {
-                $this->session->set_flashdata('mensajeexito', 'Datos actualizados correctamente.');
-                echo  json_encode(["resultado" =>true,"mensaje"=> "Datos actualizados correctamente."]);
-                
-            } else {
-                $this->session->set_flashdata('mensajeerror', 'Ocurrio un error actualizando intente de nuevo.');
-               
-            }
-        }
+        
      
     }
 }
@@ -717,13 +694,148 @@ class Cadmin extends CI_Controller {
         $this->load->view("main", $output);
         
     }
+    public function actualizar_estructuras(){
+        $estados = $this->Musuarios->getEstados();
+
+        $responsabilidad_estructuras= $this->Estructuras_model->responsabilidad_estructuras();
+
+        $instruccion_academica= $this->Estructuras_model->instruccion_academica();
+
+        $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+        $profesion_oficio= $this->Estructuras_model->profesion_oficio();
+        $persona= $this->Estructuras_model->getUsuarioRegistradoPersonal();
+        
+       
+        
+        $datos['profesion_oficio'] = $profesion_oficio;
+        $res =[];
+        $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
+        if (isset($id__exp_lab) and $id__exp_lab != "") {
+          $res =  $this->Estructuras_model->getEditEstruturaID($id__exp_lab);
+           json_encode($res);
+           
+         
+        }
+       
+      
+        $breadcrumb =(object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Actualizar  estructuras"
+        
+                 ];
+
+     
+        $output = [
+            "menu_lateral"=>"admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Actualizar  estructuras",
+             "vista_principal"   => "admin/actualizar_estructuras",
+             "responsabilidad_estructuras"   =>  $responsabilidad_estructuras,
+             "academica"   =>  $instruccion_academica,
+            "estados"          => $estados,
+            "sectorProductivo" => $sectorProductivo,
+            'profesion_oficio' => $profesion_oficio,
+            "datos" => $res,
+            "persona" => $persona,
+            
+
+            
+           "librerias_css" => [],
+
+         
+           "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
+           recurso("jquery_steps_js"),  recurso("parsleyjs_js"),
+            recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),recurso("jquery_easing_js")
+
+            
+     
+        ],
+
+
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js"),
+           recurso("actulizar_estructuras_js"), recurso("mapa_mabox_js")],
+           "ficheros_css" => [recurso("mapa_mabox_css"),recurso("estructuras_css")],
+
+
+        ];
+
+        $this->load->view("main", $output);
+
+    }
+    //post_actualizar_estructuras
+    public function post_estructuras(){
+        $this->form_validation->set_rules('nombres', 'nombres', 'trim|required|strip_tags');
+    
+        $this->form_validation->set_rules('apellidos', 'apellidos', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_nivel_academico', 'academico', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('telf_movil', 'telf movil', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('telf_local', 'telf local', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('fecha_nac', 'fecha de naciminto', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_profesion_oficio', 'id_profesion_oficio', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_estado', 'estado', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_municipio', 'municipio', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_parroquia', 'parroquia', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_estructura', 'estructura_responsabilidad', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
+         
+        //otener el id de la estructura
+        $this->form_validation->set_error_delimiters('*', '');
+        //delimitadores de errores
+ 
+        //reglas de validación
+        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+
+        if ($this->form_validation->run() === FALSE) {
+            $mensaje_error = validation_errors();
+        
+            echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
+
+    }else{
+        $datas = array(
+            'nombre' => $this->input->post('nombres'),
+            'apellidos' => $this->input->post('apellidos'),
+            'email' => $this->input->post('correo1'),
+            'tlf_celular' => $this->input->post('telf_movil'),
+            'tlf_coorparativo' => $this->input->post('telf_local'),
+            'cedula' => $this->input->post('cedula'),
+            'fecha_nac' => $this->input->post('fecha_nac'),
+            'edad' => $this->input->post('edad'),
+            'id_profesion_oficio' => $this->input->post('id_profesion_oficio'),
+            'id_nivel_academico' => $this->input->post('id_nivel_academico'),
+            'codigoestado' => $this->input->post('cod_estado'),
+            'codigomunicipio' => $this->input->post('cod_municipio'),
+            'codigoparroquia' => $this->input->post('cod_parroquia'),
+            'direccion' => $this->input->post('direccion'),
+            'id_responsabilidad_estructura' => $this->input->post('cod_responsabilidad'),
+            'tipo_estructura' => $this->input->post('id_estructura'),
+            'talla_pantalon' => $this->input->post('talla_pantalon'),
+            'talla_camisa' => $this->input->post('talla_camisa'),
+            'latitud' => $this->input->post('latitud'),
+            'longitud' => $this->input->post('longitud'),
+            
+            
+
+            
+          
+        );
+
+        $this->Estructuras_model->update_Estructura($datas);
+        echo  json_encode(["resultado" =>true,"mensaje"=> "Datos guardados correctamente."]);
+    }
+      
+    }
+
+
+
     public function registro_empresas()
   
 	{
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
-        }
-
         $estados = $this->Musuarios->getEstados();
 
         $datos['estados'] = $estados;
@@ -773,11 +885,16 @@ class Cadmin extends CI_Controller {
 	}
 
     public function registro_universidades(){
+        if (!$this->session->userdata('id_rol')) {
+            echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
+            exit();
+        }
         $estados = $this->Musuarios->getEstados();
         $datos['estados'] = $estados;
-    
-        $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
-        $empresas = $this->Empresas_entes_model->obtener_univerdidad();
+       
+
+    $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+    $empresas = $this->Empresas_entes_model->obtener_univerdidad();
         
         $breadcrumb =(object) [
             "menu" => "Admin",
@@ -792,7 +909,9 @@ class Cadmin extends CI_Controller {
              "vista_principal"   => "admin/registro_universidades",
              "estados"          => $estados,
              "empresas"         => $empresas,
-             "sectorProductivo" => $sectorProductivo,
+             
+            
+                "sectorProductivo" => $sectorProductivo,
              
      
            "ficheros_js" => [],
@@ -816,7 +935,6 @@ class Cadmin extends CI_Controller {
         ];
 
         $this->load->view("main", $output);
-
     }
     public function crearUniversidades(){
         
@@ -870,6 +988,7 @@ class Cadmin extends CI_Controller {
             "nombre_razon_social"   =>$nombre_razon_social,
             "rif"=>$rif,
             "tlf_celular"   =>$this->input->post('tlf_celular'),
+            "direccion" => $this->input->post('direccion'),
 
             "actividad_economica"=> $this->input->post('actividad_economica'),
             "email"        =>$email_empresa ,
@@ -969,7 +1088,7 @@ public function universidades(){
 
     $breadcrumb =(object) [
         "menu" => "Admin",
-        "menu_seleccion" => "Registro de estructuras"
+        "menu_seleccion" => "Listas de Universidades"
     
 
             ];
@@ -1005,5 +1124,147 @@ public function universidades(){
 
     $this->load->view("main", $output);
     
+}
+public function editar_universidades(){
+    $estados = $this->Musuarios->getEstados();
+    $datos['estados'] = $estados;
+   
+    $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+    $empresas = $this->Empresas_entes_model->obtener_univerdidad();
+   
+    $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
+    if (isset($id__exp_lab) and $id__exp_lab != "") {
+      $res =  $this->Empresas_entes_model->obtener_representante_universidad($id__exp_lab);
+      
+       json_encode($res);
+      
+       
+     
+    }
+    
+    $breadcrumb =(object) [
+        "menu" => "Admin",
+        "menu_seleccion" => "Registro de universidades"
+
+            ];
+
+    $output = [
+        "menu_lateral"=>"admin",
+        "breadcrumb"      =>   $breadcrumb,
+        "title"             => "Registro  de universidades",
+         "vista_principal"   => "admin/editar_universidades",
+         "estados"          => $estados,
+         "empresas"         => $empresas,
+         "datos"            =>$res,
+         
+        
+            "sectorProductivo" => $sectorProductivo,
+         
+ 
+       "ficheros_js" => [],
+   
+        
+       "librerias_css" => [],
+
+     
+       "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
+        recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
+         recurso("mapa_mabox_js"),
+         recurso("editar_unirvesidad_js"),
+         
+    ],
+
+
+       "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")],
+       "ficheros_css" => [recurso("mapa_mabox_css")],
+       recurso("editar_unirvesidad_js"),
+
+    ];
+
+    $this->load->view("main", $output);
+
+}
+public function update_universidad_Representante(){
+    $this->form_validation->set_rules('razon_social', 'nombres', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('rif', 'rif', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('telf_movil_representante', ' telefono del Representante', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('telf_local_representante', 'telf local representante', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('sector_economico', 'especializacion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('email_representante', 'email del representante', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cargo', 'cargo', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('direccion','direccion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_estado','Estado', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_municipio', 'Municipio', 'trim|required|strip_tags');
+
+        $this->form_validation->set_error_delimiters('*', '');
+        //delimitadores de errores
+ 
+        //reglas de validación
+        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+
+        if ($this->form_validation->run() === FALSE) {
+            $mensaje_error = validation_errors();
+        
+            echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
+
+    }else{
+        $data = array(
+       
+            "id_sector_economico"          => $this->input->post('sector_economico'),
+            // "nombre_razon_social"   =>$this->input->post('nombre_razon_social'),
+            "rif"=>$this->input->post('rif'),
+            "tlf_celular"   =>$this->input->post('tlf_celular'),
+            "direccion" => $this->input->post('direccion'),
+    
+            "actividad_economica"=> $this->input->post('actividad_economica'),
+            "email"        =>$this->input->post('email'),
+    
+            "instagram"    =>$this->input->post('instagram'),
+            "twitter"      => $this->input->post('twitter'),
+            "facebook"     =>$this->input->post('facebook'),
+    
+            "codigoestado"      =>$this->input->post('cod_estado'),
+            "codigomunicipio"   =>$this->input->post('cod_municipio'),
+            "codigoparroquia"   =>$this->input->post('cod_parroquia'),
+    
+            "latitud"   =>$this->input->post('latitud'),
+            "longitud"  =>$this->input->post('longitud')
+    
+    
+    
+    
+          );
+    
+
+    
+          if($this->Empresas_entes_model->update_Universidades($data)){
+            $this->Representante_empresas_entes_model->update_representante([
+                "id_empresas_entes" =>trim($this->input->post('id_empresas_entes')),
+                 
+                  "cedula"   =>$this->input->post('cedula_representante'),
+                  "nombre"                =>$this->input->post('nombre_representante'),                                                                                                                                                                                                     
+                  "apellidos"             =>$this->input->post('apellidos_representante'),
+                  "tlf_celular"           =>$this->input->post('telf_movil_representante'),
+                  "tlf_local"             =>$this->input->post('telf_local_representante'),
+                  "email"                =>$this->input->post('email_representante'),
+                  "cargo "                =>$this->input->post('cargo')
+        
+              ]);
+              
+              echo  json_encode(["resultado" =>true,"mensaje"=> 'registro exitoso, presione OK para continuar']);
+    
+          }
+        
+    }
+   
+    
+
+       
+      
+
+
+
 }
 }

@@ -40,6 +40,25 @@
             return $valor;
         }
 
+         public function update_representante($datos){
+          
+
+            $this->db->where('id_empresas_entes',  $datos['id_empresas_entes']);
+            $this->db->update('public.tbl_representantes_empresas_entes', $datos);
+            if($this->db->affected_rows() > 0){
+                return true;
+            }else{
+                return false;
+            }
+            
+
+
+
+           
+
+
+    }
+
 
 
     }

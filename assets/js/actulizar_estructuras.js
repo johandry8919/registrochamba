@@ -1,4 +1,6 @@
+
 (function ($) {
+	
 	"use strict";
 
 	// WIZARD 2
@@ -10,7 +12,7 @@
 			cancel: "Cancelar",
 			current: "current step:",
 			pagination: "Pagination",
-			finish: "Guardar",
+			finish: "Actuliazar",
 			next: "Siguiente",
 			previous: "Anterior",
 			loading: "Cargando ...",
@@ -25,11 +27,11 @@
 					var apellidos = $("#apellidos").parsley();
 
 					var cedula = $("#cedula").parsley();
+					var fecha_nac = $("#fecha_nac").parsley();
 					var id_nivel_academico = $("#id_nivel_academico").parsley();
 					var telf_movil = $("#telf_movil").parsley();
 					var telf_local = $("#telf_local").parsley();
 					var correo1 = $("#correo1").parsley();
-					var fecha_nac = $("#fecha_nac").parsley();
 					var edad = $("#edad").parsley();
 					var id_profesion_oficio = $("#id_profesion_oficio").parsley();
 
@@ -37,11 +39,12 @@
 						nombres.isValid() &&
 						apellidos.isValid() &&
 						cedula.isValid() &&
+						
+						
 						id_nivel_academico.isValid() &&
 						telf_movil.isValid() &&
 						telf_local.isValid() &&
 						correo1.isValid() &&
-						fecha_nac.isValid() &&
 						edad.isValid() &&
 						id_profesion_oficio.isValid()
 					) {
@@ -63,10 +66,10 @@
 							$("#id_nivel_academico")
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
-						if (!fecha_nac.isValid())
-							$("#fecha_nac")
-								.removeClass("is-valid")
-								.addClass("is-invalid  error-input");
+						// if (!fecha_nac.isValid())
+						// 	$("#fecha_nac")
+						// 		.removeClass("is-valid")
+						// 		.addClass("is-invalid  error-input");
 						if (!telf_movil.isValid())
 							$("#telf_movil")
 								.removeClass("is-valid")
@@ -101,8 +104,8 @@
 					var cod_municipio = $("#cod_municipio").parsley();
 					var cod_parroquia = $("#cod_parroquia").parsley();
 					var direccion = $("#direccion").parsley();
-					var latitud = $("#latitud").parsley();
-					var longitud = $("#longitud").parsley();
+					// var latitud = $("#latitud").parsley();
+					// var longitud = $("#longitud").parsley();
 
 					if (
 						cod_responsabilidad.isValid() &&
@@ -116,7 +119,7 @@
 					) {
 						return true;
 					} else {
-						console.log("invalido");
+						console.log("invalido")
 						if (!cod_responsabilidad.isValid())
 							$("#cod_responsabilidad")
 								.removeClass("is-valid")
@@ -150,8 +153,9 @@
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
 
-						latitud.validate();
-						longitud.validate();
+						
+						// latitud.validate();
+						// longitud.validate();
 					}
 				}
 				// Always allow step back to the previous step even if the current step is not valid.
@@ -181,6 +185,7 @@
 			var talla_camisa = $("#talla_camisa").val();
 			var latitud = $("#latitud").val();
 			var longitud = $("#longitud").val();
+            //Actulizar con ajax 
 
 			$.ajax({
 				dataType: "json",
@@ -208,12 +213,14 @@
 					longitud,
 				},
 
-				url: base_url + "Cadmin/crearEstructura",
+				url: base_url + "Cadmin/post_estructuras",
 				type: "post",
 				beforeSend: function () {
 					//$("#cod_municipio").selectpicker('refresh');
 				},
 				success: function (respuesta) {
+					
+
 					if (respuesta.resultado == true) {
 						Swal.fire({
 							icon: "success",
@@ -405,7 +412,7 @@ $("#telf_local").on("keyup", function () {
 	}
 });
 
-//nombress
+//nombres
 
 $("#nombres,#apellidos,#id_nivel_academico,#id_profesion_oficio").on(
 	"keyup",
@@ -415,7 +422,7 @@ $("#nombres,#apellidos,#id_nivel_academico,#id_profesion_oficio").on(
 
 		var expresion = /^[a-zA-Z\s]*$/;
 
-		if (nombres) {
+		if (expresion.test(nombres)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
@@ -430,22 +437,7 @@ $("#nombres,#apellidos,#id_nivel_academico,#id_profesion_oficio").on(
 	}
 );
 
-$("#fecha_nac").on("keyup", function () {
-	"use strict";
-	var fecha_nac = $(this).val();
-	// var expresion = /^\d{2}\/\d{2}\/\d{4}$/;
 
-	if (fecha_nac) {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	} else {
-		$(this).removeClass("is-invalid error-input");
-		$("#fecha_nac").removeClass("is-valid").addClass("is-invalid");
-	}
-});
-
-//Correo
 $("#correo1").on("keyup", function () {
 	"use strict";
 	var email1 = $(this).val();
@@ -484,6 +476,7 @@ $("#edad").on("keyup", function () {
 $("#id_nivel_academico").on("change", function () {
 	"use strict";
 	var nivel_academico = $(this).val();
+	
 
 	if (nivel_academico) {
 		$(this)
@@ -520,6 +513,7 @@ $("#cod_responsabilidad").on("change", function () {
 	// var expresion = /^\d{1}$/;
 	var expresion = /^[a-zA-Z0-9\s]*$/;
 
+
 	if (cod_responsabilidad) {
 		$(this)
 			.removeClass("is-invalid error-input")
@@ -537,7 +531,8 @@ $("#talla_pantalon").on("change", function () {
 	// var expresion = /^\d{1}$/;
 	var expresion = /^[a-zA-Z0-9\s]*$/;
 
-	if (talla_pantalon) {
+
+	if (expresion.test(talla_pantalon)) {
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
@@ -554,7 +549,8 @@ $("#talla_camisa").on("change", function () {
 	// var expresion = /^\d{1}$/;
 	var expresion = /^[a-zA-Z0-9\s]*$/;
 
-	if (talla_camisa) {
+
+	if (expresion.test(talla_camisa)) {
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
@@ -569,9 +565,10 @@ $("#id_estructura").on("change", function () {
 	"use strict";
 	var id_estructura = $(this).val();
 	// var expresion = /^\d{1}$/;
-	
+	var expresion = /^[a-zA-Z0-9\s]*$/;
 
-	if (id_estructura) {
+
+	if (expresion.test(id_estructura)) {
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
@@ -589,7 +586,7 @@ $("#cod_estado").on("change", function () {
 	var estado = $(this).val();
 	var expresion = /^\d{1}$/;
 
-	if (estado) {
+	if (expresion.test(estado)) {
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
@@ -604,7 +601,7 @@ $("#cod_municipio").on("change", function () {
 	var cod_municipio = $(this).val();
 	var expresion = /^\d{1}$/;
 
-	if (cod_municipio) {
+	if (expresion.test(cod_municipio)) {
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
@@ -619,7 +616,7 @@ $("#cod_parroquia").on("change", function () {
 	var cod_parroquia = $(this).val();
 	var expresion = /^\d{1}$/;
 
-	if (cod_parroquia) {
+	if (expresion.test(cod_parroquia)) {
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
@@ -646,3 +643,6 @@ $("#direccion").on("keyup", function () {
 			.addClass("is-valid valid-input");
 	}
 });
+// disabled inputn nombres y correo
+
+    $("#cedula").attr("disabled", true);

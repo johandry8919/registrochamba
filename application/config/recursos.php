@@ -1,4 +1,4 @@
-<?php
+﻿<?php
     
     defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -29,6 +29,8 @@
   
     $config['recursos']['mapa_mabox_css'] = "assets/css/mapa_mabox.css?v=1.0.4.";
     $config['recursos']['estructuras_js'] = "assets/js/estructuras.js?v=1.0.6";
+   $config['recursos']['editar_unirvesidad_js'] = "assets/js/editar_unirvesidad.js?v=1.0.6";
+  $config['recursos']['actulizar_estructuras_js'] = "assets/js/actulizar_estructuras.js?v=1.0.6";
     $config['recursos']['universidades_js'] = "assets/js/universidades.js?v=1.0.6";
     $config['recursos']['estructuras_css'] = "assets/css/estructuras.css?v=1.0.6";
     $config['recursos']['registro_estructuras_js'] = "assets/js/registro_estructuras.js?v=1.0.6";
