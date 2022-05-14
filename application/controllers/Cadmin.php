@@ -448,6 +448,7 @@ class Cadmin extends CI_Controller {
         'latitud' => $this->input->post('latitud'),
         'longitud' => $this->input->post('longitud'),
         'id_usuario' =>  $id_usuario_registro,
+
       
     );
   
@@ -503,7 +504,7 @@ class Cadmin extends CI_Controller {
         }
 
         
-           $id_usuario_registro=1;
+         $id_usuario_registro=$this->session->userdata('id_usuario'));
           //REGISTRI DE eEMPRESA
           $rif = $this->input->post('rif');
           $nombre_razon_social = $this->input->post('razon_social');
@@ -969,7 +970,7 @@ class Cadmin extends CI_Controller {
              exit;
         }
 
-        $id_usuario_registro=2;
+        $id_usuario_registro=$this->session->userdata('id_usuario');
           //REGISTRI DE eEMPRESA
           $rif = $this->input->post('rif');
           $nombre_razon_social = $this->input->post('razon_social');
