@@ -34,7 +34,7 @@
 
 </head>
 
-<body class="app sidebar-mini ltr">
+<body class="app sidebar-mini ltr fondo-login">
 
     <!-- BACKGROUND-IMAGE -->
     <div class="login-img">

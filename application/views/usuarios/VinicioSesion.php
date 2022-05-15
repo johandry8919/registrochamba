@@ -36,15 +36,10 @@
 
 
 <style>
-body {
-  heigh:665px;
-  background-image: url("<?php echo base_url(); ?>img/fondo.jpg")  !important;
-  background-size: 10rem;
-  
-}
+
 
 </style>
-<body class="">
+<body class="app sidebar-mini ltr fondo-login">
 
     <!-- BACKGROUND-IMAGE -->
     <div class="login-img">
@@ -87,16 +82,16 @@ body {
                                      
                                    
                                         <!-- SIDE-MENU -->
-                                        <div class="dropdown d-flex profile-1">
+                                        <div class="dropdown d-flex profile-1 bg-light">
                                             <a href="javascript:void(0)" data-bs-toggle="dropdown"
                                                 class="nav-link leading-none d-flex">
                                                 <i class="side-menu__icon fe fe-settings display-7"></i>
                                             </a>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
                                               
                                                 <div class="dropdown-divider m-0"></div>
-                                                <a class="dropdown-item" href="<?php echo base_url();?>admin/login">
-                                                    <i class="dropdown-icon fe fe-user"></i>  ingresar admin
+                                                <a class="dropdown-item " href="<?php echo base_url();?>admin/login">
+                                                    <i class="dropdown-icon fe fe-user "></i>  ingresar admin
                                                 </a>
                                               
                                            
@@ -115,7 +110,7 @@ body {
                 <!-- CONTAINER OPEN -->
                 <div class="col col-login mx-auto mt-7">
                     <div class="text-center">
-                    <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50" style="">
+                    <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt=""  style="width:30% ">
                           </div>
                 </div>
 
