@@ -1,5 +1,7 @@
+
 (function ($) {
 	$("#button").click(function () {
+		
 		var razon_social = $("#razon_social").val();
 		var email = $("#email").val();
 		var rif = $("#rif").val();
@@ -12,9 +14,8 @@
 		var telf_movil_representante = $("#telf_movil_representante").val();
 		var email_representante = $("#email_representante").val();
 		var cargo = $("#cargo").val();
-		var password = $("#password").val();
 		var apellidos_representante = $("#apellidos_representante").val();
-		var direccion = $("#direccion").val();
+		var direccion= $("#direccion").val();
 		var cod_estado = $("#cod_estado").val();
 		var cod_municipio = $("#cod_municipio").val();
 		var cod_parroquia = $("#cod_parroquia").val();
@@ -23,6 +24,7 @@
 		var instagram = $("#instagram").val();
 		var facebook = $("#facebook").val();
 		var twitter = $("#twitter").val();
+		var id_empresas_entes = $("#id_empresas_entes").val();
 
 		// si los campo son valido se envia el formulario
 
@@ -31,43 +33,69 @@
 			email != "" &&
 			rif != "" &&
 			tlf_celular != "" &&
+			telf_movil_representante !="" &&
 			telf_local_representante != "" &&
 			sector_economico != "" &&
 			actividad_economica != "" &&
 			nombre_representante != "" &&
 			apellidos_representante != "" &&
 			cedula_representante != "" &&
-			telf_movil_representante != "" &&
 			email_representante != "" &&
-			cargo != "" &&
-			password != ""
-		) {
+			cargo != "" 
 			
 			
-			
+			) {
+				
+						$.ajax({
+			dataType: "json",
+			url: base_url + "Estructuras/update_universidad_Representante",
+			type: "post",
+		data: {razon_social, rif,tlf_celular, email, sector_economico,actividad_economica,
+			nombre_representante,apellidos_representante,cedula_representante,telf_movil_representante,
+			email_representante,cargo,cod_estado,cod_municipio,
+			cod_parroquia,latitud,longitud,telf_local_representante,
+			direccion,instagram,twitter,facebook,id_empresas_entes,
+		
+		},
+		success: function (respuesta) {
+			console.log(respuesta);
+			if (respuesta.resultado == true) {
+				Swal.fire({
+					icon: "success",
+					title: "Registro Actualizados",
+					text: "Presione OK para continuar",
+				}).then((result) => {
+					/* Read more about isConfirmed, isDenied below */
+					if (result.isConfirmed) {
+						$(location).attr("href", base_url + "estructuras/lista_universidad");
+					}
+				});
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: respuesta.mensaje,
+				});
+			}
+		},
+		error: function (xhr, err) {
+			console.log(err);
+			alert("ocurrio un error intente de nuevo");
+		},
+
+	})
+	
+	return true
 		} else {
 			// validar los input que  esten vacios con bootstrap
-			if (
-				razon_social == "" ||
-				email == "" ||
-				rif == "" ||
-				tlf_celular == "" ||
-				telf_local_representante == "" ||
-				sector_economico == "" ||
-				actividad_economica == "" ||
-				nombre_representante == "" ||
-				apellidos_representante == "" ||
-				cedula_representante == "" ||
-				telf_movil_representante == "" ||
-				email_representante == "" ||
-				cargo == "" ||
-				password == "" ||
-				cod_estado == ""
-			) {
-			
-
+			if(razon_social == "" || email == "" || rif == "" || tlf_celular == "" ||  sector_economico == "" || actividad_economica == "" || nombre_representante == "" || apellidos_representante == "" || cedula_representante == "" || telf_movil_representante == "" || email_representante == "" || cargo == "" || cod_estado==""){
+				
+				
+				
+						
 				$("#razon_social").addClass("is-invalid");
 				$("#razon_social").focus();
+					
 				$("#email").addClass("is-invalid");
 				$("#email").focus();
 				$("#rif").addClass("is-invalid");
@@ -92,15 +120,14 @@
 				$("#email_representante").focus();
 				$("#cargo").addClass("is-invalid");
 				$("#cargo").focus();
-				$("#password").addClass("is-invalid");
-				$("#password").focus();
+		
 				$("#cod_estado").addClass("is-invalid");
 				$("#cod_estado").focus();
 				$("#cod_municipio").addClass("is-invalid");
 				$("#cod_municipio").focus();
 				$("#cod_parroquia").addClass("is-invalid");
 				$("#cod_parroquia").focus();
-
+				
 				if (razon_social != "") {
 					$("#razon_social").removeClass("is-invalid");
 					$("#razon_social").addClass("is-valid");
@@ -186,12 +213,7 @@
 					$("#cargo").blur();
 				}
 
-				if (password != "") {
-					$("#password").removeClass("is-invalid");
-					$("#password").addClass("is-valid");
-					//quitar el focus del input
-					$("#password").blur();
-				}
+			
 
 				if (cod_estado != "") {
 					$("#cod_estado").removeClass("is-invalid");
@@ -205,66 +227,22 @@
 					$("#cod_parroquia").removeClass("is-invalid");
 					$("#cod_parroquia").addClass("is-valid");
 				}
+
+		
+
+				
+				
+
 			}
 
-			return true 
+			
+			
 		}
-		// hacer post con ajax
-		$.ajax({
-			dataType: "json",
-			url: base_url + "Cadmin/crearUniversidades",
-			type: "post",
-			data: {
-				razon_social,
-				rif,
-				tlf_celular,
-				email,
-				sector_economico,
-				actividad_economica,
-				nombre_representante,
-				apellidos_representante,
-				cedula_representante,
-				telf_movil_representante,
-				email_representante,
-				cargo,
-				cod_estado,
-				cod_municipio,
-				cod_parroquia,
-				latitud,
-				longitud,
-				telf_local_representante,
-				direccion,
-				instagram,
-				twitter,
-				facebook,
-				password,
-			},
-			success: function (respuesta) {
-				if (respuesta.resultado == true) {
-					Swal.fire({
-						icon: "success",
-						title: "Registro Exitoso",
-						text: "Presione OK para continuar",
-					}).then((result) => {
-						/* Read more about isConfirmed, isDenied below */
-						if (result.isConfirmed) {
-							$(location).attr("href", base_url + "admin/universidades");
-						}
-					});
-				} else {
-					Swal.fire({
-						icon: "error",
-						title: "Oops...",
-						text: respuesta.mensaje,
-					});
-				}
-			},
-			error: function (xhr, err) {
-				console.log(err);
-				alert("ocurrio un error intente de nuevo");
-			},
-		});
+
+
+
 	});
+
 })(jQuery);
 
 $("#cod_estado").change(function () {
@@ -415,6 +393,7 @@ $("#cargo").on("keyup", function () {
 $("#rif").on("keyup", function () {
 	"use strict";
 	var rif = $("#rif").val();
+	
 
 	if (rif) {
 		$("#rif")
@@ -515,7 +494,7 @@ $("#email_representante").on("keyup", function () {
 $("#sector_economico").on("change", function () {
 	"use strict";
 	var sector_economico = $(this).val();
-
+	
 	if (sector_economico) {
 		$(this)
 			.removeClass("is-invalid error-input")
@@ -558,22 +537,6 @@ $("#cedula_representante").on("keyup", function () {
 	}
 });
 
-$("#password").on("keyup", function () {
-	"use strict";
-	var password = $("#password").val();
-
-	if (password) {
-		$("#password")
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	} else {
-		$("#password")
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-
-		$("#password").removeClass("is-valid").addClass("is-invalid");
-	}
-});
 
 //Estado
 $("#cod_estado").on("change", function () {
@@ -589,7 +552,7 @@ $("#cod_estado").on("change", function () {
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
-		$("#cod_estado").removeClass("is-valid").addClass("is-invalid");
+			$("#cod_estado").removeClass("is-valid").addClass("is-invalid");
 	}
 });
 $("#cod_municipio").on("change", function () {

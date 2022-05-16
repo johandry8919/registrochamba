@@ -107,6 +107,7 @@ $route['admin/usuarios'] = 'Cadmin/listar_usuarios_admin';
 $route['admin'] = 'Cadmin';
 
 $route['admin/empresas'] = 'Cadmin/listar_empresas_entes';
+$route['estructura/lista_universidad'] = 'Estructuras/lista_universidad';
 /*Administrador*/
 
 
@@ -117,6 +118,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['estructuras/registro/estructuras'] = 'Estructuras/registro_estructura';
 $route['estructuras/registro/empresas'] = 'Estructuras/registro_empresas';
 $route['estructuras/registro/universidades'] = 'Estructuras/registro_universidades';
+$route['estructuras/registro/universidades/(:num)'] = 'Estructuras/editar_universidades/$1';
 $route['estructuras/inicio'] = 'Estructuras';
 $route['admin/estructuras'] = 'Cadmin/estructuras';
 $route['admin/universidades'] = 'Cadmin/universidades';

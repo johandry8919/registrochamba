@@ -27,6 +27,24 @@
 
         
         }
+        public function Estructura_representante($data){
+        
+    
+            $this->db->insert('tbl_representantes_empresas_entes', $data);
+            if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+            $insert_id = $this->db->insert_id();
+
+            return  $insert_id;
+		}
+
+        
+        }
 
         public function verificarSiExiste($campo,$valor){
 
