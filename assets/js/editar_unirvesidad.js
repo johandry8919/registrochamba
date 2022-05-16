@@ -13,7 +13,6 @@
 		var telf_movil_representante = $("#telf_movil_representante").val();
 		var email_representante = $("#email_representante").val();
 		var cargo = $("#cargo").val();
-		var password = $("#password").val();
 		var apellidos_representante = $("#apellidos_representante").val();
 		var direccion= $("#direccion").val();
 		var cod_estado = $("#cod_estado").val();
@@ -41,11 +40,11 @@
 			apellidos_representante != "" &&
 			cedula_representante != "" &&
 			email_representante != "" &&
-			cargo != "" &&
-			password != ""
+			cargo != "" 
+			
 			
 			) {
-				
+				console.log("entro")
 						$.ajax({
 			dataType: "json",
 			url: base_url + "Cadmin/update_universidad_Representante",
@@ -54,7 +53,7 @@
 			nombre_representante,apellidos_representante,cedula_representante,telf_movil_representante,
 			email_representante,cargo,cod_estado,cod_municipio,
 			cod_parroquia,latitud,longitud,telf_local_representante,
-			direccion,instagram,twitter,facebook,password,id_empresas_entes,
+			direccion,instagram,twitter,facebook,id_empresas_entes,
 		
 		},
 		success: function (respuesta) {
@@ -82,13 +81,15 @@
 			console.log(err);
 			alert("ocurrio un error intente de nuevo");
 		},
+
 	})
-			
+	
+	return true
 		} else {
 			// validar los input que  esten vacios con bootstrap
-			if(razon_social == "" || email == "" || rif == "" || tlf_celular == "" ||  sector_economico == "" || actividad_economica == "" || nombre_representante == "" || apellidos_representante == "" || cedula_representante == "" || telf_movil_representante == "" || email_representante == "" || cargo == "" || password == "" || cod_estado==""){
-				//validar los campo con ajax
-				console.log("erro")
+			if(razon_social == "" || email == "" || rif == "" || tlf_celular == "" ||  sector_economico == "" || actividad_economica == "" || nombre_representante == "" || apellidos_representante == "" || cedula_representante == "" || telf_movil_representante == "" || email_representante == "" || cargo == "" || cod_estado==""){
+				
+				
 				
 						
 				$("#razon_social").addClass("is-invalid");
@@ -118,8 +119,7 @@
 				$("#email_representante").focus();
 				$("#cargo").addClass("is-invalid");
 				$("#cargo").focus();
-				$("#password").addClass("is-invalid");
-				$("#password").focus();
+		
 				$("#cod_estado").addClass("is-invalid");
 				$("#cod_estado").focus();
 				$("#cod_municipio").addClass("is-invalid");
@@ -541,24 +541,6 @@ $("#cedula_representante").on("keyup", function () {
 	}
 });
 
-$("#password").on("keyup", function () {
-	"use strict";
-	var password = $("#password").val();
-	
-
-
-	if (password) {
-		$("#password")
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	} else {
-		$("#password")
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-
-		$("#password").removeClass("is-valid").addClass("is-invalid");
-	}
-});
 
 //Estado
 $("#cod_estado").on("change", function () {

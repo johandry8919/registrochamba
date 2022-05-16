@@ -41,12 +41,12 @@
 						telf_movil.isValid() &&
 						telf_local.isValid() &&
 						correo1.isValid() &&
-						fecha_nac.isValid() &&
 						edad.isValid() &&
 						id_profesion_oficio.isValid()
 					) {
 						return true;
 					} else {
+						console.log("no paso");
 						if (!nombres.isValid())
 							$("#nombres")
 								.removeClass("is-valid")
@@ -63,10 +63,7 @@
 							$("#id_nivel_academico")
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
-						if (!fecha_nac.isValid())
-							$("#fecha_nac")
-								.removeClass("is-valid")
-								.addClass("is-invalid  error-input");
+						
 						if (!telf_movil.isValid())
 							$("#telf_movil")
 								.removeClass("is-valid")
@@ -81,14 +78,20 @@
 							$("#correo1")
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
-						if (!id_profesion_oficio.isValid())
-							$("#id_profesion_oficio")
-								.removeClass("is-valid")
-								.addClass("is-invalid  error-input");
+						
 						if (!edad.isValid())
+							$("#edad")
+								.removeClass("is-valid")
+								.addClass("is-invalid  error-input");
+						if(!id_profesion_oficio.isValid()){
 							$("#id_profesion_oficio")
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
+						}
+						
+					
+						
+						return false;
 					}
 				}
 				// Step 2 form validation
@@ -152,6 +155,18 @@
 
 						latitud.validate();
 						longitud.validate();
+					}
+					if(currentIndex === 2 ){
+						var password = $("#password").parsley();
+						if (password.isValid()) {
+							return true;
+						}else{
+							$("#password")
+								if (!password.isValid())
+								$("#cpassword")
+									.removeClass("is-valid")
+									.addClass("is-invalid  error-input");
+						}
 					}
 				}
 				// Always allow step back to the previous step even if the current step is not valid.
@@ -430,20 +445,7 @@ $("#nombres,#apellidos,#id_nivel_academico,#id_profesion_oficio").on(
 	}
 );
 
-$("#fecha_nac").on("keyup", function () {
-	"use strict";
-	var fecha_nac = $(this).val();
-	// var expresion = /^\d{2}\/\d{2}\/\d{4}$/;
 
-	if (fecha_nac) {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	} else {
-		$(this).removeClass("is-invalid error-input");
-		$("#fecha_nac").removeClass("is-valid").addClass("is-invalid");
-	}
-});
 
 //Correo
 $("#correo1").on("keyup", function () {
@@ -478,6 +480,22 @@ $("#edad").on("keyup", function () {
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
 		$("#edad").removeClass("is-valid").addClass("is-invalid");
+	}
+});
+$("#password").on("keyup", function () {
+	"use strict";
+	var password = $(this).val();
+	
+
+	if (password) {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+	} else {
+		$(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+		$("#password").removeClass("is-valid").addClass("is-invalid");
 	}
 });
 // select
