@@ -344,7 +344,7 @@
                                         <label class="form-label">Contraseña</label>
                                         <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
 
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="password" maxlength="30" name="password" value="" placeholder="Ingreses sus Contraseña" required autofocus>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text" id="password" maxlength="6" name="password" value="" placeholder="Ingreses sus Contraseña" required autofocus>
                                            
 
                                         </div>

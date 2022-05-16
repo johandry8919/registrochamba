@@ -364,7 +364,7 @@ class Cadmin extends CI_Controller {
         $this->form_validation->set_rules('telf_movil', 'telf movil', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_local', 'telf local', 'trim|required|strip_tags');
         $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('fecha_nac', 'fecha de naciminto', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('fecha_nac', 'fecha_nac', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_profesion_oficio', 'id_profesion_oficio', 'trim|required|strip_tags');
@@ -696,6 +696,9 @@ class Cadmin extends CI_Controller {
         
     }
     public function actualizar_estructuras(){
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
         $estados = $this->Musuarios->getEstados();
 
         $responsabilidad_estructuras= $this->Estructuras_model->responsabilidad_estructuras();
@@ -713,7 +716,9 @@ class Cadmin extends CI_Controller {
         $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
         if (isset($id__exp_lab) and $id__exp_lab != "") {
           $res =  $this->Estructuras_model->getEditEstruturaID($id__exp_lab);
-           json_encode($res);
+         
+         
+           
            
          
         }
@@ -773,9 +778,11 @@ class Cadmin extends CI_Controller {
         $this->form_validation->set_rules('telf_movil', 'telf movil', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_local', 'telf local', 'trim|required|strip_tags');
         $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('fecha_nac', 'fecha de naciminto', 'trim|required|strip_tags');
+     
+        $this->form_validation->set_rules('fecha_nac', 'fecha_nac', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags');
+  
+        $this->form_validation->set_rules('edad', 'Edad', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('id_profesion_oficio', 'id_profesion_oficio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado', 'estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'municipio', 'trim|required|strip_tags');
@@ -1079,11 +1086,18 @@ class Cadmin extends CI_Controller {
 
 
 public function universidades(){
-    // if (!$this->session->userdata(59049)) {
-    //     redirect('iniciosesion');
-    // 
+    if (!$this->session->userdata('id_rol')) {
+        echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
+        exit();
+    }
     
     $univerdidade = $this->Empresas_entes_model->obtener_univerdidad();
+    
+    // otener el id del usuario 
+    $id_empresas = $this->session->userdata('id_empresas');
+    
+    $estados = $this->Musuarios->getEstados();
+        $datos['estados'] = $estados;
     
   
 
@@ -1102,6 +1116,9 @@ public function universidades(){
         "title"             => "universidades",
         "vista_principal"   => "admin/universidades",
         'univerdidad' => $univerdidade,
+        'datos' => $datos,
+       
+       
        
         
         
@@ -1254,10 +1271,10 @@ public function update_universidad_Representante(){
         
               ]);
               
-              echo  json_encode(["resultado" =>true,"mensaje"=> 'registro exitoso, presione OK para continuar']);
     
           }
-        
+          echo  json_encode(["resultado" =>true,"mensaje"=> 'registro exitoso, presione OK para continuar']);
+          
     }
    
     
