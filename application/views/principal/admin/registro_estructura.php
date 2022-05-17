@@ -1,6 +1,4 @@
 
-<?php      ?>
-
 
 
 <!-- #END# Page Loader -->
@@ -9,6 +7,7 @@
 <!-- #END# Overlay For Sidebars -->
 
 <section class="content">
+   
 
 
 
@@ -422,8 +421,8 @@
                                         id="cod_parroquia" name="cod_parroquia" required>
                                         <option value="parroquia">Seleccione una Parroquia</option>
                                         <?php
-                                            if(isset($datos_empresa->parroquia)){
-                                                echo "<option selected value='".$datos_empresa->codigoparroquia."' data-latitud=".$datos_empresa->latitud."  data-longitud=".$datos_empresa->longitud."  >".$datos_empresa->parroquia."</option>";     
+                                            if(isset($datos->parroquia)){
+                                                echo "<option selected value='".$datos_empresa->codigoparroquia."' data-latitud=".$datos->latitud."  data-longitud=".$datos->longitud."  >".$datos->parroquia."</option>";     
                                             }
                                         ?>
                                         </select>
@@ -494,38 +493,28 @@
 
                                 </div>
 
+                                
+
                             </section>
 
-                         
-                          
+                    
 
                                     <?php if(!$datos){
-                                        echo '<h3 >Registrar estrutura</h3>';
+                                        echo '<h3 >Asignar Contraseña</h3>';
                                         echo '<section>';
                                         echo '<div class="form-group">';
                                         echo '<input type="email" id="correo2" name="email2" class="form-control" placeholder="Email" data-parsley-error-message="Este campo es requerido" required autofocus />';
                                         echo '</div>';
                                         echo '<div class="form-group">';
-                                        echo '<input id="pass" type="password" name="Password" class="form-control" placeholder="Password" data-parsley-error-message="Este campo es requerido" required autofocus>';
+                                        echo '<input id="password" type="text" name="Password" class="form-control" placeholder="Password" data-parsley-error-message="Este campo es requerido" required autofocus>';
                                         echo '</div>';
                                      
                                         
                                         echo '</section>';
 
 
-                                    }else{
-                                        echo '<h3 id="Registra">Actualizar registro de estrutura </h3>';
-                                        echo '<section>';
-                                        echo '<div class="form-group">';
-                                        echo '<input type="email" id="correo2" name="email2" class="form-control" placeholder="Email" data-parsley-error-message="Este campo es requerido" required autofocus />';
-                                        echo '</div>';
-                                        echo '</section>';
-
-                                   
-                                        
-
-                                       
                                     }?>
+                                
 
                                    
                             </div>

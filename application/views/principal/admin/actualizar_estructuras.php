@@ -8,8 +8,7 @@
 <!-- #END# Overlay For Sidebars -->
 
 <section class="content">
-
-
+   
     <form method="post" id="form-estructuras">
         <div class="row ">
             <div class="col-md-12">
@@ -361,10 +360,10 @@
                                                 <select data-parsley-error-message="Este campo es requerido" required class="form-control show-tick" id="cod_municipio" name="cod_municipio" required data-parsley-error-message="Este campo es requerido">
                                                     <option value="municipio">Seleccione un Municipio</option>
                                                     <?php
-                                                    if (isset($datos_empresa->municipio)) {
-                                                        echo "<option selected value='" . $datos_empresa->codigomunicipio . "'>" . $datos_empresa->municipio . "</option>";
-                                                    }
-                                                    ?>
+                                            if(isset($datos->codigomunicipio)){
+                                                echo "<option selected value='".$datos->codigomunicipio."'>".$datos->nombre_municipio."</option>";     
+                                            }
+                                        ?>
                                                 </select>
                                             </div>
                                             <?php
@@ -383,10 +382,10 @@
                                                 <select class="form-control show-tick" data-parsley-error-message="Este campo es requerido" id="cod_parroquia" name="cod_parroquia" required>
                                                     <option value="parroquia">Seleccione una Parroquia</option>
                                                     <?php
-                                                    if (isset($datos_empresa->parroquia)) {
-                                                        echo "<option selected value='" . $datos_empresa->codigoparroquia . "' data-latitud=" . $datos_empresa->latitud . "  data-longitud=" . $datos_empresa->longitud . "  >" . $datos_empresa->parroquia . "</option>";
-                                                    }
-                                                    ?>
+                                            if(isset($datos->codigoparroquia)){
+                                                echo "<option selected value='".$datos->codigoparroquia."' data-latitud=".$datos->latitud."  data-longitud=".$datos->longitud."  >".$datos->nombre_parroquia."</option>";     
+                                            }
+                                        ?>
                                                 </select>
                                             </div>
                                             <?php
