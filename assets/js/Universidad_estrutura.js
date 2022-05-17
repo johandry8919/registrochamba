@@ -1,3 +1,4 @@
+
 (function ($) {
 	$("#button").click(function () {
 		var razon_social = $("#razon_social").val();
@@ -206,13 +207,12 @@
 					$("#cod_parroquia").addClass("is-valid");
 				}
 			}
-
-			return true 
+			return false
 		}
 		// hacer post con ajax
 		$.ajax({
 			dataType: "json",
-			url: base_url + "Cadmin/crearUniversidades",
+			url: base_url + "Estructuras/crearUniversidades",
 			type: "post",
 			data: {
 				razon_social,
@@ -248,7 +248,7 @@
 					}).then((result) => {
 						/* Read more about isConfirmed, isDenied below */
 						if (result.isConfirmed) {
-							$(location).attr("href", base_url + "admin/universidades");
+							$(location).attr("href", base_url + "estructuras/lista_universidad");
 						}
 					});
 				} else {

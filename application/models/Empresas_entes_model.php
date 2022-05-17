@@ -46,6 +46,24 @@
 
     }
 		
+    public function Estructura_crearUniversidades($data) {
+
+      
+        $this->db->insert('tbl_estructuras', $data);
+        if ($this->db->trans_status() === FALSE)
+    {
+        $this->db->trans_rollback();
+        return false;
+    }
+    else
+    {
+        $insert_id = $this->db->insert_id();
+
+            return  $insert_id;
+    }
+
+    }
+		
 
         public function verificarSiExiste($campo,$valor){
 
@@ -107,7 +125,7 @@
         public function obtener_representante_universidad($id){
         
 
-            $this->db->select(' tbl_empresas_entes.*,
+            $this->db->select('tbl_empresas_entes.*,
             re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
             re.apellidos as apellido_representante, re.tlf_celular as celular_representante, re.id_usuario,  re.id_empresas_entes,
             tbl_empresas_entes.tlf_celular as tlf_celular_empresa,
@@ -148,6 +166,49 @@
         }
 
 
+}
+
+public function pos_EstructuraUniversidades($data) {
+
+      
+    $this->db->insert('tbl_estructuras', $data);
+    if ($this->db->trans_status() === FALSE)
+{
+    $this->db->trans_rollback();
+    return false;
+}
+else
+{
+    $insert_id = $this->db->insert_id();
+
+        return  $insert_id;
+}
+
+}
+
+
+public function obtener_Estructuras($id = 3){
+        
+
+    $this->db->select(' tbl_empresas_entes.*,
+    re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
+    re.apellidos as apellido_representante, re.tlf_celular as celular_representante,
+    
+    re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo
+
+            
+    ');
+    $this->db->where("id_tipo_empresas_universidades", $id);
+    $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
+    $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
+
+    $query = $this->db->get("tbl_empresas_entes");
+
+    if ($query->num_rows()) $valor = $query->result();
+    else $valor = [];
+
+
+    return $valor;
 }
 
 

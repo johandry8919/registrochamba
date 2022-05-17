@@ -156,6 +156,7 @@
 						
 						// latitud.validate();
 						// longitud.validate();
+						return false;
 					}
 				}
 				// Always allow step back to the previous step even if the current step is not valid.
