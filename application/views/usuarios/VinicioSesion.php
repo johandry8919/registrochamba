@@ -25,7 +25,7 @@
     <link href="<?php echo base_url(); ?>assets/css/dark-style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/transparent-style.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/css/skin-modes.css" rel="stylesheet" />
-
+    <link href="<?php echo base_url()?>assets/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <!--- FONT-ICONS CSS -->
     <link href="<?php echo base_url(); ?>/assets/css/icons.css" rel="stylesheet" />
 
@@ -110,7 +110,7 @@
                 <!-- CONTAINER OPEN -->
                 <div class="col col-login mx-auto mt-7">
                     <div class="text-center">
-                    <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt=""  style="width:30% ">
+                    <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt=""  style="width:50% ">
                           </div>
                 </div>
 
@@ -167,6 +167,7 @@
                                         </div>
                                
                                         <div class="tab-pane " id="tab6">
+                                            <form method="post" action id="form-estructura"> 
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
@@ -187,16 +188,19 @@
                                             <div class="container-login100-form-btn">
 
 
-                                                <a href="<?php echo base_url(); ?>estructuras/inicio"  class=" btn btn-block login100-form-btn2 btn-success">
+                                                <button type="submit" id="btn-estructura"
+                                                    
+                                                    class=" btn btn-block login100-form-btn2 btn-success">
                                                     Ingresar
-                                                </a>
+                                                </button>
                                             </div>
-                                         
+                                        </form>
 
                                         </div>
 
 
                                         <div class="tab-pane " id="tab7">
+                                            <form action="Post" id="login-empresa">
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
@@ -217,11 +221,11 @@
                                             <div class="container-login100-form-btn">
 
 
-                                                <a href="<?php echo base_url(); ?>empresas/inicio"  class=" btn btn-block login100-form-btn2 btn-info">
+                                                <button type="submit" class="btn  btn-block login100-form-btn2 btn-info">
                                                     Ingresar
-                                                </a>
+                                                </button>
                                             </div>
-                                           
+                                        </form>
 
                                         </div>
                                     </div>
@@ -279,10 +283,11 @@
 
     <!-- Color Theme js -->
     <script src="<?php echo base_url(); ?>assets/js/themeColors.js"></script>
-
+    <script src="<?php echo base_url();?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- CUSTOM JS -->
     <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
-
+    <script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>
+    <script src="<?php echo base_url(); ?>assets/js/login_inicio.js"></script>
 </body>
 
 </html>

@@ -13,6 +13,7 @@ class Estructuras extends CI_Controller
         $this->load->model('Mprofesion_oficio');
         //$this->load->library('security');
         //$this->output->enable_profiler(TRUE);
+        $this->load->model('Usuarios_admin_model');
     }
 
     public function index()
@@ -80,6 +81,84 @@ class Estructuras extends CI_Controller
         $this->load->view("main", $output);
     }
 
+
+    public function validarSession()
+	{
+        
+        $this->form_validation->set_rules('email', 'email', 'trim|strip_tags|valid_email|min_length[3]|max_length[60]|required');
+        //$this->form_validation->set_rules('password', 'password', 'trim|strip_tags|min_length[6]|max_length[16]|required');
+        //validaciones
+        //delimitadores de errores
+        $this->form_validation->set_error_delimiters('*', '*');
+        //delimitadores de errores
+        //reglas de validación
+        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+
+        //reglas de validación
+
+
+
+  
+        if (!$this->form_validation->run()) {
+            $mensaje_error = validation_errors();
+            
+            echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
+      
+
+        } 
+
+            $email = strtoupper($this->input->post('email'));
+            //encriptamos clave codeigniter
+
+            $password = trim($this->input->post('password'));
+
+            $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email);
+     
+            if ($resultado) {
+          
+                if (password_verify($password,$resultado->password) && $resultado->id_rol=3) {
+
+                    $s_usuario = array(
+                        'id_usuario' => $resultado->id_usuarios_admin,
+                        'cedula' => $resultado->cedula,
+                        'email' => $resultado->email,
+                        'activo' => $resultado->activo,
+                        'fecha_reg' => $resultado->created_on,
+                        'id_rol' => $resultado->id_rol
+                    );
+
+                 
+                    //SI ES IGUAAL A CERO MUESTRA VISTA DONDE ACTIVA LA CUENTA A TRAVES DEL CODIGO O PERMITE REENVIAR EMAIL
+
+                    //SINO ENVIA A LA VISTA DE CHAMBA
+                    if ($resultado->activo==0) {
+                        //$this->session->set_flashdata('mensaje', 'Debes completar tus datos para poder realizar una publicación');
+                        //redirect('Cusuarios/VvalidarCuenta');
+                                 
+                    echo  json_encode(["resultado" =>false,"mensaje"=> "La Cuenta de usuario no se encuenta activa"]);
+                    exit;
+
+                    }else{
+                        $this->session->set_userdata($s_usuario);
+                        echo  json_encode(["resultado" =>true,"mensaje"=>' Ingreso exitoso']);
+                        exit;
+
+                    }
+
+                } else {
+                    //mando a la vista de error
+           
+                        echo  json_encode(["resultado" =>false,"mensaje"=>'Email o Clave incorrectas']);
+                        exit;
+                
+                }
+            } else {
+           
+                echo  json_encode(["resultado" =>false,"mensaje"=>'Email o Clave incorrectas']);
+                exit;
+            }
+        
+	}
 
        
     public function registro_empresas()

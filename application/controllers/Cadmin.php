@@ -65,6 +65,11 @@ class Cadmin extends CI_Controller {
    public function listar_usuarios_admin(){
 
 
+    if ($this->session->userdata('id_rol')!=2) {
+        redirect('admin/login');
+    
+     
+    }
     $usuarios=$this->Usuarios_admin_model->obtener_usuarios(2);
 
     
@@ -351,7 +356,7 @@ class Cadmin extends CI_Controller {
         //delimitadores de errores
 
 
-        if (!$this->session->userdata('id_rol')) {
+        if (!$this->session->userdata('id_rol')==2) {
             echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
             exit();
         }

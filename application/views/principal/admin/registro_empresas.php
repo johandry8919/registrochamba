@@ -120,7 +120,7 @@
                                         data-parsley-error-message="Este campo es requerido"
 
                                         required class="form-control show-tick " id="sector_economico" name="sector_economico" required>
-                                            <option value="0">Seleccione una Profesión u Oficio</option>
+                                            <option value="0">Seleccione una opcion</option>
 
                                            
                                      
