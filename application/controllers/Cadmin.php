@@ -416,21 +416,22 @@ class Cadmin extends CI_Controller {
 
  
     // $datos_usuario['codigo'] = generar_uuid();
-    $datos_usuario['cedula'] = strtoupper('V'.$this->input->post('cedula'));
+    $datos_usuario['cedula'] = strtoupper($this->input->post('cedula'));
     $datos_usuario['email'] = strtoupper($this->input->post('correo1'));
     //encriptacion
     $pass_cifrado = password_hash($this->input->post('pass'),PASSWORD_DEFAULT);
     $datos_usuario['password'] = $pass_cifrado;
-    $datos_usuario['activo'] = 0;
+    $datos_usuario['activo'] = 1;
     // $datos_usuario['registro_anterior'] = 0;
     $datos_usuario['id_rol'] = 3;
+    $datos_usuario['nombre'] $this->input->post('nombres')." ".$this->input->post('apellidos');
 
  
 
 
    
    //REGISTRo de usuario DE ESTRUCTURA en la tabla usuario
-       $id_usuario_registro= $this->Musuarios->registrarUsuario($datos_usuario);
+       $id_usuario= $this->Usuarios_admin_model->post_regitrar($datos_usuario);
        $datas = array(
         'nombre' => $this->input->post('nombres'),
         'apellidos' => $this->input->post('apellidos'),
@@ -452,8 +453,8 @@ class Cadmin extends CI_Controller {
         'talla_camisa' => $this->input->post('talla_camisa'),
         'latitud' => $this->input->post('latitud'),
         'longitud' => $this->input->post('longitud'),
-        'id_usuario' =>  $id_usuario_registro,
-
+        'id_usuario' =>  $id_usuario,
+        'id_usuario_registro' => $this->session->userdata('id_usuario')
       
     );
   
@@ -947,7 +948,9 @@ class Cadmin extends CI_Controller {
         ],
 
 
-           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")],
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")
+        
+        ],
            "ficheros_css" => [recurso("mapa_mabox_css")],
            recurso("universidades_js"),
 

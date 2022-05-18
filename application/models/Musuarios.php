@@ -984,7 +984,7 @@ class Musuarios extends CI_Model
 
 		$this->db->trans_begin();
 
-			$this->db->insert('public.usuarios_admin',$datos);
+			$this->db->insert('public.tbl_usuarios',$datos);
 
 		if ($this->db->trans_status() === FALSE)
 		{
