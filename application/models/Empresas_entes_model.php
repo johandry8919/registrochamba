@@ -83,7 +83,8 @@
             re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
             re.apellidos as apellido_representante, re.tlf_celular as celular_representante,
             
-            re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo
+            re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo,
+            re.id_representantes
   
                     
             ');
@@ -128,7 +129,7 @@
             $this->db->select('tbl_empresas_entes.*,
             re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
             re.apellidos as apellido_representante, re.tlf_celular as celular_representante, re.id_usuario,  re.id_empresas_entes,
-            tbl_empresas_entes.tlf_celular as tlf_celular_empresa,
+            tbl_empresas_entes.tlf_celular as tlf_celular_empresa, re.id_representantes,
 
             re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo,re.tlf_celular,
             estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia
@@ -152,11 +153,11 @@
 
 
 
-    public function update_Universidades($datos){
+    public function update_Universidades($datos,$id){
         //actualizar tbl_empresas_entes
         //por la id_empresa 
        
-        $this->db->where('rif', $datos['rif']);
+        $this->db->where('id_empresas', $id);
         $this->db->update('tbl_empresas_entes', $datos);
 
         if($this->db->affected_rows() > 0){

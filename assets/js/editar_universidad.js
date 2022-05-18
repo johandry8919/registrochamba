@@ -24,6 +24,7 @@
 		var facebook = $("#facebook").val();
 		var twitter = $("#twitter").val();
 		var id_empresas_entes = $("#id_empresas_entes").val();
+		var id_representante = $("#id_representante").val();
 
 		// si los campo son valido se envia el formulario
 
@@ -53,7 +54,7 @@
 			nombre_representante,apellidos_representante,cedula_representante,telf_movil_representante,
 			email_representante,cargo,cod_estado,cod_municipio,
 			cod_parroquia,latitud,longitud,telf_local_representante,
-			direccion,instagram,twitter,facebook,id_empresas_entes,
+			direccion,instagram,twitter,facebook,id_empresas_entes,id_representante
 		
 		},
 		success: function (respuesta) {

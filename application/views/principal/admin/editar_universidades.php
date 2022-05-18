@@ -522,7 +522,8 @@
 
                 
                 <input type="hidden" name="id_empresas_entes" id="id_empresas_entes" value="<?php echo $datos->id_empresas_entes; ?>">
-               
+                <input type="hidden" name="id_representante" id="id_representante" value="<?php echo $datos->id_representantes; ?>">
+
 
 
 

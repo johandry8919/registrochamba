@@ -186,6 +186,7 @@
 			var talla_camisa = $("#talla_camisa").val();
 			var latitud = $("#latitud").val();
 			var longitud = $("#longitud").val();
+			var id_usuario_estructura = $("#id_usuario_estructura").val();
             //Actulizar con ajax 
 
 			$.ajax({
@@ -207,6 +208,7 @@
 					cod_parroquia,
 					direccion,
 					cod_responsabilidad,
+					id_usuario_estructura,
 					id_estructura,
 					talla_pantalon,
 					talla_camisa,

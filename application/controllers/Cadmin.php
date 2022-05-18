@@ -347,7 +347,7 @@ class Cadmin extends CI_Controller {
 
         ];
 
-        $this->load->view("main", $output);
+       $this->load->view("main", $output);
        
 	}
 
@@ -723,11 +723,14 @@ class Cadmin extends CI_Controller {
           $res =  $this->Estructuras_model->getEditEstruturaID($id__exp_lab);
          
          
-           
-           
+           if (empty($res)) {
+            redirect('admin/login');
+        }
          
         }
        
+      
+      
       
         $breadcrumb =(object) [
             "menu" => "Admin",
@@ -748,6 +751,7 @@ class Cadmin extends CI_Controller {
             'profesion_oficio' => $profesion_oficio,
             "datos" => $res,
             "persona" => $persona,
+            "id_estructura" =>$id__exp_lab,
             
 
             
@@ -796,6 +800,8 @@ class Cadmin extends CI_Controller {
         $this->form_validation->set_rules('id_estructura', 'estructura_responsabilidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_usuario_estructura', 'id_usuario_estructura', 'trim|required|strip_tags');
+        
          
         //otener el id de la estructura
         $this->form_validation->set_error_delimiters('*', '');
@@ -838,7 +844,7 @@ class Cadmin extends CI_Controller {
           
         );
 
-        $this->Estructuras_model->update_Estructura($datas);
+        $this->Estructuras_model->update_Estructura($datas, $this->input->post('id_usuario_estructura'));
         echo  json_encode(["resultado" =>true,"mensaje"=> "Datos guardados correctamente."]);
     }
       
@@ -1179,6 +1185,7 @@ public function editar_universidades(){
          "estados"          => $estados,
          "empresas"         => $empresas,
          "datos"            =>$res,
+         "id_empresa" => $id__exp_lab,
          
         
             "sectorProductivo" => $sectorProductivo,
@@ -1193,15 +1200,14 @@ public function editar_universidades(){
        "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
         recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
          recurso("mapa_mabox_js"),
-         recurso("editar_unirvesidad_js"),
+
          
     ],
 
 
-       "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")],
+       "ficheros_js" => [recurso("editar_universidad_js")],
        "ficheros_css" => [recurso("mapa_mabox_css")],
-       recurso("editar_unirvesidad_js"),
-
+     
     ];
 
     $this->load->view("main", $output);
@@ -1220,7 +1226,8 @@ public function update_universidad_Representante(){
         $this->form_validation->set_rules('direccion','direccion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado','Estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'Municipio', 'trim|required|strip_tags');
-
+        $this->form_validation->set_rules('id_representante', 'id_representante', 'trim|required|strip_tags');
+        
         $this->form_validation->set_error_delimiters('*', '');
         //delimitadores de errores
  
@@ -1233,10 +1240,13 @@ public function update_universidad_Representante(){
             echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
 
     }else{
+
+       $id_empresa=$this->input->post('id_empresas_entes');
+       $id_representante =$this->input->post('id_representante');
         $data = array(
        
             "id_sector_economico"          => $this->input->post('sector_economico'),
-            // "nombre_razon_social"   =>$this->input->post('nombre_razon_social'),
+            "nombre_razon_social"   =>$this->input->post('razon_social'),
             "rif"=>$this->input->post('rif'),
             "tlf_celular"   =>$this->input->post('tlf_celular'),
             "direccion" => $this->input->post('direccion'),
@@ -1262,11 +1272,9 @@ public function update_universidad_Representante(){
     
 
     
-          if($this->Empresas_entes_model->update_Universidades($data)){
-            $this->Representante_empresas_entes_model->update_representante([
-                "id_empresas_entes" =>trim($this->input->post('id_empresas_entes')),
-                 
-                  "cedula"   =>$this->input->post('cedula_representante'),
+          if($this->Empresas_entes_model->update_Universidades($data,$id_empresa)){
+            $this->Representante_empresas_entes_model->update_representante([          
+                                   "cedula"   =>$this->input->post('cedula_representante'),
                   "nombre"                =>$this->input->post('nombre_representante'),                                                                                                                                                                                                     
                   "apellidos"             =>$this->input->post('apellidos_representante'),
                   "tlf_celular"           =>$this->input->post('telf_movil_representante'),
@@ -1274,9 +1282,13 @@ public function update_universidad_Representante(){
                   "email"                =>$this->input->post('email_representante'),
                   "cargo "                =>$this->input->post('cargo')
         
-              ]);
+              ],$id_representante);
               
     
+          }else{
+
+            echo  json_encode(["resultado" =>false,"mensaje"=> 'No se actuaizaron los registros intente de nuevo']);
+
           }
           echo  json_encode(["resultado" =>true,"mensaje"=> 'registro exitoso, presione OK para continuar']);
           

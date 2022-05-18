@@ -49,7 +49,7 @@
                                 echo '<div class="btn-list">';
                                 echo '<button type="button" class="btn btn-sm btn-primary ">';
                                 echo '<span class="fs-6">';
-                                echo '<a class="text-white" href="' . base_url() . 'admin/registro/estructuras/' . $usuaca->id_usuario . '">&#9998;</a>';
+                                echo '<a class="text-white" href="' . base_url() . 'admin/registro/estructuras/' . $usuaca->id_estructura . '">&#9998;</a>';
                                 echo '</span ">';
 
                                 echo '</button ">';

@@ -1,6 +1,3 @@
-<?php      ?>
-
-
 
 <!-- #END# Page Loader -->
 <!-- Overlay For Sidebars -->
@@ -477,7 +474,7 @@
 
 
 
-
+  <input type="hidden" id="id_usuario_estructura" name="id" value="<?php echo $id_estructura?>">
 
 </section>
 <script type="text/javascript">

@@ -58,10 +58,10 @@
             return $valor;
         }
 
-         public function update_representante($datos){
+         public function update_representante($datos,$id_representante){
           
 
-            $this->db->where('id_empresas_entes',  $datos['id_empresas_entes']);
+            $this->db->where('id_representantes',  $id_representante);
             $this->db->update('public.tbl_representantes_empresas_entes', $datos);
             if($this->db->affected_rows() > 0){
                 return true;

@@ -15,6 +15,8 @@
                                                         <th class="wd-20p border-bottom-0">Actividad Economica</th>
                                                         <th class="wd-15p border-bottom-0">Sector Economino</th>
                                                         <th class="wd-10p border-bottom-0">Nombre representante</th>
+                                                        <th class="wd-10p border-bottom-0">Editar</th>
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -27,6 +29,11 @@
                                                         <td><?php  echo $empresa->productivo ?></td>
                                                         <td><?php  echo $empresa->noombre_representante ?> <?php  echo $empresa->apellido_representante ?></td>
                                                    
+                                                        <td>
+                                                        <div class="btn-list"><button type="button" class="btn btn-sm btn-primary "><span class="fs-6"><a class="text-white" href="https://localhost/registrochamba/admin/registro/estructuras/2">✎</a></span></button></div>
+
+                                                        </td>
+
                                                     </tr>
                                                     <?php endforeach ?>
                                                 </tbody>

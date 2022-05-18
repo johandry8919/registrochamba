@@ -175,7 +175,7 @@
         estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia
         ');
        
-        $this->db->where('id_usuario',$id);
+        $this->db->where('id_estructura',$id);
         $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
         $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');
         $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_estructuras.codigoparroquia');
@@ -204,11 +204,11 @@
 
                                                       
     }
-    public function update_Estructura($datos){
+    public function update_Estructura($datos,$id_estructura){
         //actualizar estructura
         //por la cedula del usuario
-        $this->db->where('cedula', $datos['cedula']);
-        $this->db->where('email', $datos['email']);
+        $this->db->where('id_estructura',$id_estructura);
+
         $this->db->update('tbl_estructuras', $datos);
 
         if($this->db->affected_rows() > 0){

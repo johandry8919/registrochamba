@@ -31,9 +31,9 @@
     $config['recursos']['estructuras_js'] = "assets/js/estructuras.js?v=1.0.6";
     $config['recursos']['Universidad_estrutura_js'] = "assets/js/Universidad_estrutura.js?v=1.0.6";
 
-  $config['recursos']['actulizar_estructuras_js'] = "assets/js/actulizar_estructuras.js?v=1.0.6";
+  $config['recursos']['actulizar_estructuras_js'] = "assets/js/actulizar_estructuras.js?v=1.0.2";
     $config['recursos']['universidades_js'] = "assets/js/universidades.js?v=1.0.6";
-    $config['recursos']['edit_universidad_js'] = "assets/js/edit_universidad.js?v=1.0.6";
+    $config['recursos']['editar_universidad_js'] = "assets/js/editar_universidad.js?v=1.0.4";
     $config['recursos']['edit_unirvesidad_js'] = "assets/js/edit_unirvesidad.js?v=1.0.6";
     $config['recursos']['estructuras_css'] = "assets/css/estructuras.css?v=1.0.6";
     $config['recursos']['registro_estructuras_js'] = "assets/js/registro_estructuras.js?v=1.0.6";
@@ -42,7 +42,7 @@
     $config['recursos']['area_formacion_js'] = "assets/js/area_formacion.js?v=1.0.6";
     $config['recursos']['lista_empresas_js'] = "assets/js/lista_empresas.js?v=1.0.6";
     $config['recursos']['listar_estructura_js'] = "assets/js/listar_estructura.js?v=1.0.6";
-    $config['recursos']['listar_estructura_js'] = "assets/js/login_inicio.js?v=1.0.6";
+    $config['recursos']['login_inicio_js'] = "assets/js/login_inicio.js?v=1.0.6";
 
     
         // css - librería sassets\plugins\mapbox
