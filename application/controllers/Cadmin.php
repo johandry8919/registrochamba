@@ -424,7 +424,7 @@ class Cadmin extends CI_Controller {
     $datos_usuario['activo'] = 1;
     // $datos_usuario['registro_anterior'] = 0;
     $datos_usuario['id_rol'] = 3;
-    $datos_usuario['nombre'] $this->input->post('nombres')." ".$this->input->post('apellidos');
+    $datos_usuario['nombre']= $this->input->post('nombres')." ".$this->input->post('apellidos');
 
  
 
