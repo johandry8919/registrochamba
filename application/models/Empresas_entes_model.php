@@ -77,20 +77,21 @@
             return $valor;
         }
 
-        public function obtener_empresas($id_tipo_empresa= 1){
+        public function obtener_empresas($id_tipo_empresa = 1){
 
             $this->db->select(' tbl_empresas_entes.*,
             re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
             re.apellidos as apellido_representante, re.tlf_celular as celular_representante,
             
             re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo,
-            re.id_representantes
+            re.id_representantes,estado.nombre as nombre_estado
   
                     
             ');
             $this->db->where("id_tipo_empresas_universidades", $id_tipo_empresa);
             $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
             $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
+            $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_empresas_entes.codigoestado');
 
             $query = $this->db->get("tbl_empresas_entes");
     
@@ -105,7 +106,7 @@
 
             $this->db->select(' tbl_empresas_entes.*,
             re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
-            re.apellidos as apellido_representante, re.tlf_celular as celular_representante,
+            re.apellidos as apellido_representante, re.tlf_celular as celular_representante,estado.nombre as nombre_estado,
             
             re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo
   
@@ -114,6 +115,7 @@
             $this->db->where("id_tipo_empresas_universidades", $id_tipo_empresa);
             $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
             $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
+            $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_empresas_entes.codigoestado');
 
             $query = $this->db->get("tbl_empresas_entes");
     
@@ -154,6 +156,21 @@
 
 
     public function update_Universidades($datos,$id){
+        //actualizar tbl_empresas_entes
+        //por la id_empresa 
+       
+        $this->db->where('id_empresas', $id);
+        $this->db->update('tbl_empresas_entes', $datos);
+
+        if($this->db->affected_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+
+}
+    public function update_epresas($datos,$id){
         //actualizar tbl_empresas_entes
         //por la id_empresa 
        
