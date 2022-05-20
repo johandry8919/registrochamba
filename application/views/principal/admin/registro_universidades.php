@@ -520,8 +520,13 @@
 
 
 
+                <input type="hidden" name="id_empresas_entes" id="id_empresas_entes" value="<?php if(isset($datos)){echo $datos->id_empresas_entes;}
+                                ?>">
 
-
+                <input type="hidden" name="id_representante" id="id_representante" value="<?php if(isset($datos)){
+                    echo $datos->id_representantes;
+                } ?>">
+            
 
 
         </form>

@@ -469,7 +469,56 @@ class Cadmin extends CI_Controller {
 }
         
          
+public function registro_empresas()
+  
+{
+    $estados = $this->Musuarios->getEstados();
+
+    $datos['estados'] = $estados;
+
+    $breadcrumb =(object) [
+        "menu" => "Admin",
+        "menu_seleccion" => "Registro de empresas"
+
+            ];
+
+    $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
    
+    
+
+ 
+    $output = [
+        "menu_lateral"=>"admin",
+        "breadcrumb"      =>   $breadcrumb,
+        "title"             => "Registro  de empresas",
+         "vista_principal"   => "admin/registro_empresas",
+         "sectorProductivo" => $sectorProductivo,
+         
+ 
+       
+       "estados"          => $estados,
+
+        
+       "librerias_css" => [],
+
+     
+       "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
+        recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
+        recurso("jquery_steps_js"),  recurso("parsleyjs_js"),recurso("jquery_easing_js")
+    ],
+
+
+       "ficheros_js" => [   recurso("registro_empresas_admin_js"),recurso("mapa_mabox_js")],
+
+       
+       "ficheros_css" => [recurso("mapa_mabox_css")],
+
+
+    ];
+
+    $this->load->view("main", $output);
+   
+}
 
 
     public function crearEmpresas(){
@@ -612,6 +661,8 @@ class Cadmin extends CI_Controller {
              echo  json_encode(["resultado" =>true,"mensaje"=> 'registro exitoso, presione OK para continuar']);
            
     }
+ 
+
 
     public function listar_empresas_entes(){
 
@@ -914,57 +965,7 @@ class Cadmin extends CI_Controller {
 
 
 
-    public function registro_empresas()
   
-	{
-        $estados = $this->Musuarios->getEstados();
-
-        $datos['estados'] = $estados;
-
-        $breadcrumb =(object) [
-            "menu" => "Admin",
-            "menu_seleccion" => "Registro de empresas"
- 
-                ];
-    
-        $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
-       
-        
-
-     
-        $output = [
-            "menu_lateral"=>"admin",
-            "breadcrumb"      =>   $breadcrumb,
-            "title"             => "Registro  de empresas",
-             "vista_principal"   => "admin/registro_empresas",
-             "sectorProductivo" => $sectorProductivo,
-             
-     
-           
-           "estados"          => $estados,
-
-            
-           "librerias_css" => [],
-
-         
-           "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
-            recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
-            recurso("jquery_steps_js"),  recurso("parsleyjs_js"),recurso("jquery_easing_js")
-        ],
-
-
-           "ficheros_js" => [   recurso("registro_empresas_admin_js"),recurso("mapa_mabox_js")],
-
-           
-           "ficheros_css" => [recurso("mapa_mabox_css")],
-
-
-        ];
-
-        $this->load->view("main", $output);
-       
-	}
-
     public function registro_universidades(){
         if (!$this->session->userdata('id_rol')) {
             echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
@@ -1338,7 +1339,7 @@ public function update_universidad_Representante(){
     
           if($this->Empresas_entes_model->update_Universidades($data,$id_empresa)){
             $this->Representante_empresas_entes_model->update_representante([          
-                                   "cedula"   =>$this->input->post('cedula_representante'),
+                                //    "cedula"   =>$this->input->post('cedula_representante'),
                   "nombre"                =>$this->input->post('nombre_representante'),                                                                                                                                                                                                     
                   "apellidos"             =>$this->input->post('apellidos_representante'),
                   "tlf_celular"           =>$this->input->post('telf_movil_representante'),

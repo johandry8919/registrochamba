@@ -34,7 +34,7 @@
                                                         <div class="btn-list">
                                                         <button type="button" class="btn btn-sm btn-primary ">
                                                         <span class="fs-6">
-                                                        <a class="text-white" href="<?php base_url()?>editar/empresa/<?php echo $empresa->id_empresas?>">&#9998;</a>
+                                                        <a class="text-white" href="<?php base_url()?>registro/empresas/<?php echo $empresa->id_empresas?>">&#9998;</a>
                                                         </span>
                                                         </button>
                                                         </div>
