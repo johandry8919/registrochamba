@@ -22,6 +22,11 @@
                     <div class="card-body">
                         <?php if(isset($empresa)) echo "<form id='form-actualizar_empresa'>"?>
 
+                        <div id="wizard2">
+                  
+                    
+                            <h3>datos de la empresa</h3>
+                            <section>
                         
                         <div id="wizard2">
                             

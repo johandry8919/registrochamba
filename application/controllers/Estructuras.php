@@ -443,7 +443,7 @@ public function editar_empresas(){
         "title"             => "Registro  de empresas",
          "vista_principal"   => "admin/registro_empresas",
          "sectorProductivo" => $sectorProductivo,
-         "list_empresa" => $res,
+         "empresa" => $res,
          "id_empresa" => $id__exp_lab,
          "datos"            =>$res,
          
@@ -461,7 +461,7 @@ public function editar_empresas(){
     ],
 
 
-       "ficheros_js" => [   recurso("update_epres_estruct_js"),recurso("mapa_mabox_js")],
+       "ficheros_js" => [   recurso("resgistro_epres_estruct_js"),recurso("mapa_mabox_js")],
 
        
        "ficheros_css" => [recurso("mapa_mabox_css")],
@@ -491,6 +491,7 @@ public function  update_empresas_representante(){
     $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
     $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
 
+    $this->form_validation->set_rules('password', 'password', 'trim|required|strip_tags');
     
 
    
@@ -607,6 +608,8 @@ public function  update_empresas_representante(){
         $this->load->view("main", $output);
 
     }
+
+    
 
     public function crearUniversidades(){
 
