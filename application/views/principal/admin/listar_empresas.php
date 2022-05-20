@@ -30,8 +30,13 @@
                                                         <td><?php  echo $empresa->noombre_representante ?> <?php  echo $empresa->apellido_representante ?></td>
                                                    
                                                         <td>
-                                                        <div class="btn-list"><button type="button" class="btn btn-sm btn-primary "><span class="fs-6"><a class="text-white" href="https://localhost/registrochamba/admin/registro/estructuras/2">✎</a></span></button></div>
-
+                                                        <div class="btn-list">
+                                                        <button type="button" class="btn btn-sm btn-primary ">
+                                                        <span class="fs-6">
+                                                        <a class="text-white" href="<?php base_url()?>editar/empresa/<?php echo $empresa->id_empresas?>">&#9998;</a>
+                                                        </span>
+                                                        </button>
+                                                        </div>
                                                         </td>
 
                                                     </tr>

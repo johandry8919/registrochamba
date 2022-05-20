@@ -22,7 +22,10 @@
     $config['recursos']['usuarios_admin_js'] = "assets/js/usuarios_admin.js?v=1.0.6";
     $config['recursos']['admin_registrar_usuario_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.6";
     $config['recursos']['listar_usuario_admin_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.6";
+    $config['recursos']['editar_empresas_admin_js'] = "assets/js/admin/editar_empresas_admin.js?v=1.0.6";
 
+
+    
 
     
     $config['recursos']['mapa_mabox_js'] = "assets/js/mapa_mabox.js?v=1.0.4";

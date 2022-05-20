@@ -701,6 +701,67 @@ class Cadmin extends CI_Controller {
         $this->load->view("main", $output);
         
     }
+
+    public function editar_empresa(){
+        
+
+        if ($this->session->userdata('id_rol')!=2) {
+            redirect('admin/login');
+        }
+
+        $id_empresa = strip_tags(trim($this->uri->segment(4)));
+        if (isset($id_empresa) and $id_empresa != "") {
+    
+          $empresa=  $this->Empresas_entes_model->obtener_empresa( 1,$id_empresa);
+
+        }
+
+        $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+        $estados = $this->Musuarios->getEstados();
+        print_r(  $empresa);
+     
+        $breadcrumb =(object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Editar empresa"
+        
+ 
+                ];
+
+     
+        $output = [
+            "menu_lateral"=>"admin",
+            "datatable"      =>true,
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "editar_empresa",
+            "vista_principal"   => "admin/registro_empresas",
+            "empresa"  =>$empresa,
+            "estados" =>$estados,
+            "sectorProductivo" => $sectorProductivo,
+
+            
+            
+            
+            
+           "librerias_css" => [],
+
+         
+           "librerias_js" => [
+     
+        ],
+
+
+           
+        "ficheros_js" => [   recurso("editar_empresas_admin_js"),recurso("mapa_mabox_js")],
+
+           
+        "ficheros_css" => [recurso("mapa_mabox_css")],
+
+
+        ];
+
+        $this->load->view("main", $output);
+        
+        }
     public function actualizar_estructuras(){
         if (!$this->session->userdata('id_rol')) {
             redirect('admin/login');

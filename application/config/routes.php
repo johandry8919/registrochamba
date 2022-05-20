@@ -108,6 +108,7 @@ $route['admin'] = 'Cadmin';
 
 $route['admin/empresas'] = 'Cadmin/listar_empresas_entes';
 $route['estructura/lista_universidad'] = 'Estructuras/lista_universidad';
+$route['admin/editar/empresa/(:num)'] = 'Cadmin/editar_empresa/$1';
 /*Administrador*/
 
 
