@@ -55,21 +55,21 @@
                                         class="angle fe fe-chevron-right"></i></a>
                                 <ul class="slide-menu">
                                     
-                                    <li><a href="<?php echo base_url();?>estructuras/registro/empresas"
-                                        class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
+                                    <li><a href="<?php echo base_url();?>estructuras/listar_empresas"
+                                        class="slide-item <?php if($this->uri->segment(1)=='listar_empresas' || $this->uri->segment(1)=='listar_empresas') echo 'active';?>"
                                             >Consultar empresas registradas</a></li>
    
-                                            <li><a href="<?php echo base_url();?>estructuras/registro/universidades"
-                                        class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
+                                            <li><a href="<?php echo base_url();?>estructuras/lista_universidad"
+                                        class="slide-item <?php if($this->uri->segment(1)=='lista_universidad' || $this->uri->segment(1)=='lista_universidad') echo 'active';?>"
                                             >Consultar instituciones registradas</a></li>
                                             
-                                    <li><a href="<?php echo base_url();?>estructuras/registro/empresas"
+                                    <!-- <li><a href="<?php echo base_url();?>estructuras/registro/empresas"
                                      class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
                                          >Consultar solicitudes de empleo</a></li>
 
                                          <li><a href="<?php echo base_url();?>estructuras/registro/universidades"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
-                                         >Consultar solicitudes de estudios</a></li>
+                                         >Consultar solicitudes de estudios</a></li> -->
                                
 
                                   

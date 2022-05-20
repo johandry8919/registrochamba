@@ -130,6 +130,7 @@ $route['admin/universidades'] = 'Cadmin/universidades';
 //Estructuras
 $route['estructuras/registro/estructuras'] = 'Estructuras/registro_estructura';
 $route['estructuras/registro/empresas'] = 'Estructuras/registro_empresas';
+$route['estructuras/registro/empresas/(:num)'] = 'Estructuras/editar_empresas/$1';
 $route['estructuras/registro/universidades'] = 'Estructuras/registro_universidades';
 $route['estructuras/inicio'] = 'Estructuras';
 

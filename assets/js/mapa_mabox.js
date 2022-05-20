@@ -9,7 +9,7 @@
 			var longitud = "-66.406";
 
 			if (input_latitud.value != "" && input_longitud.value != 0) {
-				console.log("si");
+			
 				var latitud = input_latitud.value;
 				var longitud = input_longitud.value;
 
@@ -20,7 +20,7 @@
 				input_latitud.value = latitud;
 				input_longitud.value = longitud;
 			} else {
-				console.log("no");
+			
 				var latitud = input_latitud.value;
 				var longitud = input_longitud.value;
 
@@ -61,7 +61,7 @@
 		let longitud_e = $("option:selected", $(this)).attr("data-longitud");
 
 		agregarMapa(latitud_e, longitud_e, (zoom = 6));
-        console.log(latitud_e)
+       
 	
 		input_latitud.value = latitud_e;
 		input_longitud.value = latitud_e;
@@ -70,7 +70,7 @@
 	$("#cod_parroquia").change(function () {
 		let latitud_e = $("option:selected", $(this)).attr("data-latitud");
 		let longitud_e = $("option:selected", $(this)).attr("data-longitud");
-        console.log(latitud_e)
+     
 
 		agregarMapa(latitud_e, longitud_e, (zoom = 12));
 
@@ -105,7 +105,6 @@
 				coordinates.innerHTML =
 					"Longitude: " + lngLat.lng + "<br />Latitude: " + lngLat.lat;
 
-				console.log(lngLat);
 				input_latitud.value = lngLat.lat;
 				input_longitud.value = lngLat.lng;
 			}
@@ -162,7 +161,7 @@
 			let lat = e.result.center[1];
 			let lon = e.result.center[0];
 
-			console.log(lat, lon);
+		
 			agregarMarker(lat, lon, map, marker);
 			marker.setLngLat([lon, lat]).addTo(map);
 
@@ -173,7 +172,7 @@
 		});
 
 		map.on("click", (e) => {
-			console.log(e);
+		
 
 			let latc = e.lngLat.wrap().lat;
 			let lgn = e.lngLat.wrap().lng;

@@ -1,13 +1,10 @@
-
-
-
-
 <!-- #END# Page Loader -->
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
 <!-- #END# Overlay For Sidebars -->
 
 <section class="content">
+   
     <div class="">
    
         <div class="row clearfix">
