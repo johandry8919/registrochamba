@@ -760,57 +760,63 @@ public function registro_empresas()
             redirect('admin/login');
         }
 
-        $id_empresa = strip_tags(trim($this->uri->segment(4)));
-        if (isset($id_empresa) and $id_empresa != "") {
-    
-          $empresa=  $this->Empresas_entes_model->obtener_empresa( 1,$id_empresa);
-
+       
+    $estados = $this->Musuarios->getEstados();
+    $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
+        $res = [];
+        if (isset($id__exp_lab) and $id__exp_lab != "") {
+          $res =  $this->Empresas_entes_model->obtener_representante_universidad($id__exp_lab);
+           
+         
         }
 
-        $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
-        $estados = $this->Musuarios->getEstados();
-        print_r(  $empresa);
-     
-        $breadcrumb =(object) [
-            "menu" => "Admin",
-            "menu_seleccion" => "Editar empresa"
-        
+    $datos['estados'] = $estados;
+
+    $breadcrumb =(object) [
+        "menu" => "Admin",
+        "menu_seleccion" => "Registro de empresas"
+
+            ];
+
+    $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+   
+    
+
  
-                ];
-
-     
-        $output = [
-            "menu_lateral"=>"admin",
-            "datatable"      =>true,
-            "breadcrumb"      =>   $breadcrumb,
-            "title"             => "editar_empresa",
-            "vista_principal"   => "admin/registro_empresas",
-            "empresa"  =>$empresa,
-            "estados" =>$estados,
-            "sectorProductivo" => $sectorProductivo,
-
-            
-            
-            
-            
-           "librerias_css" => [],
-
+    $output = [
+        "menu_lateral"=>"admin",
+        "breadcrumb"      =>   $breadcrumb,
+        "title"             => "Registro  de empresas",
+         "vista_principal"   => "admin/registro_empresas",
+         "sectorProductivo" => $sectorProductivo,
+         "list_empresa" => $res,
+         "id_empresa" => $id__exp_lab,
+         "datos"            =>$res,
          
-           "librerias_js" => [
+ 
+       
+       "estados"          => $estados,
+
+        
+       "librerias_css" => [],
+
      
-        ],
+       "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
+        recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
+        recurso("jquery_steps_js"),  recurso("parsleyjs_js"),recurso("jquery_easing_js"),recurso("editar_empresas_admin_js")
+       
+    ],
 
 
-           
-        "ficheros_js" => [   recurso("editar_empresas_admin_js"),recurso("mapa_mabox_js")],
+       "ficheros_js" => [   recurso("mapa_mabox_js") ],
 
-           
-        "ficheros_css" => [recurso("mapa_mabox_css")],
+       
+       "ficheros_css" => [recurso("mapa_mabox_css")],
 
 
-        ];
+    ];
 
-        $this->load->view("main", $output);
+    $this->load->view("main", $output);
         
         }
     public function actualizar_estructuras(){
@@ -890,6 +896,90 @@ public function registro_empresas()
         $this->load->view("main", $output);
 
     }
+    public function  actulizar_empresa(){
+        if (!$this->session->userdata('id_rol')) {
+            echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
+            exit();
+        }
+        //delimitadores de errores
+        $this->form_validation->set_rules('rif', 'rif', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('nombre_representante', 'nombre_representante', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('apellidos_representante', 'apellidos_representante', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('telf_movil', 'telf movil', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('telf_local_representante', 'telf telf_local_representante', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_estado', 'estado', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('direccion_empresa', 'direccion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
+    
+        
+    
+       
+        $this->form_validation->set_error_delimiters('*', '');
+    
+    
+        //reglas de validación
+        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+    
+        //reglas de validación 
+        if (!$this->form_validation->run()) {
+             $mensaje_error = validation_errors();
+         
+             echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
+             exit;
+        }
+    
+    
+        $id_empresa=$this->input->post('id_empresas_entes');
+        $id_representante =$this->input->post('id_representante');
+      
+        
+        $data = array(
+    
+          "id_sector_economico"          => $this->input->post('sector_economico'),
+          "tlf_celular"   =>$this->input->post('telf_movil'),
+          "actividad_economica"=> $this->input->post('actividad_economica'),
+          "rif"  => $this->input->post("rif"),
+          "email"  => $this->input->post("email"),
+          'direccion' => $this->input->post('direccion_empresa'),
+         
+     
+          "instagram"    =>$this->input->post('instagram'),
+          "twitter"      => $this->input->post('twitter'),
+          "facebook"     =>$this->input->post('facebook'),
+    
+          "codigoestado"      =>$this->input->post('cod_estado'),
+          "codigomunicipio"   =>$this->input->post('cod_municipio'),
+          "codigoparroquia"   =>$this->input->post('cod_parroquia'),
+    
+          "latitud"   =>$this->input->post('latitud'),
+          "longitud"  =>$this->input->post('longitud')
+    
+    
+        );
+        if(  $this->Empresas_entes_model->update_epresas($data, $id_empresa)){
+              $this->Representante_empresas_entes_model->update_representante([          
+                    //   "nombre"                =>$this->input->post('nombre_representante'),                                                                                                                                                                                                     
+                      "apellidos"             =>$this->input->post('apellidos_representante'),
+                      "tlf_celular"           =>$this->input->post('telf_movil_representante'),
+                      "tlf_local"             =>$this->input->post('telf_local_representante'),
+                      "email"                =>$this->input->post('email_representante'),
+                      "cargo "     =>$this->input->post('cargo')
+            
+                  ],$id_representante);
+            
+                         
+    
+        }
+    
+    
+        echo  json_encode(["resultado" =>true,"mensaje"=> 'registro exitoso, presione OK para continuar']);
+    
+     
+    
+    }
     //post_actualizar_estructuras
     public function post_estructuras(){
         $this->form_validation->set_rules('nombres', 'nombres', 'trim|required|strip_tags');
@@ -943,7 +1033,7 @@ public function registro_empresas()
             'codigoestado' => $this->input->post('cod_estado'),
             'codigomunicipio' => $this->input->post('cod_municipio'),
             'codigoparroquia' => $this->input->post('cod_parroquia'),
-            'direccion' => $this->input->post('direccion'),
+            'direccion' => $this->input->post('direccion_empresa'),
             'id_responsabilidad_estructura' => $this->input->post('cod_responsabilidad'),
             'tipo_estructura' => $this->input->post('id_estructura'),
             'talla_pantalon' => $this->input->post('talla_pantalon'),
@@ -1072,7 +1162,7 @@ public function registro_empresas()
             "nombre_razon_social"   =>$nombre_razon_social,
             "rif"=>$rif,
             "tlf_celular"   =>$this->input->post('tlf_celular'),
-            "direccion" => $this->input->post('direccion'),
+            'direccion' => $this->input->post('direccion_empresa'),
 
             "actividad_economica"=> $this->input->post('actividad_economica'),
             "email"        =>$email_empresa ,

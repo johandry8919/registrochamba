@@ -410,68 +410,68 @@ class Estructuras extends CI_Controller
 
     }
 
-public function editar_empresas(){
-    if (!$this->session->userdata('id_rol')) {
-            echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
-            exit();
-        }
-    $estados = $this->Musuarios->getEstados();
-    $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
-        $res = [];
-        if (isset($id__exp_lab) and $id__exp_lab != "") {
-          $res =  $this->Empresas_entes_model->obtener_representante_universidad($id__exp_lab);
-           
-         
-        }
-
-    $datos['estados'] = $estados;
-
-    $breadcrumb =(object) [
-        "menu" => "Estructuras",
-        "menu_seleccion" => "Registro de empresas"
-
-            ];
-
-    $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
-   
+    public function editar_empresas(){
+        if (!$this->session->userdata('id_rol')) {
+                echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
+                exit();
+            }
+        $estados = $this->Musuarios->getEstados();
+        $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
+            $res = [];
+            if (isset($id__exp_lab) and $id__exp_lab != "") {
+              $res =  $this->Empresas_entes_model->obtener_representante_universidad($id__exp_lab);
+               
+             
+            }
     
-
- 
-    $output = [
-        "menu_lateral"=>"estructuras",
-        "breadcrumb"      =>   $breadcrumb,
-        "title"             => "Registro  de empresas",
-         "vista_principal"   => "admin/registro_empresas",
-         "sectorProductivo" => $sectorProductivo,
-         "empresa" => $res,
-         "id_empresa" => $id__exp_lab,
-         "datos"            =>$res,
-         
- 
+        $datos['estados'] = $estados;
+    
+        $breadcrumb =(object) [
+            "menu" => "Estructuras",
+            "menu_seleccion" => "Registro de empresas"
+    
+                ];
+    
+        $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
        
-       "estados"          => $estados,
-
         
-       "librerias_css" => [],
-
+    
      
-       "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
-        recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
-        recurso("jquery_steps_js"),  recurso("parsleyjs_js"),recurso("jquery_easing_js")
-    ],
-
-
-       "ficheros_js" => [   recurso("resgistro_epres_estruct_js"),recurso("mapa_mabox_js")],
-
-       
-       "ficheros_css" => [recurso("mapa_mabox_css")],
-
-
-    ];
-
-    $this->load->view("main", $output);
-
-}
+        $output = [
+            "menu_lateral"=>"estructuras",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Registro  de empresas",
+             "vista_principal"   => "admin/registro_empresas",
+             "sectorProductivo" => $sectorProductivo,
+             "list_empresa" => $res,
+             "id_empresa" => $id__exp_lab,
+             "datos"            =>$res,
+             
+     
+           
+           "estados"          => $estados,
+    
+            
+           "librerias_css" => [],
+    
+         
+           "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
+            recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
+            recurso("jquery_steps_js"),  recurso("parsleyjs_js"),recurso("jquery_easing_js")
+        ],
+    
+    
+           "ficheros_js" => [   recurso("update_epres_estruct_js"),recurso("mapa_mabox_js")],
+    
+           
+           "ficheros_css" => [recurso("mapa_mabox_css")],
+    
+    
+        ];
+    
+        $this->load->view("main", $output);
+    
+    }
 
 public function  update_empresas_representante(){
     if (!$this->session->userdata('id_rol')) {
@@ -491,7 +491,6 @@ public function  update_empresas_representante(){
     $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
     $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
 
-    $this->form_validation->set_rules('password', 'password', 'trim|required|strip_tags');
     
 
    
@@ -538,7 +537,7 @@ public function  update_empresas_representante(){
     );
     if(  $this->Empresas_entes_model->update_epresas($data, $id_empresa)){
           $this->Representante_empresas_entes_model->update_representante([          
-                  "nombre"                =>$this->input->post('nombre_representante'),                                                                                                                                                                                                     
+                //   "nombre"                =>$this->input->post('nombre_representante'),                                                                                                                                                                                                     
                   "apellidos"             =>$this->input->post('apellidos_representante'),
                   "tlf_celular"           =>$this->input->post('telf_movil_representante'),
                   "tlf_local"             =>$this->input->post('telf_local_representante'),
@@ -921,7 +920,7 @@ public function  update_empresas_representante(){
             "nombre_razon_social"   =>$this->input->post('razon_social'),
             "rif"=>$this->input->post('rif'),
             "tlf_celular"   =>$this->input->post('tlf_celular'),
-            "direccion" => $this->input->post('direccion'),
+            "direccion" => $this->input->post('direccion_empresa'),
     
             "actividad_economica"=> $this->input->post('actividad_economica'),
             "email"        =>$this->input->post('email'),
