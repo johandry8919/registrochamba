@@ -277,6 +277,7 @@ class Estructuras extends CI_Controller
             "nombre_razon_social"   =>$nombre_razon_social,
             "rif"=>$rif,
             "tlf_celular"   =>$this->input->post('telf_movil'),
+            'direccion' => $this->input->post('direccion_empresa'),
 
             "actividad_economica"=> $this->input->post('actividad_economica'),
             "email"        =>$email_empresa ,
@@ -520,6 +521,7 @@ public function  update_empresas_representante(){
       "actividad_economica"=> $this->input->post('actividad_economica'),
       "rif"  => $this->input->post("rif"),
       "email"  => $this->input->post("email"),
+      'direccion' => $this->input->post('direccion_empresa'),
      
  
       "instagram"    =>$this->input->post('instagram'),
