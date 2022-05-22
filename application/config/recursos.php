@@ -48,6 +48,7 @@
     $config['recursos']['lista_empresas_js'] = "assets/js/lista_empresas.js?v=1.0.6";
     $config['recursos']['listar_estructura_js'] = "assets/js/listar_estructura.js?v=1.0.6";
     $config['recursos']['login_inicio_js'] = "assets/js/login_inicio.js?v=1.0.6";
+    
 
     
         // css - librería sassets\plugins\mapbox
