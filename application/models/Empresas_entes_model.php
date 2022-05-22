@@ -161,7 +161,7 @@
             $this->db->select('tbl_empresas_entes.*,
             re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
             re.apellidos as apellido_representante, re.tlf_celular as celular_representante, re.id_usuario,  re.id_empresas_entes,
-            tbl_empresas_entes.tlf_celular as tlf_celular_empresa, re.id_representantes,
+            tbl_empresas_entes.tlf_celular as tlf_celular_empresa, re.id_representantes,direccion,
 
             re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo,re.tlf_celular,
             estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia
