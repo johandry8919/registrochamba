@@ -1448,13 +1448,94 @@ public function update_universidad_Representante(){
           echo  json_encode(["resultado" =>true,"mensaje"=> 'registro exitoso, presione OK para continuar']);
           
     }
-   
+    
+}
+
+
+
+public function buscar_chambista(){
+
+    if ($this->session->userdata('id_rol')!=2) {
+        echo  json_encode(["resultado" =>false,"mensaje"=> "acceso n  o autorizado",
+        "rol_usuario" =>$this->session->userdata('id_rol')
+    
+    ]);
+        exit();
+    }
     
 
-       
-      
+    $breadcrumb =(object) [
+        "menu" => "Admin",
+        "menu_seleccion" => "Buscar chambistas"
 
+            ];
 
+    $output = [
+        "menu_lateral"=>"admin",
+        "breadcrumb"      =>   $breadcrumb,
+        "title"             => "Buscar",
+         "vista_principal"   => "admin/buscar_chambista",
+    
+         
 
+ 
+       "ficheros_js" => [],
+   
+        
+       "librerias_css" => [],
+
+     
+       "librerias_js" => [],
+
+         "ficheros_js" => [recurso("buscar_chambista_js")]
+   
+     
+    ];
+
+    $this->load->view("main", $output);
+
+}
+
+public function edutar_chambista(){
+
+    if ($this->session->userdata('id_rol')!=2) {
+        echo  json_encode(["resultado" =>false,"mensaje"=> "acceso n  o autorizado",
+        "rol_usuario" =>$this->session->userdata('id_rol')
+    
+    ]);
+        exit();
+    }
+    
+
+    $breadcrumb =(object) [
+        "menu" => "Admin",
+        "menu_seleccion" => "editar_chambista"
+
+            ];
+
+    $output = [
+        "menu_lateral"=>"admin",
+        "breadcrumb"      =>   $breadcrumb,
+        "title"             => "Buscar",
+         "vista_principal"   => "admin/editar_chambista",
+    
+         
+
+ 
+       "ficheros_js" => [],
+   
+        
+       "librerias_css" => [],
+
+     
+       "librerias_js" => [],
+
+         "ficheros_js" => [recurso("editar_chambista_js")]
+   
+     
+    ];
+
+    $this->load->view("main", $output);
+    
 }
 }

@@ -62,7 +62,11 @@
                                 <ul class="slide-menu">
                                                      
                               
-                                    <li ><a href="<?php echo base_url();?>admin/estructuras"
+                                    <li ><a href="<?php echo base_url();?>admin/chambista/buscar"
+                                            class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
+                                            >Chambista</a></li>
+
+                                            <li ><a href="<?php echo base_url();?>admin/estructuras"
                                             class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
                                             >Estructura</a></li>
                                             

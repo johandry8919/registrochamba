@@ -79,6 +79,50 @@ class Musuarios extends CI_Model
 		}
 	}
 
+
+	
+	public function getUsuarioChambistaCedula($cedula){
+
+		$this->db->select(' tbl_usuarios_personales.*,
+							tbl_estado.nombre AS estado, 
+							tbl_municipio.nombre AS municipio, 
+							tbl_parroquia.nombre AS parroquia,cedula							
+							');
+		$this->db->limit(1);
+		$this->db->where('cedula',$cedula);
+		$this->db->join('tbl_usuarios', 'tbl_usuarios.id_usuario = tbl_usuarios_personales.id_usuario');
+		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado');
+
+		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio');
+		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia');
+		$query = $this->db->get('tbl_usuarios_personales');
+
+		if ($query->num_rows()) $valor = $query->row();
+		else $valor = false;
+		return $valor;
+	}
+
+		
+	public function getUsuarioChambistaID($id){
+
+		$this->db->select(' tbl_usuarios_personales.*,
+							tbl_estado.nombre AS estado, 
+							tbl_municipio.nombre AS municipio, 
+							tbl_parroquia.nombre AS parroquia,cedula							
+							');
+		$this->db->limit(1);
+		$this->db->where('tbl_usuarios.id_usuario',$id);
+		$this->db->join('tbl_usuarios', 'tbl_usuarios.id_usuario = tbl_usuarios_personales.id_usuario');
+		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado');
+
+		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio');
+		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia');
+		$query = $this->db->get('tbl_usuarios_personales');
+
+		if ($query->num_rows()) $valor = $query->row();
+		else $valor = false;
+		return $valor;
+	}
 	public function getUsuarioRegistradoAcademico(){
 
 		$this->db->select('*');
