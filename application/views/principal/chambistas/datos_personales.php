@@ -14,6 +14,7 @@
 <!--script src="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.css" rel="stylesheet" /-->
     <section class="content">
+   
         <div class="">
 
       
@@ -62,7 +63,12 @@
                         <div class="card-body">
                             <div id="real_time_chart" class="">
                                 
-                                    <form id="datospersonales" method="POST" action="<?php echo base_url();?>Cchambistas/datospersonales">
+                                    <form id="datospersonales" method="POST" action="<?php if(!isset($id_usuario)){
+                                         echo base_url()."Cchambistas/datospersonales";
+                                       
+                                    }?>">
+                                       
+                                    
                                         <div class="row ">
                                             <div class="col-md-6">
 
@@ -512,7 +518,7 @@
                                                  
                                         <div class="row  justify-content-center  mt-2">
                                             <div class="col-12 col-lg-12 ">
-                                                <button class="btn btn-primary btn-block" id="boton" type="botton">Guardar</button>
+                                                <button class="btn btn-primary btn-block" id="buton" type="botton">Guardar</button>
                                             </div>
 
                                         </div>
@@ -532,7 +538,9 @@
 
        
             
-
+              
+        <input type="hidden" name="id_usuario" id="id_usuario" value="<?php if(isset($id_usuario)){echo $id_usuario;}
+                                ?>">                                          
 
     </section>
     <script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>

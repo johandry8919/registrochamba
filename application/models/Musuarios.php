@@ -108,7 +108,7 @@ class Musuarios extends CI_Model
 		$this->db->select(' tbl_usuarios_personales.*,
 							tbl_estado.nombre AS estado, 
 							tbl_municipio.nombre AS municipio, 
-							tbl_parroquia.nombre AS parroquia,cedula							
+							tbl_parroquia.nombre AS parroquia,cedula,							
 							');
 		$this->db->limit(1);
 		$this->db->where('tbl_usuarios.id_usuario',$id);
@@ -531,6 +531,34 @@ class Musuarios extends CI_Model
 		}
 
 	}
+	public function actualizarChambista($data,$id){
+			// 		guardar una latitud, por ejemplo, tomada del Google Maps, 
+		
+		
+		$this->db->where('id_usuario', $id);
+		$this->db->update('tbl_usuarios_personales', $data);
+			
+		if ($this->db->affected_rows()) {
+			return true;
+		}else {
+			return false;
+		}
+
+	}
+
+	public function update_chambista($datos,$id){
+        
+		$this->db->where('id_usuario_personal', $id);
+        $this->db->update('public.tbl_usuarios_personales', $datos);
+
+        if($this->db->affected_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+
+}
 
 	public function actualizarPorcentajePerfil(){
 		$porcentaje_perfil = 0;
