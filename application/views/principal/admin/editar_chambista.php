@@ -24,9 +24,8 @@
 
                                                     </div>
                                                     <div class="tab-pane" id="tab14">
-                                                        <p> default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected
-                                                            humour and the like</p>
-                                                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et</p>
+                                                        <?php     $this->load->view("principal/chambistas/formacionacademicaform"); 
+                                                        ?>
                                                     </div>
                                                     <div class="tab-pane" id="tab15">
                                                         <p>over the years, sometimes by accident, sometimes on purpose (injected humour and the like</p>

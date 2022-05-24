@@ -113,7 +113,7 @@ $route['estructura/listar_empresas'] = 'Estructuras/listar_empresas';
 
 //cambista
 $route['admin/chambista/buscar'] = 'Cadmin/buscar_chambista';
-$route['admin/editar_chambista/(:num)'] = 'Cadmin/edutar_chambista';
+$route['admin/editar_chambista/(:num)'] = 'Cadmin/editar_chambista/$1';
 /*Administrador*/
 
 
