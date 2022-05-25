@@ -828,7 +828,7 @@ class Cchambistas extends CI_Controller
 
 
             $data = array(
-                'nombres' => $this->input->post('nombres'),
+            'nombres' => $this->input->post('nombres'),
                 'apellidos' => $this->input->post('apellidos'),
                 /*'nac' => $this->input->post('nac'), 
             'cedula' => $this->input->post('cedula'), */
@@ -881,7 +881,7 @@ class Cchambistas extends CI_Controller
                     $this->session->set_flashdata('mensajeerror', 'Ocurrio un error guardando intente de nuevo.');
                     redirect('datospersonales');
                 }
-            } else {
+            } else {                
                 if ($this->Musuarios->actualizarPersonales($data)) {
                     $this->session->set_flashdata('mensajeexito', 'Datos actualizados correctamente.');
                     redirect('inicio');
