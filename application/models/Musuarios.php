@@ -114,7 +114,6 @@ class Musuarios extends CI_Model
 		$this->db->where('tbl_usuarios.id_usuario',$id);
 		$this->db->join('tbl_usuarios', 'tbl_usuarios.id_usuario = tbl_usuarios_personales.id_usuario');
 		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado');
-
 		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio');
 		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia');
 		$query = $this->db->get('tbl_usuarios_personales');
@@ -150,6 +149,25 @@ class Musuarios extends CI_Model
 
 		$this->db->where('activo', 1);
 		$this->db->where('codigo',$codigo);
+		$this->db->join('tbl_instruccion', 'tbl_instruccion.id_instruccion = tbl_usuarios_academicos.id_instruccion');
+		$this->db->join('tbl_estado_inst', 'tbl_estado_inst.id_estado_inst = tbl_usuarios_academicos.id_estado_inst');
+		$resultado = $this->db->get('tbl_usuarios_academicos');
+		
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->result();
+		}else{
+			return FALSE;
+		}
+	}
+	public function AcademicoConsulta($id__exp_lab){
+
+		$this->db->select(' *');
+
+		$this->db->where('activo', 1);
+
+		$this->db->where('id_usuario',$id__exp_lab);
 		$this->db->join('tbl_instruccion', 'tbl_instruccion.id_instruccion = tbl_usuarios_academicos.id_instruccion');
 		$this->db->join('tbl_estado_inst', 'tbl_estado_inst.id_estado_inst = tbl_usuarios_academicos.id_estado_inst');
 		$resultado = $this->db->get('tbl_usuarios_academicos');
@@ -237,6 +255,22 @@ class Musuarios extends CI_Model
 		}else{
 			return FALSE;
 		}
+	}	
+	public function getAcademica_chambistasID($id_usu_aca){
+
+		$this->db->select('tbl_usuarios_academicos. *');
+
+		$this->db->limit(1);
+		$this->db->where('id_usuario',$id_usu_aca);
+		$this->db->where('activo',1);
+		$this->db->join('tbl_instruccion', 'tbl_instruccion.id_instruccion = tbl_usuarios_academicos.id_instruccion');
+		$this->db->join('tbl_estado_inst', 'tbl_estado_inst.id_estado_inst = tbl_usuarios_academicos.id_estado_inst');
+		$query = $this->db->get('tbl_usuarios_academicos');
+
+
+		if ($query->num_rows()) $valor = $query->row();
+		else $valor = false;
+		return $valor;
 	}	
 
 	public function registroproductivo($data){

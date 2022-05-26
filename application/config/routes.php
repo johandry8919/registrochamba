@@ -117,6 +117,7 @@ $route['admin/nueva_oferta'] = 'CofertaEmpleo/publicar_oferta_admin';
 //cambista
 $route['admin/chambista/buscar'] = 'Cadmin/buscar_chambista';
 $route['admin/editar_chambista/(:num)'] = 'Cadmin/editar_chambista/$1';
+$route['admin/editar_formacion/(:num)'] = 'Cadmin/editar_formacion/$1';
 /*Administrador*/
 
 
