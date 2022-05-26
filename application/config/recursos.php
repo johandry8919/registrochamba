@@ -24,10 +24,10 @@
     $config['recursos']['listar_usuario_admin_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.6";
     $config['recursos']['buscar_chambista_js'] = "assets/js/admin/buscar_chambista.js?v=1.0.6";
     $config['recursos']['editar_chambista_js'] = "assets/js/admin/editar_chambista.js?v=1.0.6";
-
+    $config['recursos']['admin_nueva_oferta_js'] = "assets/js/admin/admin_nueva_oferta.js?v=1.0.6";
 
     
-
+    
     
     $config['recursos']['mapa_mabox_js'] = "assets/js/mapa_mabox.js?v=1.0.4";
   
@@ -52,6 +52,7 @@
     $config['recursos']['listar_estructura_js'] = "assets/js/listar_estructura.js?v=1.0.6";
     $config['recursos']['login_inicio_js'] = "assets/js/login_inicio.js?v=1.0.6";
     
+
 
     
         // css - librería sassets\plugins\mapbox

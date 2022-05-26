@@ -111,6 +111,9 @@ $route['estructura/lista_universidad'] = 'Estructuras/lista_universidad';
 $route['admin/editar/empresa/(:num)'] = 'Cadmin/editar_empresa/$1';
 $route['estructura/listar_empresas'] = 'Estructuras/listar_empresas';
 
+//ofertas de empleos
+$route['admin/nueva_oferta'] = 'CofertaEmpleo/publicar_oferta_admin';
+
 //cambista
 $route['admin/chambista/buscar'] = 'Cadmin/buscar_chambista';
 $route['admin/editar_chambista/(:num)'] = 'Cadmin/editar_chambista/$1';

@@ -660,6 +660,7 @@ class Cadmin extends CI_Controller
             redirect('admin/login');
         }
 
+        $estados = $this->Musuarios->getEstados();
         $empresas = $this->Empresas_entes_model->obtener_empresas();
         $breadcrumb = (object) [
             "menu" => "Admin",
@@ -677,6 +678,7 @@ class Cadmin extends CI_Controller
             "datatable"             => true,
             "vista_principal"   => "admin/listar_empresas",
             "empresas" => $empresas,
+            "estados"  => $estados,
 
 
             "librerias_css" => [],

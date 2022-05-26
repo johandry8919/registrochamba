@@ -141,7 +141,7 @@
 
                                 </div>
                                 <div class="col-md-4 ">
-                                    <label class="form-label">Actividad Economica</label>
+                                    <label class="form-label">Tipo de propiedad</label>
                                     <div class="form-group">
                                         <div class="form-line">
                                             <select
