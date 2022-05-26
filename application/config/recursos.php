@@ -24,6 +24,7 @@
     $config['recursos']['listar_usuario_admin_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.6";
     $config['recursos']['buscar_chambista_js'] = "assets/js/admin/buscar_chambista.js?v=1.0.6";
     $config['recursos']['editar_chambista_js'] = "assets/js/admin/editar_chambista.js?v=1.0.6";
+    $config['recursos']['editar_formacion_cade_js'] = "assets/js/admin/editar_formacion_cade.js?v=1.0.6";
 
 
     

@@ -23,7 +23,7 @@
 
         <div class="body">
             <div class="card-header">
-                <div class="card-title">Formación Académica</div>
+                <div class="card-title">Experiencia laboral</div>
             </div>
 
             <div class="col-12 ">

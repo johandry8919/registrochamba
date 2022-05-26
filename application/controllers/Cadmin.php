@@ -1480,25 +1480,42 @@ class Cadmin extends CI_Controller
             ]);
             exit();
         }
+        //optener el id id_usu_aca hidden del formulario
+       
+       
 
         $id__exp_lab = strip_tags(trim($this->uri->segment(3)));
-
+       
         $res = [];
+        $acausuario=[];
         if (isset($id__exp_lab) and $id__exp_lab != "") {
+            
             $res =  $this->Musuarios->getUsuarioChambistaID($id__exp_lab);
+            $acausuario = $this->Musuarios->getAcademica_chambistasID($id__exp_lab);
+	
+       
         } else {
             echo json_encode(["resultado" => false, "mensaje" => "No se encontro el registro"]);
         }
+        // oterner el id de $acausuario para poder eliminarlo
+        
 
+         
+        $usuarioacademico = $this->Musuarios->AcademicoConsulta($id__exp_lab);
+        // echo json_encode($usuarioacademico);
+        // exit();
 
+     
+   
 
-
-
+        // echo json_encode($acausuario);
+        // exit();
 
         $estados = $this->Musuarios->getEstados();
         $aborigenes = $this->Musuarios->getAborigenes();
         $datos['estados'] = $estados;
         $datos['aborigenes'] = $aborigenes;
+        // $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademico();
 
 
 
@@ -1528,6 +1545,10 @@ class Cadmin extends CI_Controller
             "movimientogeligioso" => $movimiento_religioso,
             "movimientos" => $movimiento_sociales,
             "id_usuario" => $id__exp_lab,
+            "acausuario" => $acausuario,
+            "usuarioacademico" => $usuarioacademico,
+            "areaform"      =>   $this->Musuarios->getAreaForm(),
+           
 
 
             "librerias_js" => [
@@ -1539,6 +1560,7 @@ class Cadmin extends CI_Controller
             ],
 
             "ficheros_js" => [recurso("editar_chambista_js")],
+            "ficheros_js" => [recurso("editar_formacion_cade_js")],
             "ficheros_css" => [recurso("mapa_mabox_css")],
 
 
@@ -1557,9 +1579,7 @@ class Cadmin extends CI_Controller
             ]);
             exit();
         }
-        if (!$this->session->userdata('id_usuario')) {
-            redirect('iniciosesion');
-        }
+        
 
      
 
@@ -1671,4 +1691,110 @@ class Cadmin extends CI_Controller
         
         
     }
-}
+
+    public function editar_formacion(){
+        if ($this->session->userdata('id_rol') != 2) {
+            echo  json_encode([
+                "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                "rol_usuario" => $this->session->userdata('id_rol')
+
+            ]);
+            exit();
+        }
+       
+        
+
+
+        $acausuario=[];
+        $id_usu_aca = strip_tags(trim($this->uri->segment(3)));
+        if (isset($id_usu_aca) and $id_usu_aca != "") {
+            $acausuario = $this->Musuarios->getAcademicaID($id_usu_aca);
+    
+        }
+       
+        $id_usuario = $acausuario->id_usuario;
+        // echo json_encode($id_usuario);
+        // exit();
+
+        $breadcrumb = (object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Formacion academica"
+
+        ];
+
+        $output = [
+            "menu_lateral" => "admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Buscar",
+            "vista_principal"   => "chambistas/formacionacademicaform",
+            "acausuario" => $acausuario,
+            "areaform"      =>   $this->Musuarios->getAreaForm(),
+            "id_usuario" => $id_usu_aca,
+            "id_usuario" => $id_usuario,
+
+
+
+
+            "ficheros_js" => [],
+
+
+            "librerias_css" => [],
+
+
+            "librerias_js" => [],
+
+            "ficheros_js" => [recurso("editar_formacion_cade_js")]
+
+
+        ];
+
+        $this->load->view("main", $output);
+
+    }
+
+    public function registroformacionacademica()
+    {
+        if ($this->session->userdata('id_rol') != 2) {
+            echo  json_encode([
+                "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                "rol_usuario" => $this->session->userdata('id_rol')
+
+            ]);
+            exit();
+        }
+       
+        
+
+
+       
+
+            $data = array(
+                'centro_educ' => $this->input->post('centro_educ'),
+                'id_instruccion' => $this->input->post('id_instruccion'),
+                'id_estado_inst' =>  $this->input->post('id_estado_inst'),
+                'id_area_form' => $this->input->post('id_area_form'),
+                'titulo_carrera' => $this->input->post('titulo_carrera'),
+                'rango_fecha' => $this->input->post('rango_fecha'),
+                'codigo' => $this->session->userdata('codigo'),
+                'id_usuario' => $this->session->userdata('id_usuario'),
+                'activo' => 1
+            );
+
+            $id_usu_aca = $this->input->post('id_usu_aca');
+           
+
+            if (isset($id_usu_aca) and $id_usu_aca != "") {
+                //actualizar
+                $data['id_usu_aca'] = $id_usu_aca;
+                if ($this->Musuarios->actualizarAcademico($data)) {
+                    echo json_encode(["resultado" => true, "mensaje" => "Datos actualizados correctamente"]);
+                    
+                    
+                } else {
+                    echo json_encode(["resultado" => false, "mensaje" => "Error al actualizar los datos"]);
+                    
+                   
+                }
+            } 
+        }
+    }
