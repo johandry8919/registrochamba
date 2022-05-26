@@ -67,7 +67,8 @@
 				titulo_carrera,
 				id_area_form,
 				rango_fecha,
-				id_usu_aca
+				id_usu_aca,
+				id_usuario
 
 
 
