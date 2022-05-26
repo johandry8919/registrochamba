@@ -256,12 +256,30 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}
 	}	
-	public function getAcademica_chambistasID($id_usu_aca){
+	public function getAcademi_canbistascaID($id_usu_aca){
+
+		$this->db->select(' *');
+
+		$this->db->limit(1);
+		$this->db->where('id_usu_aca',$id_usu_aca);
+		$this->db->where('activo',1);
+		$this->db->join('tbl_instruccion', 'tbl_instruccion.id_instruccion = tbl_usuarios_academicos.id_instruccion');
+		$this->db->join('tbl_estado_inst', 'tbl_estado_inst.id_estado_inst = tbl_usuarios_academicos.id_estado_inst');
+		$resultado = $this->db->get('tbl_usuarios_academicos');
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->row();
+		}else{
+			return FALSE;
+		}
+	}	
+	public function getAcademica_chambistasID($id){
 
 		$this->db->select('tbl_usuarios_academicos. *');
 
 		$this->db->limit(1);
-		$this->db->where('id_usuario',$id_usu_aca);
+		$this->db->where('id_usuario',$id);
 		$this->db->where('activo',1);
 		$this->db->join('tbl_instruccion', 'tbl_instruccion.id_instruccion = tbl_usuarios_academicos.id_instruccion');
 		$this->db->join('tbl_estado_inst', 'tbl_estado_inst.id_estado_inst = tbl_usuarios_academicos.id_estado_inst');
@@ -509,6 +527,18 @@ class Musuarios extends CI_Model
 
 		$this->db->where('id_usu_aca', $data['id_usu_aca']);
 		$this->db->where('codigo', $data['codigo']);
+		$this->db->where('id_usuario', $data['id_usuario']);
+		$this->db->update('tbl_usuarios_academicos', $data);
+			
+		if ($this->db->affected_rows()) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
+	public function actualizarAcademicos($data){
+
+		$this->db->where('id_usu_aca', $data['id_usu_aca']);
 		$this->db->where('id_usuario', $data['id_usuario']);
 		$this->db->update('tbl_usuarios_academicos', $data);
 			

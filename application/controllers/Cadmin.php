@@ -1499,18 +1499,15 @@ class Cadmin extends CI_Controller
         } else {
             echo json_encode(["resultado" => false, "mensaje" => "No se encontro el registro"]);
         }
-        // oterner el id de $acausuario para poder eliminarlo
         
 
          
         $usuarioacademico = $this->Musuarios->AcademicoConsulta($id__exp_lab);
-        // echo json_encode($usuarioacademico);
-        // exit();
-
+      
      
    
 
-        // echo json_encode($acausuario);
+        // echo json_encode($res);
         // exit();
 
         $estados = $this->Musuarios->getEstados();
@@ -1562,7 +1559,6 @@ class Cadmin extends CI_Controller
             ],
 
             "ficheros_js" => [recurso("editar_chambista_js")],
-            "ficheros_js" => [recurso("editar_formacion_cade_js")],
             "ficheros_css" => [recurso("mapa_mabox_css")],
 
 
@@ -1707,10 +1703,10 @@ class Cadmin extends CI_Controller
         
 
 
-        $acausuario=[];
         $id_usu_aca = strip_tags(trim($this->uri->segment(3)));
+        $acausuario=[];
         if (isset($id_usu_aca) and $id_usu_aca != "") {
-            $acausuario = $this->Musuarios->getAcademicaID($id_usu_aca);
+            $acausuario = $this->Musuarios->getAcademi_canbistascaID($id_usu_aca);
     
         }
        
@@ -1731,7 +1727,7 @@ class Cadmin extends CI_Controller
             "vista_principal"   => "chambistas/formacionacademicaform",
             "acausuario" => $acausuario,
             "areaform"      =>   $this->Musuarios->getAreaForm(),
-            "id_usuario" => $id_usu_aca,
+            "id_usu_aca" => $id_usu_aca,
             "id_usuario" => $id_usuario,
 
 
@@ -1778,7 +1774,7 @@ class Cadmin extends CI_Controller
                 'titulo_carrera' => $this->input->post('titulo_carrera'),
                 'rango_fecha' => $this->input->post('rango_fecha'),
                 'codigo' => $this->session->userdata('codigo'),
-                'id_usuario' => $this->session->userdata('id_usuario'),
+                'id_usuario' => $this->input->post('id_usuario'),
                 'activo' => 1
             );
 
@@ -1788,7 +1784,7 @@ class Cadmin extends CI_Controller
             if (isset($id_usu_aca) and $id_usu_aca != "") {
                 //actualizar
                 $data['id_usu_aca'] = $id_usu_aca;
-                if ($this->Musuarios->actualizarAcademico($data)) {
+                if ($this->Musuarios->actualizarAcademicos($data)) {
                     echo json_encode(["resultado" => true, "mensaje" => "Datos actualizados correctamente"]);
                     
                     

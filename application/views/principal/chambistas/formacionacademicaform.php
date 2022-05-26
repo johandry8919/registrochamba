@@ -64,7 +64,7 @@
                                                 <b>Nivel de Estudios:</b>
                                                 <div class="input-group">
                                                     <div class="wrap-input100 validate-input input-group">
-                                                        <select class="form-control select2 show-tick" id="id_instruccion" name="id_instruccion">
+                                                        <select class="form-control show-tick" id="id_instruccion" name="id_instruccion">
                                                             <option value="">Seleccione una opción</option>
                                                             <!-- <option selected value='1'>Educación Básica Primaria</option>  -->
                                                             <option <?php if(isset($acausuario->id_instruccion) and $acausuario->id_instruccion=='1'){ echo 'selected';}?> value='1'>Educación Básica Primaria</option>
@@ -147,7 +147,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6 ">
+                                                <div class="col-md-6 col-md-offset-3">
                                                     <div class="form-group">
                                                         <label>Rango Fecha:</label>
 
@@ -160,6 +160,7 @@
                                                         <!-- /.input group -->
                                                     </div>
                                             </div>
+                                                                        
                                         </div>
 
                                       
@@ -190,7 +191,7 @@
 
 
 
-                             <input type="hidden" name="id_usu_aca" id="id_usu_aca" value="<?php if(isset($id_usuario)){echo $id_usuario;}
+                             <input type="hidden" name="id_usu_aca" id="id_usu_aca" value="<?php if(isset($id_usu_aca)){echo $id_usuario;}
                                 ?>">         
                              <input type="hidden" name="id_usuario" id="id_usuario" value="<?php if(isset($id_usuario)){echo $id_usuario;}
                                 ?>">         
