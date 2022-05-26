@@ -1770,7 +1770,6 @@ class Cadmin extends CI_Controller
                 'id_area_form' => $this->input->post('id_area_form'),
                 'titulo_carrera' => $this->input->post('titulo_carrera'),
                 'rango_fecha' => $this->input->post('rango_fecha'),
-                'codigo' => $this->session->userdata('codigo'),
                 'id_usuario' => $this->input->post('id_usuario'),
                 'activo' => 1
             );
