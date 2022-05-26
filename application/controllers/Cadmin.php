@@ -1709,8 +1709,7 @@ class Cadmin extends CI_Controller
         }
        
         $id_usuario = $acausuario->id_usuario;
-        // echo json_encode($id_usuario);
-        // exit();
+      
 
         $breadcrumb = (object) [
             "menu" => "Admin",
