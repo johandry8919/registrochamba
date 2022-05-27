@@ -54,8 +54,8 @@
                                                 <button type="button" class="btn btn-sm btn-success ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>editar/empresa/<?php echo $empresa->id_empresas?>">
-                                                            <i class="side-menu__icon fe fe-eye"></i>
+                                                            href="<?php base_url()?>nueva_oferta/<?php echo $empresa->id_empresas?>">
+                                                            <i class="side-menu__icon fe fe-plus">Nueva oferta</i>
                                                             
                                                         </a>
                                                     </span>
