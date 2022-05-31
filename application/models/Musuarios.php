@@ -25,7 +25,8 @@ class Musuarios extends CI_Model
 	public function getEstados(){
 
 		$this->db->from('tbl_estado');
-		$this->db->where('activo','1');
+		$this->db->where('activo','1');		
+		$this->db->where('codigoestado !=','26');
 		$query = $this->db->get();
 
 			if ($query->num_rows() > 0) 

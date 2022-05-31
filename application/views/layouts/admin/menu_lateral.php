@@ -72,7 +72,7 @@
                                             
                                             <li><a href="<?php echo base_url();?>admin/universidades"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
-                                         >Centro de Estuios y Universidades</a></li> 
+                                         >Centro de Estudios y Universidades</a></li> 
                                     <li><a href="<?php echo base_url();?>admin/empresas"
                                      class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
                                          >Empresas u organismo publico</a></li>

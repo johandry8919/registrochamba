@@ -41,7 +41,7 @@
                                             <input
                                             
 
-                                            class="input100 border-start-0 ms-0 form-control" type="text" id="razon_social" maxlength="30" name="razon_social" value="<?php if(isset($list_empresa->nombre_razon_social)) echo ucwords($list_empresa->nombre_razon_social);?>" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus>
+                                            class="input100 border-start-0 ms-0 form-control" type="text" id="razon_social" maxlength="200" name="razon_social" value="<?php if(isset($list_empresa->nombre_razon_social)) echo ucwords($list_empresa->nombre_razon_social);?>" placeholder="NOMBRE O RAZÓN SOCIAL" required autofocus>
 
                                         </div>
 
