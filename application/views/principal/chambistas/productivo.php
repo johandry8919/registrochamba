@@ -6,20 +6,12 @@
 
 
 <section class="container">
-
-
-           
     
     
-     
-    <?php if ($this->session->flashdata('mensajeexito')) { ?>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?></div>
-            </div>
-        </div>
-    <?php } ?>
-    <?php if ($this->session->flashdata('mensajeerror')) { ?>
+
+
+    <?php if(!isset($id_usuario)):?>
+        <?php if ($this->session->flashdata('mensajeerror')) { ?>
         <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
@@ -27,6 +19,24 @@
         </div>
         <br>
     <?php } ?>
+     <?php  ?>
+     <?php endif;?>
+    <?php if(!isset($id_usuario)):?>
+        <?php if ($this->session->flashdata('mensajeerror')) { ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
+            </div>
+        </div>
+        <br>
+    <?php } ?>
+     <?php  ?>
+     <?php endif;?>
+
+     
+   
+
+    
     <?php if ($this->session->flashdata('mensaje')) { ?>
         <div class="row">
             <div class="col-md-12">
@@ -56,10 +66,17 @@
                                                                                                                     }
                                                                                                                     ?>
                                     <?php
-                                    if (isset($usuarioproductivo) and $usuarioproductivo != "") {
+                                        if(!isset($id_usuario)){
+                                            if (isset($usuarioproductivo) and $usuarioproductivo != "") {
 
-                                        echo '<a href="' . base_url() . 'eliminarchamba/' . $usuarioproductivo->id_chamba . '"><i class=" btn-close fs-6" aria-label="Close"></i></a>';
-                                    }
+                                                echo '<a href="' . base_url() . 'eliminarchamba/' . $usuarioproductivo->id_chamba . '"><i class=" btn-close fs-6" aria-label="Close"></i></a>';
+                                            }
+                                        }else{
+                                            if (isset($usuarioproductivo) and $usuarioproductivo != "") {
+
+                                                echo '<a href="' . base_url() . 'eliminarchambas/' . $id_usuario . '"><i class=" btn-close fs-6" aria-label="Close"></i></a>';
+                                            }
+                                        }
                                     ?>
                                 </div>
 
@@ -77,7 +94,11 @@
                             <div class="card-header">
                                 <div class="card-title">Productivo</div>
                             </div>
-                            <form id="formacionacademica" method="POST" action="<?php echo base_url(); ?>Cchambistas/registroproductivo">
+                            <form id="formacionacademica" method="POST" action="<?php if(isset($id_usuario)){
+                                echo base_url() . 'Cadmin/registroproductivo/'.$id_usuario;
+                            }else{
+                                echo base_url() . 'Cchambistas/registroproductivo';
+                            }?>">
                                 <div class="card-title text-center">¿En cuál Chamba deseas incorporarte?</div>
                                 <div class="form-group">
                                     <select class="form-select" aria-label="Default select example" data-placeholder="Choose one" id="tipo_chamba" name="tipo_chamba" required>
@@ -522,12 +543,20 @@
 
 
                                     <div class="col-12 mt-3 mb-3">
-                                        <?php if (isset($acausuario->id_usu_aca)) echo trim(ucwords($acausuario->id_usu_aca)); ?>
+                                       
                                         <button id="boton" type="botton" class="login100-form-btn btn-primary">
                                             Guardar
                                         </button>
                                     </div>
                                 </div>
+                                <input type="hidden" name="codigo" id="codigo" value="<?php if(isset($id_usuario)){
+                                    if(isset($acausuario)    ){
+                                        echo $acausuario->codigo;
+                                    }
+                                }?>">
+                                       
+                                   
+                            
 
                             </form>
 
@@ -538,11 +567,14 @@
                         </div>
                     </div>
 
+                   
+                    
 
 
 
 
                     <script src="<?php echo base_url(); ?>assets/js/app.js"></script>
+                   
 
 
 

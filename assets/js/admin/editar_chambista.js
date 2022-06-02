@@ -1,4 +1,3 @@
-
 (function ($) {
 	$("#buton").click(function (e) {
 		
@@ -139,7 +138,7 @@
 
 			
 			return false
-		}
+		}else{
 
 
 		// si los campo son valido se envia el formulario
@@ -209,9 +208,7 @@
 				alert("ocurrio un error intente de nuevo");
 			},
 		});
-	});
-	
-
+		
 	$("#nombres").on("keyup", function () {
 		"use strict";
 		var nombres = $(this).val();
@@ -477,11 +474,15 @@
 			$("#direccion").removeClass("is-valid").addClass("is-invalid");
 		}
 	});
-	
-	
+	} return true
+	});
+
+
 
 	
 })(jQuery);
+
+
 
 
 

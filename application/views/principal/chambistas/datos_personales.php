@@ -17,19 +17,30 @@
         
    
         <div class="">
+        <?php if(!isset($id_usuario)):?>
+            <?php if($this->session->flashdata('mensajeexito')){ ?>
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeexito'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                </div>
+                </div>
+                <br>
+        <?php }?> 
+     <?php  ?>
+     <?php endif;?>
+     
 
-      
+       
 
-        <?php if($this->session->flashdata('mensajeexito')){ ?>
-        <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-success">  <?php echo $this->session->flashdata('mensajeexito'); ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-            </div>
-        </div>
-        </div>
-        <?php }?>
-        <?php if($this->session->flashdata('mensajeerror')){ ?>
+
+
+
+        
+       
+        <?php if(!isset($id_usuario)):?>
+            <?php if($this->session->flashdata('mensajeerror')){ ?>
                 <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?>
@@ -39,6 +50,9 @@
                 </div>
                 <br>
         <?php }?> 
+     <?php  ?>
+     <?php endif;?>
+       
         <?php if($this->session->flashdata('mensaje')){ ?>
                 <div class="row">
                 <div class="col-md-12">
