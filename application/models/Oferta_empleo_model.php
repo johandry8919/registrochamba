@@ -41,11 +41,21 @@
         }
 
 
-        public function obtener_oferta($id_rol){
+        public function obtener_ofertas(){
 
-            $this->db->where('id_oferta', $id_rol);
+            $this->db->select(' tbl_ofertas_empleo.*,
+            tbl_empresas_entes.nombre_razon_social,tbl_instruccion.nivel,profesion.desc_profesion,
+            tbl_areas_formacion.nombre as formacion
+        
+                    
+            ');
+       
+            $this->db->where("tbl_ofertas_empleo.activo",1);
+            $this->db->join('tbl_empresas_entes', 'tbl_empresas_entes.id_empresas = tbl_ofertas_empleo.id_empresa_ente');
+            $this->db->join('tbl_instruccion ', 'tbl_instruccion.id_instruccion = tbl_ofertas_empleo.id_nivel_instruccion');
+            $this->db->join('tbl_profesion_oficio profesion', 'profesion.id_profesion = tbl_ofertas_empleo.id_profesion_oficio');
+            $this->db->join('tbl_areas_formacion', 'tbl_areas_formacion.id_area_form = tbl_ofertas_empleo.id_area_formacion');
             $query = $this->db->get("tbl_ofertas_empleo");
-    
             if ($query->num_rows()) $valor = $query->result();
             else $valor = [];
     

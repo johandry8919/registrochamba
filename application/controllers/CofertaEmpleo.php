@@ -85,7 +85,7 @@ class CofertaEmpleo extends CI_Controller
             redirect('admin/login');
         }
 
-
+        $ofertas = $this->Oferta_empleo_model->obtener_ofertas();
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "Listar oferta"
@@ -100,13 +100,11 @@ class CofertaEmpleo extends CI_Controller
             "breadcrumb"        =>   $breadcrumb,
             "title"             => "Nueva oferta",
             "vista_principal"   => "admin/listar_ofertas",
-            "librerias_js" => [recurso("listar_oferta_js")]
+            "librerias_js" => [recurso("listar_oferta_js")],
+            "ofertas" => $ofertas
         
      
      
-   
-
-
 
 
         ];
