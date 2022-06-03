@@ -1,0 +1,39 @@
+/* motrar y oculta un div  */
+.animate {
+  display: none;
+  animation: example ease-in;
+    animation-duration: 1s;
+
+   
+
+}
+
+
+@keyframes example {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -521,7 +521,7 @@ class Cchambistas extends CI_Controller
 
                 
             );
-            print_r($data);
+           
 
             if (!$this->Musuarios->getBrigadasUsuario($data)) {
 
@@ -688,6 +688,7 @@ class Cchambistas extends CI_Controller
                 'codigo' => $this->session->userdata('codigo'),
                 'id_usuario' => $this->session->userdata('id_usuario')
             );
+            
 
             if (!$this->Musuarios->getUsuariosProductivo($data)) {
 

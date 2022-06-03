@@ -79,6 +79,7 @@ $route['redessociales'] = 'Cchambistas/Vredessociales';
 $route['brigadas'] = 'Cchambistas/Vbrigadas';
 $route['productivo'] = 'Cchambistas/Vproductivo';
 $route['eliminarchamba/(:num)'] = 'Cchambistas/eliminarchamba/$1';
+$route['eliminarchambas/(:num)'] = 'Cadmin/eliminarchamba/$1';
 $route['eliminarbrigada/(:num)'] = 'Cchambistas/eliminarbrigada/$1';
 $route['eliminarvivienda/(:num)'] = 'Cchambistas/eliminarvivienda/(:num)';
 $route['insercion'] = 'Cchambistas/Vinsercion';

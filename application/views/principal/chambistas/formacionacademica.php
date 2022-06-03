@@ -136,20 +136,28 @@
                 </div>
             </div>
             <div class="col-12 mb-2">
-            <?php if($this->session->flashdata('mensajeexito')){ ?>
+            <?php if(!isset($id_usuario)):?>
+                <?php if($this->session->flashdata('mensajeexito')){ ?>
         <div class="row">
         <div class="col-md-12">
             <div class="alert alert-success">  <?php echo $this->session->flashdata('mensajeexito'); ?></div>
         </div>
         </div>
         <?php }?>
-        <?php if($this->session->flashdata('mensajeerror')){ ?>
+     <?php  ?>
+     <?php endif;?>
+           
+        
+        <?php if(!isset($id_usuario)):?>
+            <?php if($this->session->flashdata('mensajeerror')){ ?>
                 <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
                 </div>
                 </div>
         <?php }?> 
+     <?php  ?>
+     <?php endif;?>
         <?php if($this->session->flashdata('mensaje')){ ?>
                 <div class="row">
                 <div class="col-md-12">
