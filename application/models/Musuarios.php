@@ -295,6 +295,28 @@ class Musuarios extends CI_Model
 	public function registroproductivo($data){
 
 		$this->db->trans_begin();
+		
+		$this->db->insert('tbl_usuarios_productivos',$data);
+
+
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			return true;
+		}
+
+
+	}
+	public function registroproductivos($data){
+
+		$this->db->trans_begin();
+		$this->db->where('id_usuario',$data['id_usuario']);
+
 
 		$this->db->insert('tbl_usuarios_productivos',$data);
 
@@ -794,6 +816,20 @@ class Musuarios extends CI_Model
 		}			
 	}
 
+	public function eliminarchambas($id_usuario){
+
+		$this->db->where('id_usuario', $id_usuario);
+		// $this->db->where('codigo', $this->session->userdata('codigo'));
+		
+		$this->db->delete('tbl_usuarios_productivos');
+
+		if ($this->db->affected_rows()) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}			
+	}
+
 	public function eliminarbrigada($id_brigada){
 
 		$this->db->where('id_brigada', $id_brigada);
@@ -1033,6 +1069,20 @@ class Musuarios extends CI_Model
 		$this->db->join('tbl_chambas', 'tbl_chambas.id_chamba = tbl_usuarios_productivos.tipo_chamba',"LEFT");
 		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
 		$this->db->where('codigo',$this->session->userdata('codigo'));
+		$resultado = $this->db->get('public.tbl_usuarios_productivos');
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->row();
+		}else{
+			return FALSE;
+		}	
+	}
+	public function getUsuariosProductivos($id_usuario){
+		$this->db->limit(1);
+		$this->db->join('tbl_chambas', 'tbl_chambas.id_chamba = tbl_usuarios_productivos.tipo_chamba',"LEFT");
+		$this->db->where('id_usuario',$id_usuario);
+		// $this->db->where('codigo',$this->session->userdata('codigo'));
 		$resultado = $this->db->get('public.tbl_usuarios_productivos');
 
 

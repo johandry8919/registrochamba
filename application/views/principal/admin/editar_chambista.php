@@ -1,4 +1,24 @@
+
 <div class="container-fluid">
+<?php if ($this->session->flashdata('mensajeerror')) { ?>
+        <div class="row ocultal">
+            <div class="col-md-12">
+                <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
+            </div>
+        </div>
+        <br>
+    <?php } ?>
+    <?php if($this->session->flashdata('mensajeexito')){ ?>
+                <div class="row " >
+                <div class="col-md-12">
+                    <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?>
+                   
+                    </div>
+                </div>
+                </div>
+                <br>
+        <?php }?> 
+
 <div class="card">
 
 
@@ -14,6 +34,7 @@
                     <li><a href="#tab13" class="active" data-bs-toggle="tab"><span><i class="fe fe-user me-1"></i></span>Datos Personales</a></li>
                     <li><a href="#tab14" data-bs-toggle="tab" class=""><span><i class="fe fe-calendar me-1"></i></span>Formacion academica</a></li>
                     <li><a href="#tab15" data-bs-toggle="tab"><span><i class="fe fe-settings me-1"></i></span>Productivo</a></li>
+                    <li><a href="#tab16" data-bs-toggle="tab"><span><i class="fe fe-settings me-1"></i></span>Curriculo</a></li>
 
                 </ul>
             </div>
@@ -34,8 +55,15 @@
                 <?php     $this->load->view("principal/chambistas/productivo");?>
 
             </div>
+                <div class="tab-pane" id="tab16">
+                <?php     $this->load->view("principal/chambistas/Cv");?>
+
+            </div>
         </div>
     </div>
 </div>
 </div>
 </div>
+
+<link id="style" href="<?php echo base_url(); ?>assets/css/ocultal.css" rel="stylesheet" />
+<script src="<?php echo base_url(); ?>assets/js/mensajeexito.js"></script>

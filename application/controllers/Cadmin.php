@@ -1505,16 +1505,22 @@ class Cadmin extends CI_Controller
         $usuarioacademico = $this->Musuarios->AcademicoConsulta($id__exp_lab);
       
      
-   
-
-        // echo json_encode($res);
-        // exit();
 
         $estados = $this->Musuarios->getEstados();
         $aborigenes = $this->Musuarios->getAborigenes();
         $datos['estados'] = $estados;
         $datos['aborigenes'] = $aborigenes;
-        // $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademico();
+        $ress = [];
+        if ($this->session->userdata('id_rol') != 2) {
+            $ress = $this->Musuarios->getUsuariosProductivo();
+           
+           
+        }else{
+            $ress = $this->Musuarios->getUsuariosProductivos($id__exp_lab);
+
+        }
+       
+        
 
 
 
@@ -1522,6 +1528,9 @@ class Cadmin extends CI_Controller
         $profesiones = $this->Mprofesion_oficio->getprofesion();
         $movimiento_religioso = $this->Mprofesion_oficio->movimiento_religioso();
         $movimiento_sociales = $this->Mprofesion_oficio->movimiento_sociales();
+        $emprendedor= $this->Mprofesion_oficio->emprendedor();
+         $SectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+         
 
 
         $breadcrumb = (object) [
@@ -1547,8 +1556,13 @@ class Cadmin extends CI_Controller
             "acausuario" => $acausuario,
             "usuarioacademico" => $usuarioacademico,
             "areaform"      =>   $this->Musuarios->getAreaForm(),
+            "usuarioproductivo"        => $ress,
+            'emprendedor' => $emprendedor,
+            'SectorProductivo' => $SectorProductivo,
+           
            
 
+            
 
             "librerias_js" => [
                 recurso("moment_js"), recurso("bootstrap-material-datetimepicker_js"),
@@ -1558,8 +1572,10 @@ class Cadmin extends CI_Controller
 
             ],
 
-            "ficheros_js" => [recurso("editar_chambista_js")],
+            
             "ficheros_css" => [recurso("mapa_mabox_css")],
+
+            "ficheros_js" => [recurso("editar_chambista_js")],
 
 
         ];
@@ -1671,14 +1687,19 @@ class Cadmin extends CI_Controller
 
             );
 
-            if (!$this->Musuarios->getUsuarioRegistradoPersonal()) {
+          
 
                 if ($this->Musuarios->actualizarChambista($data , $id_usuario)) {
+                   
                     echo json_encode(["resultado" => true, "mensaje" => "Datos actualizados correctamente"]);
                 } else {
                     echo json_encode(["resultado" => false, "mensaje" => "Error al actualizar los datos"]);
                     
                 }
+            
+
+            if (!$this->Musuarios->getUsuarioRegistradoPersonal()) {
+               
             } 
 
 
@@ -1792,5 +1813,156 @@ class Cadmin extends CI_Controller
                    
                 }
             } 
+        }
+
+        public function registroproductivo()
+        {
+            if ($this->session->userdata('id_rol') != 2) {
+                echo  json_encode([
+                    "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                    "rol_usuario" => $this->session->userdata('id_rol')
+    
+                ]);
+                exit();
+            }
+            $id_usuario = strip_tags(trim($this->uri->segment(3)));
+
+           
+            // $codigo =  $this->session->userdata('codigo');
+            // echo json_encode($id_usuario);
+            // exit();
+    
+           
+    
+            $this->form_validation->set_rules('tipo_chamba', 'Tipo Chamba', 'trim|min_length[1]|strip_tags');
+            $this->form_validation->set_rules('terreno_siembra', 'Terreno Siembra', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('sembrando', 'Sembrando', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('rubro', 'Rubro', 'trim|min_length[2]|max_length[100]|strip_tags');
+            $this->form_validation->set_rules('financiamiento', 'Financiamiento', 'trim|min_length[2]|strip_tags');
+    
+            $this->form_validation->set_rules('pesquera_inspector_pescador', 'Inspector pescador', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('pesquera_pescador', 'Pescador', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('pesquera_financiamiento', 'Financiamiento Pesquera', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('pesquera_refrigeracion', 'Refrigeración', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('emprendimiento', 'Emprendimiento', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('iniciar_emprendimiento', 'Emprendimiento', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('emprendimiento_empresa', 'Empresa', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('financiamiento-emprendimiento', 'Financiamiento emprendimiento', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('agrourbana-terrenos', 'Terrenos', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('agrourbana-patio', 'Patio', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('agrourbana-rubro', 'Rubro', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('financiamiento-agrourbana', 'Agrourbana', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('id_area_desarrollo_emprendedor', 'emprendedor_nombre', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('que_esta_desarrollando', 'queEstaDesarroLLando', 'trim|min_length[2]|strip_tags');
+            $this->form_validation->set_rules('id_sector_productivo', 'SectorProductivo', 'trim|min_length[2]|strip_tags');
+        
+    
+            $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
+            //delimitadores de errores
+    
+            //reglas de validación
+            $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+            //reglas de validación
+    
+            if ($this->form_validation->run() === FALSE) {
+    
+                $mensaje_error = validation_errors();
+                $datos['mensajeerror'] = $mensaje_error;
+    
+                $this->session->set_flashdata('mensajeerror', $mensaje_error);
+                redirect('admin/editar_chambista/' . $id_usuario);
+            } else {
+                $codigo = $this->input->post('codigo');
+                // echo json_encode($codigo);
+                // exit();
+
+                $data = array(
+    
+                    //Chamba Vuelta al Campo
+                    'tipo_chamba' => $this->input->post('tipo_chamba'),
+                    'terreno_siembra' => $this->input->post('terreno_siembra'),
+                    'sembrando' => $this->input->post('sembrando'),
+                    'rubro' => $this->input->post('rubro'),
+                    'financiamiento' => $this->input->post('financiamiento'),
+                    //Pesquera y Acuicola
+                    'pesquera_inspector_pescador' => $this->input->post('pesquera_inspector_pescador'),
+                    'pesquera_pescador' => $this->input->post('pesquera_pescador'),
+                    'pesquera_financiamiento' => $this->input->post('pesquera_financiamiento'),
+                    'pesquera_refrigeracion' => $this->input->post('pesquera_refrigeracion'),
+                    //Pesquera y Acuicola
+                    'emprendimiento' => $this->input->post('emprendimiento'),
+                    'iniciar_emprendimiento' => $this->input->post('iniciar_emprendimiento'),
+                    'emprendimiento_empresa' => $this->input->post('emprendimiento_empresa'),
+                    'financiamiento-emprendimiento' => $this->input->post('financiamiento-emprendimiento'),
+                    //Chamba Agrourbana
+                    'agrourbana-terrenos' => $this->input->post('agrourbana-terrenos'),
+                    'agrourbana-patio' => $this->input->post('agrourbana-patio'),
+                    'agrourbana-rubro' => $this->input->post('agrourbana-rubro'),
+                    'financiamiento-agrourbana' => $this->input->post('financiamiento-agrourbana'),
+                    // Emprendedor
+                    'id_area_desarrollo_emprendedor' => $this->input->post('emprendedor_nombre'),
+                    // queEstaDesarroLLando
+                    'que_esta_desarrollando' => $this->input->post('queEstaDesarroLLando'),
+                    // desarrollo_proyecto_tecnologico
+                    'desarrollo_proyecto_tecnologico' => $this->input->post('proyecto_tecnologico'),
+                    // id_servicios_profesionales
+                    'id_servicios_profesionales' => $this->input->post('idservicios'),
+                    // Sector_Productivo
+                    'id_sector_productivo' => $this->input->post('SectorProductivo'),
+                    'id_usuario' => $id_usuario,
+                    'codigo' => $codigo,
+                   
+    
+                    
+                   
+                   
+                );
+
+                
+    
+                if (!$this->Musuarios->getUsuariosProductivos($id_usuario)) {
+                   
+               
+    
+                    if ($this->Musuarios->registroproductivos($data)) {
+                        $this->session->set_flashdata('mensajeexito', 'Registro exitoso');
+                       
+                        redirect('admin/editar_chambista/' . $id_usuario);
+                        
+                       
+                       
+                    } else {
+                        $this->session->set_flashdata('mensajeerror', 'Ocurrio un error guardando intente de nuevo.');
+                        redirect('admin/editar_chambista/' . $id_usuario);
+                    }
+                } else {
+                    
+                    $this->session->set_flashdata('mensajeerror', 'Solo puedes registrar una opción, puedes eliminarla y crear una nueva');
+                    redirect('admin/editar_chambista/' . $id_usuario);
+                }
+            }
+        }
+
+        public function eliminarchamba()
+        {
+            if ($this->session->userdata('id_rol') != 2) {
+                echo  json_encode([
+                    "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                    "rol_usuario" => $this->session->userdata('id_rol')
+    
+                ]);
+                exit();
+            }
+            
+            $id_usuario = strip_tags(trim($this->uri->segment(2)));
+          
+    
+            if ($this->Musuarios->eliminarchambas($id_usuario)) {
+                $this->session->set_flashdata('mensajeexito', 'Operación Exitosa! ah eliminar la chamba');
+                redirect('admin/editar_chambista/' .$id_usuario);
+            } else {
+                $this->session->set_flashdata('mensajeerror', 'Ocurrió un error intente de nuevo!');
+                redirect('admin/editar_chambista/' .$id_usuario);
+            }
         }
     }
