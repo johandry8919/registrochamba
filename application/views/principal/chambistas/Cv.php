@@ -48,42 +48,23 @@
                             <div id="real_time_chart" class="">
 
                             <div class="row text-center">
-                            <?php if(!isset($id_usuario)):
-                                
-                                ?>
-                                <div class="col-md-12 col-md-offset-3">
-                                <?php if(isset($usuarioexperiencia) and !empty($usuarioexperiencia) 
-                                and isset($usuarioacademico) and !empty($usuarioacademico)
-                                and isset($personal) and !empty($personal)
-                                ){?>
-                                 <a target="_blank" href="<?php echo base_url()?>descargarpdfusuario" class="btn bg-cyan btn-block btn-primary">Descargar Curriculum</a>                              
-                                <?php }else{ ?>
-                                    <p class="alert alert-warning text-red">Debes completar tus datos para poder descargar tu CV</p>
-                                   
-                                    <?php }?>
-                            </div>
-                            <?php endif;?>                                
-                                <?php if(isset($id_usuario)):
-                                
-                                    ?>
-                                    <div class="col-md-12 col-md-offset-3">
-                                    <?php if(isset($usuarioexperiencia) and !empty($usuarioexperiencia) 
+                            <div class="col-md-12 col-md-offset-3">
+                                   <?php if(isset($usuarioexperiencia) and !empty($usuarioexperiencia) 
                                     and isset($usuarioacademico) and !empty($usuarioacademico)
                                     and isset($personal) and !empty($personal)
                                     ){?>
-                                     <a target="_blank" href="<?php echo base_url()?>descargarpdfusuarios" class="btn bg-cyan btn-block btn-primary">Descargar Curriculum</a>                              
+                                     <a target="_blank" href="<?php echo base_url()?>descargarpdfusuario" class="btn bg-cyan btn-block btn-lg waves-effect">Descargar Curriculum</a>                               
                                     <?php }else{ ?>
                                         <p class="alert alert-warning text-red">Debes completar tus datos para poder descargar tu CV</p>
                                        
                                         <?php }?>
                                 </div>
-                                <?php endif;?>
                             </div>
                             </div>
                         </div>
-                      <?php if(!isset($id_usuario)):
+                     
 
-                        ?>
+                        
                           <div class="footer">
                             <h4>
                                 Nota:
@@ -91,7 +72,7 @@
                             </h4>
                         </div>
                         
-                        <?php endif;?>
+                    
 
                     </div>
               

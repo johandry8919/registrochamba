@@ -1565,7 +1565,7 @@ class Cadmin extends CI_Controller
             "areaform"      =>   $this->Musuarios->getAreaForm(),
             "usuarioproductivo"        => $ress,
             'emprendedor' => $emprendedor,
-            'SectorProductivo' => $SectorProductivo,
+            'sectorProductivo' => $SectorProductivo,
             'usuarioexperiencia' => $usuarioexperiencia,
             'personal' => $personal,
            
@@ -1975,7 +1975,6 @@ class Cadmin extends CI_Controller
                 redirect('admin/editar_chambista/' .$id_usuario);
             }
         }
-
         public function generate($html, $cedula)
         {
             $dompdf = new Dompdf(); // Instanciamos un objeto de la clase DOMPDF.
@@ -1985,6 +1984,8 @@ class Cadmin extends CI_Controller
             $dompdf->stream($cedula . ".pdf", array("Attachment" => 0)); # Enviamos el fichero PDF al navegador.
             return $dompdf->output();
         }
+
+     
 
         public function pdfCadmin()
     {
@@ -1996,13 +1997,13 @@ class Cadmin extends CI_Controller
             ]);
             exit();
         }
-       
-        
-        $personal = $this->Musuarios->getUsuarioRegistradoPersonal();
-        $usuario = $this->Musuarios->getUsuario();
-        $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencia();
-        $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademico();
-        $res = $this->Musuarios->getRedesSociales();
+        $id_usuario = strip_tags(trim($this->uri->segment(2)));
+        $codigo = $this->Musuarios->getUsuarios($id_usuario);
+        $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id_usuario);
+        $usuario = $this->Musuarios->getUsuarios($id_usuario);
+        $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id_usuario, $codigo->codigo);
+        $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademicoConsulta( $codigo->codigo);
+        $res = $this->Musuarios->getRedesSocialesConsulta($codigo->codigo);
         $imgqr = $this->qr();
 
         $data['imgqr'] = $imgqr;
@@ -2013,10 +2014,7 @@ class Cadmin extends CI_Controller
         $data['usuarioacademico'] = $usuarioacademico;
         $data['redesusuario'] = $res;
         $html = $this->load->view('pdf_exports/genera_pdf_muestra', $data, TRUE);
-        // Cargamos la librería
-        //$this->load->library('pdfgenerator');
-        // definamos un nombre para el archivo. No es necesario agregar la extension .pdf
-        // generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
+  
         $this->generate($html, $usuario->cedula);
     }
     public function qr()
