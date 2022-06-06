@@ -171,4 +171,48 @@ class CofertaEmpleo extends CI_Controller
 
     }
 
+    public function ver_oferta(){
+
+          
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+
+        $id_oferta = strip_tags(trim($this->uri->segment(3)));
+        $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
+        $breadcrumb = (object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Ver oferta"
+
+
+        ];
+    
+
+    
+        $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+   
+
+      
+        $output = [
+            "menu_lateral"      => "admin",
+            "breadcrumb"        =>   $breadcrumb,
+            "title"             => "Nueva oferta",
+            "vista_principal"   => "admin/ver_oferta",
+            "librerias_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
+            "oferta" => $oferta,
+            "profesion_oficio" => $profesion_oficio,
+            "id_oferta" => $id_oferta,
+            "areaform"     =>   $this->Musuarios->getAreaForm(),
+        
+     
+     
+
+
+        ];
+
+        $this->load->view("main", $output);
+    
+}
+
+
 }

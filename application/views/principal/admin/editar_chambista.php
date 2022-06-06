@@ -34,7 +34,7 @@
                     <li><a href="#tab13" class="active" data-bs-toggle="tab"><span><i class="fe fe-user me-1"></i></span>Datos Personales</a></li>
                     <li><a href="#tab14" data-bs-toggle="tab" class=""><span><i class="fe fe-calendar me-1"></i></span>Formacion academica</a></li>
                     <li><a href="#tab15" data-bs-toggle="tab"><span><i class="fe fe-settings me-1"></i></span>Productivo</a></li>
-                    <li><a href="#tab16" data-bs-toggle="tab"><span><i class="fe fe-settings me-1"></i></span>Curriculo</a></li>
+                    <li><a href="#tab16" data-bs-toggle="tab"><span><i class="fe fe-settings me-1"></i></span>Curriculum</a></li>
 
                 </ul>
             </div>

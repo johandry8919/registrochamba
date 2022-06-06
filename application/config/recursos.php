@@ -14,6 +14,7 @@
     $config['recursos']['jquery_steps_js'] = "assets/plugins/jquery-steps/jquery.steps.min.js?sv=1.0.";
     $config['recursos']['parsleyjs_js'] = "assets/plugins/parsleyjs/parsley.min.js";
     $config['recursos']['sweetalert2_js'] = "assets/plugins/sweetalert2/sweetalert2.min.js";
+    $config['recursos']['accordion_js'] = "assets/plugins/accordion/accordion.min.js";
 
     
     // JS - librería propios
@@ -27,7 +28,9 @@
     $config['recursos']['admin_nueva_oferta_js'] = "assets/js/admin/admin_nueva_oferta.js?v=1.0.6";
     $config['recursos']['editar_formacion_cade_js'] = "assets/js/admin/editar_formacion_cade.js?v=1.0.6";
     $config['recursos']['listar_oferta_js'] = "assets/js/admin/listar_oferta.js?v=1.0.6";
+    $config['recursos']['ver_oferta_js'] = "assets/js/admin/ver_oferta.js?v=1.0.6";
 
+    
 
     
     

@@ -8,7 +8,7 @@
 <!-- #END# Overlay For Sidebars -->
 
 <section class="content">
-    <div class="container-fluid">
+
 
 
 
@@ -268,7 +268,7 @@
 
             </div>
         </div>
-    </div>
+    
     </div>
     </div>
 

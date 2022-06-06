@@ -54,7 +54,7 @@
                                                 <button type="button" class="btn btn-sm btn-success ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>ver_oferta/<?php echo $oferta->id_empresa_ente?>">
+                                                            href="<?php base_url()?>ver_oferta/<?php echo $oferta-$id_oferta ?>">
                                                             <i class="side-menu__icon fe fe-eye"></i>
                                                             
                                                         </a>
