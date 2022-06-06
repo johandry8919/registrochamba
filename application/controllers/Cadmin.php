@@ -1,5 +1,8 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
+require_once APPPATH . 'libraries/dompdf/autoload.inc.php';
+use Dompdf\Dompdf;
 
 class Cadmin extends CI_Controller
 {
@@ -1503,6 +1506,7 @@ class Cadmin extends CI_Controller
 
          
         $usuarioacademico = $this->Musuarios->AcademicoConsulta($id__exp_lab);
+        
       
      
 
@@ -1512,7 +1516,7 @@ class Cadmin extends CI_Controller
         $datos['aborigenes'] = $aborigenes;
         $ress = [];
         if ($this->session->userdata('id_rol') != 2) {
-            $ress = $this->Musuarios->getUsuariosProductivo();
+            $ress = $this->Musuarios->getUsuariosProductivos($id__exp_lab);
            
            
         }else{
@@ -1525,11 +1529,14 @@ class Cadmin extends CI_Controller
 
 
 
-        $profesiones = $this->Mprofesion_oficio->getprofesion();
+        
         $movimiento_religioso = $this->Mprofesion_oficio->movimiento_religioso();
         $movimiento_sociales = $this->Mprofesion_oficio->movimiento_sociales();
         $emprendedor= $this->Mprofesion_oficio->emprendedor();
          $SectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+         $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id__exp_lab, $acausuario->codigo);
+         $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id__exp_lab, $acausuario->codigo);
+         $profesiones = $this->Mprofesion_oficio->getprofesion();
          
 
 
@@ -1559,6 +1566,9 @@ class Cadmin extends CI_Controller
             "usuarioproductivo"        => $ress,
             'emprendedor' => $emprendedor,
             'SectorProductivo' => $SectorProductivo,
+            'usuarioexperiencia' => $usuarioexperiencia,
+            'personal' => $personal,
+           
            
            
 
@@ -1965,4 +1975,67 @@ class Cadmin extends CI_Controller
                 redirect('admin/editar_chambista/' .$id_usuario);
             }
         }
+
+        public function generate($html, $cedula)
+        {
+            $dompdf = new Dompdf(); // Instanciamos un objeto de la clase DOMPDF.
+            $dompdf->loadHtml($html); // Cargamos el contenido HTML.
+            $dompdf->render(); // Renderizamos el documento PDF.
+            $dompdf->setPaper('A4', 'portrait');
+            $dompdf->stream($cedula . ".pdf", array("Attachment" => 0)); # Enviamos el fichero PDF al navegador.
+            return $dompdf->output();
+        }
+
+        public function pdfCadmin()
+    {
+        if ($this->session->userdata('id_rol') != 2) {
+            echo  json_encode([
+                "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                "rol_usuario" => $this->session->userdata('id_rol')
+
+            ]);
+            exit();
+        }
+       
+        
+        $personal = $this->Musuarios->getUsuarioRegistradoPersonal();
+        $usuario = $this->Musuarios->getUsuario();
+        $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencia();
+        $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademico();
+        $res = $this->Musuarios->getRedesSociales();
+        $imgqr = $this->qr();
+
+        $data['imgqr'] = $imgqr;
+
+        $data['personal'] = $personal;
+        $data['usuario'] = $usuario;
+        $data['usuarioexperiencia'] = $usuarioexperiencia;
+        $data['usuarioacademico'] = $usuarioacademico;
+        $data['redesusuario'] = $res;
+        $html = $this->load->view('pdf_exports/genera_pdf_muestra', $data, TRUE);
+        // Cargamos la librería
+        //$this->load->library('pdfgenerator');
+        // definamos un nombre para el archivo. No es necesario agregar la extension .pdf
+        // generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
+        $this->generate($html, $usuario->cedula);
+    }
+    public function qr()
+    {
+        if ($this->session->userdata('id_rol') != 2) {
+            //hacemos configuraciones
+            $params['data'] = base_url()."consulta/".$this->session->userdata('codigo');
+            $params['level'] = 'L';
+            $params['size'] = 5;
+            /*L = Baja
+            M = Mediana
+            Q = Alta
+            H= Máxima */
+            $params['savename'] = FCPATH . "qr_code/".$this->session->userdata('cedula')."_".$this->session->userdata('codigo').".png";
+            //generamos el código qr
+            $this->ciqrcode->generate($params);
+
+            $data['img'] = $this->session->userdata('cedula')."_".$this->session->userdata('codigo').".png";
+            return $data['img'];
+        }
+    }
     }
