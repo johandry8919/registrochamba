@@ -1996,9 +1996,7 @@ class Cadmin extends CI_Controller
             ]);
             exit();
         }
-        $id = $this->input->post('id_usuario');
-        echo json_encode($id);
-        exit();
+       
         
         $personal = $this->Musuarios->getUsuarioRegistradoPersonal();
         $usuario = $this->Musuarios->getUsuario();
