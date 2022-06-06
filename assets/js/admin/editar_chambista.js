@@ -171,7 +171,7 @@
 				estcivil:estcivil,
 				aborigen:aborigen,
 				hijo:hijo,
-				id_profesion_oficio:id_profesion_oficio,
+				id_profesion_oficio,
 				edad:edad
 
 

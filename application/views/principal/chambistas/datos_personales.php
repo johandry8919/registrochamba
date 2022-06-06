@@ -14,6 +14,7 @@
 <!--script src="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.css" rel="stylesheet" /-->
     <section class="content">
+   
         
    
         <div class="">
@@ -220,7 +221,7 @@
                                                         <select required class="form-control show-tick" id="id_profesion" name="id_profesion">
                                                             <option value="">Seleccione una Profesión u Oficio</option>
 
-                                                           
+                                                          
                                                      
                                                          <?php if(isset($profesion_oficio)): ?>
                                                             <?php foreach ($profesion_oficio as $key => $profesion):?>

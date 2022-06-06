@@ -57,6 +57,29 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}
 	}
+	public function getUsuarioRegistradoPersonale($id_usuario,$codigo){
+
+		$this->db->select(' tbl_usuarios_personales.*,
+							tbl_estado.nombre AS estado, 
+							tbl_municipio.nombre AS municipio, 
+							tbl_parroquia.nombre AS parroquia							
+							');
+		$this->db->limit(1);
+/* 		$this->db2->where('cedula',$this->session->userdata('cedula')); */
+		$this->db->where('id_usuario',$id_usuario , $codigo);
+		$this->db->where('codigo',$codigo);
+		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado');
+		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio');
+		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia');
+		$resultado = $this->db->get('tbl_usuarios_personales');
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->row();
+		}else{
+			return FALSE;
+		}
+	}
 
 	public function getUsuarioRegistradoPersonalConsulta($codigo){
 
@@ -189,6 +212,23 @@ class Musuarios extends CI_Model
 		$this->db->where('activo',1);
 		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
 		$this->db->where('codigo',$this->session->userdata('codigo'));
+		$this->db->join('tbl_sector_empresas', 'tbl_sector_empresas.id_sector_empresa = tbl_usuarios_experiencia_laboral.area');
+		$resultado = $this->db->get('tbl_usuarios_experiencia_laboral');
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->result();
+		}else{
+			return FALSE;
+		}
+	}
+	public function getUsuarioRegistradoExperiencias($id_usuario,$codigo){
+
+		$this->db->select(' *');
+
+		$this->db->where('activo',1);
+		$this->db->where('id_usuario',$id_usuario);
+		$this->db->where('codigo',$codigo);
 		$this->db->join('tbl_sector_empresas', 'tbl_sector_empresas.id_sector_empresa = tbl_usuarios_experiencia_laboral.area');
 		$resultado = $this->db->get('tbl_usuarios_experiencia_laboral');
 

@@ -73,6 +73,7 @@ $route['experiencialaboral'] = 'Cchambistas/Vexperiencialaboral';
 $route['experiencialaboralform/(:num)'] = 'Cchambistas/Vexperiencialaboral_form/$1';
 $route['experiencialaboralform'] = 'Cchambistas/Vexperiencialaboral_form';
 $route['descargarpdfusuario'] = 'Cchambistas/pdf';
+$route['descargarpdfusuarios'] = 'Cadmin/pdf';
 $route['eliminarexp/(:num)'] = 'Cchambistas/eliminarexp/$1';
 $route['eliminaracademico/(:num)'] = 'Cchambistas/eliminaracademico/$1';
 $route['redessociales'] = 'Cchambistas/Vredessociales';

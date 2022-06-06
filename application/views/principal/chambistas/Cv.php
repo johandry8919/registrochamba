@@ -4,15 +4,7 @@
        
 
          
-    <?php if(!isset($id_usuario)):?>
-        if ($this->session->flashdata('mensajeerror')) { ?>
-         <div class="row">
-             <div class="col-md-12">
-                 <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?></div>
-             </div>
-         </div>
-     <?php  ?>
-     <?php endif;?>
+ 
     <?php if(!isset($id_usuario)):?>
         <?php if ($this->session->flashdata('mensajeerror')) { ?>
         <div class="row">
@@ -43,37 +35,64 @@
                 </div>
                 <br>
         <?php }?> 
+        
+       
            
                
                     <div class="card">
                         <div class="header">
-                            <div class="card-title h3 m-2">CV virtual</div>
+                            <div class="card-title h3 m-2">Curriculum : Vitual</div>
 
                         </div>
                         <div class="card-body">
                             <div id="real_time_chart" class="">
 
                             <div class="row text-center">
+                            <?php if(!isset($id_usuario)):
+                                
+                                ?>
                                 <div class="col-md-12 col-md-offset-3">
+                                <?php if(isset($usuarioexperiencia) and !empty($usuarioexperiencia) 
+                                and isset($usuarioacademico) and !empty($usuarioacademico)
+                                and isset($personal) and !empty($personal)
+                                ){?>
+                                 <a target="_blank" href="<?php echo base_url()?>descargarpdfusuario" class="btn bg-cyan btn-block btn-primary">Descargar Curriculum</a>                              
+                                <?php }else{ ?>
+                                    <p class="alert alert-warning text-red">Debes completar tus datos para poder descargar tu CV</p>
+                                   
+                                    <?php }?>
+                            </div>
+                            <?php endif;?>                                
+                                <?php if(isset($id_usuario)):
+                                
+                                    ?>
+                                    <div class="col-md-12 col-md-offset-3">
                                     <?php if(isset($usuarioexperiencia) and !empty($usuarioexperiencia) 
                                     and isset($usuarioacademico) and !empty($usuarioacademico)
                                     and isset($personal) and !empty($personal)
                                     ){?>
-                                     <a target="_blank" href="<?php echo base_url()?>descargarpdfusuario" class="btn bg-cyan btn-block btn-primary">Descargar Curriculum</a>                              
+                                     <a target="_blank" href="<?php echo base_url()?>descargarpdfusuarios" class="btn bg-cyan btn-block btn-primary">Descargar Curriculum</a>                              
                                     <?php }else{ ?>
                                         <p class="alert alert-warning text-red">Debes completar tus datos para poder descargar tu CV</p>
                                        
                                         <?php }?>
                                 </div>
+                                <?php endif;?>
                             </div>
                             </div>
                         </div>
-                        <div class="footer">
+                      <?php if(!isset($id_usuario)):
+
+                        ?>
+                          <div class="footer">
                             <h4>
                                 Nota:
                                 <small>Ir al listado para completar tu información. <a href="<?php echo base_url()?>inicio">Verificar</a></small>
                             </h4>
-                        </div>                         
+                        </div>
+                        
+                        <?php endif;?>
+
                     </div>
               
       
@@ -81,7 +100,7 @@
     <script type="text/javascript">
         var base_url = "<?php echo base_url(); ?>";
     </script>
-    <!--     <script src="<?php echo base_url(); ?>js/demo.js"></script> -->
+   
 
   
 
