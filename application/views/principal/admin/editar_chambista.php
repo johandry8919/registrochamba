@@ -50,13 +50,91 @@
                 <div class="tab-pane" id="tab14">
 
                 <?php     $this->load->view("principal/chambistas/formacionacademica");?>
+
+                <?php if(!isset($acausuario->id_usu_aca)):?>
+            <footer>
+                <div class="">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="copyright">
+                                <h3>El usuario aun no ah Registrado Formacion acadimica</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        <?php endif;?>
             </div>
                 <div class="tab-pane" id="tab15">
                 <?php     $this->load->view("principal/chambistas/productivo");?>
 
             </div>
                 <div class="tab-pane" id="tab16">
-                <?php     $this->load->view("principal/chambistas/Cv");?>
+                    
+                <?php if(!isset($id_usuario)):?>
+        <?php if ($this->session->flashdata('mensajeerror')) { ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
+            </div>
+        </div>
+        <br>
+    <?php } ?>
+     <?php  ?>
+     <?php endif;?>
+            <?php if ($this->session->flashdata('mensaje')) { ?>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-warning"> <?php echo $this->session->flashdata('mensaje'); ?></div>
+                    </div>
+                </div>
+                <br>
+            <?php } ?>
+
+            <?php if($this->session->flashdata('mensaje')){ ?>
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-info"> <?php echo $this->session->flashdata('mensaje'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                </div>
+                </div>
+                <br>
+        <?php }?> 
+        
+       
+           
+               
+                    <div class="card">
+                        <div class="header">
+                            <div class="card-title h3 m-2">Curriculum : Vitual</div>
+
+                        </div>
+                        <div class="card-body">
+                            <div id="real_time_chart" class="">
+
+                            <div class="row text-center">
+      
+                                    <div class="col-md-12 col-md-offset-3">
+                                    <?php if(isset($usuarioexperiencia) and !empty($usuarioexperiencia) 
+                                    and isset($usuarioacademico) and !empty($usuarioacademico)
+                                    and isset($personal) and !empty($personal)
+                                    ){?>
+                                     <a target="_blank" href="<?php echo base_url()?>descargarpdfusuarios/<?php echo $id_usuario?>" class="btn bg-cyan btn-block btn-primary">Descargar Curriculum</a>                              
+                                    <?php }else{ ?>
+                                        <p class="alert alert-warning text-red">Debes completar tus datos para poder descargar tu CV</p>
+                                       
+                                        <?php }?>
+                                </div>
+                                <input type="hidden" name="codigo" id="codigo" value="<?php if(isset($id_usuario)){
+                                    if(isset($acausuario)    ){
+                                        echo $acausuario->codigo;
+                                    }
+                                }?>">
+                               
+                            </div>
+                            </div>
+                        </div>
 
             </div>
         </div>

@@ -1504,7 +1504,7 @@ class Cadmin extends CI_Controller
         } else {
             echo json_encode(["resultado" => false, "mensaje" => "No se encontro el registro"]);
         }
-        
+       
 
          
         $usuarioacademico = $this->Musuarios->AcademicoConsulta($id__exp_lab);
@@ -1525,6 +1525,10 @@ class Cadmin extends CI_Controller
             $ress = $this->Musuarios->getUsuariosProductivos($id__exp_lab);
 
         }
+
+        //  echo json_encode($res);
+        // exit();
+        
        
         
 
@@ -1536,8 +1540,8 @@ class Cadmin extends CI_Controller
         $movimiento_sociales = $this->Mprofesion_oficio->movimiento_sociales();
         $emprendedor= $this->Mprofesion_oficio->emprendedor();
          $SectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
-         $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id__exp_lab, $acausuario->codigo);
-         $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id__exp_lab, $acausuario->codigo);
+         $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id__exp_lab);
+         $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id__exp_lab);
          $profesiones = $this->Mprofesion_oficio->getprofesion();
          
 
@@ -1989,55 +1993,52 @@ class Cadmin extends CI_Controller
         }
 
         public function pdfCadmin()
-    {
-        if ($this->session->userdata('id_rol') != 2) {
-            echo  json_encode([
-                "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                "rol_usuario" => $this->session->userdata('id_rol')
-
-            ]);
-            exit();
+        {
+            if ($this->session->userdata('id_rol') != 2) {
+                echo  json_encode([
+                    "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                    "rol_usuario" => $this->session->userdata('id_rol')
+    
+                ]);
+                exit();
+            }
+            $id_usuario = strip_tags(trim($this->uri->segment(2)));
+            $codigo = $this->Musuarios->getUsuarios($id_usuario);
+            $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id_usuario);
+            $usuario = $this->Musuarios->getUsuarioConsulta($codigo->codigo);
+            $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id_usuario, $codigo->codigo);
+            $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademicoConsulta( $codigo->codigo);
+            $res = $this->Musuarios->getRedesSocialesConsulta($codigo->codigo);
+            $imgqr = $this->qr();
+    
+            $data['imgqr'] = $imgqr;
+    
+            $data['personal'] = $personal;
+            $data['usuario'] = $usuario;
+            $data['usuarioexperiencia'] = $usuarioexperiencia;
+            $data['usuarioacademico'] = $usuarioacademico;
+            $data['redesusuario'] = $res;
+            $html = $this->load->view('pdf_exports/genera_pdf_muestra', $data, TRUE);
+      
+            $this->generate($html, $usuario->cedula);
         }
-       
-        
-        $personal = $this->Musuarios->getUsuarioRegistradoPersonal();
-        $usuario = $this->Musuarios->getUsuario();
-        $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencia();
-        $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademico();
-        $res = $this->Musuarios->getRedesSociales();
-        $imgqr = $this->qr();
-
-        $data['imgqr'] = $imgqr;
-
-        $data['personal'] = $personal;
-        $data['usuario'] = $usuario;
-        $data['usuarioexperiencia'] = $usuarioexperiencia;
-        $data['usuarioacademico'] = $usuarioacademico;
-        $data['redesusuario'] = $res;
-        $html = $this->load->view('pdf_exports/genera_pdf_muestra', $data, TRUE);
-        // Cargamos la librería
-        //$this->load->library('pdfgenerator');
-        // definamos un nombre para el archivo. No es necesario agregar la extension .pdf
-        // generamos el PDF. Pasemos por encima de la configuración general y definamos otro tipo de papel
-        $this->generate($html, $usuario->cedula);
-    }
-    public function qr()
-    {
-        if ($this->session->userdata('id_rol') != 2) {
-            //hacemos configuraciones
-            $params['data'] = base_url()."consulta/".$this->session->userdata('codigo');
-            $params['level'] = 'L';
-            $params['size'] = 5;
-            /*L = Baja
-            M = Mediana
-            Q = Alta
-            H= Máxima */
-            $params['savename'] = FCPATH . "qr_code/".$this->session->userdata('cedula')."_".$this->session->userdata('codigo').".png";
-            //generamos el código qr
-            $this->ciqrcode->generate($params);
-
-            $data['img'] = $this->session->userdata('cedula')."_".$this->session->userdata('codigo').".png";
-            return $data['img'];
+        public function qr()
+        {
+            if ($this->session->userdata('id_rol') != 2) {
+                //hacemos configuraciones
+                $params['data'] = base_url()."consulta/".$this->session->userdata('codigo');
+                $params['level'] = 'L';
+                $params['size'] = 5;
+                /*L = Baja
+                M = Mediana
+                Q = Alta
+                H= Máxima */
+                $params['savename'] = FCPATH . "qr_code/".$this->session->userdata('cedula')."_".$this->session->userdata('codigo').".png";
+                //generamos el código qr
+                $this->ciqrcode->generate($params);
+    
+                $data['img'] = $this->session->userdata('cedula')."_".$this->session->userdata('codigo').".png";
+                return $data['img'];
+            }
         }
-    }
     }
