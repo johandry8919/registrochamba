@@ -172,8 +172,14 @@
 
 
         </div>
+
+        
 </section>
 
-<input type="hidden" name="id_usu_aca" id="id_usu_aca" value="<?php if(isset($id_usuario)){echo $acausuario->id_usu_aca;}
-                                ?>">     
+<!-- <input type="hidden" name="id_usu_aca" id="id_usu_aca" value="<?php if(isset($id_usuario)){
+    if($acausuario){
+        echo $acausuario->id_usu_aca;
+    }
+}
+                                ?> -->
 
