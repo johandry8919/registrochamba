@@ -114,7 +114,7 @@ class Estructuras extends CI_Controller
             $password = trim($this->input->post('password'));
 
             $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email);
-     
+        
             if ($resultado) {
           
                 if (password_verify($password,$resultado->password) && $resultado->id_rol=3) {
@@ -335,7 +335,7 @@ class Estructuras extends CI_Controller
               "id_rol"  =>7,
               "cedula"  =>$cedula_representante,
               "email"   =>$email_representante,
-              "password"=>$password,
+              "password"=>$password
           ]);
 
 
