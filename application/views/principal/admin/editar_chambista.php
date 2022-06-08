@@ -126,11 +126,11 @@
                                        
                                         <?php }?>
                                 </div>
-                                <input type="hidden" name="codigo" id="codigo" value="<?php if(isset($id_usuario)){
+                                <!-- <input type="hidden" name="codigo" id="codigo" value="<?php if(isset($id_usuario)){
                                     if(isset($acausuario)    ){
                                         echo $acausuario->codigo;
                                     }
-                                }?>">
+                                }?>"> -->
                                
                             </div>
                             </div>
