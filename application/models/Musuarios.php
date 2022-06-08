@@ -57,7 +57,7 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}
 	}
-	public function getUsuarioRegistradoPersonale($id_usuario,$codigo){
+	public function getUsuarioRegistradoPersonale($id_usuario){
 
 		$this->db->select(' tbl_usuarios_personales.*,
 							tbl_estado.nombre AS estado, 
@@ -66,8 +66,8 @@ class Musuarios extends CI_Model
 							');
 		$this->db->limit(1);
 /* 		$this->db2->where('cedula',$this->session->userdata('cedula')); */
-		$this->db->where('id_usuario',$id_usuario , $codigo);
-		$this->db->where('codigo',$codigo);
+		$this->db->where('id_usuario',$id_usuario);
+		// $this->db->where('codigo',$codigo);
 		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado');
 		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio');
 		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia');
@@ -222,13 +222,13 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}
 	}
-	public function getUsuarioRegistradoExperiencias($id_usuario,$codigo){
+	public function getUsuarioRegistradoExperiencias($id_usuario){
 
 		$this->db->select(' *');
 
 		$this->db->where('activo',1);
 		$this->db->where('id_usuario',$id_usuario);
-		$this->db->where('codigo',$codigo);
+		// $this->db->where('codigo',$codigo);
 		$this->db->join('tbl_sector_empresas', 'tbl_sector_empresas.id_sector_empresa = tbl_usuarios_experiencia_laboral.area');
 		$resultado = $this->db->get('tbl_usuarios_experiencia_laboral');
 
@@ -1278,6 +1278,20 @@ class Musuarios extends CI_Model
 		$this->db->limit(1);
 		$this->db->where('codigo',$this->session->userdata('codigo'));
 		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
+		$resultado = $this->db->get('public.tbl_usuarios');
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->row();
+		}else{
+			return FALSE;
+		}	
+	}
+	public function getUsuarios($id_usuario){
+
+		$this->db->limit(1);
+		
+		$this->db->where('id_usuario',$id_usuario);
 		$resultado = $this->db->get('public.tbl_usuarios');
 
 

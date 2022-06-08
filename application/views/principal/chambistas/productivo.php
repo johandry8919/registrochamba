@@ -550,8 +550,8 @@
                                     </div>
                                 </div>
                                 <input type="hidden" name="codigo" id="codigo" value="<?php if(isset($id_usuario)){
-                                    if(isset($acausuario)    ){
-                                        echo $acausuario->codigo;
+                                    if(isset($registroviejo)    ){
+                                        echo $registroviejo->codigo;
                                     }
                                 }?>">
                                        
