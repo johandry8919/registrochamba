@@ -258,7 +258,54 @@
             </div>
             <div class="acc_content" style="display: none;">
 
-                                    <h3>No hay chambista postulados </h3>
+            <?php if(empty($chambista_ofertas)): ?> 
+            <h3>No hay chambista postulados </h3>
+            <?php endif; ?> 
+
+            
+            <div class="table-responsive">
+                            <table class="table text-nowrap  key-buttons" id="basic-datatable">
+                                <thead>
+                                    <tr>
+                                        <th name="bstable-actions">Acciones</th>
+                                        <th class="wd-15p border-bottom-0">Nombre</th>
+                                        <th class="wd-15p border-bottom-0">Apellido</th>
+                                        <th class="wd-20p border-bottom-0">Email</th>
+                                        <th class="wd-15p border-bottom-0">Profesión/Oficio</th>
+
+                                    
+                                   
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <?php foreach ($chambista_ofertas as $oferta): ?>
+                                    <tr>
+                                        <td>
+                                            <div class="btn-list">
+                                                <button type="button"  id="eliminar-chambista" class="btn btn-sm btn-danger "
+                                                data-id_oferta_chambista="<?php  echo $oferta->id_oferta_chambista ?>"
+                                                >
+                                                <i class="fe fe-trash-2"></i>
+                                                </button>
+
+                                               
+                                            </div>
+                                            
+                                        </td>
+                                        <td> <?php  echo $oferta->nombres ?></td>
+                                        <td><?php  echo $oferta->apellidos ?></td>
+                                        <td><?php  echo $oferta->email ?></td>
+                                        <td><?php  echo $oferta->desc_profesion ?></td>                                  
+
+                                                                 
+
+                                    </tr>
+                                    <?php endforeach ?>
+                                </tbody>
+                            </table>
+
+  
 
             </div>
         </li>
@@ -284,6 +331,7 @@
 							data-intl-tel-input-id="0"
                             placeholder="Ingrese cedula del chabista"
                             required 
+                            
 						/>
 					</div>
 
@@ -302,3 +350,143 @@
 
 
 </div>
+
+    <!-- MODAL EFFECTS -->
+    <div class="modal fade" id="modalchambista">
+        <div class="modal-dialog modal-dialog-centered text-center modal-lg " role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">Datos del Chambista</h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                             
+                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                        <i class="mdi mdi-account" aria-hidden="true"></i>
+                                    </a>
+                                    <input readonly
+                                     class="input100 border-start-0 ms-0 form-control" type="text" id="nombre" maxlength="200" name="nombre" value="" placeholder="NOMBRE" required autofocus>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-6">
+                                 <div class="form-group">
+                               
+                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                        <i class="mdi mdi-account" aria-hidden="true"></i>
+                                    </a>
+                                    <input readonly
+                                     class="input100 border-start-0 ms-0 form-control" type="text" id="apellido" maxlength="200" name="apellido" value="" placeholder="APELIDO" required autofocus>
+                            
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+
+                                        <label>Cedula</label>
+                                    <input readonly
+                                     class="input100 border-start-0 ms-0 form-control" type="text" id="ccedula" maxlength="200" name="cedula" value="" placeholder="Cedula" required autofocus>
+                            
+                            </div>
+
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group">
+
+                                        <label>Fecha de Nacimiento</label>
+                                    <input readonly
+                                     class="input100 border-start-0 ms-0 form-control" type="text" id="fecha_nac" maxlength="200" name="fecha_nac" value="" placeholder="fecha_nac" required autofocus>
+                            
+                            </div>
+
+                        </div>
+                      
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                             
+                                <label>Estado</label>
+                                <input readonly
+                                 class="input100 border-start-0 ms-0 form-control" type="text" id="estado" maxlength="200" name="estado" value="" placeholder="Estado" required autofocus>
+                        
+                        </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+
+                                        <label>Municipio</label>
+                                    <input readonly
+                                     class="input100 border-start-0 ms-0 form-control" type="text" id="municipio" maxlength="200" name="municipio" value="" placeholder="Municipio" required autofocus>
+                            
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                             
+                                <label>Parroquia</label>
+                                <input readonly
+                                 class="input100 border-start-0 ms-0 form-control" type="text" id="parroquia" maxlength="200" name="parroquia" value="" placeholder="Parroquia" required autofocus>
+                        
+                        </div>
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                             
+                                <label>Celular</label>
+                                <input readonly
+                                 class="input100 border-start-0 ms-0 form-control" type="text" id="celular" maxlength="200" name="celular" value="" placeholder="celular" required autofocus>
+                        
+                        </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+
+                                        <label>Tlf Local</label>
+                                    <input readonly
+                                     class="input100 border-start-0 ms-0 form-control" type="text" id="tlflocal" maxlength="200" name="tlflocal" value="" placeholder="tlflocal" required autofocus>
+                            
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                             
+                                <label>Situación Laboral</label>
+                                <input readonly
+                                 class="input100 border-start-0 ms-0 form-control" type="text" id="laboral" maxlength="200" name="laboral" value="" placeholder="laboral" required autofocus>
+                        
+                        </div>
+                        </div>
+
+                    </div>
+              
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="btn-postular">Postular</button> <button class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="" id="id_usario_chambista" >
+    <input type="hidden" name="" id="id_oferta"  value="<?php echo $id_oferta; ?>" >
+    

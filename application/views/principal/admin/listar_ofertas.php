@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Empresas / Entes</h3>
+                        <h3 class="card-title">Ofertas</h3>
 
                     </div>
                     <div class="card-body">
@@ -40,7 +40,9 @@
                                 </thead>
                                 <tbody>
 
-                                    <?php foreach ($ofertas as $oferta): ?>
+                                    <?php
+        
+                                    foreach ($ofertas as $oferta): ?>
                                     <tr>
                                         <td>
                                             <div class="btn-list">
@@ -54,7 +56,7 @@
                                                 <button type="button" class="btn btn-sm btn-success ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>ver_oferta/<?php echo $oferta-$id_oferta ?>">
+                                                            href="<?php base_url()?>ver_oferta/<?php echo $oferta->id_oferta ?>">
                                                             <i class="side-menu__icon fe fe-eye"></i>
                                                             
                                                         </a>

@@ -906,7 +906,8 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
-
+        $this->form_validation->set_rules('razon_social', 'razon_social', 'trim|required|strip_tags');
+        
 
 
 
@@ -948,7 +949,8 @@ class Cadmin extends CI_Controller
             "codigoparroquia"   => $this->input->post('cod_parroquia'),
 
             "latitud"   => $this->input->post('latitud'),
-            "longitud"  => $this->input->post('longitud')
+            "longitud"  => $this->input->post('longitud'),
+            "nombre_razon_social"   =>$this->input->post('razon_social')
 
 
         );

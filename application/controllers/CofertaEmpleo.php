@@ -18,7 +18,7 @@ class CofertaEmpleo extends CI_Controller
         $this->load->model('Representante_empresas_entes_model');
         $this->load->model('Usuarios_admin_model');
         $this->load->model('Oferta_empleo_model');
-        
+        $this->load->model('Ofertas_chambistas_model');
 
 
 
@@ -187,11 +187,10 @@ class CofertaEmpleo extends CI_Controller
 
         ];
     
-
+        $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
     
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
    
-
       
         $output = [
             "menu_lateral"      => "admin",
@@ -201,6 +200,7 @@ class CofertaEmpleo extends CI_Controller
             "librerias_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
             "oferta" => $oferta,
             "profesion_oficio" => $profesion_oficio,
+            "chambista_ofertas" => $chambista_ofertas,
             "id_oferta" => $id_oferta,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
         

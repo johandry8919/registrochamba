@@ -191,7 +191,7 @@
                                 <div class="col-md-4">
 
                                     <div class="form-group">
-                                        <label class="form-label">Descripcion de la ofera</label>
+                                        <label class="form-label">Descripcion de la oferta</label>
 
                                         <textarea class="form-control" id="descripcion_oferta"> </textarea>
 
