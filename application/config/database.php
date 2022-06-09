@@ -75,11 +75,11 @@ $query_builder = TRUE;
 
 
 $db['default'] = array(
-	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=db_chamba_desarrollo',
+	'dsn'	=> 'pgsql:host=localhost;port=5432;dbname=db_chamba_desarrollo2',
 	'hostname' => 'localhost',
 	'username' => 'postgres',
 	'password' => 'chamba123',
-	'database' => 'db_chamba_desarrollo',
+	'database' => 'db_chamba_desarrollo2',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

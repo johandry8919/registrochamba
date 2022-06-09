@@ -376,7 +376,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('id_estructura', 'estructura_responsabilidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
-
+        $this->form_validation->set_rules('pass', 'pass', 'trim|required|strip_tags');
 
 
         $this->form_validation->set_error_delimiters('*', '');
@@ -414,7 +414,8 @@ class Cadmin extends CI_Controller
             $datos_usuario['cedula'] = strtoupper($this->input->post('cedula'));
             $datos_usuario['email'] = strtoupper($this->input->post('correo1'));
             //encriptacion
-            $pass_cifrado = password_hash($this->input->post('pass'), PASSWORD_DEFAULT);
+            $clave =trim($this->input->post('pass'));
+            $pass_cifrado = password_hash($clave, PASSWORD_DEFAULT);
             $datos_usuario['password'] = $pass_cifrado;
             $datos_usuario['activo'] = 1;
             // $datos_usuario['registro_anterior'] = 0;
@@ -996,6 +997,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('id_usuario_estructura', 'id_usuario_estructura', 'trim|required|strip_tags');
 
 
+     
         //otener el id de la estructura
         $this->form_validation->set_error_delimiters('*', '');
         //delimitadores de errores
@@ -1028,7 +1030,8 @@ class Cadmin extends CI_Controller
                 'talla_pantalon' => $this->input->post('talla_pantalon'),
                 'talla_camisa' => $this->input->post('talla_camisa'),
                 'latitud' => $this->input->post('latitud'),
-                'longitud' => $this->input->post('longitud'),
+                'longitud' => $this->input->post('longitud')
+                
 
 
 

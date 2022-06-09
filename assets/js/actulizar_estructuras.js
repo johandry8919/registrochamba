@@ -184,14 +184,17 @@
 			var id_estructura = $("#id_estructura").val();
 			var talla_pantalon = $("#talla_pantalon").val();
 			var talla_camisa = $("#talla_camisa").val();
+			var contra = $("#contrasena").val();
 			var latitud = $("#latitud").val();
 			var longitud = $("#longitud").val();
+		
 			var id_usuario_estructura = $("#id_usuario_estructura").val();
             //Actulizar con ajax 
 
 			$.ajax({
 				dataType: "json",
 				data: {
+					contra,
 					nombres,
 					apellidos,
 					telf_movil,

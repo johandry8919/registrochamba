@@ -291,7 +291,7 @@
 
                                     </div>
 
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label class="form-label">Talla de pantalon</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
@@ -304,7 +304,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label class="form-label">Talla de Camisa</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
@@ -312,12 +312,21 @@
                                                     <i class="fa fa-user-md" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-user-md" aria-label="fa fa-user-md"></i>
                                                 </a>
                                                 <input class="input100 border-start-0 ms-0 form-control" type="text" id="talla_camisa" maxlength="30" name="talla_camisa" value="<?php if (isset($datos->talla_camisa)) echo ucwords($datos->talla_camisa); ?>" placeholder="talla_camisa" required autofocus data-parsley-error-message="Este campo es requerido">
-
                                             </div>
-
                                         </div>
                                     </div>
 
+                                    <div class="col-12 col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Modificar contraseña</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fa fa-user-md" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-user-md" aria-label="fa fa-user-md"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="contrasena" maxlength="30" name="contrasena" value="" placeholder="contraseña" required autofocus data-parsley-error-message="Este campo es requerido">
+                                            </div>
+                                        </div>
+                                    </div>
 
 
 
