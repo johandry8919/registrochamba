@@ -93,7 +93,7 @@
                                     </div>
                                     <!--col-->
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
 
                                         <div class="form-group">
                                             <label class="form-label">Cédula de Identidad</label>
@@ -110,7 +110,7 @@
                                     </div>
                                    
                                    
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group ">
                                             <label class="form-label">Nivel academico</label>
                                         
@@ -141,7 +141,19 @@
                                                
 
                                             </div>
+                                          
                                     </div>
+                                    <div class="col-md-4 ">
+                                                <label  class="form-label text_center">Género</label><br>
+                                                <div class="form-group">
+                                                    <div class="form">
+                                                        <input name="genero" type="radio" id="genero" value="F" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='F'){echo 'checked';}}?>/>
+                                                        <label for="genero">Femenino</label>
+                                                        <input name="genero" type="radio" id="genero2" value="M" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='M'){echo 'checked';}}?>/>
+                                                        <label for="genero2">Masculino</label><br>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                 </div>
                                 <!--row-->
@@ -331,9 +343,10 @@
                                             <label class="form-label">Talla de pantalon</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="fa fa-user-md" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-user-md" aria-label="fa fa-user-md"></i>
+                                                <i class="mdi mdi-account-outline" data-bs-toggle="tooltip" title="" data-bs-original-title="mdi-account-outline" aria-label="mdi-account-outline"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="talla_pantalon" maxlength="30" name="talla_pantalon" value="<?php if(isset($datos->talla_pantalon)) echo ucwords($datos->talla_pantalon);?>" placeholder="Talla de pantalon" required autofocus data-parsley-error-message="Este campo es requerido"/>
+                                                <input class="input100 border-start-0 ms-0 form-control" type="number" id="talla_pantalon"
+                                                data-parsley-error-message="Este campo es requerido" required max="2" name="talla_pantalon" value="<?php if(isset($datos->talla_pantalon)) echo ucwords($datos->talla_pantalon);?>" placeholder="Talla de pantalon" required autofocus data-parsley-error-message="Este campo es requerido"/>
 
                                             </div>
 

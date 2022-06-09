@@ -56,8 +56,8 @@
                 <div class="">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="copyright">
-                                <h3>El usuario aun no ah Registrado Formacion acadimica</h3>
+                            <div class=" alert alert-warning text-red">
+                                <p>El usuario aun no ah Registrado Formacion acadimica</p>
                             </div>
                         </div>
                     </div>
@@ -122,7 +122,7 @@
                                     ){?>
                                      <a target="_blank" href="<?php echo base_url()?>descargarpdfusuarios/<?php echo $id_usuario?>" class="btn bg-cyan btn-block btn-primary">Descargar Curriculum</a>                              
                                     <?php }else{ ?>
-                                        <p class="alert alert-warning text-red">Debes completar tus datos para poder descargar tu CV</p>
+                                        <p class="alert alert-warning text-red">El usuario no ah   completado sus datos para poder descargar su CV</p>
                                        
                                         <?php }?>
                                 </div>

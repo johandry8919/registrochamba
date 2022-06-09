@@ -857,8 +857,8 @@ class Cchambistas extends CI_Controller
                 'genero' => $this->input->post('genero'),
                 'estcivil' => $this->input->post('estcivil'),
                 'aborigen' => $this->input->post('aborigen'),
-                'hijo' => $this->input->post('hijo'),
                 'id_profesion_oficio' => $this->input->post('id_profesion'),
+                'hijo' => $this->input->post('hijo'),
                 // movimiento_religioso
                 'edad' => $this->input->post('edad'),
                 /* 			'id_productiva' => $this->input->post('productiva'),
@@ -884,6 +884,7 @@ class Cchambistas extends CI_Controller
                 }
             } else {                
                 if ($this->Musuarios->actualizarPersonales($data)) {
+                    
                     $this->session->set_flashdata('mensajeexito', 'Datos actualizados correctamente.');
                     redirect('inicio');
                 } else {

@@ -59,7 +59,7 @@
                                     </div>
                                     <!--col-->
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
 
                                         <div class="form-group">
                                             <label class="form-label">Cédula de Identidad</label>
@@ -75,7 +75,7 @@
                                     </div>
 
 
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group ">
                                             <label class="form-label">Nivel academico</label>
 
@@ -107,8 +107,22 @@
 
                                         </div>
                                     </div>
+                                    <div class="col-md-4 ">
+                                                <label  class="form-label text_center">Género</label><br>
+                                                <div class="form-group">
+                                                    <div class="form">
+                                                        <input name="genero" type="radio" id="genero" value="F" <?php if(isset($datos->genero)){ if(trim($datos->genero)=='F'){echo 'checked';}}?>/>
+                                                        <label for="genero">Femenino</label>
+                                                        <input name="genero" type="radio" id="genero2" value="M" <?php if(isset($datos->genero)){ if(trim($datos->genero)=='M'){echo 'checked';}}?>/>
+                                                        <label for="genero2">Masculino</label><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                  
 
                                 </div>
+
+                              
                                 <!--row-->
                                 <div class="row ">
                                     <div class="col-md-4">

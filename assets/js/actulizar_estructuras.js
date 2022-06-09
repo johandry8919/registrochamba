@@ -33,6 +33,7 @@
 					var telf_local = $("#telf_local").parsley();
 					var correo1 = $("#correo1").parsley();
 					var edad = $("#edad").parsley();
+					var genero = $("#genero").parsley();
 					var id_profesion_oficio = $("#id_profesion_oficio").parsley();
 
 					if (
@@ -187,6 +188,7 @@
 			var latitud = $("#latitud").val();
 			var longitud = $("#longitud").val();
 			var id_usuario_estructura = $("#id_usuario_estructura").val();
+			var genero = $("#genero").val();
             //Actulizar con ajax 
 
 			$.ajax({
@@ -199,6 +201,7 @@
 					fecha_nac,
 					correo1,
 					edad,
+					genero,
 					id_profesion_oficio,
 					cod_parroquia,
 					cedula,
@@ -214,6 +217,7 @@
 					talla_camisa,
 					latitud,
 					longitud,
+
 				},
 
 				url: base_url + "Cadmin/post_estructuras",
@@ -528,12 +532,13 @@ $("#cod_responsabilidad").on("change", function () {
 		$("#cod_responsabilidad").removeClass("is-valid").addClass("is-invalid");
 	}
 });
-$("#talla_pantalon").on("change", function () {
+$("#talla_pantalon").on("keyup", function () {
 	"use strict";
 	var talla_pantalon = $(this).val();
 	// var expresion = /^\d{1}$/;
 	var expresion = /^[a-zA-Z0-9\s]*$/;
 
+	
 
 	if (expresion.test(talla_pantalon)) {
 		$(this)
@@ -546,12 +551,11 @@ $("#talla_pantalon").on("change", function () {
 		$("#talla_pantalon").removeClass("is-valid").addClass("is-invalid");
 	}
 });
-$("#talla_camisa").on("change", function () {
+$("#talla_camisa").on("keyup", function () {
 	"use strict";
 	var talla_camisa = $(this).val();
 	// var expresion = /^\d{1}$/;
-	var expresion = /^[a-zA-Z0-9\s]*$/;
-
+	var expresion = /^[a-zA-Z\s]*$/;
 
 	if (expresion.test(talla_camisa)) {
 		$(this)
