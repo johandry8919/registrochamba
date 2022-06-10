@@ -203,10 +203,13 @@
 			var latitud = $("#latitud").val();
 			var longitud = $("#longitud").val();
 			var genero = $("#genero").val();
+			var pass = $("#password").val();
+
 
 			$.ajax({
 				dataType: "json",
 				data: {
+					pass,
 					nombres,
 					apellidos,
 					telf_movil,

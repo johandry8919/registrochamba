@@ -187,7 +187,7 @@
                             <div class="col-md-4">
 
                                 <div class="form-group">
-                                    <label class="form-label">Descripcion de la ofera</label>
+                                    <label class="form-label">Descripcion de la oferta</label>
 
                                     <textarea readonly class="form-control"
                                         id="descripcion_oferta"><?php echo $oferta->descripcion_oferta?> </textarea>
