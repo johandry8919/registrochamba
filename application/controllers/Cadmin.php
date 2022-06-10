@@ -1019,6 +1019,7 @@ class Cadmin extends CI_Controller
                 'cedula' => $this->input->post('cedula'),
                 'fecha_nac' => $this->input->post('fecha_nac'),
                 'edad' => $this->input->post('edad'),
+                'genero' => $this->input->post('genero'),
                 'id_profesion_oficio' => $this->input->post('id_profesion_oficio'),
                 'id_nivel_academico' => $this->input->post('id_nivel_academico'),
                 'codigoestado' => $this->input->post('cod_estado'),
@@ -1038,6 +1039,8 @@ class Cadmin extends CI_Controller
 
 
             );
+            // echo json_encode($datas);
+            // exit();
 
             $this->Estructuras_model->update_Estructura($datas, $this->input->post('id_usuario_estructura'));
             echo  json_encode(["resultado" => true, "mensaje" => "Datos guardados correctamente."]);
@@ -1529,15 +1532,8 @@ class Cadmin extends CI_Controller
 
         }
 
-        //  echo json_encode($res);
-        // exit();
+      
         
-       
-        
-
-
-
-
         
         $movimiento_religioso = $this->Mprofesion_oficio->movimiento_religioso();
         $movimiento_sociales = $this->Mprofesion_oficio->movimiento_sociales();
@@ -1546,6 +1542,8 @@ class Cadmin extends CI_Controller
          $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id__exp_lab);
          $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id__exp_lab);
          $profesiones = $this->Mprofesion_oficio->getprofesion();
+           //  echo json_encode($res);
+        // exit();
          
 
 
@@ -1574,7 +1572,7 @@ class Cadmin extends CI_Controller
             "areaform"      =>   $this->Musuarios->getAreaForm(),
             "usuarioproductivo"        => $ress,
             'emprendedor' => $emprendedor,
-            'SectorProductivo' => $SectorProductivo,
+            'sectorProductivo' => $SectorProductivo,
             'usuarioexperiencia' => $usuarioexperiencia,
             'personal' => $personal,
            
@@ -1696,8 +1694,8 @@ class Cadmin extends CI_Controller
                 'genero' => $this->input->post('genero'),
                 'estcivil' => $this->input->post('estcivil'),
                 'aborigen' => $this->input->post('aborigen'),
-                'hijo' => $this->input->post('hijo'),
                 'id_profesion_oficio' => $this->input->post('id_profesion'),
+                'hijo' => $this->input->post('hijo'),
                 
                 'edad' => $this->input->post('edad'),
               
@@ -1705,7 +1703,7 @@ class Cadmin extends CI_Controller
                 
 
             );
-
+       
           
 
                 if ($this->Musuarios->actualizarChambista($data , $id_usuario)) {
@@ -2012,7 +2010,8 @@ class Cadmin extends CI_Controller
             $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id_usuario, $codigo->codigo);
             $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademicoConsulta( $codigo->codigo);
             $res = $this->Musuarios->getRedesSocialesConsulta($codigo->codigo);
-            $imgqr = $this->qr();
+         
+            $imgqr = $this->qr($codigo->codigo,$codigo->cedula);
     
             $data['imgqr'] = $imgqr;
     
@@ -2025,22 +2024,23 @@ class Cadmin extends CI_Controller
       
             $this->generate($html, $usuario->cedula);
         }
-        public function qr()
+        public function qr($codigo,$cedula)
         {
+            
             if ($this->session->userdata('id_rol') != 2) {
                 //hacemos configuraciones
-                $params['data'] = base_url()."consulta/".$this->session->userdata('codigo');
+                $params['data'] = base_url()."consulta/".$codigo;
                 $params['level'] = 'L';
                 $params['size'] = 5;
                 /*L = Baja
                 M = Mediana
                 Q = Alta
                 H= Máxima */
-                $params['savename'] = FCPATH . "qr_code/".$this->session->userdata('cedula')."_".$this->session->userdata('codigo').".png";
+                $params['savename'] = FCPATH . "qr_code/".$cedula."_".$codigo.".png";
                 //generamos el código qr
                 $this->ciqrcode->generate($params);
     
-                $data['img'] = $this->session->userdata('cedula')."_".$this->session->userdata('codigo').".png";
+                $data['img'] = $cedula."_".$codigo.".png";
                 return $data['img'];
             }
         }

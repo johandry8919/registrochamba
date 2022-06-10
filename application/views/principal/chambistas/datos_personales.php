@@ -213,9 +213,10 @@
 
                                             </div><!--col-->
                                             <div class="col-md-4">
+                                               
                                                 <label class="form-label"> Profesión Oficio</label>
                                                 <div class="form-group">
-                                           
+                                                                                     
 
                                                 
                                                         <select required class="form-control show-tick" id="id_profesion" name="id_profesion">

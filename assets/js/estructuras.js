@@ -131,7 +131,13 @@
 						if (!talla_pantalon.isValid())
 							$("#talla_pantalon")
 								.removeClass("is-valid")
+
 								.addClass("is-invalid  error-input");
+								else{
+									$("#talla_pantalon")
+									.removeClass("is-invalid  error-input")
+									.addClass("is-valid");
+								}
 						if (!talla_camisa.isValid())
 							$("#talla_camisa")
 								.removeClass("is-valid")
@@ -196,7 +202,9 @@
 			var talla_camisa = $("#talla_camisa").val();
 			var latitud = $("#latitud").val();
 			var longitud = $("#longitud").val();
+			var genero = $("#genero").val();
 			var pass = $("#password").val();
+
 
 			$.ajax({
 				dataType: "json",
@@ -209,6 +217,7 @@
 					fecha_nac,
 					correo1,
 					edad,
+					genero,
 					id_profesion_oficio,
 					cod_parroquia,
 					cedula,
@@ -551,13 +560,15 @@ $("#cod_responsabilidad").on("change", function () {
 		$("#cod_responsabilidad").removeClass("is-valid").addClass("is-invalid");
 	}
 });
-$("#talla_pantalon").on("change", function () {
+$("#talla_pantalon").on("keyup", function () {
 	"use strict";
 	var talla_pantalon = $(this).val();
 	// var expresion = /^\d{1}$/;
-	var expresion = /^[a-zA-Z0-9\s]*$/;
+	var expresion = /^\d{2,2}$/;
 
-	if (talla_pantalon) {
+	
+
+	if (expresion.test(talla_pantalon)) {
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
@@ -565,16 +576,15 @@ $("#talla_pantalon").on("change", function () {
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
-		$("#talla_pantalon").removeClass("is-valid").addClass("is-invalid");
 	}
 });
-$("#talla_camisa").on("change", function () {
+$("#talla_camisa").on("keyup", function () {
 	"use strict";
 	var talla_camisa = $(this).val();
 	// var expresion = /^\d{1}$/;
-	var expresion = /^[a-zA-Z0-9\s]*$/;
+	var expresion = /^[a-zA-Z-,-/\s]*$/;
 
-	if (talla_camisa) {
+	if (expresion.test(talla_camisa)) {
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");

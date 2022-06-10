@@ -344,46 +344,15 @@
                                                     </div>
 
                                                   </div>
-                                                  <!-- ¿En cuál área te desarrollas como Emprendedor? -->
-
-                                                  <div class="col-md-6 mt-3">
-                                               
-                                                <div class="form-label">¿En cuál área te desarrollas como Emprendedor?</div>
-                                                       <select required class="form-control show-tick" id="emprendedor_nombre" name="emprendedor_nombre">
-                                                            <option value="0">Seleccione una Profesión u Oficio</option>
-
-                                                           
-                                                     
-                                                         <?php 
-                                                       
-                                                         
-                                                         if(isset($emprendedor)): ?>
-                                                            
-                                                            <?php foreach ($emprendedor as $key => $profesion):?>
-                                                               
-                                                                <?php  if($registroviejo->id_profesion_oficio == $profesion->id):?>
-                                                                
-                                                                 
-                                                                 
-                                                                    <?php    echo "<option selected value='".$profesion->id."'>".$profesion->Area."</option>";     
-                                                               else:
-                                                                    echo "<option value='".$profesion->id."'>".$profesion->Area."</option>";
-                                                                endif;
-                                                           endforeach;
-                                                        endif;
-                                                    ?>
-                                                        </select>   
+                                                 
                                              
-                                              
-                                               
-                                                </div>
 
 
                                                   <!-- Qué estás Desarrollando o Fabricando? -->
 
 
                                                   <div class="row">
-                                                <div class="col-12 col-lg-7">
+                                                <div class="col-12 col-lg-6">
                                                
                                                 <div class="form-label">Qué estás Desarrollando o Fabricando?</div>
                                                 
@@ -402,6 +371,40 @@
                                           
                                                 
                                                 </div>
+                                                     <!-- ¿En cuál área te desarrollas como Emprendedor? -->
+
+
+                                                     <div class=" col-12 col-md-6 ">
+                                               
+                                               <div class="form-label">¿En cuál área te desarrollas como Emprendedor?</div>
+                                                      <select required class="form-control show-tick" id="emprendedor_nombre" name="emprendedor_nombre">
+                                                           <option value="0">Seleccione una Profesión u Oficio</option>
+
+                                                          
+                                                    
+                                                        <?php 
+                                                      
+                                                        
+                                                        if(isset($emprendedor)): ?>
+                                                           
+                                                           <?php foreach ($emprendedor as $key => $profesion):?>
+                                                              
+                                                               <?php  if($registroviejo->id_profesion_oficio == $profesion->id):?>
+                                                               
+                                                                
+                                                                
+                                                                   <?php    echo "<option selected value='".$profesion->id."'>".$profesion->Area."</option>";     
+                                                              else:
+                                                                   echo "<option value='".$profesion->id."'>".$profesion->Area."</option>";
+                                                               endif;
+                                                          endforeach;
+                                                       endif;
+                                                   ?>
+                                                       </select>   
+                                            
+                                             
+                                              
+                                               </div>
 
                                                 <!-- A qué Sector Productivo Pertenece? -->
                                                 <div class="col-md-6 mt-3">
@@ -553,7 +556,7 @@
                                     if(isset($registroviejo)    ){
                                         echo $registroviejo->codigo;
                                     }
-                                }?>">
+                                }?>"> 
                                        
                                    
                             

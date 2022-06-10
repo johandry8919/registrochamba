@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>fonts/material.css" rel="stylesheet" type="text/css">
 
+
     <!-- Bootstrap Core Css -->
     <link href="<?php echo base_url();?>plugins/bootstrap/css/bootstrap.css?v=3" rel="stylesheet">
 
