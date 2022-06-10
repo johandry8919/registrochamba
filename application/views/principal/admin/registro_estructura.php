@@ -143,8 +143,8 @@
                                             </div>
                                           
                                     </div>
-                                    <div class="col-md-4 ">
-                                                <label  class="form-label text_center">Género</label><br>
+                                    <div class="col-md-3 ">
+                                                <label  class="form-label ">Género</label><br>
                                                 <div class="form-group">
                                                     <div class="form">
                                                         <input name="genero" type="radio" id="genero" value="F" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='F'){echo 'checked';}}?>/>

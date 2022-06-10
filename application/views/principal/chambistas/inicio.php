@@ -1,3 +1,4 @@
+
 <section class="container-fluid">
 
     <div class="col-xs-12 col-md-12 text-center ">
@@ -38,7 +39,7 @@
             <div class="card-body">
 
                 <div class="card-header">
-                    <div class="card-title"> Progreso de Perfil:</div>
+                    <div class="card-title animate__animated animate__bounce"> Progreso de Perfil:</div>
 
 
                 </div>
@@ -75,9 +76,25 @@
 
                     <?php if (isset($personal) and !empty($personal)) { ?>
 
-                        <div role="alert" class="col-12  d-grid gap-2 text-wrap">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>datospersonales" class="link-primary text-white"><abbr title="Se añade a tu CV ">Datos Personales</abbr>: Listo</a>
-                            </button>
+                        <div role="alert" class=" col-12  d-grid gap-2 text-wrap">
+                        <button class="btn btn-green mb-2">
+                           
+                            <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>datospersonales" class="link-primary text-white"><p  data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV" class="card-title">Datos Personales</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>datospersonales" class="link-primary text-white"><i class="fe fe-thumbs-up h3" data-bs-toggle="tooltip" data-bs-original-title="Ver Datos Personales " aria-label="fe fe-thumbs-up"></i></a>
+                               </div>
+                                </div>
+                           
+                           </button>
 
                         </div>
                     <?php } else { ?>
@@ -85,7 +102,23 @@
 
                         <div class="col-12 col-lg-12  d-grid gap-2 ">
 
-                            <button class="btn btn-warning-light mb-2"><a href="<?php echo base_url() ?>datospersonales" class="link-danger"><abbr title="Se añade a tu CV ">Datos Personales</abbr>:(*) Presiona Aquí</a></button>
+                            <button class="btn btn-warning-light mb-2">
+                            
+                                <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>datospersonales" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title text-red">Datos Personales</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>datospersonales" class="link-primary text-white"><i class="fe fe-info h3 text-red" data-bs-toggle="tooltip" data-bs-original-title="Completa los Datos de Datos Personales"></i></a>
+                               </div>
+                                </div>
+                            </button>
 
                         </div>
 
@@ -99,13 +132,48 @@
                     
                     if (isset($usuarioacademico) and !empty($usuarioacademico)) { ?>
                         <div class="col-12  d-grid gap-2 text-wrap">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>formacionacademica" class="link-primary text-white"><abbr title="Se añade a tu CV ">Formación Académica</abbr>: Listo</a>
+                            <button class="btn btn-green mb-2">
+                            <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>formacionacademica" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title">Formación Académica</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>formacionacademica" class="link-primary text-white"><i class="fe fe-thumbs-up h3" data-bs-toggle="tooltip" data-bs-original-title="Ver Formación Académica " aria-label="fe fe-thumbs-up"></i></a>
+                               </div>
+                                </div>
+                               
+
+                     
+                           
                             </button>
+                           
+                            
 
                         </div>
                     <?php } else { ?>
                         <div class="col-12  d-grid gap-2 text-wrap">
-                            <button class="btn btn-warning-light mb-2"><a href="<?php echo base_url() ?>formacionacademica" class="link-danger "><abbr title="Se añade a tu CV ">Formación Académica</abbr>:(*) Presiona Aquí</a>
+                            <button class="btn btn-warning-light mb-2">
+                           
+                                <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>formacionacademica" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title text-red">Formación Académica</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>formacionacademica" class="link-primary text-white"><i class="fe fe-info h3 text-red" data-bs-toggle="tooltip" data-bs-original-title="Completa los Datos de Formación Académica"></i></a>
+                               </div>
+                                </div>
                             </button>
 
                         </div>
@@ -113,13 +181,46 @@
 
                     <?php if (isset($redessociales) and !empty($redessociales)) { ?>
                         <div class="col-12  d-grid gap-2 text-wrap ">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>redessociales" class="link-primary text-white"><abbr title="Se añade a tu CV ">redessociales</abbr>: Listo</a>
+                            <button class="btn btn-green mb-2">
+                            <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>redessociales" class="link-primary text-white"><p  data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title">Redes Sociales</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>redessociales" class="link-primary text-white"><i class="fe fe-thumbs-up h3" data-bs-toggle="tooltip"  data-bs-original-title="Ver Redes Sociales " aria-label="fe fe-thumbs-up"></i></a>
+                               </div>
+                                </div>
+                               
+
+                           
                             </button>
 
                         </div>
                     <?php } else { ?>
                         <div class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-warning-light mb-2"><a href="<?php echo base_url() ?>redessociales" class="link-danger"><abbr title="Se añade a tu CV ">redessociales</abbr>:(*) Presiona Aquí</a>
+                            <button class="btn btn-warning-light mb-2">
+                               
+
+                                <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>redessociales" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title text-red">Redes Sociales</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>redessociales" class="link-primary text-white"><i class="fe fe-info h3 text-red" data-bs-toggle="tooltip" data-bs-original-title="Completa los Datos de Redes Sociales"></i></a>
+                               </div>
+                                </div>
                             </button>
 
                         </div>
@@ -130,13 +231,45 @@
                     <?php if (isset($usuarioproductivo) and !empty($usuarioproductivo)) { ?>
 
                         <div class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>productivo" class="link-primary text-white"><abbr title="Se añade a tu CV ">Productivo - Emprender</abbr>: Listo</a>
+                            <button class="btn btn-green mb-2">
+                            <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>productivo" class="link-primary text-white"><p  data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title">Productivo - Emprender</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>productivo" class="link-primary text-white"><i class="fe fe-thumbs-up h3" data-bs-toggle="tooltip"  data-bs-original-title="Ver Productivo - Emprender " aria-label="fe fe-thumbs-up"></i></a>
+                               </div>
+                                </div>
+                             
+                               
+                                
                             </button>
 
                         </div>
                     <?php } else { ?>
                         <div class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-warning-light mb-2"><a href="<?php echo base_url() ?>productivo" class="link-danger"><abbr title="Se añade a tu CV ">Productivo - Emprender</abbr>:(*) Presiona Aquí</a>
+                            <button class="btn btn-warning-light mb-2">
+                               
+                                <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>brigadas" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title text-red">Productivo - Emprender</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>productivo" class="link-primary text-white"><i class="fe fe-info h3 text-red" data-bs-toggle="tooltip" data-bs-original-title="Completa los Datos de productivo "></i></a>
+                               </div>
+                                </div>
                             </button>
 
                         </div>
@@ -145,13 +278,45 @@
 
                     <?php if (isset($usuariobrigada) and !empty($usuariobrigada)) { ?>
                         <div class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>brigadas" class="link-primary text-white"><abbr title="Se añade a tu CV ">Organizativo - Brigadas</abbr>: Listo</a>
+                            <button class="btn btn-green mb-2">
+                            <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>brigadas" class="link-primary text-white"><p  data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title">Organizativo - Brigadas</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>brigadas" class="link-primary text-white"><i class="fe fe-thumbs-up h3" data-bs-toggle="tooltip" title="" data-bs-original-title="Ver Organizativo - Brigadas " aria-label="fe fe-thumbs-up"></i></a>
+                               </div>
+                                </div>
+                              
+                          
                             </button>
 
                         </div>
                     <?php } else { ?>
                         <div class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-warning-light mb-2"><a href="<?php echo base_url() ?>brigadas" class="link-danger"><abbr title="Se añade a tu CV ">Organizativo - Brigadas</abbr>:(*) Presiona Aquí</a>
+                            <button class="btn btn-warning-light mb-2">
+                               
+
+                                <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>brigadas" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title text-red">Organizativo - Brigadas</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>brigadas" class="link-primary text-white"><i class="fe fe-info h3 text-red" data-bs-toggle="tooltip" data-bs-original-title="Completa los Datos de Organizativo - Brigadas "></i></a>
+                               </div>
+                                </div>
                             </button>
 
                         </div>
@@ -159,14 +324,48 @@
                     <!-- Social - Vivienda Joven -->
                     <?php if (isset($usuariovivienda) and !empty($usuariovivienda)) { ?>
                         <div class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>viviendajoven" class="link-primary text-white"><abbr title="Se añade a tu CV ">Social - Vivienda Joven</abbr>: Listo</a>
+                            <button class="btn btn-green mb-2">
+                            <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>viviendajoven" class="link-primary text-white"><p  data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title">Social - Vivienda Joven</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>viviendajoven" class="link-primary text-white"><i class="fe fe-thumbs-up h3" data-bs-toggle="tooltip" title="" data-bs-original-title="Ver Social - Vivienda Joven " aria-label="fe fe-thumbs-up"></i></a>
+                               </div>
+                                </div>
+                                
+                               
+
+                           
                             </button>
 
                         </div>
                                     
                                 <?php } else { ?>
                                     <div role="alert" class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-warning-light mb-2"><a href="<?php echo base_url() ?>viviendajoven" class="link-danger"><abbr title="Se añade a tu CV ">Social - Vivienda Joven</abbr>:(*) Presiona Aquí</a>
+                            <button class="btn btn-warning-light mb-2">
+                                
+
+                                <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>viviendajoven" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title text-red">Social - Vivienda Joven</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>viviendajoven" class="link-primary text-white"><i class="fe fe-info h3 text-red" data-bs-toggle="tooltip" data-bs-original-title="Completa los Datos de Vivienda Joven "></i></a>
+                               </div>
+                                </div>
                             </button>
 
                         </div>
@@ -176,14 +375,49 @@
                                 <!-- Experiencia Laboral -->
                                 <?php if (isset($usuarioexperiencia) and !empty($usuarioexperiencia)) { ?>
                                     <div class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-green mb-2"><a href="<?php echo base_url() ?>experiencialaboral" class="link-primary text-white"><abbr title="Se añade a tu CV ">Experiencia Laboral</abbr>: Listo</a>
+                            <button class="btn btn-green mb-2">
+                                <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>experiencialaboral" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title">Experiencia Laboral</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>experiencialaboral" class="link-primary text-white"><i class="fe fe-thumbs-up h3" data-bs-toggle="tooltip" data-bs-original-title="Ver Experiencia Laboral " aria-label="fe fe-thumbs-up"></i></a>
+                               </div>
+                                </div>
+
+                           
                             </button>
+
+                           
 
                         </div>
                                  
                                 <?php } else { ?>
                                     <div role="alert" class="col-12  d-grid gap-2 ">
-                            <button class="btn btn-warning-light mb-2"><a href="<?php echo base_url() ?>experiencialaboral" class="link-danger"><abbr title="Se añade a tu CV ">Experiencia Laboral</abbr>:(*) Presiona Aquí</a>
+                            <button class="btn btn-warning-light mb-2">
+                               
+
+                            <div class="row">
+                                <div class="col-10 col-md-11">
+                               <a href="<?php echo base_url() ?>experiencialaboral" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title text-red">Experiencia Laboral</p></a>
+
+                              
+
+                               </div>
+
+                               <div class="col-1">
+                        
+
+                               <a href="<?php echo base_url() ?>experiencialaboral" class="link-primary text-white"><i class="fe fe-info h3 text-red" data-bs-toggle="tooltip" data-bs-original-title="Completa los Datos de Experiencia Laboral "></i></a>
+                               </div>
+                                </div>
+
                             </button>
 
                         </div>
@@ -237,6 +471,7 @@
 
 
 <script>
+       
     $(function() {
         /* jQueryKnob */
 
