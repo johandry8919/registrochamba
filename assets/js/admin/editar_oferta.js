@@ -19,46 +19,69 @@ function registrar(){
        var  cantidad_oferta = $("#cantidad_oferta").val();
        var  id_empresa = $("#id_empresa").val();
        var  sexo = $("#sexo").val();
-    $.ajax({
-        dataType: "json",
-        data: {id_instruccion,id_profesion,id_area_form,experiencia_laboral,cargo,
-            descripcion_oferta,edad,cantidad_oferta,id_empresa,sexo
-           
-        },
+       var id_oferta = $("#id_oferta").val();
 
-        url: base_url + "CofertaEmpleo/crear_oferta",
-        type: "post",
-        beforeSend: function () {
-            //$("#cod_municipio").selectpicker('refresh');
-        },
-        success: function (respuesta) {
-            
+       if(id_instruccion != "" && id_profesion != "" && id_area_form != "" && experiencia_laboral != "" && cargo != "" && descripcion_oferta != "" && edad != "" && cantidad_oferta != "" && id_empresa != "" && sexo != ""){
+        $.ajax({
+            dataType: "json",
+            data: {id_instruccion,id_profesion,id_area_form,experiencia_laboral,cargo,
+                descripcion_oferta,edad,cantidad_oferta,id_empresa,sexo, id_oferta
+               
+            },
+    
+            url: base_url + "CofertaEmpleo/update_oferta",
+            type: "post",
+            beforeSend: function () {
+                //$("#cod_municipio").selectpicker('refresh');
+            },
+            success: function (respuesta) {
+                
+    
+                if (respuesta.resultado == true) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Registro Exitoso",
+                        text: "Presione OK para continuar",
+                    }).then((result) => {
+                        /* Read more about isConfirmed, isDenied below */
+                        if (result.isConfirmed) {
+                            $(location).attr("href", base_url + "admin/ofertas");
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: respuesta.mensaje,
+                    });
+                }
+            },
+            error: function (xhr, err) {
+                console.log(err);
+                alert("ocurrio un error intente de nuevo");
+            },
+        });
+       }else{
+        if(id_instruccion == 0){
+            $("#id_instruccion").focus();
+            $("#id_instruccion").css("border-color", "red");
+        }
+        if(id_profesion == 0){
+            $("#id_profesion").focus();
+            $("#id_profesion").css("border-color", "red");
+        }
+        if(cargo == ""){
+            $("#id_profesion").focus();
+            $("#id_profesion").css("border-color", "red");
+            $(this)
+			.removeClass("is-invalid error-input")
+			.addClass("is-valid valid-input");
+        }
 
-            if (respuesta.resultado == true) {
-                Swal.fire({
-                    icon: "success",
-                    title: "Registro Exitoso",
-                    text: "Presione OK para continuar",
-                }).then((result) => {
-                    /* Read more about isConfirmed, isDenied below */
-                    if (result.isConfirmed) {
-                        $(location).attr("href", base_url + "admin/ofertas");
-                    }
-                });
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: respuesta.mensaje,
-                });
-            }
-        },
-        error: function (xhr, err) {
-            console.log(err);
-            alert("ocurrio un error intente de nuevo");
-        },
-    });
+       }
+   
 }
+
 $("#id_instruccion").on("change", function () {
 	"use strict";
 	var id_instruccion = $(this).val();
@@ -98,7 +121,6 @@ $("#id_profesion").on("change", function () {
     }
 
 });
-
 $("#id_area_form").on("change", function () {
 	"use strict";
 	var id_area_form = $(this).val();

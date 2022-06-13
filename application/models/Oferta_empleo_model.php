@@ -27,6 +27,7 @@
 
         
         }
+ 
 
         public function verificarSiExiste($campo,$valor){
 
@@ -87,10 +88,10 @@
             return $valor;
         }
 
-        public function update_oferta ($datos,$id){
+        public function update_oferta ($datos){
           
 
-            $this->db->where('id_oferta',  $id);
+            $this->db->where('id_oferta',  $datos['id_oferta']);
             $this->db->update('tbl_ofertas_empleo', $datos);
             if($this->db->affected_rows() > 0){
                 return true;

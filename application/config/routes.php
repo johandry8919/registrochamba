@@ -65,6 +65,7 @@ $route['inicio'] = 'Cusuarios/Vinicio';
 
 /*Cchambistas*/
 $route['cambiarclave'] = 'Cchambistas/VcambiarClave';
+$route['admin/cambiarclave'] = 'Cadmin/admin_cambiarClave';
 $route['datospersonales'] = 'Cchambistas/Vdatospersonales';
 $route['formacionacademica'] = 'Cchambistas/Vformacionacademica';
 $route['formacionacademicaform'] = 'Cchambistas/Vformacionacademica_form';
@@ -117,6 +118,7 @@ $route['estructura/listar_empresas'] = 'Estructuras/listar_empresas';
 $route['admin/nueva_oferta/(:num)'] = 'CofertaEmpleo/publicar_oferta_admin';
 $route['admin/ofertas'] = 'CofertaEmpleo/listar_oferta_admin';
 $route['admin/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta';
+$route['admin/editar_oferta/(:num)'] = 'CofertaEmpleo/editar_oferta/$1';
 
 
 //cambista

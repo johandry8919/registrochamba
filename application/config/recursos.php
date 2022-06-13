@@ -29,6 +29,8 @@
     $config['recursos']['editar_formacion_cade_js'] = "assets/js/admin/editar_formacion_cade.js?v=1.0.6";
     $config['recursos']['listar_oferta_js'] = "assets/js/admin/listar_oferta.js?v=1.0.6";
     $config['recursos']['ver_oferta_js'] = "assets/js/admin/ver_oferta.js?v=1.0.6";
+    $config['recursos']['editar_oferta_js'] = "assets/js/admin/editar_oferta.js?v=1.0.6";
+    $config['recursos']['admin_cambiarClave_js'] = "assets/js/admin/admin_cambiarClave.js?v=1.0.6";
 
     
 
