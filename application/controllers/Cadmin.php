@@ -1962,7 +1962,7 @@ class Cadmin extends CI_Controller
 
         public function eliminarchamba()
         {
-            if ($this->session->userdata('id_rol') != 2) {
+            if ($this->session->userdata('id_rol') != 2 ) {
                 echo  json_encode([
                     "resultado" => false, "mensaje" => "acceso n  o autorizado",
                     "rol_usuario" => $this->session->userdata('id_rol')
@@ -1970,6 +1970,7 @@ class Cadmin extends CI_Controller
                 ]);
                 exit();
             }
+           
             
             $id_usuario = strip_tags(trim($this->uri->segment(2)));
           
@@ -2048,6 +2049,72 @@ class Cadmin extends CI_Controller
            public function admin_cambiarClave()
     {
 
+        if (!$this->session->userdata('id_usuario'))  {
+            echo  json_encode([
+                "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                "rol_usuario" => $this->session->userdata('id_rol')
+
+            ]);
+            exit();
+        }
+ 
+        $id_admin =$this->session->userdata('id_usuario'); 
+        
+       
+
+        $breadcrumb = (object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Cambiar Clave"
+
+        ];
+        
+       
+        if($this->session->userdata('id_rol') == 3){
+            $output = [
+                "menu_lateral" => "estructuras",
+                "breadcrumb"      =>   $breadcrumb,
+                "title"             => "cambiarClave",
+                 "vista_principal"   => "chambistas/cambiarClave",
+                 "id_admin"           => $id_admin,
+    
+                 "ficheros_js" => [recurso("admin_cambiarClave_js")]
+                 
+                 
+    
+            ];
+        }else if ($this->session->userdata('id_rol') == 2) {
+            $output = [
+                "menu_lateral" => "admin",
+                "breadcrumb"      =>   $breadcrumb,
+                "title"             => "cambiarClave",
+                 "vista_principal"   => "chambistas/cambiarClave",
+                 "id_admin"           => $id_admin,
+    
+                 "ficheros_js" => [recurso("admin_cambiarClave_js")]
+                 
+                 
+    
+            ];
+        }else{
+            $output = [
+                "menu_lateral" => "empresas",
+                "breadcrumb"      =>   $breadcrumb,
+                "title"             => "cambiarClave",
+                 "vista_principal"   => "chambistas/cambiarClave",
+                 "id_admin"           => $id_admin,
+    
+                 "ficheros_js" => [recurso("admin_cambiarClave_js")]
+                 
+                 
+    
+            ];
+        }
+
+        $this->load->view("main", $output);
+    }
+           public function estructuras_empresa()
+    {
+
         if ($this->session->userdata('id_rol') != 2) {
             echo  json_encode([
                 "resultado" => false, "mensaje" => "acceso n  o autorizado",
@@ -2070,11 +2137,21 @@ class Cadmin extends CI_Controller
         $output = [
             "menu_lateral" => "admin",
             "breadcrumb"      =>   $breadcrumb,
-            "title"             => "cambiarClave",
-             "vista_principal"   => "chambistas/cambiarClave",
-             "id_admin"           => $id_admin,
+            "title"             => "Buscar",
+            "vista_principal"   => "admin/cambiarclaves",
 
-             "ficheros_js" => [recurso("admin_cambiarClave_js")]
+
+
+
+            "ficheros_js" => [],
+
+
+            "librerias_css" => [],
+
+
+            "librerias_js" => [],
+
+            "ficheros_js" => [recurso("cambiarclave_estruct_empre_js")]
              
              
 
@@ -2087,14 +2164,14 @@ class Cadmin extends CI_Controller
 
         
        
-        if ($this->session->userdata('id_rol') != 2) {
-            echo  json_encode([
-                "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                "rol_usuario" => $this->session->userdata('id_rol')
+        // if ($this->session->userdata('id_rol') != 2 || $this->session->userdata('id_rol') != 3) {
+        //     echo  json_encode([
+        //         "resultado" => false, "mensaje" => "acceso n  o autorizado",
+        //         "rol_usuario" => $this->session->userdata('id_rol')
 
-            ]);
-            exit();
-        }
+        //     ]);
+        //     exit();
+        // }
         $this->form_validation->set_rules('clave_actual', 'Contraseña actual', 'trim|strip_tags|min_length[3]|max_length[16]|required');
         $this->form_validation->set_rules('password', 'Contraseña nueva', 'trim|strip_tags|min_length[6]|max_length[16]|required');
         $this->form_validation->set_rules('new_password', 'Repetir Contraseña nueva', 'trim|strip_tags|matches[password]|required');
@@ -2134,6 +2211,7 @@ class Cadmin extends CI_Controller
             
            
 
+           if($this->session->userdata('id_rol') == 3){
             if ($resultado = $this->Musuarios->consultaradmin($datos)) {
           
 
@@ -2164,6 +2242,71 @@ class Cadmin extends CI_Controller
                 $this->session->set_flashdata('mensajeerror', 'Ocurrio un error intente de nuevo');
                 echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
             }
+           
+
+           }else if($this->session->userdata('id_rol') == 2){
+            if ($resultado = $this->Musuarios->consultaradmin($datos)) {
+          
+
+                if (password_verify($datos['clave_actual'], $resultado[0]->password)) {
+           
+
+
+                    $resultado = $this->Musuarios->cambiarPasswor_admin($datos);
+                  
+
+                    if ($resultado) {
+
+                  
+                        echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
+                       
+                    } else {
+                        
+                        echo  json_encode(["resultado" => false, "mensaje" =>  'Error no se pudo cambiar la contraseña']);
+                       
+                    }
+                } else {
+
+                    $this->session->set_flashdata('mensajeerror', 'Contraseña actual no coincide');
+                    echo  json_encode(["resultado" => false, "mensaje" =>  'Contraseña actual no coincide']);
+                   
+                }
+            } else {
+                $this->session->set_flashdata('mensajeerror', 'Ocurrio un error intente de nuevo');
+                echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
+            }
+           }else{
+            if ($resultado = $this->Musuarios->consultaradmin($datos)) {
+          
+
+                if (password_verify($datos['clave_actual'], $resultado[0]->password)) {
+           
+
+
+                    $resultado = $this->Musuarios->cambiarPasswor_admin($datos);
+                  
+
+                    if ($resultado) {
+
+                  
+                        echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
+                       
+                    } else {
+                        
+                        echo  json_encode(["resultado" => false, "mensaje" =>  'Error no se pudo cambiar la contraseña']);
+                       
+                    }
+                } else {
+
+                    $this->session->set_flashdata('mensajeerror', 'Contraseña actual no coincide');
+                    echo  json_encode(["resultado" => false, "mensaje" =>  'Contraseña actual no coincide']);
+                   
+                }
+            } else {
+                $this->session->set_flashdata('mensajeerror', 'Ocurrio un error intente de nuevo');
+                echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
+            }
+           }
         }
     }
     }

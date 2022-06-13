@@ -149,6 +149,24 @@
             return FALSE;
         }
     }
+    public function verificarSiUsuarioExisteEstructuras($cedula){
+
+        $this->db->limit(1);
+        $this->db->select('count(*) AS cantidad');
+        $this->db->from('public.tbl_estructuras');
+        $this->db->where('cedula',$cedula);
+        
+       // $this->db->where('id_rol', $rol_usuario);
+        $resultado = $this->db->get();
+
+        $fila = $resultado->row();
+
+        if ($fila->cantidad > 0) {
+            return TRUE;
+        }else{
+            return FALSE;
+        }
+    }
 
     // hacer un get a tbl_estructuras para  ver todo lo datos de la tabla
     

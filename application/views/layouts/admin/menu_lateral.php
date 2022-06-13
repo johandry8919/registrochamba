@@ -137,6 +137,31 @@
                                   
                                 </ul>
                             </li>
+                                <li class="slide <?php if($this->uri->segment(1)=='datospersonales' || $this->uri->segment(1)=='formacionacademica' || $this->uri->segment(1)=='formacionacademicaform' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
+                                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                                        <i class="side-menu__icon fe fe-settings me-1"></i>
+                                        
+                                        <span
+                                        class="side-menu__label">Cambiar contraseña</span><i
+                                        class="angle fe fe-user"></i></a>
+                                <ul class="slide-menu">
+                                                     
+                              
+                                    <li ><a href="<?php echo base_url();?>admin/cambiarclaves"
+                                            class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
+                                            >Estructura </a></li>
+                                            
+                                            <li><a href="<?php echo base_url();?>admin/cambiarclaves"
+                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
+                                         >Empresa</a></li> 
+                               
+
+                                  
+                               
+
+                                  
+                                </ul>
+                            </li>
                         </ul>
                         <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
                                 width="24" height="24" viewBox="0 0 24 24">

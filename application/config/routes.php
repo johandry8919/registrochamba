@@ -66,6 +66,7 @@ $route['inicio'] = 'Cusuarios/Vinicio';
 /*Cchambistas*/
 $route['cambiarclave'] = 'Cchambistas/VcambiarClave';
 $route['admin/cambiarclave'] = 'Cadmin/admin_cambiarClave';
+$route['admin/cambiarclaves'] = 'Cadmin/estructuras_empresa';
 $route['datospersonales'] = 'Cchambistas/Vdatospersonales';
 $route['formacionacademica'] = 'Cchambistas/Vformacionacademica';
 $route['formacionacademicaform'] = 'Cchambistas/Vformacionacademica_form';
