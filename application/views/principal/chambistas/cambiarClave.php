@@ -28,7 +28,10 @@
             <div class="container">
                 <div class="row justify-content-center mt-2">
                     <div class="col-12 col-md-8">
-                        <form class="login100-form validate-form" id="cambioClave" method="POST" action="<?php echo base_url(); ?>Cchambistas/cambiarClave">
+                        <form class="login100-form validate-form" id="cambioClave" method="POST" action="<?php if(!isset($id_admin)){
+                            echo base_url('Cchambistas/cambiarClave');
+                           
+                        }?>">
 
 
                             <div class="form-group">
@@ -36,7 +39,7 @@
                                     <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                         <i class="zmdi zmdi-eye" aria-hidden="true"></i>
                                     </a>
-                                    <input class="input100 border-start-0 ms-0 form-control" type="password" id="clave_actual" name="clave_actual" placeholder="Contraseña actual" maxlength="16" required autofocus>
+                                    <input class="input100 border-start-0 ms-0 form-control" type="password" id="clave_actual" name="clave_actual" placeholder="Contraseña actual" maxlength="16" data-parsley-error-message="Este campo es requerido" required autofocus>
                                     <?php echo form_error('clave_actual'); ?>
                                 </div>
 
@@ -50,7 +53,7 @@
                                     <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                         <i class="zmdi zmdi-eye" aria-hidden="true"></i>
                                     </a>
-                                    <input class="input100 border-start-0 ms-0 form-control" type="password" id="password" name="password" value="<?php echo set_value('password'); ?>" placeholder="Contraseña Nueva" maxlength="16" required autofocus>
+                                    <input class="input100 border-start-0 ms-0 form-control" type="password" id="password" name="password" value="<?php echo set_value('password'); ?>" data-parsley-error-message="Este campo es requerido" placeholder="Contraseña Nueva" maxlength="16" required autofocus>
                                     <?php echo form_error('password'); ?>
 
                                 </div>
@@ -60,7 +63,7 @@
                                         <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                             <i class="zmdi zmdi-eye" aria-hidden="true"></i>
                                         </a>
-                                        <input class="input100 border-start-0 ms-0 form-control" type="password" id="new_password" name="new_password" maxlength="16" placeholder="Repetir Contraseña Nueva" required autofocus>
+                                        <input class="input100 border-start-0 ms-0 form-control" type="password" id="new_password" name="new_password" maxlength="16" placeholder="Repetir Contraseña Nueva" data-parsley-error-message="Este campo es requerido" required autofocus>
                                         <?php echo form_error('new_password'); ?>
                                     </div>
 
@@ -73,6 +76,11 @@
                                         Guardar
                                     </button>
                                 </div>
+
+
+                                <input type="hidden" name="id_admin" id="id_admin" value="<?php if(isset($id_admin)){echo $id_admin;}
+                                ?>">  
+
 
 
 

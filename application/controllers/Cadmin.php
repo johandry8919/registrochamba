@@ -2044,4 +2044,126 @@ class Cadmin extends CI_Controller
                 return $data['img'];
             }
         }
+
+           public function admin_cambiarClave()
+    {
+
+        if ($this->session->userdata('id_rol') != 2) {
+            echo  json_encode([
+                "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                "rol_usuario" => $this->session->userdata('id_rol')
+
+            ]);
+            exit();
+        }
+        $id_admin =$this->session->userdata('id_usuario'); 
+        
+       
+
+        $breadcrumb = (object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Cambiar Clave"
+
+        ];
+        
+       
+        $output = [
+            "menu_lateral" => "admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "cambiarClave",
+             "vista_principal"   => "chambistas/cambiarClave",
+             "id_admin"           => $id_admin,
+
+             "ficheros_js" => [recurso("admin_cambiarClave_js")]
+             
+             
+
+        ];
+
+        $this->load->view("main", $output);
+    }
+    public function admin_cambiarClaves()
+    {
+
+        
+       
+        if ($this->session->userdata('id_rol') != 2) {
+            echo  json_encode([
+                "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                "rol_usuario" => $this->session->userdata('id_rol')
+
+            ]);
+            exit();
+        }
+        $this->form_validation->set_rules('clave_actual', 'Contraseña actual', 'trim|strip_tags|min_length[3]|max_length[16]|required');
+        $this->form_validation->set_rules('password', 'Contraseña nueva', 'trim|strip_tags|min_length[6]|max_length[16]|required');
+        $this->form_validation->set_rules('new_password', 'Repetir Contraseña nueva', 'trim|strip_tags|matches[password]|required');
+        $this->form_validation->set_error_delimiters('*', '');
+        //delimitadores de errores
+
+        //reglas de validación
+        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+        
+
+
+
+       
+
+      
+
+        if ($this->form_validation->run() === FALSE) {
+            echo json_encode([
+                $mensaje_error = validation_errors(),
+
+                "resultado" => false,
+                "mensaje" => $mensaje_error
+            ]);
+           
+
+           
+        } else {
+           
+
+            $datos['clave_actual'] = $this->input->post('clave_actual');
+            $datos['password'] = $this->input->post('password');
+            $datos['new_password'] = password_hash($this->input->post('new_password'), PASSWORD_DEFAULT);
+            $datos['id_admin'] = $this->input->post('id_admin');
+           
+
+            
+            
+           
+
+            if ($resultado = $this->Musuarios->consultaradmin($datos)) {
+          
+
+                if (password_verify($datos['clave_actual'], $resultado[0]->password)) {
+           
+
+
+                    $resultado = $this->Musuarios->cambiarPasswor_admin($datos);
+                  
+
+                    if ($resultado) {
+
+                  
+                        echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
+                       
+                    } else {
+                        
+                        echo  json_encode(["resultado" => false, "mensaje" =>  'Error no se pudo cambiar la contraseña']);
+                       
+                    }
+                } else {
+
+                    $this->session->set_flashdata('mensajeerror', 'Contraseña actual no coincide');
+                    echo  json_encode(["resultado" => false, "mensaje" =>  'Contraseña actual no coincide']);
+                   
+                }
+            } else {
+                $this->session->set_flashdata('mensajeerror', 'Ocurrio un error intente de nuevo');
+                echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
+            }
+        }
+    }
     }

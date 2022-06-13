@@ -345,8 +345,8 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account-outline" data-bs-toggle="tooltip" title="" data-bs-original-title="mdi-account-outline" aria-label="mdi-account-outline"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" type="number" id="talla_pantalon"
-                                                data-parsley-error-message="Este campo es requerido" required max="2" name="talla_pantalon" value="<?php if(isset($datos->talla_pantalon)) echo ucwords($datos->talla_pantalon);?>" placeholder="Talla de pantalon" required autofocus data-parsley-error-message="Este campo es requerido"/>
+                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="talla_pantalon"
+                                                data-parsley-error-message="Este campo es requerido" required  name="talla_pantalon" value="<?php if(isset($datos->talla_pantalon)) echo ucwords($datos->talla_pantalon);?>" placeholder="Talla de pantalon" required autofocus data-parsley-error-message="Este campo es requerido"/>
 
                                             </div>
 

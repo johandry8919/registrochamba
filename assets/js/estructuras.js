@@ -119,7 +119,7 @@
 					) {
 						return true;
 					} else {
-						console.log("invalido");
+						
 						if (!cod_responsabilidad.isValid())
 							$("#cod_responsabilidad")
 								.removeClass("is-valid")
@@ -128,16 +128,16 @@
 							$("#id_estructura")
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
-						if (!talla_pantalon.isValid())
-							$("#talla_pantalon")
-								.removeClass("is-valid")
+						// if (!talla_pantalon.isValid())
+						// 	$("#talla_pantalon")
+						// 		.removeClass("is-valid")
 
-								.addClass("is-invalid  error-input");
-								else{
-									$("#talla_pantalon")
-									.removeClass("is-invalid  error-input")
-									.addClass("is-valid");
-								}
+						// 		.addClass("is-invalid  error-input");
+						// 		else{
+						// 			$("#talla_pantalon")
+						// 			.removeClass("is-invalid  error-input")
+						// 			.addClass("is-valid");
+						// 		}
 						if (!talla_camisa.isValid())
 							$("#talla_camisa")
 								.removeClass("is-valid")
@@ -568,7 +568,7 @@ $("#talla_pantalon").on("keyup", function () {
 
 	
 
-	if (expresion.test(talla_pantalon)) {
+	if (talla_pantalon){
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
