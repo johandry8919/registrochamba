@@ -289,8 +289,14 @@
                                                 <i class="fe fe-trash-2"></i>
                                                 </button>
 
-                                               
+                                                <button type="button"  id="eliminar-chambista" class="btn btn-sm btn-info "
+                                                data-id_oferta_chambista="<?php  echo $oferta->id_oferta_chambista ?>"
+                                                >
+                                                <i class="fe fe-check-square"></i>
+                                                </button>
                                             </div>
+
+                       
                                             
                                         </td>
                                         <td> <?php  echo $oferta->nombres ?></td>
@@ -351,7 +357,7 @@
 
 </div>
 
-    <!-- MODAL EFFECTS -->
+    <!-- MODALCHAMBISTA -->
     <div class="modal fade" id="modalchambista">
         <div class="modal-dialog modal-dialog-centered text-center modal-lg " role="document">
             <div class="modal-content modal-content-demo">
@@ -415,70 +421,78 @@
 
                     </div>
 
+                   
+              
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="btn-postular">Cambiar estatus</button> <button class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- MODAL  -->
+        <div class="modal fade" id="modal_estatus_chambistas">
+        <div class="modal-dialog modal-dialog-centered text-center modal-lg " role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">Cambiar Estatus </h6><button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="form-group">
                              
-                                <label>Estado</label>
-                                <input readonly
-                                 class="input100 border-start-0 ms-0 form-control" type="text" id="estado" maxlength="200" name="estado" value="" placeholder="Estado" required autofocus>
-                        
-                        </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group">
-
-                                        <label>Municipio</label>
+                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                        <i class="mdi mdi-account" aria-hidden="true"></i>
+                                    </a>
                                     <input readonly
-                                     class="input100 border-start-0 ms-0 form-control" type="text" id="municipio" maxlength="200" name="municipio" value="" placeholder="Municipio" required autofocus>
-                            
+                                     class="input100 border-start-0 ms-0 form-control" type="text" id="nombre" maxlength="200" name="nombre" value="" placeholder="NOMBRE" required autofocus>
+                                </div>
                             </div>
 
                         </div>
-                        <div class="col-4">
-                            <div class="form-group">
+                        <div class="col-6">
+                                 <div class="form-group">
+                               
+                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                        <i class="mdi mdi-account" aria-hidden="true"></i>
+                                    </a>
+                                    <input readonly
+                                     class="input100 border-start-0 ms-0 form-control" type="text" id="apellido" maxlength="200" name="apellido" value="" placeholder="APELIDO" required autofocus>
+                            
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                     
+                        <div class="form-group">
+                            <div class="form-line">
+                                <select class="form-control show-tick" id="estatus_chambista" name="estatus_chambista" data-parsley-error-message="Este campo es requerido">
+                                    <option value="">Seleccione una opción</option>
+                                    <?php if(isset($estatus_chambista)): ?>
+                                <?php foreach ($estatus_chambista as $key => $estatus):?>
+                                   
+                                    <?php 
+                                        echo "<option value='".$Sector->id."'>".$Sector->productivo."</option>";
                              
-                                <label>Parroquia</label>
-                                <input readonly
-                                 class="input100 border-start-0 ms-0 form-control" type="text" id="parroquia" maxlength="200" name="parroquia" value="" placeholder="Parroquia" required autofocus>
-                        
+                               endforeach;
+                            endif;
+                        ?>
+                                </select>
+                            </div>
                         </div>
-                        </div>
+                      
+                      
 
                     </div>
 
                     
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group">
-                             
-                                <label>Celular</label>
-                                <input readonly
-                                 class="input100 border-start-0 ms-0 form-control" type="text" id="celular" maxlength="200" name="celular" value="" placeholder="celular" required autofocus>
-                        
-                        </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group">
-
-                                        <label>Tlf Local</label>
-                                    <input readonly
-                                     class="input100 border-start-0 ms-0 form-control" type="text" id="tlflocal" maxlength="200" name="tlflocal" value="" placeholder="tlflocal" required autofocus>
-                            
-                            </div>
-
-                        </div>
-                        <div class="col-4">
-                            <div class="form-group">
-                             
-                                <label>Situación Laboral</label>
-                                <input readonly
-                                 class="input100 border-start-0 ms-0 form-control" type="text" id="laboral" maxlength="200" name="laboral" value="" placeholder="laboral" required autofocus>
-                        
-                        </div>
-                        </div>
-
-                    </div>
               
                 </div>
                 <div class="modal-footer">
@@ -487,6 +501,7 @@
             </div>
         </div>
     </div>
+
     <input type="hidden" name="" id="id_usario_chambista" >
     <input type="hidden" name="" id="id_oferta"  value="<?php echo $id_oferta; ?>" >
     
