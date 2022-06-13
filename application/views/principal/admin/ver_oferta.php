@@ -488,5 +488,5 @@
         </div>
     </div>
     <input type="hidden" name="" id="id_usario_chambista" >
-    <input type="hidden" name="" id="id_oferta"  value="<?php echo $id_oferta; ?>" >
+    <input type="hidden" name="" id="id_oferta"  value="<?php echo $id_oferta; ?>" 
     

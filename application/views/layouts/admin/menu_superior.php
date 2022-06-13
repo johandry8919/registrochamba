@@ -78,7 +78,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="dropdown-divider m-0"></div>
-                                                <a class="dropdown-item" href="<?php echo base_url();?>cambiarclave">
+                                                <a class="dropdown-item" href="<?php echo base_url();?>admin/cambiarclave">
                                                     <i class="dropdown-icon fe fe-user"></i>  Cambiar Contraseña
                                                 </a>
                                               
