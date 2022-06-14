@@ -952,6 +952,18 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}			
 	}
+	public function consultarEstructura($datos){
+
+		$this->db->from('public.tbl_estructuras');
+		$this->db->where('id_usuario',$datos['id_admin']);
+		$resultado = $this->db->get();
+
+		if ($resultado->num_rows() > 0) {
+			return $resultado->result();
+		}else{
+			return FALSE;
+		}			
+	}
 	public function cambiarPasswordJoven($datos){
 
 		$data = array(
@@ -976,6 +988,22 @@ class Musuarios extends CI_Model
 
 		$this->db->where('id_usuarios_admin',$datos['id_admin']);
 		$this->db->update('public.usuarios_admin', $data);
+
+		if ($this->db->affected_rows()) {
+			return TRUE;
+		}else{
+			return FALSE;
+			}
+
+	}
+	public function cambiarPasswor_estructura($datos){
+
+		$data = array(
+		        'password' => $datos['new_password'],
+		);
+
+		$this->db->where('id_usuario',$datos['id_admin']);
+		$this->db->update('public.estructuras', $data);
 
 		if ($this->db->affected_rows()) {
 			return TRUE;

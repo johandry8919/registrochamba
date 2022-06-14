@@ -35,12 +35,15 @@ function registrar(){
             if (respuesta.resultado == true) {
                 Swal.fire({
                     icon: "success",
-                    title: "Registro Exitoso",
+                    title: "Cambio de clave exitoso",
                     text: "Presione OK para continuar",
                 }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                        $(location).attr("href", base_url + "admin/inicio");
+                        location.reload();
+
+
+
                     }
                 });
             } else {
