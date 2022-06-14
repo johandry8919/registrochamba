@@ -252,6 +252,28 @@
                             </div>
                             <!--row-->
 
+                            <div class="row">
+                                <div class="col-md-4 ">
+                                    <div class="form-group">
+                                        <label class="form-label">Estatus Oferta</label>
+
+                                        <select class="form-control" id="estatus" name="estatus" >
+                                        
+                                            <?php
+                                            foreach ($estatus as $key => $value) {
+                                                if ($value->id_estatus_oferta == $oferta->id_estatus_oferta) {
+                                                    echo "<option selected value='" . $value->id_estatus_oferta . "'>$value->descripcion</option>";
+                                                } else {
+                                                    echo "<option value='" . $value->id_estatus_oferta . "'>$value->descripcion</option>";
+                                                }
+                                            }
+                                            ?>
+                                    </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
 
                     </div>
 

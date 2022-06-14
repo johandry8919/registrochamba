@@ -196,7 +196,7 @@
     <!-- CUSTOM JS -->
     <script src="<?php echo base_url();?>assets/js/custom.js"></script>
 
-    <script type="text/javascript" src="https://popupsmart.com/freechat.js"></script><script> window.start.init({ title: "Hola Como estas? ✌️", message: "¿Cómo podemos ayudarte? Simplemente envíenos un mensaje ahora para obtener ayuda.", color: "#FA764F", position: "right", placeholder: "ingresa tu mensaje", withText: "escribe a qui", viaWhatsapp: "O escribe  via Whatsapp", gty: "Go to your", awu: "and write us", connect: "Connect now",  button: "Pregunta aqui", device: "everywhere",  services: [{"name":"whatsapp","content":null}]})</script>
+    <!--script type="text/javascript" src="https://popupsmart.com/freechat.js"></script><script> window.start.init({ title: "Hola Como estas? ✌️", message: "¿Cómo podemos ayudarte? Simplemente envíenos un mensaje ahora para obtener ayuda.", color: "#FA764F", position: "right", placeholder: "ingresa tu mensaje", withText: "escribe a qui", viaWhatsapp: "O escribe  via Whatsapp", gty: "Go to your", awu: "and write us", connect: "Connect now",  button: "Pregunta aqui", device: "everywhere",  services: [{"name":"whatsapp","content":null}]})</script -->
 
     <script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>
 

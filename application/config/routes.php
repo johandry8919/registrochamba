@@ -64,6 +64,7 @@ $route['inicio'] = 'Cusuarios/Vinicio';
 
 
 /*Cchambistas*/
+
 $route['cambiarclave'] = 'Cchambistas/VcambiarClave';
 $route['admin/cambiarclave'] = 'Cadmin/admin_cambiarClave';
 $route['datospersonales'] = 'Cchambistas/Vdatospersonales';
@@ -100,6 +101,7 @@ $route['inicioadm'] = 'Cadmin/inicio';*/
 $route['admin/login'] = 'Cadmin/login';
 $route['admin/registro/estructuras'] = 'Cadmin/registro_estructura';
 $route['admin/registro/estructuras/(:num)'] = 'Cadmin/actualizar_estructuras/$1';
+$route['admin/limpar_qr'] = 'Cadmin/limpar_qr';
 
 $route['admin/registro/empresas'] = 'Cadmin/registro_empresas';
 $route['admin/registro/universidades'] = 'Cadmin/registro_universidades';

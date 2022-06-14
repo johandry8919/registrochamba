@@ -46,8 +46,9 @@ class Empresas extends CI_Controller
             //encriptamos clave codeigniter
 
             $password = trim($this->input->post('password'));
-
-            $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email);
+            $id_rol=5;
+            $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email, $id_rol);
+        
      
             if ($resultado) {
           

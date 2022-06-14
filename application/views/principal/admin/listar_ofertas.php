@@ -33,8 +33,10 @@
                                         <th class="wd-15p border-bottom-0">Profesión Oficio</th>
                                         <th class="wd-20p border-bottom-0">Area de formación</th>
                                         <th class="wd-15p border-bottom-0">Descripcion</th>
+                                        <th class="wd-10p border-bottom-0">Estatus</th>
                                         <th class="wd-10p border-bottom-0">cantidad disponible</th>
-                                    
+                                   
+
                                    
                                     </tr>
                                 </thead>
@@ -68,10 +70,10 @@
                                         <td> <?php  echo $oferta->nombre_razon_social ?></td>
                                         <td><?php  echo $oferta->desc_profesion ?></td>
                                         <td><?php  echo $oferta->formacion ?></td>
-                                        <td><?php  echo $oferta->descripcion_oferta ?></td>                                  
-
+                                        <td><?php  echo $oferta->descripcion_oferta ?></td>    
+                                        <td><?php  echo $oferta->estatus?> </td>                             
                                         <td><?php  echo $oferta->cantidad_oferta?> </td>
-                                 
+                                      
 
                                     </tr>
                                     <?php endforeach ?>

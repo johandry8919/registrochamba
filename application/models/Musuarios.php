@@ -971,7 +971,7 @@ class Musuarios extends CI_Model
 	public function cambiarPasswor_admin($datos){
 
 		$data = array(
-		        'password' => $datos['new_password'],
+		        'password' => $datos['new_password']
 		);
 
 		$this->db->where('id_usuarios_admin',$datos['id_admin']);

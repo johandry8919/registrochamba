@@ -113,7 +113,8 @@ class Estructuras extends CI_Controller
 
             $password = trim($this->input->post('password'));
 
-            $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email);
+            $id_rol=3;
+            $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email, $id_rol);
         
           
           

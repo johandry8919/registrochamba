@@ -19,7 +19,9 @@ class CofertaEmpleo extends CI_Controller
         $this->load->model('Usuarios_admin_model');
         $this->load->model('Oferta_empleo_model');
         $this->load->model('Ofertas_chambistas_model');
+        $this->load->model('Estatus_oferta_model');
 
+        
 
 
         //$this->load->library('security');
@@ -190,18 +192,23 @@ class CofertaEmpleo extends CI_Controller
         $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
     
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
-   
+       $estatus_oferta_chambista= $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+
+
+       
       
         $output = [
             "menu_lateral"      => "admin",
             "breadcrumb"        =>   $breadcrumb,
-            "title"             => "Nueva oferta",
+            "title"             => "Oferta de emplo ".$oferta->nombre_razon_social,
             "vista_principal"   => "admin/ver_oferta",
             "librerias_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
             "oferta" => $oferta,
+            "estatus_oferta_chambista"=>$estatus_oferta_chambista,
             "profesion_oficio" => $profesion_oficio,
             "chambista_ofertas" => $chambista_ofertas,
             "id_oferta" => $id_oferta,
+            "datatable"             => true,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
         
      
@@ -229,7 +236,8 @@ public function  editar_oferta(){
 
 
     ];
-
+  
+  $estatus=  $this->Estatus_oferta_model->obtener_estatus_oferta();
     $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
 
     $profesion_oficio = $this->Estructuras_model->profesion_oficio();
@@ -240,6 +248,7 @@ public function  editar_oferta(){
         "breadcrumb"        =>   $breadcrumb,
         "title"             => "Editar  oferta",
         "vista_principal"   => "admin/editar_oferta",
+        "estatus"=>$estatus,
         // "librerias_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
         "oferta" => $oferta,
         "profesion_oficio" => $profesion_oficio,
@@ -275,6 +284,9 @@ public function update_oferta(){
     $this->form_validation->set_rules('cantidad_oferta', 'cantidad_oferta', 'trim|required|strip_tags');
     $this->form_validation->set_rules('id_empresa', 'id_empresa', 'trim|required|strip_tags');
     $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
+    $this->form_validation->set_rules('estatus', 'estatus', 'trim|required|strip_tags');
+
+    
 
 
     $this->form_validation->set_error_delimiters('*', '');
@@ -306,6 +318,7 @@ public function update_oferta(){
     "edad" =>  $this->input->post('edad'),
     "cantidad_oferta" =>  $this->input->post('cantidad_oferta'),
     "id_oferta" => $this->input->post('id_oferta'),
+    "id_estatus_oferta"=> $this->input->post('estatus')
   ]);
 
   if ($registro) {

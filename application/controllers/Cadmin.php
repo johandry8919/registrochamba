@@ -20,7 +20,7 @@ class Cadmin extends CI_Controller
         $this->load->model('Empresas_entes_model');
         $this->load->model('Representante_empresas_entes_model');
         $this->load->model('Usuarios_admin_model');
-
+        $this->load->library('ciqrcode');
 
 
         //$this->load->library('security');
@@ -2013,6 +2013,7 @@ class Cadmin extends CI_Controller
          
             $imgqr = $this->qr($codigo->codigo,$codigo->cedula);
     
+          
             $data['imgqr'] = $imgqr;
     
             $data['personal'] = $personal;
@@ -2021,13 +2022,14 @@ class Cadmin extends CI_Controller
             $data['usuarioacademico'] = $usuarioacademico;
             $data['redesusuario'] = $res;
             $html = $this->load->view('pdf_exports/genera_pdf_muestra', $data, TRUE);
+        
       
             $this->generate($html, $usuario->cedula);
         }
         public function qr($codigo,$cedula)
         {
             
-            if ($this->session->userdata('id_rol') != 2) {
+        
                 //hacemos configuraciones
                 $params['data'] = base_url()."consulta/".$codigo;
                 $params['level'] = 'L';
@@ -2042,7 +2044,7 @@ class Cadmin extends CI_Controller
     
                 $data['img'] = $cedula."_".$codigo.".png";
                 return $data['img'];
-            }
+            
         }
 
            public function admin_cambiarClave()
@@ -2165,5 +2167,22 @@ class Cadmin extends CI_Controller
                 echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
             }
         }
+    }
+    
+    public function limpar_qr(){
+
+        if ($this->session->userdata('id_rol') != 2) {
+            echo  json_encode([
+                "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                "rol_usuario" => $this->session->userdata('id_rol')
+
+            ]);
+            exit();
+        }
+        $files = glob(FCPATH."qr_code/*"); //obtenemos todos los nombres de los ficheros
+foreach($files as $file){
+    if(is_file($file))
+    unlink($file); //elimino el fichero
+}
     }
     }

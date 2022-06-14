@@ -20,12 +20,13 @@ function registrar(){
        var  id_empresa = $("#id_empresa").val();
        var  sexo = $("#sexo").val();
        var id_oferta = $("#id_oferta").val();
+       var estatus = $("#estatus").val();
 
        if(id_instruccion != "" && id_profesion != "" && id_area_form != "" && experiencia_laboral != "" && cargo != "" && descripcion_oferta != "" && edad != "" && cantidad_oferta != "" && id_empresa != "" && sexo != ""){
         $.ajax({
             dataType: "json",
             data: {id_instruccion,id_profesion,id_area_form,experiencia_laboral,cargo,
-                descripcion_oferta,edad,cantidad_oferta,id_empresa,sexo, id_oferta
+                descripcion_oferta,edad,cantidad_oferta,id_empresa,sexo, id_oferta,estatus
                
             },
     
