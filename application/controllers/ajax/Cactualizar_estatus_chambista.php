@@ -21,7 +21,7 @@ class Cactualizar_estatus_chambista extends CI_Controller {
     
        
         $permitidos = [2,3];        
-        $tiene_acceso=array_search($this->session->userdata('id_rol'),$permitidos,false);
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);

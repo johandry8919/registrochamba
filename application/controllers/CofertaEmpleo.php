@@ -43,7 +43,7 @@ class CofertaEmpleo extends CI_Controller
     public function publicar_oferta_admin(){
 
         $permitidos = [2,3];        
-        $tiene_acceso=array_search($this->session->userdata('id_rol'),$permitidos,false);
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
@@ -93,12 +93,14 @@ class CofertaEmpleo extends CI_Controller
     public function listar_oferta_admin(){
 
           
-        $permitidos = [2,3];        
-        $tiene_acceso=array_search($this->session->userdata('id_rol'),$permitidos,false);
+        $permitidos = array(2,3);        
+        $tiene_acceso=in_array(2,$permitidos,false);
 
         if ( !$tiene_acceso) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
+           
+            
+            json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+          
         }
 
         $ofertas = $this->Oferta_empleo_model->obtener_ofertas();
@@ -133,7 +135,7 @@ class CofertaEmpleo extends CI_Controller
     public function crear_oferta(){
 
         $permitidos = [2,3];        
-        $tiene_acceso=array_search($this->session->userdata('id_rol'),$permitidos,false);
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
@@ -195,7 +197,7 @@ class CofertaEmpleo extends CI_Controller
 
           
         $permitidos = [2,3];        
-        $tiene_acceso=array_search($this->session->userdata('id_rol'),$permitidos,false);
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
