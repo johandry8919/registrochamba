@@ -42,7 +42,7 @@ function registrar(){
                 }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                        $(location).attr("href", base_url + "admin/ofertas");
+                        $(location).attr("href", base_url + ruta+"/ofertas");
                     }
                 });
             } else {

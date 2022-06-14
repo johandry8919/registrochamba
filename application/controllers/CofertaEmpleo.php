@@ -42,6 +42,13 @@ class CofertaEmpleo extends CI_Controller
 
     public function publicar_oferta_admin(){
 
+        $permitidos = [2,3];        
+        $tiene_acceso=array_search($this->session->userdata('id_rol'),$permitidos,false);
+
+        if ( !$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
           
             if (!$this->session->userdata('id_rol')) {
                 redirect('admin/login');
@@ -57,17 +64,20 @@ class CofertaEmpleo extends CI_Controller
             $profesion_oficio = $this->Estructuras_model->profesion_oficio();
             $id_empresa = strip_tags(trim($this->uri->segment(3)));
 
+           $ruta = strip_tags(trim($this->uri->segment(1)));
+       
         $empresa= $this->Empresas_entes_model->obtener_empresa(1,$id_empresa);
     
             $output = [
-                "menu_lateral"      => "admin",
+                "menu_lateral"      =>$ruta,
                 "breadcrumb"        =>   $breadcrumb,
                 "title"             => "Nueva oferta",
                 "vista_principal"   => "admin/oferta_laboral",
-                "librerias_js" => [recurso("admin_nueva_oferta_js")],
+                "ficheros_js" => [recurso("admin_nueva_oferta_js")],
                 "profesion_oficio"=> $profesion_oficio,
                 "areaform"     =>   $this->Musuarios->getAreaForm(),
                 "id_empresa"   => $id_empresa,
+                "constantes_js" => ["ruta"=>$ruta],
                 "empresa"  => $empresa,
     
     
@@ -83,8 +93,12 @@ class CofertaEmpleo extends CI_Controller
     public function listar_oferta_admin(){
 
           
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
+        $permitidos = [2,3];        
+        $tiene_acceso=array_search($this->session->userdata('id_rol'),$permitidos,false);
+
+        if ( !$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
         }
 
         $ofertas = $this->Oferta_empleo_model->obtener_ofertas();
@@ -96,14 +110,15 @@ class CofertaEmpleo extends CI_Controller
         ];
     
 
-
+        $ruta = strip_tags(trim($this->uri->segment(1)));
         $output = [
-            "menu_lateral"      => "admin",
+            "menu_lateral"      =>$ruta,
             "breadcrumb"        =>   $breadcrumb,
             "title"             => "Nueva oferta",
             "vista_principal"   => "admin/listar_ofertas",
-            "librerias_js" => [recurso("listar_oferta_js")],
-            "ofertas" => $ofertas
+            "ficheros_js" => [recurso("listar_oferta_js")],
+            "ofertas" => $ofertas,
+            "constantes_js" => ["ruta"=>$ruta]
         
      
      
@@ -117,7 +132,10 @@ class CofertaEmpleo extends CI_Controller
 
     public function crear_oferta(){
 
-        if (!$this->session->userdata('id_rol')) {
+        $permitidos = [2,3];        
+        $tiene_acceso=array_search($this->session->userdata('id_rol'),$permitidos,false);
+
+        if ( !$tiene_acceso) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
@@ -176,8 +194,12 @@ class CofertaEmpleo extends CI_Controller
     public function ver_oferta(){
 
           
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
+        $permitidos = [2,3];        
+        $tiene_acceso=array_search($this->session->userdata('id_rol'),$permitidos,false);
+
+        if ( !$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
         }
 
         $id_oferta = strip_tags(trim($this->uri->segment(3)));
@@ -196,18 +218,19 @@ class CofertaEmpleo extends CI_Controller
 
 
        
-      
+       $ruta = strip_tags(trim($this->uri->segment(1)));
         $output = [
-            "menu_lateral"      => "admin",
+            "menu_lateral"      =>   $ruta,
             "breadcrumb"        =>   $breadcrumb,
             "title"             => "Oferta de emplo ".$oferta->nombre_razon_social,
             "vista_principal"   => "admin/ver_oferta",
-            "librerias_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
+            "ficheros_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
             "oferta" => $oferta,
             "estatus_oferta_chambista"=>$estatus_oferta_chambista,
             "profesion_oficio" => $profesion_oficio,
             "chambista_ofertas" => $chambista_ofertas,
             "id_oferta" => $id_oferta,
+            "constantes_js" => ["ruta"=>$ruta],
             "datatable"             => true,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
         
@@ -256,7 +279,7 @@ public function  editar_oferta(){
         "id_oferta" => $id_oferta,
         "areaform"     =>   $this->Musuarios->getAreaForm(),
 
-        "librerias_js" => [recurso("editar_oferta_js")],
+        "ficheros_js" => [recurso("editar_oferta_js")],
     
  
  

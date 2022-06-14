@@ -15,11 +15,14 @@ class Cbuscar_chambista extends CI_Controller {
    
 
     
-       if ($this->session->userdata('id_rol') != 2) {
-        echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
-        exit();
-        
-    }
+       
+        $permitidos = [2,3];        
+        $tiene_acceso=array_search($this->session->userdata('id_rol'),$permitidos,false);
+
+        if ( !$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
 
     $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');  
     $this->form_validation->set_error_delimiters('*', '');
