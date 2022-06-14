@@ -31,6 +31,7 @@
     $config['recursos']['ver_oferta_js'] = "assets/js/admin/ver_oferta.js?v=1.0.6";
     $config['recursos']['editar_oferta_js'] = "assets/js/admin/editar_oferta.js?v=1.0.6";
     $config['recursos']['admin_cambiarClave_js'] = "assets/js/admin/admin_cambiarClave.js?v=1.0.6";
+    $config['recursos']['cambiarclave_estruct_empre_js'] = "assets/js/admin/cambiarclave_estruct_empre.js?v=1.0.6";
 
     
 
