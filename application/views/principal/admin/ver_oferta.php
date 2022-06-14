@@ -523,16 +523,79 @@
 
                     </div>
 
-                   
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                             
+                                <label>Estado</label>
+                                <input readonly
+                                 class="input100 border-start-0 ms-0 form-control" type="text" id="estado" maxlength="200" name="estado" value="" placeholder="Estado" required autofocus>
+                        
+                        </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+
+                                        <label>Municipio</label>
+                                    <input readonly
+                                     class="input100 border-start-0 ms-0 form-control" type="text" id="municipio" maxlength="200" name="municipio" value="" placeholder="Municipio" required autofocus>
+                            
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                             
+                                <label>Parroquia</label>
+                                <input readonly
+                                 class="input100 border-start-0 ms-0 form-control" type="text" id="parroquia" maxlength="200" name="parroquia" value="" placeholder="Parroquia" required autofocus>
+                        
+                        </div>
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                             
+                                <label>Celular</label>
+                                <input readonly
+                                 class="input100 border-start-0 ms-0 form-control" type="text" id="celular" maxlength="200" name="celular" value="" placeholder="celular" required autofocus>
+                        
+                        </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+
+                                        <label>Tlf Local</label>
+                                    <input readonly
+                                     class="input100 border-start-0 ms-0 form-control" type="text" id="tlflocal" maxlength="200" name="tlflocal" value="" placeholder="tlflocal" required autofocus>
+                            
+                            </div>
+
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                             
+                                <label>Situación Laboral</label>
+                                <input readonly
+                                 class="input100 border-start-0 ms-0 form-control" type="text" id="laboral" maxlength="200" name="laboral" value="" placeholder="laboral" required autofocus>
+                        
+                        </div>
+                        </div>
+
+                    </div>
               
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" id="btn-postular">Cambiar estatus</button> <button class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" id="btn-postular">Postular</button> <button class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
  
     <input type="hidden" name="" id="id_usario_chambista" >
     <input type="hidden" name="" id="id_oferta"  value="<?php echo $id_oferta; ?>" 
