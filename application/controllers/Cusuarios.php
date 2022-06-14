@@ -217,7 +217,7 @@ class Cusuarios extends CI_Controller {
 
     public function enviarEmailRecuperacion($datos,$resultado,$link) {
 
-      /*  $config = array(
+      $config = array(
            'protocol' => 'smtp',
             'smtp_host' => 'smtp.gmail.com',
             'smtp_user' => 'desarrollotestingweb@gmail.com',
@@ -228,7 +228,7 @@ class Cusuarios extends CI_Controller {
             'mailtype' => 'html',
             'wordwrap' => TRUE, 
             'charset' => 'utf-8'
-    );*/
+    );
 
     $config = array();
        
@@ -330,7 +330,7 @@ class Cusuarios extends CI_Controller {
                 $datos['registro_anterior'] = 1;
             }
 
-            	$validacion = $this->Musuarios->verificarCedulaRegistroSistema($datos);//verificar si el usuario esta registrado en el sistema por la cedula
+            	$validacion2 = $this->Musuarios->verificarCedulaRegistroSistema($datos);//verificar si el usuario esta registrado en el sistema por la cedula
             	//var_dump($validacion2);exit;
             	if (!$validacion2) {//si es TRUE esta registrado en el sistema
             		
