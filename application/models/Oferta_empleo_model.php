@@ -44,7 +44,7 @@
 
         public function obtener_ofertas(){
 
-            $this->db->select(' tbl_ofertas_empleo.*,
+            $this->db->select('tbl_ofertas_empleo.*,
             tbl_empresas_entes.nombre_razon_social,tbl_instruccion.nivel,profesion.desc_profesion,
             tbl_areas_formacion.nombre as formacion,tbl_estatus_oferta.descripcion as estatus
         

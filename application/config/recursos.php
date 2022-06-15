@@ -26,10 +26,12 @@
     $config['recursos']['buscar_chambista_js'] = "assets/js/admin/buscar_chambista.js?v=1.0.6";
     $config['recursos']['editar_chambista_js'] = "assets/js/admin/editar_chambista.js?v=1.0.6";
     $config['recursos']['admin_nueva_oferta_js'] = "assets/js/admin/admin_nueva_oferta.js?v=1.0.6";
+    $config['recursos']['admin_nueva_oferta_uner_js'] = "assets/js/admin/admin_nueva_oferta_uner.js?v=1.0.6";
     $config['recursos']['editar_formacion_cade_js'] = "assets/js/admin/editar_formacion_cade.js?v=1.0.6";
     $config['recursos']['listar_oferta_js'] = "assets/js/admin/listar_oferta.js?v=1.0.6";
     $config['recursos']['ver_oferta_js'] = "assets/js/admin/ver_oferta.js?v=1.0.6";
     $config['recursos']['editar_oferta_js'] = "assets/js/admin/editar_oferta.js?v=1.0.6";
+    $config['recursos']['editar_oferta_uner_js'] = "assets/js/admin/editar_oferta_uner.js?v=1.0.6";
     $config['recursos']['admin_cambiarClave_js'] = "assets/js/admin/admin_cambiarClave.js?v=1.0.6";
     $config['recursos']['cambiarclave_estruct_empre_js'] = "assets/js/admin/cambiarclave_estruct_empre.js?v=1.0.6";
 

@@ -13,13 +13,14 @@
                                             <table class="table text-nowrap  key-buttons" id="basic-datatable">
                                                 <thead>
                                                     <tr>
+                                                        <th name="bstable-actions">Acciones</th>
                                                         <th class="wd-15p border-bottom-0">Razon Social</th>
                                                         <th class="wd-15p border-bottom-0">RIF</th>
                                                         <th class="wd-20p border-bottom-0">Actividad Economica</th>
                                                         <th class="wd-15p border-bottom-0">Sector de Especialización</th>
                                                         <th class="wd-10p border-bottom-0">Nombre representante</th>
                                                         <th class="wd-10p border-bottom-0">Estado</th>
-                                                         <th name="bstable-actions">Editar</th>
+                                                         
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -27,21 +28,31 @@
 
                                                 <?php foreach ($univerdidad as $empresa): ?>
                                                     <tr>
-                                                        <td> <?php  echo $empresa->nombre_razon_social ?></td>
-                                                        <td><?php  echo $empresa->rif ?></td>
-                                                        <td><?php  echo $empresa->actividad_economica ?></td>
-                                                        <td><?php  echo $empresa->productivo ?></td>
-                                                        <td><?php  echo $empresa->noombre_representante ?> <?php  echo $empresa->apellido_representante ?></td>
-                                                        <td><?php  echo $empresa->nombre_estado?> </td>
-                                                        <td>
+                                                    <td>
                                                         <div class="btn-list">
                                                         <button type="button" class="btn btn-sm btn-primary ">
                                                         <span class="fs-6">
                                                         <a class="text-white" href="<?php base_url()?>registro/universidades/<?php echo $empresa->id_empresas?>">&#9998;</a>
                                                         </span>
                                                         </button>
+                                                        <button type="button" class="btn btn-sm btn-success ">
+                                                    <span class="fs-6">
+                                                        <a class="text-white"
+                                                            href="<?php base_url()?>oferta_universidad/<?php echo $empresa->id_empresas?>">
+                                                            <i class="side-menu__icon fe fe-plus">Nueva oferta</i>
+                                                            
+                                                        </a>
+                                                    </span>
+                                                </button>
                                                         </div>
                                                         </td>
+                                                        <td> <?php  echo $empresa->nombre_razon_social ?></td>
+                                                        <td><?php  echo $empresa->rif ?></td>
+                                                        <td><?php  echo $empresa->actividad_economica ?></td>
+                                                        <td><?php  echo $empresa->productivo ?></td>
+                                                        <td><?php  echo $empresa->noombre_representante ?> <?php  echo $empresa->apellido_representante ?></td>
+                                                        <td><?php  echo $empresa->nombre_estado?> </td>
+                                                     
                                                         
                                                    
                                                     </tr>
