@@ -220,8 +220,8 @@ class Cusuarios extends CI_Controller {
       $config = array(
            'protocol' => 'smtp',
             'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'desarrollotestingweb@gmail.com',
-            'smtp_pass' => 'pruebas123',
+            'smtp_user' => 'noresponder.chambajuvenil@gmail.com',
+            'smtp_pass' => 'xthuameievcykqcj',
             'smtp_port' => '465',
             'smtp_crypto' => 'ssl', 
             'smtp_timeout' => '7',
@@ -235,8 +235,8 @@ class Cusuarios extends CI_Controller {
         //$config['mailpath']     = "/usr/bin/sendmail"; // or "/usr/sbin/sendmail"
         $config['protocol']     = "smtp"; 
         $config['smtp_host']    = "smtp.gmail.com";
-        $config['smtp_user']    =  'desarrollotestingweb@gmail.com';
-        $config['smtp_pass']    = "pruebas123";
+        $config['smtp_user']    =  'noresponder.chambajuvenil@gmail.com';
+        $config['smtp_pass']    = "xthuameievcykqcj";
         $config['smtp_port']    =  465;
         $config['smtp_crypto']  = 'ssl';
      
@@ -263,7 +263,7 @@ class Cusuarios extends CI_Controller {
 
 
         $this->email->initialize($config);
-        $this->email->from('desarrollotestingweb@gmail.com', 'Chamba Juvenil');
+        $this->email->from('noresponder.chambajuvenil@gmail.com');
         $this->email->to($datos['email']);
         $this->email->subject($asunto);
         $this->email->message($mensaje);

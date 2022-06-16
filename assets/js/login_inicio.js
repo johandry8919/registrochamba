@@ -88,7 +88,14 @@ function ingresarEmpresa(){
              $("#loginbtn").html('Ingresar');
          }else{
 
-             $(location).attr("href", base_url + "empresas");
+            
+            if(respuesta.tipo_empresa==1){
+                $(location).attr("href", base_url + "empresas");
+            }else{
+                $(location).attr("href", base_url + "universidades");
+            }
+
+         
          }
      },
      error: function (xhr, err) {

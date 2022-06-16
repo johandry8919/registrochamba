@@ -38,7 +38,7 @@ function ingresar(){
                 $("#loginbtn").html('Ingresar');
             }else{
 
-                $(location).attr("href", base_url + "admin/usuarios");
+                $(location).attr("href", base_url + "admin/inicio");
             }
         },
         error: function (xhr, err) {
