@@ -134,11 +134,12 @@ class Cchambistas extends CI_Controller
         if (!$this->session->userdata('id_usuario')) {
             redirect('iniciosesion');
         }
-        // $this->load->view('layouts/head');
-        // $this->load->view('chambistas/VcambiarClave');
+        
+       
         $output = [
             "title"             => "cambiarClave",
              "vista_principal"   => "chambistas/cambiarClave",
+             
              
 
         ];
@@ -151,6 +152,7 @@ class Cchambistas extends CI_Controller
         if (!$this->session->userdata('id_usuario')) {
             redirect('iniciosesion');
         }
+        
 
         $res = $this->Musuarios->getUsuariosVivienda();
         $data['viviendajoven'] = $res;
@@ -165,6 +167,7 @@ class Cchambistas extends CI_Controller
              "vista_principal"   => "chambistas/Viviendajoven",
              "viviendajoven" => $res,
              "breadcrumb"  => $breadcrumb,
+             
 
            "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
 
