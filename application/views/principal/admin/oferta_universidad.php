@@ -38,21 +38,24 @@
 
 
                                 <div class="col-md-4 ">
-                                    <div class="form-group">
-                                        <label class="form-label">Mencion</label>
+                                <div class="form-group">
+                                        <label class="form-label">Área de Formación</label>
 
-                                        <div class="wrap-input100 validate-input input-group"
-                                            data-bs-validate="Valid email is required: ex@abc.xyz">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="icon icon-graduation" aria-hidden="true"></i>
-                                            </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text"
-                                                id="mencion" maxlength="250" name="mencion" value=""
-                                                placeholder="Mencion" required autofocus>
-
-                                        </div>
+                                        <select class="form-control select2-selection__rendered" id="id_area_form" name="id_area_form">
+                                            <option value="">Seleccione una opción</option>
+                                            <?php
+                                    foreach ($areaform as $key => $value) {
+                                        if ($value->id_area_form == $acausuario->id_area_form) {
+                                            echo "<option selected value='" . $value->id_area_form . "'>$value->nombre</option>";
+                                        } else {
+                                            echo "<option value='" . $value->id_area_form . "'>$value->nombre</option>";
+                                        }
+                                    }
+                                    ?>
+                                        </select>
 
                                     </div>
+                                  
                                 </div>
 
 
@@ -80,23 +83,22 @@
 
 
                                 <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label class="form-label">Área de Formación</label>
+                                <div class="form-group">
+                                        <label class="form-label">Mencion</label>
 
-                                        <select class="form-control select2-selection__rendered" id="id_area_form" name="id_area_form">
-                                            <option value="">Seleccione una opción</option>
-                                            <?php
-                                    foreach ($areaform as $key => $value) {
-                                        if ($value->id_area_form == $acausuario->id_area_form) {
-                                            echo "<option selected value='" . $value->id_area_form . "'>$value->nombre</option>";
-                                        } else {
-                                            echo "<option value='" . $value->id_area_form . "'>$value->nombre</option>";
-                                        }
-                                    }
-                                    ?>
-                                        </select>
+                                        <div class="wrap-input100 validate-input input-group"
+                                            data-bs-validate="Valid email is required: ex@abc.xyz">
+                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                <i class="icon icon-graduation" aria-hidden="true"></i>
+                                            </a>
+                                            <input class="input100 border-start-0 ms-0 form-control" type="text"
+                                                id="mencion" maxlength="250" name="mencion" value=""
+                                                placeholder="Mencion" required autofocus>
+
+                                        </div>
 
                                     </div>
+                                    
                                 </div>
                             </div>
                            
@@ -159,7 +161,7 @@
                                             </a>
                                             <input class="input100 border-start-0 ms-0 form-control" type="text"
                                                 id="id_cantidad" maxlength="30" name="id_cantidad" 
-                                                placeholder="cantidad" required autofocus>
+                                                placeholder="cantidad" >
 
                                         </div>
 
@@ -174,11 +176,13 @@
                                 <div class="col-md-4">
 
                                 <div class="form-group">
-                                     <label class="form-label">Descripcion De solicitud</label>
+                                     
+                                     <div class="form-group">
+    <label for="exampleFormControlTextarea1">Descripcion De solicitud</label>
+    <textarea class="form-control" id="id_descripcion" name="id_descripcion"  rows="2"></textarea>
+  </div>
 
-                                        <textarea class="form-control" id="id_descripcion" name="id_descripcion"
-                                        required
-                                                autofocus> </textarea>
+                                       
                                 </div>
                                    
 
