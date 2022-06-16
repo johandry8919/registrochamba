@@ -87,7 +87,8 @@
            elseif( isset($menu_lateral) && $menu_lateral=='admin'):           
             $this->load->view("layouts/admin/menu_lateral");   
             elseif( isset($menu_lateral) && $menu_lateral=='empresas'):           
-                $this->load->view("layouts/empresas/menu_lateral");                                
+                $this->load->view("layouts/empresas/menu_lateral");  
+                $this->load->view("layouts/empresas/menu_superior");                              
                                    
             else:
     		$this->load->view("layouts/menu_lateral"); 
