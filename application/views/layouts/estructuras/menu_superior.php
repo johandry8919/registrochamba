@@ -83,7 +83,7 @@
                                                 </a>
                                               
                                            
-                                                <a class="dropdown-item" href="<?php echo base_url();?>Cadmin/cerrar_sesion">
+                                                <a class="dropdown-item" href="<?php echo base_url();?>Cusuarios/cerrar_session">
                                                     <i class="dropdown-icon fe fe-alert-circle"></i>Cerrar Sesión
                                                 </a>
                                             </div>
