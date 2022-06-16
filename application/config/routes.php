@@ -164,3 +164,6 @@ $route['estructuras/inicio'] = 'Estructuras';
 $route['empresas/inicio'] = 'Empresas';
 $route['empresas/nuevaoferta'] = 'Empresas/nuevaoferta';
 /*Empresas*/
+
+/**Universidades */
+$route['universidades/inicio'] = 'Universidades';

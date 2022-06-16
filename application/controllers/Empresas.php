@@ -32,6 +32,7 @@ class Empresas extends CI_Controller
         //reglas de validación
 
 
+    
 
   
         if (!$this->form_validation->run()) {
@@ -47,12 +48,12 @@ class Empresas extends CI_Controller
 
             $password = trim($this->input->post('password'));
             $id_rol=5;
-            $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email, $id_rol);
-        
+            $resultado = $this->Usuarios_admin_model->obtenerUsuarioEmpresa($email);
+       
      
             if ($resultado) {
           
-                if (password_verify($password,$resultado->password) && $resultado->id_rol=5) {
+                if (password_verify($password,$resultado->password)) {
 
                     $s_usuario = array(
                         'id_usuario' => $resultado->id_usuarios_admin,
@@ -60,6 +61,7 @@ class Empresas extends CI_Controller
                         'email' => $resultado->email,
                         'activo' => $resultado->activo,
                         'fecha_reg' => $resultado->created_on,
+                        'tipo_empresa' => $resultado->tipo_empresa,
                         'id_rol' => $resultado->id_rol
                     );
 
@@ -76,7 +78,10 @@ class Empresas extends CI_Controller
 
                     }else{
                         $this->session->set_userdata($s_usuario);
-                        echo  json_encode(["resultado" =>true,"mensaje"=>' Ingreso exitoso']);
+                        echo  json_encode(["resultado" =>true,
+                                            "mensaje"=>' Ingreso exitoso',
+                                            'tipo_empresa' => $resultado->tipo_empresa
+                                              ]);
                         exit;
 
                     }

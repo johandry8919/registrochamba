@@ -69,6 +69,24 @@
 
             return $valor;
         }
+
+        public function obtenerUsuarioEmpresa($email){
+            
+            
+            $this->db->select('usuarios_admin.id_rol,usuarios_admin.email, usuarios_admin.password, usuarios_admin.cedula,tipo_empresa,usuarios_admin.id_usuarios_admin,usuarios_admin.activo,usuarios_admin.created_on');
+          
+            $this->db->join('tbl_representantes_empresas_entes re_entes', 're_entes.id_usuario = usuarios_admin.id_usuarios_admin');
+            $this->db->join('tbl_empresas_entes empresas', 'empresas.id_empresas= re_entes.id_empresas_entes');
+            $this->db->where('upper(usuarios_admin.email)', $email);
+
+            $query = $this->db->get("usuarios_admin");
+    
+            if ($query->num_rows()) $valor = $query->row();
+            else $valor = false;
+    
+
+            return $valor;
+        }
         
 
 
