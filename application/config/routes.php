@@ -119,12 +119,15 @@ $route['estructura/listar_empresas'] = 'Estructuras/listar_empresas';
 
 //ofertas de empleos
 $route['admin/nueva_oferta/(:num)'] = 'CofertaEmpleo/publicar_oferta_admin';
+$route['admin/oferta_universidad/(:num)'] = 'CofertaUniversidades/universidad_oferta_admin/$1';
 $route['estructuras/nueva_oferta/(:num)'] = 'CofertaEmpleo/publicar_oferta_admin';
 $route['admin/ofertas'] = 'CofertaEmpleo/listar_oferta_admin';
+$route['admin/ofertasUniversidad'] = 'CofertaUniversidades/listar_oferta_admin';
 $route['estructuras/ofertas'] = 'CofertaEmpleo/listar_oferta_admin';
 $route['admin/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta';
 $route['estructuras/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta';
 $route['admin/editar_oferta/(:num)'] = 'CofertaEmpleo/editar_oferta/$1';
+$route['admin/editar_ofertas/(:num)'] = 'CofertaUniversidades/editar_oferta/$1';
 
 
 //cambista
