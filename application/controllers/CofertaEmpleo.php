@@ -214,6 +214,8 @@ class CofertaEmpleo extends CI_Controller
         ];
     
         $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
+
+      
     
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
        $estatus_oferta_chambista= $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();

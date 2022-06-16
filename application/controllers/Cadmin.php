@@ -19,6 +19,7 @@ class Cadmin extends CI_Controller
         $this->load->model('Estructuras_model');
         $this->load->model('Empresas_entes_model');
         $this->load->model('Representante_empresas_entes_model');
+        $this->load->model('Dasboard_admin_model');
         $this->load->model('Usuarios_admin_model');
         $this->load->library('ciqrcode');
 
@@ -43,16 +44,24 @@ class Cadmin extends CI_Controller
 
 
         ];
-
+       
+       $total_usuarios = $this->Dasboard_admin_model->obtener_total_usuarios_registrados();
+       $completados    = $this->Dasboard_admin_model->obtener_registros_completados();
+       $total_empresas = $this->Dasboard_admin_model->obtener_empresas_registradas();
+       $total_universidades = $this->Dasboard_admin_model->obtener_univesidades_registradas();
+     $total_estructuras =$this->Dasboard_admin_model->obtener_estructuras_registradas();
 
         $output = [
             "menu_lateral" => "admin",
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "Registro de estructuras",
             "vista_principal"   => "admin/inicio",
-            "librerias_js" => [recurso("admin_js")]
-
-
+            "ficheros_js" => [recurso("admin_js")],
+            "total_usuarios" =>$total_usuarios,
+            "completados"=>$completados,
+            "total_empresas"=>$total_empresas,
+            "total_universidades"=>$total_universidades,
+            "total_estructuras"=>$total_estructuras
 
 
         ];

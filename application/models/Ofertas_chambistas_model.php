@@ -68,7 +68,7 @@
           
             $this->db->join('tbl_usuarios', 'tbl_usuarios.id_usuario = tbl_ofertas_chambistas.id_usuario_chambista');
             $this->db->join('tbl_usuarios_personales up', 'up.id_usuario = tbl_ofertas_chambistas.id_usuario_chambista');
-            $this->db->join('tbl_profesion_oficio profesion', 'profesion.id_profesion = up.id_profesion_oficio');
+            $this->db->join('tbl_profesion_oficio profesion', 'profesion.id_profesion = up.id_profesion_oficio', 'left');
             $this->db->join('tbl_estatus_oferta_chambista tblestatus', 'tblestatus.id_estatus_chambista = tbl_ofertas_chambistas.id_estatus_oferta');
 
             $this->db->where('id_oferta', $id_oferta);
