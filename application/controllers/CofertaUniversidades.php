@@ -77,20 +77,36 @@ class CofertaUniversidades extends CI_Controller
 
         if ( !$tiene_acceso) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            redirect('admin/login');
             
             exit();
             
         }
         $this->form_validation->set_rules('mencion', 'mencion', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('duracion', 'duracion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('duracion', 'duracion', 'trim|required|strip_tags|numeric');
+        
+        $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags|numeric');
+
         $this->form_validation->set_rules('id_area_formacion', 'area de formacion', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('cupos_disponibles', 'cupos_disponibles', 'trim|required|strip_tags');
+    
+        // validar solo numero
+        $this->form_validation->set_rules('cupos_disponibles', 'cupos_disponibles', 'trim|required|strip_tags|numeric');
       
-        // $this->form_validation->set_rules('id_cantidad', 'cantidad ', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cantidad', 'cantidad ', 'trim|required|strip_tags|numeric');
         $this->form_validation->set_rules('titularidad', 'titularidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_area_formacion', 'id_area_formacion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
         $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|strip_tags');
+
+   
+
+        if ($this->form_validation->run() == FALSE) {
+            echo  json_encode(["resultado" => false, "mensaje" => "Campo solo numerico"]);{
+                exit();
+            }
+        }
+
+   
 
 
         $this->form_validation->set_error_delimiters('*', '');
@@ -284,18 +300,38 @@ public function ver_oferta(){
 
 
 public function update_oferta(){
-    if (!$this->session->userdata('id_rol')) {
+    $permitidos = [2,3];        
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+    if ( !$tiene_acceso) {
         echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        redirect('admin/login');
+        
         exit();
+        
     }
     $this->form_validation->set_rules('mencion', 'mencion', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('duracion', 'duracion', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('id_area_formacion', 'area de formacion', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('cupos_disponibles', 'cupos_disponibles', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('titularidad', 'titularidad', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('id_area_formacion', 'id_area_formacion', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|strip_tags');
+    $this->form_validation->set_rules('duracion', 'duracion', 'trim|required|strip_tags|numeric');
+    
+    $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags|numeric');
+
+    $this->form_validation->set_rules('id_area_formacion', 'area de formacion', 'trim|required|strip_tags');
+
+    // validar solo numero
+    $this->form_validation->set_rules('cupos_disponibles', 'cupos_disponibles', 'trim|required|strip_tags|numeric');
+  
+    $this->form_validation->set_rules('cantidad', 'cantidad ', 'trim|required|strip_tags|numeric');
+    $this->form_validation->set_rules('titularidad', 'titularidad', 'trim|required|strip_tags');
+    $this->form_validation->set_rules('id_area_formacion', 'id_area_formacion', 'trim|required|strip_tags');
+    $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
+    $this->form_validation->set_rules('descripcion', 'descripcion', 'trim|required|strip_tags');
+
+
+
+    if ($this->form_validation->run() == FALSE) {
+        echo  json_encode(["resultado" => false, "mensaje" => "Campo solo numerico"]);{
+            exit();
+        }
+    }
 
 
     

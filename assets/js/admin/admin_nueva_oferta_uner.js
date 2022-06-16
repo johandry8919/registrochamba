@@ -25,6 +25,7 @@ function registrar(){
     
 
       
+   if($mencion != "" && $duracion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != "" && $cantidad.match(/^[0-9]+$/) != "" && $titularidad != "" && $edad != ""){
     $.ajax({
         dataType: "json",
         data: {
@@ -76,6 +77,17 @@ function registrar(){
             alert("ocurrio un error intente de nuevo");
         },
     });
+
+   }else{
+    // validar solo numero en el campo catidad
+    if($cantidad.match(/^[0-9]+$/)){
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Debe ingresar solo numeros en el campo cantidad",
+        });
+    }
+   }
 }
 $("#id_instruccion").on("change", function () {
 	"use strict";
@@ -166,15 +178,17 @@ $("#mencion").on("keyup", function () {
 $("#duracion").on("keyup", function () {
 	"use strict";
 	var duracion = $(this).val();
-    // expresion solo letras
-    var expresion = /^[a-zA-Z\s]*$/;
+    // expresion solo nuumero 
+
+    var expresion = /^[0-9]+$/;
+   
    
 
 
 
 
 
-    if (duracion) {
+    if (expresion.test(duracion)) {
        
         $(this)
 			.removeClass("is-invalid error-input")
@@ -237,8 +251,9 @@ $("#descripcion_oferta").on("keyup", function () {
 $("#edad ").on("keyup", function () {
     "use strict";
     var edad = $(this).val();
+    var expresion = /^[0-9]+$/;
     
-    if (edad) {
+    if (expresion.test(edad)) {
         $(this)
             .removeClass("is-invalid error-input")
             .addClass("is-valid valid-input");
@@ -249,11 +264,44 @@ $("#edad ").on("keyup", function () {
         $("#edad").removeClass("is-valid").addClass("is-invalid");
     }
 });
+$("#id_cantidad").on("keyup", function () {
+    "use strict";
+    var id_cantidad = $(this).val();
+    var expresion = /^[0-9]+$/;
+    
+    if (expresion.test(id_cantidad)) {
+        $(this)
+            .removeClass("is-invalid error-input")
+            .addClass("is-valid valid-input");
+    } else {
+        $(this)
+            .removeClass("is-invalid error-input")
+            .addClass("is-valid valid-input");
+        $("#id_cantidad").removeClass("is-valid").addClass("is-invalid");
+    }
+});
+$("#cupos_disponibles").on("keyup", function () {
+    "use strict";
+    var cupos_disponibles = $(this).val();
+    var expresion = /^[0-9]+$/;
+    
+    if (expresion.test(cupos_disponibles)) {
+        $(this)
+            .removeClass("is-invalid error-input")
+            .addClass("is-valid valid-input");
+    } else {
+        $(this)
+            .removeClass("is-invalid error-input")
+            .addClass("is-valid valid-input");
+        $("#cupos_disponibles").removeClass("is-valid").addClass("is-invalid");
+    }
+});
 $("#cantidad_oferta ").on("keyup", function () {
     "use strict";
     var cantidad_oferta = $(this).val();
+    var expresion = /^[0-9]+$/;
     
-    if (cantidad_oferta) {
+    if (expresion.test(cantidad_oferta)) {
         $(this)
             .removeClass("is-invalid error-input")
             .addClass("is-valid valid-input");
