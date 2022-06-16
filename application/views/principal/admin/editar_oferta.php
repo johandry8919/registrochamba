@@ -306,6 +306,9 @@
     <input type="hidden" name="id_oferta" id="id_oferta"  value="<?php echo $id_oferta; ?>" >
 
     <input type="hidden" name="" id="id_empresa"  value="<?php echo $oferta->id_empresa_ente; ?>" >
+    <input type="hidden" name="id_rol" id="id_rol" value="<?php if(isset($id_rol)){
+        echo $id_rol;
+    }?>">
    
     
 

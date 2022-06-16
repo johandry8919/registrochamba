@@ -262,6 +262,10 @@
 
                     </div>
 
+                    <input type="hidden" name="id_rol" id="id_rol" value="<?php if(isset($id_rol)){
+        echo $id_rol;
+    }?>">
+
                     </form>
                 </div>
 
