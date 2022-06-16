@@ -80,7 +80,8 @@
 
             <!--APP-SIDEBAR Menu Lateral-->
 
-            <?php    if(isset($menu_lateral) && $menu_lateral=='estructuras'): 
+            <?php    if(isset($menu_lateral) && $menu_lateral=='estructuras'):
+            $this->load->view("layouts/estructuras/menu_superior"); 
             
             $this->load->view("layouts/estructuras/menu_lateral");    
            elseif( isset($menu_lateral) && $menu_lateral=='admin'):           
