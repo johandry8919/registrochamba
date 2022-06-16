@@ -80,17 +80,18 @@
 
             <!--APP-SIDEBAR Menu Lateral-->
 
-            <?php    if(isset($menu_lateral) && $menu_lateral=='estructuras'): 
+            <?php    if(isset($menu_lateral) && $menu_lateral=='estructuras'):
+            $this->load->view("layouts/estructuras/menu_superior"); 
             
             $this->load->view("layouts/estructuras/menu_lateral");    
            elseif( isset($menu_lateral) && $menu_lateral=='admin'):           
             $this->load->view("layouts/admin/menu_lateral");   
             elseif( isset($menu_lateral) && $menu_lateral=='empresas'):           
                 $this->load->view("layouts/empresas/menu_lateral");                                
-                                  
+                $this->load->view("layouts/empresas/menu_superior");               
              elseif( isset($menu_lateral) && $menu_lateral=='universidades'):           
              $this->load->view("layouts/universidades/menu_lateral");                                
-                                      
+                   
             else:
     		$this->load->view("layouts/menu_lateral"); 
 
