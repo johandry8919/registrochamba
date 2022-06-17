@@ -62,7 +62,8 @@ class Empresas extends CI_Controller
                         'activo' => $resultado->activo,
                         'fecha_reg' => $resultado->created_on,
                         'tipo_empresa' => $resultado->tipo_empresa,
-                        'id_rol' => $resultado->id_rol
+                        'id_rol' => $resultado->id_rol,
+                        'id_empresa'=>$resultado->id_empresas
                     );
 
                  
