@@ -142,7 +142,7 @@ $route['estructuras/editaOfertas/(:num)'] = 'Estructuras/editar_oferta/$1';
 $route['estructuras/ver_oferta/(:num)'] = 'Estructuras/ver_oferta';
 $route['estructuras/ver_ofertadas/(:num)'] = 'Estructuras/ver_ofertas';
 $route['estructuras/ofertas'] = 'estructuras/listar_oferta_admin';
-$route['empresas/ofertas/(:num)'] = 'Empresas/listar_oferta_admin/$1';
+$route['empresas/ofertas'] = 'Empresas/listar_oferta_admin';
 $route['estructuras/editarOferta/(:num)'] = 'Estructuras/editar_oferta_empresas/$1';
 $route['estructura/lista_universidad'] = 'Estructuras/lista_universidad';
 

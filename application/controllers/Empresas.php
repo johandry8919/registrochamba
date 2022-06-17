@@ -240,8 +240,8 @@ class Empresas extends CI_Controller
     public function listar_oferta_admin(){
 
           
-        $permitidos = array(5);        
-        $tiene_acceso=in_array(2,$permitidos,false);
+        $permitidos = array(4,5);        
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {
            
@@ -250,11 +250,11 @@ class Empresas extends CI_Controller
           
         }
         // id del usuario 
-        $id_usuario = $this->session->userdata('id_usuario');
+        $id_empresa= $this->session->userdata('id_empresa');
     
 
 
-        $ofertas = $this->Oferta_empleo_model->obtener_oferta($id_usuario);
+        $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_empresa);
         //     echo json_encode($ofertas);
         // exit;
     

@@ -74,7 +74,8 @@
             
             
             $this->db->select('usuarios_admin.id_rol,usuarios_admin.email, usuarios_admin.password, 
-            usuarios_admin.cedula,tipo_empresa,usuarios_admin.id_usuarios_admin,usuarios_admin.activo,usuarios_admin.created_on
+            usuarios_admin.cedula,tipo_empresa,usuarios_admin.id_usuarios_admin,usuarios_admin.activo,
+            usuarios_admin.created_on,
             empresas.id_empresas
             ');
           
