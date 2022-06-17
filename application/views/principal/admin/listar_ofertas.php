@@ -67,7 +67,9 @@
                                             </div>
                                             
                                         </td>
-                                        <td> <?php  echo $oferta->nombre_razon_social ?></td>
+                                        <td> <?php  if(isset($oferta->nombre_razon_social)){
+                                            echo $oferta->nombre_razon_social;
+                                        } ?></td>
                                         <td><?php  echo $oferta->desc_profesion ?></td>
                                         <td><?php  echo $oferta->formacion ?></td>
                                         <td><?php  echo $oferta->descripcion_oferta ?></td>    
