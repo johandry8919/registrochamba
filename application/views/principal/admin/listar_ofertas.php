@@ -51,7 +51,7 @@
                                                 <button type="button" class="btn btn-sm btn-primary ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>editar_oferta/<?php echo $oferta->id_oferta?>">&#9998;</a>
+                                                            href="<?php base_url()?>editarOferta/<?php echo $oferta->id_oferta?>">&#9998;</a>
                                                     </span>
                                                 </button>
 

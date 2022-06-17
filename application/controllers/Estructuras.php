@@ -1143,7 +1143,7 @@ public function  update_empresas_representante(){
     }
 
     }
-    public function  editar_ofertas(){
+    public function  editar_oferta(){
 
         if (!$this->session->userdata('id_rol')) {
             // motra un alert con bootstrap
@@ -1159,7 +1159,7 @@ public function  update_empresas_representante(){
         
         $oferta = $this->Oferta_universida_model->obtener_oferta($id_oferta);
         $breadcrumb = (object) [
-            "menu" => "Admin",
+            "menu" => "Estructura",
             "menu_seleccion" => "Ver oferta"
     
     
@@ -1173,7 +1173,7 @@ public function  update_empresas_representante(){
     
       
         $output = [
-            "menu_lateral"      => "admin",
+            "menu_lateral"      => "estructuras",
             "breadcrumb"        =>   $breadcrumb,
             "title"             => "Editar  oferta",
             "vista_principal"   => "admin/editar_oferta_uner",
@@ -1199,7 +1199,7 @@ public function  update_empresas_representante(){
     
     }
 
-    public function listar_ofertas_admin(){
+    public function listar_ofertas_estructura(){
         if (!$this->session->userdata('id_rol')) {
             // motra un alert con bootstrap
             echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
@@ -1224,7 +1224,7 @@ public function  update_empresas_representante(){
 
         $ofertas = $this->Oferta_universida_model->obtener_ofertas();
         $breadcrumb = (object) [
-            "menu" => "Admin",
+            "menu" => "Estructuras",
             "menu_seleccion" => "Listar oferta"
 
 
@@ -1252,22 +1252,20 @@ public function  update_empresas_representante(){
 }
 public function ver_ofertas(){
 
+
           
     $permitidos = [2,3];        
     $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
-    if (!$this->session->userdata('id_rol')) {
-        // motra un alert con bootstrap
-        echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
-
-        
-        redirect('iniciosesion');
+    if ( !$tiene_acceso) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        redirect('admin/login');
         exit();
+       
     }
 
-
     $id_oferta = strip_tags(trim($this->uri->segment(3)));
-    $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
+    $oferta =  $this->Oferta_universida_model->obtener_oferta($id_oferta);
     $breadcrumb = (object) [
         "menu" => "Admin",
         "menu_seleccion" => "Ver oferta"
@@ -1275,7 +1273,7 @@ public function ver_ofertas(){
 
     ];
 
-    $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
+    $chambista_ofertas = $this->Oferta_universida_model->obtener_solicitud_chambista($id_oferta);
 
     $profesion_oficio = $this->Estructuras_model->profesion_oficio();
    $estatus_oferta_chambista= $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
@@ -1287,8 +1285,8 @@ public function ver_ofertas(){
         "menu_lateral"      =>   $ruta,
         "breadcrumb"        =>   $breadcrumb,
         "title"             => "Oferta de emplo ".$oferta->nombre_razon_social,
-        "vista_principal"   => "admin/ver_oferta",
-        "ficheros_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
+        "vista_principal"   => "admin/ver_oferta_univerdidad",
+        "ficheros_js" => [recurso("accordion_js"),recurso("ver_oferta_universidad_js")],
         "oferta" => $oferta,
         "estatus_oferta_chambista"=>$estatus_oferta_chambista,
         "profesion_oficio" => $profesion_oficio,
@@ -1307,6 +1305,7 @@ public function ver_ofertas(){
     $this->load->view("main", $output);
 
 }
+
 
 
 
@@ -1459,7 +1458,7 @@ public function listar_oferta_admin(){
 
     $ofertas = $this->Oferta_empleo_model->obtener_ofertas();
     $breadcrumb = (object) [
-        "menu" => "Admin",
+        "menu" => "Empresas",
         "menu_seleccion" => "Listar oferta"
 
 
@@ -1563,7 +1562,7 @@ public function ver_oferta(){
     $id_oferta = strip_tags(trim($this->uri->segment(3)));
     $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
     $breadcrumb = (object) [
-        "menu" => "Admin",
+        "menu" => "Empresas",
         "menu_seleccion" => "Ver oferta"
 
 
@@ -1601,7 +1600,7 @@ public function ver_oferta(){
     $this->load->view("main", $output);
 
 }
-public function  editar_ofertaa(){
+public function  editar_oferta_empresas(){
 
     if (!$this->session->userdata('id_rol')) {
         // motra un alert con bootstrap
@@ -1618,7 +1617,7 @@ $id_oferta = strip_tags(trim($this->uri->segment(3)));
 // exit();
 $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
 $breadcrumb = (object) [
-    "menu" => "",
+    "menu" => "Empresas",
     "menu_seleccion" => "Ver oferta"
 
 
@@ -1660,6 +1659,10 @@ $this->load->view("main", $output);
 }
 
 public function update_oferta(){
+   
+    
+
+
     if (!$this->session->userdata('id_rol')) {
         // motra un alert con bootstrap
         echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
