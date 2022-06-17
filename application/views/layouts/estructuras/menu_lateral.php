@@ -66,11 +66,11 @@
 
                                             <li><a href="<?php echo base_url();?>estructuras/ofertas"
                                         class="slide-item <?php if($this->uri->segment(1)=='listar_empresas' || $this->uri->segment(1)=='listar_empresas') echo 'active';?>"
-                                            >Ofertas de empleo empresas</a></li>
+                                            >Ofertas de empleo</a></li>
    
                                             <li><a href="<?php echo base_url();?>estructuras/ofertasUniversidad"
                                         class="slide-item <?php if($this->uri->segment(1)=='lista_universidad' || $this->uri->segment(1)=='lista_universidad') echo 'active';?>"
-                                            >Ofertas de empleo instituciones</a></li>
+                                            >Ofertas de Estudios</a></li>
 
                                                   
                                             
