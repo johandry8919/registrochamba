@@ -136,7 +136,7 @@ class CofertaEmpleo extends CI_Controller
 
     public function crear_oferta(){
 
-        $permitidos = [2,3];        
+        $permitidos = [2,3,5];        
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {

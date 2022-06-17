@@ -66,6 +66,7 @@
             return $valor;
         }
 
+   
 
 
         
@@ -93,6 +94,8 @@
 
             return $valor;
         }
+
+     
 
         public function obtener_oferta($id_oferta){
 
