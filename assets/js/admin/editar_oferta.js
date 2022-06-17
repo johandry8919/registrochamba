@@ -46,7 +46,16 @@ function registrar(){
                     }).then((result) => {
                         /* Read more about isConfirmed, isDenied below */
                         if (result.isConfirmed) {
-                            $(location).attr("href", base_url + "admin/ofertas");
+                            var $id_rol = $("#id_rol").val();
+                            if($id_rol == 2){
+                                $(location).attr("href", base_url + "admin/ofertas");
+                            }else if(  $id_rol == 3){
+                                $(location).attr("href", base_url + "estructuras/ofertas");
+                                
+                            }
+
+                            
+                            
                         }
                     });
                 } else {

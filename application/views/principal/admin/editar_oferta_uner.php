@@ -282,6 +282,9 @@
 
 
     <input type="hidden" name="id_area_formacion" id="id_area_formacion" value="<?php echo $oferta->id_area_formacion?>">
+    <input type="hidden" name="id_rol" id="id_rol" value="<?php if(isset($id_rol)){
+        echo $id_rol;
+    }?>">
     <!-- <input type="hidden" name="id_solicitud" id="id_solicitud"  value="<?php echo $oferta->id_solicitud; ?>" > -->
 
 

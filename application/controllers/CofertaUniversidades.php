@@ -45,7 +45,9 @@ class CofertaUniversidades extends CI_Controller
         }
         $id_area_formacion = strip_tags(trim($this->uri->segment(3)));
         $ruta = strip_tags(trim($this->uri->segment(1)));
-        // $oferta = $this->Oferta_empleo_model->obtener_oferta($id_area_formacion);
+        $oferta = $this->Oferta_universida_model->obtener_oferta($id_area_formacion);
+
+        $id_rol = $this->session->userdata('id_rol');
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "Ver oferta"
@@ -59,6 +61,8 @@ class CofertaUniversidades extends CI_Controller
             "vista_principal"   => "admin/oferta_universidad",
             "constantes_js" => ["ruta"=>$ruta],
             "areaform"     =>   $this->Musuarios->getAreaForm(),
+            "oferta" => $oferta,
+            "id_rol" => $id_rol,
             
             "librerias_js" => [recurso("admin_nueva_oferta_uner_js"),recurso("admin_nueva_oferta_uner")],
             
@@ -139,9 +143,7 @@ class CofertaUniversidades extends CI_Controller
          "edad" =>  $this->input->post('edad'),
        
       ]);
-    // echo json_encode($this->input->post('cantidad'));
-    // exit();
-
+   
       if ($registro) {
     
         echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
@@ -158,8 +160,7 @@ class CofertaUniversidades extends CI_Controller
         }
     
         $id_oferta = strip_tags(trim($this->uri->segment(3)));
-        // echo json_encode($id_oferta);
-        // exit();
+        
         $oferta = $this->Oferta_universida_model->obtener_oferta($id_oferta);
         $breadcrumb = (object) [
             "menu" => "Admin",
@@ -167,6 +168,7 @@ class CofertaUniversidades extends CI_Controller
     
     
         ];
+        $id_rol = $this->session->userdata('id_rol');
       
       $estatus=  $this->Estatus_oferta_model->obtener_estatus_oferta();
         $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
@@ -186,6 +188,7 @@ class CofertaUniversidades extends CI_Controller
             "chambista_ofertas" => $chambista_ofertas,
             "id_oferta" => $id_oferta,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
+            "id_rol" => $id_rol,
     
             "ficheros_js" => [recurso("editar_oferta_uner_js")],
         
@@ -247,13 +250,16 @@ class CofertaUniversidades extends CI_Controller
 }
 public function ver_oferta(){
 
+
           
     $permitidos = [2,3];        
     $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
     if ( !$tiene_acceso) {
         echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        redirect('admin/login');
         exit();
+       
     }
 
     $id_oferta = strip_tags(trim($this->uri->segment(3)));
