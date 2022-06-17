@@ -130,6 +130,7 @@ $route['admin/ofertas'] = 'CofertaEmpleo/listar_oferta_admin';
 $route['admin/ofertasUniversidad'] = 'CofertaUniversidades/listar_oferta_admin';
 
 $route['admin/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta';
+$route['admin/ver_ofertadas/(:num)'] = 'CofertaUniversidades/ver_ofertas';
 
 $route['estructura/listar_empresas'] = 'Estructuras/listar_empresas';
 $route['estructuras/nueva_ofertas/(:num)'] = 'Estructuras/publicar_oferta_admin';

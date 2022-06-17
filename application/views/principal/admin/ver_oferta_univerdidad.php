@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         <div class="row clearfix">
-            <!-- <div class="card-title">Oferta de empleo - <?php echo $oferta->nombre_razon_social?></div> -->
+            <div class="card-title">Oferta de empleo - <?php echo $oferta->nombre_razon_social?></div>
 
 
         </div>
