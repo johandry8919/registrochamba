@@ -63,6 +63,7 @@ class CofertaEmpleo extends CI_Controller
             ];
             $profesion_oficio = $this->Estructuras_model->profesion_oficio();
             $id_empresa = strip_tags(trim($this->uri->segment(3)));
+            $id_rol = $this->session->userdata('id_rol');
 
            $ruta = strip_tags(trim($this->uri->segment(1)));
        
@@ -79,6 +80,7 @@ class CofertaEmpleo extends CI_Controller
                 "id_empresa"   => $id_empresa,
                 "constantes_js" => ["ruta"=>$ruta],
                 "empresa"  => $empresa,
+                "id_rol" => $id_rol,
     
     
     

@@ -1,4 +1,5 @@
 <div class="sticky">
+  
                 <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
                 <div class="app-sidebar">
                     <div class="side-header pt-6">
@@ -62,6 +63,16 @@
                                             <li><a href="<?php echo base_url();?>estructuras/lista_universidad"
                                         class="slide-item <?php if($this->uri->segment(1)=='lista_universidad' || $this->uri->segment(1)=='lista_universidad') echo 'active';?>"
                                             >Consultar instituciones registradas</a></li>
+
+                                            <li><a href="<?php echo base_url();?>estructuras/ofertas"
+                                        class="slide-item <?php if($this->uri->segment(1)=='listar_empresas' || $this->uri->segment(1)=='listar_empresas') echo 'active';?>"
+                                            >Ofertas de empleo empresas</a></li>
+   
+                                            <li><a href="<?php echo base_url();?>estructuras/ofertasUniversidad"
+                                        class="slide-item <?php if($this->uri->segment(1)=='lista_universidad' || $this->uri->segment(1)=='lista_universidad') echo 'active';?>"
+                                            >Ofertas de empleo instituciones</a></li>
+
+                                                  
                                             
                                     <!-- <li><a href="<?php echo base_url();?>estructuras/registro/empresas"
                                      class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
@@ -75,6 +86,7 @@
                                   
                                 </ul>
                             </li>
+                    
 
                         </ul>
                         <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"

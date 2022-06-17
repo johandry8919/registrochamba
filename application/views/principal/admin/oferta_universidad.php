@@ -19,7 +19,8 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row clearfix">
-                            <!-- <div class="card-title">Oferta de empleo - <?php echo $empresa->nombre_razon_social?></div> -->
+                            <!-- <div class="card-title">Oferta de empleo - <?php echo $oferta?></div> -->
+                            <?php print_r($oferta)?>
 
 
                         </div>
@@ -264,11 +265,17 @@
     </div>
     </div>
 
+   
+
 
 
 
 
     <input type="hidden" name="" id="id_area_formacion" value="<?php echo $id_area_formacion?>">
+    <input type="hidden" name="id_rol" id="id_rol" value="<?php if(isset($id_rol)){
+        echo $id_rol;
+    }?>">
+    
 
 
 </section>
