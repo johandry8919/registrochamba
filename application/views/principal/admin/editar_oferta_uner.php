@@ -171,7 +171,7 @@
                                 <div class="col-md-4">
 
                                 <div class="form-group">
-                                     <label class="form-label">Descripcion De solicitud</label>
+                                     <label class="form-label">Descripcion de solicitud</label>
 
                                         <textarea class="form-control" id="id_descripcion" name="id_descripcion"
                                         placeholder="edad" required
@@ -232,7 +232,7 @@
                             <div class="row">
                                 <div class="col-md-4 ">
                                     <div class="form-group">
-                                        <label class="form-label">Estatus Oferta</label>
+                                        <label class="form-label">Estatus oferta</label>
 
                                         <select class="form-control" id="estatus" name="estatus" >
                                         

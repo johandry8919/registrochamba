@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Cactualizar_estatus_chambista extends CI_Controller {
+class Cactualizar_estatus_chambista_universidad extends CI_Controller {
 
     function __construct() {
         parent::__construct();
         $this->load->model('Mprofesion_oficio');
         $this->load->model('Musuarios');
         $this->load->model('Oferta_empleo_model');
-        $this->load->model('Ofertas_chambistas_model');
+        $this->load->model('Oferta_universida_model');
         
         
         $this->load->library('form_validation'); 
@@ -44,13 +44,14 @@ class Cactualizar_estatus_chambista extends CI_Controller {
          echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
          exit;
     }
-    $DateAndTime = date('Y-m-d H:i:s', time());  
+
     $id_oferta_chambista = $this->input->post('id_oferta');
     $id_estatus_chambista = $this->input->post('estatus_chambista');
+    $DateAndTime = date('Y-m-d H:i:s', time());  
 
-    $resultado=$this->Ofertas_chambistas_model->update_oferta(
-        ["id_estatus_oferta"=>$id_estatus_chambista,
-        "update_on"=>  $DateAndTime],
+    $resultado=$this->Oferta_universida_model->update_solicitud_chambista(
+        ["id_estatus_solicitud"=>$id_estatus_chambista,
+         "update_on"=>  $DateAndTime],
     
     $id_oferta_chambista);
 

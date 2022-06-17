@@ -131,7 +131,8 @@ $route['estructuras/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta';
 $route['admin/editar_oferta/(:num)'] = 'CofertaEmpleo/editar_oferta/$1';
 $route['admin/editar_ofertas/(:num)'] = 'CofertaUniversidades/editar_oferta/$1';
 
-
+/**Oferta universidades */
+$route['admin/ver_oferta_universidad/(:num)'] = 'CofertaUniversidades/ver_oferta';
 //cambista
 $route['admin/chambista/buscar'] = 'Cadmin/buscar_chambista';
 $route['admin/editar_chambista/(:num)'] = 'Cadmin/editar_chambista/$1';

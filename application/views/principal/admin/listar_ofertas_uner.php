@@ -59,7 +59,7 @@
                                                 <button type="button" class="btn btn-sm btn-success ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>ver_oferta/<?php echo $oferta->id_solicitud ?>">
+                                                            href="<?php base_url()?>ver_oferta_universidad/<?php echo $oferta->id_solicitud ?>">
                                                             <i class="side-menu__icon fe fe-eye"></i>
                                                             
                                                         </a>

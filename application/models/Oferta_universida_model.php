@@ -28,6 +28,28 @@
         
         }
 
+        public function post_regitrar_solicitud($data){
+        
+    
+            $this->db->insert('tbl_solicitudes_chambistas', $data);
+            if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+            $insert_id = $this->db->insert_id();
+
+            return  $insert_id;
+		}
+
+        
+        }
+
+
+        
+
         public function obtener_univerdidad($id_tipo_empresa = 2){
         
 
@@ -111,12 +133,76 @@
             }else{
                 return false;
             }
+                   
+
+
+    }
+
+
+    
+    public function buscar_oferta_chambista_id($id_usuario,$id_oferta){
+
             
+        $this->db->where('id_usuario_chambista', $id_usuario);
+        $this->db->where('id_oferta', $id_oferta);
+        $query = $this->db->get("tbl_solicitudes_chambistas");
+
+        if ($query->num_rows()) $valor = $query->row();
+        else $valor = false;
+
+
+        return $valor;
+    }
 
 
 
-           
+    
+
+    public function obtener_solicitud_chambista($id_oferta){
+
+        $this->db->select('tbl_usuarios.id_usuario, tbl_usuarios.cedula,tbl_usuarios.email,up.nombres, up.telf_cel,
+        up.apellidos,profesion.desc_profesion, id_estatus_solicitud,tblestatus.descripcion as estatus,id_solicitud_chambista
+
+    
+                
+        ');
+      
+        $this->db->join('tbl_usuarios', 'tbl_usuarios.id_usuario = tbl_solicitudes_chambistas.id_usuario_chambista','left');
+        $this->db->join('tbl_usuarios_personales up', 'up.id_usuario = tbl_solicitudes_chambistas.id_usuario_chambista','left');
+        $this->db->join('tbl_profesion_oficio profesion', 'profesion.id_profesion = up.id_profesion_oficio', 'left');
+        $this->db->join('tbl_estatus_oferta_chambista tblestatus', 'tblestatus.id_estatus_chambista = tbl_solicitudes_chambistas.id_estatus_solicitud','left');
+
+        $this->db->where('id_oferta', $id_oferta);
+        $query = $this->db->get("tbl_solicitudes_chambistas");
+
+        if ($query->num_rows()) $valor = $query->result();
+        else $valor = [];
 
 
+        return $valor;
+    }
+
+    public function update_solicitud_chambista ($datos,$id_solicitud){
+          
+
+        $this->db->where('id_solicitud_chambista',  $id_solicitud);
+        $this->db->update('tbl_solicitudes_chambistas', $datos);
+        if($this->db->affected_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function eliminar_solicitud_chambista($id_oferta_chambista){
+
+            
+        $this->db->where('id_solicitud_chambista', $id_oferta_chambista);
+
+        $query = $this->db->delete('tbl_solicitudes_chambistas');
+
+
+
+     
     }
     }

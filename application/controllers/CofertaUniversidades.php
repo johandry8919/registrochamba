@@ -180,7 +180,7 @@ class CofertaUniversidades extends CI_Controller
             "title"             => "Editar  oferta",
             "vista_principal"   => "admin/editar_oferta_uner",
             "estatus"=>$estatus,
-            "librerias_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
+            "librerias_js" => [recurso("accordion_js")],
             "oferta" => $oferta,
             "profesion_oficio" => $profesion_oficio,
             "chambista_ofertas" => $chambista_ofertas,
@@ -257,7 +257,7 @@ public function ver_oferta(){
     }
 
     $id_oferta = strip_tags(trim($this->uri->segment(3)));
-    $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
+    $oferta =  $this->Oferta_universida_model->obtener_oferta($id_oferta);
     $breadcrumb = (object) [
         "menu" => "Admin",
         "menu_seleccion" => "Ver oferta"
@@ -265,7 +265,7 @@ public function ver_oferta(){
 
     ];
 
-    $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
+    $chambista_ofertas = $this->Oferta_universida_model->obtener_solicitud_chambista($id_oferta);
 
     $profesion_oficio = $this->Estructuras_model->profesion_oficio();
    $estatus_oferta_chambista= $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
@@ -277,8 +277,8 @@ public function ver_oferta(){
         "menu_lateral"      =>   $ruta,
         "breadcrumb"        =>   $breadcrumb,
         "title"             => "Oferta de emplo ".$oferta->nombre_razon_social,
-        "vista_principal"   => "admin/ver_oferta",
-        "ficheros_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
+        "vista_principal"   => "admin/ver_oferta_univerdidad",
+        "ficheros_js" => [recurso("accordion_js"),recurso("ver_oferta_universidad_js")],
         "oferta" => $oferta,
         "estatus_oferta_chambista"=>$estatus_oferta_chambista,
         "profesion_oficio" => $profesion_oficio,
