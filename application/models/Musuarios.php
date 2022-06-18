@@ -44,10 +44,10 @@ class Musuarios extends CI_Model
 		$this->db->limit(1);
 /* 		$this->db2->where('cedula',$this->session->userdata('cedula')); */
 		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
-		$this->db->where('codigo',$this->session->userdata('codigo'));
-		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado');
-		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio');
-		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia');
+		//$this->db->where('codigo',$this->session->userdata('codigo'));
+		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado','left');
+		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio','left');
+		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia','left');
 		$resultado = $this->db->get('tbl_usuarios_personales');
 
 

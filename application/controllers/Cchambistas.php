@@ -268,6 +268,8 @@ class Cchambistas extends CI_Controller
         }
 
 
+;
+
         $estados = $this->Musuarios->getEstados();
         $aborigenes = $this->Musuarios->getAborigenes();
         $datos['estados'] = $estados;
@@ -277,6 +279,7 @@ class Cchambistas extends CI_Controller
 
         //if($registroviejo){
         $registronuevo = $this->Musuarios->getUsuarioRegistradoPersonal();
+
         if ($registronuevo) {
             //$this->session->set_flashdata('mensaje', 'Datos Personales');                    
             $datos['registroviejo'] = $registronuevo;

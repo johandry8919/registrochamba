@@ -1666,11 +1666,11 @@ class Cadmin extends CI_Controller
             $telf_cel = $this->input->post('telf_movil');
             $telf_cel = (int)$telf_cel;
             $codigoestado = $this->input->post('cod_estado');
-            $codigoestado = (int)$codigoestado;
+            $codigoestado = $codigoestado;
             $codigoparroquia = $this->input->post('cod_parroquia');
-            $codigoparroquia = (int)$codigoparroquia;
+     
             $codigomunicipio = $this->input->post('cod_municipio');
-            $codigomunicipio = (int)$codigomunicipio;
+
             $fecha_nac = $this->input->post('datepicker');
 
             $empleo = $this->input->post('empleo');
@@ -1706,7 +1706,7 @@ class Cadmin extends CI_Controller
                 'id_profesion_oficio' => $this->input->post('id_profesion'),
                 'hijo' => $this->input->post('hijo'),
                 
-                'edad' => $this->input->post('edad'),
+                'edad' => $this->input->post('edad')
               
                
                 
@@ -1724,9 +1724,7 @@ class Cadmin extends CI_Controller
                 }
             
 
-            if (!$this->Musuarios->getUsuarioRegistradoPersonal()) {
-               
-            } 
+        
 
 
                 
