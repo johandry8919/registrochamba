@@ -35,11 +35,11 @@
                                     
                                
                                             
-                                    <li><a href="<?php echo base_url();?>empresas/nuevaoferta"
+                                    <li><a href="<?php echo base_url();?>universidad/nuevaoferta"
                                      class="slide-item <?php if($this->uri->segment(1)=='nuevaoferta' || $this->uri->segment(1)=='nuevaoferta') echo 'active';?>"
                                          >Nueva Oferta </a></li>
 
-                                         <li><a href="#"
+                                         <li><a href="<?php echo base_url();?>universidad/ofertas"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
                                          >Consultar Ofertas</a></li>
                                

@@ -20,7 +20,7 @@
                     <div class="card-header">
                         <div class="row clearfix">
                             <!-- <div class="card-title">Oferta de empleo - <?php echo $oferta?></div> -->
-                            <?php print_r($oferta)?>
+                            
 
 
                         </div>

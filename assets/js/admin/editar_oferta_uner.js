@@ -59,6 +59,7 @@ function registrar() {
 								$(location).attr("href", base_url + "estructuras/ofertasUniversidad");
 
 							}
+							$(location).attr("href", base_url + "universidad/ofertas");
                         }
                     });
                 } else {
