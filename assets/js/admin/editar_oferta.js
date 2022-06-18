@@ -54,8 +54,11 @@ function registrar(){
                                 
                             }else if($id_rol == 5){
                                 $(location).attr("href", base_url + "empresas/ofertas");
+                            }else {
+                                $(location).attr("href", base_url + "empresas/ofertas");
+
                             }
-                            $(location).attr("href", base_url + "empresas/ofertas");
+                       
 
                             
                             

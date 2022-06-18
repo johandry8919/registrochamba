@@ -23,7 +23,7 @@
                             <li class="slide">
                                 <a class="side-menu__item 
                                  <?php if($this->uri->segment(1)=='inicio' || $this->uri->segment(1)=='inicio') echo 'active';?>
-                                " data-bs-toggle="slide" href="<?php echo base_url();?>empresas/inicio"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Incio</span></a>
+                                " data-bs-toggle="slide" href="<?php echo base_url();?>universidades/inicio"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Incio</span></a>
                             </li>
 
                             <li class="slide <?php if($this->uri->segment(1)=='estructuras' || $this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">

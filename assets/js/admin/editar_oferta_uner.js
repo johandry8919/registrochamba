@@ -58,8 +58,10 @@ function registrar() {
 							}else if($id_rol == 3){
 								$(location).attr("href", base_url + "estructuras/ofertasUniversidad");
 
+							}else{
+								$(location).attr("href", base_url + "universidad/ofertas");
 							}
-							$(location).attr("href", base_url + "universidad/ofertas");
+						
                         }
                     });
                 } else {

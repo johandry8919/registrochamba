@@ -69,8 +69,10 @@ function registrar(){
 
                         }else if($id_rol == 3){
                             $(location).attr("href", base_url + ruta+"/ofertasUniversidad");
+                        }else{
+                            $(location).attr("href", base_url + "universidad/ofertas");
                         }
-                           $(location).attr("href", base_url + "universidad/ofertas");
+                     
 
                     }
                 });

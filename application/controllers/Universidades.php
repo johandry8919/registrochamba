@@ -181,7 +181,7 @@ class Universidades extends CI_Controller
 
 
 
-        $permitidos = [2, 3, 4];
+        $permitidos = [5,4];
         $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
 
         if (!$tiene_acceso) {

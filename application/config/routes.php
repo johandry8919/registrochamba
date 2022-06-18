@@ -147,7 +147,7 @@ $route['universidad/ofertas'] = 'Universidades/listar_oferta_universidades';
 $route['empresas/editarOferta/(:num)'] = 'Empresas/editar_oferta/$1';
 $route['universidad/editaOfertas/(:num)'] = 'Universidades/editar_oferta/$1';
 $route['eempresas/ver_oferta/(:num)'] = 'Empresas/ver_ofertas';
-$route['universidad/ver_ofertadas/(:num)'] = 'Universidades/ver_ofertas';
+
 $route['estructuras/editarOferta/(:num)'] = 'Estructuras/editar_oferta_empresas/$1';
 $route['estructura/lista_universidad'] = 'Estructuras/lista_universidad';
 
@@ -171,7 +171,7 @@ $route['estructuras/registro/universidades'] = 'Estructuras/registro_universidad
 $route['estructuras/registro/universidades/(:num)'] = 'Estructuras/editar_universidades/$1';
 $route['estructuras/inicio'] = 'Estructuras';
 $route['admin/estructuras'] = 'Cadmin/estructuras';
-$route['admin/universidades'] = 'Cadmin/universidades';
+
 
 /*Cestructuras*/
 
@@ -191,7 +191,8 @@ $route['universidad/nuevaoferta'] = 'Universidades/universidad_oferta_admin';
 
 /**Universidades */
 $route['universidades/inicio'] = 'Universidades';
-
+$route['admin/universidades'] = 'Cadmin/universidades';
+$route['universidad/ver_ofertas/(:num)'] = 'Universidades/ver_ofertas';
 
 /**REPORTE ***/
 

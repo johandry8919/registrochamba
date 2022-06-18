@@ -20,7 +20,7 @@ class Cactualizar_estatus_chambista_universidad extends CI_Controller {
 
     
        
-        $permitidos = [2,3];        
+        $permitidos = [2,3,4,5];        
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {
