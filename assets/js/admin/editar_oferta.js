@@ -47,6 +47,7 @@ function registrar(){
                         /* Read more about isConfirmed, isDenied below */
                         if (result.isConfirmed) {
                             var $id_rol = $("#id_rol").val();
+
                             if($id_rol == 2){
                                 $(location).attr("href", base_url + "admin/ofertas");
                             }else if(  $id_rol == 3){
@@ -54,9 +55,11 @@ function registrar(){
                                 
                             }else if($id_rol == 5){
                                 $(location).attr("href", base_url + "empresas/ofertas");
-                            }else {
-                                $(location).attr("href", base_url + "empresas/ofertas");
+                            }else if($id_rol == 1){
+                                $(location).attr("href", base_url + "admin/ofertas");
 
+                            }else{
+                                $(location).attr("href", base_url + "empresas/ofertas");
                             }
                        
 
@@ -86,13 +89,7 @@ function registrar(){
             $("#id_profesion").focus();
             $("#id_profesion").css("border-color", "red");
         }
-        if(cargo == ""){
-            $("#id_profesion").focus();
-            $("#id_profesion").css("border-color", "red");
-            $(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-        }
+        
 
        }
    
@@ -137,6 +134,7 @@ $("#id_profesion").on("change", function () {
     }
 
 });
+
 $("#id_area_form").on("change", function () {
 	"use strict";
 	var id_area_form = $(this).val();
@@ -163,7 +161,7 @@ $("#experiencia_laboral").on("keyup", function () {
 	"use strict";
 	var experiencia_laboral = $(this).val();
     // expresion solo numerica
-    var expresion = /^\d{3,4}$/;;
+    var expresion = /^\d{1,1000}$/;;
    
 
 
@@ -194,7 +192,7 @@ $("#cargo").on("keyup", function () {
 
 
 
-    if (cargo) {
+    if (expresion.test(cargo)) {
        
         $(this)
 			.removeClass("is-invalid error-input")
@@ -257,8 +255,9 @@ $("#descripcion_oferta").on("keyup", function () {
 $("#edad ").on("keyup", function () {
     "use strict";
     var edad = $(this).val();
+    var expresion = /^[0-9]+$/;
     
-    if (edad) {
+    if (expresion.test(edad)) {
         $(this)
             .removeClass("is-invalid error-input")
             .addClass("is-valid valid-input");
@@ -269,11 +268,12 @@ $("#edad ").on("keyup", function () {
         $("#edad").removeClass("is-valid").addClass("is-invalid");
     }
 });
-$("#cantidad_oferta ").on("keyup", function () {
+$("#cantidad_oferta").on("keyup", function () {
     "use strict";
     var cantidad_oferta = $(this).val();
+    var expresion = /^[0-9]+$/;
     
-    if (cantidad_oferta) {
+    if (expresion.test(cantidad_oferta)) {
         $(this)
             .removeClass("is-invalid error-input")
             .addClass("is-valid valid-input");

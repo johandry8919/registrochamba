@@ -25,7 +25,7 @@ function registrar(){
     
 
       
-   if($mencion != "" && $duracion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != "" && $cantidad.match(/^[0-9]+$/) != "" && $titularidad != "" && $edad != ""){
+   if($mencion != "" && $duracion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != "" && $cantidad != "" && $titularidad != "" && $edad != ""){
     $.ajax({
         dataType: "json",
         data: {
@@ -90,15 +90,6 @@ function registrar(){
         },
     });
 
-   }else{
-    // validar solo numero en el campo catidad
-    if($cantidad.match(/^[0-9]+$/)){
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Debe ingresar solo numeros en el campo cantidad",
-        });
-    }
    }
 }
 $("#id_instruccion").on("change", function () {
