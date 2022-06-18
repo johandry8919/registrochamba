@@ -97,6 +97,30 @@
 
             return $valor;
         }
+        public function obtener_ofertas_unirversidad($id_empresas){
+
+            $this->db->select('public.tbl_solicitudes_estudios.*,
+            tbl_empresas_entes.nombre_razon_social,
+            mencion,
+            tbl_areas_formacion.nombre as formacion,tbl_estatus_oferta.descripcion as estatus
+        
+                    
+            ');
+       
+            $this->db->where("tbl_solicitudes_estudios.activo",1);
+            $this->db->where("tbl_solicitudes_estudios.id_area_formacion",$id_empresas);
+            $this->db->join('tbl_empresas_entes', 'tbl_empresas_entes.id_empresas = tbl_solicitudes_estudios.id_area_formacion');
+      
+            $this->db->join('tbl_areas_formacion', 'tbl_areas_formacion.id_area_form = tbl_solicitudes_estudios.id_area_formacion');
+            $this->db->join('tbl_estatus_oferta', 'tbl_estatus_oferta.id_estatus_oferta = tbl_solicitudes_estudios.id_estatus');
+
+            $query = $this->db->get("tbl_solicitudes_estudios");
+            if ($query->num_rows()) $valor = $query->result();
+            else $valor = [];
+    
+
+            return $valor;
+        }
 
           public function obtener_oferta($id_solicitud){
 
