@@ -44,7 +44,7 @@
 
                                          <li><a href="<?php echo base_url();?>admin/registro/universidades"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
-                                         >Centro de Estuios y Universidades</a></li>
+                                         >Centro de Estudios y Universidades</a></li>
                                
 
                                          <li ><a href="<?php echo base_url();?>admin/registro/estructuras"
@@ -79,7 +79,12 @@
 
                                          <li><a href="<?php echo base_url();?>admin/ofertas"
                                      class="slide-item <?php if($this->uri->segment(1)=='ofertas' || $this->uri->segment(1)=='ofertas') echo 'active';?>"
-                                         >Ofertas Laborales</a></li>
+                                         >Ofertas de empleo</a></li>
+
+                                         <li><a href="<?php echo base_url();?>admin/ofertasUniversidad"
+                                     class="slide-item <?php if($this->uri->segment(1)=='ofertas' || $this->uri->segment(1)=='ofertas') echo 'active';?>"
+                                         >Ofertas de centro de Estudios</a></li>
+                               
                                
 
                                   

@@ -143,7 +143,7 @@ class Empresas extends CI_Controller
             ];
             $profesion_oficio = $this->Estructuras_model->profesion_oficio();
             // id de la empresas
-            $id_empresa = $this->session->userdata('id_rol');
+            $id_rol = $this->session->userdata('id_rol');
             $id_empresas= $this->session->userdata('id_empresa');
 
             $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_empresas);
@@ -156,10 +156,10 @@ class Empresas extends CI_Controller
                 "ficheros_js" => [recurso("admin_nueva_oferta_js")],
                 "profesion_oficio"=> $profesion_oficio,
                 "areaform"     =>   $this->Musuarios->getAreaForm(),
-                "id_empresa"   => $id_empresa,
+                "id_empresa"   => $id_empresas,
                
                 "empresa"  => $ofertas,
-                "id_rol" => $id_empresa,
+                "id_rol" => $id_rol
     
     
     
@@ -177,7 +177,7 @@ class Empresas extends CI_Controller
             ];
             $profesion_oficio = $this->Estructuras_model->profesion_oficio();
             // id de la empresas
-            $id_empresa = $this->session->userdata('id_rol');
+            $id_rol = $this->session->userdata('id_rol');
             $id_empresas= $this->session->userdata('id_empresa');
 
             $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_empresas);
@@ -193,7 +193,7 @@ class Empresas extends CI_Controller
                 "id_empresa"   => $id_empresa,
                
                 "empresa"  => $ofertas,
-                "id_rol" => $id_empresa,
+                "id_rol" => $id_rol,
     
     
     
@@ -247,7 +247,7 @@ class Empresas extends CI_Controller
         "id_profesion_oficio" => $this->input->post('id_profesion'),
         "id_area_formacion" => $this->input->post('id_area_form'),
         "id_estatus_oferta" => 1,
-        "id_empresa_ente" => $this->input->post('id_empresa'),        
+        "id_empresa_ente" => $this->session->userdata('id_empresa'),        
         "id_usuario_registro" => $this->session->userdata('id_usuario'),
         "cargo" => $this->input->post('cargo'),
         "experiencia" =>  $this->input->post('experiencia_laboral'),

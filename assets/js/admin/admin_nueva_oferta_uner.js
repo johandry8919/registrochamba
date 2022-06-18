@@ -19,13 +19,13 @@ function registrar(){
     var $duracion = $("#duracion").val();
     var $descripcion = $("#id_descripcion").val();
     var $sexo = $("#sexo").val();
-    var $cantidad = $("#id_cantidad").val();
+
     var $titularidad = $("#titularidad").val();
     var $edad = $("#edad").val();
     
 
       
-   if($mencion != "" && $duracion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != "" && $cantidad.match(/^[0-9]+$/) != "" && $titularidad != "" && $edad != ""){
+   if($mencion != "" && $duracion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != ""  && $titularidad != "" && $edad != ""){
     $.ajax({
         dataType: "json",
         data: {
@@ -37,7 +37,7 @@ function registrar(){
             duracion: $duracion,
             descripcion: $descripcion,
             sexo: $sexo,
-            cantidad: $cantidad,
+         
             titularidad: $titularidad,
             edad: $edad,
            
@@ -168,7 +168,6 @@ $("#mencion").on("keyup", function () {
 	var mencion = $(this).val();
     // expresion solo numerica
     var expresion = /^[a-zA-Z0-9-_\.]+$/;
-   
 
 
 
