@@ -39,7 +39,7 @@
                                      class="slide-item <?php if($this->uri->segment(1)=='nuevaoferta' || $this->uri->segment(1)=='nuevaoferta') echo 'active';?>"
                                          >Nueva Oferta Empleo</a></li>
 
-                                         <li><a href="#"
+                                         <li><a href="<?php echo base_url();?>empresas/ofertas"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
                                          >Consultar Ofertas</a></li>
                                

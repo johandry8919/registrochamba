@@ -17,7 +17,9 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row clearfix">
-                            <div class="card-title">Oferta de empleo - <?php echo $empresa->nombre_razon_social?></div>
+                            <div class="card-title">Oferta de empleo - <?php if(isset($empresa->nombre_razon_social)){
+                                echo $empresa->nombre_razon_social;
+                            }?></div>
 
 
                         </div>

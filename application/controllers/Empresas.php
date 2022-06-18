@@ -134,7 +134,7 @@ class Empresas extends CI_Controller
 
 
     public function nuevaoferta(){
-        if( $this->session->userdata('id_rol')== 5){
+        if($this->session->userdata('id_rol') == 5){
             $breadcrumb = (object) [
                 "menu" => "Empresas",
                 "menu_seleccion" => " nueva oferta"
@@ -144,13 +144,10 @@ class Empresas extends CI_Controller
             $profesion_oficio = $this->Estructuras_model->profesion_oficio();
             // id de la empresas
             $id_empresa = $this->session->userdata('id_rol');
-        //     $id_empresa = strip_tags(trim($this->uri->segment(3)));
-            $id_rol = $this->session->userdata('id_rol');
+            $id_empresas= $this->session->userdata('id_empresa');
 
-           $ruta = $id_rol;
-       
-        $empresa= $this->Empresas_entes_model->obtener_empresa(1,$id_empresa);
-    
+            $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_empresas);
+
             $output = [
                 "menu_lateral"      =>"empresas",
                 "breadcrumb"        =>   $breadcrumb,
@@ -160,9 +157,9 @@ class Empresas extends CI_Controller
                 "profesion_oficio"=> $profesion_oficio,
                 "areaform"     =>   $this->Musuarios->getAreaForm(),
                 "id_empresa"   => $id_empresa,
-                // "constantes_js" => ["ruta"=>$ruta],
-                "empresa"  => $empresa,
-                "id_rol" => $id_rol,
+               
+                "empresa"  => $ofertas,
+                "id_rol" => $id_empresa,
     
     
     
@@ -171,7 +168,39 @@ class Empresas extends CI_Controller
     
             $this->load->view("main", $output);
            
-        }else if ($this->session->userdata('id_rol')== 2){
+        }else if($this->session->userdata('id_rol') == 4){
+            $breadcrumb = (object) [
+                "menu" => "Universidad",
+                "menu_seleccion" => " nueva oferta"
+    
+    
+            ];
+            $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+            // id de la empresas
+            $id_empresa = $this->session->userdata('id_rol');
+            $id_empresas= $this->session->userdata('id_empresa');
+
+            $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_empresas);
+
+            $output = [
+                "menu_lateral"      =>"universidades",
+                "breadcrumb"        =>   $breadcrumb,
+                "title"             => "Nueva oferta",
+                "vista_principal"   => "admin/oferta_laboral",
+                "ficheros_js" => [recurso("admin_nueva_oferta_uner_js")],
+                "profesion_oficio"=> $profesion_oficio,
+                "areaform"     =>   $this->Musuarios->getAreaForm(),
+                "id_empresa"   => $id_empresa,
+               
+                "empresa"  => $ofertas,
+                "id_rol" => $id_empresa,
+    
+    
+    
+    
+            ];
+    
+            $this->load->view("main", $output);
             
         }
         
@@ -237,7 +266,7 @@ class Empresas extends CI_Controller
     }
 
     }
-    public function listar_oferta_admin(){
+    public function listar_oferta_empresas(){
 
           
         $permitidos = array(4,5);        
@@ -255,9 +284,7 @@ class Empresas extends CI_Controller
 
 
         $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_empresa);
-        //     echo json_encode($ofertas);
-        // exit;
-    
+     
         $breadcrumb = (object) [
             "menu" => "Empresas",
             "menu_seleccion" => "Listar oferta"
@@ -286,53 +313,108 @@ class Empresas extends CI_Controller
     
 }
 
-// public function  editar_oferta(){
+public function  editar_oferta(){
 
-//     if (!$this->session->userdata('id_rol')) {
-//         redirect('admin/login');
-//     }
+    if (!$this->session->userdata('id_rol')) {
+        redirect('admin/login');
+    }
 
-//     $id_oferta = strip_tags(trim($this->uri->segment(3)));
-//     // echo json_encode($id_oferta);
-//     // exit();
-//     $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
-//     $breadcrumb = (object) [
-//         "menu" => "Empresas",
-//         "menu_seleccion" => "Ver oferta"
+    $id_oferta = strip_tags(trim($this->uri->segment(3)));
+    // echo json_encode($id_oferta);
+    // exit();
+    $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
+    $breadcrumb = (object) [
+        "menu" => "Empresas",
+        "menu_seleccion" => "Ver oferta"
 
 
-//     ];
+    ];
   
-//   $estatus=  $this->Estatus_oferta_model->obtener_estatus_oferta();
-//     $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
+  $estatus=  $this->Estatus_oferta_model->obtener_estatus_oferta();
+    $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
 
-//     $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+    $profesion_oficio = $this->Estructuras_model->profesion_oficio();
 
   
-//     $output = [
-//         "menu_lateral"      => "empresas",
-//         "breadcrumb"        =>   $breadcrumb,
-//         "title"             => "Editar  oferta",
-//         "vista_principal"   => "admin/editar_oferta",
-//         "estatus"=>$estatus,
-//         // "librerias_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
-//         "oferta" => $oferta,
-//         "profesion_oficio" => $profesion_oficio,
-//         "chambista_ofertas" => $chambista_ofertas,
-//         "id_oferta" => $id_oferta,
-//         "areaform"     =>   $this->Musuarios->getAreaForm(),
+    $output = [
+        "menu_lateral"      => "empresas",
+        "breadcrumb"        =>   $breadcrumb,
+        "title"             => "Editar  oferta",
+        "vista_principal"   => "admin/editar_oferta",
+        "estatus"=>$estatus,
+        // "librerias_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
+        "oferta" => $oferta,
+        "profesion_oficio" => $profesion_oficio,
+        "chambista_ofertas" => $chambista_ofertas,
+        "id_oferta" => $id_oferta,
+        "areaform"     =>   $this->Musuarios->getAreaForm(),
 
-//         "ficheros_js" => [recurso("editar_oferta_js")],
+        "ficheros_js" => [recurso("editar_oferta_js")],
     
  
  
 
 
-//     ];
+    ];
 
-//     $this->load->view("main", $output);
+    $this->load->view("main", $output);
 
 
-// }
+}
+
+    public function ver_oferta(){
+
+          
+        $permitidos = [4,5];        
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+
+        if ( !$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+
+        $id_oferta = strip_tags(trim($this->uri->segment(3)));
+        $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
+        $breadcrumb = (object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Ver oferta"
+
+
+        ];
+    
+        $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
+
+      
+    
+        $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+       $estatus_oferta_chambista= $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+
+
+       
+       $ruta = strip_tags(trim($this->uri->segment(1)));
+        $output = [
+            "menu_lateral"      =>   $ruta,
+            "breadcrumb"        =>   $breadcrumb,
+            "title"             => "Oferta de emplo ".$oferta->nombre_razon_social,
+            "vista_principal"   => "admin/ver_oferta",
+            "ficheros_js" => [recurso("accordion_js"),recurso("ver_oferta_js")],
+            "oferta" => $oferta,
+            "estatus_oferta_chambista"=>$estatus_oferta_chambista,
+            "profesion_oficio" => $profesion_oficio,
+            "chambista_ofertas" => $chambista_ofertas,
+            "id_oferta" => $id_oferta,
+            "constantes_js" => ["ruta"=>$ruta],
+            "datatable"             => true,
+            "areaform"     =>   $this->Musuarios->getAreaForm(),
+        
+     
+     
+
+
+        ];
+
+        $this->load->view("main", $output);
+    
+}
 
 }

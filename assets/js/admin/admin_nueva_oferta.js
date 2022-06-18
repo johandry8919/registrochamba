@@ -48,7 +48,7 @@ function registrar(){
                         }else if(  $id_rol == 3){
                             $(location).attr("href", base_url + "estructuras/ofertas");
                         }else if(  $id_rol == 5){
-                            $(location).attr("href", base_url + "empresas/ofertas/" + 29);
+                            $(location).attr("href", base_url + "empresas/ofertas");
                         }
                        
                     }
