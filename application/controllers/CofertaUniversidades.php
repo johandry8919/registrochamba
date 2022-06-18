@@ -96,7 +96,6 @@ class CofertaUniversidades extends CI_Controller
         // validar solo numero
         $this->form_validation->set_rules('cupos_disponibles', 'cupos_disponibles', 'trim|required|strip_tags|numeric');
 
-        $this->form_validation->set_rules('cantidad', 'cantidad ', 'trim|required|strip_tags|numeric');
         $this->form_validation->set_rules('titularidad', 'titularidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_area_formacion', 'id_area_formacion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
@@ -138,7 +137,7 @@ class CofertaUniversidades extends CI_Controller
             "descripcion_solicitud" =>  $this->input->post('descripcion'),
 
             "sexo" =>  $this->input->post('sexo'),
-            "cantidad" =>  $this->input->post('cantidad'),
+       
             "titularidad" =>  $this->input->post('titularidad'),
             "edad" =>  $this->input->post('edad'),
 

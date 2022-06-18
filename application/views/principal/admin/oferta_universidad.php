@@ -152,25 +152,6 @@
                                 <!--col-->
 
 
-                                <div class="col-md-4 ">
-                                <div class="form-group">
-                                        <label class="form-label">Cantidad de oferta</label>
-                                        <div class="wrap-input100 validate-input input-group"
-                                            data-bs-validate="Valid email is required: ex@abc.xyz">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="lnr lnr-pie-chart" aria-hidden="true"></i>
-                                            </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text"
-                                                id="id_cantidad" maxlength="30" name="id_cantidad" 
-                                                placeholder="cantidad" >
-
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-
 
 
 
