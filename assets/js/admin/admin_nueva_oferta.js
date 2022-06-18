@@ -137,7 +137,7 @@ $("#experiencia_laboral").on("keyup", function () {
 	"use strict";
 	var experiencia_laboral = $(this).val();
     // expresion solo numerica
-    var expresion = /^\d{3,4}$/;;
+    var expresion = /^\d{1,1000}$/;;
    
 
 
@@ -168,7 +168,7 @@ $("#cargo").on("keyup", function () {
 
 
 
-    if (cargo) {
+    if (expresion.test(cargo)) {
        
         $(this)
 			.removeClass("is-invalid error-input")
@@ -231,8 +231,9 @@ $("#descripcion_oferta").on("keyup", function () {
 $("#edad ").on("keyup", function () {
     "use strict";
     var edad = $(this).val();
+    var expresion = /^[0-9]+$/;
     
-    if (edad) {
+    if (expresion.test(edad)) {
         $(this)
             .removeClass("is-invalid error-input")
             .addClass("is-valid valid-input");
@@ -246,8 +247,9 @@ $("#edad ").on("keyup", function () {
 $("#cantidad_oferta ").on("keyup", function () {
     "use strict";
     var cantidad_oferta = $(this).val();
+    var expresion = /^[0-9]+$/;
     
-    if (cantidad_oferta) {
+    if (expresion.test(cantidad_oferta)) {
         $(this)
             .removeClass("is-invalid error-input")
             .addClass("is-valid valid-input");

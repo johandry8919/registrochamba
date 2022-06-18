@@ -136,8 +136,8 @@
                                                 <i class="fe fe-watch" aria-hidden="true"></i>
                                             </a>
                                             <input class="input100 border-start-0 ms-0 form-control" type="text"
-                                                id="experiencia_laboral" maxlength="30" name="nombres" value=""
-                                                placeholder="" required autofocus>
+                                                id="experiencia_laboral" maxlength="250" name="nombres" value=""
+                                                placeholder="Experiencia laboral" required autofocus>
 
                                         </div>
 

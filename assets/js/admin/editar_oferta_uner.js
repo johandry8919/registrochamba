@@ -20,7 +20,7 @@ function registrar() {
 	var $id_solicitud = $("#id_solicitud").val();
 	var estatus = $("#estatus").val();
 
-	if ($mencion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != "" && $cantidad.match(/^[0-9]+$/) != "" && $titularidad != "" && $edad != "") {
+	if ($mencion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != "" && $cantidad != "" && $titularidad != "" && $edad != "") {
         $.ajax({
             dataType: "json",
             data: {

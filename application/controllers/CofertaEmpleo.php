@@ -146,13 +146,19 @@ class CofertaEmpleo extends CI_Controller
         $this->form_validation->set_rules('id_instruccion', 'instruccion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_profesion', 'profesion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_area_form', 'area de formacion', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('experiencia_laboral', 'experiencia_laboral', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('experiencia_laboral', 'experiencia_laboral', 'trim|required|strip_tags|numeric');
         $this->form_validation->set_rules('cargo', 'cargo', 'trim|required|strip_tags');
         $this->form_validation->set_rules('descripcion_oferta', 'descripcion_oferta', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('cantidad_oferta', 'cantidad_oferta', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags|numeric');
+        $this->form_validation->set_rules('cantidad_oferta', 'cantidad_oferta', 'trim|required|strip_tags|numeric');
         $this->form_validation->set_rules('id_empresa', 'id_empresa', 'trim|required|strip_tags');
         $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
+
+        if ($this->form_validation->run() == FALSE) {
+            echo  json_encode(["resultado" => false, "mensaje" => "Campo solo numerico"]); {
+                exit();
+            }
+        }
 
 
         $this->form_validation->set_error_delimiters('*', '');
@@ -252,6 +258,12 @@ class CofertaEmpleo extends CI_Controller
 public function  editar_oferta(){
 
 
+    if (!$this->session->userdata('id_rol')) {
+        redirect('admin/login');
+    }
+    $id_rol = $this->session->userdata('id_rol');
+
+
     $permitidos = [2,3,5];        
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
@@ -259,6 +271,7 @@ public function  editar_oferta(){
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
+
 
     $id_oferta = strip_tags(trim($this->uri->segment(3)));
     // echo json_encode($id_oferta);
@@ -289,6 +302,7 @@ public function  editar_oferta(){
         "chambista_ofertas" => $chambista_ofertas,
         "id_oferta" => $id_oferta,
         "areaform"     =>   $this->Musuarios->getAreaForm(),
+        "id_rol" => $id_rol,
 
         "ficheros_js" => [recurso("editar_oferta_js")],
     
@@ -315,15 +329,19 @@ public function update_oferta(){
     $this->form_validation->set_rules('id_instruccion', 'instruccion', 'trim|required|strip_tags');
     $this->form_validation->set_rules('id_profesion', 'profesion', 'trim|required|strip_tags');
     $this->form_validation->set_rules('id_area_form', 'area de formacion', 'trim|required|strip_tags');
-    $this->form_validation->set_rules('experiencia_laboral', 'experiencia_laboral', 'trim|required|strip_tags');
+    $this->form_validation->set_rules('experiencia_laboral', 'experiencia_laboral', 'trim|required|strip_tags|numeric');
     $this->form_validation->set_rules('cargo', 'cargo', 'trim|required|strip_tags');
     $this->form_validation->set_rules('descripcion_oferta', 'descripcion_oferta', 'trim|required|strip_tags');
-    $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags');
-    $this->form_validation->set_rules('cantidad_oferta', 'cantidad_oferta', 'trim|required|strip_tags');
+    $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags|numeric');
+    $this->form_validation->set_rules('cantidad_oferta', 'cantidad_oferta', 'trim|required|strip_tags|numeric');
     $this->form_validation->set_rules('id_empresa', 'id_empresa', 'trim|required|strip_tags');
     $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
-    $this->form_validation->set_rules('estatus', 'estatus', 'trim|required|strip_tags');
 
+    if ($this->form_validation->run() == FALSE) {
+        echo  json_encode(["resultado" => false, "mensaje" => "Campo solo numerico"]); {
+            exit();
+        }
+    }
     
 
 
