@@ -185,3 +185,8 @@ $route['empresas/nuevaoferta'] = 'Empresas/nuevaoferta';
 
 /**Universidades */
 $route['universidades/inicio'] = 'Universidades';
+
+
+/**REPORTE ***/
+
+$route['admin/reportes/chambistas'] = 'Creportes/chambistas';

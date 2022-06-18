@@ -92,6 +92,7 @@
 				center: [long, lat], // starting position [lng, lat]
 				zoom: zoom, // starting zoom
 			});
+		
 
 			var marker = new mapboxgl.Marker({
 				draggable: true,
@@ -123,6 +124,7 @@
 			// map.addControl(new mapboxgl.NavigationControl());
 
 			agregarGeocoder(map, marker);
+			map.addControl(new mapboxgl.NavigationControl());
 			//  agregarMarker(lat,long, map);
 			//maplibregl
 			//  map.addControl(new maplibregl.NavigationControl());
