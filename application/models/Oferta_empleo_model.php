@@ -57,7 +57,7 @@
             $this->db->join('tbl_profesion_oficio profesion', 'profesion.id_profesion = tbl_ofertas_empleo.id_profesion_oficio');
             $this->db->join('tbl_areas_formacion', 'tbl_areas_formacion.id_area_form = tbl_ofertas_empleo.id_area_formacion');
             $this->db->join('tbl_estatus_oferta', 'tbl_estatus_oferta.id_estatus_oferta = tbl_ofertas_empleo.id_estatus_oferta');
-
+            $this->db->order_by("tbl_ofertas_empleo.id_empresa_ente", "desc");
             $query = $this->db->get("tbl_ofertas_empleo");
             if ($query->num_rows()) $valor = $query->result();
             else $valor = [];
@@ -86,7 +86,7 @@
             $this->db->join('tbl_profesion_oficio profesion', 'profesion.id_profesion = tbl_ofertas_empleo.id_profesion_oficio');
             $this->db->join('tbl_areas_formacion', 'tbl_areas_formacion.id_area_form = tbl_ofertas_empleo.id_area_formacion');
             $this->db->join('tbl_estatus_oferta', 'tbl_estatus_oferta.id_estatus_oferta = tbl_ofertas_empleo.id_estatus_oferta');
-
+            $this->db->order_by("tbl_ofertas_empleo.id_empresa_ente", "desc");
             $query = $this->db->get("tbl_ofertas_empleo");
             if ($query->num_rows()) $valor = $query->result();
             else $valor = [];

@@ -65,7 +65,7 @@
             $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
             $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
             $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_empresas_entes.codigoestado');
-
+            $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
             $query = $this->db->get("tbl_empresas_entes");
     
             if ($query->num_rows()) $valor = $query->result();
@@ -89,8 +89,9 @@
       
             $this->db->join('tbl_areas_formacion', 'tbl_areas_formacion.id_area_form = tbl_solicitudes_estudios.id_area_formacion');
             $this->db->join('tbl_estatus_oferta', 'tbl_estatus_oferta.id_estatus_oferta = tbl_solicitudes_estudios.id_estatus');
-
+            $this->db->order_by("tbl_solicitudes_estudios.id_solicitud", "desc");
             $query = $this->db->get("tbl_solicitudes_estudios");
+
             if ($query->num_rows()) $valor = $query->result();
             else $valor = [];
     
@@ -113,7 +114,7 @@
       
             $this->db->join('tbl_areas_formacion', 'tbl_areas_formacion.id_area_form = tbl_solicitudes_estudios.id_area_formacion');
             $this->db->join('tbl_estatus_oferta', 'tbl_estatus_oferta.id_estatus_oferta = tbl_solicitudes_estudios.id_estatus');
-
+            $this->db->order_by("tbl_solicitudes_estudios.id_solicitud", "desc");
             $query = $this->db->get("tbl_solicitudes_estudios");
             if ($query->num_rows()) $valor = $query->result();
             else $valor = [];
