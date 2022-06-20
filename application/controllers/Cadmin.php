@@ -532,7 +532,9 @@ class Cadmin extends CI_Controller
         }
         //delimitadores de errores
         $this->form_validation->set_rules('rif', 'rif', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('nombre_representante', 'nombre_representante', 'trim|required|strip_tags');
+        // $this->form_validation->set_rules('nombre_representante', 'nombre_representante', 'trim|required|strip_tags');
+        // validar solo strings
+        $this->form_validation->set_rules('nombre_representante', 'nombre_empresa', 'trim|required|strip_tags');
         $this->form_validation->set_rules('apellidos_representante', 'apellidos_representante', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_movil', 'telf movil', 'trim|required|strip_tags');
@@ -656,7 +658,8 @@ class Cadmin extends CI_Controller
             "tlf_celular"           => $this->input->post('telf_movil_representante'),
             "tlf_local"             => $this->input->post('telf_local_representante'),
             "email "                => $email_representante,
-            "cargo "                => $this->input->post('cargo')
+            "cargo "                => $this->input->post('cargo'),
+            'direccion' => $this->input->post('direccion_empresa'),
 
         ]);
 
@@ -971,7 +974,9 @@ class Cadmin extends CI_Controller
                 "tlf_celular"           => $this->input->post('telf_movil_representante'),
                 "tlf_local"             => $this->input->post('telf_local_representante'),
                 "email"                => $this->input->post('email_representante'),
-                "cargo "     => $this->input->post('cargo')
+                "cargo "     => $this->input->post('cargo'),
+                'direccion' => $this->input->post('direccion_empresa'),
+    
 
             ], $id_representante);
         }
@@ -1246,7 +1251,8 @@ class Cadmin extends CI_Controller
             "tlf_celular"           => $this->input->post('telf_movil_representante'),
             "tlf_local"             => $this->input->post('telf_local_representante'),
             "email "                => $email_representante,
-            "cargo "                => $this->input->post('cargo')
+            "cargo "                => $this->input->post('cargo'),
+            "direccion" => $this->input->post('direccion'),
 
         ]);
 
@@ -1325,6 +1331,7 @@ class Cadmin extends CI_Controller
         if (isset($id__exp_lab) and $id__exp_lab != "") {
             $res =  $this->Empresas_entes_model->obtener_representante_universidad($id__exp_lab);
         }
+     
 
         $breadcrumb = (object) [
             "menu" => "Admin",
@@ -1379,7 +1386,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('sector_economico', 'especializacion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email_representante', 'email del representante', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cargo', 'cargo', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
+   
         $this->form_validation->set_rules('cod_estado', 'Estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'Municipio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_representante', 'id_representante', 'trim|required|strip_tags');
@@ -1401,7 +1408,7 @@ class Cadmin extends CI_Controller
             $data = array(
 
                 "id_sector_economico"          => $this->input->post('sector_economico'),
-                "nombre_razon_social"   => $this->input->post('razon_social'),
+                // "nombre_razon_social"   => $this->input->post('razon_social'),
                 "rif" => $this->input->post('rif'),
                 "tlf_celular"   => $this->input->post('tlf_celular'),
                 "direccion" => $this->input->post('direccion'),
@@ -1425,17 +1432,23 @@ class Cadmin extends CI_Controller
 
             );
 
+     
+       
+
 
 
             if ($this->Empresas_entes_model->update_Universidades($data, $id_empresa)) {
                 $this->Representante_empresas_entes_model->update_representante([
-                    //    "cedula"   =>$this->input->post('cedula_representante'),
+                   
                     "nombre"                => $this->input->post('nombre_representante'),
                     "apellidos"             => $this->input->post('apellidos_representante'),
                     "tlf_celular"           => $this->input->post('telf_movil_representante'),
                     "tlf_local"             => $this->input->post('telf_local_representante'),
                     "email"                => $this->input->post('email_representante'),
-                    "cargo "                => $this->input->post('cargo')
+                    "cargo "                => $this->input->post('cargo'),
+                    "direccion" => $this->input->post('direccion'),
+                    
+
 
                 ], $id_representante);
             } else {

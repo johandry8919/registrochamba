@@ -81,10 +81,10 @@
 
             $this->db->select(' tbl_empresas_entes.*,
             re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
-            re.apellidos as apellido_representante, re.tlf_celular as celular_representante,
+            re.apellidos as apellido_representante, re.tlf_celular as celular_representante,tbl_empresas_entes.direccion,
             
             re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo,
-            re.id_representantes,estado.nombre as nombre_estado
+            re.id_representantes,estado.nombre as nombre_estado ,re.direccion,
   
                     
             ');
@@ -110,7 +110,7 @@
             re.apellidos as apellido_representante, re.tlf_celular as celular_representante,
             
             re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo,
-            re.id_representantes,, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia
+            re.id_representantes, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,
   
                     
             ');
@@ -161,10 +161,10 @@
             $this->db->select('tbl_empresas_entes.*,
             re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
             re.apellidos as apellido_representante, re.tlf_celular as celular_representante, re.id_usuario,  re.id_empresas_entes,
-            tbl_empresas_entes.tlf_celular as tlf_celular_empresa, re.id_representantes,direccion,
-
+            tbl_empresas_entes.tlf_celular as tlf_celular_empresa, re.id_representantes,tbl_empresas_entes.direccion,
+         
             re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo,re.tlf_celular,
-            estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia
+            estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia , re.direccion
                     
             ');
             $this->db->where("id_empresas", $id);
@@ -173,6 +173,15 @@
             $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_empresas_entes.codigomunicipio');
             $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_empresas_entes.codigoparroquia');
             $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
+      
+            // traer la direccion = tbl_representantes_empresas_entes
+ 
+
+
+
+
+
+
 
             $query = $this->db->get("tbl_empresas_entes");
     

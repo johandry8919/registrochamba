@@ -20,6 +20,7 @@
     // JS - librería propios
     $config['recursos']['validacion_datospersonales_js'] = "js/pages/examples/datospersonales.js?v=1.0.5";
     $config['recursos']['datospersonales_js'] = "assets/js/datos_personales.js?v=1.0.6";
+    $config['recursos']['validar_js'] = "assets/js/validar.js?v=1.0.6";
     $config['recursos']['usuarios_admin_js'] = "assets/js/usuarios_admin.js?v=1.0.6";
     $config['recursos']['admin_registrar_usuario_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.6";
     $config['recursos']['listar_usuario_admin_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.6";
