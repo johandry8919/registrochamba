@@ -257,10 +257,21 @@ class CofertaEmpleo extends CI_Controller
 }
 public function  editar_oferta(){
 
+
     if (!$this->session->userdata('id_rol')) {
         redirect('admin/login');
     }
     $id_rol = $this->session->userdata('id_rol');
+
+
+    $permitidos = [2,3,5];        
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+
+        if ( !$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+
 
     $id_oferta = strip_tags(trim($this->uri->segment(3)));
     // echo json_encode($id_oferta);

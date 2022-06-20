@@ -92,7 +92,7 @@
             $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
             $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
             $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_empresas_entes.codigoestado');
-
+            $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
             $query = $this->db->get("tbl_empresas_entes");
     
             if ($query->num_rows()) $valor = $query->result();
@@ -120,6 +120,7 @@
             $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
             $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_empresas_entes.codigomunicipio');
             $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_empresas_entes.codigoparroquia');
+           
             $query = $this->db->get("tbl_empresas_entes");
     
             if ($query->num_rows()) $valor = $query->row();
@@ -146,7 +147,7 @@
             $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
             $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
             $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_empresas_entes.codigoestado');
-
+            $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
             $query = $this->db->get("tbl_empresas_entes");
     
             if ($query->num_rows()) $valor = $query->result();
@@ -258,7 +259,7 @@ public function obtener_Estructuras($id = 3){
     $this->db->where("id_tipo_empresas_universidades", $id);
     $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
     $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
-
+    $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
     $query = $this->db->get("tbl_empresas_entes");
 
     if ($query->num_rows()) $valor = $query->result();

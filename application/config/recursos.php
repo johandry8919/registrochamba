@@ -19,6 +19,7 @@
     
     // JS - librería propios
     $config['recursos']['validacion_datospersonales_js'] = "js/pages/examples/datospersonales.js?v=1.0.5";
+
     $config['recursos']['datospersonales_js'] = "assets/js/datos_personales.js?v=1.0.6";
     $config['recursos']['validar_js'] = "assets/js/validar.js?v=1.0.6";
     $config['recursos']['usuarios_admin_js'] = "assets/js/usuarios_admin.js?v=1.0.6";
@@ -32,11 +33,12 @@
     $config['recursos']['listar_oferta_js'] = "assets/js/admin/listar_oferta.js?v=1.0.6";
     $config['recursos']['ver_oferta_js'] = "assets/js/admin/ver_oferta.js?v=1.0.6";
     $config['recursos']['ver_oferta_universidad_js'] = "assets/js/admin/ver_oferta_universidad.js?v=1.0.6";
+
     
-    $config['recursos']['editar_oferta_js'] = "assets/js/admin/editar_oferta.js?v=1.0.6";
-    $config['recursos']['editar_oferta_uner_js'] = "assets/js/admin/editar_oferta_uner.js?v=1.0.6";
-    $config['recursos']['admin_cambiarClave_js'] = "assets/js/admin/admin_cambiarClave.js?v=1.0.6";
-    $config['recursos']['cambiarclave_estruct_empre_js'] = "assets/js/admin/cambiarclave_estruct_empre.js?v=1.0.6";
+    $config['recursos']['editar_oferta_js'] = "assets/js/admin/editar_oferta.js?v=1.0.7";
+    $config['recursos']['editar_oferta_uner_js'] = "assets/js/admin/editar_oferta_uner.js?v=1.0.7";
+    $config['recursos']['admin_cambiarClave_js'] = "assets/js/admin/admin_cambiarClave.js?v=1.0.7";
+    $config['recursos']['cambiarclave_estruct_empre_js'] = "assets/js/admin/cambiarclave_estruct_empre.js?v=1.0.7";
 
     
 
@@ -47,24 +49,24 @@
   
     $config['recursos']['mapa_mabox_css'] = "assets/css/mapa_mabox.css?v=1.0.4.";
     $config['recursos']['estructuras_js'] = "assets/js/estructuras.js?v=1.0.2";
-    $config['recursos']['Universidad_estrutura_js'] = "assets/js/Universidad_estrutura.js?v=1.0.6";
+    $config['recursos']['Universidad_estrutura_js'] = "assets/js/Universidad_estrutura.js?v=1.0.7";
 
   $config['recursos']['actulizar_estructuras_js'] = "assets/js/actulizar_estructuras.js?v=1.0.2";
-    $config['recursos']['universidades_js'] = "assets/js/universidades.js?v=1.0.6";
+    $config['recursos']['universidades_js'] = "assets/js/universidades.js?v=1.0.7";
     $config['recursos']['editar_universidad_js'] = "assets/js/editar_universidad.js?v=1.0.4";
-    $config['recursos']['edit_universidad_js'] = "assets/js/edit_universidad.js?v=1.0.6";
-    $config['recursos']['estructuras_css'] = "assets/css/estructuras.css?v=1.0.6";
-    $config['recursos']['registro_estructuras_js'] = "assets/js/registro_estructuras.js?v=1.0.6";
-    $config['recursos']['admin_js'] = "assets/js/admin.js?v=1.0.6";
-    $config['recursos']['registro_empresas_admin_js'] = "assets/js/registro_empresas_admin.js?v=1.0.6";
-    $config['recursos']['resgistro_epres_estruct_js'] = "assets/js/resgistro_epres_estruct.js?v=1.0.6";
-    $config['recursos']['update_epres_estruct_js'] = "assets/js/update_epres_estruct.js?v=1.0.6";
-    $config['recursos']['editar_empresas_admin_js'] = "assets/js/editar_empresas_admin.js?v=1.0.6";
+    $config['recursos']['edit_universidad_js'] = "assets/js/edit_universidad.js?v=1.0.7";
+    $config['recursos']['estructuras_css'] = "assets/css/estructuras.css?v=1.0.7";
+    $config['recursos']['registro_estructuras_js'] = "assets/js/registro_estructuras.js?v=1.0.7";
+    $config['recursos']['admin_js'] = "assets/js/admin.js?v=1.0.7";
+    $config['recursos']['registro_empresas_admin_js'] = "assets/js/registro_empresas_admin.js?v=1.0.7";
+    $config['recursos']['resgistro_epres_estruct_js'] = "assets/js/resgistro_epres_estruct.js?v=1.0.7";
+    $config['recursos']['update_epres_estruct_js'] = "assets/js/update_epres_estruct.js?v=1.0.7";
+    $config['recursos']['editar_empresas_admin_js'] = "assets/js/editar_empresas_admin.js?v=1.0.7";
  
-    $config['recursos']['area_formacion_js'] = "assets/js/area_formacion.js?v=1.0.6";
-    $config['recursos']['lista_empresas_js'] = "assets/js/lista_empresas.js?v=1.0.6";
-    $config['recursos']['listar_estructura_js'] = "assets/js/listar_estructura.js?v=1.0.6";
-    $config['recursos']['login_inicio_js'] = "assets/js/login_inicio.js?v=1.0.6";
+    $config['recursos']['area_formacion_js'] = "assets/js/area_formacion.js?v=1.0.7";
+    $config['recursos']['lista_empresas_js'] = "assets/js/lista_empresas.js?v=1.0.7";
+    $config['recursos']['listar_estructura_js'] = "assets/js/listar_estructura.js?v=1.0.7";
+    $config['recursos']['login_inicio_js'] = "assets/js/login_inicio.js?v=1.0.7";
     
 
 
