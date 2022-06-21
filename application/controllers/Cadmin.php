@@ -1664,7 +1664,7 @@ class Cadmin extends CI_Controller
 
             $id_usuario = $this->input->post('id_usuario');
             $telf_cel = $this->input->post('telf_movil');
-            $telf_cel = (int)$telf_cel;
+            $telf_cel = $telf_cel;
             $codigoestado = $this->input->post('cod_estado');
             $codigoestado = $codigoestado;
             $codigoparroquia = $this->input->post('cod_parroquia');

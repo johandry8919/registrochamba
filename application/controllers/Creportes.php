@@ -33,16 +33,18 @@ class Creportes extends CI_Controller {
 
         ];
     
-
+        $estados = $this->Musuarios->getEstados();
 
         $output = [
             "menu_lateral"      =>'admin',
+            "estados" =>  $estados,
             "breadcrumb"        =>   $breadcrumb,
             "title"             => "Nueva oferta",
             "vista_principal"   => "reportes/rep_chambista",
-            "ficheros_js" => [recurso("listar_oferta_js")],
-            "ofertas" => $ofertas,
-        
+            "ficheros_js" => [recurso("reportes_js"), recurso("mapa_mabox_js")],
+            
+     
+            "ficheros_css" => [recurso("mapa_mabox_css")]
      
      
 
