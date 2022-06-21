@@ -329,7 +329,7 @@ class Cchambistas extends CI_Controller
         ],
 
 
-           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")],
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validar_js"), ],
            "ficheros_css" => [recurso("mapa_mabox_css")],
 
            
@@ -816,11 +816,11 @@ class Cchambistas extends CI_Controller
         $this->form_validation->set_rules('id_movimiento_religioso', 'Movimiento religioso', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_movimiento_sociales', 'Movimiento Sociales', 'trim|required|strip_tags');
 
-        $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
+        // $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
         //delimitadores de errores
 
         //reglas de validación
-        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+        // $this->form_validation->set_message('required', 'Debe llenar el campo %s');
         //reglas de validación
 
 
@@ -876,6 +876,8 @@ class Cchambistas extends CI_Controller
 			'tipo_institucion' => $this->input->post('tipo_institucion'),
 			'nombre_inst' => $this->input->post('nombre_inst') */
             );
+
+         
 
      
 

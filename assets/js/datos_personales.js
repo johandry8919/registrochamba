@@ -1,3 +1,14 @@
+// validar todos los campos de datos_personales 
+
+
+
+
+
+
+
+
+
+
 $('#estcivil').change(function(){
     /*  $('#guevo').html('<option value="1">1</option><option value="2">2</option>'); */
     //console.log($("#guevo").selectpicker('val','<option value="1">1</option><option value="2">2</option>'));
