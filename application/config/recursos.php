@@ -19,18 +19,21 @@
     
     // JS - librería propios
     $config['recursos']['validacion_datospersonales_js'] = "js/pages/examples/datospersonales.js?v=1.0.5";
-    $config['recursos']['datospersonales_js'] = "assets/js/datos_personales.js?v=1.0.7";
-    $config['recursos']['usuarios_admin_js'] = "assets/js/usuarios_admin.js?v=1.0.7";
-    $config['recursos']['admin_registrar_usuario_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.7";
-    $config['recursos']['listar_usuario_admin_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.7";
-    $config['recursos']['buscar_chambista_js'] = "assets/js/admin/buscar_chambista.js?v=1.0.7";
-    $config['recursos']['editar_chambista_js'] = "assets/js/admin/editar_chambista.js?v=1.0.7";
-    $config['recursos']['admin_nueva_oferta_js'] = "assets/js/admin/admin_nueva_oferta.js?v=1.0.7";
-    $config['recursos']['admin_nueva_oferta_uner_js'] = "assets/js/admin/admin_nueva_oferta_uner.js?v=1.0.7";
-    $config['recursos']['editar_formacion_cade_js'] = "assets/js/admin/editar_formacion_cade.js?v=1.0.7";
-    $config['recursos']['listar_oferta_js'] = "assets/js/admin/listar_oferta.js?v=1.0.7";
-    $config['recursos']['ver_oferta_js'] = "assets/js/admin/ver_oferta.js?v=1.0.7";
-    $config['recursos']['ver_oferta_universidad_js'] = "assets/js/admin/ver_oferta_universidad.js?v=1.0.7";
+
+    $config['recursos']['datospersonales_js'] = "assets/js/datos_personales.js?v=1.0.6";
+    $config['recursos']['validar_js'] = "assets/js/validar.js?v=1.0.6";
+    $config['recursos']['usuarios_admin_js'] = "assets/js/usuarios_admin.js?v=1.0.6";
+    $config['recursos']['admin_registrar_usuario_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.6";
+    $config['recursos']['listar_usuario_admin_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.6";
+    $config['recursos']['buscar_chambista_js'] = "assets/js/admin/buscar_chambista.js?v=1.0.6";
+    $config['recursos']['editar_chambista_js'] = "assets/js/admin/editar_chambista.js?v=1.0.6";
+    $config['recursos']['admin_nueva_oferta_js'] = "assets/js/admin/admin_nueva_oferta.js?v=1.0.6";
+    $config['recursos']['admin_nueva_oferta_uner_js'] = "assets/js/admin/admin_nueva_oferta_uner.js?v=1.0.6";
+    $config['recursos']['editar_formacion_cade_js'] = "assets/js/admin/editar_formacion_cade.js?v=1.0.6";
+    $config['recursos']['listar_oferta_js'] = "assets/js/admin/listar_oferta.js?v=1.0.6";
+    $config['recursos']['ver_oferta_js'] = "assets/js/admin/ver_oferta.js?v=1.0.6";
+    $config['recursos']['ver_oferta_universidad_js'] = "assets/js/admin/ver_oferta_universidad.js?v=1.0.6";
+
     
     $config['recursos']['editar_oferta_js'] = "assets/js/admin/editar_oferta.js?v=1.0.7";
     $config['recursos']['editar_oferta_uner_js'] = "assets/js/admin/editar_oferta_uner.js?v=1.0.7";

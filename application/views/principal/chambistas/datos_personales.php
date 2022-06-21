@@ -161,7 +161,7 @@
                                                          <div class="form-group">
                                                     <label class="form-label">Estado civil</label>
                                                         <select class="form-control form-select"  id="estcivil" name="estcivil">
-                                                            <option value="">Seleccione una opción</option>
+                                                            <option value="0">Seleccione una opción</option>
                                                             <option <?php if(isset($registroviejo->estcivil)){ if(trim($registroviejo->estcivil)=='casado'){echo 'selected';}}?> value="casado">Casado(A)</option>
                                                             <option <?php if(isset($registroviejo->estcivil)){ if(trim($registroviejo->estcivil)=='soltero'){echo 'selected';}}?> value="soltero">Soltero(A)</option>
                                                             <option <?php if(isset($registroviejo->estcivil)){ if(trim($registroviejo->estcivil)=='concubino'){echo 'selected';}}?> value="concubino">Concubino(A)</option>
@@ -220,7 +220,7 @@
 
                                                 
                                                         <select required class="form-control show-tick" id="id_profesion" name="id_profesion">
-                                                            <option value="">Seleccione una Profesión u Oficio</option>
+                                                            <option value="0">Seleccione una Profesión u Oficio</option>
 
                                                           
                                                      
@@ -258,7 +258,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="aborigen" name="aborigen">
-                                                        <option value="">Seleccione una opción</option>
+                                                        <option value="0">Seleccione una opción</option>
                                                     <?php
                                                         if(isset($aborigenes)){
                                                             foreach ($aborigenes as $key => $aborigen) {
@@ -304,7 +304,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="empleo" name="empleo">
-                                                                <option value="">Seleccione una opción</option>
+                                                                <option value="0">Seleccione una opción</option>
                                                                 <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='no-tengo-empleo') echo "selected";?> value="no-tengo-empleo">No tengo empleo</option>
                                                                 <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='buscando-empleo') echo "selected";?> value="buscando-empleo">Estoy buscando trabajo</option>
                                                                 <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='estoy-trabajando') echo "selected";?> value="estoy-trabajando">Estoy Trabajando actualmente</option>
@@ -352,7 +352,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="id_movimiento_sociales" name="id_movimiento_sociales">
-                                                            <option value="">Seleccione una opción</option>
+                                                            <option value="0">Seleccione una opción</option>
                                                             <?php if(isset($movimientos)): ?>
                                                             <?php foreach ($movimientos as $key => $movimiento):?>
                                                                
@@ -422,7 +422,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_estado" name="cod_estado">
-                                                        <option value="">Seleccione una opción</option>
+                                                        <option value="0">Seleccione una opción</option>
                                                     <?php
                                                         if(isset($estados)){
                                                             foreach ($estados as $key => $estado) {
@@ -443,7 +443,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_municipio" name="cod_municipio">
-                                                        <option value="">Seleccione un Municipio</option>
+                                                        <option value="0">Seleccione un Municipio</option>
                                                         <?php
                                                             if(isset($registroviejo->municipio)){
                                                                 echo "<option selected value='".$registroviejo->codigomunicipio."'>".$registroviejo->municipio."</option>";     
@@ -464,7 +464,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_parroquia" name="cod_parroquia">
-                                                        <option value="">Seleccione una Parroquia</option>
+                                                        <option value="0">Seleccione una Parroquia</option>
                                                         <?php
                                                             if(isset($registroviejo->parroquia)){
                                                                 echo "<option selected value='".$registroviejo->codigoparroquia."' data-latitud=".$registroviejo->latitud."  data-longitud=".$registroviejo->longitud."  >".$registroviejo->parroquia."</option>";     

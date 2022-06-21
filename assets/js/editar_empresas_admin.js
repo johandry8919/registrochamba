@@ -218,153 +218,210 @@
 
 
 	//validacion
-	$('#razon_social').on('keyup', function () {
+	$("#razon_social").on("keyup", function () {
 		"use strict";
 		var nombres = $(this).val();
-		var expresion = /^[a-zA-Z\s]*$/;
-	  
+		var expresion = /^[a-zA-Z-_\.]+$/;
+
 		if (expresion.test(nombres)) {
-			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
-				
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
 		}
 	});
 
-	$('#razon_social, #nombre_representante, #apellidos_representante, #cargo').on('keyup', function () {
+	$("#nombre_representante").on("keyup", function () {
 		"use strict";
-		var nombres = $(this).val();
-		var expresion = /^[a-zA-Z\s]*$/;
-	  
-		if (expresion.test(nombres)) {
-			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
-				
+		var nombre_representante = $(this).val();
+		var expresion = /^[a-zA-Z-_\.]+$/;
+
+		if (expresion.test(nombre_representante)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
+		}
+	});
+	$("#cargo").on("keyup", function () {
+		"use strict";
+		var cargo = $(this).val();
+		var expresion = /^[a-zA-Z-_\.]+$/;
+
+		if (expresion.test(cargo)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
 		}
 	});
 
-
-
-	$(' #telf_movil_representante, #telf_movil, #cedula_representante').on('keyup', function () {
+	$("#apellidos_representante").on("keyup", function () {
 		"use strict";
-		var nombres = $(this).val();
-		var expresion = /^\d{7,11}$/;
-	  
-		if (expresion.test(nombres)) {
-			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
-				
+		var apellidos_representante = $(this).val();
+		var expresion = /^[a-zA-Z-_\.]+$/;
+
+		if (expresion.test(apellidos_representante)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
 		}
 	});
-
-	$('#rif').on('keyup', function () {
-		"use strict";
-		var nombres = $(this).val();
-		var expresion = /^[a-zA-Z\s]*$/;
-	  
-		if (expresion.test(nombres)) {
-			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
-				
-		}
-	});
-
-
 	
-	$('#email, #email_representante').on('keyup', function () {
+	$("#cedula_representante").on("keyup", function () {
 		"use strict";
-		var nombres = $(this).val();
-		var expresion = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
-	  
-		if (expresion.test(nombres)) {
-			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
-				
+		var cedula_representante = $(this).val();
+		var expresion = /^[0-9]+$/;
+
+		if (expresion.test(cedula_representante)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
 		}
 	});
 
+	$("#rif").on("keyup", function () {
+		"use strict";
+		var nombres = $(this).val();
+		var expresion = /^[a-zA-Z0-9-_\.]+$/;
+
+		if (expresion.test(nombres)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
+		}
+	});
+
+	$("#email_representante").on("keyup", function () {
+		"use strict";
+		var email_representante = $(this).val();
+		var expresion = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+
+		if (expresion.test(email_representante)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
+		}
+	});
+	$("#email").on("keyup", function () {
+		"use strict";
+		var email_representante = $(this).val();
+		var expresion = /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/;
+
+		if (expresion.test(email_representante)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		}
+	});
+
+	$("#telf_movil").on("keyup", function () {
+		"use strict";
+		var telf_local_representante = $("#telf_movil").val();
+		var expresion = /^[0-9]+$/;
+
+		if (expresion.test(telf_local_representante)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
+		}
+	});
 	$("#telf_local_representante").on("keyup", function () {
-	"use strict";
-	var telf_local_representante = $("#telf_local_representante").val();
-	var expresion = /^\d{7,13}$/;
+		"use strict";
+		var telf_local_representante = $("#telf_local_representante").val();
+		var expresion = /^[0-9]+$/;
 
-	if (expresion.test(telf_local_representante)) {
-		$("#telf_local_representante")
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	} else {
-		$("#telf_local_representante")
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-		$("#telf_local_representante")
-			.removeClass("is-valid")
-			.addClass("is-invalid");
-	}
-});
-//Estado
-$("#cod_estado").on("change", function () {
-	"use strict";
-	var estado = $(this).val();
-	var expresion = /^\d{1}$/;
+		if (expresion.test(telf_local_representante)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
+		}
+	});
+	//Estado
+	$("#cod_estado").on("change", function () {
+		"use strict";
+		var estado = $(this).val();
+		var expresion = /^\d{1}$/;
 
-	if (estado) {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	} else {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-		$("#cod_estado").removeClass("is-valid").addClass("is-invalid");
-	}
-});
-$("#cod_municipio").on("change", function () {
-	"use strict";
-	var cod_municipio = $(this).val();
-	var expresion = /^\d{1}$/;
+		if (estado) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
+		}
+	});
+	$("#cod_municipio").on("change", function () {
+		"use strict";
+		var cod_municipio = $(this).val();
+		var expresion = /^\d{1}$/;
 
-	if (cod_municipio) {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	} else {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	}
-});
-$("#cod_parroquia").on("change", function () {
-	"use strict";
-	var cod_parroquia = $(this).val();
-	var expresion = /^\d{1}$/;
+		if (cod_municipio) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		}
+	});
+	$("#cod_parroquia").on("change", function () {
+		"use strict";
+		var cod_parroquia = $(this).val();
+		var expresion = /^\d{1}$/;
 
-	if (cod_parroquia) {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	} else {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	}
-});
+		if (cod_parroquia) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		}
+	});
 
-//Dirección Especifica
-$("#direccion").on("keyup", function () {
-	"use strict";
-	var direccion_especifica = $(this).val();
-	var expresion = /^[a-zA-Z0-9\s]*$/;
+	//Dirección Especifica
+	$("#direccion").on("keyup", function () {
+		"use strict";
+		var direccion_especifica = $(this).val();
+		var expresion = /^[a-zA-Z0-9\s]*$/;
 
-	if (direccion_especifica) {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	} else {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	}
-});
-
+		if (direccion_especifica) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		}
+	});
 
 	$("#sector_economico").on("change", function () {
 		"use strict";
 		var sector_economico = $(this).val();
-	
+
 		if (sector_economico) {
 			$(this)
 				.removeClass("is-invalid error-input")
@@ -380,7 +437,7 @@ $("#direccion").on("keyup", function () {
 		"use strict";
 		var actividad_economica = $(this).val();
 		// var expresion = /^[a-zA-Z\s]*$/;
-	
+
 		if (actividad_economica) {
 			$("#actividad_economica")
 				.removeClass("is-invalid error-input")
