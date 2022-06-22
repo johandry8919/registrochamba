@@ -97,9 +97,9 @@
                                         class="side-menu__label">Reportes</span><i
                                         class="angle fe fe-chevron-right"></i></a>
                                 <ul class="slide-menu">
-                                <li ><a href="<?php echo base_url();?>admin/reportes/chambistas"
+                                <li ><a href="<?php echo base_url();?>admin/reportes/empresas_mapa"
                                             class="slide-item <?php if($this->uri->segment(1)=='reportes') echo 'active';?>"
-                                            >Chambista</a></li>
+                                            >Mapa empresas/ Centros</a></li>
                                     <li ><a href="<?php echo base_url();?>/admin/reportes/chambistas"
                                             class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
                                             >Estructura</a></li>

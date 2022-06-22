@@ -64,7 +64,7 @@
        
 	
 		input_latitud.value = latitud_e;
-		input_longitud.value = latitud_e;
+		input_longitud.value = longitud_e;
 	});
 
 	$("#cod_parroquia").change(function () {
@@ -75,7 +75,7 @@
 		agregarMapa(latitud_e, longitud_e, (zoom = 12));
 
 		input_latitud.value = latitud_e;
-		input_longitud.value = latitud_e;
+		input_longitud.value = longitud_e;
 	});
 
 	

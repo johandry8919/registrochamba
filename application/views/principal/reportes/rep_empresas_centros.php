@@ -2,7 +2,10 @@
                         <!-- ROW-1 -->
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                        <form method="post" id="form-map" >
 
+
+                   
                         <div class="row">
 
                      
@@ -15,14 +18,13 @@
                                         data-parsley-error-message="Este campo es requerido"
                                         id="cod_estado" name="cod_estado" required>
                                         <option value="">Seleccione una opción</option>
+                                        <option value="todos">Todos</option>
                                     <?php
                                         if(isset($estados)){
                                             foreach ($estados as $key => $estado) {
-                                                if(isset($estado->codigoestado) and $estado->codigoestado == $datos->codigoestado){
-                                                    echo "<option selected value='".$estado->codigoestado."'  data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";     
-                                                }else{
+                                              
                                                     echo "<option value='".$estado->codigoestado."' data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";
-                                                }
+                                                
                                             }
                                         }
                                     ?>
@@ -74,23 +76,23 @@
                                 </div>
                                 
                             </div>
-
-                        </div>
-                        <div class="col-md-3">
-                            <label  class="form-label">Empresa</label>
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <select
-                                    data-parsley-error-message="Este campo es requerido" required
-                                    class="form-control show-tick" id="cod_municipio" name="cod_municipio"    required                                     data-parsley-error-message="Este campo es requerido">
-                                    <option value="">Seleccione un empresa</option>
-                                
-                                    </select>
+                            <div class="col-md-3">
+                                <label  class="form-label">Empresa / Centros de estudios</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select
+                                        data-parsley-error-message="Este campo es requerido" required
+                                        class="form-control show-tick" id="empresa" name="empresa"    required                                     data-parsley-error-message="Este campo es requerido">
+                                        <option value="1">Empresa</option>
+                                        <option value="2">Centros de estudios</option>
+                                        </select>
+                                    </div>
+                                                                         
                                 </div>
-                                                                     
+                                <button class="btn btn-primary" type="submit" name="" id="consultarmap">Consultar</button>
                             </div>
-                            
                         </div>
+                    </form>
 
                         <hr>
                         <div class="row">

@@ -13,7 +13,7 @@ class Creportes extends CI_Controller {
         //$this->output->enable_profiler(TRUE);
     }
 
-	public function chambistas()
+	public function empresas_mapa()
 	{
         $permitidos = [2];        
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
@@ -28,7 +28,7 @@ class Creportes extends CI_Controller {
       
             $breadcrumb = (object) [
             "menu" => "Admin",
-            "menu_seleccion" => "Reporte Chambista"
+            "menu_seleccion" => "Reporte Empresas entes"
 
 
         ];
@@ -40,8 +40,8 @@ class Creportes extends CI_Controller {
             "estados" =>  $estados,
             "breadcrumb"        =>   $breadcrumb,
             "title"             => "Nueva oferta",
-            "vista_principal"   => "reportes/rep_chambista",
-            "ficheros_js" => [recurso("reportes_js"), recurso("mapa_mabox_js")],
+            "vista_principal"   => "reportes/rep_empresas_centros",
+            "ficheros_js" => [recurso("reportes_js")],
             
      
             "ficheros_css" => [recurso("mapa_mabox_css")]

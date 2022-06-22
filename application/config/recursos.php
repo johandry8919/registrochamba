@@ -46,7 +46,7 @@
     
     
     
-    $config['recursos']['mapa_mabox_js'] = "assets/js/mapa_mabox.js?v=1.0.4";
+    $config['recursos']['mapa_mabox_js'] = "assets/js/mapa_mabox.js?v=1.0.5";
   
     $config['recursos']['mapa_mabox_css'] = "assets/css/mapa_mabox.css?v=1.0.4.";
     $config['recursos']['estructuras_js'] = "assets/js/estructuras.js?v=1.0.2";

@@ -198,4 +198,4 @@ $route['universidad/ver_ofertas/(:num)'] = 'Universidades/ver_ofertas';
 
 /**REPORTE ***/
 
-$route['admin/reportes/chambistas'] = 'Creportes/chambistas';
+$route['admin/reportes/empresas_mapa'] = 'Creportes/empresas_mapa';
