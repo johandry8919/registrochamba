@@ -56,6 +56,7 @@ class Universidades extends CI_Controller
         $oferta = $this->Oferta_universida_model->obtener_oferta($id_solicitud);
 
         $id_rol = $this->session->userdata('id_rol');
+        $rango_edad = $this->Estructuras_model->rango_Edad();
         // echo json_encode($id_rol);
         // exit();
         $breadcrumb = (object) [
@@ -76,6 +77,7 @@ class Universidades extends CI_Controller
             "librerias_js" => [recurso("admin_nueva_oferta_uner_js")],
 
             "id_area_formacion" => $id_area_formacion,
+            "rangoedad" => $rango_edad,
 
 
         ];
@@ -149,6 +151,7 @@ class Universidades extends CI_Controller
         $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
 
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+        $rango_edad = $this->Estructuras_model->rango_Edad();
 
 
         $output = [
@@ -164,6 +167,7 @@ class Universidades extends CI_Controller
             "id_oferta" => $id_oferta,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
             "id_rol" => $id_rol,
+            "rangoedad" => $rango_edad,
 
             "ficheros_js" => [recurso("editar_oferta_uner_js")],
 
@@ -189,6 +193,7 @@ class Universidades extends CI_Controller
             redirect('admin/login');
             exit();
         }
+        $rango_edad = $this->Estructuras_model->rango_Edad();
 
         $id_oferta = strip_tags(trim($this->uri->segment(3)));
         $oferta =  $this->Oferta_universida_model->obtener_oferta($id_oferta);
@@ -218,6 +223,7 @@ class Universidades extends CI_Controller
             "profesion_oficio" => $profesion_oficio,
             "chambista_ofertas" => $chambista_ofertas,
             "id_oferta" => $id_oferta,
+            "rangoedad" => $rango_edad,
 
             "datatable"             => true,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
@@ -251,7 +257,7 @@ class Universidades extends CI_Controller
         // validar solo numero
         $this->form_validation->set_rules('cupos_disponibles', 'cupos_disponibles', 'trim|required|strip_tags|numeric');
 
-        $this->form_validation->set_rules('cantidad', 'cantidad ', 'trim|required|strip_tags|numeric');
+
         $this->form_validation->set_rules('titularidad', 'titularidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_area_formacion', 'id_area_formacion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
@@ -294,7 +300,7 @@ class Universidades extends CI_Controller
             "descripcion_solicitud" =>  $this->input->post('descripcion'),
             "edad" =>  $this->input->post('edad'),
             "sexo" =>  $this->input->post('sexo'),
-            "cantidad" =>  $this->input->post('cantidad'),
+          
             "titularidad" =>  $this->input->post('titularidad'),
 
         ]);

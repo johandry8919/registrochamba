@@ -5,7 +5,6 @@
 <!-- #END# Overlay For Sidebars -->
 
 <section class="content">
-   
     <form method="post" id="form-estructuras">
         <div class="row ">
             <div class="col-md-12">
@@ -198,17 +197,39 @@
                                     <!--col-->
 
                                     <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Edad</label>
-                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                        <div class="form-group ">
+                                        <label class="form-label">Edad </label>
+                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="fe fe-calendar" aria-hidden="true"></i>
+                                                    <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="edad" maxlength="2" name="edad" value="<?php if (isset($datos->edad)) echo ucwords($datos->edad); ?>" placeholder="edad" required autofocus data-parsley-error-message="Este campo es requerido">
+                                                <select class=" form-control show-tick" id="edad" name="edad" data-parsley-error-message="Este campo es requerido" required autofocus >
+                                                    <option value="">Selecciones una opción</option>
+                                                    <?php if(isset($rangoedad)): ?>
+                                                            <?php foreach ($rangoedad as $key => $rango):?>
+                                                               
+                                                                <?php  if($rango->id_edad == $datos->edad):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$rango->id_edad."'>".$rango->edad."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$rango->id_edad."'>".$rango->edad."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+
+
+                                                </select>
+                                               
 
                                             </div>
-
+                                         
+                                        
                                         </div>
+                                        
+                                          
                                     </div>
                                     <!--col-->
 

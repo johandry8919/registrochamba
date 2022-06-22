@@ -16,7 +16,6 @@ function registrar(){
     var $cupos_disponibles = $("#cupos_disponibles").val();
     var $id_area_formacion = $("#id_area_formacion").val();
     var $id_usuario_registro = $("#id_usuario_registro").val();
-    var $duracion = $("#duracion").val();
     var $descripcion = $("#id_descripcion").val();
     var $sexo = $("#sexo").val();
 
@@ -26,7 +25,7 @@ function registrar(){
 
       
 
-   if($mencion != "" && $duracion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != "" && $cantidad != "" && $titularidad != "" && $edad != ""){
+   if($mencion != "" && $duracion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != "" && $titularidad != "" && $edad != ""){
 
     $.ajax({
         dataType: "json",

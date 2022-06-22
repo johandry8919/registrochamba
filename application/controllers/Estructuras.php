@@ -189,6 +189,7 @@ class Estructuras extends CI_Controller
                 ];
     
         $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+        $rango_edad = $this->Estructuras_model->rango_Edad();
        
         
 
@@ -199,6 +200,7 @@ class Estructuras extends CI_Controller
             "title"             => "Registro  de empresas",
              "vista_principal"   => "admin/registro_empresas",
              "sectorProductivo" => $sectorProductivo,
+             "rangoedad" => $rango_edad,
              
      
            
@@ -445,6 +447,7 @@ class Estructuras extends CI_Controller
                 ];
     
         $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+        $rango_edad = $this->Estructuras_model->rango_Edad();
        
         
     
@@ -458,6 +461,7 @@ class Estructuras extends CI_Controller
              "list_empresa" => $res,
              "id_empresa" => $id__exp_lab,
              "datos"            =>$res,
+             "rangoedad" => $rango_edad,
              
      
            
@@ -582,6 +586,7 @@ public function  update_empresas_representante(){
         $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
        
         $empresas = $this->Empresas_entes_model->obtener_univerdidad();
+        $rango_edad = $this->Estructuras_model->rango_Edad();
 
 
        
@@ -600,6 +605,7 @@ public function  update_empresas_representante(){
              "estados"          => $estados,
             "sectorProductivo" => $sectorProductivo,
             "empresas" => $empresas,
+            "rangoedad" => $rango_edad,
                
                
      
@@ -868,7 +874,7 @@ public function  update_empresas_representante(){
            
          
         }
-        
+        $rango_edad = $this->Estructuras_model->rango_Edad();
         $breadcrumb =(object) [
             "menu" => "estructuras",
             "menu_seleccion" => "Registro de universidades"
@@ -884,6 +890,7 @@ public function  update_empresas_representante(){
              "empresas"         => $empresas,
              "datos"            =>$res,
              "id_empresa" => $id__exp_lab,
+             "rangoedad" => $rango_edad,
              
             
                 "sectorProductivo" => $sectorProductivo,
@@ -1040,6 +1047,7 @@ public function  update_empresas_representante(){
         ];
          //id del id_rol
         $id_rol = $this->session->userdata('id_rol');
+        $rango_edad = $this->Estructuras_model->rango_Edad();
        
         $output = [
             
@@ -1051,6 +1059,7 @@ public function  update_empresas_representante(){
             "areaform"     =>   $this->Musuarios->getAreaForm(),
             "oferta" => $oferta,
             "id_rol" => $id_rol,
+            "rangoedad" => $rango_edad,
             
             "librerias_js" => [recurso("admin_nueva_oferta_uner_js"),recurso("admin_nueva_oferta_uner")],
             
@@ -1086,7 +1095,7 @@ public function  update_empresas_representante(){
         // validar solo numero
         $this->form_validation->set_rules('cupos_disponibles', 'cupos_disponibles', 'trim|required|strip_tags|numeric');
       
-        $this->form_validation->set_rules('cantidad', 'cantidad ', 'trim|required|strip_tags|numeric');
+     
         $this->form_validation->set_rules('titularidad', 'titularidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_area_formacion', 'id_area_formacion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
@@ -1128,7 +1137,7 @@ public function  update_empresas_representante(){
         "descripcion_solicitud" =>  $this->input->post('descripcion'),
        
         "sexo" =>  $this->input->post('sexo'),
-        "cantidad" =>  $this->input->post('cantidad'),
+       
         "titularidad" =>  $this->input->post('titularidad'),
          "edad" =>  $this->input->post('edad'),
        
@@ -1170,6 +1179,7 @@ public function  update_empresas_representante(){
         $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
     
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+        $rango_edad = $this->Estructuras_model->rango_Edad();
     
       
         $output = [
@@ -1185,6 +1195,7 @@ public function  update_empresas_representante(){
             "id_oferta" => $id_oferta,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
             "id_rol" => $id_rol,
+            "rangoedad" => $rango_edad,
     
             "ficheros_js" => [recurso("editar_oferta_uner_js")],
         
@@ -1250,7 +1261,7 @@ public function  update_empresas_representante(){
         $this->load->view("main", $output);
     
 }
-public function ver_ofertas(){
+public function ver_ofertas_universidad(){
 
 
           
@@ -1277,6 +1288,7 @@ public function ver_ofertas(){
 
     $profesion_oficio = $this->Estructuras_model->profesion_oficio();
    $estatus_oferta_chambista= $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+   $rango_edad = $this->Estructuras_model->rango_Edad();
 
 
    
@@ -1295,6 +1307,7 @@ public function ver_ofertas(){
         "constantes_js" => ["ruta"=>$ruta],
         "datatable"             => true,
         "areaform"     =>   $this->Musuarios->getAreaForm(),
+        "rangoedad" => $rango_edad,
     
  
  
@@ -1329,7 +1342,7 @@ public function update_ofertas(){
     // validar solo numero
     $this->form_validation->set_rules('cupos_disponibles', 'cupos_disponibles', 'trim|required|strip_tags|numeric');
   
-    $this->form_validation->set_rules('cantidad', 'cantidad ', 'trim|required|strip_tags|numeric');
+   
     $this->form_validation->set_rules('titularidad', 'titularidad', 'trim|required|strip_tags');
     $this->form_validation->set_rules('id_area_formacion', 'id_area_formacion', 'trim|required|strip_tags');
     $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
@@ -1547,7 +1560,7 @@ public function crear_oferta(){
 
 }
 
-public function ver_oferta(){
+public function ver_oferta_empresas(){
 
       
     $permitidos = [2,3];        
@@ -1572,6 +1585,7 @@ public function ver_oferta(){
 
     $profesion_oficio = $this->Estructuras_model->profesion_oficio();
    $estatus_oferta_chambista= $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+   $rango_edad = $this->Estructuras_model->rango_Edad();
 
 
    
@@ -1590,6 +1604,7 @@ public function ver_oferta(){
         "constantes_js" => ["ruta"=>$ruta],
         "datatable"             => true,
         "areaform"     =>   $this->Musuarios->getAreaForm(),
+        "rangoedad" => $rango_edad,
     
  
  
@@ -1628,6 +1643,7 @@ $estatus=  $this->Estatus_oferta_model->obtener_estatus_oferta();
 $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
 
 $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+$rango_edad = $this->Estructuras_model->rango_Edad();
 
 
 $output = [
@@ -1643,6 +1659,7 @@ $output = [
     "id_oferta" => $id_oferta,
     "areaform"     =>   $this->Musuarios->getAreaForm(),
     "id_rol"=>$id_rol,
+    "rangoedad" => $rango_edad,
 
 
     "ficheros_js" => [recurso("editar_oferta_js")],

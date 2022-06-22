@@ -47,6 +47,7 @@ class CofertaUniversidades extends CI_Controller
         $id_area_formacion = strip_tags(trim($this->uri->segment(3)));
         $ruta = strip_tags(trim($this->uri->segment(1)));
         $oferta = $this->Oferta_universida_model->obtener_oferta($id_area_formacion);
+        $rango_edad = $this->Estructuras_model->rango_Edad();
 
         $id_rol = $this->session->userdata('id_rol');
         $breadcrumb = (object) [
@@ -64,8 +65,9 @@ class CofertaUniversidades extends CI_Controller
             "areaform"     =>   $this->Musuarios->getAreaForm(),
             "oferta" => $oferta,
             "id_rol" => $id_rol,
+            "rangoedad" =>$rango_edad,
 
-            "librerias_js" => [recurso("admin_nueva_oferta_uner_js"), recurso("admin_nueva_oferta_uner")],
+            "librerias_js" => [recurso("admin_nueva_oferta_uner_js"), ],
 
             "id_area_formacion" => $id_area_formacion,
 
@@ -170,6 +172,7 @@ class CofertaUniversidades extends CI_Controller
 
         $estatus =  $this->Estatus_oferta_model->obtener_estatus_oferta();
         $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
+        $rango_edad = $this->Estructuras_model->rango_Edad();
 
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
 
@@ -187,6 +190,7 @@ class CofertaUniversidades extends CI_Controller
             "id_oferta" => $id_oferta,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
             "id_rol" => $id_rol,
+            "rangoedad" =>$rango_edad,
 
             "ficheros_js" => [recurso("editar_oferta_uner_js")],
 
@@ -270,6 +274,7 @@ class CofertaUniversidades extends CI_Controller
 
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
         $estatus_oferta_chambista = $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+        $rango_edad = $this->Estructuras_model->rango_Edad();
 
 
 
@@ -288,6 +293,7 @@ class CofertaUniversidades extends CI_Controller
             "constantes_js" => ["ruta" => $ruta],
             "datatable"             => true,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
+            "rangoedad" => $rango_edad,
 
 
 
@@ -319,7 +325,7 @@ class CofertaUniversidades extends CI_Controller
         // validar solo numero
         $this->form_validation->set_rules('cupos_disponibles', 'cupos_disponibles', 'trim|required|strip_tags|numeric');
 
-        $this->form_validation->set_rules('cantidad', 'cantidad ', 'trim|required|strip_tags|numeric');
+       
         $this->form_validation->set_rules('titularidad', 'titularidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_area_formacion', 'id_area_formacion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('sexo', 'sexo', 'trim|required|strip_tags');
@@ -362,7 +368,6 @@ class CofertaUniversidades extends CI_Controller
             "descripcion_solicitud" =>  $this->input->post('descripcion'),
             "edad" =>  $this->input->post('edad'),
             "sexo" =>  $this->input->post('sexo'),
-            "cantidad" =>  $this->input->post('cantidad'),
             "titularidad" =>  $this->input->post('titularidad'),
 
         ]);
