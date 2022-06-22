@@ -292,6 +292,7 @@ class Cadmin extends CI_Controller
 
         $instruccion_academica = $this->Estructuras_model->instruccion_academica();
 
+        $rango_edad = $this->Estructuras_model->rango_Edad();
         $sectorProductivo = $this->Mprofesion_oficio->SectorProductivo();
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
         $persona = $this->Estructuras_model->getUsuarioRegistradoPersonal();
@@ -325,6 +326,7 @@ class Cadmin extends CI_Controller
             "sectorProductivo" => $sectorProductivo,
             'profesion_oficio' => $profesion_oficio,
             "datos" => $res,
+            "rangoedad" => $rango_edad,
 
             "persona" => $persona,
 
@@ -376,7 +378,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('fecha_nac', 'fecha_nac', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags');
+        // $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_profesion_oficio', 'id_profesion_oficio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado', 'estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'municipio', 'trim|required|strip_tags');
@@ -462,6 +464,7 @@ class Cadmin extends CI_Controller
                 'id_usuario_registro' => $this->session->userdata('id_usuario')
 
             );
+        
 
 
             $this->Estructuras_model->post_crearEstructura($datas);
@@ -832,6 +835,7 @@ class Cadmin extends CI_Controller
         $responsabilidad_estructuras = $this->Estructuras_model->responsabilidad_estructuras();
 
         $instruccion_academica = $this->Estructuras_model->instruccion_academica();
+        $rango_edad = $this->Estructuras_model->rango_Edad();
 
         $sectorProductivo = $this->Mprofesion_oficio->SectorProductivo();
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
@@ -874,6 +878,7 @@ class Cadmin extends CI_Controller
             "datos" => $res,
             "persona" => $persona,
             "id_estructura" => $id__exp_lab,
+            "rangoedad" => $rango_edad,
 
 
 
@@ -999,7 +1004,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('fecha_nac', 'fecha_nac', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');
 
-        $this->form_validation->set_rules('edad', 'Edad', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('edad', 'Edad', 'trim|min_length[1]|strip_tags');
         $this->form_validation->set_rules('id_profesion_oficio', 'id_profesion_oficio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado', 'estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'municipio', 'trim|required|strip_tags');

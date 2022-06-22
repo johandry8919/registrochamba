@@ -145,6 +145,7 @@ class Empresas extends CI_Controller
             // id de la empresas
             $id_rol = $this->session->userdata('id_rol');
             $id_empresas= $this->session->userdata('id_empresa');
+            $rango_edad = $this->Estructuras_model->rango_Edad();
 
             $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_empresas);
 
@@ -159,7 +160,8 @@ class Empresas extends CI_Controller
                 "id_empresa"   => $id_empresas,
                
                 "empresa"  => $ofertas,
-                "id_rol" => $id_rol
+                "id_rol" => $id_rol,
+                "rangoedad" => $rango_edad,
     
     
     
@@ -190,7 +192,7 @@ class Empresas extends CI_Controller
                 "ficheros_js" => [recurso("admin_nueva_oferta_uner_js")],
                 "profesion_oficio"=> $profesion_oficio,
                 "areaform"     =>   $this->Musuarios->getAreaForm(),
-                "id_empresa"   => $id_empresa,
+                "id_empresa"   => $id_empresas,
                
                 "empresa"  => $ofertas,
                 "id_rol" => $id_rol,
@@ -334,6 +336,7 @@ public function  editar_oferta(){
     $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
 
     $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+       $rango_edad = $this->Estructuras_model->rango_Edad();
 
   
     $output = [
@@ -350,6 +353,7 @@ public function  editar_oferta(){
         "areaform"     =>   $this->Musuarios->getAreaForm(),
 
         "ficheros_js" => [recurso("editar_oferta_js")],
+        "rangoedad" => $rango_edad,
     
  
  
@@ -388,6 +392,7 @@ public function  editar_oferta(){
     
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
        $estatus_oferta_chambista= $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+       $rango_edad = $this->Estructuras_model->rango_Edad();
 
 
        
@@ -406,6 +411,7 @@ public function  editar_oferta(){
             "constantes_js" => ["ruta"=>$ruta],
             "datatable"             => true,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
+            "rangoedad" => $rango_edad,
         
      
      

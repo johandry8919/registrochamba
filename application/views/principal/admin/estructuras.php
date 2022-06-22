@@ -13,6 +13,7 @@
                 <table class="table table-bordered border text-nowrap text-center mb-0" id="basic-edit">
                     <thead>
                         <tr>
+                            <th name="bstable-actions">Editar</th>
                             <th>#</th>
                             <th>Nombre</th>
                             <th>Apellido</th>
@@ -22,7 +23,7 @@
                             <th>Tipo de estructura</th>
 
 
-                            <th name="bstable-actions">Editar</th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -33,17 +34,6 @@
                             $i = 1;
                             foreach ($estruturas as $key => $usuaca) {
                                 echo '<tr>';
-                                echo '<td scope="row">' . $i . '</td>';
-                                echo '<td>' . $usuaca->nombre . '</td>';
-                                echo '<td>' . $usuaca->apellidos . '</td>';
-                                echo '<td>' . $usuaca->cedula . '</td>';
-
-
-                                echo '<td>' . $usuaca->tlf_celular . '</td>';
-
-
-                                echo '<td>' . $usuaca->email . '</td>';
-                                echo '<td>' . $usuaca->tipo_estructura . '</td>';
                                 echo '<td >';
 
                                 echo '<div class="btn-list">';
@@ -60,6 +50,18 @@
 
 
                                 echo '</td>';
+                                echo '<td scope="row">' . $i . '</td>';
+                                echo '<td>' . $usuaca->nombre . '</td>';
+                                echo '<td>' . $usuaca->apellidos . '</td>';
+                                echo '<td>' . $usuaca->cedula . '</td>';
+
+
+                                echo '<td>' . $usuaca->tlf_celular . '</td>';
+
+
+                                echo '<td>' . $usuaca->email . '</td>';
+                                echo '<td>' . $usuaca->tipo_estructura . '</td>';
+                             
                                 echo '</tr>';
                                 $i++;
                             }

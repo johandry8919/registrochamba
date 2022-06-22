@@ -14,13 +14,12 @@ function registrar() {
 	var $duracion = $("#duracion").val();
 	var $descripcion = $("#id_descripcion").val();
 	var $sexo = $("#sexo").val();
-	var $cantidad = $("#id_cantidad").val();
 	var $titularidad = $("#titularidad").val();
 	var $edad = $("#edad").val();
 	var $id_solicitud = $("#id_solicitud").val();
 	var estatus = $("#estatus").val();
 
-	if ($mencion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != "" && $cantidad != "" && $titularidad != "" && $edad != "") {
+	if ($mencion != "" && $cupos_disponibles != "" && $id_area_formacion != "" && $id_usuario_registro != "" && $duracion != "" && $descripcion != "" && $sexo != "" &&  $titularidad != "" && $edad != "") {
         $.ajax({
             dataType: "json",
             data: {
@@ -31,7 +30,7 @@ function registrar() {
                 id_usuario_registro: $id_usuario_registro,
                 descripcion: $descripcion,
                 sexo: $sexo,
-                cantidad: $cantidad,
+
                 titularidad: $titularidad,
                 edad: $edad,
                 estatus: estatus,

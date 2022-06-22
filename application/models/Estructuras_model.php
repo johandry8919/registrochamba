@@ -52,6 +52,20 @@
             else
                 return [];
         }
+        public function rango_Edad(){
+
+
+
+            $this->db->select('*');
+            $this->db->from('tbl_rango_edad');
+            $this->db->order_by('tbl_rango_edad', 'ASC');
+            $query = $this->db->get();
+    
+            if ($query->num_rows() > 0) 
+                return $query->result();
+            else
+                return [];
+        }
 
       
 
@@ -190,7 +204,7 @@
  
 	public function getEditEstruturaID($id){
         $this->db->select('public.tbl_estructuras.*,
-        estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia
+        estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,direccion
         ');
        
         $this->db->where('id_estructura',$id);

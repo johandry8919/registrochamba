@@ -147,27 +147,42 @@
 
                                 </div>
                                 <!--col-->
-
                                 <div class="col-md-4">
-
-                                    <div class="form-group">
-                                        <label class="form-label">Cargo</label>
-                                        <div class="wrap-input100 validate-input input-group"
-                                            data-bs-validate="Valid email is required: ex@abc.xyz">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                        <div class="form-group ">
+                                        <label class="form-label">Edad </label>
+                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                        <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" type="text"
-                                                id="cargo" maxlength="30" name="apellidos" value="" placeholder=""
-                                                required autofocus>
+                                                <select class=" form-control show-tick border-start-0 ms-0" id="edad" name="edad" data-parsley-error-message="Este campo es requerido" required autofocus >
+                                                    <option value="">Selecciones una opción</option>
+                                                    <?php if(isset($rangoedad)): ?>
+                                                            <?php foreach ($rangoedad as $key => $rango):?>
+                                                               
+                                                                <?php  if($rango->id_edad == $datos->edad):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$rango->id_edad."'>".$rango->edad."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$rango->id_edad."'>".$rango->edad."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
 
+
+                                                </select>
+                                               
+
+                                            </div>
+                                         
+                                        
                                         </div>
-
+                                        
+                                          
                                     </div>
 
-
-
-                                </div>
 
                                 <!--col-->
 
@@ -204,23 +219,29 @@
                                 </div>
 
                                 <!--col-->
-
+                                
                                 <div class="col-md-4">
+
                                     <div class="form-group">
-                                        <label class="form-label">Edad</label>
+                                        <label class="form-label">Cargo</label>
                                         <div class="wrap-input100 validate-input input-group"
                                             data-bs-validate="Valid email is required: ex@abc.xyz">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="fe fe-calendar" aria-hidden="true"></i>
+                                                <i class="mdi mdi-account" aria-hidden="true"></i>
                                             </a>
                                             <input class="input100 border-start-0 ms-0 form-control" type="text"
-                                                id="edad" maxlength="2" name="edad" value="" placeholder="edad" required
-                                                autofocus>
+                                                id="cargo" maxlength="30" name="apellidos" value="" placeholder=""
+                                                required autofocus>
 
                                         </div>
 
                                     </div>
+
+
+
                                 </div>
+
+                                
                                 <!--col-->
                                 <div class="col-md-4">
 

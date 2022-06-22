@@ -62,6 +62,7 @@ class CofertaEmpleo extends CI_Controller
     
             ];
             $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+            $rango_edad = $this->Estructuras_model->rango_Edad();
             $id_empresa = strip_tags(trim($this->uri->segment(3)));
             $id_rol = $this->session->userdata('id_rol');
 
@@ -81,6 +82,7 @@ class CofertaEmpleo extends CI_Controller
                 "constantes_js" => ["ruta"=>$ruta],
                 "empresa"  => $empresa,
                 "id_rol" => $id_rol,
+                "rangoedad" => $rango_edad,
     
     
     
@@ -227,6 +229,7 @@ class CofertaEmpleo extends CI_Controller
     
         $profesion_oficio = $this->Estructuras_model->profesion_oficio();
        $estatus_oferta_chambista= $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+       $rango_edad = $this->Estructuras_model->rango_Edad();
 
 
        
@@ -245,6 +248,7 @@ class CofertaEmpleo extends CI_Controller
             "constantes_js" => ["ruta"=>$ruta],
             "datatable"             => true,
             "areaform"     =>   $this->Musuarios->getAreaForm(),
+            "rangoedad" => $rango_edad,
         
      
      
@@ -283,7 +287,7 @@ public function  editar_oferta(){
 
 
     ];
-  
+    $rango_edad = $this->Estructuras_model->rango_Edad();
   $estatus=  $this->Estatus_oferta_model->obtener_estatus_oferta();
     $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
 
@@ -303,6 +307,7 @@ public function  editar_oferta(){
         "id_oferta" => $id_oferta,
         "areaform"     =>   $this->Musuarios->getAreaForm(),
         "id_rol" => $id_rol,
+        "rangoedad" => $rango_edad,
 
         "ficheros_js" => [recurso("editar_oferta_js")],
     
