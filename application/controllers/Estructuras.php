@@ -344,7 +344,7 @@ class Estructuras extends CI_Controller
           //registrar usuario **
 
           $id_usuario =$this->Usuarios_admin_model->post_regitrar([
-              "id_rol"  =>7,
+              "id_rol"  =>5,
               "cedula"  =>$cedula_representante,
               "email"   =>$email_representante,
               "password"=>$password
@@ -750,7 +750,7 @@ public function  update_empresas_representante(){
           //registrar usuario **
 
           $id_usuario =$this->Usuarios_admin_model->post_regitrar([
-              "id_rol"  =>6,
+              "id_rol"  =>4,
               "cedula"  =>$cedula_representante,
               "email"   =>$email_representante,
               "password"=>$password,

@@ -134,6 +134,13 @@ class Empresas extends CI_Controller
 
 
     public function nuevaoferta(){
+
+
+        // echo json_encode($this->session->userdata('id_rol'));
+        // exit;
+
+
+     
         if($this->session->userdata('id_rol') == 5){
             $breadcrumb = (object) [
                 "menu" => "Empresas",
@@ -141,6 +148,9 @@ class Empresas extends CI_Controller
     
     
             ];
+
+
+          
             $profesion_oficio = $this->Estructuras_model->profesion_oficio();
             // id de la empresas
             $id_rol = $this->session->userdata('id_rol');
@@ -149,6 +159,7 @@ class Empresas extends CI_Controller
 
             $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_empresas);
 
+            
             $output = [
                 "menu_lateral"      =>"empresas",
                 "breadcrumb"        =>   $breadcrumb,
@@ -184,6 +195,9 @@ class Empresas extends CI_Controller
 
             $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_empresas);
 
+           
+
+
             $output = [
                 "menu_lateral"      =>"universidades",
                 "breadcrumb"        =>   $breadcrumb,
@@ -210,7 +224,7 @@ class Empresas extends CI_Controller
     }
       public function crear_oferta(){
 
-        $permitidos = [2,3,5];        
+        $permitidos = [2,3,5,4];        
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {
@@ -269,6 +283,7 @@ class Empresas extends CI_Controller
 
     }
     public function listar_oferta_empresas(){
+
 
           
         $permitidos = array(4,5);        
@@ -379,6 +394,7 @@ public function  editar_oferta(){
 
         $id_oferta = strip_tags(trim($this->uri->segment(3)));
         $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
+
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "Ver oferta"

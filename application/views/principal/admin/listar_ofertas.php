@@ -1,5 +1,6 @@
         <!-- Row -->
 
+
         <div class="row row-sm">
             <div class="col-lg-12">
                 <div class="card">
@@ -40,13 +41,12 @@
                                    
                                     </tr>
                                 </thead>
-                                <tbody>
-
-                                    <?php
-        
-                                    foreach ($ofertas as $oferta): ?>
-                                    <tr>
-                                        <td>
+                                <?php if(isset($ofertas[0]->id_oferta)):?>
+                                    <tbody>
+                                    
+                                        <?php foreach ($ofertas as $oferta):?>
+                                        <tr>
+                                            <td>
                                             <div class="btn-list">
                                                 <button type="button" class="btn btn-sm btn-primary ">
                                                     <span class="fs-6">
@@ -80,11 +80,24 @@
                                     </tr>
                                     <?php endforeach ?>
                                 </tbody>
+                                <?php endif;?>
                             </table>
                         </div>
                     </div>
+                    <?php if(!isset($ofertas[0]->id_oferta)):?>
+                        <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger">
+                        No hay oferta que mostrar 
+               
+                    </div>
+                </div>
+                </div>
+            <?php endif;?>
                 </div>
             </div>
+
+            
         </div>
         <input type="hidden" name="id_rol" id="id_rol" value="<?php if(isset($id_rol)){
         echo $id_rol;
