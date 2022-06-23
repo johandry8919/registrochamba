@@ -1,4 +1,15 @@
         <!-- Row -->
+                    <?php if($this->session->flashdata('mensajeerror')){ ?>
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?>
+               
+                    </div>
+                </div>
+                </div>
+                <br>
+        <?php }?> 
+     <?php  ?>
         <div class="row row-sm">
             
            
@@ -35,6 +46,17 @@
                                                         <a class="text-white" href="<?php base_url()?>registro/universidades/<?php echo $empresa->id_empresas?>">&#9998;</a>
                                                         </span>
                                                         </button>
+                                                        <button type="button" class="btn btn-sm btn-success ">
+                                                    <span class="fs-6">
+                                                
+                                                        <a class="text-white"
+                                                            href="<?php base_url()?>ofertas_usuario/<?php echo $empresa->id_empresas?>">
+                                                            <i
+                                                            data-bs-toggle="tooltip" data-bs-original-title="Ver oferta "class="side-menu__icon fe fe-eye"></i>
+                                                            
+                                                        </a>
+                                                    </span>
+                                                </button>
                                                         <button type="button" class="btn btn-sm btn-success ">
                                                     <span class="fs-6">
                                                         <a class="text-white"

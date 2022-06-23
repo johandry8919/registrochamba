@@ -49,15 +49,15 @@ class Universidades extends CI_Controller
         if (!$this->session->userdata('id_rol')) {
             redirect('admin/login');
         }
-        $id_area_formacion = $this->session->userdata('id_usuario');
-        $id_solicitud = $this->session->userdata('id_solicitud');
+        $id_empresa = $this->session->userdata('id_empresa');
+        
 
 
-        $oferta = $this->Oferta_universida_model->obtener_oferta($id_solicitud);
+        $oferta = $this->Oferta_universida_model->obtener_oferta($id_empresa);
 
         $id_rol = $this->session->userdata('id_rol');
         $rango_edad = $this->Estructuras_model->rango_Edad();
-        // echo json_encode($id_rol);
+        // echo json_encode($id_solicitud);
         // exit();
         $breadcrumb = (object) [
             "menu" => "Universidad",
@@ -76,7 +76,7 @@ class Universidades extends CI_Controller
 
             "librerias_js" => [recurso("admin_nueva_oferta_uner_js")],
 
-            "id_area_formacion" => $id_area_formacion,
+            "id_area_formacion" => $id_empresa,
             "rangoedad" => $rango_edad,
 
 
@@ -84,14 +84,18 @@ class Universidades extends CI_Controller
         $this->load->view("main", $output);
     }
     public function listar_oferta_universidades()
+
+   
     {
+
+    
         if (!$this->session->userdata('id_rol')) {
             redirect('admin/login');
         }
-        $id_rol = $this->session->userdata('id_rol');
+        
 
 
-        $permitidos = array(2, 3);
+        $permitidos = array(2, 3,4);
         $tiene_acceso = in_array(2, $permitidos, false);
 
         if (!$tiene_acceso) {
@@ -101,7 +105,11 @@ class Universidades extends CI_Controller
         }
         $id_empresa = $this->session->userdata('id_empresa');
 
+    
+
         $ofertas = $this->Oferta_universida_model->obtener_ofertas_unirversidad($id_empresa);
+        // echo json_encode($id_empresa);
+        // exit;
 
         $breadcrumb = (object) [
             "menu" => "Universidad",
@@ -183,6 +191,8 @@ class Universidades extends CI_Controller
     public function ver_ofertas()
     {
 
+        
+     
 
 
         $permitidos = [5,4];
