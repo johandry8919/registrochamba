@@ -241,7 +241,7 @@ function agregarMapa(lat = "8.2321", long = "-66.406", zoom = 13, data=[]) {
 
 	
 
-
+		map.addControl(new mapboxgl.NavigationControl());
 
 
 
