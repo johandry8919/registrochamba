@@ -9,6 +9,12 @@ class Creportes extends CI_Controller {
         $this->load->model('Mpcj');
         $this->load->library('email');
         $this->load->library('form_validation'); 
+        $this->load->library('export_excel');
+        $this->load->model('Empresas_entes_model');
+        
+        ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
         //$this->load->library('security');
         //$this->output->enable_profiler(TRUE);
     }
@@ -54,5 +60,47 @@ class Creportes extends CI_Controller {
         $this->load->view("main", $output);
         // $this->load->view('layouts/head');
 	
+	}
+
+    public function exportar_excel_empresas(){
+
+        $permitidos = [2];        
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+        if ( !$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            redirect('admin/login');
+            
+            exit();
+            
+        }
+
+		ini_set('max_execution_time', 2400);
+		set_time_limit(2400);
+		ini_set('memory_limit', '256M');
+
+
+        $empresa =$_GET['empresa'];
+        $cod_estado =$_GET['cod_estado'];
+        $cod_municipio =$_GET['cod_municipio'];
+        $cod_parroquia =$_GET['cod_parroquia'];
+    
+        if($cod_estado=='todos'){
+    
+            $resultado=   $this->Empresas_entes_model->obtener_empresas($empresa);
+    
+        }else {
+            $resultado=   $this->Empresas_entes_model->obtener_empresas_coord($empresa,$cod_estado,$cod_municipio,$cod_parroquia);
+        }
+
+        if($resultado){
+            $array = json_decode(json_encode( $resultado ),true);	
+            $this->export_excel->to_excel($array, 'Reporte_Empresa_Entes');
+
+        }else{
+            echo "No se encontraron datos para exportar";
+        }
+ 
+
+
 	}
 }

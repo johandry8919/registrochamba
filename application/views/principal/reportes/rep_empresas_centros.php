@@ -87,9 +87,14 @@
                                         <option value="2">Centros de estudios</option>
                                         </select>
                                     </div>
-                                                                         
+                                             
+                                    
                                 </div>
-                                <button class="btn btn-primary" type="submit" name="" id="consultarmap">Consultar</button>
+                                <div class="btn-group">
+                                <button class="btn btn-primary" type="submit" name="1" id="consultarmap">Consultar</button>
+                                <button class="btn btn-info" type="submit" name="2" id="descargar_ reporte">Descargar Excel</button>
+
+                            </div>
                             </div>
                         </div>
                     </form>

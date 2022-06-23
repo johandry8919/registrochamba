@@ -100,15 +100,15 @@
                                 <li ><a href="<?php echo base_url();?>admin/reportes/empresas_mapa"
                                             class="slide-item <?php if($this->uri->segment(1)=='reportes') echo 'active';?>"
                                             >Mapa empresas/ Centros</a></li>
-                                    <li ><a href="<?php echo base_url();?>/admin/reportes/chambistas"
+                                    <li ><a href="#"
                                             class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
                                             >Estructura</a></li>
                                             
-                                    <li><a href="<?php echo base_url();?>/admin/registro/empresas"
+                                    <li><a href="#"
                                      class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
                                          >Empresas u organismo publico</a></li>
 
-                                         <li><a href="<?php echo base_url();?>/admin/registro/universidades"
+                                         <li><a href="#"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
                                          >Centro de Estuios y Universidades</a></li>
                                     

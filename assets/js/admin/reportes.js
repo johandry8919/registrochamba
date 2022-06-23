@@ -14,7 +14,12 @@ $("#cod_municipio").change(function () {
 $("#form-map").submit(function (e) {
 	e.preventDefault();
 
-	obtener_coordenadas_empresa();
+	const accion =e.originalEvent.submitter.name;
+
+
+		obtener_coordenadas_empresa(accion);
+	
+
 });
 
 function buscarMunicipios() {
@@ -112,7 +117,7 @@ agregarMapa(latitud, longitud, 5);
 
  
 
-async function obtener_coordenadas_empresa() {
+async function obtener_coordenadas_empresa(accion) {
 	var cod_estado = $("#cod_estado").val();
 	var cod_municipio = $("#cod_municipio").val();
 	var cod_parroquia = $("#cod_parroquia").val();
@@ -169,6 +174,10 @@ async function obtener_coordenadas_empresa() {
 					agregarMapa(latitud_e, longitud_e, 10);
 				}
 			
+
+				
+		if(accion==2)
+		location.href=base_url+'admin/reportes/excel_empresas?cod_estado='+cod_estado+'&cod_municipio='+cod_municipio+'&cod_parroquia='+cod_parroquia+'&empresa='+empresa
 
 
 
