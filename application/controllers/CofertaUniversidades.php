@@ -202,6 +202,89 @@ class CofertaUniversidades extends CI_Controller
 
         $this->load->view("main", $output);
     }
+    public function  editar_oferta_admin()
+    {
+
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+
+        $id_oferta = strip_tags(trim($this->uri->segment(4)));
+
+        $oferta = $this->Oferta_universida_model->obtener_oferta($id_oferta);
+    
+        $id_rol = $this->session->userdata('id_rol');
+
+        $estatus =  $this->Estatus_oferta_model->obtener_estatus_oferta();
+        $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($id_oferta);
+        $rango_edad = $this->Estructuras_model->rango_Edad();
+
+        $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+
+
+        if(!$id_oferta == 3){
+            $breadcrumb = (object) [
+                "menu" => "Admin",
+                "menu_seleccion" => "Ver oferta"
+    
+    
+            ];
+            $output = [
+                "menu_lateral"      => "admin",
+                "breadcrumb"        =>   $breadcrumb,
+                "title"             => "Editar  oferta",
+                "vista_principal"   => "admin/editar_oferta_uner",
+                "estatus" => $estatus,
+                "librerias_js" => [recurso("accordion_js")],
+                "oferta" => $oferta,
+                "profesion_oficio" => $profesion_oficio,
+                "chambista_ofertas" => $chambista_ofertas,
+                "id_oferta" => $id_oferta,
+                "areaform"     =>   $this->Musuarios->getAreaForm(),
+                "id_rol" => $id_rol,
+                "rangoedad" =>$rango_edad,
+    
+                "ficheros_js" => [recurso("editar_oferta_uner_js")],
+    
+    
+    
+    
+    
+            ];
+    
+        }else{
+            $breadcrumb = (object) [
+                "menu" => "Universidad",
+                "menu_seleccion" => "Ver oferta"
+    
+    
+            ];
+            $output = [
+                "menu_lateral"      => "estructuras",
+                "breadcrumb"        =>   $breadcrumb,
+                "title"             => "Editar  oferta",
+                "vista_principal"   => "admin/editar_oferta_uner",
+                "estatus" => $estatus,
+                "librerias_js" => [recurso("accordion_js")],
+                "oferta" => $oferta,
+                "profesion_oficio" => $profesion_oficio,
+                "chambista_ofertas" => $chambista_ofertas,
+                "id_oferta" => $id_oferta,
+                "areaform"     =>   $this->Musuarios->getAreaForm(),
+                "id_rol" => $id_rol,
+                "rangoedad" =>$rango_edad,
+    
+                "ficheros_js" => [recurso("editar_oferta_uner_js")],
+    
+    
+    
+    
+    
+            ];
+    
+        }
+        $this->load->view("main", $output);
+    }
 
     public function listar_oferta_admin()
     {
@@ -260,9 +343,9 @@ class CofertaUniversidades extends CI_Controller
             redirect('admin/login');
             exit();
         }
-
-        $id_oferta = strip_tags(trim($this->uri->segment(3)));
-        $oferta =  $this->Oferta_universida_model->obtener_oferta($id_oferta);
+         
+            $id_oferta = strip_tags(trim($this->uri->segment(3)));
+            $oferta =  $this->Oferta_universida_model->obtener_oferta($id_oferta);
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "Ver oferta"
@@ -300,6 +383,103 @@ class CofertaUniversidades extends CI_Controller
 
 
         ];
+
+        $this->load->view("main", $output);
+    }
+    public function ver_ofertas_admin()
+    {
+
+
+
+        $permitidos = [2, 3, 4];
+        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+
+        if (!$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            redirect('admin/login');
+            exit();
+        }
+         
+            $id_oferta = strip_tags(trim($this->uri->segment(4)));
+            $oferta =  $this->Oferta_universida_model->obtener_oferta($id_oferta);
+
+            $chambista_ofertas = $this->Oferta_universida_model->obtener_solicitud_chambista($id_oferta);
+
+            $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+            $estatus_oferta_chambista = $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+            $rango_edad = $this->Estructuras_model->rango_Edad();
+
+            if(!$id_oferta == 3){
+                $breadcrumb = (object) [
+                    "menu" => "Admin",
+                    "menu_seleccion" => "Ver oferta"
+        
+        
+                ];
+        
+              
+        
+        
+        
+                $ruta = strip_tags(trim($this->uri->segment(1)));
+                $output = [
+                    "menu_lateral"      =>   $ruta,
+                    "breadcrumb"        =>   $breadcrumb,
+                    "title"             => "Oferta de emplo " . $oferta->nombre_razon_social,
+                    "vista_principal"   => "admin/ver_oferta_univerdidad",
+                    "ficheros_js" => [recurso("accordion_js"), recurso("ver_oferta_universidad_js")],
+                    "oferta" => $oferta,
+                    "estatus_oferta_chambista" => $estatus_oferta_chambista,
+                    "profesion_oficio" => $profesion_oficio,
+                    "chambista_ofertas" => $chambista_ofertas,
+                    "id_oferta" => $id_oferta,
+                    "constantes_js" => ["ruta" => $ruta],
+                    "datatable"             => true,
+                    "areaform"     =>   $this->Musuarios->getAreaForm(),
+                    "rangoedad" => $rango_edad,
+        
+        
+        
+        
+        
+                ];
+            }else{
+                $breadcrumb = (object) [
+                    "menu" => "Universidad",
+                    "menu_seleccion" => "Ver oferta"
+        
+        
+                ];
+        
+              
+        
+        
+        
+                $ruta = strip_tags(trim($this->uri->segment(1)));
+                $output = [
+                    "menu_lateral"      =>   $ruta,
+                    "breadcrumb"        =>   $breadcrumb,
+                    "title"             => "Oferta de emplo " . $oferta->nombre_razon_social,
+                    "vista_principal"   => "admin/ver_oferta_univerdidad",
+                    "ficheros_js" => [recurso("accordion_js"), recurso("ver_oferta_universidad_js")],
+                    "oferta" => $oferta,
+                    "estatus_oferta_chambista" => $estatus_oferta_chambista,
+                    "profesion_oficio" => $profesion_oficio,
+                    "chambista_ofertas" => $chambista_ofertas,
+                    "id_oferta" => $id_oferta,
+                    "constantes_js" => ["ruta" => $ruta],
+                    "datatable"             => true,
+                    "areaform"     =>   $this->Musuarios->getAreaForm(),
+                    "rangoedad" => $rango_edad,
+        
+        
+        
+        
+        
+                ];
+            }
+
+        
 
         $this->load->view("main", $output);
     }

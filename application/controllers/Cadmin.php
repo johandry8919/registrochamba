@@ -2,6 +2,7 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 require_once APPPATH . 'libraries/dompdf/autoload.inc.php';
+
 use Dompdf\Dompdf;
 
 class Cadmin extends CI_Controller
@@ -21,6 +22,10 @@ class Cadmin extends CI_Controller
         $this->load->model('Representante_empresas_entes_model');
         $this->load->model('Dasboard_admin_model');
         $this->load->model('Usuarios_admin_model');
+        $this->load->model('Oferta_empleo_model');
+        $this->load->model('Ofertas_chambistas_model');
+        $this->load->model('Estatus_oferta_model');
+        $this->load->model('Oferta_universida_model');
         $this->load->library('ciqrcode');
 
 
@@ -44,12 +49,12 @@ class Cadmin extends CI_Controller
 
 
         ];
-       
-       $total_usuarios = $this->Dasboard_admin_model->obtener_total_usuarios_registrados();
-       $completados    = $this->Dasboard_admin_model->obtener_registros_completados();
-       $total_empresas = $this->Dasboard_admin_model->obtener_empresas_registradas();
-       $total_universidades = $this->Dasboard_admin_model->obtener_univesidades_registradas();
-     $total_estructuras =$this->Dasboard_admin_model->obtener_estructuras_registradas();
+
+        $total_usuarios = $this->Dasboard_admin_model->obtener_total_usuarios_registrados();
+        $completados    = $this->Dasboard_admin_model->obtener_registros_completados();
+        $total_empresas = $this->Dasboard_admin_model->obtener_empresas_registradas();
+        $total_universidades = $this->Dasboard_admin_model->obtener_univesidades_registradas();
+        $total_estructuras = $this->Dasboard_admin_model->obtener_estructuras_registradas();
 
         $output = [
             "menu_lateral" => "admin",
@@ -57,11 +62,11 @@ class Cadmin extends CI_Controller
             "title"             => "Registro de estructuras",
             "vista_principal"   => "admin/inicio",
             "ficheros_js" => [recurso("admin_js")],
-            "total_usuarios" =>$total_usuarios,
-            "completados"=>$completados,
-            "total_empresas"=>$total_empresas,
-            "total_universidades"=>$total_universidades,
-            "total_estructuras"=>$total_estructuras
+            "total_usuarios" => $total_usuarios,
+            "completados" => $completados,
+            "total_empresas" => $total_empresas,
+            "total_universidades" => $total_universidades,
+            "total_estructuras" => $total_estructuras
 
 
         ];
@@ -425,7 +430,7 @@ class Cadmin extends CI_Controller
             $datos_usuario['cedula'] = strtoupper($this->input->post('cedula'));
             $datos_usuario['email'] = strtoupper($this->input->post('correo1'));
             //encriptacion
-            $clave =trim($this->input->post('pass'));
+            $clave = trim($this->input->post('pass'));
             $pass_cifrado = password_hash($clave, PASSWORD_DEFAULT);
             $datos_usuario['password'] = $pass_cifrado;
             $datos_usuario['activo'] = 1;
@@ -464,7 +469,7 @@ class Cadmin extends CI_Controller
                 'id_usuario_registro' => $this->session->userdata('id_usuario')
 
             );
-        
+
 
 
             $this->Estructuras_model->post_crearEstructura($datas);
@@ -497,6 +502,7 @@ class Cadmin extends CI_Controller
             "title"             => "Registro  de empresas",
             "vista_principal"   => "admin/registro_empresas",
             "sectorProductivo" => $sectorProductivo,
+
 
 
 
@@ -678,6 +684,7 @@ class Cadmin extends CI_Controller
         if (!$this->session->userdata('id_rol')) {
             redirect('admin/login');
         }
+        $ofertas = $this->Oferta_empleo_model->obtener_ofertas();
 
         $estados = $this->Musuarios->getEstados();
         $empresas = $this->Empresas_entes_model->obtener_empresas();
@@ -698,6 +705,8 @@ class Cadmin extends CI_Controller
             "vista_principal"   => "admin/listar_empresas",
             "empresas" => $empresas,
             "estados"  => $estados,
+            "ofertas" => $ofertas,
+
 
 
             "librerias_css" => [],
@@ -925,7 +934,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('razon_social', 'razon_social', 'trim|required|strip_tags');
-        
+
 
 
 
@@ -968,7 +977,7 @@ class Cadmin extends CI_Controller
 
             "latitud"   => $this->input->post('latitud'),
             "longitud"  => $this->input->post('longitud'),
-            "nombre_razon_social"   =>$this->input->post('razon_social')
+            "nombre_razon_social"   => $this->input->post('razon_social')
 
 
         );
@@ -981,7 +990,7 @@ class Cadmin extends CI_Controller
                 "email"                => $this->input->post('email_representante'),
                 "cargo "     => $this->input->post('cargo'),
                 'direccion' => $this->input->post('direccion_empresa'),
-    
+
 
             ], $id_representante);
         }
@@ -1016,7 +1025,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('id_usuario_estructura', 'id_usuario_estructura', 'trim|required|strip_tags');
 
 
-     
+
         //otener el id de la estructura
         $this->form_validation->set_error_delimiters('*', '');
         //delimitadores de errores
@@ -1051,7 +1060,7 @@ class Cadmin extends CI_Controller
                 'talla_camisa' => $this->input->post('talla_camisa'),
                 'latitud' => $this->input->post('latitud'),
                 'longitud' => $this->input->post('longitud')
-                
+
 
 
 
@@ -1273,12 +1282,15 @@ class Cadmin extends CI_Controller
             exit();
         }
 
+
+        $estados = $this->Musuarios->getEstados();
+        $ofertas = $this->Oferta_empleo_model->obtener_ofertas();
+
         $univerdidade = $this->Empresas_entes_model->obtener_univerdidad();
 
         // otener el id del usuario 
-        $id_empresas = $this->session->userdata('id_empresas');
 
-        $estados = $this->Musuarios->getEstados();
+
         $datos['estados'] = $estados;
 
 
@@ -1299,6 +1311,7 @@ class Cadmin extends CI_Controller
             "vista_principal"   => "admin/universidades",
             'univerdidad' => $univerdidade,
             'datos' => $datos,
+            "ofertas" => $ofertas,
 
 
 
@@ -1336,7 +1349,7 @@ class Cadmin extends CI_Controller
         if (isset($id__exp_lab) and $id__exp_lab != "") {
             $res =  $this->Empresas_entes_model->obtener_representante_universidad($id__exp_lab);
         }
-     
+
 
         $breadcrumb = (object) [
             "menu" => "Admin",
@@ -1391,7 +1404,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('sector_economico', 'especializacion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email_representante', 'email del representante', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cargo', 'cargo', 'trim|required|strip_tags');
-   
+
         $this->form_validation->set_rules('cod_estado', 'Estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'Municipio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_representante', 'id_representante', 'trim|required|strip_tags');
@@ -1437,14 +1450,14 @@ class Cadmin extends CI_Controller
 
             );
 
-     
-       
+
+
 
 
 
             if ($this->Empresas_entes_model->update_Universidades($data, $id_empresa)) {
                 $this->Representante_empresas_entes_model->update_representante([
-                   
+
                     "nombre"                => $this->input->post('nombre_representante'),
                     "apellidos"             => $this->input->post('apellidos_representante'),
                     "tlf_celular"           => $this->input->post('telf_movil_representante'),
@@ -1452,7 +1465,7 @@ class Cadmin extends CI_Controller
                     "email"                => $this->input->post('email_representante'),
                     "cargo "                => $this->input->post('cargo'),
                     "direccion" => $this->input->post('direccion'),
-                    
+
 
 
                 ], $id_representante);
@@ -1521,29 +1534,27 @@ class Cadmin extends CI_Controller
             exit();
         }
         //optener el id id_usu_aca hidden del formulario
-       
-       
+
+
 
         $id__exp_lab = strip_tags(trim($this->uri->segment(3)));
-       
+
         $res = [];
-        $acausuario=[];
+        $acausuario = [];
         if (isset($id__exp_lab) and $id__exp_lab != "") {
-            
+
             $res =  $this->Musuarios->getUsuarioChambistaID($id__exp_lab);
             $acausuario = $this->Musuarios->getAcademica_chambistasID($id__exp_lab);
-	
-       
         } else {
             echo json_encode(["resultado" => false, "mensaje" => "No se encontro el registro"]);
         }
-       
 
-         
+
+
         $usuarioacademico = $this->Musuarios->AcademicoConsulta($id__exp_lab);
-        
-      
-     
+
+
+
 
         $estados = $this->Musuarios->getEstados();
         $aborigenes = $this->Musuarios->getAborigenes();
@@ -1552,26 +1563,23 @@ class Cadmin extends CI_Controller
         $ress = [];
         if ($this->session->userdata('id_rol') != 2) {
             $ress = $this->Musuarios->getUsuariosProductivos($id__exp_lab);
-           
-           
-        }else{
+        } else {
             $ress = $this->Musuarios->getUsuariosProductivos($id__exp_lab);
-
         }
 
-      
-        
-        
+
+
+
         $movimiento_religioso = $this->Mprofesion_oficio->movimiento_religioso();
         $movimiento_sociales = $this->Mprofesion_oficio->movimiento_sociales();
-        $emprendedor= $this->Mprofesion_oficio->emprendedor();
-         $SectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
-         $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id__exp_lab);
-         $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id__exp_lab);
-         $profesiones = $this->Mprofesion_oficio->getprofesion();
-           //  echo json_encode($res);
+        $emprendedor = $this->Mprofesion_oficio->emprendedor();
+        $SectorProductivo = $this->Mprofesion_oficio->SectorProductivo();
+        $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id__exp_lab);
+        $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id__exp_lab);
+        $profesiones = $this->Mprofesion_oficio->getprofesion();
+        //  echo json_encode($res);
         // exit();
-         
+
 
 
         $breadcrumb = (object) [
@@ -1602,11 +1610,11 @@ class Cadmin extends CI_Controller
             'sectorProductivo' => $SectorProductivo,
             'usuarioexperiencia' => $usuarioexperiencia,
             'personal' => $personal,
-           
-           
-           
 
-            
+
+
+
+
 
             "librerias_js" => [
                 recurso("moment_js"), recurso("bootstrap-material-datetimepicker_js"),
@@ -1616,7 +1624,7 @@ class Cadmin extends CI_Controller
 
             ],
 
-            
+
             "ficheros_css" => [recurso("mapa_mabox_css")],
 
             "ficheros_js" => [recurso("editar_chambista_js")],
@@ -1637,9 +1645,9 @@ class Cadmin extends CI_Controller
             ]);
             exit();
         }
-        
 
-     
+
+
 
 
         $this->form_validation->set_rules('nombres', 'Nombres', 'trim|required|strip_tags');
@@ -1680,80 +1688,69 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_message('required', 'Debe llenar el campo %s');
 
 
-            $id_usuario = $this->input->post('id_usuario');
-            $telf_cel = $this->input->post('telf_movil');
-            $telf_cel = $telf_cel;
-            $codigoestado = $this->input->post('cod_estado');
-            $codigoestado = $codigoestado;
-            $codigoparroquia = $this->input->post('cod_parroquia');
-     
-            $codigomunicipio = $this->input->post('cod_municipio');
+        $id_usuario = $this->input->post('id_usuario');
+        $telf_cel = $this->input->post('telf_movil');
+        $telf_cel = $telf_cel;
+        $codigoestado = $this->input->post('cod_estado');
+        $codigoestado = $codigoestado;
+        $codigoparroquia = $this->input->post('cod_parroquia');
 
-            $fecha_nac = $this->input->post('datepicker');
+        $codigomunicipio = $this->input->post('cod_municipio');
 
-            $empleo = $this->input->post('empleo');
+        $fecha_nac = $this->input->post('datepicker');
+
+        $empleo = $this->input->post('empleo');
 
         // echo json_encode($fecha_nac );
         // exit();
 
 
-                $telf_local = $this->input->post('telf_local');
-              
-
-            $data = array(
-                'nombres' => $this->input->post('nombres'),
-                'apellidos' => $this->input->post('apellidos'),
-                'telf_cel' => $telf_cel,
-                'telf_local' => $telf_local,
-                'codigoestado' => $codigoestado,
-                'codigomunicipio'=>$codigomunicipio,
-                'codigoparroquia' => $codigoparroquia,               
-                'direccion' => $this->input->post('direccion'), 
-                'fecha_nac' => $fecha_nac, 
-                'estudio' => $this->input->post('estudio'),
-                'empleo' => $empleo,
-                'id_movimiento_religioso' => $this->input->post('id_movimiento_religioso'),
-                'id_movimiento_sociales' => $this->input->post('id_movimiento_sociales'),
-                 'latitud' => $this->input->post('latitud'),
-                'longitud' => $this->input->post('longitud'),
-
-                'cne' => $this->input->post('cne'),
-                'genero' => $this->input->post('genero'),
-                'estcivil' => $this->input->post('estcivil'),
-                'aborigen' => $this->input->post('aborigen'),
-                'id_profesion_oficio' => $this->input->post('id_profesion'),
-                'hijo' => $this->input->post('hijo'),
-                
-                'edad' => $this->input->post('edad')
-              
-               
-                
-
-            );
-       
-          
-
-                if ($this->Musuarios->actualizarChambista($data , $id_usuario)) {
-                   
-                    echo json_encode(["resultado" => true, "mensaje" => "Datos actualizados correctamente"]);
-                } else {
-                    echo json_encode(["resultado" => false, "mensaje" => "Error al actualizar los datos"]);
-                    
-                }
-            
-
-        
+        $telf_local = $this->input->post('telf_local');
 
 
-                
-            
-            
-          
-        
-        
+        $data = array(
+            'nombres' => $this->input->post('nombres'),
+            'apellidos' => $this->input->post('apellidos'),
+            'telf_cel' => $telf_cel,
+            'telf_local' => $telf_local,
+            'codigoestado' => $codigoestado,
+            'codigomunicipio' => $codigomunicipio,
+            'codigoparroquia' => $codigoparroquia,
+            'direccion' => $this->input->post('direccion'),
+            'fecha_nac' => $fecha_nac,
+            'estudio' => $this->input->post('estudio'),
+            'empleo' => $empleo,
+            'id_movimiento_religioso' => $this->input->post('id_movimiento_religioso'),
+            'id_movimiento_sociales' => $this->input->post('id_movimiento_sociales'),
+            'latitud' => $this->input->post('latitud'),
+            'longitud' => $this->input->post('longitud'),
+
+            'cne' => $this->input->post('cne'),
+            'genero' => $this->input->post('genero'),
+            'estcivil' => $this->input->post('estcivil'),
+            'aborigen' => $this->input->post('aborigen'),
+            'id_profesion_oficio' => $this->input->post('id_profesion'),
+            'hijo' => $this->input->post('hijo'),
+
+            'edad' => $this->input->post('edad')
+
+
+
+
+        );
+
+
+
+        if ($this->Musuarios->actualizarChambista($data, $id_usuario)) {
+
+            echo json_encode(["resultado" => true, "mensaje" => "Datos actualizados correctamente"]);
+        } else {
+            echo json_encode(["resultado" => false, "mensaje" => "Error al actualizar los datos"]);
+        }
     }
 
-    public function editar_formacion(){
+    public function editar_formacion()
+    {
         if ($this->session->userdata('id_rol') != 2) {
             echo  json_encode([
                 "resultado" => false, "mensaje" => "acceso n  o autorizado",
@@ -1762,19 +1759,18 @@ class Cadmin extends CI_Controller
             ]);
             exit();
         }
-       
-        
+
+
 
 
         $id_usu_aca = strip_tags(trim($this->uri->segment(3)));
-        $acausuario=[];
+        $acausuario = [];
         if (isset($id_usu_aca) and $id_usu_aca != "") {
             $acausuario = $this->Musuarios->getAcademi_canbistascaID($id_usu_aca);
-    
         }
-       
+
         $id_usuario = $acausuario->id_usuario;
-      
+
 
         $breadcrumb = (object) [
             "menu" => "Admin",
@@ -1809,7 +1805,6 @@ class Cadmin extends CI_Controller
         ];
 
         $this->load->view("main", $output);
-
     }
 
     public function registroformacionacademica()
@@ -1822,260 +1817,40 @@ class Cadmin extends CI_Controller
             ]);
             exit();
         }
-       
-        
 
 
-       
 
-            $data = array(
-                'centro_educ' => $this->input->post('centro_educ'),
-                'id_instruccion' => $this->input->post('id_instruccion'),
-                'id_estado_inst' =>  $this->input->post('id_estado_inst'),
-                'id_area_form' => $this->input->post('id_area_form'),
-                'titulo_carrera' => $this->input->post('titulo_carrera'),
-                'rango_fecha' => $this->input->post('rango_fecha'),
-                'id_usuario' => $this->input->post('id_usuario'),
-                'activo' => 1
-            );
 
-            $id_usu_aca = $this->input->post('id_usu_aca');
-           
 
-            if (isset($id_usu_aca) and $id_usu_aca != "") {
-                //actualizar
-                $data['id_usu_aca'] = $id_usu_aca;
-                if ($this->Musuarios->actualizarAcademicos($data)) {
-                    echo json_encode(["resultado" => true, "mensaje" => "Datos actualizados correctamente"]);
-                    
-                    
-                } else {
-                    echo json_encode(["resultado" => false, "mensaje" => "Error al actualizar los datos"]);
-                    
-                   
-                }
-            } 
-        }
 
-        public function registroproductivo()
-        {
-            if ($this->session->userdata('id_rol') != 2) {
-                echo  json_encode([
-                    "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                    "rol_usuario" => $this->session->userdata('id_rol')
-    
-                ]);
-                exit();
-            }
-            $id_usuario = strip_tags(trim($this->uri->segment(3)));
+        $data = array(
+            'centro_educ' => $this->input->post('centro_educ'),
+            'id_instruccion' => $this->input->post('id_instruccion'),
+            'id_estado_inst' =>  $this->input->post('id_estado_inst'),
+            'id_area_form' => $this->input->post('id_area_form'),
+            'titulo_carrera' => $this->input->post('titulo_carrera'),
+            'rango_fecha' => $this->input->post('rango_fecha'),
+            'id_usuario' => $this->input->post('id_usuario'),
+            'activo' => 1
+        );
 
-           
-            // $codigo =  $this->session->userdata('codigo');
-            // echo json_encode($id_usuario);
-            // exit();
-    
-           
-    
-            $this->form_validation->set_rules('tipo_chamba', 'Tipo Chamba', 'trim|min_length[1]|strip_tags');
-            $this->form_validation->set_rules('terreno_siembra', 'Terreno Siembra', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('sembrando', 'Sembrando', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('rubro', 'Rubro', 'trim|min_length[2]|max_length[100]|strip_tags');
-            $this->form_validation->set_rules('financiamiento', 'Financiamiento', 'trim|min_length[2]|strip_tags');
-    
-            $this->form_validation->set_rules('pesquera_inspector_pescador', 'Inspector pescador', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('pesquera_pescador', 'Pescador', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('pesquera_financiamiento', 'Financiamiento Pesquera', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('pesquera_refrigeracion', 'Refrigeración', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('emprendimiento', 'Emprendimiento', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('iniciar_emprendimiento', 'Emprendimiento', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('emprendimiento_empresa', 'Empresa', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('financiamiento-emprendimiento', 'Financiamiento emprendimiento', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('agrourbana-terrenos', 'Terrenos', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('agrourbana-patio', 'Patio', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('agrourbana-rubro', 'Rubro', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('financiamiento-agrourbana', 'Agrourbana', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('id_area_desarrollo_emprendedor', 'emprendedor_nombre', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('que_esta_desarrollando', 'queEstaDesarroLLando', 'trim|min_length[2]|strip_tags');
-            $this->form_validation->set_rules('id_sector_productivo', 'SectorProductivo', 'trim|min_length[2]|strip_tags');
-        
-    
-            $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
-            //delimitadores de errores
-    
-            //reglas de validación
-            $this->form_validation->set_message('required', 'Debe llenar el campo %s');
-            //reglas de validación
-    
-            if ($this->form_validation->run() === FALSE) {
-    
-                $mensaje_error = validation_errors();
-                $datos['mensajeerror'] = $mensaje_error;
-    
-                $this->session->set_flashdata('mensajeerror', $mensaje_error);
-                redirect('admin/editar_chambista/' . $id_usuario);
+        $id_usu_aca = $this->input->post('id_usu_aca');
+
+
+        if (isset($id_usu_aca) and $id_usu_aca != "") {
+            //actualizar
+            $data['id_usu_aca'] = $id_usu_aca;
+            if ($this->Musuarios->actualizarAcademicos($data)) {
+                echo json_encode(["resultado" => true, "mensaje" => "Datos actualizados correctamente"]);
             } else {
-                $codigo = $this->input->post('codigo');
-                // echo json_encode($codigo);
-                // exit();
-
-                $data = array(
-    
-                    //Chamba Vuelta al Campo
-                    'tipo_chamba' => $this->input->post('tipo_chamba'),
-                    'terreno_siembra' => $this->input->post('terreno_siembra'),
-                    'sembrando' => $this->input->post('sembrando'),
-                    'rubro' => $this->input->post('rubro'),
-                    'financiamiento' => $this->input->post('financiamiento'),
-                    //Pesquera y Acuicola
-                    'pesquera_inspector_pescador' => $this->input->post('pesquera_inspector_pescador'),
-                    'pesquera_pescador' => $this->input->post('pesquera_pescador'),
-                    'pesquera_financiamiento' => $this->input->post('pesquera_financiamiento'),
-                    'pesquera_refrigeracion' => $this->input->post('pesquera_refrigeracion'),
-                    //Pesquera y Acuicola
-                    'emprendimiento' => $this->input->post('emprendimiento'),
-                    'iniciar_emprendimiento' => $this->input->post('iniciar_emprendimiento'),
-                    'emprendimiento_empresa' => $this->input->post('emprendimiento_empresa'),
-                    'financiamiento-emprendimiento' => $this->input->post('financiamiento-emprendimiento'),
-                    //Chamba Agrourbana
-                    'agrourbana-terrenos' => $this->input->post('agrourbana-terrenos'),
-                    'agrourbana-patio' => $this->input->post('agrourbana-patio'),
-                    'agrourbana-rubro' => $this->input->post('agrourbana-rubro'),
-                    'financiamiento-agrourbana' => $this->input->post('financiamiento-agrourbana'),
-                    // Emprendedor
-                    'id_area_desarrollo_emprendedor' => $this->input->post('emprendedor_nombre'),
-                    // queEstaDesarroLLando
-                    'que_esta_desarrollando' => $this->input->post('queEstaDesarroLLando'),
-                    // desarrollo_proyecto_tecnologico
-                    'desarrollo_proyecto_tecnologico' => $this->input->post('proyecto_tecnologico'),
-                    // id_servicios_profesionales
-                    'id_servicios_profesionales' => $this->input->post('idservicios'),
-                    // Sector_Productivo
-                    'id_sector_productivo' => $this->input->post('SectorProductivo'),
-                    'id_usuario' => $id_usuario,
-                    'codigo' => $codigo,
-                   
-    
-                    
-                   
-                   
-                );
-
-                
-    
-                if (!$this->Musuarios->getUsuariosProductivos($id_usuario)) {
-                   
-               
-    
-                    if ($this->Musuarios->registroproductivos($data)) {
-                        $this->session->set_flashdata('mensajeexito', 'Registro exitoso');
-                       
-                        redirect('admin/editar_chambista/' . $id_usuario);
-                        
-                       
-                       
-                    } else {
-                        $this->session->set_flashdata('mensajeerror', 'Ocurrio un error guardando intente de nuevo.');
-                        redirect('admin/editar_chambista/' . $id_usuario);
-                    }
-                } else {
-                    
-                    $this->session->set_flashdata('mensajeerror', 'Solo puedes registrar una opción, puedes eliminarla y crear una nueva');
-                    redirect('admin/editar_chambista/' . $id_usuario);
-                }
+                echo json_encode(["resultado" => false, "mensaje" => "Error al actualizar los datos"]);
             }
         }
+    }
 
-        public function eliminarchamba()
-        {
-            if ($this->session->userdata('id_rol') != 2 ) {
-                echo  json_encode([
-                    "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                    "rol_usuario" => $this->session->userdata('id_rol')
-    
-                ]);
-                exit();
-            }
-           
-            
-            $id_usuario = strip_tags(trim($this->uri->segment(2)));
-          
-    
-            if ($this->Musuarios->eliminarchambas($id_usuario)) {
-                $this->session->set_flashdata('mensajeexito', 'Operación Exitosa! ah eliminar la chamba');
-                redirect('admin/editar_chambista/' .$id_usuario);
-            } else {
-                $this->session->set_flashdata('mensajeerror', 'Ocurrió un error intente de nuevo!');
-                redirect('admin/editar_chambista/' .$id_usuario);
-            }
-        }
-
-        public function generate($html, $cedula)
-        {
-            $dompdf = new Dompdf(); // Instanciamos un objeto de la clase DOMPDF.
-            $dompdf->loadHtml($html); // Cargamos el contenido HTML.
-            $dompdf->render(); // Renderizamos el documento PDF.
-            $dompdf->setPaper('A4', 'portrait');
-            $dompdf->stream($cedula . ".pdf", array("Attachment" => 0)); # Enviamos el fichero PDF al navegador.
-            return $dompdf->output();
-        }
-
-        public function pdfCadmin()
-        {
-            $permitidos = [2,3,4,5];        
-            $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-    
-            if ( !$tiene_acceso) {
-                echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-                exit();
-            }
-            $id_usuario = strip_tags(trim($this->uri->segment(2)));
-            $codigo = $this->Musuarios->getUsuarios($id_usuario);
-            $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id_usuario);
-            $usuario = $this->Musuarios->getUsuarioConsulta($codigo->codigo);
-            $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id_usuario, $codigo->codigo);
-            $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademicoConsulta( $codigo->codigo);
-            $res = $this->Musuarios->getRedesSocialesConsulta($codigo->codigo);
-         
-            $imgqr = $this->qr($codigo->codigo,$codigo->cedula);
-    
-          
-            $data['imgqr'] = $imgqr;
-    
-            $data['personal'] = $personal;
-            $data['usuario'] = $usuario;
-            $data['usuarioexperiencia'] = $usuarioexperiencia;
-            $data['usuarioacademico'] = $usuarioacademico;
-            $data['redesusuario'] = $res;
-            $html = $this->load->view('pdf_exports/genera_pdf_muestra', $data, TRUE);
-        
-      
-            $this->generate($html, $usuario->cedula);
-        }
-        public function qr($codigo,$cedula)
-        {
-            
-        
-                //hacemos configuraciones
-                $params['data'] = base_url()."consulta/".$codigo;
-                $params['level'] = 'L';
-                $params['size'] = 5;
-                /*L = Baja
-                M = Mediana
-                Q = Alta
-                H= Máxima */
-                $params['savename'] = FCPATH . "qr_code/".$cedula."_".$codigo.".png";
-                //generamos el código qr
-                $this->ciqrcode->generate($params);
-    
-                $data['img'] = $cedula."_".$codigo.".png";
-                return $data['img'];
-            
-        }
-
-           public function admin_cambiarClave()
+    public function registroproductivo()
     {
-
-        if (!$this->session->userdata('id_usuario'))  {
+        if ($this->session->userdata('id_rol') != 2) {
             echo  json_encode([
                 "resultado" => false, "mensaje" => "acceso n  o autorizado",
                 "rol_usuario" => $this->session->userdata('id_rol')
@@ -2083,62 +1858,274 @@ class Cadmin extends CI_Controller
             ]);
             exit();
         }
- 
-        $id_admin =$this->session->userdata('id_usuario'); 
-        
-       
+        $id_usuario = strip_tags(trim($this->uri->segment(3)));
+
+
+        // $codigo =  $this->session->userdata('codigo');
+        // echo json_encode($id_usuario);
+        // exit();
+
+
+
+        $this->form_validation->set_rules('tipo_chamba', 'Tipo Chamba', 'trim|min_length[1]|strip_tags');
+        $this->form_validation->set_rules('terreno_siembra', 'Terreno Siembra', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('sembrando', 'Sembrando', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('rubro', 'Rubro', 'trim|min_length[2]|max_length[100]|strip_tags');
+        $this->form_validation->set_rules('financiamiento', 'Financiamiento', 'trim|min_length[2]|strip_tags');
+
+        $this->form_validation->set_rules('pesquera_inspector_pescador', 'Inspector pescador', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('pesquera_pescador', 'Pescador', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('pesquera_financiamiento', 'Financiamiento Pesquera', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('pesquera_refrigeracion', 'Refrigeración', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('emprendimiento', 'Emprendimiento', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('iniciar_emprendimiento', 'Emprendimiento', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('emprendimiento_empresa', 'Empresa', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('financiamiento-emprendimiento', 'Financiamiento emprendimiento', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('agrourbana-terrenos', 'Terrenos', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('agrourbana-patio', 'Patio', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('agrourbana-rubro', 'Rubro', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('financiamiento-agrourbana', 'Agrourbana', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('id_area_desarrollo_emprendedor', 'emprendedor_nombre', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('que_esta_desarrollando', 'queEstaDesarroLLando', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('id_sector_productivo', 'SectorProductivo', 'trim|min_length[2]|strip_tags');
+
+
+        $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
+        //delimitadores de errores
+
+        //reglas de validación
+        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+        //reglas de validación
+
+        if ($this->form_validation->run() === FALSE) {
+
+            $mensaje_error = validation_errors();
+            $datos['mensajeerror'] = $mensaje_error;
+
+            $this->session->set_flashdata('mensajeerror', $mensaje_error);
+            redirect('admin/editar_chambista/' . $id_usuario);
+        } else {
+            $codigo = $this->input->post('codigo');
+            // echo json_encode($codigo);
+            // exit();
+
+            $data = array(
+
+                //Chamba Vuelta al Campo
+                'tipo_chamba' => $this->input->post('tipo_chamba'),
+                'terreno_siembra' => $this->input->post('terreno_siembra'),
+                'sembrando' => $this->input->post('sembrando'),
+                'rubro' => $this->input->post('rubro'),
+                'financiamiento' => $this->input->post('financiamiento'),
+                //Pesquera y Acuicola
+                'pesquera_inspector_pescador' => $this->input->post('pesquera_inspector_pescador'),
+                'pesquera_pescador' => $this->input->post('pesquera_pescador'),
+                'pesquera_financiamiento' => $this->input->post('pesquera_financiamiento'),
+                'pesquera_refrigeracion' => $this->input->post('pesquera_refrigeracion'),
+                //Pesquera y Acuicola
+                'emprendimiento' => $this->input->post('emprendimiento'),
+                'iniciar_emprendimiento' => $this->input->post('iniciar_emprendimiento'),
+                'emprendimiento_empresa' => $this->input->post('emprendimiento_empresa'),
+                'financiamiento-emprendimiento' => $this->input->post('financiamiento-emprendimiento'),
+                //Chamba Agrourbana
+                'agrourbana-terrenos' => $this->input->post('agrourbana-terrenos'),
+                'agrourbana-patio' => $this->input->post('agrourbana-patio'),
+                'agrourbana-rubro' => $this->input->post('agrourbana-rubro'),
+                'financiamiento-agrourbana' => $this->input->post('financiamiento-agrourbana'),
+                // Emprendedor
+                'id_area_desarrollo_emprendedor' => $this->input->post('emprendedor_nombre'),
+                // queEstaDesarroLLando
+                'que_esta_desarrollando' => $this->input->post('queEstaDesarroLLando'),
+                // desarrollo_proyecto_tecnologico
+                'desarrollo_proyecto_tecnologico' => $this->input->post('proyecto_tecnologico'),
+                // id_servicios_profesionales
+                'id_servicios_profesionales' => $this->input->post('idservicios'),
+                // Sector_Productivo
+                'id_sector_productivo' => $this->input->post('SectorProductivo'),
+                'id_usuario' => $id_usuario,
+                'codigo' => $codigo,
+
+
+
+
+
+            );
+
+
+
+            if (!$this->Musuarios->getUsuariosProductivos($id_usuario)) {
+
+
+
+                if ($this->Musuarios->registroproductivos($data)) {
+                    $this->session->set_flashdata('mensajeexito', 'Registro exitoso');
+
+                    redirect('admin/editar_chambista/' . $id_usuario);
+                } else {
+                    $this->session->set_flashdata('mensajeerror', 'Ocurrio un error guardando intente de nuevo.');
+                    redirect('admin/editar_chambista/' . $id_usuario);
+                }
+            } else {
+
+                $this->session->set_flashdata('mensajeerror', 'Solo puedes registrar una opción, puedes eliminarla y crear una nueva');
+                redirect('admin/editar_chambista/' . $id_usuario);
+            }
+        }
+    }
+
+    public function eliminarchamba()
+    {
+        if ($this->session->userdata('id_rol') != 2) {
+            echo  json_encode([
+                "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                "rol_usuario" => $this->session->userdata('id_rol')
+
+            ]);
+            exit();
+        }
+
+
+        $id_usuario = strip_tags(trim($this->uri->segment(2)));
+
+
+        if ($this->Musuarios->eliminarchambas($id_usuario)) {
+            $this->session->set_flashdata('mensajeexito', 'Operación Exitosa! ah eliminar la chamba');
+            redirect('admin/editar_chambista/' . $id_usuario);
+        } else {
+            $this->session->set_flashdata('mensajeerror', 'Ocurrió un error intente de nuevo!');
+            redirect('admin/editar_chambista/' . $id_usuario);
+        }
+    }
+
+    public function generate($html, $cedula)
+    {
+        $dompdf = new Dompdf(); // Instanciamos un objeto de la clase DOMPDF.
+        $dompdf->loadHtml($html); // Cargamos el contenido HTML.
+        $dompdf->render(); // Renderizamos el documento PDF.
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->stream($cedula . ".pdf", array("Attachment" => 0)); # Enviamos el fichero PDF al navegador.
+        return $dompdf->output();
+    }
+
+    public function pdfCadmin()
+    {
+        $permitidos = [2, 3, 4, 5];
+        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+
+        if (!$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+        $id_usuario = strip_tags(trim($this->uri->segment(2)));
+        $codigo = $this->Musuarios->getUsuarios($id_usuario);
+        $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id_usuario);
+        $usuario = $this->Musuarios->getUsuarioConsulta($codigo->codigo);
+        $usuarioexperiencia = $this->Musuarios->getUsuarioRegistradoExperiencias($id_usuario, $codigo->codigo);
+        $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademicoConsulta($codigo->codigo);
+        $res = $this->Musuarios->getRedesSocialesConsulta($codigo->codigo);
+
+        $imgqr = $this->qr($codigo->codigo, $codigo->cedula);
+
+
+        $data['imgqr'] = $imgqr;
+
+        $data['personal'] = $personal;
+        $data['usuario'] = $usuario;
+        $data['usuarioexperiencia'] = $usuarioexperiencia;
+        $data['usuarioacademico'] = $usuarioacademico;
+        $data['redesusuario'] = $res;
+        $html = $this->load->view('pdf_exports/genera_pdf_muestra', $data, TRUE);
+
+
+        $this->generate($html, $usuario->cedula);
+    }
+    public function qr($codigo, $cedula)
+    {
+
+
+        //hacemos configuraciones
+        $params['data'] = base_url() . "consulta/" . $codigo;
+        $params['level'] = 'L';
+        $params['size'] = 5;
+        /*L = Baja
+                M = Mediana
+                Q = Alta
+                H= Máxima */
+        $params['savename'] = FCPATH . "qr_code/" . $cedula . "_" . $codigo . ".png";
+        //generamos el código qr
+        $this->ciqrcode->generate($params);
+
+        $data['img'] = $cedula . "_" . $codigo . ".png";
+        return $data['img'];
+    }
+
+    public function admin_cambiarClave()
+    {
+
+        if (!$this->session->userdata('id_usuario')) {
+            echo  json_encode([
+                "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                "rol_usuario" => $this->session->userdata('id_rol')
+
+            ]);
+            exit();
+        }
+
+        $id_admin = $this->session->userdata('id_usuario');
+
+
 
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "Cambiar Clave"
 
         ];
-        
-       
-        if($this->session->userdata('id_rol') == 3){
+
+
+        if ($this->session->userdata('id_rol') == 3) {
             $output = [
                 "menu_lateral" => "estructuras",
                 "breadcrumb"      =>   $breadcrumb,
                 "title"             => "cambiarClave",
-                 "vista_principal"   => "chambistas/cambiarClave",
-                 "id_admin"           => $id_admin,
-    
-                 "ficheros_js" => [recurso("admin_cambiarClave_js")]
-                 
-                 
-    
+                "vista_principal"   => "chambistas/cambiarClave",
+                "id_admin"           => $id_admin,
+
+                "ficheros_js" => [recurso("admin_cambiarClave_js")]
+
+
+
             ];
-        }else if ($this->session->userdata('id_rol') == 2) {
+        } else if ($this->session->userdata('id_rol') == 2) {
             $output = [
                 "menu_lateral" => "admin",
                 "breadcrumb"      =>   $breadcrumb,
                 "title"             => "cambiarClave",
-                 "vista_principal"   => "chambistas/cambiarClave",
-                 "id_admin"           => $id_admin,
-    
-                 "ficheros_js" => [recurso("admin_cambiarClave_js")]
-                 
-                 
-    
+                "vista_principal"   => "chambistas/cambiarClave",
+                "id_admin"           => $id_admin,
+
+                "ficheros_js" => [recurso("admin_cambiarClave_js")]
+
+
+
             ];
-        }else{
+        } else {
             $output = [
                 "menu_lateral" => "empresas",
                 "breadcrumb"      =>   $breadcrumb,
                 "title"             => "cambiarClave",
-                 "vista_principal"   => "chambistas/cambiarClave",
-                 "id_admin"           => $id_admin,
-    
-                 "ficheros_js" => [recurso("admin_cambiarClave_js")]
-                 
-                 
-    
+                "vista_principal"   => "chambistas/cambiarClave",
+                "id_admin"           => $id_admin,
+
+                "ficheros_js" => [recurso("admin_cambiarClave_js")]
+
+
+
             ];
         }
 
         $this->load->view("main", $output);
     }
-           public function estructuras_empresa()
+    public function estructuras_empresa()
     {
 
         if ($this->session->userdata('id_rol') != 2) {
@@ -2149,17 +2136,17 @@ class Cadmin extends CI_Controller
             ]);
             exit();
         }
-        $id_admin =$this->session->userdata('id_usuario'); 
-        
-       
+        $id_admin = $this->session->userdata('id_usuario');
+
+
 
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "Cambiar Clave"
 
         ];
-        
-       
+
+
         $output = [
             "menu_lateral" => "admin",
             "breadcrumb"      =>   $breadcrumb,
@@ -2178,8 +2165,8 @@ class Cadmin extends CI_Controller
             "librerias_js" => [],
 
             "ficheros_js" => [recurso("cambiarclave_estruct_empre_js")]
-             
-             
+
+
 
         ];
 
@@ -2188,8 +2175,8 @@ class Cadmin extends CI_Controller
     public function admin_cambiarClaves()
     {
 
-        
-       
+
+
         // if ($this->session->userdata('id_rol') != 2 || $this->session->userdata('id_rol') != 3) {
         //     echo  json_encode([
         //         "resultado" => false, "mensaje" => "acceso n  o autorizado",
@@ -2206,13 +2193,13 @@ class Cadmin extends CI_Controller
 
         //reglas de validación
         $this->form_validation->set_message('required', 'Debe llenar el campo %s');
-        
 
 
 
-       
 
-      
+
+
+
 
         if ($this->form_validation->run() === FALSE) {
             echo json_encode([
@@ -2221,122 +2208,109 @@ class Cadmin extends CI_Controller
                 "resultado" => false,
                 "mensaje" => $mensaje_error
             ]);
-           
-
-           
         } else {
-           
+
 
             $datos['clave_actual'] = $this->input->post('clave_actual');
             $datos['password'] = $this->input->post('password');
             $datos['new_password'] = password_hash($this->input->post('new_password'), PASSWORD_DEFAULT);
             $datos['id_admin'] = $this->input->post('id_admin');
-           
-
-            
-            
-           
-
-           if($this->session->userdata('id_rol') == 3){
-            if ($resultado = $this->Musuarios->consultaradmin($datos)) {
-          
-
-                if (password_verify($datos['clave_actual'], $resultado[0]->password)) {
-           
 
 
-                    $resultado = $this->Musuarios->cambiarPasswor_admin($datos);
-                  
 
-                    if ($resultado) {
 
-                  
-                        echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
-                       
+
+
+            if ($this->session->userdata('id_rol') == 3) {
+                if ($resultado = $this->Musuarios->consultaradmin($datos)) {
+
+
+                    if (password_verify($datos['clave_actual'], $resultado[0]->password)) {
+
+
+
+                        $resultado = $this->Musuarios->cambiarPasswor_admin($datos);
+
+
+                        if ($resultado) {
+
+
+                            echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
+                        } else {
+
+                            echo  json_encode(["resultado" => false, "mensaje" =>  'Error no se pudo cambiar la contraseña']);
+                        }
                     } else {
-                        
-                        echo  json_encode(["resultado" => false, "mensaje" =>  'Error no se pudo cambiar la contraseña']);
-                       
+
+                        $this->session->set_flashdata('mensajeerror', 'Contraseña actual no coincide');
+                        echo  json_encode(["resultado" => false, "mensaje" =>  'Contraseña actual no coincide']);
                     }
                 } else {
-
-                    $this->session->set_flashdata('mensajeerror', 'Contraseña actual no coincide');
-                    echo  json_encode(["resultado" => false, "mensaje" =>  'Contraseña actual no coincide']);
-                   
+                    $this->session->set_flashdata('mensajeerror', 'Ocurrio un error intente de nuevo');
+                    echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
                 }
-            } else {
-                $this->session->set_flashdata('mensajeerror', 'Ocurrio un error intente de nuevo');
-                echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
-            }
-           
-
-           }else if($this->session->userdata('id_rol') == 2){
-            if ($resultado = $this->Musuarios->consultaradmin($datos)) {
-          
-
-                if (password_verify($datos['clave_actual'], $resultado[0]->password)) {
-           
+            } else if ($this->session->userdata('id_rol') == 2) {
+                if ($resultado = $this->Musuarios->consultaradmin($datos)) {
 
 
-                    $resultado = $this->Musuarios->cambiarPasswor_admin($datos);
-                  
+                    if (password_verify($datos['clave_actual'], $resultado[0]->password)) {
 
-                    if ($resultado) {
 
-                  
-                        echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
-                       
+
+                        $resultado = $this->Musuarios->cambiarPasswor_admin($datos);
+
+
+                        if ($resultado) {
+
+
+                            echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
+                        } else {
+
+                            echo  json_encode(["resultado" => false, "mensaje" =>  'Error no se pudo cambiar la contraseña']);
+                        }
                     } else {
-                        
-                        echo  json_encode(["resultado" => false, "mensaje" =>  'Error no se pudo cambiar la contraseña']);
-                       
+
+                        $this->session->set_flashdata('mensajeerror', 'Contraseña actual no coincide');
+                        echo  json_encode(["resultado" => false, "mensaje" =>  'Contraseña actual no coincide']);
                     }
                 } else {
-
-                    $this->session->set_flashdata('mensajeerror', 'Contraseña actual no coincide');
-                    echo  json_encode(["resultado" => false, "mensaje" =>  'Contraseña actual no coincide']);
-                   
+                    $this->session->set_flashdata('mensajeerror', 'Ocurrio un error intente de nuevo');
+                    echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
                 }
             } else {
-                $this->session->set_flashdata('mensajeerror', 'Ocurrio un error intente de nuevo');
-                echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
-            }
-           }else{
-            if ($resultado = $this->Musuarios->consultaradmin($datos)) {
-          
-
-                if (password_verify($datos['clave_actual'], $resultado[0]->password)) {
-           
+                if ($resultado = $this->Musuarios->consultaradmin($datos)) {
 
 
-                    $resultado = $this->Musuarios->cambiarPasswor_admin($datos);
-                  
+                    if (password_verify($datos['clave_actual'], $resultado[0]->password)) {
 
-                    if ($resultado) {
 
-                  
-                        echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
-                       
+
+                        $resultado = $this->Musuarios->cambiarPasswor_admin($datos);
+
+
+                        if ($resultado) {
+
+
+                            echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
+                        } else {
+
+                            echo  json_encode(["resultado" => false, "mensaje" =>  'Error no se pudo cambiar la contraseña']);
+                        }
                     } else {
-                        
-                        echo  json_encode(["resultado" => false, "mensaje" =>  'Error no se pudo cambiar la contraseña']);
-                       
+
+                        $this->session->set_flashdata('mensajeerror', 'Contraseña actual no coincide');
+                        echo  json_encode(["resultado" => false, "mensaje" =>  'Contraseña actual no coincide']);
                     }
                 } else {
-
-                    $this->session->set_flashdata('mensajeerror', 'Contraseña actual no coincide');
-                    echo  json_encode(["resultado" => false, "mensaje" =>  'Contraseña actual no coincide']);
-                   
+                    $this->session->set_flashdata('mensajeerror', 'Ocurrio un error intente de nuevo');
+                    echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
                 }
-            } else {
-                $this->session->set_flashdata('mensajeerror', 'Ocurrio un error intente de nuevo');
-                echo  json_encode(["resultado" => false, "mensaje" =>  'Ocurrio un error intente de nuevo']);
             }
-           }
         }
     }
-    
-    public function limpar_qr(){
+
+    public function limpar_qr()
+    {
 
         if ($this->session->userdata('id_rol') != 2) {
             echo  json_encode([
@@ -2346,10 +2320,433 @@ class Cadmin extends CI_Controller
             ]);
             exit();
         }
-        $files = glob(FCPATH."qr_code/*"); //obtenemos todos los nombres de los ficheros
-foreach($files as $file){
-    if(is_file($file))
-    unlink($file); //elimino el fichero
+        $files = glob(FCPATH . "qr_code/*"); //obtenemos todos los nombres de los ficheros
+        foreach ($files as $file) {
+            if (is_file($file))
+                unlink($file); //elimino el fichero
+        }
+    }
+
+
+
+    public function ver_oferta_admin()
+    {
+
+
+        $permitidos = [2, 3, 5];
+        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+
+        if (!$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+
+
+
+
+
+        if ($this->session->userdata('id_rol') == 3) {
+            
+        $id_oferta = strip_tags(trim($this->uri->segment(3)));
+        $datos = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_oferta);
+
+
+            if ($datos == false) {
+                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
+                redirect('estructuras/listar_empresas');
+
+                exit();
+            }
+
+            $nombres = $datos[0]->nombre_razon_social;
+            $oferta = $datos[0];
+
+
+
+
+
+
+            $breadcrumb = (object) [
+                "menu" => "Estrucutura",
+                "menu_seleccion" => "Ver oferta"
+
+
+            ];
+
+            $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($oferta->id_oferta);
+
+
+
+            $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+            $estatus_oferta_chambista = $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+            $rango_edad = $this->Estructuras_model->rango_Edad();
+
+
+
+
+            $output = [
+                "menu_lateral"      =>   "estructuras",
+                "breadcrumb"        =>   $breadcrumb,
+                "title"             => "Oferta de emplo " . $nombres,
+                "vista_principal"   => "admin/ver_oferta",
+                "ficheros_js" => [recurso("accordion_js"), recurso("ver_oferta_js")],
+                "oferta" => $oferta,
+                "estatus_oferta_chambista" => $estatus_oferta_chambista,
+                "profesion_oficio" => $profesion_oficio,
+                "chambista_ofertas" => $chambista_ofertas,
+                "id_oferta" => $id_oferta,
+                "datatable"             => true,
+                "areaform"     =>   $this->Musuarios->getAreaForm(),
+                "rangoedad" => $rango_edad,
+
+
+
+
+
+            ];
+
+            $this->load->view("main", $output);
+        } else {
+
+            $id_oferta = strip_tags(trim($this->uri->segment(3)));
+        $datos = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_oferta);
+
+          if ($datos == false) {
+                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
+                redirect('admin/empresas');
+
+                exit();
+            }
+
+
+            
+
+
+            $nombres = $datos[0]->nombre_razon_social;
+            $oferta = $datos[0];
+
+            $breadcrumb = (object) [
+                "menu" => "Admin",
+                "menu_seleccion" => "Ver oferta"
+
+
+            ];
+
+            $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($oferta->id_oferta);
+
+
+
+            $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+            $estatus_oferta_chambista = $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+            $rango_edad = $this->Estructuras_model->rango_Edad();
+
+
+
+
+            $output = [
+                "menu_lateral"      =>   "admin",
+                "breadcrumb"        =>   $breadcrumb,
+                "title"             => "Oferta de emplo " . $nombres,
+                "vista_principal"   => "admin/ver_oferta",
+                "ficheros_js" => [recurso("accordion_js"), recurso("ver_oferta_js")],
+                "oferta" => $oferta,
+                "estatus_oferta_chambista" => $estatus_oferta_chambista,
+                "profesion_oficio" => $profesion_oficio,
+                "chambista_ofertas" => $chambista_ofertas,
+                "id_oferta" => $id_oferta,
+                "datatable"             => true,
+                "areaform"     =>   $this->Musuarios->getAreaForm(),
+                "rangoedad" => $rango_edad,
+
+
+
+
+
+            ];
+
+            $this->load->view("main", $output);
+        }
+    }
+    public function ver_oferta_unervesidad()
+    {
+
+
+        $permitidos = [2, 3, 5];
+        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+
+        if (!$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+
+
+        $id_oferta = strip_tags(trim($this->uri->segment(3)));
+        $oferta = $this->Oferta_universida_model->obtener_oferta_uner($id_oferta);
+
+        if ($this->session->userdata('id_rol') == 3) {
+            $breadcrumb = (object) [
+                "menu" => "Estructuras",
+                "menu_seleccion" => "Ver oferta"
+
+
+            ];
+
+            if ($oferta == false) {
+                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
+                redirect('estructuras/lista_universidad');
+
+                exit();
+            }
+
+
+            $chambista_ofertas = $this->Oferta_universida_model->obtener_solicitud_chambista($oferta->id_solicitud);
+
+
+
+
+
+
+            $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+            $estatus_oferta_chambista = $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+            $rango_edad = $this->Estructuras_model->rango_Edad();
+
+
+
+            $ruta = strip_tags(trim($this->uri->segment(1)));
+            $output = [
+                "menu_lateral"      =>   $ruta,
+                "breadcrumb"        =>   $breadcrumb,
+                "title"             => "Oferta de emplo " . $oferta->nombre_razon_social,
+                "vista_principal"   => "admin/ver_oferta_univerdidad",
+                "ficheros_js" => [recurso("accordion_js"), recurso("ver_oferta_universidad_js")],
+                "oferta" => $oferta,
+                "estatus_oferta_chambista" => $estatus_oferta_chambista,
+                "profesion_oficio" => $profesion_oficio,
+                "chambista_ofertas" => $chambista_ofertas,
+                "id_oferta" => $id_oferta,
+                "constantes_js" => ["ruta" => $ruta],
+                "datatable"             => true,
+                "areaform"     =>   $this->Musuarios->getAreaForm(),
+                "rangoedad" => $rango_edad,
+
+
+
+
+
+            ];
+
+            $this->load->view("main", $output);
+        } else {
+
+            $id_oferta = strip_tags(trim($this->uri->segment(3)));
+            $oferta = $this->Oferta_universida_model->obtener_oferta_uner($id_oferta);
+
+            $breadcrumb = (object) [
+                "menu" => "Admin",
+                "menu_seleccion" => "Ver oferta"
+
+
+            ];
+
+            $chambista_ofertas = $this->Oferta_universida_model->obtener_solicitud_chambista($oferta->id_solicitud);
+
+            if ($oferta == false) {
+                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
+                redirect('admin/universidades');
+
+                exit();
+            }
+
+
+
+
+
+
+            $profesion_oficio = $this->Estructuras_model->profesion_oficio();
+            $estatus_oferta_chambista = $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
+            $rango_edad = $this->Estructuras_model->rango_Edad();
+
+
+
+            $ruta = strip_tags(trim($this->uri->segment(1)));
+            $output = [
+                "menu_lateral"      =>   $ruta,
+                "breadcrumb"        =>   $breadcrumb,
+                "title"             => "Oferta de emplo " . $oferta->nombre_razon_social,
+                "vista_principal"   => "admin/ver_oferta_univerdidad",
+                "ficheros_js" => [recurso("accordion_js"), recurso("ver_oferta_universidad_js")],
+                "oferta" => $oferta,
+                "estatus_oferta_chambista" => $estatus_oferta_chambista,
+                "profesion_oficio" => $profesion_oficio,
+                "chambista_ofertas" => $chambista_ofertas,
+                "id_oferta" => $id_oferta,
+                "constantes_js" => ["ruta" => $ruta],
+                "datatable"             => true,
+                "areaform"     =>   $this->Musuarios->getAreaForm(),
+                "rangoedad" => $rango_edad,
+
+
+
+
+
+            ];
+
+            $this->load->view("main", $output);
+        }
+    }
+
+
+     public function listar_oferta_universidades()
+
+
+   
+    {
+
+    
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+        
+        $id_empresa = strip_tags(trim($this->uri->segment(3)));
+
+        $permitidos = array(2, 3,4);
+        $tiene_acceso = in_array(2, $permitidos, false);
+
+        if (!$tiene_acceso) {
+
+
+            json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        }
+        // $id_empresa = $this->session->userdata('id_empresa');
+
+    
+
+        $ofertas = $this->Oferta_universida_model->obtener_ofertas_unirversidad($id_empresa);
+
+        if ($ofertas == false) {
+                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
+                redirect('admin/universidades');
+
+                exit();
+            }
+        // echo json_encode($id_empresa);
+        // exit;
+
+        $breadcrumb = (object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Listar oferta"
+
+
+        ];
+
+
+        $ruta = strip_tags(trim($this->uri->segment(1)));
+        $output = [
+            "menu_lateral"      => "admin",
+            "breadcrumb"        =>   $breadcrumb,
+            "title"             => "Nueva oferta",
+            "vista_principal"   => "admin/listar_ofertas_uner",
+            "ficheros_js" => [recurso("listar_oferta_js")],
+            "ofertas" => $ofertas,
+            "constantes_js" => ["ruta" => $ruta],
+            "id_oferta" => $id_empresa,
+
+
+
+
+
+        ];
+
+        $this->load->view("main", $output);
+    }
+
+      public function listar_oferta_admin()
+
+
+   
+    {
+
+    
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+        
+        $permitidos = array(4,5);        
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+
+        if ( !$tiene_acceso) {
+           
+            
+            json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+          
+        }
+        // id del usuario 
+        
+        $id_oferta = strip_tags(trim($this->uri->segment(3)));
+    
+
+
+        $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_oferta);
+        if ($ofertas == false) {
+            $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
+            redirect('admin/empresas');
+
+            exit();
+        }
+     
+        if(!$id_oferta == 3){
+            $breadcrumb = (object) [
+                "menu" => "admin",
+                "menu_seleccion" => "Listar oferta"
+    
+    
+            ];
+        
+    
+            $ruta = strip_tags(trim($this->uri->segment(1)));
+            $output = [
+                "menu_lateral"      =>"admin",
+                "breadcrumb"        =>   $breadcrumb,
+                "title"             => "Nueva oferta",
+                "vista_principal"   => "admin/listar_ofertas",
+                "ficheros_js" => [recurso("listar_oferta_js")],
+                "ofertas" => $ofertas,
+                "constantes_js" => ["ruta"=>$ruta]
+            
+         
+         
+    
+    
+            ];
+    
+            $this->load->view("main", $output);
+
+        }else{
+            $breadcrumb = (object) [
+                "menu" => "Estrucutras",
+                "menu_seleccion" => "Listar oferta"
+    
+    
+            ];
+        
+    
+            $ruta = strip_tags(trim($this->uri->segment(1)));
+            $output = [
+                "menu_lateral"      =>"estructuras",
+                "breadcrumb"        =>   $breadcrumb,
+                "title"             => "Nueva oferta",
+                "vista_principal"   => "admin/listar_ofertas",
+                "ficheros_js" => [recurso("listar_oferta_js")],
+                "ofertas" => $ofertas,
+                "constantes_js" => ["ruta"=>$ruta]
+            
+         
+         
+    
+    
+            ];
+    
+            $this->load->view("main", $output);
+        }
+    }
 }
-    }
-    }

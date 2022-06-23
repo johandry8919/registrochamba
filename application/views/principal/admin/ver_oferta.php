@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         <div class="row clearfix">
-            <div class="card-title">Oferta de empleo - <?php echo $oferta->nombre_razon_social?></div>
+            <div class="card-title">Oferta de empleo - <?php if(isset( $oferta->nombre_razon_social))echo $oferta->nombre_razon_social?></div>
 
 
         </div>
@@ -10,7 +10,7 @@
 
     <div class="card-body"></div>
 
-    <ul class="demo-accordion accordionjs m-0">
+    <ul class="demo-accordion accordionjs m-0"> 
         <li class="acc_section acc_active">
             <div class="acc_head">
                 <h3>Datos de la oferta</h3>
@@ -127,7 +127,9 @@
                                         </a>
                                         <input class="input100 border-start-0 ms-0 form-control" type="text"
                                             id="experiencia_laboral" maxlength="30" name="nombres"
-                                            value="<?php echo $oferta->experiencia?>" placeholder="" required autofocus
+                                            value="<?php if(isset( $oferta->experiencia)){
+                                                echo $oferta->experiencia;
+                                            }?>" placeholder="" required autofocus
                                             readonly>
 
                                     </div>
@@ -184,11 +186,11 @@
 
                                     <select class="form-control" id="sexo" name="sexo" readonly>
                                         <option value="">Seleccione una opción</option>
-                                        <option <?php if($oferta->sexo=="Indiferente") echo "selected" ?>
+                                        <option <?php if(isset($oferta->sexo)=="Indiferente") echo "selected" ?>
                                             value="Indiferente">Indiferente</option>
-                                        <option <?php if($oferta->sexo=="Masculino") echo "selected" ?>
+                                        <option <?php if(isset($oferta->sexo)=="Masculino") echo "selected" ?>
                                             value="Masculino">Masculino</option>
-                                        <option <?php if($oferta->sexo=="Femenino") echo "selected" ?> value="Femenino">
+                                        <option <?php if(isset($oferta->sexo)=="Femenino") echo "selected" ?> value="Femenino">
                                             Femenino</option>
                                     </select>
 
@@ -205,7 +207,8 @@
                                     <label class="form-label">Descripcion de la oferta</label>
 
                                     <textarea readonly class="form-control"
-                                        id="descripcion_oferta"><?php echo $oferta->descripcion_oferta?> </textarea>
+                                        id="descripcion_oferta"><?php if(isset($oferta->descripcion_oferta))echo $oferta->descripcion_oferta
+                                        ?> </textarea>
 
                                 </div>
 
@@ -224,7 +227,7 @@
                                             <i class="mdi mdi-account" aria-hidden="true"></i>
                                         </a>
                                         <input class="input100 border-start-0 ms-0 form-control" type="text" id="cargo"
-                                            maxlength="30" name="apellidos" value="<?php echo $oferta->cargo?>"
+                                            maxlength="30" name="apellidos" value="<?php if(isset($oferta->cargo))echo $oferta->cargo?>"
                                             placeholder="" required autofocus readonly>
 
                                     </div>
@@ -249,7 +252,7 @@
                                         </a>
                                         <input class="input100 border-start-0 ms-0 form-control" type="text"
                                             id="cantidad_oferta" maxlength="30" name="nombres"
-                                            value="<?php echo $oferta->cantidad_oferta?>" placeholder="Cantidad"
+                                            value="<?php if(isset( $oferta->cantidad_oferta))echo $oferta->cantidad_oferta?>" placeholder="Cantidad"
                                             required autofocus readonly>
 
                                     </div>

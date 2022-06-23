@@ -66,6 +66,7 @@
             return $valor;
         }
 
+ 
    
 
 
@@ -89,7 +90,7 @@
             $this->db->order_by("tbl_ofertas_empleo.id_empresa_ente", "desc");
             $query = $this->db->get("tbl_ofertas_empleo");
             if ($query->num_rows()) $valor = $query->result();
-            else $valor = [];
+            else $valor = false;
     
 
             return $valor;
