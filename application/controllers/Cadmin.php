@@ -1286,7 +1286,7 @@ class Cadmin extends CI_Controller
         $estados = $this->Musuarios->getEstados();
         $ofertas = $this->Oferta_empleo_model->obtener_ofertas();
 
-        $univerdidade = $this->Empresas_entes_model->obtener_univerdidad();
+        $univerdidade = $this->Empresas_entes_model->obtener_empresas(2);
 
         // otener el id del usuario 
 

@@ -67,7 +67,34 @@
         }
 
  
-   
+   /*
+     public function obtener_ofertas(){
+
+            $this->db->select('tbl_ofertas_empleo.*,
+            tbl_empresas_entes.nombre_razon_social,tbl_instruccion.nivel,profesion.desc_profesion,
+            tbl_areas_formacion.nombre as formacion,tbl_estatus_oferta.descripcion as estatus,
+            count(tbl_ofertas_chambistas.id_oferta) as cantidad_postuados
+        
+                    
+            ');
+       
+            $this->db->where("tbl_ofertas_empleo.activo",1);
+            $this->db->join('tbl_empresas_entes', 'tbl_empresas_entes.id_empresas = tbl_ofertas_empleo.id_empresa_ente');
+            $this->db->join('tbl_instruccion ', 'tbl_instruccion.id_instruccion = tbl_ofertas_empleo.id_nivel_instruccion');
+            $this->db->join('tbl_profesion_oficio profesion', 'profesion.id_profesion = tbl_ofertas_empleo.id_profesion_oficio');
+            $this->db->join('tbl_areas_formacion', 'tbl_areas_formacion.id_area_form = tbl_ofertas_empleo.id_area_formacion');
+            $this->db->join('tbl_estatus_oferta', 'tbl_estatus_oferta.id_estatus_oferta = tbl_ofertas_empleo.id_estatus_oferta');
+            $this->db->join('tbl_ofertas_chambistas', 'tbl_ofertas_chambistas.id_oferta = tbl_ofertas_empleo.id_oferta','left');
+
+            $this->db->group_by('tbl_ofertas_empleo.id_oferta, id_nivel_instruccion, id_profesion_oficio, 
+            id_area_formacion, tbl_ofertas_empleo.id_estatus_oferta, id_empresa_ente,tbl_ofertas_empleo.id_usuario_registro, cargo, 
+            experiencia, sexo, descripcion_oferta, edad, cantidad_oferta, tbl_ofertas_empleo.activo, tbl_ofertas_empleo.created_on, tbl_ofertas_empleo.update_on,
+            tbl_empresas_entes.nombre_razon_social,tbl_instruccion.nivel,profesion.desc_profesion,
+            formacion, estatus,
+            cantidad_oferta
+            ');
+       
+    */
 
 
         
