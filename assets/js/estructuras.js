@@ -32,6 +32,8 @@
 					var fecha_nac = $("#fecha_nac").parsley();
 					var edad = $("#edad").parsley();
 					var id_profesion_oficio = $("#id_profesion_oficio").parsley();
+					var expresion = /^[a-zA-Z-_\.]+$/;
+				
 
 					if (
 						nombres.isValid() &&
@@ -51,7 +53,7 @@
 							$("#nombres")
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
-						if (!apellidos.isValid())
+						if (apellidos == "" || expresion.test(apellidos) == false)
 							$("#apellidos")
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
@@ -433,25 +435,35 @@ $("#telf_local").on("keyup", function () {
 
 //nombress
 
-$("#nombres,#apellidos,#id_nivel_academico,#id_profesion_oficio").on(
+$("#nombres").on(
 	"keyup",
 	function () {
 		"use strict";
-		var nombres = $(this).val();
+		var apellidos_representante = $(this).val();
+		var expresion = /^[a-zA-Z-_\.]+$/;
 
-		var expresion = /^[a-zA-Z\s]*$/;
-
-		if (nombres) {
+		if (expresion.test(apellidos_representante)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
 		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
+		}
+	}
+);
+$("#apellidos").on(
+	"keyup",
+	function () {
+		"use strict";
+		var apellidos_representante = $(this).val();
+		var expresion = /^[a-zA-Z-_\.]+$/;
+
+		if (expresion.test(apellidos_representante)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
-			$("#nombres,#apellidos,#id_nivel_academico")
-				.removeClass("is-valid")
-				.addClass("is-invalid");
+		} else {
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
 		}
 	}
 );
