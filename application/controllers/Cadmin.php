@@ -27,7 +27,7 @@ class Cadmin extends CI_Controller
         $this->load->model('Estatus_oferta_model');
         $this->load->model('Oferta_universida_model');
         $this->load->library('ciqrcode');
-
+        $this->load->model('Menu_model');
 
         //$this->load->library('security');
         //$this->output->enable_profiler(TRUE);
@@ -49,6 +49,11 @@ class Cadmin extends CI_Controller
 
 
         ];
+      
+
+
+        
+
 
         $total_usuarios = $this->Dasboard_admin_model->obtener_total_usuarios_registrados();
         $completados    = $this->Dasboard_admin_model->obtener_registros_completados();

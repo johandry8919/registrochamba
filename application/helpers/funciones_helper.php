@@ -62,6 +62,28 @@
 		return $recurso;
 		
 	}
+
+	function oberner_menu() {
+		
+		$ci = & get_instance();
+		
+		if (!$ci->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+		$id_rol= $ci->session->userdata('id_rol');
+		$menus = $ci->Menu_model->obtener_menu($id_rol);
+		$array_menu=[];
+		foreach ($menus as $menu){
+			$menu->sub_menu=$ci->Menu_model->obtener_sub_menu($menu->id_menu);
+	
+
+		
+		}
+
+
+		return $menus;
+		
+	}
 	
 	function obtener_configuracion ($nombre_configuracion) {
 		
