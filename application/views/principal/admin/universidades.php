@@ -73,8 +73,9 @@
                                                         </td>
                                                         <td> <?php  echo $empresa->nombre_razon_social ?></td>
                                                         <td><?php  echo $empresa->rif ?></td>
-                                                        <td><?php  echo $empresa->actividad_economica ?></td>
                                                         <td><?php  echo $empresa->cantidad_oferta ?></td>
+                                                        <td><?php  echo $empresa->actividad_economica ?></td>
+                                               
                                                         <td><?php  echo $empresa->productivo ?></td>
                                                         <td><?php  echo $empresa->noombre_representante ?> <?php  echo $empresa->apellido_representante ?></td>
                                                         <td><?php  echo $empresa->nombre_estado?> </td>

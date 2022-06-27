@@ -125,9 +125,9 @@
             re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
             re.apellidos as apellido_representante, re.tlf_celular as celular_representante,tbl_empresas_entes.direccion,
             
-            re.tlf_local as tlf_local_representante, re.email as email_representante, cargo, productivo,
+            re.tlf_local as tlf_local_representante, re.email as email_representante, re.cargo, productivo,
             re.id_representantes,estado.nombre as nombre_estado ,re.direccion,
-  
+            count(tbl_ofertas_empleo.id_oferta) as cantidad_oferta
                     
             ');
           
@@ -148,6 +148,20 @@
             $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_empresas_entes.codigoestado');
             $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_empresas_entes.codigomunicipio');
             $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_empresas_entes.codigoparroquia');  
+            $this->db->join('tbl_ofertas_empleo', 'tbl_ofertas_empleo.id_empresa_ente = tbl_empresas_entes.id_empresas','left');
+
+            $this->db->group_by('tbl_empresas_entes.id_empresas, 
+            tbl_empresas_entes.id_tipo_empresas_universidades,
+             tipo_empresa,  nombre_razon_social, tbl_empresas_entes.rif, tbl_empresas_entes.tlf_celular, tbl_empresas_entes.tlf_local, tbl_empresas_entes.email, actividad_economica, id_sector_economico, instagram, twitter, facebook, 
+             tbl_empresas_entes.codigoestado, tbl_empresas_entes.codigomunicipio,
+             tbl_empresas_entes.codigoparroquia, tbl_empresas_entes.latitud, tbl_empresas_entes.longitud, tbl_empresas_entes.direccion, tbl_ofertas_empleo,
+
+             re.id_usuario, re.id_usuario_registro, re.cedula,  noombre_representante, 
+             apellido_representante,  celular_representante,tbl_empresas_entes.direccion,
+             tlf_local_representante, email_representante, re.cargo, productivo,
+             re.id_representantes, nombre_estado, re.direccion,
+             cantidad_oferta
+            ');
             $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
             $query = $this->db->get("tbl_empresas_entes");
     
