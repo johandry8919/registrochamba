@@ -222,6 +222,7 @@
  
     }
 
+
     public function getUsuarioRegistradoPersonal(){
 
         $this->db->select('*');
@@ -252,6 +253,55 @@
 
 
 	}
+    public function obtener_estrucutras($id){
+        $this->db->select('public.tbl_estructuras.*,
+        estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,direccion
+        ');
+       
+        $this->db->where('id_responsabilidad_estructura',$id);
+        $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
+        $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');
+        $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_estructuras.codigoparroquia');
+        $query = $this->db->get("tbl_estructuras");
+    
+        if ($query->num_rows()) $valor = $query->result();
+        else $valor = [];
+
+
+        return $valor;
+
+ 
+    }
+
+    public function obtener_Estructura_coord($id,$cod_estado,$cod_municipio,$cod_parroquia){
+
+        $this->db->select('public.tbl_estructuras.*,
+        estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,direccion
+        ');
+      
+        if($cod_municipio==01){
+            $this->db->where("estado.codigoestado", $cod_estado);
+        }else if($cod_parroquia==01){
+            $this->db->where("tbl_estructuras.codigomunicipio",$cod_municipio);
+        }else{
+            $this->db->where("estado.codigoestado", $cod_estado);
+            $this->db->where("tbl_estructuras.codigomunicipio",$cod_municipio);
+            $this->db->where("tbl_estructuras.codigoparroquia",$cod_parroquia);
+        }
+
+        $this->db->where('id_responsabilidad_estructura',$id);
+        $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
+        $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');
+        $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_estructuras.codigoparroquia');
+
+        $query = $this->db->get("tbl_estructuras");
+
+        if ($query->num_rows()) $valor = $query->result();
+        else $valor = [];
+
+
+        return $valor;
+    }
 }
 
 
