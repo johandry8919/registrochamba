@@ -183,7 +183,7 @@ async function obtener_coordenadas_empresa(accion) {
 
 				
 		if(accion==2)
-		location.href=base_url+'admin/reportes/excel_empresas?cod_estado='+cod_estado+'&cod_municipio='+cod_municipio+'&cod_parroquia='+cod_parroquia+'&empresa='+empresa
+		location.href=base_url+'admin/reportes/excel_estructura?cod_estado='+cod_estado+'&cod_municipio='+cod_municipio+'&cod_parroquia='+cod_parroquia+'&empresa='+empresa
 
 
 
