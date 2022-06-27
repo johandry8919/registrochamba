@@ -62,6 +62,7 @@ error_reporting(E_ALL);
 	
 	}
 
+
     public function exportar_excel_empresas(){
 
         $permitidos = [2];        
@@ -102,5 +103,49 @@ error_reporting(E_ALL);
  
 
 
+	}
+
+
+    public function etructura_mapa()
+	{
+        $permitidos = [3,2];        
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+        if ( !$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            redirect('admin/login');
+            
+            exit();
+            
+        }
+
+      
+            $breadcrumb = (object) [
+            "menu" => "Estrucutras",
+            "menu_seleccion" => "Reporte Estructuras"
+
+
+        ];
+    
+        $estados = $this->Musuarios->getEstados();
+
+        $output = [
+            "menu_lateral"      =>'admin',
+            "estados" =>  $estados,
+            "breadcrumb"        =>   $breadcrumb,
+            "title"             => "Nueva oferta",
+            "vista_principal"   => "reportes/rep_estructura_centro",
+            "ficheros_js" => [recurso("reporte_estruturas_js")],
+            
+     
+            "ficheros_css" => [recurso("mapa_mabox_css")]
+     
+     
+
+
+        ];
+
+        $this->load->view("main", $output);
+        // $this->load->view('layouts/head');
+	
 	}
 }

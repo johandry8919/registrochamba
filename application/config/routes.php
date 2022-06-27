@@ -220,6 +220,7 @@ $route['universidad/ver_ofertas/(:num)'] = 'Universidades/ver_ofertas';
 /**REPORTE ***/
 
 $route['admin/reportes/empresas_mapa'] = 'Creportes/empresas_mapa';
+$route['admin/reportes/estructuras_mapa'] = 'Creportes/etructura_mapa';
 
 $route['admin/reportes/excel_empresas'] = 'Creportes/exportar_excel_empresas';
 
