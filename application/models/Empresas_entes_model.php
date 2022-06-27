@@ -140,7 +140,7 @@
                 $this->db->where("tbl_empresas_entes.codigomunicipio",$cod_municipio);
                 $this->db->where("tbl_empresas_entes.codigoparroquia",$cod_parroquia);
             }
-            $this->db->where("id_tipo_empresas_universidades", $cod_estado);
+            $this->db->where("id_tipo_empresas_universidades", $id_tipo_empresa);
 
             $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
             $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
@@ -164,6 +164,8 @@
             $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
             $query = $this->db->get("tbl_empresas_entes");
     
+            //print_r($this->db->last_query());
+
             if ($query->num_rows()) $valor = $query->result();
             else $valor = [];
     
