@@ -100,9 +100,9 @@
                                 <li ><a href="<?php echo base_url();?>admin/reportes/empresas_mapa"
                                             class="slide-item <?php if($this->uri->segment(1)=='reportes') echo 'active';?>"
                                             >Mapa empresas/ Centros</a></li>
-                                    <li ><a href="#"
+                                    <li ><a href="<?php echo base_url();?>admin/reportes/estructuras_mapa"
                                             class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
-                                            >Estructura</a></li>
+                                            >Mapa Estructuras / Centros</a></li>
                                             
                                     <li><a href="#"
                                      class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"

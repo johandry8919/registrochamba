@@ -1,6 +1,4 @@
 <section class="container-fluid">
-
-    <!-- ROW-1 -->
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
             <form method="post" id="form-map">
@@ -70,13 +68,12 @@
 
                     </div>
                     <div class="col-md-3">
-                        <label class="form-label">Empresa / Centros de estudios</label>
+                        <label class="form-label">Estructuras</label>
                         <div class="form-group">
                             <div class="form-line">
                                 <select data-parsley-error-message="Este campo es requerido" required class="form-control show-tick" id="empresa" name="empresa" required data-parsley-error-message="Este campo es requerido">
-                                    <option value="1">Empresa</option>
-                                    <option value="2">Centros de estudios</option>
 
+                                    <option value="3">estrucutras</option>
                                 </select>
                             </div>
 
