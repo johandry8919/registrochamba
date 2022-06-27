@@ -15,12 +15,20 @@ class Celiminar_chambista extends CI_Controller {
     }
 
     public function index() {
+
+        //   $permitidos = [5];        
+        // $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+
+        // if (!$tiene_acceso && $this->session->userdata('tipo_empresas') == 1) {
+        //     echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        //     exit();
+        // }
     
    
 
     
           
-        $permitidos = [2,3,4,5];        
+        $permitidos = [2,3];        
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {

@@ -21,12 +21,12 @@
 		var genero = $("#genero").val();
 		var estcivil = $("#estcivil").val();
 		var aborigen = $("#aborigen").val();
-		var id_profesion = $("#id_profesion").val();
 		var hijo = $("#hijo").val();
+		var id_profesion_oficio = $("#id_profesion_oficio").val();
 		var edad = $("#edad").val();
 		e.preventDefault();
 
-		if(nom == '' || ape == '' || datepicker == '' || $telf_cel == '' || $telf_local == '' || $cod_estado == '' || $codigomunicipio == '' || $codigoparroquia == '' || $direccion == '' || $estudio == '' || $empleo == '' || $id_movimiento_religioso == '' || $id_movimiento_sociales == '' || latitud == '' || longitud == '' || cne == '' || genero == '' || estcivil == '' || aborigen == '' || hijo == '' || id_profesion == '' || edad == '') {
+		if(nom == '' || ape == '' || datepicker == '' || $telf_cel == '' || $telf_local == '' || $cod_estado == '' || $codigomunicipio == '' || $codigoparroquia == '' || $direccion == '' || $estudio == '' || $empleo == '' || $id_movimiento_religioso == '' || $id_movimiento_sociales == '' || latitud == '' || longitud == '' || cne == '' || genero == '' || estcivil == '' || aborigen == '' || hijo == '' || id_profesion_oficio == '' || edad == '') {
 
 			if(nom == ''){
 				$("#nombres").css("border-color", "#FF0000");
@@ -131,12 +131,6 @@
 			}else{
 				$("#estcivil").css("border-color", "#ccc");
 			}
-			if(id_profesion == ''){
-				$("#id_profesion").css("border-color", "#FF0000");
-				$( "#id_profesion" ).focus();
-			}else{
-				$("#id_profesion").css("border-color", "#ccc");
-			}
 
 
 
@@ -176,8 +170,8 @@
 				genero:genero,
 				estcivil:estcivil,
 				aborigen:aborigen,
-				id_profesion: id_profesion,
 				hijo:hijo,
+				id_profesion_oficio:id_profesion_oficio,
 				edad:edad
 
 
@@ -356,11 +350,11 @@
 			$("#id_movimiento_sociales").removeClass("is-valid").addClass("is-invalid");
 		}
 	});
-	$("#id_profesion").on("change", function () {
+	$("#id_profesion_oficio").on("change", function () {
 		"use strict";
-		var id_profesion = $(this).val();
+		var id_profesion_oficio = $(this).val();
 		
-		if (id_profesion) {
+		if (id_profesion_oficio) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
@@ -368,7 +362,7 @@
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
-			$("#id_profesion").removeClass("is-valid").addClass("is-invalid");
+			$("#id_profesion_oficio").removeClass("is-valid").addClass("is-invalid");
 		}
 	});
 	$("#telf_local").on("keyup", function () {

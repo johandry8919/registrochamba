@@ -797,7 +797,7 @@ public function  update_empresas_representante(){
     
        
        
-        $univerdidade = $this->Empresas_entes_model->obtener_univerdidad();
+        $univerdidade = $this->Empresas_entes_model->obtener_empresas(2);
         
         $estados = $this->Musuarios->getEstados();
             $datos['estados'] = $estados;
@@ -874,6 +874,10 @@ public function  update_empresas_representante(){
            
          
         }
+        
+
+        // echo json_encode($res);
+        // exit;
         $rango_edad = $this->Estructuras_model->rango_Edad();
         $breadcrumb =(object) [
             "menu" => "estructuras",
@@ -891,6 +895,7 @@ public function  update_empresas_representante(){
              "datos"            =>$res,
              "id_empresa" => $id__exp_lab,
              "rangoedad" => $rango_edad,
+             "id_rol" => $this->session->userdata('id_rol'),
              
             
                 "sectorProductivo" => $sectorProductivo,
@@ -1006,7 +1011,8 @@ public function  update_empresas_representante(){
                   "tlf_celular"           =>$this->input->post('telf_movil_representante'),
                   "tlf_local"             =>$this->input->post('telf_local_representante'),
                   "email"                =>$this->input->post('email_representante'),
-                  "cargo "                =>$this->input->post('cargo')
+                  "cargo "                =>$this->input->post('cargo'),
+                  "direccion" => $this->input->post("direccion")
         
               ],$id_representante);
               

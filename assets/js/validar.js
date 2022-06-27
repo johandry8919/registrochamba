@@ -23,15 +23,15 @@
 
 		var direccion = $("#direccion").val();
 
-		var hijos = $("#hijos").val();
-		var hijos = parseInt(hijos);
-
+		
 		// estcivil es un select
 		var estcivil = $("#estcivil").val();
 		var aborigen = $("#aborigen").val();
 		var empleo = $("#empleo").val();
-
+		
 		var id_profesion = $("#id_profesion").val();
+		var hijos = $("#hijos").val();
+		var hijos = parseInt(hijos);
 		var expresion = /^[a-zA-Z-_\.]+$/;
         
 
