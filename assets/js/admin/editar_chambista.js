@@ -22,122 +22,57 @@
 		var estcivil = $("#estcivil").val();
 		var aborigen = $("#aborigen").val();
 		var id_profesion = $("#id_profesion").val();
-		var hijo = $("#hijo").val();
 		var edad = $("#edad").val();
+		var hijos = $("#hijos").val();
+		var hijos = parseInt(hijos);
+		var expresion = /^[a-zA-Z-_\.]+$/;
 		e.preventDefault();
 
 		if(nom == '' || ape == '' || datepicker == '' || $telf_cel == '' || $telf_local == '' || $cod_estado == '' || $codigomunicipio == '' || $codigoparroquia == '' || $direccion == '' || $estudio == '' || $empleo == '' || $id_movimiento_religioso == '' || $id_movimiento_sociales == '' || latitud == '' || longitud == '' || cne == '' || genero == '' || estcivil == '' || aborigen == '' || hijo == '' || id_profesion == '' || edad == '') {
 
-			if(nom == ''){
-				$("#nombres").css("border-color", "#FF0000");
-				$( "#nombres" ).focus();
-			}else{
-				$("#nombres").css("border-color", "#ccc");
+			if (nombres == "" || expresion.test(nombres) == false) {
+				$("#nombres").focus();
+				
+	
+			} else if (apellidos == "" || expresion.test(apellidos) == false) {
+				$("#apellidos").focus();
+			} else if (edad == 0) {
+				$("#edad").focus();
+			} else if (direccion == "") {
+				$("#direccion").focus();
+			} else if (hijos == 0) {
+				$("#hijos").focus();
+			} else if (estcivil == "" || estcivil == 0) {
+				$("#estcivil").focus();
+			} else if (expresion.test(telf_movil) == true) {
+				$("#telf_movil").focus();
+			} else if (expresion.test(telf_local) == true) {
+				$("#telf_local").focus();
+			} else if (id_profesion == "" || id_profesion == 0) {
+				$("#id_profesion").focus();
+			} else if (aborigen == "" || aborigen == 0) {
+				$("#aborigen").focus();
+			} else if (empleo == "" || empleo == 0) {
+				$("#empleo").focus();
+			} else if (id_movimiento_religioso == "" || id_movimiento_religioso == 0) {
+				$("#id_movimiento_religioso").focus();
+			} else if (estado == "" || estado == 0) {
+				$("#cod_estado").focus();
+			} else if (cod_municipio == "" || cod_municipio == 0) {
+				$("#cod_municipio").focus();
+			} else if (cod_parroquia == "" || cod_parroquia == 0) {
+				$("#cod_parroquia").focus();
+			} else if (id_movimiento_sociales == 0) {
+				$("#id_movimiento_sociales").focus();
+			} else if(direccion == ""){
+				$("#direccion").focus();
+	
+			}else {
+				$("#edad").css("border-color", "success");
+	
+				// aser un submit normal
+				$("#datospersonales").submit();
 			}
-			if(ape == ''){
-				$("#apellidos").css("border-color", "#FF0000");
-				$( "#apellidos" ).focus();
-			}else{
-				$("#apellidos").css("border-color", "#ccc");
-			}
-			if(datepicker == ''){
-				$("#datepicker").css("border-color", "#FF0000");
-				$( "#datepicker" ).focus();
-
-			}else{
-				$("#datepicker").css("border-color", "#ccc");
-			}
-			if($telf_cel == ''){
-				$("#telf_movil").css("border-color", "#FF0000");
-				$( "#telf_movil" ).focus();
-			}else{
-				$("#telf_movil").css("border-color", "#ccc");
-			}
-			if($telf_local == ''){
-				$("#telf_local").css("border-color", "#FF0000");
-				$( "#telf_local" ).focus();
-			}else{
-				$("#telf_local").css("border-color", "#ccc");
-			}
-			if($cod_estado == ''){
-				$("#cod_estado").css("border-color", "#FF0000");
-				$( "#cod_estado" ).focus();
-			}else{
-				$("#cod_estado").css("border-color", "#ccc");
-			}
-			if($codigomunicipio == ''){
-				$("#cod_municipio").css("border-color", "#FF0000");
-				$( "#cod_municipio" ).focus();
-			}else{
-				$("#cod_municipio").css("border-color", "#ccc");
-			}
-			if($codigoparroquia == ''){
-				$("#cod_parroquia").css("border-color", "#FF0000");
-				$( "#cod_parroquia" ).focus();
-			}else{
-				$("#cod_parroquia").css("border-color", "#ccc");
-			}
-			if($direccion == ''){
-				$("#direccion").css("border-color", "#FF0000");
-				$( "#direccion" ).focus();
-			}else{
-				$("#direccion").css("border-color", "#ccc");
-			}
-			if($estudio == ''){
-				$("#estudio").css("border-color", "#FF0000");
-				$( "#estudio" ).focus();
-			}else{
-				$("#estudio").css("border-color", "#ccc");
-			}
-			if($empleo == ''){
-				$("#empleo").css("border-color", "#FF0000");
-				$( "#empleo" ).focus();
-			}else{
-				$("#empleo").css("border-color", "#ccc");
-			}
-			if($id_movimiento_religioso == ''){
-				$("#id_movimiento_religioso").css("border-color", "#FF0000");
-				$( "#id_movimiento_religioso" ).focus();
-			}else{
-				$("#id_movimiento_religioso").css("border-color", "#ccc");
-			}
-			if($id_movimiento_sociales == ''){
-				$("#id_movimiento_sociales").css("border-color", "#FF0000");
-				$( "#id_movimiento_sociales" ).focus();
-			}else{
-				$("#id_movimiento_sociales").css("border-color", "#ccc");
-			}
-			if(latitud == ''){
-				$("#latitud").css("border-color", "#FF0000");
-				$( "#latitud" ).focus();
-			}else{
-				$("#latitud").css("border-color", "#ccc");
-			}
-			if(longitud == ''){
-				$("#longitud").css("border-color", "#FF0000");
-				$( "#longitud" ).focus();
-			}else{
-				$("#longitud").css("border-color", "#ccc");
-			}
-			if(cne == ''){
-				$("#cne").css("border-color", "#FF0000");
-				$( "#cne" ).focus();
-			}else{
-				$("#cne").css("border-color", "#ccc");
-			}
-			if(estcivil == ''){
-				$("#estcivil").css("border-color", "#FF0000");
-				$( "#estcivil" ).focus();
-			}else{
-				$("#estcivil").css("border-color", "#ccc");
-			}
-			if(id_profesion == ''){
-				$("#id_profesion").css("border-color", "#FF0000");
-				$( "#id_profesion" ).focus();
-			}else{
-				$("#id_profesion").css("border-color", "#ccc");
-			}
-
 
 
 			
@@ -215,80 +150,50 @@
 			},
 		});
 		
+
+	} return true
+	});
+
+
 	$("#nombres").on("keyup", function () {
 		"use strict";
-		var nombres = $(this).val();
-		
-	
-		if (nombres) {
+		var apellidos_representante = $(this).val();
+		var expresion = /^[a-zA-Z-_\.]+$/;
+
+		if (expresion.test(apellidos_representante)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
 		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#nombres").removeClass("is-valid").addClass("is-invalid");
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
 		}
 	});
-
 	$("#apellidos").on("keyup", function () {
 		"use strict";
-		var apellidos = $(this).val();
-		
-		if (apellidos) {
+		var apellidos_representante = $(this).val();
+		var expresion = /^[a-zA-Z-_\.]+$/;
+
+		if (expresion.test(apellidos_representante)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
 		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#apellidos").removeClass("is-valid").addClass("is-invalid");
-		}
-	}
-
-	);
-
-	$("#datepicker").on("keyup", function () {
-		"use strict";
-		var datepicker = $(this).val();
-		
-		if (datepicker) {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#datepicker").removeClass("is-valid").addClass("is-invalid");
-		}	
-	});
-
-	$("#telf_movil ").on("keyup", function () {
-		"use strict";
-		var telf_movil = $(this).val();
-		
-		if (telf_movil) {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#telf_movil").removeClass("is-valid").addClass("is-invalid");
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
 		}
 	});
+
 	$("#edad ").on("keyup", function () {
 		"use strict";
 		var edad = $(this).val();
-		
-		if (edad) {
+		var expresion = /^[0-9]+$/;
+
+		if (expresion.test(edad)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
+			if (edad == 0) {
+				$(this).removeClass("is-valid").addClass("is-invalid error-input");
+			}
 		} else {
 			$(this)
 				.removeClass("is-invalid error-input")
@@ -296,100 +201,11 @@
 			$("#edad").removeClass("is-valid").addClass("is-invalid");
 		}
 	});
-	$("#estcivil ").on("change", function () {
-		"use strict";
-		var estcivil = $(this).val();
-		
-		if (estcivil) {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#estcivil").removeClass("is-valid").addClass("is-invalid");
-		}
-	});
-	$("#id_movimiento_religioso").on("change", function () {
-		"use strict";
-		var id_movimiento_religioso = $(this).val();
-		
-		if (id_movimiento_religioso) {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#id_movimiento_religioso").removeClass("is-valid").addClass("is-invalid");
-		}
-	});
-	$("#aborigen").on("change", function () {
-		"use strict";
-		var aborigen = $(this).val();
-		
-		if (aborigen) {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#aborigen").removeClass("is-valid").addClass("is-invalid");
-		}
-	});
-	$("#id_movimiento_sociales").on("change", function () {
-		"use strict";
-		var id_movimiento_sociales = $(this).val();
-		
-		if (id_movimiento_sociales) {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#id_movimiento_sociales").removeClass("is-valid").addClass("is-invalid");
-		}
-	});
-	$("#id_profesion").on("change", function () {
-		"use strict";
-		var id_profesion = $(this).val();
-		
-		if (id_profesion) {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#id_profesion").removeClass("is-valid").addClass("is-invalid");
-		}
-	});
-	$("#telf_local").on("keyup", function () {
-		"use strict";
-		var telf_local = $(this).val();
-		
-		if (telf_local) {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#telf_local").removeClass("is-valid").addClass("is-invalid");
-		}
-	});
 	$("#hijo").on("change", function () {
 		"use strict";
 		var hijo = $(this).val();
-		
+		var expresion = /^[0-9]+$/;
+
 		if (hijo) {
 			$(this)
 				.removeClass("is-invalid error-input")
@@ -401,27 +217,117 @@
 			$("#hijo").removeClass("is-valid").addClass("is-invalid");
 		}
 	});
+	// estcivil
+	$("#estcivil").on("change", function () {
+		"use strict";
+		var estcivil = $(this).val();
+		var expresion = /^[a-zA-Z0-9-_\.]+$/;
+
+		if (expresion.test(estcivil)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+			if (estcivil == 0) {
+				$(this).removeClass("is-valid").addClass("is-invalid error-input");
+			}
+		} else {
+			$(this).removeClass("is-invalid error-input").addClass("is-valid");
+			$("#estcivil").removeClass("is-valid").addClass("is-invalid");
+		}
+	});
+	$("#sexo").on("change", function () {
+		"use strict";
+		var sexo = $(this).val();
+		var expresion = /^[a-zA-Z0-9-_\.]+$/;
+
+		if (expresion.test(sexo)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-invalid error-input").addClass("is-valid");
+			$("#sexo").removeClass("is-valid").addClass("is-invalid");
+		}
+	});
 	$("#empleo").on("change", function () {
 		"use strict";
 		var empleo = $(this).val();
-		
-		if (empleo) {
+		var expresion = /^[a-zA-Z0-9-_\.]+$/;
+
+		if (expresion.test(empleo)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
+			if (empleo == 0) {
+				$(this).removeClass("is-valid").addClass("is-invalid error-input");
+			}
 		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
+			$(this).removeClass("is-invalid error-input").addClass("is-valid");
 			$("#empleo").removeClass("is-valid").addClass("is-invalid");
 		}
 	});
-
-	$("#cod_estado").on("change", function () {
+	$("#id_movimiento_religioso").on("change", function () {
 		"use strict";
-		var cod_estado = $(this).val();
-		
-		if (cod_estado) {
+		var id_movimiento_religioso = $(this).val();
+		var expresion = /^[a-zA-Z0-9-_\.]+$/;
+
+		if (expresion.test(id_movimiento_religioso)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+			if (id_movimiento_religioso == 0) {
+				$(this).removeClass("is-valid").addClass("is-invalid error-input");
+			}
+		} else {
+			$(this).removeClass("is-invalid error-input").addClass("is-valid");
+			$("#id_movimiento_religioso")
+				.removeClass("is-valid")
+				.addClass("is-invalid");
+		}
+	});
+	$("#id_movimiento_sociales").on("change", function () {
+		"use strict";
+		var id_movimiento_sociales = $(this).val();
+		var expresion = /^[a-zA-Z0-9-_\.]+$/;
+
+		if (expresion.test(id_movimiento_sociales)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+			if (id_movimiento_sociales == 0) {
+				$(this).removeClass("is-valid").addClass("is-invalid error-input");
+			}
+		} else {
+			$(this).removeClass("is-invalid error-input").addClass("is-valid");
+			$("#id_movimiento_sociales")
+				.removeClass("is-valid")
+				.addClass("is-invalid");
+		}
+	});
+
+	$("#telf_movil").on("keyup", function () {
+		"use strict";
+		var telefono = $("#telf_movil").val();
+		var expresion = /^\d{11,11}$/;
+
+		if (expresion.test(telefono)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		} else {
+			$(this).removeClass("is-invalid error-input").addClass("is-valid");
+			$("#telf_movil,datepicker")
+				.removeClass("is-valid")
+				.addClass("is-invalid");
+		}
+	});
+	//telf_local
+	$("#telf_local").on("keyup", function () {
+		"use strict";
+		var telf_local = $("#telf_local").val();
+		var expresion = /^\d{7,13}$/;
+
+		if (expresion.test(telf_local)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
@@ -429,59 +335,123 @@
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
-			$("#cod_estado").removeClass("is-valid").addClass("is-invalid");
+			$("#telf_local").removeClass("is-valid").addClass("is-invalid");
+		}
+	});
+	$("#id_profesion").on("change", function () {
+		"use strict";
+		var profesion_oficio = $(this).val();
+		// var expresion = /^\d{1}$/;
+		var expresion = /^[a-zA-Z0-9\s]*$/;
+
+		if (profesion_oficio) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+			if (profesion_oficio == 0) {
+				$(this).removeClass("is-valid").addClass("is-invalid error-input");
+			}
+		} else {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+			$("#id_profesion").removeClass("is-valid").addClass("is-invalid");
+		}
+	});
+	$("#aborigen").on("change", function () {
+		"use strict";
+		var aborigen = $(this).val();
+		// var expresion = /^\d{1}$/;
+		var expresion = /^[a-zA-Z0-9\s]*$/;
+
+		if (aborigen) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+			if (aborigen == 0) {
+				$(this).removeClass("is-valid").addClass("is-invalid error-input");
+			}
+		} else {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+			$("#aborigen").removeClass("is-valid").addClass("is-invalid");
 		}
 	});
 
+	//Estado
+	$("#cod_estado").on("change", function () {
+		"use strict";
+		var estado = $(this).val();
+		var expresion = /^\d{1}$/;
+
+		if (expresion.test(estado)) {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+			if (estado == 0) {
+				$(this).removeClass("is-valid").addClass("is-invalid error-input");
+			}
+		} else {
+			$(this)
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+		}
+	});
 	$("#cod_municipio").on("change", function () {
 		"use strict";
 		var cod_municipio = $(this).val();
-		
-		if (cod_municipio) {
+		var expresion = /^\d{1}$/;
+
+		if (expresion.test(cod_municipio)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
+			if (cod_municipio == 0) {
+				$(this).removeClass("is-valid").addClass("is-invalid error-input");
+			}
 		} else {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
-			$("#cod_municipio").removeClass("is-valid").addClass("is-invalid");
 		}
 	});
-	
 	$("#cod_parroquia").on("change", function () {
 		"use strict";
 		var cod_parroquia = $(this).val();
-		
-		if (cod_parroquia) {
+		var expresion = /^\d{1}$/;
+
+		if (expresion.test(cod_parroquia)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
+			if (cod_parroquia == 0) {
+				$(this).removeClass("is-valid").addClass("is-invalid error-input");
+			}
 		} else {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
-			$("#cod_parroquia").removeClass("is-valid").addClass("is-invalid");
 		}
 	});
-	
+
+	//Dirección Especifica
 	$("#direccion").on("keyup", function () {
 		"use strict";
 		var direccion = $(this).val();
-		
-		if (direccion) {
+		var expresion = /^[a-zA-Z0-9-_\.]+$/;
+
+		if (expresion.test(direccion)) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
 		} else {
-			$(this)
-				.removeClass("is-invalid error-input")
-				.addClass("is-valid valid-input");
-			$("#direccion").removeClass("is-valid").addClass("is-invalid");
+			$(this).removeClass("is-valid").addClass("is-invalid error-input");
 		}
 	});
-	} return true
-	});
+
+
+	
 
 
 

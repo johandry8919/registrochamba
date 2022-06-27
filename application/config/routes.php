@@ -130,25 +130,25 @@ $route['admin/ofertas'] = 'CofertaEmpleo/listar_oferta_admin';
 $route['admin/ofertasUniversidad'] = 'CofertaUniversidades/listar_oferta_admin';
 
 $route['admin/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta';
-$route['admin/oferta_usuario/(:num)'] = 'Cadmin/listar_oferta_admin';
-$route['admin/oferta_usuario/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta_admin';
+$route['admin/usuario/(:num)'] = 'Cadmin/listar_oferta_admin';
+$route['admin/usuario/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta_admin';
 
-$route['admin/ofertas_usuario/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas_admin';
+$route['admin/usuarios/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas_admin';
 
-$route['admin/ofertas_usuario/editaOfertas/(:num)'] = 'CofertaUniversidades/editar_oferta_admin';
+$route['admin/usuarios/editaOfertas/(:num)'] = 'CofertaUniversidades/editar_oferta_admin';
 
-$route['admin/oferta_usuario/editarOferta/(:num)'] = 'CofertaEmpleo/editar_oferta_admin';
-$route['estructuras/oferta_usuario/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta_admin';
-$route['estructuras/oferta_usuario/editarOferta/(:num)'] = 'CofertaEmpleo/editar_oferta_admin';
-$route['estructuras/ofertas_usuario/editaOfertas/(:num)'] = 'CofertaUniversidades/editar_oferta_admin';
+$route['admin/usuario/editarOferta/(:num)'] = 'CofertaEmpleo/editar_oferta_admin';
+$route['estructuras/usuario/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta_admin';
+$route['estructuras/usuario/editarOferta/(:num)'] = 'CofertaEmpleo/editar_oferta_admin';
+$route['estructuras/usuarios/editaOfertas/(:num)'] = 'CofertaUniversidades/editar_oferta_admin';
 
 
 
-$route['admin/ofertas_usuario/(:num)'] = 'Cadmin/listar_oferta_universidades';
+$route['admin/usuarios/(:num)'] = 'Cadmin/listar_oferta_universidades';
 
-$route['estructuras/ofertas_usuario/(:num)'] = 'CofertaUniversidades/listar_oferta_admin';
-$route['estructuras/ofertas_usuario/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas_admin';
-$route['estructuras/oferta_usuario/(:num)'] = 'Cadmin/listar_oferta_admin';
+$route['estructuras/usuarios/(:num)'] = 'Cadmin/listar_oferta_universidades';
+$route['estructuras/usuarios/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas_admin';
+$route['estructuras/usuario/(:num)'] = 'Cadmin/listar_oferta_admin';
 
 
 
