@@ -115,17 +115,18 @@ class Estructuras extends CI_Controller
 
             $email = strtoupper($this->input->post('email'));
             //encriptamos clave codeigniter
-
             $password = trim($this->input->post('password'));
 
-            $id_rol=3;
-            $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email, $id_rol);
+            
+
+           $roles= oberner_roles('estructura');
+            $resultado = $this->Usuarios_admin_model->validarEmailUsuarioRol($email, $roles);
         
           
           
             if ($resultado) {
           
-                if (password_verify($password,$resultado->password) && $resultado->id_rol=3) {
+                if (password_verify($password,$resultado->password)) {
 
                     $s_usuario = array(
                         'id_usuario' => $resultado->id_usuarios_admin,

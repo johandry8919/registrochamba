@@ -84,6 +84,27 @@
 		return $menus;
 		
 	}
+
+
+	function oberner_roles($perfil) {
+		
+		$ci = & get_instance();
+		
+	
+		$roles =  $ci->Roles_model->obtener_roles($perfil);
+
+		$array_rol=[];
+		foreach ($roles as $rol){
+		 $array_rol[]=$rol->id_rol;
+ 
+		}
+ 
+	
+
+
+		return $array_rol;
+		
+	}
 	
 	function obtener_configuracion ($nombre_configuracion) {
 		

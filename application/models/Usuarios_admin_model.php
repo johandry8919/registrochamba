@@ -55,6 +55,18 @@
 
 
 
+        public function validarEmailUsuarioRol($email,$array_rol){
+            
+            $this->db->where('upper(email)', $email);
+         $this->db->where_in('id_rol', $array_rol);
+          $query = $this->db->get("usuarios_admin");
+    
+            if ($query->num_rows()) $valor = $query->row();
+            else $valor = false;
+    
+
+            return $valor;
+        }
       
 
         public function validarEmailUsuario($email,$id_rol=2){

@@ -117,7 +117,7 @@ $route['admin'] = 'Cadmin';
 $route['admin/empresas'] = 'Cadmin/listar_empresas_entes';
 
 $route['admin/editar/empresa/(:num)'] = 'Cadmin/editar_empresa/$1';
-
+$route['admin/roles'] = 'Roles';
 
 //ofertas de empleos
 $route['admin/nueva_oferta/(:num)'] = 'CofertaEmpleo/publicar_oferta_admin';

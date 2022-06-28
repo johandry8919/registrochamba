@@ -33,6 +33,7 @@
     $config['recursos']['listar_oferta_js'] = "assets/js/admin/listar_oferta.js?v=1.0.6";
     $config['recursos']['ver_oferta_js'] = "assets/js/admin/ver_oferta.js?v=1.0.6";
     $config['recursos']['ver_oferta_universidad_js'] = "assets/js/admin/ver_oferta_universidad.js?v=1.0.6";
+    $config['recursos']['roles_js'] = "assets/js/admin/roles.js?v=1.0.6";
 
     
     $config['recursos']['editar_oferta_js'] = "assets/js/admin/editar_oferta.js?v=1.0.7";
