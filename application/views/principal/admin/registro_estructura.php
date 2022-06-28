@@ -142,13 +142,13 @@
                                             </div>
                                           
                                     </div>
-                                    <div class="col-md-3 ">
-                                                <label  class="form-label ">Género</label><br>
+                                    <div class="col-md-4 ">
+                                                <label  class="form-label text_center">Género</label><br>
                                                 <div class="form-group">
                                                     <div class="form">
-                                                        <input name="genero" type="radio" id="genero" value="F" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='F'){echo 'checked';}}?>/>
+                                                        <input name="genero" type="radio" id="genero" value="F" <?php if(isset($datos->genero)){ if(trim($datos->genero)=='F'){echo 'checked';}}?>/>
                                                         <label for="genero">Femenino</label>
-                                                        <input name="genero" type="radio" id="genero2" value="M" <?php if(isset($registroviejo->genero)){ if(trim($registroviejo->genero)=='M'){echo 'checked';}}?>/>
+                                                        <input name="genero" type="radio" id="genero" value="M" <?php if(isset($datos->genero)){ if(trim($datos->genero)=='M'){echo 'checked';}}?>/>
                                                         <label for="genero2">Masculino</label><br>
                                                     </div>
                                                 </div>
@@ -230,40 +230,18 @@
                                     <!--col-->
 
                                     <div class="col-md-4">
-                                        <div class="form-group ">
-                                        <label class="form-label">Edad </label>
-                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
-                                                </a>
-                                                <select class=" form-control show-tick" id="edad" name="edad" data-parsley-error-message="Este campo es requerido" required autofocus >
-                                                    <option value="">Selecciones una opción</option>
-                                                    <?php if(isset($rangoedad)): ?>
-                                                            <?php foreach ($rangoedad as $key => $rango):?>
-                                                               
-                                                                <?php  if($rango->id_edad == $datos->edad):?>
-                                                                
-                                                                 
-                                                                 
-                                                                    <?php    echo "<option selected value='".$rango->id_edad."'>".$rango->edad."</option>";     
-                                                               else:
-                                                                    echo "<option value='".$rango->id_edad."'>".$rango->edad."</option>";
-                                                                endif;
-                                                           endforeach;
-                                                        endif;
-                                                    ?>
-
-
-                                                </select>
-                                               
-
+                                            <div class="form-group">
+                                                <label class="form-label">Edad</label> 
+                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                        <i class="fe fe-calendar" aria-hidden="true"></i>
+                                                    </a>
+                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="edad" maxlength="2"  name="edad" value="<?php if(isset($datos->edad)) echo ucwords($datos->edad);?>" placeholder="edad" required autofocus>
+                                                   
+                                                </div>
+        
                                             </div>
-                                         
-                                        
                                         </div>
-                                        
-                                          
-                                    </div>
                                     <!--col-->
                                    
                                     <div class="col-md-4">

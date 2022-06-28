@@ -204,7 +204,7 @@
  
 	public function getEditEstruturaID($id){
         $this->db->select('public.tbl_estructuras.*,
-        estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,direccion
+        estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,direccion,genero
         ');
        
         $this->db->where('id_estructura',$id);
