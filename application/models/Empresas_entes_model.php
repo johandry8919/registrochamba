@@ -272,13 +272,7 @@
             // traer la direccion = tbl_representantes_empresas_entes
  
 
-
-
-
-
-
-
-            $query = $this->db->get("tbl_empresas_entes",);
+            $query = $this->db->get("tbl_empresas_entes");
     
             if ($query->num_rows()) $valor = $query->row();
             else $valor = [];
