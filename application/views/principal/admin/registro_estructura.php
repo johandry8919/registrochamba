@@ -94,14 +94,13 @@
 
                                     <div class="col-md-4">
 
-                                        <div class="form-group">
-                                            <label class="form-label">Cédula de Identidad</label>
+                                    <div class="form-group">
+                                            <label class="form-label">Cedula</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
                                                 </a>
-                                                <input  class="input100 border-start-0 ms-0 form-control" type="text" id="cedula" maxlength="30" name="cedula" value="<?php if(isset($datos->cedula)) echo ucwords($datos->cedula);?>" placeholder="Cédula de Identidad" required autofocus data-parsley-error-message="Este campo es requerido"
-                                                >
+                                                <input class="input100 border-start-0 ms-0 form-control" data-parsley-error-message="Este campo es requerido" type="text" id="cedula" maxlength="30" name="cedula" value="<?php if(isset($datos->cedula)) echo ucwords($datos->cedula);?>" placeholder="Cedula" required autofocus>
 
                                             </div>
 
@@ -111,9 +110,10 @@
                                    
                                     <div class="col-md-4">
                                         <div class="form-group ">
-                                            <label class="form-label">Nivel academico</label>
+                                        <label class="form-label">Nivel academico</label>
+                                         
                                         
-                                        </div>
+                                     
                                         <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
@@ -142,9 +142,12 @@
                                             </div>
                                           
                                     </div>
+                                    </div>
+
                                     <div class="col-md-4 ">
-                                                <label  class="form-label text_center">Género</label><br>
+                                              
                                                 <div class="form-group">
+                                                <label  class="form-label text_center">Género</label>
                                                     <div class="form">
                                                         <input name="genero" type="radio" id="genero" value="F" <?php if(isset($datos->genero)){ if(trim($datos->genero)=='F'){echo 'checked';}}?>/>
                                                         <label for="genero">Femenino</label>
@@ -288,7 +291,7 @@
 
 
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label">¿responsabilidad que desempeña dentro de su estructura ?</label>
+                                        <label class="form-label">¿responsabilidad que desempeña  ?</label>
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <select class="form-control show-tick" id="cod_responsabilidad" name="cod_responsabilidad" data-parsley-error-message="Este campo es requerido" required autofocus>
@@ -321,14 +324,14 @@
                                                 <select class="form-control show-tick" id="id_estructura" name="id_estructura" data-parsley-error-message="Este campo es requerido" required autofocus>
                                                     <option value="/**/">Seleccione una opción</option>
                                                     <option <?php if (isset($datos->tipo_estructura) and $datos->tipo_estructura == 'Estadal') {
-                                                echo 'selected';
-                                            } ?> value="Estadal">Estructura Estadal</option>
-                                    <option <?php if (isset($datos->tipo_estructura) and $datos->tipo_estructura == 'Municipal') {
-                                                echo 'selected';
-                                            } ?> value="Municipal">Estructura Municipal</option>
-                                    <option <?php if (isset($datos->tipo_estructura) and $datos->tipo_estructura == 'Parroquial') {
-                                                echo 'selected';
-                                            } ?> value="Parroquial">Estructura Parroquial</option>
+                                                                echo 'selected';
+                                                            } ?> value="Estadal">Estructura Estadal</option>
+                                                    <option <?php if (isset($datos->tipo_estructura) and $datos->tipo_estructura == 'Municipal') {
+                                                                echo 'selected';
+                                                            } ?> value="Municipal">Estructura Municipal</option>
+                                                    <option <?php if (isset($datos->tipo_estructura) and $datos->tipo_estructura == 'Parroquial') {
+                                                                echo 'selected';
+                                                            } ?> value="Parroquial">Estructura Parroquial</option>
 
 
                                                 </select>
@@ -336,6 +339,7 @@
                                         </div>
 
                                     </div>
+
 
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
@@ -450,7 +454,6 @@
 
 
                                 </div>
-                                <!--row-->
 
 
 
@@ -510,25 +513,57 @@
                             </section>
 
                     
+                            <h3 >Asignar Contraseña</h3>
+                            <section>
+                                <div class="form-group">
+                                <input type="email" id="correo2" name="email2" class="form-control" placeholder="Email" data-parsley-error-message="Este campo es requerido" required autofocus />
+                                    
+                                </div>
 
-                                    <?php if(!$datos){
-                                        echo '<h3 >Asignar Contraseña</h3>';
-                                        echo '<section>';
-                                        echo '<div class="form-group">';
-                                        echo '<input type="email" id="correo2" name="email2" class="form-control" placeholder="Email" data-parsley-error-message="Este campo es requerido" required autofocus />';
-                                        echo '</div>';
-                                        echo '<div class="form-group">';
-                                        echo '<input id="password" type="text" name="Password" class="form-control" placeholder="Password" data-parsley-error-message="Este campo es requerido" required autofocus>';
-                                        echo '</div>';
-                                     
-                                        
-                                        echo '</section>';
+                                <div class="form-group">
+                                <input id="password" type="text" name="Password" class="form-control" placeholder="Password" data-parsley-error-message="Este campo es requerido" required autofocus>
+                                </div>
+
+                            
+                                <label class="form-label">Rol De la Estructura</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                            <select class="form-control show-tick" id="rol_estructura" name="rol_estructura" data-parsley-error-message="Este campo es requerido" required autofocus>
+                                                    <option value="">Seleccione una opción</option>
+                                                    <?php if(isset($rol_estructura)): ?>
+                                                            <?php foreach ($rol_estructura as $key => $roles):?>
+                                                               
+                                                                <?php  if($roles->id_rol == $datos->id_rol):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$roles->id_rol."'>".$roles->nombre."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$roles->id_rol."'>".$roles->nombre."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
 
 
-                                    }?>
+                                                </select>
+                                            </div>
                                 
 
-                                   
+
+                            </section>
+
+                        
+                                 
+                                
+
+                                <!--row-->
+
+
+                                  
+                                
+
+                    </div>
                             </div>
                         </div>
 
@@ -537,6 +572,7 @@
                 </div>
             </div>
         </div>
+    
 
     </form>
 

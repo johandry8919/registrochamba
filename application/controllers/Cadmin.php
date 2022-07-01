@@ -216,9 +216,9 @@ class Cadmin extends CI_Controller
     public function registro_usuarios()
     {
 
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
-        }
+        // if (!$this->session->userdata('id_rol')) {
+        //     redirect('admin/login');
+        // }
 
         $breadcrumb = (object) [
             "menu" => "Admin",
@@ -313,7 +313,7 @@ class Cadmin extends CI_Controller
             json_encode($res);
         }
 
-
+        $obtener_rol = $this->Roles_model->obtener_roles("estructura");
 
         $datos['profesion_oficio'] = $profesion_oficio;
 
@@ -337,6 +337,7 @@ class Cadmin extends CI_Controller
             'profesion_oficio' => $profesion_oficio,
             "datos" => $res,
             "rangoedad" => $rango_edad,
+            "rol_estructura" => $obtener_rol,
 
             "persona" => $persona,
 
@@ -383,6 +384,8 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('apellidos', 'apellidos', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_nivel_academico', 'academico', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('rol_estructura', 'Rol De la Estructura
+        ', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_movil', 'telf movil', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_local', 'telf local', 'trim|required|strip_tags');
         $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
@@ -413,7 +416,7 @@ class Cadmin extends CI_Controller
             echo  json_encode(["resultado" => false, "mensaje" => $mensaje_error]);
         } else {
 
-            $rol_usuario = 3;
+            $rol_usuario = $this->input->post("rol_estructura");
             //verificar que el usuario no exita. si exite no debes registrarse
             $validacion_usuario = $this->Estructuras_model->verificarSiUsuarioExiste('V' . $this->input->post('cedula'), strtoupper(trim($this->input->post('email1'))), $rol_usuario);
 
@@ -440,8 +443,11 @@ class Cadmin extends CI_Controller
             $datos_usuario['password'] = $pass_cifrado;
             $datos_usuario['activo'] = 1;
             // $datos_usuario['registro_anterior'] = 0;
-            $datos_usuario['id_rol'] = 3;
+            $datos_usuario['id_rol'] = $this->input->post("rol_estructura");
             $datos_usuario['nombre'] = $this->input->post('nombres') . " " . $this->input->post('apellidos');
+
+            // echo print_r($datos_usuario);
+            // exit;
 
 
 
@@ -458,6 +464,8 @@ class Cadmin extends CI_Controller
                 'cedula' => $this->input->post('cedula'),
                 'fecha_nac' => $this->input->post('fecha_nac'),
                 'edad' => $this->input->post('edad'),
+                'genero' => $this->input->post('genero'),
+
                 'id_profesion_oficio' => $this->input->post('id_profesion_oficio'),
                 'id_nivel_academico' => $this->input->post('id_nivel_academico'),
                 'codigoestado' => $this->input->post('cod_estado'),
@@ -471,7 +479,9 @@ class Cadmin extends CI_Controller
                 'latitud' => $this->input->post('latitud'),
                 'longitud' => $this->input->post('longitud'),
                 'id_usuario' =>  $id_usuario,
-                'id_usuario_registro' => $this->session->userdata('id_usuario')
+                'id_usuario_registro' => $this->session->userdata('id_usuario'),
+               
+
 
             );
 

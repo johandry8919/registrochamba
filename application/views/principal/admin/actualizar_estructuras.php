@@ -79,7 +79,7 @@
                                         <div class="form-group ">
                                             <label class="form-label">Nivel academico</label>
 
-                                        </div>
+                                   
                                         <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                             <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                 <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
@@ -107,9 +107,11 @@
 
                                         </div>
                                     </div>
+                                    </div>
                                     <div class="col-md-4 ">
-                                                <label  class="form-label text_center">Género</label><br>
+                                            
                                                 <div class="form-group">
+                                                <label  class="form-label text_center">Género</label>
                                                     <div class="form">
                                                         <input name="genero" type="radio" id="genero" value="F" <?php if(isset($datos->genero)){ if(trim($datos->genero)=='F'){echo 'checked';}}?>/>
                                                         <label for="genero">Femenino</label>
@@ -256,7 +258,7 @@
 
 
                                     <div class="col-12 col-md-6">
-                                        <label class="form-label">¿Responsabilidad Que Desempeña Dentro de su Estructura ?</label>
+                                        <label class="form-label">¿Responsabilidad Que Desempeña  ?</label>
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <select class="form-control show-tick" id="cod_responsabilidad" name="cod_responsabilidad" data-parsley-error-message="Este campo es requerido" required autofocus>

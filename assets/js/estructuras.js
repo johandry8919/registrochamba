@@ -166,12 +166,18 @@
 					}
 					if(currentIndex === 2 ){
 						var password = $("#password").parsley();
-						if (password.isValid()) {
+						var rol_estructura = $("#rol_estructura").parsley();
+						if (password.isValid() || rol_estructura.isValid() ) {
 							return true;
 						}else{
 							$("#password")
 								if (!password.isValid())
 								$("#cpassword")
+									.removeClass("is-valid")
+									.addClass("is-invalid  error-input");
+							$("#rol_estructura")
+								if (!password.isValid())
+								$("#rol_estructura")
 									.removeClass("is-valid")
 									.addClass("is-invalid  error-input");
 						}
@@ -206,6 +212,7 @@
 			var longitud = $("#longitud").val();
 			var genero = $("#genero").val();
 			var pass = $("#password").val();
+			var rol_estructura = $("#rol_estructura").val();
 
 
 			$.ajax({
@@ -234,6 +241,7 @@
 					talla_camisa,
 					latitud,
 					longitud,
+					rol_estructura
 				},
 
 				url: base_url + "Cadmin/crearEstructura",
