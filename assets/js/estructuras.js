@@ -44,7 +44,7 @@
 						telf_local.isValid() &&
 						correo1.isValid() &&
 						edad.isValid() &&
-						id_profesion_oficio.isValid()
+						id_profesion_oficio.isValid()  
 					) {
 						return true;
 					} else {
@@ -53,7 +53,7 @@
 							$("#nombres")
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
-						if (apellidos == "" || expresion.test(apellidos) == false)
+						if (apellidos == "" && expresion.test(apellidos) == false)
 							$("#apellidos")
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
@@ -213,67 +213,78 @@
 			var genero = $("#genero").val();
 			var pass = $("#password").val();
 			var rol_estructura = $("#rol_estructura").val();
+			var expresion = /^[a-zA-Z-_\.]+$/;
+
+			if(
+				!expresion.test(apellidos) == false
+				
+				  ){
+				$.ajax({
+					dataType: "json",
+					data: {
+						pass,
+						nombres,
+						apellidos,
+						telf_movil,
+						telf_local,
+						fecha_nac,
+						correo1,
+						edad,
+						genero,
+						id_profesion_oficio,
+						cod_parroquia,
+						cedula,
+						id_nivel_academico,
+						cod_estado,
+						cod_municipio,
+						cod_parroquia,
+						direccion,
+						cod_responsabilidad,
+						id_estructura,
+						talla_pantalon,
+						talla_camisa,
+						latitud,
+						longitud,
+						rol_estructura
+					},
+	
+					url: base_url + "Cadmin/crearEstructura",
+					type: "post",
+					beforeSend: function () {
+						//$("#cod_municipio").selectpicker('refresh');
+					},
+					success: function (respuesta) {
+						if (respuesta.resultado == true) {
+							Swal.fire({
+								icon: "success",
+								title: "Registro Exitoso",
+								text: "Presione OK para continuar",
+							}).then((result) => {
+								/* Read more about isConfirmed, isDenied below */
+								if (result.isConfirmed) {
+									$(location).attr("href", base_url + "admin/estructuras");
+								}
+							});
+						} else {
+							Swal.fire({
+								icon: "error",
+								title: "Oops...",
+								text: respuesta.mensaje,
+							});
+						}
+					},
+					error: function (xhr, err) {
+						console.log(err);
+						alert("ocurrio un error intente de nuevo");
+					},
+				});
+
+			}else{
+				return false
+			}
 
 
-			$.ajax({
-				dataType: "json",
-				data: {
-					pass,
-					nombres,
-					apellidos,
-					telf_movil,
-					telf_local,
-					fecha_nac,
-					correo1,
-					edad,
-					genero,
-					id_profesion_oficio,
-					cod_parroquia,
-					cedula,
-					id_nivel_academico,
-					cod_estado,
-					cod_municipio,
-					cod_parroquia,
-					direccion,
-					cod_responsabilidad,
-					id_estructura,
-					talla_pantalon,
-					talla_camisa,
-					latitud,
-					longitud,
-					rol_estructura
-				},
-
-				url: base_url + "Cadmin/crearEstructura",
-				type: "post",
-				beforeSend: function () {
-					//$("#cod_municipio").selectpicker('refresh');
-				},
-				success: function (respuesta) {
-					if (respuesta.resultado == true) {
-						Swal.fire({
-							icon: "success",
-							title: "Registro Exitoso",
-							text: "Presione OK para continuar",
-						}).then((result) => {
-							/* Read more about isConfirmed, isDenied below */
-							if (result.isConfirmed) {
-								$(location).attr("href", base_url + "admin/estructuras");
-							}
-						});
-					} else {
-						Swal.fire({
-							icon: "error",
-							title: "Oops...",
-							text: respuesta.mensaje,
-						});
-					}
-				},
-				error: function (xhr, err) {
-					console.log(err);
-					alert("ocurrio un error intente de nuevo");
-				},
-			});
+		
 		},
 	});
 
@@ -584,18 +595,19 @@ $("#talla_pantalon").on("keyup", function () {
 	"use strict";
 	var talla_pantalon = $(this).val();
 	// var expresion = /^\d{1}$/;
-	var expresion = /^\d{2,2}$/;
+	var expresion = /^\d{1,4}$/;
 
 	
 
-	if (talla_pantalon){
+	if (expresion.test(talla_pantalon)){
 		$(this)
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
 	} else {
 		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
+				.removeClass("is-invalid error-input")
+				.addClass("is-valid valid-input");
+			$("#talla_pantalon").removeClass("is-valid").addClass("is-invalid");
 	}
 });
 $("#talla_camisa").on("keyup", function () {
