@@ -23,16 +23,24 @@
                                                 <?php foreach ($roles as $rol): ?>
                                                     <tr>
                                                     <td>
+
+                                       
                                             <div class="btn-list">
-                                                <button type="button" id="btn-editar" data-id_rol="<?php  echo $rol->id_rol ?>" class="btn btn-sm btn-primary btn-editar ">
+                                                <button type="button" id="btn-editar<?php  echo $rol->id_rol ?>" data-id_rol="<?php  echo $rol->id_rol ?>" class="btn btn-sm btn-primary btn-editar ">
                                                     <span class="">
                                                         Menu rol
                                                     </span>
                                                 </button>
 
                                               
+                                                <button type="button" id="btn-permisos<?php  echo $rol->id_rol ?>" data-id_rol="<?php  echo $rol->id_rol ?>" class="btn btn-sm btn-success btn-permisos ">
+                                                    <span class="">
+                                                        Permisos
+                                                    </span>
+                                                </button>
+
                                             </div>
-                                            
+                                              
                                         </td>
                                                       
                                                         <td> <?php  echo $rol->nombre ?></td>
@@ -57,7 +65,7 @@
                         <div class="modal fade" id="modal_nuevo_rol">
                             <div class="modal-dialog modal-lg" role="document">
                                 <div class="modal-content modal-content-demo modal-lg">
-                                    <form id="form-menu">
+                                    <form id="form-nuevo-rol">
                                     <div class="modal-header justify-content-between row">
                                         
                                         <h6 class="modal-title">Nuevo rol</h6>
@@ -129,4 +137,47 @@
     
                                     </div>
                                 </div>
+
+
+                                <div class="modal fade" id="modalpermisos">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content modal-content-demo modal-lg">
+                                            <form id="form-menu">
+                                            <div class="modal-header justify-content-between row">
+                                                
+                                                <h6 class="modal-title">Permisos</h6>
+                                                
+                                                <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="table-responsive">
+                                                    <table class="table" id="tabla-permisos">
+                                                        <thead>
+                                                            <tr>
+                                                              <th scope="col">Guardar/Crear</th>
+                                                              <th scope="col">Editar/modificar</th>
+                                                              <th scope="col">Vincular</th>
+                                                              <th scope="col">Eiminar</th>
+                                                   
+                                                            </tr>
+                                                          </thead>
+                                                          <tbody>
+                                                        
+                                                       
+                                                          </tbody>
+                                                    </table>
+                                                  </div>
+                                               
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary btn-guardar-permiso">Guardar</button> 
+                                                
+                                                
+                                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                                            </div>
+                                            </div>
+                                            </form>
+        
+                                        </div>
+                                    </div>       
                     <input type="hidden" id="id_rol">

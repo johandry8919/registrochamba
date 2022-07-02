@@ -74,7 +74,7 @@
 		$menus = $ci->Menu_model->obtener_menu($id_rol);
 		$array_menu=[];
 		foreach ($menus as $menu){
-			$menu->sub_menu=$ci->Menu_model->obtener_sub_menu($menu->id_menu);
+			$menu->sub_menu=$ci->Menu_model->obtener_sub_menu($menu->id_menu,$id_rol);
 	
 
 		

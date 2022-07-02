@@ -28,10 +28,13 @@
                                   
                             <?php foreach(oberner_menu() as $menu): ?> 
                             <li class="slide ">
+
+                                <?php if(count($menu->sub_menu) > 0): ?> 
                                 <a class="side-menu__item" data-bs-toggle="slide" href="<?php echo $menu->ruta_menu ?>"><i
                                         class="side-menu__icon <?php echo $menu->icono ?>"></i><span
                                         class="side-menu__label"><?php echo $menu->nombre_menu ?></span><i
                                         class="angle fe fe-chevron-right"></i></a>
+                                        <?php endif; ?>    
                                 <ul class="slide-menu">
                                 <?php foreach( $menu->sub_menu as $sub): ?> 
                                 <li><a href="<?php echo base_url().$sub->ruta?>"

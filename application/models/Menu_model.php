@@ -81,13 +81,15 @@
 
         
 
-        public function obtener_sub_menu($id_menu){
+        public function obtener_sub_menu($id_menu,$id_rol){
 
             $this->db->select('nombre_submenu, ruta');
             $this->db->where('sub_menu.id_menu', $id_menu);
-            $this->db->where('sub_menu.activo', 1);
+            $this->db->where('rol_submenu.activo', 1);
+            $this->db->join('rol_submenu', "rol_submenu.id_submenu=sub_menu.id_submenu AND rol_submenu.id_rol=$id_rol");
+
             $query = $this->db->get("sub_menu");
-    
+  
             if ($query->num_rows()) $valor = $query->result();
             else $valor = [];
     

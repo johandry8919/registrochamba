@@ -112,6 +112,58 @@ class Roles extends CI_Controller
         }
     }
 
+//guardar_permiso_rol
+
+
+public function guardar_permiso_rol(){
+
+    $permitidos =  oberner_roles('admin'); 
+    $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+
+    if ( !$tiene_acceso) {
+    echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+    exit();
+    }
+
+    $this->form_validation->set_rules('id_rol', 'id_rol', 'trim|required|strip_tags');  
+    $this->form_validation->set_rules('guardar_permiso', 'guardar_permiso', 'trim|required|strip_tags');  
+    $this->form_validation->set_rules('editar_permiso', 'editar_permiso', 'trim|required|strip_tags');  
+
+ //   $this->form_validation->set_rules('array_menu', 'array_menu', 'trim|required');  
+    $this->form_validation->set_error_delimiters('*', '');
+    $this->form_validation->set_message('required', 'El campo %s es requerido');
+    if (!$this->form_validation->run()) {
+    $mensaje_error = validation_errors();
+    echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
+    exit;
+    }
+
+
+
+    //Menu_model
+    $id_rol = $_POST['id_rol'];
+    $editar_permiso = $_POST['editar_permiso'];
+    $guardar_permiso = $_POST['guardar_permiso'];
+    $vincular_permiso_rol = $_POST['vincular_permiso_rol'];
+    $eliminar_permiso = $_POST['eliminar_permiso'];
+    $resultado =false;
+
+
+
+    $resultado=$this->Roles_model->actualizar_rol($id_rol,[
+        'crear'=>  $guardar_permiso,
+        'modificar'=>  $editar_permiso,
+        'eliminar'=>   $eliminar_permiso,
+        'vincular'=> $vincular_permiso_rol 
+    ]);
+
+    if ($resultado ) {
+
+        echo  json_encode(["resultado" => true, "mensaje" =>  'Registro exitoso']);
+    } else {
+        echo  json_encode(["resultado" => false, "mensaje" => 'No se realizo la actualización']);
+    }
+}
 
     public function guardar_rol(){
 

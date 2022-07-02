@@ -55,6 +55,33 @@
             return $valor;
         }
 
+        public function obtener_rol($id_rol){
+
+            $this->db->select('tbl_roles.*');
+            $this->db->where('id_rol', $id_rol);
+            $query = $this->db->get("tbl_roles");
+    
+            if ($query->num_rows()) $valor = $query->row();
+            else $valor = false;
+    
+
+            return $valor;
+        }
+
+
+        
+        public function actualizar_rol($id_rol, $datos){
+           
+
+            $this->db->where('id_rol', $id_rol);
+            $this->db->update('tbl_roles', $datos);
+            if($this->db->affected_rows() > 0){
+                return true;
+            }else{
+                return false;
+            }
+
+}
 
 
       
