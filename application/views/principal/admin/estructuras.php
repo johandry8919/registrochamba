@@ -21,9 +21,9 @@
                             <th>Telefono</th>
                             <th>Correo Eletronico</th>
                             <th>Tipo de estructura</th>
-
-
-                           
+                            <th>Estado</th>
+                            <th>Municipio</th>
+                            <th>Parroquia</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -61,7 +61,9 @@
 
                                 echo '<td>' . $usuaca->email . '</td>';
                                 echo '<td>' . $usuaca->tipo_estructura . '</td>';
-                             
+                                echo '<td>' . $usuaca->estado . '</td>';
+                                echo '<td>' . $usuaca->municipio . '</td>';
+                                echo '<td>' . $usuaca->parroquia . '</td>';
                                 echo '</tr>';
                                 $i++;
                             }

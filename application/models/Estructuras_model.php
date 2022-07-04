@@ -186,9 +186,12 @@
     
     public function getestructuras() {
        
-        $this->db->select('*');
+        $this->db->select('*,estado.nombre as estado,municipio.nombre as municipio,parroquia.nombre as parroquia');
         $this->db->from('public.tbl_estructuras');
         $this->db->order_by('tbl_estructuras', 'ASC');
+        $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
+        $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');
+        $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_estructuras.codigoparroquia');
         $query = $this->db->get();
 
         if ($query->num_rows() > 0) 
