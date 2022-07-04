@@ -67,24 +67,15 @@
                         </div>
 
                     </div>
-                    <div class="col-md-3">
-                        <label class="form-label">Estructuras</label>
-                        <div class="form-group">
-                            <div class="form-line">
-                                <select data-parsley-error-message="Este campo es requerido" required class="form-control show-tick" id="empresa" name="empresa" required data-parsley-error-message="Este campo es requerido">
-
-                                    <option value="3">estrucutras</option>
-                                </select>
-                            </div>
-
-
-                        </div>
+                    <div class="col-md-3 pt-6">
+                
+       
                         <div class="btn-group">
                             <button class="btn btn-primary" type="submit" name="1" id="consultarmap">Consultar</button>
                             <button class="btn btn-info" type="submit" name="2" id="descargar_ reporte">Descargar Excel</button>
 
                         </div>
-                    </div>
+                    </div >
                 </div>
             </form>
 

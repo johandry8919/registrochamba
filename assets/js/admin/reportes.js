@@ -140,7 +140,8 @@ async function obtener_coordenadas_empresa(accion) {
             let data =respuesta.res;
 
 			console.log(data);
-
+			var latitud_e = $(" option:selected", $('#cod_estado')).attr("data-latitud");
+			var longitud_e = $("option:selected", $('#cod_estado')).attr("data-longitud");
             data.forEach(element => {
                 
                 let puntero ={
@@ -161,6 +162,9 @@ async function obtener_coordenadas_empresa(accion) {
                     'coordinates': [element.longitud, element.latitud]
                     }
                     }
+
+					latitud_e =element.latitud;
+					longitud_e=element.longitud;
         
                 arr_map.push(puntero);
               
@@ -169,8 +173,7 @@ async function obtener_coordenadas_empresa(accion) {
 
 
 		
-				let latitud_e = $(" option:selected", $('#cod_estado')).attr("data-latitud");
-				let longitud_e = $("option:selected", $('#cod_estado')).attr("data-longitud");
+		
 				if($('#cod_estado').val()=='todos'){
 					agregarMapa(latitud, longitud, 5);
 				}else{

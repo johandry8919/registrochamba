@@ -137,7 +137,7 @@ error_reporting(E_ALL);
             $resultado=   $this->Estructuras_model->obtener_estrucutras($estrucutras);
     
         }else {
-            $resultado=   $this->Estructuras_model->obtener_Estructura_coord($estrucutras,$cod_estado,$cod_municipio,$cod_parroquia);
+            $resultado=   $this->Estructuras_model->obtener_Estructura_coord($cod_estado,$cod_municipio,$cod_parroquia);
         }
 
         if($resultado){

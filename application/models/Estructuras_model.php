@@ -261,7 +261,7 @@
         estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,direccion
         ');
        
-        $this->db->where('id_responsabilidad_estructura',$id);
+      //  $this->db->where('id_responsabilidad_estructura',$id);
         $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
         $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');
         $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_estructuras.codigoparroquia');
@@ -276,7 +276,7 @@
  
     }
 
-    public function obtener_Estructura_coord($id,$cod_estado,$cod_municipio,$cod_parroquia){
+    public function obtener_Estructura_coord($cod_estado,$cod_municipio,$cod_parroquia){
 
         $this->db->select('public.tbl_estructuras.*,
         estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,direccion
@@ -292,7 +292,7 @@
             $this->db->where("tbl_estructuras.codigoparroquia",$cod_parroquia);
         }
 
-        $this->db->where('id_responsabilidad_estructura',$id);
+      //  $this->db->where('id_responsabilidad_estructura',$id);
         $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
         $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');
         $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_estructuras.codigoparroquia');

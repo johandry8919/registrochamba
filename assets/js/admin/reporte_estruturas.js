@@ -140,7 +140,10 @@ async function obtener_coordenadas_empresa(accion) {
             let data =respuesta.res;
 
 			
-
+           
+		
+				var latitud_e = $(" option:selected", $('#cod_estado')).attr("data-latitud");
+				var longitud_e = $("option:selected", $('#cod_estado')).attr("data-longitud");
             data.forEach(element => {
                 
                 let puntero ={
@@ -164,17 +167,16 @@ async function obtener_coordenadas_empresa(accion) {
                     }
                     }
         
+					latitud_e =element.latitud;
+					 longitud_e=element.longitud;
                 arr_map.push(puntero);
               
                 
             });
+				console.log(latitud_e,longitud_e)
 
-
-		
-				let latitud_e = $(" option:selected", $('#cod_estado')).attr("data-latitud");
-				let longitud_e = $("option:selected", $('#cod_estado')).attr("data-longitud");
 				if($('#cod_estado').val()=='todos'){
-					agregarMapa(latitud, longitud, 5);
+					agregarMapa(latitud, longitud, 10);
 				}else{
 
 					agregarMapa(latitud_e, longitud_e, 10);
@@ -194,7 +196,7 @@ async function obtener_coordenadas_empresa(accion) {
 					text: respuesta.mensaje,
 				});
 				arr_map=[];
-				agregarMapa(latitud, longitud, 5);
+				agregarMapa(latitud, longitud, 8);
 			}
 		},
 		error: function (xhr, err) {

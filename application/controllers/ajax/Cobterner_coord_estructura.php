@@ -56,7 +56,7 @@ class Cobterner_coord_estructura extends CI_Controller {
         // exit;
 
     }else {
-        $resultado=   $this->Estructuras_model->obtener_Estructura_coord($estrucutras,$cod_estado,$cod_municipio,$cod_parroquia);
+        $resultado=   $this->Estructuras_model->obtener_Estructura_coord($cod_estado,$cod_municipio,$cod_parroquia);
 
        
     }
