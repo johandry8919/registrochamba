@@ -109,16 +109,8 @@ class Cadmin extends CI_Controller
             "title"             => "Usuarios",
             "vista_principal"   => "admin/listar_usuarios",
             "usuarios" => $usuarios,
-
-
-
-
             "librerias_css" => [],
-
-
-            "librerias_js" => [],
-
-
+           "librerias_js" => [],
             "ficheros_js" => [recurso("listar_usuario_admin_js")],
             "ficheros_css" => [],
 
@@ -169,11 +161,12 @@ class Cadmin extends CI_Controller
 
         $password = trim($this->input->post('password'));
 
-        $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email);
-
+        $roles= oberner_roles('admin');
+        $resultado = $this->Usuarios_admin_model->validarEmailUsuarioRol($email, $roles);
+    //crear, modificar, eliminar, vincular
         if ($resultado) {
 
-            if (password_verify($password, $resultado->password) && $resultado->id_rol = 2) {
+            if (password_verify($password, $resultado->password)) {
 
                 $s_usuario = array(
                     'id_usuario' => $resultado->id_usuarios_admin,
@@ -181,7 +174,11 @@ class Cadmin extends CI_Controller
                     'email' => $resultado->email,
                     'activo' => $resultado->activo,
                     'fecha_reg' => $resultado->created_on,
-                    'id_rol' => $resultado->id_rol
+                    'id_rol' => $resultado->id_rol,
+                    'permiso_guardar' =>$resultado->crear,
+                    'permiso_modificar' =>$resultado->modificar,
+                    'permiso_eliminar' =>$resultado->eliminar,
+                    'permiso_vincular' =>$resultado->vincular
                 );
 
 
@@ -225,12 +222,13 @@ class Cadmin extends CI_Controller
             "menu_seleccion" => "Registrar usuario admin"
 
         ];
-
+        $roles =  $this->Roles_model->obtener_roles('admin');
         $output = [
             "menu_lateral" => "admin",
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "Registro de usuario",
             "vista_principal"   => "admin/registro_usuarios",
+            "roles" => $roles,
             "librerias_js" => [recurso("admin_registrar_usuario_js")]
 
         ];

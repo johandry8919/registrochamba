@@ -57,8 +57,13 @@
 
         public function validarEmailUsuarioRol($email,$array_rol){
             
-            $this->db->where('upper(email)', $email);
-         $this->db->where_in('id_rol', $array_rol);
+        $this->db->select('usuarios_admin.id_usuarios_admin, usuarios_admin.id_rol, usuarios_admin.cedula, usuarios_admin.email, usuarios_admin.token, usuarios_admin.password, usuarios_admin.activo,usuarios_admin.created_on, usuarios_admin.nombre
+            crear, modificar, eliminar, vincular
+            ');  
+         $this->db->where('upper(email)', $email);
+         $this->db->where_in(' usuarios_admin.id_rol', $array_rol);
+         $this->db->join('tbl_roles', 'tbl_roles.id_rol = usuarios_admin.id_rol');
+
           $query = $this->db->get("usuarios_admin");
     
             if ($query->num_rows()) $valor = $query->row();
@@ -70,7 +75,8 @@
       
 
         public function validarEmailUsuario($email,$id_rol=2){
-            
+            $this->db->select('usuarios_admin.id_usuarios_admin, id_rol, cedula, email, token, password, activo, created_on, nombre
+            ');
             $this->db->where('upper(email)', $email);
             $this->db->where('id_rol', $id_rol);
             $query = $this->db->get("usuarios_admin");

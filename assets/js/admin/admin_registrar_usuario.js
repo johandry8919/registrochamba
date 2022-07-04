@@ -37,7 +37,7 @@ function registrar_usuario(){
                 }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                        $(location).attr("href", base_url + "admin");
+                        $(location).attr("href", base_url + "usuarios");
                     }
                 });
             } else {
