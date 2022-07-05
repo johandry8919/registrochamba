@@ -87,7 +87,8 @@
             re.tlf_local as tlf_local_representante, re.email as email_representante, re.cargo, productivo,
             re.id_representantes,estado.nombre as nombre_estado ,re.direccion,
             
-            count(tbl_ofertas_empleo.id_oferta) as cantidad_oferta,id_nivel_instruccion as intruccionAcademica
+            count(tbl_ofertas_empleo.id_oferta) as cantidad_oferta,id_nivel_instruccion as intruccionAcademica,
+            municipio.nombre as municipio,parroquia.nombre as parroquia
   
                     
             ');
@@ -95,6 +96,8 @@
             $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
             $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
             $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_empresas_entes.codigoestado');
+            $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_empresas_entes.codigomunicipio');
+            $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_empresas_entes.codigoparroquia');  
             $this->db->join('tbl_ofertas_empleo', 'tbl_ofertas_empleo.id_empresa_ente = tbl_empresas_entes.id_empresas','left');
             $this->db->group_by('tbl_empresas_entes.id_empresas, 
             tbl_empresas_entes.id_tipo_empresas_universidades,
@@ -106,7 +109,7 @@
              apellido_representante,  celular_representante,tbl_empresas_entes.direccion,
              tlf_local_representante, email_representante, re.cargo, productivo,
              re.id_representantes, nombre_estado, re.direccion,
-             cantidad_oferta, intruccionAcademica
+             cantidad_oferta, intruccionAcademica, municipio, parroquia
             ');
             $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
             $query = $this->db->get("tbl_empresas_entes");
@@ -118,6 +121,45 @@
             return $valor;
         }
 
+        public function obtener_universidades($id_tipo_empresa = 2){
+           
+
+            $this->db->select(' tbl_empresas_entes.*,
+            re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
+            re.apellidos as apellido_representante, re.tlf_celular as celular_representante,tbl_empresas_entes.direccion,
+            
+            re.tlf_local as tlf_local_representante, re.email as email_representante, re.cargo, productivo,
+            re.id_representantes,estado.nombre as nombre_estado ,re.direccion,            
+            count(tbl_solicitudes_estudios.id_solicitud) as cantidad_oferta,
+            municipio.nombre as municipio,parroquia.nombre as parroquia
+  
+                    
+            ');
+            $this->db->where("id_tipo_empresas_universidades", $id_tipo_empresa);
+            $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
+            $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
+            $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_empresas_entes.codigoestado');
+            $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_empresas_entes.codigomunicipio');
+            $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_empresas_entes.codigoparroquia');  
+            $this->db->join('tbl_solicitudes_estudios', 'tbl_solicitudes_estudios.id_empresa_entes = tbl_empresas_entes.id_empresas','left');
+            $this->db->group_by('tbl_empresas_entes.id_empresas, 
+            tbl_empresas_entes.id_tipo_empresas_universidades,
+             tipo_empresa,  nombre_razon_social, tbl_empresas_entes.rif, tbl_empresas_entes.tlf_celular, tbl_empresas_entes.tlf_local, tbl_empresas_entes.email, actividad_economica, id_sector_economico, instagram, twitter, facebook, 
+             tbl_empresas_entes.codigoestado, tbl_empresas_entes.codigomunicipio,
+             tbl_empresas_entes.codigoparroquia, tbl_empresas_entes.latitud, tbl_empresas_entes.longitud, tbl_empresas_entes.direccion,
+             re.id_usuario,re.id_usuario_registro,re.cedula,re.nombre,re.apellidos,re.tlf_celular,re.tlf_local,re.email,re.cargo,
+             sp.productivo,re.id_representantes,estado.nombre, municipio, parroquia
+           
+            ');
+            $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
+            $query = $this->db->get("tbl_empresas_entes");
+    
+            if ($query->num_rows()) $valor = $query->result();
+            else $valor = [];
+    
+
+            return $valor;
+        }
         
         public function obtener_empresas_coord($id_tipo_empresa,$cod_estado,$cod_municipio,$cod_parroquia){
 

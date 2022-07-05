@@ -84,9 +84,29 @@
 		return $menus;
 		
 	}
+function ruta_actual(){
+	$ci = & get_instance();
+	$ruta = strip_tags(trim($ci->uri->segment(1)));
+
+	return $ruta;
+}
+ function tiene_acceso($perfil){
+	     //verificar acceso
+		 $ci = & get_instance();
+		 $permitidos =  obtener_roles($perfil); 
+		 $tiene_acceso=in_array($ci->session->userdata('id_rol'),$permitidos,false);
+	 return 	 $tiene_acceso;
+
+		 
+ }
 
 
-	function oberner_roles($perfil) {
+function tiene_permiso($nombre_permiso){
+	$ci = & get_instance();
+	return $this->session->userdata($nombre_permiso);
+}
+
+	function obtener_roles($perfil) {
 		
 		$ci = & get_instance();
 		

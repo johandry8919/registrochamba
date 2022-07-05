@@ -27,12 +27,13 @@
                                                         <th name="bstable-actions">Acciones</th>
                                                         <th class="wd-15p border-bottom-0">Razon Social</th>
                                                         <th class="wd-15p border-bottom-0">RIF</th>
-                                                        <th class="wd-15p border-bottom-0">Oferta</th>
+                                                        <th class="wd-15p border-bottom-0">Ofertas</th>
                                                         <th class="wd-20p border-bottom-0">Actividad Economica</th>
                                                         <th class="wd-15p border-bottom-0">Sector de Especialización</th>
                                                         <th class="wd-10p border-bottom-0">Nombre representante</th>
                                                         <th class="wd-10p border-bottom-0">Estado</th>
-                                                         
+                                                        <th class="wd-10p border-bottom-0">Municipio</th>  
+                                                        <th class="wd-10p border-bottom-0">Parroquia</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -42,13 +43,15 @@
                                                     <tr>
                                                     <td>
                                                         <div class="btn-list">
-                                                        <button type="button" class="btn btn-sm btn-primary ">
+                                                        <button type="button" class="btn btn-sm btn-primary "
+                                            
+                                                        >
                                                         <span class="fs-6">
                                                         <a class="text-white" href="<?php base_url()?>registro/universidades/<?php echo $empresa->id_empresas?>">&#9998;</a>
                                                         </span>
                                                         </button>
                                                         <button type="button" class="btn btn-sm btn-info "
-                                                        <?php if($empresa->cantidad_oferta==0) echo ""; ?>
+                                                        <?php if($empresa->cantidad_oferta==0) echo "disabled"; ?>
                                                         >
                                                     <span class="fs-6">
                                                 
@@ -63,7 +66,7 @@
                                                         <button type="button" class="btn btn-sm btn-success ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>oferta_universidad/<?php echo $empresa->id_empresas?>">
+                                                            href="<?php echo base_url()?>admin/oferta_universidad/<?php echo $empresa->id_empresas?>">
                                                             <i class="side-menu__icon fe fe-plus">Nueva oferta</i>
                                                             
                                                         </a>
@@ -79,7 +82,9 @@
                                                         <td><?php  echo $empresa->productivo ?></td>
                                                         <td><?php  echo $empresa->noombre_representante ?> <?php  echo $empresa->apellido_representante ?></td>
                                                         <td><?php  echo $empresa->nombre_estado?> </td>
-                                                     
+                                                        <td><?php  echo $empresa->municipio?> </td>
+                                                        <td><?php  echo $empresa->parroquia?> </td>
+
                                                         
                                                    
                                                     </tr>

@@ -74,9 +74,9 @@ class Universidades extends CI_Controller
             "oferta" => $oferta,
             "id_rol" => $id_rol,
 
-            "librerias_js" => [recurso("admin_nueva_oferta_uner_js")],
+            "librerias_js" => [recurso("universidad_nueva_oferta_uner_js")],
 
-            "id_area_formacion" => $id_empresa,
+            "id_empresa" => $id_empresa,
             "rangoedad" => $rango_edad,
 
 
@@ -94,15 +94,6 @@ class Universidades extends CI_Controller
         }
         
 
-
-        $permitidos = array(2, 3,4);
-        $tiene_acceso = in_array(2, $permitidos, false);
-
-        if (!$tiene_acceso) {
-
-
-            json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-        }
         $id_empresa = $this->session->userdata('id_empresa');
 
     

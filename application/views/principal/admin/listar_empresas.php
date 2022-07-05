@@ -52,7 +52,8 @@
                                         <th class="wd-15p border-bottom-0">Sector Economino</th>
                                         <th class="wd-10p border-bottom-0">Nombre representante</th>
                                         <th class="wd-10p border-bottom-0">Estado</th>
-                                   
+                                        <th class="wd-10p border-bottom-0">Municipio</th>
+                                        <th class="wd-10p border-bottom-0">Parroquia</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -76,7 +77,7 @@
                                                     <span class="fs-6">
                                                 
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>usuario/<?php echo $empresa->id_empresas?>">
+                                                            href="<?php base_url()?>oferta-empleo-empresa/<?php echo $empresa->id_empresas?>">
                                                             <i
                                                             data-bs-toggle="tooltip" data-bs-original-title="<?php echo"Cantidad de oferta"." : ". $empresa->cantidad_oferta?> "class="side-menu__icon fe fe-eye"></i>
                                                             
@@ -105,8 +106,8 @@
                                         <td><?php  echo $empresa->noombre_representante ?>
                                             <?php  echo $empresa->apellido_representante ?></td>
                                         <td><?php  echo $empresa->nombre_estado?> </td>
-                                 
-
+                                        <td><?php  echo $empresa->municipio?> </td>
+                                        <td><?php  echo $empresa->parroquia?> </td>
                                     </tr>
                                     <?php endforeach ?>
                                 </tbody>

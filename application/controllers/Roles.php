@@ -45,7 +45,7 @@ class Roles extends CI_Controller
 
     public function guardar_menu_rol(){
 
-        $permitidos =  oberner_roles('admin'); 
+        $permitidos =  obtener_roles('admin'); 
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {
@@ -117,7 +117,7 @@ class Roles extends CI_Controller
 
 public function guardar_permiso_rol(){
 
-    $permitidos =  oberner_roles('admin'); 
+    $permitidos =  obtener_roles('admin'); 
     $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
     if ( !$tiene_acceso) {
@@ -167,7 +167,7 @@ public function guardar_permiso_rol(){
 
     public function guardar_rol(){
 
-        $permitidos =  oberner_roles('admin'); 
+        $permitidos =  obtener_roles('admin'); 
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {

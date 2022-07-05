@@ -44,11 +44,11 @@
                                                         </span>
                                                         </button>
 
-                                                        <button type="button" class="btn btn-sm btn-success ">
+                                                        <button type="button" class="btn btn-sm btn-success " <?php if($empresa->cantidad_oferta==0) echo "disabled"; ?>>
                                                     <span class="fs-6">
                                                 
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>usuario/<?php echo $empresa->id_empresas?>">
+                                                            href="<?php base_url()?>oferta-empleo-empresa/<?php echo $empresa->id_empresas?>">
                                                             <i
                                                             data-bs-toggle="tooltip" data-bs-original-title="Ver oferta "class="side-menu__icon fe fe-eye"></i>
                                                             

@@ -16,7 +16,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Ofertas</h3>
+                        <h3 class="card-title">Ofertas de estudios</h3>
 
                     </div>
                     <div class="card-body">
@@ -63,14 +63,14 @@
                                                 <button type="button" class="btn btn-sm btn-primary ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>editaOfertas/<?php echo $oferta->id_solicitud?>">&#9998;</a>
+                                                            href="<?php echo base_url().ruta_actual()?>/editaOfertas/<?php echo $oferta->id_solicitud?>">&#9998;</a>
                                                     </span>
                                                 </button>
 
                                                 <button type="button" class="btn btn-sm btn-success ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>ver_ofertas/<?php echo $oferta->id_solicitud ?>">
+                                                            href="<?php echo  base_url().ruta_actual()?>/ver_ofertas/<?php echo $oferta->id_solicitud ?>">
                                                             <i class="side-menu__icon fe fe-eye"></i>
                                                             
                                                         </a>

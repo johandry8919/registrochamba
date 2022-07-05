@@ -17,7 +17,7 @@ class Cobterner_menu_rol extends CI_Controller {
 
     
        
-        $permitidos =  oberner_roles('admin'); 
+        $permitidos =  obtener_roles('admin'); 
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
         if ( !$tiene_acceso) {

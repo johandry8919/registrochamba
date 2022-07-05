@@ -161,7 +161,7 @@ class Cadmin extends CI_Controller
 
         $password = trim($this->input->post('password'));
 
-        $roles= oberner_roles('admin');
+        $roles= obtener_roles('admin');
         $resultado = $this->Usuarios_admin_model->validarEmailUsuarioRol($email, $roles);
     //crear, modificar, eliminar, vincular
         if ($resultado) {
@@ -180,6 +180,7 @@ class Cadmin extends CI_Controller
                     'permiso_eliminar' =>$resultado->eliminar,
                     'permiso_vincular' =>$resultado->vincular
                 );
+
 
 
                 //SI ES IGUAAL A CERO MUESTRA VISTA DONDE ACTIVA LA CUENTA A TRAVES DEL CODIGO O PERMITE REENVIAR EMAIL
@@ -239,12 +240,27 @@ class Cadmin extends CI_Controller
 
     public function crear_usuario()
     {
+
+
+        //verificar acceso
+        $permitidos =  obtener_roles('admin'); 
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+        if ( !$tiene_acceso) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
+        }
+        //verificar si tiene permiso
+        $permiso_g =$this->session->userdata('permiso_guardar');
+        if(!$permiso_g){
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+            exit();
+        }
+
+
         $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
         $this->form_validation->set_rules('password', 'password', 'trim|required|strip_tags');
-
-
         $this->form_validation->set_error_delimiters('*', '');
         //delimitadores de errores
 
@@ -262,16 +278,13 @@ class Cadmin extends CI_Controller
 
         $email = trim(strtoupper($this->input->post('email')));
         //encriptamos clave codeigniter
-
-
-
         $resultado = $this->Usuarios_admin_model->validarEmailUsuario($email);
         if ($resultado) {
             echo  json_encode(["resultado" => false, "mensaje" => "EL email ya se encuentra registrado"]);
             exit;
         }
 
-
+     
         $pass_cifrado = password_hash(trim($this->input->post('password')), PASSWORD_DEFAULT);
         $id_usuario = $this->Usuarios_admin_model->post_regitrar([
             "nombre" => $this->input->post('password'),
@@ -289,10 +302,21 @@ class Cadmin extends CI_Controller
     public function registro_estructura()
 
     {
-
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
+        //verificar acceso
+        $permitidos =  obtener_roles('admin'); 
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+        if ( !$tiene_acceso) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
         }
+        //verificar si tiene permiso
+        $permiso_g =$this->session->userdata('permiso_guardar');
+        if(!$permiso_g){
+        echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        exit();
+        }
+
+
 
         $estados = $this->Musuarios->getEstados();
 
@@ -371,9 +395,19 @@ class Cadmin extends CI_Controller
         //delimitadores de errores
 
 
-        if (!$this->session->userdata('id_rol') == 2) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
+
+         //verificar acceso
+        $permitidos =  obtener_roles('admin'); 
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+        if ( !$tiene_acceso) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
+        }
+        //verificar si tiene permiso
+        $permiso_g =$this->session->userdata('permiso_guardar');
+        if(!$permiso_g){
+        echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        exit();
         }
 
         $this->form_validation->set_rules('nombres', 'nombres', 'trim|required|strip_tags');
@@ -484,6 +518,19 @@ class Cadmin extends CI_Controller
     public function registro_empresas()
 
     {
+
+        //verificar acceso
+     if ( !tiene_acceso('admin')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
+        }
+        //verificar si tiene permiso
+        if(!tiene_permiso('permiso_guardar')){
+        echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        exit();
+        }
+
+
         $estados = $this->Musuarios->getEstados();
 
         $datos['estados'] = $estados;
@@ -537,11 +584,16 @@ class Cadmin extends CI_Controller
     public function crearEmpresas()
     {
 
-
         if (!$this->session->userdata('id_rol')) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
+            redirect('admin/login');
         }
+
+        //verificar si tiene permiso
+        if(!tiene_permiso('permiso_guardar')){
+        echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        exit();
+        }
+
         //delimitadores de errores
         $this->form_validation->set_rules('rif', 'rif', 'trim|required|strip_tags');
         // $this->form_validation->set_rules('nombre_representante', 'nombre_representante', 'trim|required|strip_tags');
@@ -776,8 +828,16 @@ class Cadmin extends CI_Controller
     {
 
 
-        if ($this->session->userdata('id_rol') != 2) {
-            redirect('admin/login');
+        //verificar si tiene permiso
+            //verificar acceso
+            if (!$this->session->userdata('id_rol')) {
+                redirect('admin/login');
+            }
+    
+        //verificar si tiene permiso
+        if(!tiene_permiso('permiso_modificar')){
+        echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        exit();
         }
 
 
@@ -924,6 +984,12 @@ class Cadmin extends CI_Controller
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
+       
+    //verificar si tiene permiso
+    if(!tiene_permiso('permiso_modificar')){
+    echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+    exit();
+    }
         //delimitadores de errores
         $this->form_validation->set_rules('rif', 'rif', 'trim|required|strip_tags');
         $this->form_validation->set_rules('nombre_representante', 'nombre_representante', 'trim|required|strip_tags');
@@ -1004,6 +1070,16 @@ class Cadmin extends CI_Controller
     //post_actualizar_estructuras
     public function post_estructuras()
     {
+
+        if (!$this->session->userdata('id_rol')) {
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        }
+
+    //verificar si tiene permiso
+    if(!tiene_permiso('permiso_modificar')){
+    echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+    exit();
+    }
         $this->form_validation->set_rules('nombres', 'nombres', 'trim|required|strip_tags');
 
         $this->form_validation->set_rules('apellidos', 'apellidos', 'trim|required|strip_tags');
@@ -1145,6 +1221,14 @@ class Cadmin extends CI_Controller
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
+
+
+        
+    //verificar si tiene permiso
+    if(!tiene_permiso('permiso_guardar')){
+    echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+    exit();
+    }
         $this->form_validation->set_rules('razon_social', 'nombres', 'trim|required|strip_tags');
         $this->form_validation->set_rules('rif', 'rif', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
@@ -1289,20 +1373,16 @@ class Cadmin extends CI_Controller
         $estados = $this->Musuarios->getEstados();
         $ofertas = $this->Oferta_empleo_model->obtener_ofertas();
 
-        $univerdidade = $this->Empresas_entes_model->obtener_empresas(2);
+        $univerdidade = $this->Empresas_entes_model->obtener_universidades(2);
 
         // otener el id del usuario 
 
 
         $datos['estados'] = $estados;
 
-
-
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "Listas de Universidades"
-
-
         ];
 
 
@@ -1316,16 +1396,9 @@ class Cadmin extends CI_Controller
             'datos' => $datos,
             "ofertas" => $ofertas,
 
-
-
-
-
-
             "librerias_css" => [],
 
-
             "librerias_js" => [],
-
 
             "ficheros_js" => [recurso("lista_empresas_js")],
 
@@ -1342,6 +1415,12 @@ class Cadmin extends CI_Controller
     }
     public function editar_universidades()
     {
+
+           //verificar si tiene permiso
+    if(!tiene_permiso('permiso_modificar')){
+        echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        exit();
+        }
         $estados = $this->Musuarios->getEstados();
         $datos['estados'] = $estados;
 
@@ -1398,6 +1477,13 @@ class Cadmin extends CI_Controller
     }
     public function update_universidad_Representante()
     {
+
+          //verificar si tiene permiso
+          if(!tiene_permiso('permiso_modificar')){
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+            exit();
+            }
+
         $this->form_validation->set_rules('razon_social', 'nombres', 'trim|required|strip_tags');
         $this->form_validation->set_rules('rif', 'rif', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
@@ -1528,16 +1614,21 @@ class Cadmin extends CI_Controller
 
     public function editar_chambista()
     {
-        if ($this->session->userdata('id_rol') != 2) {
-            echo  json_encode([
-                "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                "rol_usuario" => $this->session->userdata('id_rol')
 
-            ]);
-            exit();
+
+
+           //verificar acceso
+     if ( !tiene_acceso('admin')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
         }
         //optener el id id_usu_aca hidden del formulario
 
+       //verificar si tiene permiso
+          if(!tiene_permiso('permiso_modificar')){
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+            exit();
+            }
 
 
         $id__exp_lab = strip_tags(trim($this->uri->segment(3)));
@@ -1640,14 +1731,18 @@ class Cadmin extends CI_Controller
 
     public function update_chambistas()
     {
-        if ($this->session->userdata('id_rol') != 2) {
-            echo  json_encode([
-                "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                "rol_usuario" => $this->session->userdata('id_rol')
-
-            ]);
-            exit();
+                 //verificar acceso
+     if ( !tiene_acceso('admin')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
         }
+        //optener el id id_usu_aca hidden del formulario
+
+       //verificar si tiene permiso
+          if(!tiene_permiso('permiso_modificar')){
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+            exit();
+            }
 
 
 
@@ -1812,14 +1907,18 @@ class Cadmin extends CI_Controller
 
     public function registroformacionacademica()
     {
-        if ($this->session->userdata('id_rol') != 2) {
-            echo  json_encode([
-                "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                "rol_usuario" => $this->session->userdata('id_rol')
-
-            ]);
-            exit();
+                  //verificar acceso
+     if ( !tiene_acceso('admin')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
         }
+        //optener el id id_usu_aca hidden del formulario
+
+       //verificar si tiene permiso
+          if(!tiene_permiso('permiso_modificar')){
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+            exit();
+            }
 
 
 
@@ -1978,14 +2077,20 @@ class Cadmin extends CI_Controller
 
     public function eliminarchamba()
     {
-        if ($this->session->userdata('id_rol') != 2) {
-            echo  json_encode([
-                "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                "rol_usuario" => $this->session->userdata('id_rol')
 
-            ]);
-            exit();
+
+                    //verificar acceso
+     if ( !tiene_acceso('admin')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
         }
+        //optener el id id_usu_aca hidden del formulario
+
+       //verificar si tiene permiso
+          if(!tiene_permiso('permiso_eliminar')){
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+            exit();
+            }
 
 
         $id_usuario = strip_tags(trim($this->uri->segment(2)));
@@ -2012,8 +2117,14 @@ class Cadmin extends CI_Controller
 
     public function pdfCadmin()
     {
-        $permitidos = [2, 3, 4, 5];
-        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+        if (!$this->session->userdata('id_rol')) {
+            echo  json_encode([
+                "resultado" => false, "mensaje" => "acceso n  o autorizado",
+                "rol_usuario" => $this->session->userdata('id_rol')
+
+            ]);
+            exit();
+        }
 
         if (!$tiene_acceso) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
@@ -2131,14 +2242,14 @@ class Cadmin extends CI_Controller
     public function estructuras_empresa()
     {
 
-        if ($this->session->userdata('id_rol') != 2) {
-            echo  json_encode([
-                "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                "rol_usuario" => $this->session->userdata('id_rol')
-
-            ]);
-            exit();
+                    //verificar acceso
+     if ( !tiene_acceso('admin')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
         }
+        //optener el id id_usu_aca hidden del formulario
+
+
         $id_admin = $this->session->userdata('id_usuario');
 
 
@@ -2188,6 +2299,16 @@ class Cadmin extends CI_Controller
         //     ]);
         //     exit();
         // }
+
+                    //verificar acceso
+     if ( !tiene_acceso('admin')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
+        }
+        //optener el id id_usu_aca hidden del formulario
+
+     
+
         $this->form_validation->set_rules('clave_actual', 'Contraseña actual', 'trim|strip_tags|min_length[3]|max_length[16]|required');
         $this->form_validation->set_rules('password', 'Contraseña nueva', 'trim|strip_tags|min_length[6]|max_length[16]|required');
         $this->form_validation->set_rules('new_password', 'Repetir Contraseña nueva', 'trim|strip_tags|matches[password]|required');
@@ -2315,14 +2436,15 @@ class Cadmin extends CI_Controller
     public function limpar_qr()
     {
 
-        if ($this->session->userdata('id_rol') != 2) {
-            echo  json_encode([
-                "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                "rol_usuario" => $this->session->userdata('id_rol')
-
-            ]);
-            exit();
+                   //verificar acceso
+     if ( !tiene_acceso('admin')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
         }
+        //optener el id id_usu_aca hidden del formulario
+
+   
+
         $files = glob(FCPATH . "qr_code/*"); //obtenemos todos los nombres de los ficheros
         foreach ($files as $file) {
             if (is_file($file))
@@ -2474,13 +2596,14 @@ class Cadmin extends CI_Controller
     {
 
 
-        $permitidos = [2, 3, 5];
-        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
-
-        if (!$tiene_acceso) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
-        }
+                //verificar acceso
+                if ( !tiene_acceso('admin')) {
+                    echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+                    exit();
+                    }
+                    //optener el id id_usu_aca hidden del formulario
+            
+         
 
 
         $id_oferta = strip_tags(trim($this->uri->segment(3)));
@@ -2600,9 +2723,7 @@ class Cadmin extends CI_Controller
 
 
      public function listar_oferta_universidades()
-
-
-   
+  
     {
 
     
@@ -2612,14 +2733,7 @@ class Cadmin extends CI_Controller
         
         $id_empresa = strip_tags(trim($this->uri->segment(3)));
 
-        $permitidos = array(2, 3,4);
-        $tiene_acceso = in_array(2, $permitidos, false);
-
-        if (!$tiene_acceso) {
-
-
-            json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-        }
+     
         // $id_empresa = $this->session->userdata('id_empresa');
 
     
@@ -2663,11 +2777,10 @@ class Cadmin extends CI_Controller
         $this->load->view("main", $output);
     }
 
-      public function listar_oferta_admin()
-
-
-   
+      public function listar_oferta_admin() 
     {
+
+        echo "se modifica este metodo por listar_ofertas_empleo_empresa"; exit;
 
     
         if (!$this->session->userdata('id_rol')) {
@@ -2677,11 +2790,11 @@ class Cadmin extends CI_Controller
         $permitidos = array(4,5);        
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
-        if ( !$tiene_acceso) {
+        if (! $tiene_acceso) {
            
             
-            json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-          
+           echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+          exit;
         }
         // id del usuario 
         
@@ -2691,7 +2804,7 @@ class Cadmin extends CI_Controller
 
         $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_oferta);
         if ($ofertas == false) {
-            $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
+            $this->session->set_flashdata('mensajeerror', 'Aun no tiene ofertas ');
             redirect('admin/empresas');
 
             exit();
@@ -2752,4 +2865,7 @@ class Cadmin extends CI_Controller
             $this->load->view("main", $output);
         }
     }
+
+
+
 }

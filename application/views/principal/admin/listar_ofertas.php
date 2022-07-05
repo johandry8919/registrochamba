@@ -51,14 +51,14 @@
                                                 <button type="button" class="btn btn-sm btn-primary ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>editarOferta/<?php echo $oferta->id_oferta?>">&#9998;</a>
+                                                            href="<?php echo base_url()?>admin/editarOferta/<?php echo $oferta->id_oferta?>">&#9998;</a>
                                                     </span>
                                                 </button>
 
                                                 <button type="button" class="btn btn-sm btn-success ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php base_url()?>ver_oferta/<?php echo $oferta->id_oferta ?>">
+                                                            href="<?php echo base_url().ruta_actual()?>/ver_oferta/<?php echo $oferta->id_oferta ?>">
                                                             <i class="side-menu__icon fe fe-eye"></i>
                                                             
                                                         </a>

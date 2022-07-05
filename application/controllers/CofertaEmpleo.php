@@ -549,4 +549,36 @@ public function update_oferta(){
 
 }
 
+
+public function listar_ofertas_empleo_empresa(){
+
+    $breadcrumb = (object) [
+        "menu" => "admin",
+        "menu_seleccion" => "Listar oferta"
+
+
+    ];
+
+    $id_oferta = strip_tags(trim($this->uri->segment(3)));
+    
+
+
+    $ofertas = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_oferta);
+    $ruta = strip_tags(trim($this->uri->segment(1)));
+   
+    $ruta = strip_tags(trim($this->uri->segment(1)));
+    $output = [
+        "menu_lateral"      =>"admin",
+        "breadcrumb"        =>   $breadcrumb,
+        "title"             => "Nueva oferta",
+        "vista_principal"   => "admin/listar_ofertas",
+        "ficheros_js" => [recurso("listar_oferta_js")],
+        "ofertas" => $ofertas,
+        "constantes_js" => ["ruta"=>$ruta]
+    ];
+
+    $this->load->view("main", $output);
+
+
+}
 }

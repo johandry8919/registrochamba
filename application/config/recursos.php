@@ -65,7 +65,8 @@
     $config['recursos']['resgistro_epres_estruct_js'] = "assets/js/resgistro_epres_estruct.js?v=1.0.7";
     $config['recursos']['update_epres_estruct_js'] = "assets/js/update_epres_estruct.js?v=1.0.7";
     $config['recursos']['editar_empresas_admin_js'] = "assets/js/editar_empresas_admin.js?v=1.0.7";
- 
+    $config['recursos']['universidad_nueva_oferta_uner_js'] = "assets/js/admin/universidad_nueva_oferta_uner.js?v=1.0.7";
+    
     $config['recursos']['area_formacion_js'] = "assets/js/area_formacion.js?v=1.0.7";
     $config['recursos']['lista_empresas_js'] = "assets/js/lista_empresas.js?v=1.0.7";
     $config['recursos']['listar_estructura_js'] = "assets/js/listar_estructura.js?v=1.0.7";

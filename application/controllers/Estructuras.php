@@ -119,7 +119,7 @@ class Estructuras extends CI_Controller
 
             
 
-           $roles= oberner_roles('estructura');
+           $roles= obtener_roles('estructura');
             $resultado = $this->Usuarios_admin_model->validarEmailUsuarioRol($email, $roles);
         
           
@@ -784,6 +784,65 @@ public function  update_empresas_representante(){
     
         
     }
+
+
+
+    public function listar_oferta_universidades()
+  
+    {
+
+    
+        if (!$this->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+        
+        $id_empresa = strip_tags(trim($this->uri->segment(3)));
+
+     
+        // $id_empresa = $this->session->userdata('id_empresa');
+
+    
+
+        $ofertas = $this->Oferta_universida_model->obtener_ofertas_unirversidad($id_empresa);
+
+        if ($ofertas == false) {
+                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
+                redirect('admin/universidades');
+
+                exit();
+            }
+        // echo json_encode($id_empresa);
+        // exit;
+
+        $breadcrumb = (object) [
+            "menu" => "Centros de estudios",
+            "menu_seleccion" => "Listar ofertas"
+
+
+        ];
+
+
+        $ruta = strip_tags(trim($this->uri->segment(1)));
+        $output = [
+            "menu_lateral"      => "estructuras",
+            "breadcrumb"        =>   $breadcrumb,
+            "title"             => "Nueva oferta",
+            "vista_principal"   => "admin/listar_ofertas_uner",
+            "ficheros_js" => [recurso("listar_oferta_js")],
+            "ofertas" => $ofertas,
+            "constantes_js" => ["ruta" => $ruta],
+            "id_oferta" => $id_empresa,
+
+
+
+
+
+        ];
+
+        $this->load->view("main", $output);
+    }
+
+
     public function lista_universidad(){
         if (!$this->session->userdata('id_rol')) {
             // motra un alert con bootstrap
@@ -798,7 +857,7 @@ public function  update_empresas_representante(){
     
        
        
-        $univerdidade = $this->Empresas_entes_model->obtener_empresas(2);
+        $univerdidade = $this->Empresas_entes_model->obtener_universidades(2);
         
         $estados = $this->Musuarios->getEstados();
             $datos['estados'] = $estados;
@@ -1272,10 +1331,9 @@ public function ver_ofertas_universidad(){
 
 
           
-    $permitidos = [2,3];        
-    $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
-    if ( !$tiene_acceso) {
+
+    if ( !$this->session->userdata('id_rol')) {
         echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
         redirect('admin/login');
         exit();
@@ -1303,7 +1361,7 @@ public function ver_ofertas_universidad(){
     $output = [
         "menu_lateral"      =>   $ruta,
         "breadcrumb"        =>   $breadcrumb,
-        "title"             => "Oferta de emplo ".$oferta->nombre_razon_social,
+        "title"             => "Oferta universitaria ".$oferta->nombre_razon_social,
         "vista_principal"   => "admin/ver_oferta_univerdidad",
         "ficheros_js" => [recurso("accordion_js"),recurso("ver_oferta_universidad_js")],
         "oferta" => $oferta,

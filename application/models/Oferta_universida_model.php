@@ -109,7 +109,7 @@
             ');
        
             $this->db->where("tbl_solicitudes_estudios.activo",1);
-            $this->db->where("tbl_solicitudes_estudios.id_area_formacion",$id_empresas);
+            $this->db->where("tbl_solicitudes_estudios.id_empresa_entes",$id_empresas);
             $this->db->join('tbl_empresas_entes', 'tbl_empresas_entes.id_empresas = tbl_solicitudes_estudios.id_area_formacion');
       
             $this->db->join('tbl_areas_formacion', 'tbl_areas_formacion.id_area_form = tbl_solicitudes_estudios.id_area_formacion');

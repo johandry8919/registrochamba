@@ -130,11 +130,11 @@ $route['admin/ofertas'] = 'CofertaEmpleo/listar_oferta_admin';
 $route['admin/ofertasUniversidad'] = 'CofertaUniversidades/listar_oferta_admin';
 
 $route['admin/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta';
-$route['admin/usuario/(:num)'] = 'Cadmin/listar_oferta_admin';
+$route['admin/oferta-empleo-empresa/(:num)'] = 'CofertaEmpleo/listar_ofertas_empleo_empresa';
 $route['admin/usuario/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta_admin';
 
 $route['admin/usuarios/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas_admin';
-
+$route['admin/universidad/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas_admin';
 $route['admin/usuarios/editaOfertas/(:num)'] = 'CofertaUniversidades/editar_oferta_admin';
 
 $route['admin/usuario/editarOferta/(:num)'] = 'CofertaEmpleo/editar_oferta_admin';
@@ -146,9 +146,9 @@ $route['estructuras/usuarios/editaOfertas/(:num)'] = 'CofertaUniversidades/edita
 
 $route['admin/usuarios/(:num)'] = 'Cadmin/listar_oferta_universidades';
 
-$route['estructuras/usuarios/(:num)'] = 'Cadmin/listar_oferta_universidades';
+$route['estructuras/ofertas-estudios-universidades/(:num)'] = 'Estructuras/listar_oferta_universidades';
 $route['estructuras/usuarios/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas_admin';
-$route['estructuras/usuario/(:num)'] = 'Cadmin/listar_oferta_admin';
+$route['estructuras/oferta-empleo-empresa/(:num)'] = 'CofertaEmpleo/listar_ofertas_empleo_empresa';
 
 
 
