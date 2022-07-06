@@ -103,7 +103,7 @@ function ruta_actual(){
 
 function tiene_permiso($nombre_permiso){
 	$ci = & get_instance();
-	return $this->session->userdata($nombre_permiso);
+	return $ci->session->userdata($nombre_permiso);
 }
 
 	function obtener_roles($perfil) {
