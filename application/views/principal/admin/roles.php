@@ -15,7 +15,9 @@
                                             
                                             </div>
 
-                                        <button type="button" class="ml-5 btn btn-info nuevo_rol">Nuevo rol</button> 
+                                        <button type="button" class="ml-5 btn btn-info nuevo_rol"
+                                        <?php if(isset($_GET['p']) && $_GET['p'] =='estructuras') echo 'disabled' ?>
+                                        >Nuevo rol</button> 
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
@@ -37,7 +39,11 @@
 
                                        
                                             <div class="btn-list">
-                                                <button type="button" id="btn-editar<?php  echo $rol->id_rol ?>" data-id_rol="<?php  echo $rol->id_rol ?>" class="btn btn-sm btn-primary btn-editar ">
+                                                <button type="button" id="btn-editar<?php  echo $rol->id_rol ?>" data-id_rol="<?php  echo $rol->id_rol ?>" class="btn btn-sm btn-primary btn-editar "
+                                                
+                                           
+                                                
+                                                >
                                                     <span class="">
                                                         Menu rol
                                                     </span>
