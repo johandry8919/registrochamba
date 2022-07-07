@@ -4,6 +4,17 @@
                                 <div class="card">
                                     <div class="card-header   justify-content-between">
                                         <h3 class="card-title">Roles</h3>
+                                            <div class="form-group">
+                                              <label for="" class="form-label">Rol</label>
+
+                                                    <select class="form-control" id="tipo_rol">
+                                                        <option value="admin">Admin</option>
+                                                        <option value="estructuras" <?php if(isset($_GET['p']) && $_GET['p'] =='estructuras') echo 'selected' ?>>Estructura</option>
+                                                    </select>
+
+                                            
+                                            </div>
+
                                         <button type="button" class="ml-5 btn btn-info nuevo_rol">Nuevo rol</button> 
                                     </div>
                                     <div class="card-body">

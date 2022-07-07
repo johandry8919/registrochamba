@@ -18,14 +18,19 @@ class Roles extends CI_Controller
     public function index()
     {
         
-        $breadcrumb =(object) [
-            "menu" => "Empresas",
-            "menu_seleccion" => "Inicio"
-                 ];
+      
     
-     
-       $roles =  $this->Roles_model->obtener_roles('admin');
-  
+     $perfil  =isset($_GET['p']) ? 'estructura' : 'admin';
+
+
+
+       $roles =  $this->Roles_model->obtener_roles($perfil);
+
+
+       $breadcrumb =(object) [
+        "menu" => "Admin",
+        "menu_seleccion" => " $perfil"
+             ];
  
         $output = [
             "menu_lateral" => "admin",

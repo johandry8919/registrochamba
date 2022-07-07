@@ -74,7 +74,6 @@
                                     <!--col-->
 
                                     <div class="col-md-6">
-
                                         <div class="form-group">
                                             <label class="form-label">Apellidos</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
@@ -82,10 +81,8 @@
                                                     <i class="mdi mdi-account" aria-hidden="true"></i>
                                                 </a>
                                                 <input class="input100 border-start-0 ms-0 form-control" data-parsley-error-message="Este campo es requerido" type="text" id="apellidos" maxlength="30" name="apellidos" value="<?php if(isset($datos->apellidos)) echo ucwords($datos->apellidos);?>" placeholder="Ingreses sus Apellidos" required autofocus>
-
                                             </div>
-
-                                        </div>
+                                      </div>
 
 
 
@@ -93,7 +90,6 @@
                                     <!--col-->
 
                                     <div class="col-md-4">
-
                                         <div class="form-group">
                                             <label class="form-label">Cédula de Identidad</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
@@ -287,8 +283,8 @@
 
 
 
-                                    <div class="col-12 col-md-6">
-                                        <label class="form-label">¿responsabilidad que desempeña dentro de su estructura ?</label>
+                                    <div class="col-12 col-md-4">
+                                        <label class="form-label">¿responsabilidad en estructura ?</label>
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <select class="form-control show-tick" id="cod_responsabilidad" name="cod_responsabilidad" data-parsley-error-message="Este campo es requerido" required autofocus>
@@ -314,27 +310,30 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6 align-items-end">
+                                    <div class="col-md-4 ">
                                         <label class="form-label">¿A que estructura Pertenece?</label>
                                         <div class="form-group">
                                             <div class="form-line">
                                                 <select class="form-control show-tick" id="id_estructura" name="id_estructura" data-parsley-error-message="Este campo es requerido" required autofocus>
-                                                    <option value="/**/">Seleccione una opción</option>
-                                                    <option <?php if (isset($datos->tipo_estructura) and $datos->tipo_estructura == 'Estadal') {
-                                                echo 'selected';
-                                            } ?> value="Estadal">Estructura Estadal</option>
-                                    <option <?php if (isset($datos->tipo_estructura) and $datos->tipo_estructura == 'Municipal') {
-                                                echo 'selected';
-                                            } ?> value="Municipal">Estructura Municipal</option>
-                                    <option <?php if (isset($datos->tipo_estructura) and $datos->tipo_estructura == 'Parroquial') {
-                                                echo 'selected';
-                                            } ?> value="Parroquial">Estructura Parroquial</option>
-
-
+                                                    <option value="">Seleccione una opción</option>
+                                                    <?php foreach($roles as $rol): ?>
+                                  
+                                                        <option value="<?php  echo $rol->id_rol ?>"><?php  echo $rol->nombre ?></option>
+                                                    <?php endforeach; ?>
                                                 </select>
                                             </div>
                                         </div>
 
+                                    </div>
+
+                                    <div class="col-md-4">
+                                    <div class="form-group">
+                                    <label class="form-label">Nombre Brigada</label>
+                                    <input type="text" class="form-control"  id="nombre_brigada">
+
+
+                                    </div>
+                                        
                                     </div>
 
                                     <div class="col-12 col-md-6">
@@ -515,7 +514,7 @@
                                         echo '<h3 >Asignar Contraseña</h3>';
                                         echo '<section>';
                                         echo '<div class="form-group">';
-                                        echo '<input type="email" id="correo2" name="email2" class="form-control" placeholder="Email" data-parsley-error-message="Este campo es requerido" required autofocus />';
+                                        echo '<input type="email" readonly id="correo2" name="email2" class="form-control" placeholder="Email" data-parsley-error-message="Este campo es requerido" required autofocus />';
                                         echo '</div>';
                                         echo '<div class="form-group">';
                                         echo '<input id="password" type="text" name="Password" class="form-control" placeholder="Password" data-parsley-error-message="Este campo es requerido" required autofocus>';

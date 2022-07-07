@@ -282,7 +282,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6 align-items-end">
+                                    <!--div class="col-md-6 align-items-end">
                                         <label class="form-label">¿A que estructura Pertenece?</label>
                                         <div class="form-group">
                                             <div class="form-line">
@@ -303,7 +303,7 @@
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div -->
 
                                     <div class="col-12 col-md-4">
                                         <div class="form-group">
@@ -330,17 +330,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-4">
-                                        <div class="form-group">
-                                            <label class="form-label">Modificar contraseña</label>
-                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="fa fa-user-md" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-user-md" aria-label="fa fa-user-md"></i>
-                                                </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="contrasena" maxlength="30" name="contrasena" value="" placeholder="contraseña" required autofocus data-parsley-error-message="Este campo es requerido">
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
 
 
 

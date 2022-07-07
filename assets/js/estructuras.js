@@ -206,11 +206,12 @@
 			var longitud = $("#longitud").val();
 			var genero = $("#genero").val();
 			var pass = $("#password").val();
-
+			var nombre_brigada = $("#nombre_brigada").val();
 
 			$.ajax({
 				dataType: "json",
 				data: {
+					nombre_brigada,
 					pass,
 					nombres,
 					apellidos,

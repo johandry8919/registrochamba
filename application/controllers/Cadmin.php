@@ -315,19 +315,10 @@ class Cadmin extends CI_Controller
         echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
         exit();
         }
-
-
-
-        $estados = $this->Musuarios->getEstados();
-
-        $responsabilidad_estructuras = $this->Estructuras_model->responsabilidad_estructuras();
-
-        $instruccion_academica = $this->Estructuras_model->instruccion_academica();
-
+         
         $rango_edad = $this->Estructuras_model->rango_Edad();
-        $sectorProductivo = $this->Mprofesion_oficio->SectorProductivo();
-        $profesion_oficio = $this->Estructuras_model->profesion_oficio();
-        $persona = $this->Estructuras_model->getUsuarioRegistradoPersonal();
+
+      
         $res = [];
         $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
         if (isset($id__exp_lab) and $id__exp_lab != "") {
@@ -337,8 +328,7 @@ class Cadmin extends CI_Controller
 
 
 
-        $datos['profesion_oficio'] = $profesion_oficio;
-
+    
 
         $breadcrumb = (object) [
             "menu" => "Admin",
@@ -352,18 +342,16 @@ class Cadmin extends CI_Controller
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "Registro de estructuras",
             "vista_principal"   => "admin/registro_estructura",
-            "responsabilidad_estructuras"   =>  $responsabilidad_estructuras,
-            "academica"   =>  $instruccion_academica,
-            "estados"          => $estados,
-            "sectorProductivo" => $sectorProductivo,
-            'profesion_oficio' => $profesion_oficio,
+            "responsabilidad_estructuras"   =>  $this->Estructuras_model->responsabilidad_estructuras(),
+            "academica"   => $this->Estructuras_model->instruccion_academica(),
+            "estados"          => $this->Musuarios->getEstados(),
+            "sectorProductivo" => $this->Mprofesion_oficio->SectorProductivo(),
+            'profesion_oficio' => $this->Estructuras_model->profesion_oficio(),
+
             "datos" => $res,
             "rangoedad" => $rango_edad,
-
-            "persona" => $persona,
-
-
-
+            "persona" =>$this->Estructuras_model->getUsuarioRegistradoPersonal(),
+            "roles" =>   $this->Roles_model->obtener_roles('estructura'),
             "librerias_css" => [],
 
 
@@ -420,7 +408,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('fecha_nac', 'fecha_nac', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');
-        // $this->form_validation->set_rules('edad', 'edad', 'trim|required|strip_tags');
+         $this->form_validation->set_rules('nombre_brigada', 'nombre_brigada', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_profesion_oficio', 'id_profesion_oficio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado', 'estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'municipio', 'trim|required|strip_tags');
@@ -430,26 +418,22 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('pass', 'pass', 'trim|required|strip_tags');
-
-
         $this->form_validation->set_error_delimiters('*', '');
         //delimitadores de errores
-
-        //reglas de validación
-        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+       //reglas de validación
+        $this->form_validation->set_message('required', 'El campo %s es requerido');
         //reglas de validación
 
         if ($this->form_validation->run() === FALSE) {
             $mensaje_error = validation_errors();
-
             echo  json_encode(["resultado" => false, "mensaje" => $mensaje_error]);
-        } else {
+            exit;
+        } 
 
-            $rol_usuario = 3;
+            $rol_usuario =$this->input->post('id_estructura');
             //verificar que el usuario no exita. si exite no debes registrarse
             $validacion_usuario = $this->Estructuras_model->verificarSiUsuarioExiste('V' . $this->input->post('cedula'), strtoupper(trim($this->input->post('email1'))), $rol_usuario);
-
-
+      
             // si el cedula de usuario existe 
             if ($validacion_usuario) {
                 echo  json_encode(["resultado" => false, "mensaje" => "la cedula o correo ya se  encuentra registrado"]);
@@ -472,7 +456,7 @@ class Cadmin extends CI_Controller
             $datos_usuario['password'] = $pass_cifrado;
             $datos_usuario['activo'] = 1;
             // $datos_usuario['registro_anterior'] = 0;
-            $datos_usuario['id_rol'] = 3;
+            $datos_usuario['id_rol'] = $this->input->post('id_estructura');
             $datos_usuario['nombre'] = $this->input->post('nombres') . " " . $this->input->post('apellidos');
 
 
@@ -489,6 +473,7 @@ class Cadmin extends CI_Controller
                 'tlf_coorparativo' => $this->input->post('telf_local'),
                 'cedula' => $this->input->post('cedula'),
                 'fecha_nac' => $this->input->post('fecha_nac'),
+                'genero' => $this->input->post('genero'),
                 'edad' => $this->input->post('edad'),
                 'id_profesion_oficio' => $this->input->post('id_profesion_oficio'),
                 'id_nivel_academico' => $this->input->post('id_nivel_academico'),
@@ -502,6 +487,7 @@ class Cadmin extends CI_Controller
                 'talla_camisa' => $this->input->post('talla_camisa'),
                 'latitud' => $this->input->post('latitud'),
                 'longitud' => $this->input->post('longitud'),
+                'nombre_brigada' => $this->input->post('nombre_brigada'),
                 'id_usuario' =>  $id_usuario,
                 'id_usuario_registro' => $this->session->userdata('id_usuario')
 
@@ -511,7 +497,7 @@ class Cadmin extends CI_Controller
 
             $this->Estructuras_model->post_crearEstructura($datas);
             echo  json_encode(["resultado" => true, "mensaje" => "Datos guardados correctamente."]);
-        }
+        
     }
 
 
@@ -1098,7 +1084,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('cod_municipio', 'municipio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_parroquia', 'parroquia', 'trim|required|strip_tags');
         $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('id_estructura', 'estructura_responsabilidad', 'trim|required|strip_tags');
+      //  $this->form_validation->set_rules('id_estructura', 'estructura_responsabilidad', 'trim|required|strip_tags');
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_usuario_estructura', 'id_usuario_estructura', 'trim|required|strip_tags');
@@ -1139,11 +1125,6 @@ class Cadmin extends CI_Controller
                 'talla_camisa' => $this->input->post('talla_camisa'),
                 'latitud' => $this->input->post('latitud'),
                 'longitud' => $this->input->post('longitud')
-
-
-
-
-
 
             );
             // echo json_encode($datas);

@@ -20,6 +20,24 @@ $(".btn-guardar-rol").click(function (e) {
   });
   
 
+  $("#tipo_rol").change(function (e) {
+
+	if($(this).val()=='admin')
+	location.href='roles?p=admin'
+	else	
+	location.href='roles?p=estructuras'
+
+  });
+
+
+  
+  
+  //btn-guardar-permiso
+  $(".btn-guardar-permiso").click(function (e) {
+	guardar_rol_permiso();
+
+  });
+
   $(".btn-permisos").click(function (e) {
 	
 	var id_rol = $(this).data("id_rol");
@@ -32,7 +50,6 @@ $(".btn-guardar-rol").click(function (e) {
 	guardar_rol_permiso();
 
   });
-
 
   function obtener_permisos_rol(id_rol) {
 	$.ajax({
@@ -143,10 +160,12 @@ $(".btn-guardar-rol").click(function (e) {
 }
 
 function obtener_menus(id_rol) {
+	var tipo_rol = $("#tipo_rol").val()
 	$.ajax({
 		dataType: "json",
 		data: {
 			id_rol,
+			tipo_rol
 		},
 
 		url: base_url + "ajax/Cobterner_menu_rol",

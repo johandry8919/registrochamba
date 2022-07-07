@@ -13,9 +13,7 @@ class Cobterner_menu_rol extends CI_Controller {
 
     public function index() {
     
-   
-
-    
+      
        
         $permitidos =  obtener_roles('admin'); 
         $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
@@ -26,8 +24,9 @@ class Cobterner_menu_rol extends CI_Controller {
         }
 
     $this->form_validation->set_rules('id_rol', 'id_rol', 'trim|required|strip_tags');  
+    $this->form_validation->set_rules('tipo_rol', 'tipo_rol', 'trim|required|strip_tags');  
 
-
+    
     $this->form_validation->set_error_delimiters('*', '');
     //reglas de validación
     $this->form_validation->set_message('required', 'El campo %s es requerido');
@@ -43,7 +42,7 @@ class Cobterner_menu_rol extends CI_Controller {
 
     $id_rol =$_POST['id_rol'];
 
-    $resultado = $this->Menu_model->obtener_menu_perfil('admin',$id_rol);
+    $resultado = $this->Menu_model->obtener_menu_perfil($_POST['tipo_rol'],$id_rol);
 
 
       if($resultado)
