@@ -281,36 +281,7 @@
                             <section>
                                 <div class="row ">
 
-
-
-                                    <div class="col-12 col-md-4">
-                                        <label class="form-label">¿responsabilidad en estructura ?</label>
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <select class="form-control show-tick" id="cod_responsabilidad" name="cod_responsabilidad" data-parsley-error-message="Este campo es requerido" required autofocus>
-                                                    <option value="">Seleccione una opción</option>
-                                                    <?php if(isset($responsabilidad_estructuras)): ?>
-                                                            <?php foreach ($responsabilidad_estructuras as $key => $movimiento):?>
-                                                               
-                                                                <?php  if($movimiento->id_tipos == $datos->id_responsabilidad_estructura):?>
-                                                                
-                                                                 
-                                                                 
-                                                                    <?php    echo "<option selected value='".$movimiento->id_tipos."'>".$movimiento->descricion."</option>";     
-                                                               else:
-                                                                    echo "<option value='".$movimiento->id_tipos."'>".$movimiento->descricion."</option>";
-                                                                endif;
-                                                           endforeach;
-                                                        endif;
-                                                    ?>
-
-
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-4 ">
+                                <div class="col-md-4 ">
                                         <label class="form-label">¿A que estructura Pertenece?</label>
                                         <div class="form-group">
                                             <div class="form-line">
@@ -326,9 +297,38 @@
 
                                     </div>
 
+                                    <div class="col-12 col-md-4">
+                                        <label class="form-label">¿responsabilidad en estructura ?</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select class="form-control show-tick" id="cod_responsabilidad" name="cod_responsabilidad" data-parsley-error-message="Este campo es requerido" required autofocus>
+                                                    <option value="">Seleccione una opción</option>
+                                                    <?php if(isset($responsabilidad_estructuras)): ?>
+                                                            <?php foreach ($responsabilidad_estructuras as $key => $movimiento):?>
+                                                               
+                                                                <?php  if($movimiento->id_tipos == $datos->id_responsabilidad_estructura):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$movimiento->id_tipos."'>".$movimiento->descripcion."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$movimiento->id_tipos."'>".$movimiento->descripcion."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                             
+
                                     <div class="col-md-4">
                                     <div class="form-group">
-                                    <label class="form-label">Nombre Brigada</label>
+                                    <label class="form-label">Nombre Estructura / brigada</label>
                                     <input type="text" class="form-control"  id="nombre_brigada">
 
 
@@ -455,6 +455,15 @@
 
 
                                 <div class="row ">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                    <label class="form-label">Nombre sector / comunidad</label>
+                                    <input type="text" class="form-control"  id="nombre_comunidad">
+
+
+                                    </div>
+                                        
+                                    </div>
                                     <div class="col-md-4">
                                         <label class="form-label"> Dirección Especifica</label>
                                         <div class="form-group">
@@ -493,7 +502,7 @@
 
 
                                     </div>
-                                    <div class="col-md-8 justify-content-center">
+                                    <div class="col-md-12 justify-content-center">
                                         <div class="small">Seleccione en el mapa su ubicación exacta</div>
                                         <div id="map"></div>
 

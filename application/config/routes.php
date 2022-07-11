@@ -67,8 +67,8 @@ $route['inicio'] = 'Cusuarios/Vinicio';
 
 $route['cambiarclave'] = 'Cchambistas/VcambiarClave';
 $route['admin/cambiarclave'] = 'Cadmin/admin_cambiarClave';
-$route['estructuras/cambiarclave'] = 'Cadmin/admin_cambiarClave';
-$route['empresas/cambiarclave'] = 'Cadmin/admin_cambiarClave';
+$route['estructuras/cambiarclave'] = 'Estructuras/cambiarClave';
+$route['empresas/cambiarclave'] = 'Empresas/cambiarClave';
 $route['admin/cambiarclaves'] = 'Cadmin/estructuras_empresa';
 $route['datospersonales'] = 'Cchambistas/Vdatospersonales';
 $route['formacionacademica'] = 'Cchambistas/Vformacionacademica';

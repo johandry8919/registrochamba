@@ -128,19 +128,27 @@ class Estructuras extends CI_Controller
           
                 if (password_verify($password,$resultado->password)) {
 
+                $estructura=$this->Estructuras_model->obtener_estructura_id_usuario($resultado->id_usuarios_admin);
+
                     $s_usuario = array(
                         'id_usuario' => $resultado->id_usuarios_admin,
                         'cedula' => $resultado->cedula,
                         'email' => $resultado->email,
                         'activo' => $resultado->activo,
                         'fecha_reg' => $resultado->created_on,
-                        'id_rol' => $resultado->id_rol
+                        'id_rol' => $resultado->id_rol,
+                        'permiso_guardar' =>$resultado->crear,
+                        'permiso_modificar'=>$resultado->modificar,
+                        'permiso_eliminar'=>$resultado->eliminar,
+                        'permiso_vincular'=>$resultado->vincular,
+                        'codigoestado'=>$estructura->codigoestado,
+                        'codigomunicipio'=>$estructura->codigomunicipio,
+                        'codigoparroquia'=>$estructura->codigoparroquia
+                        
                     );
 
-                 
-                    //SI ES IGUAAL A CERO MUESTRA VISTA DONDE ACTIVA LA CUENTA A TRAVES DEL CODIGO O PERMITE REENVIAR EMAIL
-
-                    //SINO ENVIA A LA VISTA DE CHAMBA
+               
+              
                     if ($resultado->activo==0) {
                         //$this->session->set_flashdata('mensaje', 'Debes completar tus datos para poder realizar una publicación');
                         //redirect('Cusuarios/VvalidarCuenta');
@@ -909,30 +917,28 @@ public function  update_empresas_representante(){
     }
 
     public function editar_universidades(){
-        if (!$this->session->userdata('id_rol')) {
-            // motra un alert con bootstrap
-            echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
-
-            
-            redirect('iniciosesion');
-            exit();
+                         //verificar acceso
+     if ( !tiene_acceso('estructura')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
         }
-
+        //optener el id id_usu_aca hidden del formulario
+       //verificar si tiene permiso
+          if(!tiene_permiso('permiso_modificar')){
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+            exit();
+            }
         $estados = $this->Musuarios->getEstados();
         $datos['estados'] = $estados;
        
         $sectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
         $empresas = $this->Empresas_entes_model->obtener_univerdidad();
        
-        $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
+        $id_universidad = strip_tags(trim($this->uri->segment(4)));
         $res = [];
-        if (isset($id__exp_lab) and $id__exp_lab != "") {
-          $res =  $this->Empresas_entes_model->obtener_representante_universidad($id__exp_lab);
-          
-        
-          
-           
-         
+        if (isset($id_universidad) and $id_universidad != "") {
+          $res =  $this->Empresas_entes_model->obtener_representante_universidad($id_universidad);
+                                   
         }
         
 
@@ -953,7 +959,7 @@ public function  update_empresas_representante(){
              "estados"          => $estados,
              "empresas"         => $empresas,
              "datos"            =>$res,
-             "id_empresa" => $id__exp_lab,
+             "id_empresa" => $id_universidad,
              "rangoedad" => $rango_edad,
              "id_rol" => $this->session->userdata('id_rol'),
              
@@ -1095,14 +1101,12 @@ public function  update_empresas_representante(){
 
 
     public function universidad_oferta_admin(){
-        if (!$this->session->userdata('id_rol')) {
-            // motra un alert con bootstrap
-            echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
-
-            
-            redirect('iniciosesion');
+        if ( !tiene_acceso('estructura')) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
-        }
+            }
+           
+                
 
         $id_area_formacion = strip_tags(trim($this->uri->segment(3)));
         $ruta = strip_tags(trim($this->uri->segment(1)));
@@ -1565,14 +1569,16 @@ public function listar_oferta_admin(){
 
 public function crear_oferta(){
 
-    $permitidos = [2,3];        
-    $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-    if ( !$tiene_acceso) {
+    if ( !tiene_acceso('estructura')) {
         echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-        redirect('iniciosesion');
         exit();
-    }
+        }
+        //optener el id id_usu_aca hidden del formulario
+       //verificar si tiene permiso
+          if(!tiene_permiso('permiso_guardar')){
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+            exit();
+            }
     $this->form_validation->set_rules('id_instruccion', 'instruccion', 'trim|required|strip_tags');
     $this->form_validation->set_rules('id_profesion', 'profesion', 'trim|required|strip_tags');
     $this->form_validation->set_rules('id_area_form', 'area de formacion', 'trim|required|strip_tags');
@@ -1628,14 +1634,10 @@ public function crear_oferta(){
 public function ver_oferta_empresas(){
 
       
-    $permitidos = [2,3];        
-    $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-    if ( !$tiene_acceso) {
+    if ( !tiene_acceso('estructura')) {
         echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-        redirect('iniciosesion');
         exit();
-    }
+        }
 
     $id_oferta = strip_tags(trim($this->uri->segment(3)));
     $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
@@ -1744,14 +1746,14 @@ public function update_oferta(){
    
     
 
-
-    if (!$this->session->userdata('id_rol')) {
-        // motra un alert con bootstrap
-        echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
-
-        
-        redirect('iniciosesion');
+    if ( !tiene_acceso('estructura')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
         exit();
+        }
+       
+    if(!tiene_permiso('permiso_modificar')){
+    echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+    exit();
     }
 
 $this->form_validation->set_rules('id_instruccion', 'instruccion', 'trim|required|strip_tags');
@@ -1813,4 +1815,40 @@ echo  json_encode(["resultado" => false, "mensaje" => 'Ocurrio un error']);
 }
 
 }
+
+public function cambiarClave()
+{
+
+    if ( !tiene_acceso('estructura')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
+        }
+
+    $id_admin = $this->session->userdata('id_usuario');
+
+
+
+    $breadcrumb = (object) [
+        "menu" => "Admin",
+        "menu_seleccion" => "Cambiar Clave"
+
+    ];
+
+
+    $output = [
+        "menu_lateral" => "estructuras",
+        "breadcrumb"      =>   $breadcrumb,
+        "title"             => "cambiarClave",
+        "vista_principal"   => "chambistas/cambiarClave",
+        "id_admin"           => $id_admin,
+
+        "ficheros_js" => [recurso("admin_cambiarClave_js")]
+
+
+    ];
+
+    $this->load->view("main", $output);
+
+}
+
 }

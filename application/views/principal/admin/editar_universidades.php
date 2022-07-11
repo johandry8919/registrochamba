@@ -6,7 +6,7 @@
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
 <!-- #END# Overlay For Sidebars -->
-<?php print_r($datos)?>
+
 
 <section class="content">
     <div class="container">

@@ -226,6 +226,28 @@
     }
 
 
+
+     
+	public function obtener_estructura_id_usuario($id){
+        $this->db->select('public.tbl_estructuras.*,
+        estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,direccion,genero
+        ');
+       
+        $this->db->where('id_usuario',$id);
+        $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
+        $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');
+        $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_estructuras.codigoparroquia');
+        $query = $this->db->get("tbl_estructuras");
+    
+            if ($query->num_rows()) $valor = $query->row();
+            else $valor = [];
+    
+
+            return $valor;
+
+ 
+    }
+
     public function getUsuarioRegistradoPersonal(){
 
         $this->db->select('*');
