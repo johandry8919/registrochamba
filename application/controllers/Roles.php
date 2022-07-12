@@ -20,7 +20,21 @@ class Roles extends CI_Controller
         
       
     
-     $perfil  =isset($_GET['p']) ? 'estructura' : 'admin';
+        $perfil =isset($_GET['p']) ? 'estructuras' : 'admin';
+     
+        if(isset($_GET['p'])){
+          if($_GET['p'] == "estructuras"){
+              $perfil = "estructura";
+  
+          }else if($_GET['p'] == "admin"){
+  
+              $perfil = "admin";
+  
+          }else{
+              $perfil = "admin";
+          };
+        }
+
 
 
 

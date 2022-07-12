@@ -8,7 +8,7 @@
                                               <label for="" class="form-label">Rol</label>
 
                                                     <select class="form-control" id="tipo_rol">
-                                                        <option value="admin">Admin</option>
+                                                        <option value="admin"  <?php if(isset($_GET['p']) && $_GET['p'] =='admin') echo 'selected' ?>>Admin</option>
                                                         <option value="estructuras" <?php if(isset($_GET['p']) && $_GET['p'] =='estructuras') echo 'selected' ?>>Estructura</option>
                                                     </select>
 
