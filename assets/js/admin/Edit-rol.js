@@ -14,21 +14,16 @@ function Editar(id_usuarios_admin) {
 			if (respuesta.resultado == true) {
 				var data = respuesta.mensaje[0];
 
+				var select = "";
 
-				
-				var select = ""
+				var roles = "";
+				respuesta.roles.forEach((element) => {
+					if (element.id_rol == data.id_rol) select = "selected";
 
+					roles += `<option ${select} label="${element.nombre}" value="${element.id_rol}" >${element.nombre}</option>  `;
 
-				var roles = ""
-				respuesta.roles.forEach(element => {
-					if(element.id_rol == data.id_rol) select = "selected"
-					
-					roles += `<option ${select} label="${element.nombre}" value="${element.id_rol}" >${element.nombre}</option>  `
-
-					select = ""
-
+					select = "";
 				});
-
 
 				$("#body_card").html("");
 				var htmlTags = `
@@ -133,8 +128,6 @@ function EditarRoles() {
 	var Roles = $("#Roles").val();
 	var perfil = $("#perfil").val();
 
-
-
 	$.ajax({
 		dataType: "json",
 		data: {
@@ -183,43 +176,42 @@ function EditarRoles() {
 	});
 }
 
-
 var idioma_espanol = {
-    "sProcessing":     "Procesando...",
-  "sLengthMenu": 'Mostrar <select>'+
-    '<option value="10">10</option>'+
-    '<option value="20">20</option>'+
-    '<option value="30">30</option>'+
-    '<option value="40">40</option>'+
-    '<option value="50">50</option>'+
-    '<option value="-1">All</option>'+
-    '</select> registros',    
-  "sZeroRecords":    "No se encontraron resultados",
-  "sEmptyTable":     "Ningún dato disponible en esta tabla",
-  "sInfo":           "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
-  "sInfoEmpty":      "Mostrando del 0 al 0 de un total de 0 registros",
-  "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-  "sInfoPostFix":    "",
-  "sSearch":         "Buscar:",
-  "sUrl":            "",
-  "sInfoThousands":  ",",
-  "sLoadingRecords": "Por favor espere - cargando...",
-  "oPaginate": {
-    "sFirst":    "Primero",
-    "sLast":     "Último",
-    "sNext":     "Siguiente",
-    "sPrevious": "Anterior"
-  },
-  "oAria": {
-    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-  },
-  scrollX: "100%"
-}
+	sProcessing: "Procesando...",
+	sLengthMenu:
+		"Mostrar <select>" +
+		'<option value="10">10</option>' +
+		'<option value="20">20</option>' +
+		'<option value="30">30</option>' +
+		'<option value="40">40</option>' +
+		'<option value="50">50</option>' +
+		'<option value="-1">All</option>' +
+		"</select> registros",
+	sZeroRecords: "No se encontraron resultados",
+	sEmptyTable: "Ningún dato disponible en esta tabla",
+	sInfo: "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
+	sInfoEmpty: "Mostrando del 0 al 0 de un total de 0 registros",
+	sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+	sInfoPostFix: "",
+	sSearch: "Buscar:",
+	sUrl: "",
+	sInfoThousands: ",",
+	sLoadingRecords: "Por favor espere - cargando...",
+	oPaginate: {
+		sFirst: "Primero",
+		sLast: "Último",
+		sNext: "Siguiente",
+		sPrevious: "Anterior",
+	},
+	oAria: {
+		sSortAscending: ": Activar para ordenar la columna de manera ascendente",
+		sSortDescending: ": Activar para ordenar la columna de manera descendente",
+	},
+	scrollX: "100%",
+};
 
-var table = $('#basic-datatable').DataTable({
-    dom: 'lrtip',
+var table = $("#basic-datatable").DataTable({
+	dom: "lrtip",
 
-    language: idioma_espanol
+	language: idioma_espanol,
 });
-
