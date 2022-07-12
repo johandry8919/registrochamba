@@ -1,10 +1,21 @@
-
         <div class="row row-sm ">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Usuarios</h3>
-                    </div>
+                <div class="card-header   justify-content-center">
+                          
+                                            <div class="form-group">
+                                              <label for="" class="form-label">Rol</label>
+
+                                                    <select class="form-control" id="tipo_rol">
+                                                        <option value="admin" <?php if(isset($_GET['p']) && $_GET['p'] =='admin') echo 'selected' ?>>Admin</option>
+                                                        <option value="estructura" <?php if(isset($_GET['p']) && $_GET['p'] =='estructura') echo 'selected' ?>>Estructura</option>
+                                                    </select>
+
+                                            
+                                            </div>
+
+                                   
+                                    </div>
                     <div class="card-body" >
                         <div class="table-responsive">
                             <table class="table text-nowrap  key-buttons" id="basic-datatable">

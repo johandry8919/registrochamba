@@ -15,27 +15,74 @@ class Edit_rol extends CI_Controller
     public function index()
     {
 
-
-
-        $id_rol = $this->input->post("id_rol");
         $id_usuarios_admin = $this->input->post("id_usuarios_admin");
 
-        $respuesta = $this->Usuarios_admin_model->obtener_usuario($id_usuarios_admin,$id_rol);
+        $respuesta = $this->Usuarios_admin_model->obtener_usuario($id_usuarios_admin);
+
+
+        $perfil = $respuesta[0]->perfil;
+
+        $roles =  $this->Roles_model->obtener_roles($perfil);
 
 
         if ($respuesta) {
-            echo  json_encode(["resultado" => true, "mensaje" => $respuesta]);
+        $roles =  $this->Roles_model->obtener_roles("admin");
+            echo  json_encode(["resultado" => true,
+             "mensaje" => $respuesta  , "roles" => $roles]);
+
         };
+
     }
 
     public function Editor_Usuarios()
     {
 
-        $password = password_hash($this->input->post('contraseña'), PASSWORD_DEFAULT);
-       $Roles =  $this->input->post('Roles');
+        $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cedula', 'cudula', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_usuarios_admin', 'email', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_rol', 'id_rol', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('email', 'correo', 'trim|required|strip_tags');
 
-       echo print($Roles);
-       exit;
+
+        
+        $this->form_validation->set_error_delimiters('*', '');
+
+
+        //reglas de validación
+        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+
+        //reglas de validación 
+        if (!$this->form_validation->run()) {
+            $mensaje_error = validation_errors();
+
+            echo  json_encode(["resultado" => false, "mensaje" => $mensaje_error]);
+            exit;
+        }
+
+
+
+
+
+            $id_usuarios = $this->input->post("id_usuarios_admin");
+
+            $password = $this->input->post("contraseña");
+
+         if(empty($password)){
+
+            $respuesta = $this->Usuarios_admin_model->obtener_usuario($id_usuarios);
+     
+
+
+            $password = $respuesta[0]->password;
+          
+
+
+         }else{
+            $password = password_hash($this->input->post('contraseña'), PASSWORD_DEFAULT);
+
+
+         }
+
 
         $id_usuarios_admin = $this->input->post("id_usuarios_admin");
 
@@ -53,9 +100,6 @@ class Edit_rol extends CI_Controller
 
 
         $respuesta = $this->Usuarios_admin_model->update_admin_usuarios($datos, $id_usuarios_admin);
-
-
-
 
 
         if ($respuesta) {

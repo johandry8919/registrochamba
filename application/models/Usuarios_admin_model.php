@@ -57,7 +57,7 @@ class Usuarios_admin_model extends CI_Model
 
         return $valor;
     }
-    public function obtener_usuario($id_usuarios_admin,$array_rol )
+    public function obtener_usuario($id_usuarios_admin )
     {
         $this->db->select('usuarios_admin.id_usuarios_admin, usuarios_admin.id_rol, usuarios_admin.cedula, 
         usuarios_admin.email, usuarios_admin.token, usuarios_admin.password, 
@@ -66,7 +66,7 @@ class Usuarios_admin_model extends CI_Model
             ');
 
         $this->db->where('id_usuarios_admin', $id_usuarios_admin);
-        $this->db->where_in('usuarios_admin.id_rol', $array_rol);
+        // $this->db->where_in('usuarios_admin.id_rol', $array_rol);
         $this->db->join('tbl_roles', 'tbl_roles.id_rol = usuarios_admin.id_rol');
 
  
