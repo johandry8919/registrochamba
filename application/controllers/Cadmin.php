@@ -89,16 +89,16 @@ class Cadmin extends CI_Controller
     public function listar_usuarios_admin()
     {
 
+        $roles =  obtener_roles("admin");
 
-        if ($this->session->userdata('id_rol') != 2) {
-            redirect('admin/login');
-        }
-        $usuarios = $this->Usuarios_admin_model->obtener_usuarios(2);
+        $usuarios = $this->Usuarios_admin_model->obtener_usuarios($roles);
+        $roles =  $this->Roles_model->obtener_roles('admin');
+
 
 
         $breadcrumb = (object) [
             "menu" => "Admin",
-            "menu_seleccion" => "Registro de estructuras"
+            "menu_seleccion" => "Registro de Usuarios"
 
         ];
 
@@ -109,9 +109,11 @@ class Cadmin extends CI_Controller
             "title"             => "Usuarios",
             "vista_principal"   => "admin/listar_usuarios",
             "usuarios" => $usuarios,
+            "roles" => $roles,
             "librerias_css" => [],
            "librerias_js" => [],
             "ficheros_js" => [recurso("listar_usuario_admin_js")],
+            "ficheros_js" => [recurso("Edit-rol_js")],
             "ficheros_css" => [],
 
 
@@ -2107,10 +2109,10 @@ class Cadmin extends CI_Controller
             exit();
         }
 
-        if (!$tiene_acceso) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
-        }
+        // if (!$tiene_acceso) {
+        //     echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        //     exit();
+        // }
         $id_usuario = strip_tags(trim($this->uri->segment(2)));
         $codigo = $this->Musuarios->getUsuarios($id_usuario);
         $personal = $this->Musuarios->getUsuarioRegistradoPersonale($id_usuario);
