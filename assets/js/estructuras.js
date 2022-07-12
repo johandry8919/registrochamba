@@ -207,6 +207,7 @@
 			var genero = $("#genero").val();
 			var pass = $("#password").val();
 			var nombre_brigada = $("#nombre_brigada").val();
+			var nombre_comunidad = $("#nombre_comunidad").val();
 
 			$.ajax({
 				dataType: "json",
@@ -235,6 +236,7 @@
 					talla_camisa,
 					latitud,
 					longitud,
+					nombre_comunidad
 				},
 
 				url: base_url + "Cadmin/crearEstructura",

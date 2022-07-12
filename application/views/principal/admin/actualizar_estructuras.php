@@ -268,9 +268,9 @@
 
 
 
-                                                    <?php echo "<option selected value='" . $movimiento->id_tipos . "'>" . $movimiento->descricion . "</option>";
+                                                    <?php echo "<option selected value='" . $movimiento->id_tipos . "'>" . $movimiento->descripcion . "</option>";
                                                             else :
-                                                                echo "<option value='" . $movimiento->id_tipos . "'>" . $movimiento->descricion . "</option>";
+                                                                echo "<option value='" . $movimiento->id_tipos . "'>" . $movimiento->descripcion . "</option>";
                                                             endif;
                                                         endforeach;
                                                     endif;

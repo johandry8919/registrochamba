@@ -439,4 +439,34 @@ public function  editar_oferta(){
     
 }
 
+public function cambiarClave()
+{
+
+    $id_admin = $this->session->userdata('id_usuario');
+
+
+
+    $breadcrumb = (object) [
+        "menu" => "Admin",
+        "menu_seleccion" => "Cambiar Clave"
+
+    ];
+
+
+    $output = [
+        "menu_lateral" => "estructuras",
+        "breadcrumb"      =>   $breadcrumb,
+        "title"             => "cambiarClave",
+        "vista_principal"   => "chambistas/cambiarClave",
+        "id_admin"           => $id_admin,
+
+        "ficheros_js" => [recurso("admin_cambiarClave_js")]
+
+
+    ];
+
+    $this->load->view("main", $output);
+
+}
+
 }

@@ -188,7 +188,7 @@
 						timer: 2500,
 						
 					}).then(function () {
-						window.location.href = base_url + "admin/chambista/buscar";
+						//window.location.href = base_url + "admin/chambista/buscar";
 					
 
 						
