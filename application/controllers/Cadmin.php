@@ -432,7 +432,7 @@ class Cadmin extends CI_Controller
 
             $rol_usuario =$this->input->post('id_estructura');
             //verificar que el usuario no exita. si exite no debes registrarse
-            $validacion_usuario = $this->Estructuras_model->verificarSiUsuarioExiste('V' . $this->input->post('cedula'), strtoupper(trim($this->input->post('email1'))), $rol_usuario);
+            $validacion_usuario = $this->Estructuras_model->verificarSiUsuarioExiste($this->input->post('cedula'), strtoupper(trim($this->input->post('email1'))), $rol_usuario);
       
             // si el cedula de usuario existe 
             if ($validacion_usuario) {
@@ -440,7 +440,7 @@ class Cadmin extends CI_Controller
                 exit;
             }
 
-            if ($this->Estructuras_model->verificarSiUsuarioExisteEstructura('V' . $this->input->post('cedula'), strtoupper(trim($this->input->post('email1'))))) {
+            if ($this->Estructuras_model->verificarSiUsuarioExisteEstructura($this->input->post('cedula'), $this->input->post('email1'))) {
                 echo  json_encode(["resultado" => false, "mensaje" => "la cedula o correo ya se  encuentra registrado en la estructura"]);
                 exit;
             }
