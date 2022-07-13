@@ -16,18 +16,18 @@ class Cactualizar_estatus_chambista_universidad extends CI_Controller {
 
     public function index() {
     
-   
 
-    
-       
-        $permitidos = [2,3,4,5];        
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
 
-        if ( !$tiene_acceso) {
+
+
+            //tiene login
+        if (!tiene_acceso(['estructura','admin',4,5])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
 
+   
+        
     $this->form_validation->set_rules('estatus_chambista', 'estatus_chambista', 'trim|required|strip_tags'); 
     $this->form_validation->set_rules('id_oferta', 'id_oferta', 'trim|required|strip_tags'); 
 

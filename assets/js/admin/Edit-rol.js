@@ -141,7 +141,7 @@ function EditarRoles() {
 			perfil,
 		},
 
-		url: base_url + "ajax/Edit_rol/Editor_Usuarios",
+		url: base_url + "ajax/Edit_rol/editar_usuarios",
 		type: "post",
 		beforeSend: function () {
 			//$("#cod_municipio").selectpicker('refresh');

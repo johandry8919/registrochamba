@@ -89,17 +89,12 @@ class Cadmin extends CI_Controller
     public function listar_usuarios_admin()
     {
 
-        $perfil = isset($_GET['p']) ? 'estructura' : 'admin';
+        $perfil = 'admin';
 
         if (isset($_GET['p'])) {
             if ($_GET['p'] == "estructura") {
                 $perfil = "estructura";
-            } else if ($_GET['p'] == "admin") {
-
-                $perfil = "admin";
-            } else {
-                $perfil = "admin";
-            };
+            }
         }
 
 

@@ -10,11 +10,20 @@ class Edit_rol extends CI_Controller
         $this->load->model('Mprofesion_oficio');
         $this->load->model('Usuarios_admin_model');
         $this->load->library('form_validation');
+
+    //verificar acceso
+    if (!tiene_acceso(['admin'])) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
+    }
     }
 
     public function index()
     {
 
+
+        
+              
         $id_usuarios_admin = $this->input->post("id_usuarios_admin");
 
         $respuesta = $this->Usuarios_admin_model->obtener_usuario($id_usuarios_admin);
@@ -34,8 +43,15 @@ class Edit_rol extends CI_Controller
 
     }
 
-    public function Editor_Usuarios()
+    public function editar_usuarios()
     {
+
+          //verificar si tiene permiso
+          $permiso_g = $this->session->userdata('permiso_modificar');
+          if (!$permiso_g) {
+              echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+              exit();
+          }
 
         $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cedula', 'cudula', 'trim|required|strip_tags');
