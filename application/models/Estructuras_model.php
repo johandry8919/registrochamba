@@ -278,7 +278,7 @@
 
 
 	}
-    public function obtener_estrucutras($id){
+    public function obtener_estrucutras($id=1){
         $this->db->select('public.tbl_estructuras.*,
         estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,direccion
         ');

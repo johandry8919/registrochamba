@@ -9,6 +9,12 @@ class Cobtener_coord_empresas extends CI_Controller {
         $this->load->model('Musuarios');
         $this->load->library('form_validation'); 
         $this->load->model('Empresas_entes_model');
+        
+        if (!tiene_acceso(['admin','estructura'])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+        
     }
 
     public function index() {
@@ -17,14 +23,6 @@ class Cobtener_coord_empresas extends CI_Controller {
 
     
        
-        $permitidos = [2];        
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-        if ( !$tiene_acceso) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
-        }
-
     $this->form_validation->set_rules('cod_estado', 'cod_estado', 'trim|required|strip_tags');  
     $this->form_validation->set_rules('cod_municipio', 'cod_municipio', 'trim|required|strip_tags');  
     $this->form_validation->set_rules('cod_parroquia', 'cod_parroquia', 'trim|required|strip_tags');  
