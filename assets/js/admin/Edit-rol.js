@@ -197,7 +197,11 @@ function EditarRoles() {
 			//$("#cod_municipio").selectpicker('refresh');
 		},
 		success: function (respuesta) {
+
+			console.log(respuesta.datos)
+			
 			if (respuesta.resultado == true) {
+				// table.destroy();
 				Swal.fire({
 					icon: "success",
 					title: "Registro Exitoso",
