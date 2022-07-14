@@ -82,18 +82,28 @@ class Edit_rol extends CI_Controller
 
             $password = $this->input->post("contraseña");
 
+          
+
+     
+
          if(empty($password)){
+           
             $respuesta = $this->Usuarios_admin_model->obtener_usuario($id_usuarios);
             $password = $respuesta[0]->password;
 
          }else{
+
+          
             $password = password_hash($this->input->post('contraseña'), PASSWORD_DEFAULT);
+
+           
 
 
          }
 
+  
 
-        $id_usuarios_admin = $this->input->post("id_usuarios_admin");
+       
 
         $datos  = array(
 
@@ -105,6 +115,7 @@ class Edit_rol extends CI_Controller
 
         );
 
+    $id_usuarios_admin = $this->input->post("id_usuarios_admin");
 
     $respuesta = $this->Usuarios_admin_model->update_admin_usuarios($datos, $id_usuarios_admin);
      
