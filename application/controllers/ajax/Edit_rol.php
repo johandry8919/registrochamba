@@ -101,7 +101,7 @@ class Edit_rol extends CI_Controller
             'cedula' => $this->input->post('cedula'),
             'email' => $this->input->post('email'),
             'password' => $password,
-            'id_rol' => $this->input->post('id_rol'),
+            'id_rol' => $this->input->post('roles'),
 
         );
 
