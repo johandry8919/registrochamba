@@ -199,7 +199,7 @@ function EditarRoles() {
 		success: function (respuesta) {
 
 			console.log(respuesta.datos)
-			
+
 			if (respuesta.resultado == true) {
 				// table.destroy();
 				Swal.fire({
@@ -207,10 +207,7 @@ function EditarRoles() {
 					title: "Registro Exitoso",
 					text: "Presione OK para continuar",
 				}).then((result) => {
-					/* Read more about isConfirmed, isDenied below */
-					if (result.isConfirmed) {
-						location.reload();
-					}
+				
 				});
 			} else {
 				Swal.fire({
