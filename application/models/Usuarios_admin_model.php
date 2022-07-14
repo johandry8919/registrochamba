@@ -47,6 +47,7 @@ class Usuarios_admin_model extends CI_Model
             ');
 
         $this->db->where_in('usuarios_admin.id_rol', $array_rol);
+        $this->db->where_in('usuarios_admin.activo', 1);
         $this->db->join('tbl_roles', 'tbl_roles.id_rol = usuarios_admin.id_rol');
         $query = $this->db->get("usuarios_admin");
       
@@ -66,7 +67,7 @@ class Usuarios_admin_model extends CI_Model
             ');
 
         $this->db->where('id_usuarios_admin', $id_usuarios_admin);
-        // $this->db->where_in('usuarios_admin.id_rol', $array_rol);
+         $this->db->where_in('usuarios_admin.activo', 1);
         $this->db->join('tbl_roles', 'tbl_roles.id_rol = usuarios_admin.id_rol');
 
  
@@ -93,7 +94,7 @@ class Usuarios_admin_model extends CI_Model
         $this->db->where('upper(email)', $email);
         $this->db->where_in(' usuarios_admin.id_rol', $array_rol);
         $this->db->join('tbl_roles', 'tbl_roles.id_rol = usuarios_admin.id_rol');
-
+        $this->db->where_in('usuarios_admin.activo', 1);
         $query = $this->db->get("usuarios_admin");
 
         if ($query->num_rows()) $valor = $query->row();
@@ -132,7 +133,7 @@ class Usuarios_admin_model extends CI_Model
         $this->db->join('tbl_representantes_empresas_entes re_entes', 're_entes.id_usuario = usuarios_admin.id_usuarios_admin');
         $this->db->join('tbl_empresas_entes empresas', 'empresas.id_empresas= re_entes.id_empresas_entes');
         $this->db->where('upper(usuarios_admin.email)', $email);
-
+ 
         $query = $this->db->get("usuarios_admin");
 
         if ($query->num_rows()) $valor = $query->row();

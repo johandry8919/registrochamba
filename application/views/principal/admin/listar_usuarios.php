@@ -33,11 +33,32 @@
                                     <?php foreach ($usuarios as $usuario) : ?>
                                         <tr>
                                             <td>
-
+                                            <div class="btn-list">
                                          
-                                              <input id="edit_rol" type="button"  class=" btn btn-sm btn-primary " data-bs-target="#modalQuill" data-bs-toggle="modal" value="Editar" name="edit" onclick="Editar(<?php echo $usuario->id_usuarios_admin?>)">
+                                              <button id="edit_rol" type="button"  class=" btn btn-sm btn-primary " data-bs-target="#modalQuill" data-bs-toggle="modal" value="Editar" name="edit" onclick="Editar(<?php echo $usuario->id_usuarios_admin?>)">Editar</button>
+                                              
+                                              <button class="btn btn-sm btn-danger btn-eliminar-usuario" data-id_usuario="<?php echo $usuario->id_usuarios_admin?>">
+                                              <i class="side-menu__icon fe fe-trash-2"></i>
+                                              </button>
+                                            </div>
+                                            </td>
 
-                                              <div class="modal fade" id="modalQuill" style="display: none;" aria-hidden="true">
+                        </div>
+                        </td>
+                        <td> <?php echo $usuario->nombre ?></td>
+                        <td><?php echo $usuario->email ?></td>
+                        <td><?php echo $usuario->nombre_rol ?></td>
+
+
+                        </tr>
+
+                           <!-- Modal -->
+     
+                    <?php endforeach ?>
+                    </tbody>
+                    </table>
+
+                    <div class="modal fade" id="modalQuill" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header pd-20">
@@ -45,7 +66,7 @@
                     </div>
 
 
-                    <form  method="POST" >
+                    <form  method="POST"  id="form-editar_usuarios">
                     <div class="card">
 
                         <div class="card-body" id="body_card">
@@ -66,26 +87,6 @@
             </div>
         </div>
 
-</input>
-
-                                            </td>
-
-                        </div>
-                        </td>
-                        <td> <?php echo $usuario->nombre ?></td>
-                        <td><?php echo $usuario->email ?></td>
-                        <td><?php echo $usuario->nombre_rol ?></td>
-
-
-                        </tr>
-
-                           <!-- Modal -->
-     
-                    <?php endforeach ?>
-                    </tbody>
-                    </table>
-
-                    
                     </div>
                 </div>
                 <div class="card-body" id="card-body">
