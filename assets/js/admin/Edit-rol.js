@@ -1,11 +1,20 @@
 (function ($) {
-	$("#guarda_usuario").click(function (e) {
+	$("#form-editar_usuarios").submit(function (e) {
 		e.preventDefault();
 
 		EditarRoles();
-		CierraPopup();
+	
 	});
 })(jQuery);
+
+
+$(".btn-eliminar-usuario").click(function (e) {
+	e.preventDefault();
+    
+	var id_usuario = $(this).data("id_usuario");
+	eliminar_usuario(id_usuario)
+
+});
 
 var idioma_espanol = {
 	sProcessing: "Procesando...",
@@ -110,7 +119,7 @@ function Editar(id_usuarios_admin) {
        
        <div class="form-group col-md-6 mb-0">
        <label for="email" class="form-label">Correo</label>
-           <input type="email" id="email" name="email" class="form-control" id="inputEmail5"  value="${data.email}" placeholder="">
+           <input type="email" id="email" readonly name="email" class="form-control" id="inputEmail5"  value="${data.email}" placeholder="">
        </div>
    
   
@@ -162,7 +171,52 @@ function Editar(id_usuarios_admin) {
 	});
 }
 
+function eliminar_usuario(id_usuario){
 
+	$.ajax({
+		dataType: "json",
+		data: {
+			id_usuario
+		},
+
+		url: base_url + "ajax/Edit_rol/eliminar_usuario",
+		type: "post",
+		beforeSend: function () {
+			//$("#cod_municipio").selectpicker('refresh');
+		},
+		beforeSend: function () {
+			//$("#cod_municipio").selectpicker('refresh');
+		},
+		success: function (respuesta) {
+
+		
+			
+			if (respuesta.resultado == true) {
+				// table.destroy();
+				Swal.fire({
+					icon: "success",
+					title: "Usuario Eliminado",
+					text: "Presione OK para continuar",
+				}).then((result) => {
+					/* Read more about isConfirmed, isDenied below */
+					if (result.isConfirmed) {
+						location.reload();
+					}
+				});
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: respuesta.mensaje,
+				});
+			}
+		},
+		error: function (xhr, err) {
+			console.log(err);
+			alert("ocurrio un error intente de nuevo");
+		},
+	});
+}
 function EditarRoles() {
 	var nombre = $("#nombre").val();
 	var cedula = $("#cedula").val();
@@ -173,7 +227,7 @@ function EditarRoles() {
 	var roles = $("#roles").val();
 	var perfil = $("#perfil").val();
 	var nombre_rol =  $("#nombre_rol").val()
-
+	CierraPopup();
 	$.ajax({
 		dataType: "json",
 		data: {
@@ -199,7 +253,7 @@ function EditarRoles() {
 		success: function (respuesta) {
 
 			console.log(respuesta.datos)
-
+			
 			if (respuesta.resultado == true) {
 				// table.destroy();
 				Swal.fire({
@@ -207,7 +261,10 @@ function EditarRoles() {
 					title: "Registro Exitoso",
 					text: "Presione OK para continuar",
 				}).then((result) => {
-				
+					/* Read more about isConfirmed, isDenied below */
+					if (result.isConfirmed) {
+						location.reload();
+					}
 				});
 			} else {
 				Swal.fire({

@@ -131,4 +131,42 @@ class Edit_rol extends CI_Controller
             echo  json_encode(["resultado" => true, "mensaje" => $respuesta , "datos" => $usuarios ]);
         };
     }
+
+
+   public function eliminar_usuario (){
+
+    $permiso_g = $this->session->userdata('permiso_eliminar');
+    if (!$permiso_g) {
+        echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        exit();
+    }
+    $this->form_validation->set_rules('id_usuario', 'id_usuario', 'trim|required|strip_tags');
+    $this->form_validation->set_error_delimiters('*', '');
+   //reglas de validación
+    $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+   //reglas de validación 
+    if (!$this->form_validation->run()) {
+        $mensaje_error = validation_errors();
+
+        echo  json_encode(["resultado" => false, "mensaje" => $mensaje_error]);
+        exit;
+    }
+
+    $respuesta = $this->Usuarios_admin_model->update_admin_usuarios([
+        'activo'=>0
+    ], $_POST['id_usuario']);
+
+    if ($respuesta) {
+
+
+        echo  json_encode(["resultado" => true, "mensaje" => 'actualizacion exitosa' ]);
+    }else{
+        echo  json_encode(["resultado" => false, "mensaje" => 'No se completo esta accion' ]);
+    
+    }
+   }
+
+
+
+
 }
