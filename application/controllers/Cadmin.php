@@ -597,6 +597,7 @@ class Cadmin extends CI_Controller
         if (!$this->session->userdata('id_rol')) {
             redirect('admin/login');
         }
+        
 
         //verificar si tiene permiso
         if (!tiene_permiso('permiso_guardar')) {
