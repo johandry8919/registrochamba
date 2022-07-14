@@ -101,17 +101,10 @@ error_reporting(E_ALL);
     
     public function exportar_excel_estructuras(){
 
-        $permitidos = [2];        
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-        if ( !$tiene_acceso) {
+        if (!tiene_acceso(['admin','estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            redirect('admin/login');
-            
             exit();
-            
         }
-        
-
 		ini_set('max_execution_time', 2400);
 		set_time_limit(2400);
 		ini_set('memory_limit', '256M');
