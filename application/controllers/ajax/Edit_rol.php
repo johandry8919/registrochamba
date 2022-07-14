@@ -106,18 +106,8 @@ class Edit_rol extends CI_Controller
         );
 
 
-        if($respuesta = $this->Usuarios_admin_model->update_admin_usuarios($datos, $id_usuarios_admin)){
-           
-        
-
-
-            $id_rol =  $this->input->post('id_rol');
-            $data = array(
-                
-                "perfil" => $this->input->post('perfil'),
-            );
-            $this->Roles_model->actualizar_rol($id_rol ,$data);
-        };
+    $respuesta = $this->Usuarios_admin_model->update_admin_usuarios($datos, $id_usuarios_admin);
+     
         if ($respuesta) {
 
             $perfil = $this->input->post('perfil');
