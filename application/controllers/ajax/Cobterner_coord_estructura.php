@@ -41,7 +41,6 @@ class Cobterner_coord_estructura extends CI_Controller {
     }
 
 
-    $estrucutras =$_POST['empresa'];
     $cod_estado =$_POST['cod_estado'];
     $cod_municipio =$_POST['cod_municipio'];
     $cod_parroquia =$_POST['cod_parroquia'];
