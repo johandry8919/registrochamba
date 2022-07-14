@@ -311,7 +311,7 @@ class Cadmin extends CI_Controller
 
         $pass_cifrado = password_hash(trim($this->input->post('password')), PASSWORD_DEFAULT);
         $id_usuario = $this->Usuarios_admin_model->post_regitrar([
-            "nombre" => $this->input->post('password'),
+            "nombre" => $this->input->post('nombre'),
             "id_rol"  => $this->input->post('id_rol'),
             "cedula"  => $this->input->post('cedula'),
             "email"   => $email,
