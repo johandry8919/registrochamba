@@ -26,7 +26,7 @@ class Edit_rol extends CI_Controller
 
 
         if ($respuesta) {
-        $roles =  $this->Roles_model->obtener_roles("admin");
+        $roles =  $this->Roles_model->obtener_roles($perfil);
             echo  json_encode(["resultado" => true,
              "mensaje" => $respuesta  , "roles" => $roles]);
 
@@ -36,6 +36,8 @@ class Edit_rol extends CI_Controller
 
     public function Editor_Usuarios()
     {
+
+
 
         $this->form_validation->set_rules('nombre', 'nombre', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cedula', 'cudula', 'trim|required|strip_tags');
@@ -68,14 +70,8 @@ class Edit_rol extends CI_Controller
             $password = $this->input->post("contraseña");
 
          if(empty($password)){
-
             $respuesta = $this->Usuarios_admin_model->obtener_usuario($id_usuarios);
-     
-
-
             $password = $respuesta[0]->password;
-          
-
 
          }else{
             $password = password_hash($this->input->post('contraseña'), PASSWORD_DEFAULT);
@@ -94,16 +90,31 @@ class Edit_rol extends CI_Controller
             'password' => $password,
             'id_rol' => $this->input->post('id_rol'),
 
-
-
         );
 
 
-        $respuesta = $this->Usuarios_admin_model->update_admin_usuarios($datos, $id_usuarios_admin);
+        if($respuesta = $this->Usuarios_admin_model->update_admin_usuarios($datos, $id_usuarios_admin)){
+           
+        
 
 
+            $id_rol =  $this->input->post('id_rol');
+            $data = array(
+                
+                "perfil" => $this->input->post('perfil'),
+            );
+            $this->Roles_model->actualizar_rol($id_rol ,$data);
+        };
         if ($respuesta) {
-            echo  json_encode(["resultado" => true, "mensaje" => $respuesta]);
+
+            $perfil = $this->input->post('perfil');
+
+            $id_roles =  obtener_roles($perfil);
+             
+            $usuarios = $this->Usuarios_admin_model->obtener_usuarios($id_roles);
+
+
+            echo  json_encode(["resultado" => true, "mensaje" => $respuesta , "datos" => $usuarios ]);
         };
     }
 }

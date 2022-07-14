@@ -110,10 +110,6 @@ class Cadmin extends CI_Controller
 
         $usuarios = $this->Usuarios_admin_model->obtener_usuarios($id_roles);
 
-
-
-
-
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "$perfil"
@@ -128,8 +124,6 @@ class Cadmin extends CI_Controller
             "vista_principal"   => "admin/listar_usuarios",
             "usuarios" => $usuarios,
             "roles" => $roles,
-            "librerias_css" => [],
-            "librerias_js" => [],
             "ficheros_js" => [recurso("listar_usuario_admin_js")],
 
             "librerias_js" => [recurso("rolesUsuarios_js")],

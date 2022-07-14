@@ -45,7 +45,7 @@
                     </div>
 
 
-                    <form  method="POST" id="Usuario-rol">
+                    <form  method="POST" >
                     <div class="card">
 
                         <div class="card-body" id="body_card">
@@ -55,7 +55,7 @@
 
 
 
-                        <button class="btn btn-primary">Guardar</button> 
+                        <button type="submit" id="guarda_usuario" class="btn btn-primary">Guardar</button> 
                     </div>
                     </form>
 
@@ -74,7 +74,7 @@
                         </td>
                         <td> <?php echo $usuario->nombre ?></td>
                         <td><?php echo $usuario->email ?></td>
-                        <td><?php echo $usuario->perfil ?></td>
+                        <td><?php echo $usuario->nombre_rol ?></td>
 
 
                         </tr>
