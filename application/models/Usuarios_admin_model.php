@@ -43,7 +43,7 @@ class Usuarios_admin_model extends CI_Model
         $this->db->select('usuarios_admin.id_usuarios_admin, usuarios_admin.id_rol, usuarios_admin.cedula, 
         usuarios_admin.email, usuarios_admin.token, usuarios_admin.password, 
         usuarios_admin.activo,usuarios_admin.created_on, usuarios_admin.nombre,
-        tbl_roles.crear, tbl_roles.modificar, tbl_roles.eliminar, tbl_roles.vincular, tbl_roles.perfil
+        tbl_roles.crear, tbl_roles.modificar, tbl_roles.eliminar, tbl_roles.vincular, tbl_roles.perfil, tbl_roles.nombre as nombre_rol
             ');
 
         $this->db->where_in('usuarios_admin.id_rol', $array_rol);

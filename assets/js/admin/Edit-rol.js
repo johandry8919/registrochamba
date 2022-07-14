@@ -1,3 +1,63 @@
+(function ($) {
+	$("#guarda_usuario").click(function (e) {
+		e.preventDefault();
+
+		EditarRoles();
+		CierraPopup();
+	});
+})(jQuery);
+
+var idioma_espanol = {
+	sProcessing: "Procesando...",
+	sLengthMenu:
+		"Mostrar <select>" +
+		'<option value="10">10</option>' +
+		'<option value="20">20</option>' +
+		'<option value="30">30</option>' +
+		'<option value="40">40</option>' +
+		'<option value="50">50</option>' +
+		'<option value="-1">All</option>' +
+		"</select> registros",
+	sZeroRecords: "No se encontraron resultados",
+	sEmptyTable: "Ningún dato disponible en esta tabla",
+	sInfo: "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
+	sInfoEmpty: "Mostrando del 0 al 0 de un total de 0 registros",
+	sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
+	sInfoPostFix: "",
+	sSearch: "Buscar:",
+	sUrl: "",
+	sInfoThousands: ",",
+	sLoadingRecords: "Por favor espere - cargando...",
+	oPaginate: {
+		sFirst: "Primero",
+		sLast: "Último",
+		sNext: "Siguiente",
+		sPrevious: "Anterior",
+	},
+	oAria: {
+		sSortAscending: ": Activar para ordenar la columna de manera ascendente",
+		sSortDescending: ": Activar para ordenar la columna de manera descendente",
+	},
+	scrollX: "100%",
+};
+
+var table = $("#basic-datatable").DataTable({
+	dom: "lrtip",
+
+	language: idioma_espanol,
+});
+
+
+function CierraPopup() {
+	$("#modalQuill").modal("hide"); //ocultamos el modal
+	$("body").removeClass("modal-open"); //eliminamos la clase del body para poder hacer scroll
+	$(".modal-backdrop").remove(); //eliminamos el backdrop del modal
+}
+
+
+
+
+
 function Editar(id_usuarios_admin) {
 	var roles = $("#roles").val();
 
@@ -63,7 +123,7 @@ function Editar(id_usuarios_admin) {
            <div class="form-group col-md-6 mb-0">
                <div class="form-group">
 			   <label class="form-label">Rol <span class="text-red">*</span></label>
-               <select  class="form-control form-select" data-bs-placeholder="Select" tabindex="-1" aria-hidden="true" id="Roles">
+               <select  class="form-control form-select" data-bs-placeholder="Select" tabindex="-1" aria-hidden="true" id="roles" name="roles">
 					${roles}
 
        
@@ -79,6 +139,7 @@ function Editar(id_usuarios_admin) {
 
        </div>
        <input type="hidden" name="id_rol" id="id_rol" value="${data.id_rol}">
+       <input type="hidden" name="nombre_rol" id="nombre_rol" value="${data.nombre_rol}">
 
 
        </div>
@@ -101,22 +162,6 @@ function Editar(id_usuarios_admin) {
 	});
 }
 
-// Usuario-rol
-
-(function ($) {
-	$("#Usuario-rol").submit(function (e) {
-		e.preventDefault();
-
-		EditarRoles();
-		CierraPopup();
-	});
-})(jQuery);
-
-function CierraPopup() {
-	$("#modalQuill").modal("hide"); //ocultamos el modal
-	$("body").removeClass("modal-open"); //eliminamos la clase del body para poder hacer scroll
-	$(".modal-backdrop").remove(); //eliminamos el backdrop del modal
-}
 
 function EditarRoles() {
 	var nombre = $("#nombre").val();
@@ -125,8 +170,9 @@ function EditarRoles() {
 	var contraseña = $("#contraseña").val();
 	var id_usuarios_admin = $("#id_usuarios_admin").val();
 	var id_rol = $("#id_rol").val();
-	var Roles = $("#Roles").val();
+	var roles = $("#roles").val();
 	var perfil = $("#perfil").val();
+	var nombre_rol =  $("#nombre_rol").val()
 
 	$.ajax({
 		dataType: "json",
@@ -137,8 +183,9 @@ function EditarRoles() {
 			contraseña,
 			id_usuarios_admin,
 			id_rol,
-			Roles,
+			roles,
 			perfil,
+			nombre_rol,
 		},
 
 		url: base_url + "ajax/Edit_rol/editar_usuarios",
@@ -150,7 +197,11 @@ function EditarRoles() {
 			//$("#cod_municipio").selectpicker('refresh');
 		},
 		success: function (respuesta) {
+
+			console.log(respuesta.datos)
+			
 			if (respuesta.resultado == true) {
+				// table.destroy();
 				Swal.fire({
 					icon: "success",
 					title: "Registro Exitoso",
@@ -176,42 +227,3 @@ function EditarRoles() {
 	});
 }
 
-var idioma_espanol = {
-	sProcessing: "Procesando...",
-	sLengthMenu:
-		"Mostrar <select>" +
-		'<option value="10">10</option>' +
-		'<option value="20">20</option>' +
-		'<option value="30">30</option>' +
-		'<option value="40">40</option>' +
-		'<option value="50">50</option>' +
-		'<option value="-1">All</option>' +
-		"</select> registros",
-	sZeroRecords: "No se encontraron resultados",
-	sEmptyTable: "Ningún dato disponible en esta tabla",
-	sInfo: "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
-	sInfoEmpty: "Mostrando del 0 al 0 de un total de 0 registros",
-	sInfoFiltered: "(filtrado de un total de _MAX_ registros)",
-	sInfoPostFix: "",
-	sSearch: "Buscar:",
-	sUrl: "",
-	sInfoThousands: ",",
-	sLoadingRecords: "Por favor espere - cargando...",
-	oPaginate: {
-		sFirst: "Primero",
-		sLast: "Último",
-		sNext: "Siguiente",
-		sPrevious: "Anterior",
-	},
-	oAria: {
-		sSortAscending: ": Activar para ordenar la columna de manera ascendente",
-		sSortDescending: ": Activar para ordenar la columna de manera descendente",
-	},
-	scrollX: "100%",
-};
-
-var table = $("#basic-datatable").DataTable({
-	dom: "lrtip",
-
-	language: idioma_espanol,
-});
