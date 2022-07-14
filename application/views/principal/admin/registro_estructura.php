@@ -180,7 +180,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="fe fe-phone-call" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local" maxlength="30" name="telf_local" value="<?php if (isset($datos->tlf_coorparativo)) echo ucwords($datos->tlf_coorparativo); ?>" placeholder="Telefono Local" required autofocus data-parsley-error-message="Este campo es requerido">
+                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local" maxlength="30" name="telf_local" value="<?php if (isset($datos->tlf_coorparativo)) echo ucwords($datos->tlf_coorparativo); ?>" placeholder="Telefono Local"  autofocus data-parsley-error-message="Este campo es requerido">
 
 
                                             </div>

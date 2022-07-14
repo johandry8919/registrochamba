@@ -109,9 +109,38 @@ function tiene_permiso($nombre_permiso){
 	function obtener_roles($perfil) {
 		
 		$ci = & get_instance();
+		$roles=[];
+
+		if(is_array($perfil)){
+
+			foreach($perfil as $p){
+
+				if(is_string($p)){
+					
+
+			
+				$roles=array_merge($roles,$ci->Roles_model->obtener_roles($p));
+					
+
+				}else{
+					$roles[]=(object)["id_rol"=>$p];
+				}
+				
+
+
+			}
+
+
+		}else{
+
+			$roles =  $ci->Roles_model->obtener_roles($perfil);
+
+		}
+
+
 		
 	
-		$roles =  $ci->Roles_model->obtener_roles($perfil);
+	
 
 		$array_rol=[];
 		foreach ($roles as $rol){

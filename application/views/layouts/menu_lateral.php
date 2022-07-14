@@ -10,6 +10,16 @@
                         </a>
                         <!-- LOGO -->
                     </div>
+                    
+                <?php     if ($this->session->userdata('id_rol')) {
+                     $this->session->unset_userdata('id_usuario');
+                     $this->session->unset_userdata('cedula');
+                     $this->session->unset_userdata('email');
+                     $this->session->unset_userdata('activo');
+                     $this->session->unset_userdata('id_rol');
+             
+            redirect('inicio');
+        } ?>
                     <div class="main-sidemenu">
                         <div class="slide-left disabled" id="slide-left"><svg xmlns="http://www.w3.org/2000/svg"
                                 fill="#7b8191" width="24" height="24" viewBox="0 0 24 24">

@@ -27,7 +27,7 @@
 					var cedula = $("#cedula").parsley();
 					var id_nivel_academico = $("#id_nivel_academico").parsley();
 					var telf_movil = $("#telf_movil").parsley();
-					var telf_local = $("#telf_local").parsley();
+				
 					var correo1 = $("#correo1").parsley();
 					var fecha_nac = $("#fecha_nac").parsley();
 					var edad = $("#edad").parsley();
@@ -41,7 +41,6 @@
 						cedula.isValid() &&
 						id_nivel_academico.isValid() &&
 						telf_movil.isValid() &&
-						telf_local.isValid() &&
 						correo1.isValid() &&
 						edad.isValid() &&
 						id_profesion_oficio.isValid()

@@ -89,17 +89,12 @@ class Cadmin extends CI_Controller
     public function listar_usuarios_admin()
     {
 
-        $perfil = isset($_GET['p']) ? 'estructura' : 'admin';
+        $perfil = 'admin';
 
         if (isset($_GET['p'])) {
             if ($_GET['p'] == "estructura") {
                 $perfil = "estructura";
-            } else if ($_GET['p'] == "admin") {
-
-                $perfil = "admin";
-            } else {
-                $perfil = "admin";
-            };
+            }
         }
 
 
@@ -310,7 +305,7 @@ class Cadmin extends CI_Controller
 
         $pass_cifrado = password_hash(trim($this->input->post('password')), PASSWORD_DEFAULT);
         $id_usuario = $this->Usuarios_admin_model->post_regitrar([
-            "nombre" => $this->input->post('password'),
+            "nombre" => $this->input->post('nombre'),
             "id_rol"  => $this->input->post('id_rol'),
             "cedula"  => $this->input->post('cedula'),
             "email"   => $email,
@@ -453,20 +448,20 @@ class Cadmin extends CI_Controller
             exit;
         }
 
-        $rol_usuario = $this->input->post('id_estructura');
-        //verificar que el usuario no exita. si exite no debes registrarse
-        $validacion_usuario = $this->Estructuras_model->verificarSiUsuarioExiste('V' . $this->input->post('cedula'), strtoupper(trim($this->input->post('email1'))), $rol_usuario);
+            $rol_usuario =$this->input->post('id_estructura');
+            //verificar que el usuario no exita. si exite no debes registrarse
+            $validacion_usuario = $this->Estructuras_model->verificarSiUsuarioExiste($this->input->post('cedula'), strtoupper(trim($this->input->post('email1'))), $rol_usuario);
+      
+            // si el cedula de usuario existe 
+            if ($validacion_usuario) {
+                echo  json_encode(["resultado" => false, "mensaje" => "la cedula o correo ya se  encuentra registrado"]);
+                exit;
+            }
 
-        // si el cedula de usuario existe 
-        if ($validacion_usuario) {
-            echo  json_encode(["resultado" => false, "mensaje" => "la cedula o correo ya se  encuentra registrado"]);
-            exit;
-        }
-
-        if ($this->Estructuras_model->verificarSiUsuarioExisteEstructura('V' . $this->input->post('cedula'), strtoupper(trim($this->input->post('email1'))))) {
-            echo  json_encode(["resultado" => false, "mensaje" => "la cedula o correo ya se  encuentra registrado en la estructura"]);
-            exit;
-        }
+            if ($this->Estructuras_model->verificarSiUsuarioExisteEstructura($this->input->post('cedula'), $this->input->post('email1'))) {
+                echo  json_encode(["resultado" => false, "mensaje" => "la cedula o correo ya se  encuentra registrado en la estructura"]);
+                exit;
+            }
 
 
 
@@ -596,6 +591,7 @@ class Cadmin extends CI_Controller
         if (!$this->session->userdata('id_rol')) {
             redirect('admin/login');
         }
+        
 
         //verificar si tiene permiso
         if (!tiene_permiso('permiso_guardar')) {
