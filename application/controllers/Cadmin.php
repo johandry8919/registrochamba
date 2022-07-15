@@ -86,6 +86,30 @@ class Cadmin extends CI_Controller
         $this->load->view('usuarios/admin/inicioSesionAdmin');
     }
 
+
+    public function estructura_brigada(){
+        $breadcrumb = (object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Registrar Estructura / Brigada",
+
+        ];
+
+
+        $output = [
+            "menu_lateral" => "admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Registro de usuario",
+            "vista_principal"   => "admin/registro_estructura_brigada",
+            "estados"          => $this->Musuarios->getEstados(),
+            "responsabilidad_estructuras"   =>  $this->Estructuras_model->responsabilidad_estructuras(),
+            "roles" =>   $this->Roles_model->obtener_roles('estructura'),
+            "ficheros_js" => [recurso("admin_estructura_brigada_js")]
+
+        ];
+
+        $this->load->view("main", $output);
+
+    }
     public function listar_usuarios_admin()
     {
 

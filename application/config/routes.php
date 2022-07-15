@@ -102,7 +102,12 @@ $route['adm'] = 'Cadministrador/VinicioSesion';
 
 $route['inicioadm'] = 'Cadmin/inicio';*/
 $route['admin/login'] = 'Cadmin/login';
-$route['admin/registro/estructuras'] = 'Cadmin/registro_estructura';
+
+
+$route['admin/registro/estructuras'] = 'Cadmin/estructura_brigada';
+
+$route['admin/registro/estructuras-brigada/(:num)'] = 'Cadmin/registro_estructura';
+
 $route['admin/registro/estructuras/(:num)'] = 'Cadmin/actualizar_estructuras/$1';
 $route['admin/limpar_qr'] = 'Cadmin/limpar_qr';
 

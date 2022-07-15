@@ -24,7 +24,7 @@
     $config['recursos']['validar_js'] = "assets/js/validar.js?v=1.0.6";
     $config['recursos']['usuarios_admin_js'] = "assets/js/usuarios_admin.js?v=1.0.2";
     $config['recursos']['admin_registrar_usuario_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.2";
-    $config['recursos']['Edit-rol_js'] = "assets/js/admin/Edit-rol.js?v=1.0.6";
+    $config['recursos']['Edit-rol_js'] = "assets/js/admin/Edit-rol.js?v=1.0.7";
     $config['recursos']['listar_usuario_admin_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.6";
     $config['recursos']['buscar_chambista_js'] = "assets/js/admin/buscar_chambista.js?v=1.0.6";
     $config['recursos']['editar_chambista_js'] = "assets/js/admin/editar_chambista.js?v=1.0.6";
@@ -37,6 +37,10 @@
     $config['recursos']['roles_js'] = "assets/js/admin/roles.js?v=1.0.6";
     $config['recursos']['rolesUsuarios_js'] = "assets/js/admin/rolesUsuarios.js?v=1.0.6";
     $config['recursos']['rol_EditEstructurajs_js'] = "assets/js/admin/rol_EditEstructurajs.js?v=1.0.6";
+    $config['recursos']['admin_estructura_brigada_js'] = "assets/js/admin/admin_estructura_brigada.js?v=1.0.6";
+
+
+    
 
     
     $config['recursos']['editar_oferta_js'] = "assets/js/admin/editar_oferta.js?v=1.0.7";
