@@ -82,18 +82,28 @@ class Edit_rol extends CI_Controller
 
             $password = $this->input->post("contraseña");
 
+          
+
+     
+
          if(empty($password)){
+           
             $respuesta = $this->Usuarios_admin_model->obtener_usuario($id_usuarios);
             $password = $respuesta[0]->password;
 
          }else{
+
+          
             $password = password_hash($this->input->post('contraseña'), PASSWORD_DEFAULT);
+
+           
 
 
          }
 
+  
 
-        $id_usuarios_admin = $this->input->post("id_usuarios_admin");
+       
 
         $datos  = array(
 
@@ -105,6 +115,7 @@ class Edit_rol extends CI_Controller
 
         );
 
+    $id_usuarios_admin = $this->input->post("id_usuarios_admin");
 
     $respuesta = $this->Usuarios_admin_model->update_admin_usuarios($datos, $id_usuarios_admin);
      
@@ -130,6 +141,7 @@ class Edit_rol extends CI_Controller
         exit();
     }
     $this->form_validation->set_rules('id_usuario', 'id_usuario', 'trim|required|strip_tags');
+    $this->form_validation->set_rules('perfil', 'perfil', 'trim|required|strip_tags');
     $this->form_validation->set_error_delimiters('*', '');
    //reglas de validación
     $this->form_validation->set_message('required', 'Debe llenar el campo %s');
@@ -148,7 +160,15 @@ class Edit_rol extends CI_Controller
     if ($respuesta) {
 
 
-        echo  json_encode(["resultado" => true, "mensaje" => 'actualizacion exitosa' ]);
+        $perfil = $this->input->post('perfil');
+
+        $id_roles =  obtener_roles($perfil);
+         
+        $usuarios = $this->Usuarios_admin_model->obtener_usuarios($id_roles);
+
+
+        echo  json_encode(["resultado" => true, "mensaje" => $respuesta , "datos" => $usuarios ]);
+    
     }else{
         echo  json_encode(["resultado" => false, "mensaje" => 'No se completo esta accion' ]);
     

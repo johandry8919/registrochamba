@@ -104,6 +104,8 @@ class Cadmin extends CI_Controller
         $roles =  $this->Roles_model->obtener_roles($perfil);
 
         $usuarios = $this->Usuarios_admin_model->obtener_usuarios($id_roles);
+        
+        
 
         $breadcrumb = (object) [
             "menu" => "Admin",
@@ -118,11 +120,14 @@ class Cadmin extends CI_Controller
             "datatable" =>  true,
             "vista_principal"   => "admin/listar_usuarios",
             "usuarios" => $usuarios,
+            "id_usuario_admin" => $this->session->userdata('id_usuario'),
             "roles" => $roles,
             "ficheros_js" => [recurso("listar_usuario_admin_js")],
 
             "librerias_js" => [recurso("rolesUsuarios_js")],
             "ficheros_js" => [recurso("Edit-rol_js")],
+            "constantes_js" => ["ID_USUARIO" => $this->session->userdata('id_usuario')],
+
 
 
 
