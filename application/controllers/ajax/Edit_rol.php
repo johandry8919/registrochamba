@@ -141,6 +141,7 @@ class Edit_rol extends CI_Controller
         exit();
     }
     $this->form_validation->set_rules('id_usuario', 'id_usuario', 'trim|required|strip_tags');
+    $this->form_validation->set_rules('perfil', 'perfil', 'trim|required|strip_tags');
     $this->form_validation->set_error_delimiters('*', '');
    //reglas de validación
     $this->form_validation->set_message('required', 'Debe llenar el campo %s');
@@ -159,7 +160,15 @@ class Edit_rol extends CI_Controller
     if ($respuesta) {
 
 
-        echo  json_encode(["resultado" => true, "mensaje" => 'actualizacion exitosa' ]);
+        $perfil = $this->input->post('perfil');
+
+        $id_roles =  obtener_roles($perfil);
+         
+        $usuarios = $this->Usuarios_admin_model->obtener_usuarios($id_roles);
+
+
+        echo  json_encode(["resultado" => true, "mensaje" => $respuesta , "datos" => $usuarios ]);
+    
     }else{
         echo  json_encode(["resultado" => false, "mensaje" => 'No se completo esta accion' ]);
     

@@ -1,3 +1,5 @@
+
+
 (function ($) {
 	$("#form-editar_usuarios").submit(function (e) {
 		e.preventDefault();
@@ -5,16 +7,23 @@
 		EditarRoles();
 	
 	});
-})(jQuery);
 
-
+	
 $(".btn-eliminar-usuario").click(function (e) {
-	e.preventDefault();
     
 	var id_usuario = $(this).data("id_usuario");
 	eliminar_usuario(id_usuario)
 
 });
+
+
+})(jQuery);
+
+
+
+
+
+
 
 var idioma_espanol = {
 	sProcessing: "Procesando...",
@@ -72,7 +81,7 @@ function Editar(id_usuarios_admin) {
 
 	$.ajax({
 		dataType: "json",
-		data: { id_usuarios_admin, roles },
+		data: {id_usuarios_admin, roles },
 
 		url: base_url + "ajax/Edit_rol",
 		type: "post",
@@ -171,52 +180,7 @@ function Editar(id_usuarios_admin) {
 	});
 }
 
-function eliminar_usuario(id_usuario){
 
-	$.ajax({
-		dataType: "json",
-		data: {
-			id_usuario
-		},
-
-		url: base_url + "ajax/Edit_rol/eliminar_usuario",
-		type: "post",
-		beforeSend: function () {
-			//$("#cod_municipio").selectpicker('refresh');
-		},
-		beforeSend: function () {
-			//$("#cod_municipio").selectpicker('refresh');
-		},
-		success: function (respuesta) {
-
-		
-			
-			if (respuesta.resultado == true) {
-				// table.destroy();
-				Swal.fire({
-					icon: "success",
-					title: "Usuario Eliminado",
-					text: "Presione OK para continuar",
-				}).then((result) => {
-					/* Read more about isConfirmed, isDenied below */
-					if (result.isConfirmed) {
-						location.reload();
-					}
-				});
-			} else {
-				Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: respuesta.mensaje,
-				});
-			}
-		},
-		error: function (xhr, err) {
-			console.log(err);
-			alert("ocurrio un error intente de nuevo");
-		},
-	});
-}
 function EditarRoles() {
 	var nombre = $("#nombre").val();
 	var cedula = $("#cedula").val();
@@ -252,18 +216,83 @@ function EditarRoles() {
 		},
 		success: function (respuesta) {
 
-			console.log(respuesta.datos)
+	
+
+			var datos = respuesta.datos
 			
 			if (respuesta.resultado == true) {
+
+				thml_usuario(datos)
+
+
+				Swal.fire({
+					title: '<strong>Datos actualizado</strong>',
+					icon: 'success',
+					
+					focusConfirm: false,
+					confirmButtonText:
+					  '<i class="fa fa-thumbs-up fs-5"></i> ',
+					confirmButtonAriaLabel: 'Thumbs up, great!',
+
+					
+				  })
+
+			
+
+				
+				
+			
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: respuesta.mensaje,
+				});
+			}
+		},
+		error: function (xhr, err) {
+			console.log(err);
+			alert("ocurrio un error intente de nuevo");
+		},
+	});
+}
+function eliminar_usuario(id_usuario){
+
+	var perfil = $("#tipo_rol").val();
+
+	$.ajax({
+		dataType: "json",
+		data: {
+			id_usuario,
+			perfil
+		},
+
+		url: base_url + "ajax/Edit_rol/eliminar_usuario",
+		type: "post",
+		beforeSend: function () {
+			//$("#cod_municipio").selectpicker('refresh');
+		},
+		beforeSend: function () {
+			//$("#cod_municipio").selectpicker('refresh');
+		},
+		success: function (respuesta) {
+
+			var datos = respuesta.datos
+			
+			if (respuesta.resultado == true) {
+
+				thml_usuario(datos)
+
+
 				// table.destroy();
 				Swal.fire({
 					icon: "success",
-					title: "Registro Exitoso",
+					title: "Usuario Eliminado",
 					text: "Presione OK para continuar",
 				}).then((result) => {
 					/* Read more about isConfirmed, isDenied below */
 					if (result.isConfirmed) {
-						location.reload();
+						
 					}
 				});
 			} else {
@@ -280,4 +309,52 @@ function EditarRoles() {
 		},
 	});
 }
+function thml_usuario(datos){
+	var disabled = ""
+				var dataTable = ""
+				datos.forEach((element => {
+				
+					if (element.id_usuarios_admin == ID_USUARIO) disabled = "disabled";
+					
 
+			 		dataTable += `
+					
+									 <tr>
+										 <td>
+										 <div class="btn-list">
+										   <button id="edit_rol" type="button"  class=" btn btn-sm btn-primary " data-bs-target="#modalQuill" data-bs-toggle="modal" value="Editar" name="edit" onclick="Editar(${element.id_usuarios_admin})">Editar</button>
+
+										   <button ${disabled} id="eliminar-usuario" class="btn btn-sm btn-danger btn-eliminar-usuario" data-id_usuario="${element.id_usuarios_admin}"
+										   onclick="eliminar_usuario(${element.id_usuarios_admin})">
+										   <i class="side-menu__icon fe fe-trash-2"></i>
+										   </button>
+										 </div>
+										 </td>
+
+					 </div>
+					 </td>
+					 <td>${element.nombre}</td>
+					 <td>${element.email}</td>
+					 <td>${element.nombre_rol}</td>
+
+
+					 </tr>
+
+		
+			
+					 
+					 `
+
+					 disabled = ""
+				}))
+
+
+				$("#basic-datatable tbody").html("");
+				var htmlTags = dataTable
+				
+
+				$("#basic-datatable tbody").append(htmlTags);
+
+
+	
+}

@@ -1,3 +1,4 @@
+        
         <div class="row row-sm ">
             <div class="col-lg-12">
                 <div class="card">
@@ -17,7 +18,7 @@
                                    
                                     </div>
                     <div class="card-body" >
-                        <div class="table-responsive">
+                        <div class="table-responsive basic-datatables">
                             <table class="table text-nowrap  key-buttons" id="basic-datatable">
                                 <thead>
                                     <tr>
@@ -37,7 +38,7 @@
                                          
                                               <button id="edit_rol" type="button"  class=" btn btn-sm btn-primary " data-bs-target="#modalQuill" data-bs-toggle="modal" value="Editar" name="edit" onclick="Editar(<?php echo $usuario->id_usuarios_admin?>)">Editar</button>
                                               
-                                              <button class="btn btn-sm btn-danger btn-eliminar-usuario" data-id_usuario="<?php echo $usuario->id_usuarios_admin?>">
+                                              <button <?php if($usuario->id_usuarios_admin == $id_usuario_admin) echo "disabled"?> class="btn btn-sm btn-danger btn-eliminar-usuario" data-id_usuario="<?php echo $usuario->id_usuarios_admin?>">
                                               <i class="side-menu__icon fe fe-trash-2"></i>
                                               </button>
                                             </div>
@@ -56,7 +57,8 @@
      
                     <?php endforeach ?>
                     </tbody>
-                    </table>
+                </table>
+        </div>
 
                     <div class="modal fade" id="modalQuill" style="display: none;" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
