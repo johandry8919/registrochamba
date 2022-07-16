@@ -1,5 +1,4 @@
-
-
+<?php if(isset($brigada)) echo print_r($brigada)?>
         <div class="row row-sm">
             <div class="col-lg-12">
                 <div class="card">
@@ -49,7 +48,7 @@
                                                 <button type="button" class="btn btn-sm btn-primary ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php echo base_url()?>admin/registro/integrante-estructura/<?php echo $brigadas->id_brigada?>">&#9998;</a>
+                                                            href="<?php echo base_url()?>admin/editar/estructuras/<?php echo $brigadas->id_brigada?>">&#9998;</a>
                                                     </span>
                                                 </button>
 
@@ -65,13 +64,14 @@
                                             </div>
                                             
                                         </td>
+                                        <td><?php  echo $brigadas->id_rol_estructura ?></td>
                                         <td> <?php  if(isset($brigadas->nombre_brigada)){
                                             echo $brigadas->nombre_brigada;
                                         } ?></td>
                                         <td><?php  echo $brigadas->nombre_sector ?></td>
-                                        <td><?php  echo $brigadas->nombre_brigada ?></td>
-                                        <td><?php  echo $brigadas->nombre_brigada ?></td>    
-                                        <td><?php  echo $brigadas->nombre_brigada?> </td>                             
+                                        <td><?php  echo $brigadas->nombre_estado ?></td>
+                                        <td><?php  echo $brigadas->municipio ?></td>    
+                                        <td><?php  echo $brigadas->parroquia?> </td>                             
                                   
                                       
 
