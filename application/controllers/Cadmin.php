@@ -148,7 +148,7 @@ class Cadmin extends CI_Controller
             "nombre_brigada" => $this->input->post("nombre_brigada"),
             "nombre_sector" => $this->input->post("nombre_comunidad"),
             "id_usuario_registro" => $this->input->post("id_usuario"),
-            "id_rol_estructura" =>$this->session->userdata('id_rol'),
+            "id_rol_estructura" =>$this->input->post('id_estructura'),
             "direccion" => $this->input->post("direccion"),
             "codigoestado" => $this->input->post("cod_estado"),
             "codigomunicipio" => $this->input->post("cod_municipio"),
@@ -209,11 +209,24 @@ class Cadmin extends CI_Controller
         //     exit();
         // }
 
+        $res = [];
+        $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
+        if (isset($id__exp_lab) and $id__exp_lab != "") {
+            $res =  $this->Registro_brigada->obtener_brigada_id($id__exp_lab);
+          
+    
+          
+        }
+
+   
+     
+
+       
 
 
         $breadcrumb = (object) [
             "menu" => "Admin",
-            "menu_seleccion" => "Registrar Estructura / Brigada",
+            "menu_seleccion" => "Editar / Brigada",
 
         ];
 
@@ -223,18 +236,77 @@ class Cadmin extends CI_Controller
         $output = [
             "menu_lateral" => "admin",
             "breadcrumb"      =>   $breadcrumb,
-            "title"             => "Registro de usuario",
+            "title"             => "Editar / Brigada",
             "vista_principal"   => "admin/registro_estructura_brigada",
             "estados"          => $this->Musuarios->getEstados(),
             "id_usuario" => $this->session->userdata('id_usuario'),
             "responsabilidad_estructuras"   =>  $this->Estructuras_model->responsabilidad_estructuras(),
+            "brigada" => $res[0],
             "roles" =>   $this->Roles_model->obtener_roles('estructura'),
-            "ficheros_js" => [recurso("admin_estructura_brigada_js") ,recurso("mapa_mabox_js")],
+            "ficheros_js" => [recurso("admin_editar_brigada_js") ,recurso("mapa_mabox_js")],
             "ficheros_css" => [recurso("mapa_mabox_css")],
 
         ];
 
         $this->load->view("main", $output);
+
+    }
+
+    public function brigada_post(){
+          $this->form_validation->set_rules('id_estructura', 'estructura', 'trim|required|strip_tags');
+
+        $this->form_validation->set_rules('nombre_brigada', 'nombre de brigada', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('nombre_comunidad', 'nombre de comunidad', 'trim|required|strip_tags');
+
+
+        $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_estado', 'cod_estado', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_municipio', 'Municipio', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cod_parroquia', 'Parroqui', 'trim|required|strip_tags');
+       
+
+        if ($this->form_validation->run() === FALSE) {
+            $mensaje_error = validation_errors();
+            echo  json_encode(["resultado" => false, "mensaje" => $mensaje_error]);
+            exit;
+        }
+        $codigo = "4534534534514234234234456434424";
+        $id_rol = $this->input->post("id_rol_estructura");
+
+        $datos = array(
+
+            "nombre_brigada" => $this->input->post("nombre_brigada"),
+            "nombre_sector" => $this->input->post("nombre_comunidad"),
+            "id_usuario_registro" => $this->input->post("id_usuario"),
+            "id_rol_estructura" =>$this->input->post('id_estructura'),
+            "direccion" => $this->input->post("direccion"),
+            "codigoestado" => $this->input->post("cod_estado"),
+            "codigomunicipio" => $this->input->post("cod_municipio"),
+            "codigoparroquia" => $this->input->post("cod_parroquia"),
+            "latitud" => $this->input->post("latitud"),
+            "longitud" => $this->input->post("longitud"),
+            "codigo" => $codigo,
+            "activo" => 1,
+            
+
+        );
+
+        //      echo json_encode($datos);
+        // exit;
+
+
+      
+
+        $respuesta = $this->Registro_brigada->actualizar_brigada($id_rol,$datos);
+        if($respuesta){
+            
+        
+            echo  json_encode(["resultado" => true, "id_usuario" => $respuesta]);
+
+        }else{
+            echo  json_encode(["resultado" => false, "mensaje" => $respuesta]);
+        }
+
 
     }
     public function listar_usuarios_admin()
