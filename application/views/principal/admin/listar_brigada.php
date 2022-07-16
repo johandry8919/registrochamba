@@ -1,5 +1,4 @@
 
-
         <div class="row row-sm">
             <div class="col-lg-12">
                 <div class="card">
@@ -49,7 +48,7 @@
                                                 <button type="button" class="btn btn-sm btn-primary ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
-                                                            href="<?php echo base_url()?>admin/registro/integrante-estructura/<?php echo $brigadas->id_brigada?>">&#9998;</a>
+                                                            href="<?php echo base_url()?>admin/registro/estructuras<?php echo $brigadas->id_usuario_registro?>">&#9998;</a>
                                                     </span>
                                                 </button>
 

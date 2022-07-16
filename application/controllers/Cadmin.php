@@ -199,6 +199,44 @@ class Cadmin extends CI_Controller
         $this->load->view("main", $output);
 
     }
+
+    public function editar_brigada(){
+        // $permitidos =  obtener_roles('admin');
+
+        // $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+        // if (!$tiene_acceso) {
+        //     echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        //     exit();
+        // }
+
+
+
+        $breadcrumb = (object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Registrar Estructura / Brigada",
+
+        ];
+
+      
+
+
+        $output = [
+            "menu_lateral" => "admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Registro de usuario",
+            "vista_principal"   => "admin/registro_estructura_brigada",
+            "estados"          => $this->Musuarios->getEstados(),
+            "id_usuario" => $this->session->userdata('id_usuario'),
+            "responsabilidad_estructuras"   =>  $this->Estructuras_model->responsabilidad_estructuras(),
+            "roles" =>   $this->Roles_model->obtener_roles('estructura'),
+            "ficheros_js" => [recurso("admin_estructura_brigada_js") ,recurso("mapa_mabox_js")],
+            "ficheros_css" => [recurso("mapa_mabox_css")],
+
+        ];
+
+        $this->load->view("main", $output);
+
+    }
     public function listar_usuarios_admin()
     {
 
