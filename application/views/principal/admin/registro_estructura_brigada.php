@@ -37,8 +37,9 @@
                         <div class="row">
 
                             <div class="col-md-4 ">
-                                <label class="form-label">¿A que estructura Pertenece?</label>
+                              
                                 <div class="form-group">
+                                <label class="form-label">¿A que estructura Pertenece?</label>
                                     <div class="form-line">
                                         <select class="form-control show-tick" id="id_estructura" name="id_estructura"
                                             data-parsley-error-message="Este campo es requerido" required autofocus>
@@ -57,8 +58,9 @@
 
 
                             <div class="col-md-4">
-                                <label class="form-label">Nombre Estrutura / Brigada</label>
+                           
                                 <div class="form-group">
+                                <label class="form-label">Nombre Estrutura / Brigada</label>
                                     <input class="input100 border-start-0 ms-0 form-control" type="text"
                                         id="nombre_brigada" maxlength="250" name="nombre_brigada" value=""
                                         placeholder="Brigada" required autofocus>
@@ -70,7 +72,7 @@
 
                             <div class="col-md-3">
                                 <div class="form-group">
-                                    <label class="form-label">Nombre sector / comunidad</label>
+                                    <label class="form-label">sector/ comunidad</label>
                                     <input type="text" class="form-control" id="nombre_comunidad">
 
 
@@ -82,15 +84,10 @@
                         </div>
 
                         <div class="row">
-
-
-
-
-
-
-                            <div class="col-md-3">
-                                <label class="form-label"> Dirección Especifica</label>
+                            <div class="col-md-4">
+                           
                                 <div class="form-group">
+                                <label class="form-label"> Dirección Especifica</label>
                                     <div class="form-line">
                                         <textarea maxlength="255" rows="4" class="form-control no-resize zindex"
                                             class="direccion" name="direccion" id="direccion" maxlength="250"
@@ -169,6 +166,52 @@
 
 
                         </div>
+                        <div class="row justify-content-center "> 
+                        <div class="col-md-8 justify-content-center">
+                                    <div class="small">Seleccione en el mapa su ubicación exacta</div>
+                                    <div class="border border-3" id="map"></div>
+                             
+                                    <pre id="coordinates" class="coordinates"></pre>
+                                </div>
+                                
+                        <div class="col-md-8">
+                        <div class="form-group">
+                                        <label class="form-label">Latitud</label> 
+                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                <i class="mdi mdi-map" aria-hidden="true"></i>
+                                            </a>
+                                            <input readonly  class="input100 border-start-0 ms-0 form-control" type="text" id="latitud"   name="latitud" value="<?php if(isset($registroviejo->latitud)) echo ucwords($registroviejo->latitud);?>" placeholder="latitud" required autofocus>
+                                           
+                                        </div>
+
+                                    </div>
+                                          
+                                    
+
+                                    <div class="form-group">
+                                        <label class="form-label">Longitud</label> 
+                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                <i class="mdi mdi-map" aria-hidden="true"></i>
+                                            </a>
+                                            <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud"   name="longitud" value="<?php if(isset($registroviejo->longitud)) echo ucwords($registroviejo->longitud);?>" placeholder="longitud" required autofocus>
+                                           
+                                        </div>
+
+                                    </div>
+                            
+                        </div>
+                      
+
+                        
+
+                              
+                                
+                            </div>
+                          
+  
+                        </div>
 
 
 
@@ -181,8 +224,16 @@
                             </div>
 
                         </div>
+                        
 
                     </form>
+                    
+                    <input type="hidden" name="id_usuario" id="id_usuario" value="<?php if(isset($id_usuario)){
+        echo $id_usuario;
+    }?>">
+
+
+                    
                 </div>
 
 
