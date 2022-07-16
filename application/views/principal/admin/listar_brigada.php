@@ -36,10 +36,7 @@
                                         <th class="wd-20p border-bottom-0">Estado</th>
                                         <th class="wd-15p border-bottom-0">Municipio</th>
                                         <th class="wd-10p border-bottom-0">parroquia</th>
-                                   
-                                   
 
-                                   
                                     </tr>
                                 </thead>
                                 <?php if(isset($brigada)):?>
