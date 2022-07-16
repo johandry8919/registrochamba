@@ -20,13 +20,59 @@
 		}
 		else
 		{
-            $insert_id = $this->db->insert_id();
+            
 
-            return  $insert_id;
+            return  true;
 		}
 
         }
 
+
+        public function obtener_id_brigada(){
+
+            $this->db->select('max(id_brigada) as id_brigada');
+            // $this->db->where('id_usuario_registro', $id);
+            // $this->db->where('tbl_roles.activo', 1);
+            $query = $this->db->get("tbl_brigadas_estructuras");
+    
+            if ($query->num_rows()) $valor = $query->row()->id_brigada+1;
+            else $valor = 1;
+    
+
+            return $valor;
+        }
+
+        public function obtener_brigada_codigo($codigo){
+
+            $this->db->select('tbl_brigadas_estructuras.*');
+            $this->db->where('codigo', $codigo);
+             $query = $this->db->get("tbl_brigadas_estructuras");
+    
+          
+            if ($query->num_rows()) $valor = $query->row();
+            else $valor = [];
+
+
+            return $valor;
+
+
+        }
+
+        public function obtener_brigada_id($id){
+
+            $this->db->select('tbl_brigadas_estructuras.*');
+            $this->db->where('id_brigada', $id);
+             $query = $this->db->get("tbl_brigadas_estructuras");
+    
+          
+            if ($query->num_rows()) $valor = $query->row();
+            else $valor = [];
+
+
+            return $valor;
+
+
+        }
 
 
         public function obtener_brigada(){

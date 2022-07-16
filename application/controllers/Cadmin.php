@@ -87,16 +87,48 @@ class Cadmin extends CI_Controller
         $this->load->view('usuarios/admin/inicioSesionAdmin');
     }
 
+    public function ver_estrutura_brigada(){
 
-    public function estructura_brigada(){
-        $permitidos =  obtener_roles('admin');
-
-        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
-        if (!$tiene_acceso) {
+        if (!tiene_acceso(['estructura','admin'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
 
+        
+        $breadcrumb = (object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "Registrar Estructura / Brigada",
+
+        ];
+
+      
+
+
+        $output = [
+            "menu_lateral" => "admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "Estreuctura",
+            "vista_principal"   => "admin/ver_estructura_brigada",
+            "estados"          => $this->Musuarios->getEstados(),
+            "id_usuario" => $this->session->userdata('id_usuario'),
+            "responsabilidad_estructuras"   =>  $this->Estructuras_model->responsabilidad_estructuras(),
+            "roles" =>   $this->Roles_model->obtener_roles('estructura'),
+            "ficheros_js" => [recurso("admin_estructura_brigada_js") ],
+            "ficheros_css" => [],
+
+        ];
+
+        $this->load->view("main", $output);
+
+    }
+
+    public function estructura_brigada(){
+
+
+          if (!tiene_acceso(['estructura','admin'])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
 
 
         $breadcrumb = (object) [
@@ -128,27 +160,28 @@ class Cadmin extends CI_Controller
 
     public function brigada_registro(){
 
-        // $this->form_validation->set_rules('id_estructura', 'estructura', 'trim|required|strip_tags');
+         $this->form_validation->set_rules('nombre_comunidad', 'nombre_comunidad', 'trim|required|strip_tags');
+         $this->form_validation->set_rules('nombre_brigada', 'nombre de brigada', 'trim|required|strip_tags');
+         $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
+         $this->form_validation->set_rules('cod_estado', 'cod_estado', 'trim|required|strip_tags');
+         $this->form_validation->set_rules('cod_municipio', 'cod_municipio', 'trim|required|strip_tags');
+         $this->form_validation->set_rules('cod_parroquia', 'cod_parroquia', 'trim|required|strip_tags');
+         $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
 
-        // $this->form_validation->set_rules('nombre_brigada', 'nombre de brigada', 'trim|required|strip_tags');
 
-        // $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
-        // $this->form_validation->set_rules('cod_estado', 'cod_estado', 'trim|required|strip_tags');
-       
-
-        // if ($this->form_validation->run() === FALSE) {
-        //     $mensaje_error = validation_errors();
-        //     echo  json_encode(["resultado" => false, "mensaje" => $mensaje_error]);
-        //     exit;
-        // }
-        $codigo = "4534534534514234234234456434424";
-
+       if ($this->form_validation->run() === FALSE) {
+             $mensaje_error = validation_errors();
+            echo  json_encode(["resultado" => false, "mensaje" => $mensaje_error]);
+            exit;
+       }
+        $codigo = codigo_brigada_estructura();
+        $id_brigada=$this->Registro_brigada->obtener_id_brigada();
         $datos = array(
-
+            "id_brigada" => $id_brigada,
             "nombre_brigada" => $this->input->post("nombre_brigada"),
             "nombre_sector" => $this->input->post("nombre_comunidad"),
-            "id_usuario_registro" => $this->input->post("id_usuario"),
-            "id_rol_estructura" =>$this->session->userdata('id_rol'),
+            "id_usuario_registro" => $this->session->userdata('id_usuario'),
+            "id_rol_estructura" =>$this->input->post("id_estructura"),
             "direccion" => $this->input->post("direccion"),
             "codigoestado" => $this->input->post("cod_estado"),
             "codigomunicipio" => $this->input->post("cod_municipio"),
@@ -156,18 +189,17 @@ class Cadmin extends CI_Controller
             "latitud" => $this->input->post("latitud"),
             "longitud" => $this->input->post("longitud"),
             "codigo" => $codigo,
-            "activo" => 1,
+            "activo" => 1
             
 
         );
 
-      
 
         $respuesta = $this->Registro_brigada->post_regitrar($datos);
         if($respuesta){
             
         
-            echo  json_encode(["resultado" => true, "id_usuario" => $respuesta]);
+            echo  json_encode(["resultado" => true, "id_usuario" => $id_brigada]);
 
         }else{
             echo  json_encode(["resultado" => false, "mensaje" => $respuesta]);
@@ -452,16 +484,10 @@ class Cadmin extends CI_Controller
             exit();
         }
 
-        $rango_edad = $this->Estructuras_model->rango_Edad();
-
-
         $res = [];
-        $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
-        if (isset($id__exp_lab) and $id__exp_lab != "") {
-            $res =  $this->Estructuras_model->getEditEstruturaID($id__exp_lab);
-            json_encode($res);
-        }
-        $id_brigada_estructua = $id__exp_lab;
+        $id_brigada_estructura = strip_tags(trim($this->uri->segment(4)));
+        $brigada_estructura =  $this->Registro_brigada->obtener_brigada_id($id_brigada_estructura);
+
 
 
 
@@ -469,7 +495,7 @@ class Cadmin extends CI_Controller
 
         $breadcrumb = (object) [
             "menu" => "Admin",
-            "menu_seleccion" => "Registro de estructuras"
+            "menu_seleccion" => "Registro de Integrante de estructura"
 
         ];
 
@@ -484,11 +510,9 @@ class Cadmin extends CI_Controller
             "estados"          => $this->Musuarios->getEstados(),
             "sectorProductivo" => $this->Mprofesion_oficio->SectorProductivo(),
             'profesion_oficio' => $this->Estructuras_model->profesion_oficio(),
-            "id_usuario" => $id__exp_lab,
-            "id_brigada_estructua" => $id_brigada_estructua,
-
+            "id_brigada_estructura" => $id_brigada_estructura,
             "datos" => $res,
-            "rangoedad" => $rango_edad,
+            "brigada_estructura" => $brigada_estructura,    
             "persona" => $this->Estructuras_model->getUsuarioRegistradoPersonal(),
             "roles" =>   $this->Roles_model->obtener_roles('estructura'),
             "librerias_css" => [],
@@ -557,6 +581,9 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('pass', 'pass', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_brigada_estructura', 'id_brigada_estructura', 'trim|required|strip_tags');
+
+        
         $this->form_validation->set_error_delimiters('*', '');
         //delimitadores de errores
         //reglas de validación
@@ -627,7 +654,7 @@ class Cadmin extends CI_Controller
             'talla_camisa' => $this->input->post('talla_camisa'),
             'latitud' => $this->input->post('latitud'),
             'longitud' => $this->input->post('longitud'),
-            'id_brigada_estructua' => $this->input->post('id_brigada_estructua'),
+            'id_brigada_estructura' => $this->input->post('id_brigada_estructura'),
             'id_usuario' =>  $id_usuario,
             'id_usuario_registro' => $this->session->userdata('id_usuario')
      
@@ -638,7 +665,12 @@ class Cadmin extends CI_Controller
 
 
         $this->Estructuras_model->post_crearEstructura($datas);
-        echo  json_encode(["resultado" => true, "mensaje" => "Datos guardados correctamente."]);
+        echo  json_encode(["resultado" => true, 
+             "mensaje" => "Datos guardados correctamente.",
+             "id_brigada" =>$this->input->post('id_brigada_estructura')
+    
+    
+]);
     }
 
 

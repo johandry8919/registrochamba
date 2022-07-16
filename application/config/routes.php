@@ -119,8 +119,8 @@ $route['admin/inicio'] = 'Cadmin';
 $route['admin/registro/usuarios'] = 'Cadmin/registro_usuarios';
 $route['admin/usuarios'] = 'Cadmin/listar_usuarios_admin';
 $route['admin'] = 'Cadmin';
-
-$route['admin/empresas'] = 'Cadmin/listar_empresas_entes';
+$route['admin/usuarios'] = 'Cadmin/listar_usuarios_admin';
+$route['admin/ver/estructura-brigada/(:num)'] = 'Cadmin/ver_estrutura_brigada';
 
 $route['admin/editar/empresa/(:num)'] = 'Cadmin/editar_empresa/$1';
 $route['admin/roles'] = 'Roles';

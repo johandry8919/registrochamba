@@ -201,7 +201,7 @@
 			var longitud = $("#longitud").val();
 			var genero = $("#genero").val();
 			var pass = $("#password").val();
-			var id_brigada_estructua = $("#id_brigada_estructua").val();
+			var id_brigada_estructura = $("#id_brigada_estructua").val();
 			
 			
 
@@ -231,7 +231,7 @@
 					talla_camisa,
 					latitud,
 					longitud,
-					id_brigada_estructua
+					id_brigada_estructura
 				
 				},
 
@@ -241,6 +241,7 @@
 					//$("#cod_municipio").selectpicker('refresh');
 				},
 				success: function (respuesta) {
+					console.log(respuesta);
 					if (respuesta.resultado == true) {
 						Swal.fire({
 							icon: "success",
@@ -249,7 +250,7 @@
 						}).then((result) => {
 							/* Read more about isConfirmed, isDenied below */
 							if (result.isConfirmed) {
-								$(location).attr("href", base_url + "admin/listar_brigada");
+								$(location).attr("href", base_url + "admin/ver/estructura-brigada/"+respuesta.id_brigada);
 							}
 						});
 					} else {
@@ -267,6 +268,25 @@
 			});
 		},
 	});
+
+
+	$("#fecha_nac").change(function () {
+		var edad=calcularEdad($(this).val())
+		$("#edad").val(edad)
+	});
+
+	function calcularEdad(fecha) {
+		var hoy = new Date();
+		var cumpleanos = new Date(fecha);
+		var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+		var m = hoy.getMonth() - cumpleanos.getMonth();
+	
+		if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+			edad--;
+		}
+	
+		return edad;
+	}
 
 	// DROPIFY
 	$(".dropify-clear").on("click", function () {
