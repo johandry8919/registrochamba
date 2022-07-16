@@ -105,6 +105,7 @@ $route['admin/login'] = 'Cadmin/login';
 
 
 $route['admin/registro/estructuras'] = 'Cadmin/estructura_brigada';
+$route['admin/editar/estructuras/(:num)'] = 'Cadmin/editar_brigada/$1';
 
 $route['admin/registro/integrante-estructura/(:num)'] = 'Cadmin/registro_estructura';
 
