@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Lista de brigada</h3>
+                        <h3 class="card-title">Lista estructura brigada</h3>
 
                     </div>
                     <div class="card-body">
@@ -29,11 +29,13 @@
                                 <thead>
                                     <tr>
                                         <th name="bstable-actions">Acciones</th>
-                                        <th class="wd-15p border-bottom-0">Nombre brigada</th>
-                                        <th class="wd-15p border-bottom-0">Nombre sector</th>
-                                        <th class="wd-20p border-bottom-0">Area de formación</th>
-                                        <th class="wd-15p border-bottom-0">Descripcion</th>
-                                        <th class="wd-10p border-bottom-0">Estatus</th>
+                                        <th class="wd-15p border-bottom-0">Rol</th>
+                                        <th class="wd-15p border-bottom-0">Estructura brigada</th>
+                                        <th class="wd-15p border-bottom-0"> Nombre sector</th>
+                                      
+                                        <th class="wd-20p border-bottom-0">Estado</th>
+                                        <th class="wd-15p border-bottom-0">Municipio</th>
+                                        <th class="wd-10p border-bottom-0">parroquia</th>
                                    
                                    
 
@@ -53,7 +55,7 @@
                                                             href="<?php echo base_url()?>admin/registro/integrante-estructura/<?php echo $brigadas->id_brigada?>">&#9998;</a>
                                                     </span>
                                                 </button>
-<!-- 
+
                                                 <button type="button" class="btn btn-sm btn-success ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
@@ -62,7 +64,7 @@
                                                             
                                                         </a>
                                                     </span>
-                                                </button> -->
+                                                </button> 
                                             </div>
                                             
                                         </td>
