@@ -598,6 +598,8 @@ class Cadmin extends CI_Controller
         $id_brigada_estructura = strip_tags(trim($this->uri->segment(4)));
         $brigada_estructura =  $this->Registro_brigada->obtener_brigada_id($id_brigada_estructura);
 
+        var_dump(  $brigada_estructura );
+
 
 
 

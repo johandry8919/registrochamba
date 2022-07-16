@@ -202,7 +202,7 @@ $route['estructuras/registro/empresas/(:num)'] = 'Estructuras/editar_empresas/$1
 $route['estructuras/registro/universidades'] = 'Estructuras/registro_universidades';
 $route['estructuras/registro/universidades/(:num)'] = 'Estructuras/editar_universidades/$1';
 $route['estructuras/inicio'] = 'Estructuras';
-$route['admin/estructuras'] = 'Cadmin/estructuras';
+$route['admin/estructuras'] = 'Cadmin/listar_brigada';
 
 
 /*Cestructuras*/
