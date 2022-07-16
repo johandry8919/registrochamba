@@ -1,4 +1,4 @@
-<?php if(isset($brigada)) echo print_r($brigada)?>
+<!-- <?php if(isset($brigada)) echo print_r($brigada)?> -->
         <div class="row row-sm">
             <div class="col-lg-12">
                 <div class="card">

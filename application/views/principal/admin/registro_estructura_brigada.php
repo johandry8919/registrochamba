@@ -256,8 +256,8 @@
                     <input type="hidden" name="id_usuario" id="id_usuario" value="<?php if(isset($id_usuario)){
         echo $id_usuario;
     }?>">
-                    <input type="hidden" name="id_rol_estructura" id="id_rol_estructura" value="<?php if(isset($brigada)){
-        echo $brigada->id_rol_estructura;
+                    <input type="hidden" name="id_brigada" id="id_brigada" value="<?php if(isset($brigada)){
+        echo $brigada->id_brigada;
     }?>">
 
 

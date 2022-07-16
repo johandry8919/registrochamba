@@ -72,10 +72,10 @@
 
 
         
-        public function actualizar_brigada($id_rol, $datos){
+        public function actualizar_brigada($id_brigada, $datos){
            
 
-            $this->db->where('id_rol_estructura', $id_rol);
+            $this->db->where('id_brigada', $id_brigada);
             $this->db->update('tbl_brigadas_estructuras', $datos);
             if($this->db->affected_rows() > 0){
                 return true;
