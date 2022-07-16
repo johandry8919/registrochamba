@@ -28,6 +28,7 @@ class Cadmin extends CI_Controller
         $this->load->model('Oferta_universida_model');
         $this->load->library('ciqrcode');
         $this->load->model('Menu_model');
+        $this->load->model('Registro_brigada');
 
         //$this->load->library('security');
         //$this->output->enable_profiler(TRUE);
@@ -88,11 +89,23 @@ class Cadmin extends CI_Controller
 
 
     public function estructura_brigada(){
+        $permitidos =  obtener_roles('admin');
+
+        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+        if (!$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+
+
+
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "Registrar Estructura / Brigada",
 
         ];
+
+      
 
 
         $output = [
@@ -101,10 +114,86 @@ class Cadmin extends CI_Controller
             "title"             => "Registro de usuario",
             "vista_principal"   => "admin/registro_estructura_brigada",
             "estados"          => $this->Musuarios->getEstados(),
+            "id_usuario" => $this->session->userdata('id_usuario'),
             "responsabilidad_estructuras"   =>  $this->Estructuras_model->responsabilidad_estructuras(),
             "roles" =>   $this->Roles_model->obtener_roles('estructura'),
-            "ficheros_js" => [recurso("admin_estructura_brigada_js")]
+            "ficheros_js" => [recurso("admin_estructura_brigada_js") ,recurso("mapa_mabox_js")],
+            "ficheros_css" => [recurso("mapa_mabox_css")],
 
+        ];
+
+        $this->load->view("main", $output);
+
+    }
+
+    public function brigada_registro(){
+
+        // $this->form_validation->set_rules('id_estructura', 'estructura', 'trim|required|strip_tags');
+
+        // $this->form_validation->set_rules('nombre_brigada', 'nombre de brigada', 'trim|required|strip_tags');
+
+        // $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
+        // $this->form_validation->set_rules('cod_estado', 'cod_estado', 'trim|required|strip_tags');
+       
+
+        // if ($this->form_validation->run() === FALSE) {
+        //     $mensaje_error = validation_errors();
+        //     echo  json_encode(["resultado" => false, "mensaje" => $mensaje_error]);
+        //     exit;
+        // }
+        $codigo = "4534534534514234234234456434424";
+
+        $datos = array(
+
+            "nombre_brigada" => $this->input->post("nombre_brigada"),
+            "nombre_sector" => $this->input->post("nombre_comunidad"),
+            "id_usuario_registro" => $this->input->post("id_usuario"),
+            "id_rol_estructura" =>$this->session->userdata('id_rol'),
+            "direccion" => $this->input->post("direccion"),
+            "codigoestado" => $this->input->post("cod_estado"),
+            "codigomunicipio" => $this->input->post("cod_municipio"),
+            "codigoparroquia" => $this->input->post("cod_parroquia"),
+            "latitud" => $this->input->post("latitud"),
+            "longitud" => $this->input->post("longitud"),
+            "codigo" => $codigo,
+            "activo" => 1,
+            
+
+        );
+
+      
+
+        $respuesta = $this->Registro_brigada->post_regitrar($datos);
+        if($respuesta){
+            
+        
+            echo  json_encode(["resultado" => true, "id_usuario" => $respuesta]);
+
+        }else{
+            echo  json_encode(["resultado" => false, "mensaje" => $respuesta]);
+        }
+
+    }
+   
+    public function listar_brigada(){
+        $breadcrumb = (object) [
+            "menu" => "Admin",
+            "menu_seleccion" => "listar brigada",
+
+        ];
+
+        $brigada = $this->Registro_brigada->obtener_brigada();
+
+     
+
+
+        $output = [
+            "menu_lateral" => "admin",
+            "breadcrumb"      =>   $breadcrumb,
+            "title"             => "listar brigada",
+            "datatable" =>  true,
+            "vista_principal"   => "admin/listar_brigada",
+            "brigada" => $brigada,
         ];
 
         $this->load->view("main", $output);
@@ -372,6 +461,7 @@ class Cadmin extends CI_Controller
             $res =  $this->Estructuras_model->getEditEstruturaID($id__exp_lab);
             json_encode($res);
         }
+        $id_brigada_estructua = $id__exp_lab;
 
 
 
@@ -394,6 +484,8 @@ class Cadmin extends CI_Controller
             "estados"          => $this->Musuarios->getEstados(),
             "sectorProductivo" => $this->Mprofesion_oficio->SectorProductivo(),
             'profesion_oficio' => $this->Estructuras_model->profesion_oficio(),
+            "id_usuario" => $id__exp_lab,
+            "id_brigada_estructua" => $id_brigada_estructua,
 
             "datos" => $res,
             "rangoedad" => $rango_edad,
@@ -455,13 +547,13 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('fecha_nac', 'fecha_nac', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('nombre_brigada', 'nombre_brigada', 'trim|required|strip_tags');
+    
         $this->form_validation->set_rules('id_profesion_oficio', 'id_profesion_oficio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado', 'estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'municipio', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_parroquia', 'parroquia', 'trim|required|strip_tags');
         $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('id_estructura', 'estructura_responsabilidad', 'trim|required|strip_tags');
+      
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('pass', 'pass', 'trim|required|strip_tags');
@@ -535,11 +627,13 @@ class Cadmin extends CI_Controller
             'talla_camisa' => $this->input->post('talla_camisa'),
             'latitud' => $this->input->post('latitud'),
             'longitud' => $this->input->post('longitud'),
-            'nombre_brigada' => $this->input->post('nombre_brigada'),
+            'id_brigada_estructua' => $this->input->post('id_brigada_estructua'),
             'id_usuario' =>  $id_usuario,
             'id_usuario_registro' => $this->session->userdata('id_usuario')
+     
 
         );
+ 
 
 
 

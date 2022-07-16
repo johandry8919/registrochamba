@@ -98,7 +98,7 @@
 				// Step 2 form validation
 				if (currentIndex === 1) {
 					var cod_responsabilidad = $("#cod_responsabilidad").parsley();
-					var id_estructura = $("#id_estructura").parsley();
+					
 					var talla_pantalon = $("#talla_pantalon").parsley();
 					var talla_camisa = $("#talla_camisa").parsley();
 					var cod_estado = $("#cod_estado").parsley();
@@ -110,7 +110,7 @@
 
 					if (
 						cod_responsabilidad.isValid() &&
-						id_estructura.isValid() &&
+					
 						talla_pantalon.isValid() &&
 						talla_camisa.isValid() &&
 						cod_estado.isValid() &&
@@ -125,10 +125,7 @@
 							$("#cod_responsabilidad")
 								.removeClass("is-valid")
 								.addClass("is-invalid  error-input");
-						if (!id_estructura.isValid())
-							$("#id_estructura")
-								.removeClass("is-valid")
-								.addClass("is-invalid  error-input");
+						
 						// if (!talla_pantalon.isValid())
 						// 	$("#talla_pantalon")
 						// 		.removeClass("is-valid")
@@ -198,20 +195,20 @@
 			var cod_parroquia = $("#cod_parroquia").val();
 			var direccion = $("#direccion").val();
 			var cod_responsabilidad = $("#cod_responsabilidad").val();
-			var id_estructura = $("#id_estructura").val();
 			var talla_pantalon = $("#talla_pantalon").val();
 			var talla_camisa = $("#talla_camisa").val();
 			var latitud = $("#latitud").val();
 			var longitud = $("#longitud").val();
 			var genero = $("#genero").val();
 			var pass = $("#password").val();
-			var nombre_brigada = $("#nombre_brigada").val();
-			var nombre_comunidad = $("#nombre_comunidad").val();
+			var id_brigada_estructua = $("#id_brigada_estructua").val();
+			
+			
 
 			$.ajax({
 				dataType: "json",
 				data: {
-					nombre_brigada,
+				
 					pass,
 					nombres,
 					apellidos,
@@ -230,12 +227,12 @@
 					cod_parroquia,
 					direccion,
 					cod_responsabilidad,
-					id_estructura,
 					talla_pantalon,
 					talla_camisa,
 					latitud,
 					longitud,
-					nombre_comunidad
+					id_brigada_estructua
+				
 				},
 
 				url: base_url + "Cadmin/crearEstructura",
@@ -252,7 +249,7 @@
 						}).then((result) => {
 							/* Read more about isConfirmed, isDenied below */
 							if (result.isConfirmed) {
-								$(location).attr("href", base_url + "admin/estructuras");
+								$(location).attr("href", base_url + "admin/listar_brigada");
 							}
 						});
 					} else {
@@ -607,23 +604,6 @@ $("#talla_camisa").on("keyup", function () {
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
 		$("#talla_camisa").removeClass("is-valid").addClass("is-invalid");
-	}
-});
-$("#id_estructura").on("change", function () {
-	"use strict";
-	var id_estructura = $(this).val();
-	// var expresion = /^\d{1}$/;
-	
-
-	if (id_estructura) {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-	} else {
-		$(this)
-			.removeClass("is-invalid error-input")
-			.addClass("is-valid valid-input");
-		$("#id_estructura").removeClass("is-valid").addClass("is-invalid");
 	}
 });
 

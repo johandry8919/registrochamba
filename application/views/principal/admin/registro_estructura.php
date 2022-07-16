@@ -281,21 +281,7 @@
                             <section>
                                 <div class="row ">
 
-                                <div class="col-md-4 ">
-                                        <label class="form-label">¿A que estructura Pertenece?</label>
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <select class="form-control show-tick" id="id_estructura" name="id_estructura" data-parsley-error-message="Este campo es requerido" required autofocus>
-                                                    <option value="">Seleccione una opción</option>
-                                                    <?php foreach($roles as $rol): ?>
-                                  
-                                                        <option value="<?php  echo $rol->id_rol ?>"><?php  echo $rol->nombre ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                          
 
                                     <div class="col-12 col-md-4">
                                         <label class="form-label">¿responsabilidad en estructura ?</label>
@@ -326,15 +312,7 @@
                                     </div>
                              
 
-                                    <div class="col-md-4">
-                                    <div class="form-group">
-                                    <label class="form-label">Nombre Estructura / brigada</label>
-                                    <input type="text" class="form-control"  id="nombre_brigada">
-
-
-                                    </div>
-                                        
-                                    </div>
+                                    
 
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
@@ -455,15 +433,7 @@
 
 
                                 <div class="row ">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                    <label class="form-label">Nombre sector / comunidad</label>
-                                    <input type="text" class="form-control"  id="nombre_comunidad">
-
-
-                                    </div>
-                                        
-                                    </div>
+                               
                                     <div class="col-md-4">
                                         <label class="form-label"> Dirección Especifica</label>
                                         <div class="form-group">
@@ -549,7 +519,9 @@
     </form>
 
 
-
+    <input type="hidden" name="id_brigada_estructua" id="id_brigada_estructua" value="<?php if(isset($id_brigada_estructua)){
+        echo $id_brigada_estructua;
+    }?>">
 
 
 
