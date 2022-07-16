@@ -45,7 +45,7 @@
                 <div class="card">
                     <div class="card-header border-bottom-0">
                         <div class="card-title">
-                            Registro de estructuras
+                            Registro de integrante de estructura - <?php echo $brigada_estructura->codigo ?> - (<?php echo $brigada_estructura->nombre_brigada ?> )
                             
                         </div>
                     </div>
@@ -314,7 +314,7 @@
 
                                     
 
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label class="form-label">Talla de pantalon</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
@@ -328,7 +328,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-6">
+                                    <div class="col-12 col-md-4">
                                         <div class="form-group">
                                             <label class="form-label">Talla de Camisa</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
@@ -441,7 +441,9 @@
                                                 <textarea maxlength="255" rows="4" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..." data-parsley-error-message="Este campo es requerido" required autofocus><?php if (isset($datos->direccion)) echo $datos->direccion; ?></textarea>
                                             </div>
                                         </div>
+                                    </div>
 
+                                    <div class="col-4">
                                         <div class="form-group">
                                             <label class="form-label">Latitud</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
@@ -454,9 +456,11 @@
                                             </div>
 
                                         </div>
+                                    </div>
 
+                                    <div class="col-4">
 
-
+                                
                                         <div class="form-group">
                                             <label class="form-label">Longitud</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
@@ -469,10 +473,19 @@
                                             </div>
 
                                         </div>
-
-
                                     </div>
+
+                                        
+                                    </div>
+
+
+                                   
+
+                                        
+                                
                                     <div class="col-md-12 justify-content-center">
+                                      
+                                    
                                         <div class="small">Seleccione en el mapa su ubicación exacta</div>
                                         <div id="map"></div>
 
@@ -480,8 +493,8 @@
                                         <button type="button" id="seleccion-ubicacion" class="btn btn-icon ubicacion-c btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tu ubicación"><i class="fe fe-map-pin"></i></button>
 
                                     </div>
-
-                                </div>
+                             
+                         
 
                                 
 
@@ -519,9 +532,7 @@
     </form>
 
 
-    <input type="hidden" name="id_brigada_estructua" id="id_brigada_estructua" value="<?php if(isset($id_brigada_estructua)){
-        echo $id_brigada_estructua;
-    }?>">
+    <input type="hidden" name="id_brigada_estructua" id="id_brigada_estructua" value="<?php echo $id_brigada_estructura;?>">
 
 
 

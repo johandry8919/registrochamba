@@ -120,8 +120,8 @@ $route['admin/inicio'] = 'Cadmin';
 $route['admin/registro/usuarios'] = 'Cadmin/registro_usuarios';
 $route['admin/usuarios'] = 'Cadmin/listar_usuarios_admin';
 $route['admin'] = 'Cadmin';
-
-$route['admin/empresas'] = 'Cadmin/listar_empresas_entes';
+$route['admin/usuarios'] = 'Cadmin/listar_usuarios_admin';
+$route['admin/ver/estructura-brigada/(:num)'] = 'Cadmin/ver_estrutura_brigada';
 
 $route['admin/editar/empresa/(:num)'] = 'Cadmin/editar_empresa/$1';
 $route['admin/roles'] = 'Roles';
@@ -202,7 +202,7 @@ $route['estructuras/registro/empresas/(:num)'] = 'Estructuras/editar_empresas/$1
 $route['estructuras/registro/universidades'] = 'Estructuras/registro_universidades';
 $route['estructuras/registro/universidades/(:num)'] = 'Estructuras/editar_universidades/$1';
 $route['estructuras/inicio'] = 'Estructuras';
-$route['admin/estructuras'] = 'Cadmin/estructuras';
+$route['admin/estructuras'] = 'Cadmin/listar_brigada';
 
 
 /*Cestructuras*/
