@@ -136,6 +136,7 @@
         public function obtener_brigadas($cod_estado='todos'){
 
             $this->db->select('tbl_brigadas_estructuras.*,
+
             estado.nombre as nombre_estado ,municipio.nombre as municipio,parroquia.nombre as parroquia ,roles.nombre as nombre_rol
             
             ');
@@ -169,6 +170,9 @@
             tbl_brigadas_estructuras.id_rol_estructura, tbl_brigadas_estructuras.latitud, 
             
             tbl_brigadas_estructuras.longitud, 
+            tbl_brigadas_estructuras.codigoestado, 
+            tbl_brigadas_estructuras.codigomunicipio, 
+            tbl_brigadas_estructuras.codigoparroquia, 
             tbl_brigadas_estructuras.direccion, 
             tbl_brigadas_estructuras.created_on, tbl_brigadas_estructuras.codigo, 
 
