@@ -223,9 +223,13 @@ class Cadmin extends CI_Controller
             "menu_lateral" => "admin",
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "listar brigada",
+            "estados"          => $this->Musuarios->getEstados(),
             "datatable" =>  true,
+            "roles" =>   $this->Roles_model->obtener_roles('estructura'),
             "vista_principal"   => "admin/listar_brigada",
             "brigada" => $brigada,
+            "ficheros_js" => [recurso("filtar_brigada_js")],
+       
         ];
 
         $this->load->view("main", $output);
@@ -286,11 +290,8 @@ class Cadmin extends CI_Controller
 
     public function brigada_post(){
           $this->form_validation->set_rules('id_estructura', 'estructura', 'trim|required|strip_tags');
-
         $this->form_validation->set_rules('nombre_brigada', 'nombre de brigada', 'trim|required|strip_tags');
         $this->form_validation->set_rules('nombre_comunidad', 'nombre de comunidad', 'trim|required|strip_tags');
-
-
         $this->form_validation->set_rules('direccion', 'direccion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado', 'cod_estado', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_municipio', 'Municipio', 'trim|required|strip_tags');
@@ -303,13 +304,14 @@ class Cadmin extends CI_Controller
             exit;
         }
         $codigo = "4534534534514234234234456434424";
-        $id_rol = $this->input->post("id_rol_estructura");
+        $id_brigada = $this->input->post("id_brigada");
 
         $datos = array(
 
             "nombre_brigada" => $this->input->post("nombre_brigada"),
             "nombre_sector" => $this->input->post("nombre_comunidad"),
             "id_usuario_registro" => $this->input->post("id_usuario"),
+            "id_brigada" =>$this->input->post('id_brigada'),
             "id_rol_estructura" =>$this->input->post('id_estructura'),
             "direccion" => $this->input->post("direccion"),
             "codigoestado" => $this->input->post("cod_estado"),
@@ -329,7 +331,7 @@ class Cadmin extends CI_Controller
 
       
 
-        $respuesta = $this->Registro_brigada->actualizar_brigada($id_rol,$datos);
+        $respuesta = $this->Registro_brigada->actualizar_brigada($id_brigada,$datos);
         if($respuesta){
             
         
