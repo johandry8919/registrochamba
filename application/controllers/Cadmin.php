@@ -223,9 +223,13 @@ class Cadmin extends CI_Controller
             "menu_lateral" => "admin",
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "listar brigada",
+            "estados"          => $this->Musuarios->getEstados(),
             "datatable" =>  true,
+            "roles" =>   $this->Roles_model->obtener_roles('estructura'),
             "vista_principal"   => "admin/listar_brigada",
             "brigada" => $brigada,
+            "ficheros_js" => [recurso("filtar_brigada_js")],
+       
         ];
 
         $this->load->view("main", $output);

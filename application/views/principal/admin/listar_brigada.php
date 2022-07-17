@@ -10,11 +10,31 @@
 
 
                     <div class="col-2">
-    <label class="form-label">Roles</label>
-    <select class="form-control show-tick" data-parsley-error-message="Este campo es requerido" id="cod_estado" name="cod_estado" required>
-                <option value="">Seleccione una opción</option>
-                
-            </select>
+                                <div class="form-group">
+                                <label class="form-label">Rol</label>
+                                    <div class="form-line">
+                                        <select class="form-control show-tick" id="id_estructura" name="id_estructura"
+                                            data-parsley-error-message="Este campo es requerido" required autofocus>
+                                            <option value="">Seleccione una opción</option>
+                                            <option value="00">Todos</option>
+                                            <?php foreach($roles as $rol): ?>
+
+                                            <option value="<?php  echo $rol->id_rol ?>"><?php  echo $rol->nombre ?>
+                                            </option>
+
+                                             
+
+                                                    
+
+
+
+
+
+
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
 </div>
 
 <div class="col-3">
