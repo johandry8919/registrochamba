@@ -28,7 +28,7 @@ async function obtener_coordenadas_empresa(accion) {
 
 				$("#basic-datatable tbody").html("");
 				data.forEach((element) => {
-					listar += `
+					listar = `
        
                      <tr>
                          <td>
@@ -52,8 +52,10 @@ async function obtener_coordenadas_empresa(accion) {
                          </div>
                          
                      </td>
+					 <td> ${element.nombre_brigada}</td>
                      <td>${element.nombre_rol}</td>
-                     <td> ${element.nombre_brigada}</td>
+					 <td> ${element.count}</td>
+					 <td> ${element.codigo}</td>
                      <td>${element.nombre_sector}</td>
                      <td>${element.nombre_estado}</td>
                      <td>${element.municipio}</td>    
