@@ -147,8 +147,6 @@
 
         public function obtener_brigadas($cod_estado='todos'){
 
-            $this->db->select('tbl_brigadas_estructuras.*,
-
             $this->db->select(' count(id_estructura) , tbl_brigadas_estructuras.id_brigada, tbl_brigadas_estructuras.id_usuario_registro, tbl_brigadas_estructuras.nombre_brigada, tbl_brigadas_estructuras.nombre_sector,
             tbl_brigadas_estructuras.codigoestado, tbl_brigadas_estructuras.codigomunicipio, tbl_brigadas_estructuras.codigoparroquia, 
             tbl_brigadas_estructuras.id_rol_estructura, tbl_brigadas_estructuras.latitud, tbl_brigadas_estructuras.longitud,

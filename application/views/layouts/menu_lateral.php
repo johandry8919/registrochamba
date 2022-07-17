@@ -12,11 +12,7 @@
                     </div>
                     
                 <?php     if ($this->session->userdata('id_rol')) {
-                     $this->session->unset_userdata('id_usuario');
-                     $this->session->unset_userdata('cedula');
-                     $this->session->unset_userdata('email');
-                     $this->session->unset_userdata('activo');
-                     $this->session->unset_userdata('id_rol');
+            
              
             redirect('inicio');
         } ?>

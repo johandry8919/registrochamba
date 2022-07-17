@@ -1069,11 +1069,15 @@ class Cadmin extends CI_Controller
     }
     public function estructuras()
     {
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
-        }
+     
 
-
+   //verificar acceso
+   $permitidos =  obtener_roles(['admin','estructura']);
+   $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+   if (!$tiene_acceso) {
+       echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+       exit();
+   }
 
 
         $estruturas = $this->Estructuras_model->getestructuras();
@@ -1187,9 +1191,15 @@ class Cadmin extends CI_Controller
     }
     public function actualizar_estructuras()
     {
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
-        }
+      
+        
+   //verificar acceso
+   $permitidos =  obtener_roles(['admin','estructura']);
+   $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+   if (!$tiene_acceso) {
+       echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+       exit();
+   }
         $estados = $this->Musuarios->getEstados();
 
         $responsabilidad_estructuras = $this->Estructuras_model->responsabilidad_estructuras();
@@ -1210,9 +1220,6 @@ class Cadmin extends CI_Controller
             $res =  $this->Estructuras_model->getEditEstruturaID($id__exp_lab);
 
 
-            if (empty($res)) {
-                redirect('admin/login');
-            }
         }
 
 
