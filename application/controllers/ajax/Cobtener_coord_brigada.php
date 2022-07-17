@@ -49,7 +49,7 @@ class Cobtener_coord_brigada extends CI_Controller {
 
 
 
-    if($cod_estado=='todos' && $id_rol_estructura == "00" ){
+    if($id_rol_estructura == "00"  &&   $cod_estado=='todos'   ){
 
         $resultado=   $this->Registro_brigada->obtener_brigadas();
       

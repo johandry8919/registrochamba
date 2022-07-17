@@ -9,7 +9,7 @@ async function obtener_coordenadas_empresa(accion) {
 	var cod_municipio = $("#cod_municipio").val();
 	var cod_parroquia = $("#cod_parroquia").val();
 	var id_estructura = $("#id_estructura").val();
-
+ 
 	$.ajax({
 		dataType: "json",
 		data: { cod_estado, cod_municipio, cod_parroquia, id_estructura },
@@ -67,6 +67,9 @@ async function obtener_coordenadas_empresa(accion) {
                 `;
 					$("#basic-datatable tbody").append(listar);
 				});
+			}else{
+				$("#basic-datatable tbody").html("");
+				$("#basic-datatable tbody").html("<tr><td>Nose encontraron resultados</td><tr/>");
 			}
 		},
 		error: function (xhr, err) {
@@ -98,7 +101,7 @@ $("#cod_estado").change(function () {
             `
 		);
         
-
+		buscarMunicipios();
      }else{
         buscarMunicipios();
 
@@ -111,7 +114,7 @@ $("#cod_estado").change(function () {
 });
 
  $("#id_estructura").change(function(){
-    if($(this).val() == "01"){
+    if($(this).val() == "00"){
         $("#cod_municipio").html(
 			`<option value="01">Todos</option>
             `
@@ -121,16 +124,13 @@ $("#cod_estado").change(function () {
 			`<option value="01">Todos</option>
             `
 		);
-        $("#cod_estado").html(
-			`<option value="01">Todos</option>
-            `
-		);
+   
     }
 
 })
 $("#cod_municipio").change(function () {
-	
-    if(id_estructura == 10){
+	var id_estructura = $("#id_estructura").val()
+    if(id_estructura == "10"){
      
 
         $("#cod_parroquia").html(

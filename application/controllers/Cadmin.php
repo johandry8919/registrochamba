@@ -113,9 +113,7 @@ class Cadmin extends CI_Controller
             "menu_seleccion" => "Registrar Estructura / Brigada",
 
         ];
-
-      
-
+   
 
         $output = [
             "menu_lateral" => "admin",
@@ -151,9 +149,6 @@ class Cadmin extends CI_Controller
             "menu_seleccion" => "Registrar Estructura / Brigada",
 
         ];
-
-      
-
 
         $output = [
             "menu_lateral" => "admin",
@@ -223,14 +218,22 @@ class Cadmin extends CI_Controller
     }
    
     public function listar_brigada(){
+
+        
+        if (!tiene_acceso(['estructura','admin'])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+
+
+
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "listar brigada",
 
         ];
 
-        $brigada = $this->Registro_brigada->obtener_brigadas();
-
+      
      
 
 
@@ -242,8 +245,8 @@ class Cadmin extends CI_Controller
             "datatable" =>  true,
             "roles" =>   $this->Roles_model->obtener_roles('estructura'),
             "vista_principal"   => "admin/listar_brigada",
-            "brigada" => $brigada,
-            "ficheros_js" => [recurso("filtar_brigada_js")],
+        
+            "ficheros_js" => [recurso("filtrar_brigada_js")],
        
         ];
 

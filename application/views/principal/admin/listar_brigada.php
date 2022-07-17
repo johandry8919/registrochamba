@@ -136,47 +136,12 @@
 
                                     </tr>
                                 </thead>
-                                <?php if(isset($brigada)):?>
-                                    <tbody>
+                   
+                                <tbody>
                                     
-                                        <?php foreach ($brigada as $brigadas):?>
-                                        <tr>
-                                            <td>
-                                            <div class="btn-list">
-                                                <button type="button" class="btn btn-sm btn-primary ">
-                                                    <span class="fs-6">
-                                                        <a class="text-white"
-                                                            href="<?php echo base_url()?>admin/editar/estructuras/<?php echo $brigadas->id_brigada?>">&#9998;</a>
-                                                    </span>
-                                                </button>
-
-                                                <button type="button" class="btn btn-sm btn-success ">
-                                                    <span class="fs-6">
-                                                        <a class="text-white"
-                                                            href="<?php echo base_url().ruta_actual()?>/ver/estructura-brigada/<?php echo $brigadas->id_brigada ?>">
-                                                            <i class="side-menu__icon fe fe-eye"></i>
-                                                            
-                                                        </a>
-                                                    </span>
-                                                </button> 
-                                            </div>
-                                            
-                                        </td>
-                                        <td><?php  echo $brigadas->nombre_rol ?></td>
-                                        <td> <?php  if(isset($brigadas->nombre_brigada)){
-                                            echo $brigadas->nombre_brigada;
-                                        } ?></td>
-                                        <td><?php  echo $brigadas->nombre_sector ?></td>
-                                        <td><?php  echo $brigadas->nombre_estado ?></td>
-                                        <td><?php  echo $brigadas->municipio ?></td>    
-                                        <td><?php  echo $brigadas->parroquia?> </td>                             
-                                  
-                                      
-
-                                    </tr>
-                                    <?php endforeach ?>
+                                    
                                 </tbody>
-                                <?php endif;?>
+                      
                             </table>
                         </div>
                     </div>

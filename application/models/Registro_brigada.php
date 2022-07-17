@@ -57,7 +57,7 @@
 
 
         }
-        public function obtener_brigada_coord($cod_estado,$cod_municipio,$cod_parroquia,$id_estructura){
+        public function obtener_brigada_coord($cod_estado,$cod_municipio,$cod_parroquia,$id_rol_estructura){
 
             $this->db->select('tbl_brigadas_estructuras.*,
             
@@ -65,34 +65,59 @@
             estado.nombre as nombre_estado,municipio.nombre as municipio,parroquia.nombre as parroquia,roles.nombre as nombre_rol
             ');
 
-            if($cod_estado == "todos" ){
 
-                
-
-                $this->db->where("id_rol_estructura",$id_estructura);
-
-
-
-            }else if($cod_estado !== "todos" ){
-
-
-
-
-            }else if($cod_municipio==01){
+            // estructura todos y un estado
+            if($id_rol_estructura == "00" && $cod_municipio==01){
+               
                 $this->db->where("estado.codigoestado", $cod_estado);
-            }else if($cod_parroquia==01){
+
+
+
+            } else if($id_rol_estructura == "00" && $cod_parroquia==01){
+               
                 $this->db->where("tbl_brigadas_estructuras.codigomunicipio",$cod_municipio);
-            }else{
+
+
+
+            }else if ($id_rol_estructura == "00" ){
                 $this->db->where("estado.codigoestado", $cod_estado);
                 $this->db->where("tbl_brigadas_estructuras.codigomunicipio",$cod_municipio);
                 $this->db->where("tbl_brigadas_estructuras.codigoparroquia",$cod_parroquia);
                 
+            }else if ($id_rol_estructura != "00" && $cod_estado=='todos'){
+          
+                $this->db->where("id_rol_estructura", $id_rol_estructura);
             }
+            
+            else if  ($id_rol_estructura != "00" && $cod_municipio==01){
+               
+                $this->db->where("estado.codigoestado", $cod_estado);
+                $this->db->where("id_rol_estructura", $id_rol_estructura);
+                $this->db->where("id_rol_estructura", $id_rol_estructura);
+
+
+            } else if($id_rol_estructura != "00" && $cod_parroquia==01){
+               
+                $this->db->where("tbl_brigadas_estructuras.codigomunicipio",$cod_municipio);
+                $this->db->where("id_rol_estructura", $id_rol_estructura);
+
+
+            }
+            
+            else if($id_rol_estructura != "00" ){
+                $this->db->where("estado.codigoestado", $cod_estado);
+                $this->db->where("tbl_brigadas_estructuras.codigomunicipio",$cod_municipio);
+                $this->db->where("tbl_brigadas_estructuras.codigoparroquia",$cod_parroquia);
+                $this->db->where("id_rol_estructura", $id_rol_estructura);
+            }
+
+
+
             $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_brigadas_estructuras.codigoestado');
             $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_brigadas_estructuras.codigomunicipio');
             $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_brigadas_estructuras.codigoparroquia'); 
             $this->db->join('tbl_roles roles', 'roles.id_rol = tbl_brigadas_estructuras.id_rol_estructura'); 
-                $this->db->order_by("tbl_brigadas_estructuras", $id_estructura, "desc");
+                $this->db->order_by("tbl_brigadas_estructuras", $id_rol_estructura, "desc");
              $query = $this->db->get("tbl_brigadas_estructuras");
     
           
@@ -108,13 +133,18 @@
      
 
 
-        public function obtener_brigadas(){
+        public function obtener_brigadas($cod_estado='todos'){
 
             $this->db->select('tbl_brigadas_estructuras.*,
             estado.nombre as nombre_estado ,municipio.nombre as municipio,parroquia.nombre as parroquia ,roles.nombre as nombre_rol
             
             ');
         
+
+
+            if($cod_estado != 'todos')
+            $this->db->where("estado.codigoestado", $cod_estado);
+
 
             $this->db->join('tbl_roles roles', 'roles.id_rol = tbl_brigadas_estructuras.id_rol_estructura'); 
             $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_brigadas_estructuras.codigoestado');
