@@ -22,15 +22,6 @@
                                             <option value="<?php  echo $rol->id_rol ?>"><?php  echo $rol->nombre ?>
                                             </option>
 
-                                             
-
-                                                    
-
-
-
-
-
-
                                             <?php endforeach; ?>
                                         </select>
                                     </div>
@@ -126,8 +117,11 @@
                                 <thead>
                                     <tr>
                                         <th name="bstable-actions">Acciones</th>
+                                        <th class="wd-15p border-bottom-0">Nombre Estrutura</th>
                                         <th class="wd-15p border-bottom-0">Rol</th>
-                                        <th class="wd-15p border-bottom-0">Estructura brigada</th>
+                                        <th class="wd-15p border-bottom-0">Total integrantes</th>
+                                        <th class="wd-15p border-bottom-0">Nombre estructura</th>
+                                        <th class="wd-15p border-bottom-0">Codigo</th>
                                         <th class="wd-15p border-bottom-0"> Nombre sector</th>
                                       
                                         <th class="wd-20p border-bottom-0">Estado</th>

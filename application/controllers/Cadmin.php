@@ -315,7 +315,7 @@ class Cadmin extends CI_Controller
             echo  json_encode(["resultado" => false, "mensaje" => $mensaje_error]);
             exit;
         }
-        $codigo = "4534534534514234234234456434424";
+
         $id_brigada = $this->input->post("id_brigada");
 
         $datos = array(
@@ -331,10 +331,8 @@ class Cadmin extends CI_Controller
             "codigoparroquia" => $this->input->post("cod_parroquia"),
             "latitud" => $this->input->post("latitud"),
             "longitud" => $this->input->post("longitud"),
-            "codigo" => $codigo,
-            "activo" => 1,
-            
 
+            
         );
 
         //      echo json_encode($datos);
@@ -595,7 +593,7 @@ class Cadmin extends CI_Controller
 
     {
         //verificar acceso
-        $permitidos =  obtener_roles('admin');
+        $permitidos =  obtener_roles(['admin','estructura']);
         $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
         if (!$tiene_acceso) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
@@ -674,7 +672,7 @@ class Cadmin extends CI_Controller
 
 
         //verificar acceso
-        $permitidos =  obtener_roles('admin');
+        $permitidos =  obtener_roles(['admin','estructura']);
         $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
         if (!$tiene_acceso) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);

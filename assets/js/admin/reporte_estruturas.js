@@ -3,10 +3,51 @@ var arr_map= [];
 
 
 $("#cod_estado").change(function () {
-	buscarMunicipios();
+	
+	var id_estructura =  $("#id_estructura").val()
+
+	if(id_estructura == 3){
+	   $("#cod_municipio").html(
+		   `<option value="01">Todos</option>
+		   `
+	   );
+
+	   $("#cod_parroquia").html(
+		   `<option value="01">Todos</option>
+		   `
+	   );
+
+
+	}else if(id_estructura == 10){
+	   $("#cod_parroquia").html(
+		   `<option value="01">Todos</option>
+		   `
+	   );
+	   
+	   buscarMunicipios();
+	}else{
+	   buscarMunicipios();
+
+	}
+
+	
+     
 });
 $("#cod_municipio").change(function () {
-	buscarParroquia();
+	var id_estructura = $("#id_estructura").val()
+    if(id_estructura == "10"){
+     
+
+        $("#cod_parroquia").html(
+			`<option value="01">Todos</option>
+            `
+		);
+
+
+     }else {
+        buscarParroquia();
+
+     }
 });
 
 //
@@ -117,17 +158,17 @@ agregarMapa(latitud, longitud, 5);
 
  
 
-async function obtener_coordenadas_empresa(accion) {
+ function obtener_coordenadas_empresa(accion) {
 	var cod_estado = $("#cod_estado").val();
 	var cod_municipio = $("#cod_municipio").val();
 	var cod_parroquia = $("#cod_parroquia").val();
-	var empresa = $("#empresa").val();
+	var id_rol =  $("#id_estructura").val()
 
 
 
 	$.ajax({
 		dataType: "json",
-		data: { cod_estado, cod_municipio, cod_parroquia, empresa },
+		data: { cod_estado, cod_municipio, cod_parroquia, id_rol },
 
 		url: base_url + "ajax/Cobterner_coord_estructura",
 		type: "post",
@@ -150,12 +191,11 @@ async function obtener_coordenadas_empresa(accion) {
                     'type': 'Feature',
                     'properties': {
 					'marker-color': '#8B4293',
-                    'description':`<strong>Nombre: ${element.nombre}</strong>
-					<p>Apellido:${element.apellidos}</p>
-					<p>Telefono:${element.tlf_celular}</p>
-					<p>Correo:${element.email} </p>
-					<p>Estructura:${element.tipo_estructura} </p>
-					<p><strong>Municipio</strong>:${element.nombre_municipio}</p>
+                    'description':`<strong>Nombre estructura: ${element.nombre_brigada}</strong>
+					<p>Total integrantes:${element.count}</p>
+					<p>sector:${element.nombre_sector}</p>				
+					<p>Estructura:${element.nombre_rol} </p>
+			
 					
 				
 					`
@@ -185,7 +225,7 @@ async function obtener_coordenadas_empresa(accion) {
 
 				
 		if(accion==2)
-		location.href=base_url+'admin/reportes/excel_estructura?cod_estado='+cod_estado+'&cod_municipio='+cod_municipio+'&cod_parroquia='+cod_parroquia+'&empresa='+empresa
+		location.href=base_url+'admin/reportes/excel_estructura?cod_estado='+cod_estado+'&cod_municipio='+cod_municipio+'&cod_parroquia='+cod_parroquia+'&id_rol='+id_rol
 
 
 

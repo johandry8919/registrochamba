@@ -110,14 +110,13 @@ error_reporting(E_ALL);
 		ini_set('memory_limit', '256M');
 
 
-        $estrucutras =$_GET['empresa'];
         $cod_estado =$_GET['cod_estado'];
         $cod_municipio =$_GET['cod_municipio'];
         $cod_parroquia =$_GET['cod_parroquia'];
     
         if($cod_estado=='todos'){
     
-            $resultado=   $this->Estructuras_model->obtener_estrucutras($estrucutras);
+            $resultado=   $this->Estructuras_model->obtener_estrucutras();
     
         }else {
             $resultado=   $this->Estructuras_model->obtener_Estructura_coord($cod_estado,$cod_municipio,$cod_parroquia);
@@ -157,6 +156,7 @@ error_reporting(E_ALL);
             "menu_lateral"      =>'admin',
             "estados" =>  $estados,
             "breadcrumb"        =>   $breadcrumb,
+            "roles" =>   $this->Roles_model->obtener_roles('estructura'),
             "title"             => "Nueva oferta",
             "vista_principal"   => "reportes/rep_estructura_centro",
             "ficheros_js" => [recurso("reporte_estruturas_js")],

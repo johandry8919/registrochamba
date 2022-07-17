@@ -9,6 +9,7 @@ class Cobterner_coord_estructura extends CI_Controller {
         $this->load->model('Musuarios');
         $this->load->library('form_validation'); 
         $this->load->model('Estructuras_model');
+        $this->load->model('Registro_brigada');
 
         if (!tiene_acceso(['admin','estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
@@ -26,6 +27,7 @@ class Cobterner_coord_estructura extends CI_Controller {
     $this->form_validation->set_rules('cod_estado', 'cod_estado', 'trim|required|strip_tags');  
     $this->form_validation->set_rules('cod_municipio', 'cod_municipio', 'trim|required|strip_tags');  
     $this->form_validation->set_rules('cod_parroquia', 'cod_parroquia', 'trim|required|strip_tags');  
+    $this->form_validation->set_rules('id_rol', 'id_rol', 'trim|required|strip_tags'); 
 
 
     $this->form_validation->set_error_delimiters('*', '');
@@ -40,20 +42,22 @@ class Cobterner_coord_estructura extends CI_Controller {
          exit;
     }
 
-
+    $id_rol =$_POST['id_rol'];
     $cod_estado =$_POST['cod_estado'];
     $cod_municipio =$_POST['cod_municipio'];
     $cod_parroquia =$_POST['cod_parroquia'];
    
 
-    if($cod_estado=='todos'){
+ 
+    if($id_rol == "00"  &&   $cod_estado=='todos'   ){
 
-        $resultado=   $this->Estructuras_model->obtener_estrucutras();
-        //  echo json_encode($resultado);
+        $resultado=   $this->Registro_brigada->obtener_brigadas();
+      
+        //   echo json_encode($resultado);
         // exit;
 
     }else {
-        $resultado=   $this->Estructuras_model->obtener_Estructura_coord($cod_estado,$cod_municipio,$cod_parroquia);
+        $resultado=   $this->Registro_brigada->obtener_brigada_coord($cod_estado,$cod_municipio,$cod_parroquia,$id_rol);
 
        
     }
