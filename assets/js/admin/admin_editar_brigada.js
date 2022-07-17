@@ -22,7 +22,7 @@
         var $id_usuario = $("#id_usuario").val();
 		var latitud = $("#latitud").val();
 		var longitud = $("#longitud").val();
-		var id_rol_estructura = $("#id_rol_estructura").val();
+		var id_brigada = $("#id_brigada").val();
 
        if($id_estructura != "" && $nombre_brigada != "" && $nombre_comunidad != "" && $direccion != "" && $cod_estado != "" && $cod_municipio != "" && $cod_parroquia != ""){
 
@@ -39,7 +39,7 @@
 				id_usuario:$id_usuario,
 				latitud,
 				longitud,
-                id_rol_estructura
+                id_brigada
 
             },
 

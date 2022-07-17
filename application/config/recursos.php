@@ -39,6 +39,7 @@
     $config['recursos']['rol_EditEstructurajs_js'] = "assets/js/admin/rol_EditEstructurajs.js?v=1.0.6";
     $config['recursos']['admin_estructura_brigada_js'] = "assets/js/admin/admin_estructura_brigada.js?v=1.0.6";
     $config['recursos']['admin_editar_brigada_js'] = "assets/js/admin/admin_editar_brigada.js?v=1.0.6";
+    $config['recursos']['filtar_brigada_js'] = "assets/js/admin/filtar_brigada.js?v=1.0.6";
 
 
     
