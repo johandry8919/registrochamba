@@ -16,11 +16,13 @@ class Cbuscar_estructuras extends CI_Controller {
    
 
     
-       if ($this->session->userdata('id_rol') != 2) {
-        echo  json_encode(["resultado" =>false,"mensaje"=> "acceso no autorizado"]);
-        exit();
+   
+
+        if (!tiene_acceso(['admin'.'estructura'])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
         
-    }
 
     $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');  
     $this->form_validation->set_error_delimiters('*', '');

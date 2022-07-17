@@ -192,6 +192,7 @@
         $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
         $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');
         $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_estructuras.codigoparroquia');
+
         $query = $this->db->get();
 
         if ($query->num_rows() > 0) 
@@ -237,6 +238,7 @@
         $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
         $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');
         $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_estructuras.codigoparroquia');
+   
         $query = $this->db->get("tbl_estructuras");
     
             if ($query->num_rows()) $valor = $query->row();
@@ -327,6 +329,32 @@
 
         return $valor;
     }
+
+
+    public function obtener_integrantes_estrucutras_id_brigadas($id){
+        $this->db->select('public.tbl_estructuras.*,
+        estado.codigoestado, municipio.nombre as nombre_municipio,parroquia.nombre as nombre_parroquia, municipio.codigomunicipio,parroquia.codigoparroquia,direccion,
+        reponsabilidad.descripcion as reponsabilidad
+        ');
+       
+    
+        $this->db->where('id_brigada_estructura',$id);
+        $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
+        $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');
+        $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_estructuras.codigoparroquia');
+        $this->db->join('tbl_responsabilidad_estructuras reponsabilidad', 'reponsabilidad.id_tipos = id_responsabilidad_estructura');
+
+        $query = $this->db->get("tbl_estructuras");
+    
+        if ($query->num_rows()) $valor = $query->result();
+        else $valor = [];
+
+
+        return $valor;
+
+ 
+    }
+
 }
 
 

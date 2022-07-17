@@ -16,10 +16,7 @@ class Cbuscar_chambista extends CI_Controller {
 
     
        
-        $permitidos = [2,3,4,5];        
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-        if ( !$tiene_acceso) {
+        if (!tiene_acceso(['admin'.'estructura',4,5])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }

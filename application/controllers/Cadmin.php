@@ -94,6 +94,19 @@ class Cadmin extends CI_Controller
             exit();
         }
 
+        $id_estructura_brigada = strip_tags(trim($this->uri->segment(4)));
+        if (empty($id_estructura_brigada) || $id_estructura_brigada == "") {
+        
+            echo  json_encode(["resultado" => false, "mensaje" => "el id es requerido"]);
+            exit();
+              
+        }
+        $estructura =  $this->Registro_brigada->obtener_brigada_id($id_estructura_brigada);  
+        $integrantes = $this->Estructuras_model->obtener_integrantes_estrucutras_id_brigadas($id_estructura_brigada); 
+        if(!$estructura ){
+            echo  json_encode(["resultado" => false, "mensaje" => "el id de la estructura no se encuentra registrado"]);
+            exit;
+        }
         
         $breadcrumb = (object) [
             "menu" => "Admin",
@@ -113,6 +126,8 @@ class Cadmin extends CI_Controller
             "id_usuario" => $this->session->userdata('id_usuario'),
             "responsabilidad_estructuras"   =>  $this->Estructuras_model->responsabilidad_estructuras(),
             "roles" =>   $this->Roles_model->obtener_roles('estructura'),
+            "estructura"=>$estructura,
+            "integrantes"=> $integrantes,
             "ficheros_js" => [recurso("admin_estructura_brigada_js") ],
             "ficheros_css" => [],
 
@@ -233,27 +248,21 @@ class Cadmin extends CI_Controller
     }
 
     public function editar_brigada(){
-        // $permitidos =  obtener_roles('admin');
+      
 
-        // $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
-        // if (!$tiene_acceso) {
-        //     echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-        //     exit();
-        // }
+
+        if (!tiene_acceso(['admin','estructura'])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
 
         $res = [];
         $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
         if (isset($id__exp_lab) and $id__exp_lab != "") {
             $res =  $this->Registro_brigada->obtener_brigada_id($id__exp_lab);
           
-    
-          
+              
         }
-
-   
-     
-
-       
 
 
         $breadcrumb = (object) [

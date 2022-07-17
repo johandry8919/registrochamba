@@ -93,15 +93,21 @@
             tbl_brigadas_estructuras.id_rol_estructura, tbl_brigadas_estructuras.latitud, 
             
             tbl_brigadas_estructuras.longitud, 
-            tbl_brigadas_estructuras.direccion, tbl_brigadas_estructuras.created_on, tbl_brigadas_estructuras.codigo, 
+            tbl_brigadas_estructuras.direccion, 
+            tbl_brigadas_estructuras.created_on, tbl_brigadas_estructuras.codigo, 
 
-            estado.nombre as nombre_estado ,municipio.nombre as municipio,parroquia.nombre as parroquia ,');
+            estado.nombre as nombre_estado ,municipio.nombre as municipio,parroquia.nombre as parroquia,
+            roles.nombre as nombre_rol
+            
+            ');
 
             $this->db->where('id_brigada', $id_brigada);
         
             $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_brigadas_estructuras.codigoestado');
             $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_brigadas_estructuras.codigomunicipio');
             $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_brigadas_estructuras.codigoparroquia');  
+            $this->db->join('tbl_roles roles', 'roles.id_rol = tbl_brigadas_estructuras.id_rol_estructura'); 
+
             $query = $this->db->get("tbl_brigadas_estructuras");
     
             if ($query->num_rows()) $valor = $query->row();
