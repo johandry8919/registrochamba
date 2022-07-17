@@ -120,7 +120,7 @@
                                         <th class="wd-15p border-bottom-0">Nombre Estrutura</th>
                                         <th class="wd-15p border-bottom-0">Rol</th>
                                         <th class="wd-15p border-bottom-0">Total integrantes</th>
-                                        <th class="wd-15p border-bottom-0">Nombre estructura</th>
+
                                         <th class="wd-15p border-bottom-0">Codigo</th>
                                         <th class="wd-15p border-bottom-0"> Nombre sector</th>
                                       

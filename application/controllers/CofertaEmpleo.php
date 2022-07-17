@@ -206,10 +206,9 @@ class CofertaEmpleo extends CI_Controller
     public function ver_oferta(){
 
           
-        $permitidos = [2,3,5];        
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-        if ( !$tiene_acceso) {
+        $permitidos =  obtener_roles(['admin','estructura']);
+        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+        if (!$tiene_acceso) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }

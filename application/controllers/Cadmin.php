@@ -89,6 +89,7 @@ class Cadmin extends CI_Controller
 
     public function ver_estrutura_brigada(){
 
+  
         if (!tiene_acceso(['estructura','admin'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
@@ -118,16 +119,17 @@ class Cadmin extends CI_Controller
         $output = [
             "menu_lateral" => "admin",
             "breadcrumb"      =>   $breadcrumb,
-            "title"             => "Estreuctura",
+            "title"             =>  $estructura->nombre_rol,
             "vista_principal"   => "admin/ver_estructura_brigada",
+            "datatable" =>true,
             "estados"          => $this->Musuarios->getEstados(),
             "id_usuario" => $this->session->userdata('id_usuario'),
             "responsabilidad_estructuras"   =>  $this->Estructuras_model->responsabilidad_estructuras(),
             "roles" =>   $this->Roles_model->obtener_roles('estructura'),
             "estructura"=>$estructura,
             "integrantes"=> $integrantes,
-            "ficheros_js" => [recurso("admin_estructura_brigada_js") ],
-            "ficheros_css" => [],
+            "ficheros_js" => [recurso("lista_estructura_brigada_js") ],
+            "ficheros_css" => [recurso("estructura_brigada.css")],
 
         ];
 
@@ -241,10 +243,12 @@ class Cadmin extends CI_Controller
             "menu_lateral" => "admin",
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "listar brigada",
+            "datatable"=>true,
             "estados"          => $this->Musuarios->getEstados(),
             "datatable" =>  true,
             "roles" =>   $this->Roles_model->obtener_roles('estructura'),
             "vista_principal"   => "admin/listar_brigada",
+            "ficheros_css" => [recurso("estructuras_brigadas_css")],
         
             "ficheros_js" => [recurso("filtrar_brigada_js")],
        

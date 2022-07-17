@@ -96,7 +96,9 @@ function codigo_brigada_estructura(){
 	$id_brigada=$ci->Registro_brigada->obtener_id_brigada();
      return date("dmYs").'-'. $id_brigada;     
 }
- function tiene_acceso($perfil){
+ function tiene_acceso($perfil,$id_rol=false){
+
+
 	     //verificar acceso
 		 $ci = & get_instance();
 		 $permitidos =  obtener_roles($perfil); 

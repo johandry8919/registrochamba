@@ -97,7 +97,7 @@
 <div class="card">
     <div class="card-header">
         <div class="row clearfix">
-            <div class="card-title"> Integrantes Estructura/Brigada <a href="<?php echo base_url('admin/registro/integrante-estructura') . '/' . $estructura->id_brigada ?>" class="ml-10 btn btn-primary">+ Agregar integrante</a></div>
+            <div class="card-title"> (<?php echo $estructura->nombre_brigada ?> - <?php echo $estructura->nombre_rol ?>) <a href="<?php echo base_url('admin/registro/integrante-estructura') . '/' . $estructura->id_brigada ?>" class="ml-10 btn btn-primary">+ Agregar integrante</a></div>
         </div>
     </div>
 
@@ -106,7 +106,7 @@
 
 
         <div class="table-responsive">
-            <table class="table table-bordered border text-nowrap text-center mb-0" id="basic-edit">
+            <table class="table table-bordered border text-nowrap text-center mb-0" id="basic-datatable">
                 <thead>
                     <tr>
                         <th name="bstable-actions">Acciones</th>
