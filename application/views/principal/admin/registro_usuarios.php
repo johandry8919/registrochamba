@@ -5,10 +5,30 @@
                                     <div class="card-body">
                                         <form id="formulario-registro" action="POST" >
                                             <div class="">
+
+                                            <div class="row">
+                                                <div class="col-6">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1" class="form-label">Nombre  Completo</label>
                                                     <input type="text" class="form-control" required id="nombre" placeholder="ingrese nombre"  name="nombre">
+                                             
+                                             
                                                 </div>
+
+                                                </div>
+                                                <div class="col-6">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1" class="form-label">Cargo</label>
+                                                    <input type="text" class="form-control" required id="cargo" placeholder="ingrese cargo"  name="cargo">
+                                             
+                                             
+                                                </div>
+
+                                                </div>
+
+
+                                            </div>
+                                                
 
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1" class="form-label">Cedula</label>

@@ -395,8 +395,7 @@ class Cadmin extends CI_Controller
             "roles" => $roles,
             "ficheros_js" => [recurso("listar_usuario_admin_js")],
 
-            "librerias_js" => [recurso("rolesUsuarios_js")],
-            "ficheros_js" => [recurso("Edit-rol_js")],
+            "ficheros_js" => [recurso("Edit-rol_js"),recurso("rolesUsuarios_js")],
             "constantes_js" => ["ID_USUARIO" => $this->session->userdata('id_usuario')],
 
 
@@ -555,6 +554,9 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('email', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
         $this->form_validation->set_rules('password', 'password', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('cargo', 'cargo', 'trim|required|strip_tags');
+
+
         $this->form_validation->set_error_delimiters('*', '');
         //delimitadores de errores
 
@@ -584,6 +586,7 @@ class Cadmin extends CI_Controller
             "nombre" => $this->input->post('nombre'),
             "id_rol"  => $this->input->post('id_rol'),
             "cedula"  => $this->input->post('cedula'),
+            "cargo"  => $this->input->post('cargo'),
             "email"   => $email,
             "password" => $pass_cifrado
         ]);
@@ -614,13 +617,7 @@ class Cadmin extends CI_Controller
         $id_brigada_estructura = strip_tags(trim($this->uri->segment(4)));
         $brigada_estructura =  $this->Registro_brigada->obtener_brigada_id($id_brigada_estructura);
 
-        var_dump(  $brigada_estructura );
-
-
-
-
-
-
+ 
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "Registro de Integrante de estructura"
@@ -695,7 +692,7 @@ class Cadmin extends CI_Controller
         $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_nivel_academico', 'academico', 'trim|required|strip_tags');
         $this->form_validation->set_rules('telf_movil', 'telf movil', 'trim|required|strip_tags');
-        $this->form_validation->set_rules('telf_local', 'telf local', 'trim|required|strip_tags');
+
         $this->form_validation->set_rules('correo1', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('fecha_nac', 'fecha_nac', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('cod_responsabilidad', 'cod_responsabilidad', 'trim|required|strip_tags');

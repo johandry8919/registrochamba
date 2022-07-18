@@ -19,11 +19,15 @@
                             <li class="sub-category">
                                 <h3>home</h3>
                             </li>
+                              <?php 
                               
+                              $ruta_actual="admin";
+                             if (tiene_acceso('estructura'))   $ruta_actual="estructuras";
+                              ?>
                             <li class="slide">
                                 <a class="side-menu__item 
                                  <?php if($this->uri->segment(1)=='inicio' || $this->uri->segment(1)=='inicio') echo 'active';?>
-                                " data-bs-toggle="slide" href="<?php echo base_url();?>admin/inicio"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Incio</span></a>
+                                " data-bs-toggle="slide" href="<?php echo base_url().$ruta_actual?>/inicio"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Incio</span></a>
                             </li>
                                   
                             <?php foreach(oberner_menu() as $menu): ?> 

@@ -57,6 +57,7 @@
 
 
         }
+
         public function obtener_brigada_coord($cod_estado,$cod_municipio,$cod_parroquia,$id_rol_estructura){
 
             $this->db->select(' count(id_estructura) , tbl_brigadas_estructuras.id_brigada, tbl_brigadas_estructuras.id_usuario_registro, tbl_brigadas_estructuras.nombre_brigada, tbl_brigadas_estructuras.nombre_sector,
@@ -141,6 +142,129 @@
 
 
         }
+        
+        public function obtener_todas_brigadas_excel(){
+
+            $this->db->select(' roles.nombre as nombre_rol,tbl_brigadas_estructuras.nombre_brigada, tbl_brigadas_estructuras.nombre_sector,
+            tbl_brigadas_estructuras.latitud, tbl_brigadas_estructuras.longitud,
+            tbl_brigadas_estructuras.direccion, tbl_brigadas_estructuras.created_on as fecha_creacion,
+            tbl_brigadas_estructuras.codigo, estado.nombre as estado,municipio.nombre as municipio,parroquia.nombre as parroquia,
+              
+            tbl_profesion_oficio.desc_profesion as profesion, 
+              
+              tbl_estructuras.cedula, tbl_estructuras.nombre, tbl_estructuras.apellidos, tbl_estructuras.tlf_celular, 
+                            
+              tbl_estructuras.tlf_coorparativo,tbl_estructuras.email,  talla_pantalon, talla_camisa,    fecha_nac,
+              reponsabilidad.descripcion,
+              edad, 
+              tbl_instruccion.nivel as nivel_de_instruccion,
+               genero
+
+            ');
+
+        
+
+            $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_brigadas_estructuras.codigoestado');
+            $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_brigadas_estructuras.codigomunicipio');
+            $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_brigadas_estructuras.codigoparroquia'); 
+            $this->db->join('tbl_roles roles', 'roles.id_rol = tbl_brigadas_estructuras.id_rol_estructura'); 
+            $this->db->join('tbl_estructuras', 'tbl_estructuras.id_brigada_estructura = tbl_brigadas_estructuras.id_brigada','left'); 
+            $this->db->join('tbl_responsabilidad_estructuras reponsabilidad', 'reponsabilidad.id_tipos = id_responsabilidad_estructura','left');
+            $this->db->join('tbl_profesion_oficio', 'tbl_profesion_oficio.id_profesion = id_profesion_oficio','left');
+            $this->db->join('tbl_instruccion', 'tbl_instruccion.id_instruccion = id_nivel_academico','left');
+
+
+             $query = $this->db->get("tbl_brigadas_estructuras");
+    
+          
+            if ($query->num_rows()) $valor = $query->result();
+            else $valor = [];
+
+
+            return $valor;
+
+
+        }
+
+        public function obtener_brigadas_excel($cod_estado,$cod_municipio,$cod_parroquia,$id_rol_estructura){
+
+            $this->db->select(' roles.nombre as nombre_rol,tbl_brigadas_estructuras.nombre_brigada, tbl_brigadas_estructuras.nombre_sector,
+            tbl_brigadas_estructuras.latitud, tbl_brigadas_estructuras.longitud,
+            tbl_brigadas_estructuras.direccion, tbl_brigadas_estructuras.created_on as fecha_creacion,
+            tbl_brigadas_estructuras.codigo, estado.nombre as estado,municipio.nombre as municipio,parroquia.nombre as parroquia,
+              
+            tbl_profesion_oficio.desc_profesion as profesion, 
+              
+              tbl_estructuras.cedula, tbl_estructuras.nombre, tbl_estructuras.apellidos, tbl_estructuras.tlf_celular, 
+                            
+              tbl_estructuras.tlf_coorparativo,tbl_estructuras.email,  talla_pantalon, talla_camisa,    fecha_nac,
+              reponsabilidad.descripcion,
+              edad, 
+              tbl_instruccion.nivel as nivel_de_instruccion,
+               genero
+
+            ');
+
+            // estructura todos y un estado
+            if($id_rol_estructura == "00" && $cod_municipio==01){
+               
+                $this->db->where("estado.codigoestado", $cod_estado);
+
+            } else if($id_rol_estructura == "00" && $cod_parroquia==01){
+               
+                $this->db->where("tbl_brigadas_estructuras.codigomunicipio",$cod_municipio);
+
+            }else if ($id_rol_estructura == "00" ){
+                $this->db->where("estado.codigoestado", $cod_estado);
+                $this->db->where("tbl_brigadas_estructuras.codigomunicipio",$cod_municipio);
+                $this->db->where("tbl_brigadas_estructuras.codigoparroquia",$cod_parroquia);
+                
+            }else if ($id_rol_estructura != "00" && $cod_estado=='todos'){
+          
+                $this->db->where("id_rol_estructura", $id_rol_estructura);
+            }else if  ($id_rol_estructura != "00" && $cod_municipio==01){
+               
+                $this->db->where("estado.codigoestado", $cod_estado);
+                $this->db->where("id_rol_estructura", $id_rol_estructura);
+                $this->db->where("id_rol_estructura", $id_rol_estructura);
+
+            } else if($id_rol_estructura != "00" && $cod_parroquia==01){
+               
+                $this->db->where("tbl_brigadas_estructuras.codigomunicipio",$cod_municipio);
+                $this->db->where("id_rol_estructura", $id_rol_estructura);
+
+            }
+            
+            else if($id_rol_estructura != "00" ){
+                $this->db->where("estado.codigoestado", $cod_estado);
+                $this->db->where("tbl_brigadas_estructuras.codigomunicipio",$cod_municipio);
+                $this->db->where("tbl_brigadas_estructuras.codigoparroquia",$cod_parroquia);
+                $this->db->where("id_rol_estructura", $id_rol_estructura);
+            }
+
+            $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_brigadas_estructuras.codigoestado');
+            $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_brigadas_estructuras.codigomunicipio');
+            $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_brigadas_estructuras.codigoparroquia'); 
+            $this->db->join('tbl_roles roles', 'roles.id_rol = tbl_brigadas_estructuras.id_rol_estructura'); 
+            $this->db->join('tbl_estructuras', 'tbl_estructuras.id_brigada_estructura = tbl_brigadas_estructuras.id_brigada','left'); 
+            $this->db->join('tbl_responsabilidad_estructuras reponsabilidad', 'reponsabilidad.id_tipos = id_responsabilidad_estructura','left');
+            $this->db->join('tbl_profesion_oficio', 'tbl_profesion_oficio.id_profesion = id_profesion_oficio','left');
+            $this->db->join('tbl_instruccion', 'tbl_instruccion.id_instruccion = id_nivel_academico','left');
+
+
+            
+
+             $query = $this->db->get("tbl_brigadas_estructuras");
+    
+          
+            if ($query->num_rows()) $valor = $query->result();
+            else $valor = [];
+
+
+            return $valor;
+
+
+        }
 
      
 
@@ -151,14 +275,10 @@
             tbl_brigadas_estructuras.codigoestado, tbl_brigadas_estructuras.codigomunicipio, tbl_brigadas_estructuras.codigoparroquia, 
             tbl_brigadas_estructuras.id_rol_estructura, tbl_brigadas_estructuras.latitud, tbl_brigadas_estructuras.longitud,
             tbl_brigadas_estructuras.direccion, tbl_brigadas_estructuras.created_on,
-            tbl_brigadas_estructuras.codigo,
-                
-
-            estado.nombre as nombre_estado ,municipio.nombre as municipio,parroquia.nombre as parroquia ,roles.nombre as nombre_rol
+            tbl_brigadas_estructuras.codigo, estado.nombre as nombre_estado ,municipio.nombre as municipio,parroquia.nombre as parroquia ,roles.nombre as nombre_rol
             
             ');
         
-
 
             if($cod_estado != 'todos')
             $this->db->where("estado.codigoestado", $cod_estado);

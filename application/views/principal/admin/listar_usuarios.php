@@ -24,6 +24,7 @@
                                     <tr>
                                         <th class="wd-15p border-bottom-0">Editar</th>
                                         <th class="wd-15p border-bottom-0">Nombre</th>
+                                        <th class="wd-15p border-bottom-0">Cargo</th>
                                         <th class="wd-15p border-bottom-0">Correo</th>
                                         <th class="wd-20p border-bottom-0">Rol</th>
 
@@ -47,6 +48,7 @@
                         </div>
                         </td>
                         <td> <?php echo $usuario->nombre ?></td>
+                        <td> <?php echo $usuario->cargo ?></td>
                         <td><?php echo $usuario->email ?></td>
                         <td><?php echo $usuario->nombre_rol ?></td>
 

@@ -23,7 +23,7 @@
     $config['recursos']['datospersonales_js'] = "assets/js/datos_personales.js?v=1.0.6";
     $config['recursos']['validar_js'] = "assets/js/validar.js?v=1.0.6";
     $config['recursos']['usuarios_admin_js'] = "assets/js/usuarios_admin.js?v=1.0.2";
-    $config['recursos']['admin_registrar_usuario_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.2";
+    $config['recursos']['admin_registrar_usuario_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.3";
     $config['recursos']['Edit-rol_js'] = "assets/js/admin/Edit-rol.js?v=1.0.7";
     $config['recursos']['listar_usuario_admin_js'] = "assets/js/admin/admin_registrar_usuario.js?v=1.0.6";
     $config['recursos']['buscar_chambista_js'] = "assets/js/admin/buscar_chambista.js?v=1.0.6";

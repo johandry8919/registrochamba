@@ -4,7 +4,7 @@
 	$("#form-editar_usuarios").submit(function (e) {
 		e.preventDefault();
 
-		EditarRoles();
+		editar_usuarios();
 	
 	});
 
@@ -152,6 +152,13 @@ function Editar(id_usuarios_admin) {
                </div>
         </div>
 
+		<div class="form-group col-md-6 mb-0">
+		<div class="form-group">
+		<label for="nombre" class="form-label">Cargo</label>
+			<input type="text" class="form-control"  name="cargog" id="cargog"  value="${data.cargo}" required >
+		</div>
+	</div>
+
        <input type="hidden" name="id_usuarios_admin" id="id_usuarios_admin" value="${data.id_usuarios_admin}">
        <input type="hidden" name="perfil" id="perfil" value="${data.perfil}">
 
@@ -181,7 +188,7 @@ function Editar(id_usuarios_admin) {
 }
 
 
-function EditarRoles() {
+function editar_usuarios() {
 	var nombre = $("#nombre").val();
 	var cedula = $("#cedula").val();
 	var email = $("#email").val();
@@ -189,12 +196,14 @@ function EditarRoles() {
 	var id_usuarios_admin = $("#id_usuarios_admin").val();
 	var id_rol = $("#id_rol").val();
 	var roles = $("#roles").val();
+	var cargo = $("#cargog").val();
 	var perfil = $("#perfil").val();
 	var nombre_rol =  $("#nombre_rol").val()
 	CierraPopup();
 	$.ajax({
 		dataType: "json",
 		data: {
+			cargo,
 			nombre,
 			cedula,
 			email,
@@ -218,12 +227,10 @@ function EditarRoles() {
 
 	
 
-			var datos = respuesta.datos
-			
+			var datos = respuesta.datos;			
 			if (respuesta.resultado == true) {
 
 				thml_usuario(datos)
-
 
 				Swal.fire({
 					title: '<strong>Datos actualizado</strong>',
@@ -236,8 +243,6 @@ function EditarRoles() {
 
 					
 				  })
-
-			
 
 				
 				
@@ -334,6 +339,7 @@ function thml_usuario(datos){
 					 </div>
 					 </td>
 					 <td>${element.nombre}</td>
+					 <td>${element.cargo}</td>
 					 <td>${element.email}</td>
 					 <td>${element.nombre_rol}</td>
 

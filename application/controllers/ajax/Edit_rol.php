@@ -57,9 +57,8 @@ class Edit_rol extends CI_Controller
         $this->form_validation->set_rules('id_usuarios_admin', 'email', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_rol', 'id_rol', 'trim|required|strip_tags');
         $this->form_validation->set_rules('email', 'correo', 'trim|required|strip_tags');
-
-
-        
+        $this->form_validation->set_rules('cargo', 'cargo', 'trim|required|strip_tags');
+                
         $this->form_validation->set_error_delimiters('*', '');
 
 
@@ -74,36 +73,18 @@ class Edit_rol extends CI_Controller
             exit;
         }
 
-
-
-
-
             $id_usuarios = $this->input->post("id_usuarios_admin");
 
             $password = $this->input->post("contraseña");
 
-          
-
-     
-
          if(empty($password)){
-           
             $respuesta = $this->Usuarios_admin_model->obtener_usuario($id_usuarios);
             $password = $respuesta[0]->password;
 
          }else{
-
-          
             $password = password_hash($this->input->post('contraseña'), PASSWORD_DEFAULT);
 
-           
-
-
-         }
-
-  
-
-       
+        } 
 
         $datos  = array(
 
@@ -111,6 +92,7 @@ class Edit_rol extends CI_Controller
             'cedula' => $this->input->post('cedula'),
             'email' => $this->input->post('email'),
             'password' => $password,
+            'cargo' => $this->input->post('cargo'),
             'id_rol' => $this->input->post('roles'),
 
         );
@@ -122,12 +104,8 @@ class Edit_rol extends CI_Controller
         if ($respuesta) {
 
             $perfil = $this->input->post('perfil');
-
-            $id_roles =  obtener_roles($perfil);
-             
+            $id_roles =  obtener_roles($perfil);             
             $usuarios = $this->Usuarios_admin_model->obtener_usuarios($id_roles);
-
-
             echo  json_encode(["resultado" => true, "mensaje" => $respuesta , "datos" => $usuarios ]);
         };
     }

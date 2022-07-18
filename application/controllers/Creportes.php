@@ -12,7 +12,7 @@ class Creportes extends CI_Controller {
         $this->load->library('export_excel');
         $this->load->model('Empresas_entes_model');
         $this->load->model('Estructuras_model');
-        
+        $this->load->model('Registro_brigada');
         ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -110,17 +110,19 @@ error_reporting(E_ALL);
 		ini_set('memory_limit', '256M');
 
 
+       $id_rol =$_GET['id_rol'];
         $cod_estado =$_GET['cod_estado'];
         $cod_municipio =$_GET['cod_municipio'];
         $cod_parroquia =$_GET['cod_parroquia'];
     
-        if($cod_estado=='todos'){
-    
-            $resultado=   $this->Estructuras_model->obtener_estrucutras();
-    
-        }else {
-            $resultado=   $this->Estructuras_model->obtener_Estructura_coord($cod_estado,$cod_municipio,$cod_parroquia);
-        }
+        
+ 
+    if($id_rol == "00"  &&   $cod_estado=='todos'   ){
+        $resultado=  $this->Registro_brigada->obtener_todas_brigadas_excel();
+    }else {
+        $resultado=   $this->Registro_brigada->obtener_brigadas_excel($cod_estado,$cod_municipio,$cod_parroquia,$id_rol);
+          }
+
 
         if($resultado){
             $array = json_decode(json_encode( $resultado ),true);	

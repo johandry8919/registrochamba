@@ -40,7 +40,7 @@ class Usuarios_admin_model extends CI_Model
 
     public function obtener_usuarios($array_rol)
     {
-        $this->db->select('usuarios_admin.id_usuarios_admin, usuarios_admin.id_rol, usuarios_admin.cedula, 
+        $this->db->select('usuarios_admin.id_usuarios_admin, usuarios_admin.cargo, usuarios_admin.id_rol, usuarios_admin.cedula, 
         usuarios_admin.email, usuarios_admin.token, usuarios_admin.password, 
         usuarios_admin.activo,usuarios_admin.created_on, usuarios_admin.nombre,
         tbl_roles.crear, tbl_roles.modificar, tbl_roles.eliminar, tbl_roles.vincular, tbl_roles.perfil, tbl_roles.nombre as nombre_rol
@@ -60,7 +60,9 @@ class Usuarios_admin_model extends CI_Model
     }
     public function obtener_usuario($id_usuarios_admin )
     {
-        $this->db->select('usuarios_admin.id_usuarios_admin, usuarios_admin.id_rol, usuarios_admin.cedula, 
+        $this->db->select('usuarios_admin.id_usuarios_admin, usuarios_admin.id_rol,
+        usuarios_admin.cargo,
+        usuarios_admin.cedula, 
         usuarios_admin.email, usuarios_admin.token, usuarios_admin.password, 
         usuarios_admin.activo,usuarios_admin.created_on, usuarios_admin.nombre,
         tbl_roles.crear, tbl_roles.modificar, tbl_roles.eliminar, tbl_roles.vincular, tbl_roles.perfil , tbl_roles.nombre as nombre_rol

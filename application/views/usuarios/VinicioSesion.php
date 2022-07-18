@@ -140,7 +140,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="email" type="email" placeholder="Correo electrónico" id="email" value="test1@gmail.com">
+                                                <input class="input100 border-start-0 form-control ms-0" name="email" type="email" placeholder="Correo electrónico" id="email" value="">
                                                 <?php echo form_error('email'); ?>
 
                                             </div>
@@ -148,7 +148,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="123456" maxlength="16" placeholder="Contraseña" required autofocus id="password" n type="password" placeholder="Password">
+                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="" maxlength="16" placeholder="Contraseña" required autofocus id="password" n type="password" placeholder="Password">
                                             </div>
                                             <div class="text-end pt-4">
                                                 <p class="mb-0"><a href="<?php echo base_url(); ?>recuperarclave" class="text-primary ms-1">Olvido su contraseña?</a></p>

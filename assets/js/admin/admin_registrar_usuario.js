@@ -14,10 +14,11 @@ function registrar_usuario(){
        var  password =$("#password").val();
        var  nombre = $("#nombre").val();
        var  cedula = $("#cedula").val();
+       var  cargo = $("#cargo").val();
        var  id_rol = $("#id_rol").val();
     $.ajax({
         dataType: "json",
-        data: {email,password,nombre,cedula,id_rol
+        data: {email,password,nombre,cedula,id_rol,cargo
            
         },
 
