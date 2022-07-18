@@ -194,7 +194,7 @@
     <script src="<?php echo base_url();?>assets/plugins/chart/Chart.bundle.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/chart/rounded-barchart.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/chart/utils.js"></script>
-    <script src="<?php echo base_url();?>/assets/js/admin.js"></script>
+
     <script src="<?php echo base_url();?>assets/js/themeColors.js"></script>
 
     <!-- CUSTOM JS -->

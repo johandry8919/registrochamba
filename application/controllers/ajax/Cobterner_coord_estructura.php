@@ -9,7 +9,7 @@ class Cobterner_coord_estructura extends CI_Controller {
         $this->load->model('Musuarios');
         $this->load->library('form_validation'); 
         $this->load->model('Estructuras_model');
-        $this->load->model('Registro_brigada');
+        $this->load->model('Brigadas_estructuras_model');
 
         if (!tiene_acceso(['admin','estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
@@ -51,13 +51,13 @@ class Cobterner_coord_estructura extends CI_Controller {
  
     if($id_rol == "00"  &&   $cod_estado=='todos'   ){
 
-        $resultado=   $this->Registro_brigada->obtener_brigadas();
+        $resultado=   $this->Brigadas_estructuras_model->obtener_brigadas();
       
         //   echo json_encode($resultado);
         // exit;
 
     }else {
-        $resultado=   $this->Registro_brigada->obtener_brigada_coord($cod_estado,$cod_municipio,$cod_parroquia,$id_rol);
+        $resultado=   $this->Brigadas_estructuras_model->obtener_brigada_coord($cod_estado,$cod_municipio,$cod_parroquia,$id_rol);
 
        
     }

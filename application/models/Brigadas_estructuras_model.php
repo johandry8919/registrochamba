@@ -1,6 +1,6 @@
 <?php
 
-    class Registro_brigada extends CI_Model {
+    class Brigadas_estructuras_model extends CI_Model {
 
         function __construct() {
             parent::__construct();
@@ -305,6 +305,26 @@
 
             return $valor;
         }
+
+
+        
+        public function obtener_brigadas_x_estados(){
+
+            $this->db->select(' count(estado.nombre) as total,estado.nombre as estado
+            
+            ');
+               $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_brigadas_estructuras.codigoestado');
+               $this->db->group_by('estado');
+
+            $query = $this->db->get("tbl_brigadas_estructuras");
+    
+            if ($query->num_rows()) $valor = $query->result();
+            else $valor = [];
+    
+
+            return $valor;
+        }
+
 
         public function obtener_brigada_id($id_brigada){
 

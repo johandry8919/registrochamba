@@ -28,7 +28,7 @@ class Cadmin extends CI_Controller
         $this->load->model('Oferta_universida_model');
         $this->load->library('ciqrcode');
         $this->load->model('Menu_model');
-        $this->load->model('Registro_brigada');
+        $this->load->model('Brigadas_estructuras_model');
 
         //$this->load->library('security');
         //$this->output->enable_profiler(TRUE);
@@ -55,7 +55,18 @@ class Cadmin extends CI_Controller
 
 
 
+          $resultado_reporte = $this->Brigadas_estructuras_model-> obtener_brigadas_x_estados();
+          $cabecera = array(); 
+          foreach($resultado_reporte as $key=> $row){
 
+              
+                      $cabecera['campo'][] = $row->estado;   
+                      $cabecera['valor'][] = $row->total;   
+              
+                        }
+
+          $resultado_reporte =$cabecera;
+   
         $total_usuarios = $this->Dasboard_admin_model->obtener_total_usuarios_registrados();
         $completados    = $this->Dasboard_admin_model->obtener_registros_completados();
         $total_empresas = $this->Dasboard_admin_model->obtener_empresas_registradas();
@@ -67,12 +78,14 @@ class Cadmin extends CI_Controller
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "Registro de estructuras",
             "vista_principal"   => "admin/inicio",
-            "ficheros_js" => [recurso("admin_js")],
+       
             "total_usuarios" => $total_usuarios,
+            "constantes_js"=> ["reporte_estados"=>json_encode($resultado_reporte)],
             "completados" => $completados,
             "total_empresas" => $total_empresas,
             "total_universidades" => $total_universidades,
-            "total_estructuras" => $total_estructuras
+            "total_estructuras" => $total_estructuras,
+            "ficheros_js" => [recurso("admin_js")],
 
 
         ];
@@ -102,7 +115,7 @@ class Cadmin extends CI_Controller
             exit();
               
         }
-        $estructura =  $this->Registro_brigada->obtener_brigada_id($id_estructura_brigada);  
+        $estructura =  $this->Brigadas_estructuras_model->obtener_brigada_id($id_estructura_brigada);  
         $integrantes = $this->Estructuras_model->obtener_integrantes_estrucutras_id_brigadas($id_estructura_brigada); 
         if(!$estructura ){
             echo  json_encode(["resultado" => false, "mensaje" => "el id de la estructura no se encuentra registrado"]);
@@ -187,7 +200,7 @@ class Cadmin extends CI_Controller
             exit;
        }
         $codigo = codigo_brigada_estructura();
-        $id_brigada=$this->Registro_brigada->obtener_id_brigada();
+        $id_brigada=$this->Brigadas_estructuras_model->obtener_id_brigada();
         $datos = array(
             "id_brigada" => $id_brigada,
             "nombre_brigada" => $this->input->post("nombre_brigada"),
@@ -207,7 +220,7 @@ class Cadmin extends CI_Controller
         );
 
 
-        $respuesta = $this->Registro_brigada->post_regitrar($datos);
+        $respuesta = $this->Brigadas_estructuras_model->post_regitrar($datos);
         if($respuesta){
             
         
@@ -270,7 +283,7 @@ class Cadmin extends CI_Controller
         $res = [];
         $id__exp_lab = strip_tags(trim($this->uri->segment(4)));
         if (isset($id__exp_lab) and $id__exp_lab != "") {
-            $res =  $this->Registro_brigada->obtener_brigada_id($id__exp_lab);
+            $res =  $this->Brigadas_estructuras_model->obtener_brigada_id($id__exp_lab);
           
               
         }
@@ -345,7 +358,7 @@ class Cadmin extends CI_Controller
 
       
 
-        $respuesta = $this->Registro_brigada->actualizar_brigada($id_brigada,$datos);
+        $respuesta = $this->Brigadas_estructuras_model->actualizar_brigada($id_brigada,$datos);
         if($respuesta){
             
         
@@ -615,7 +628,7 @@ class Cadmin extends CI_Controller
 
         $res = [];
         $id_brigada_estructura = strip_tags(trim($this->uri->segment(4)));
-        $brigada_estructura =  $this->Registro_brigada->obtener_brigada_id($id_brigada_estructura);
+        $brigada_estructura =  $this->Brigadas_estructuras_model->obtener_brigada_id($id_brigada_estructura);
 
  
         $breadcrumb = (object) [

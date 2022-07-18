@@ -6,7 +6,7 @@ class Cobtener_coord_brigada extends CI_Controller {
     function __construct() {
         parent::__construct();
         $this->load->model('Mprofesion_oficio');
-        $this->load->model('Registro_brigada');
+        $this->load->model('Brigadas_estructuras_model');
         $this->load->library('form_validation'); 
       
 
@@ -51,13 +51,13 @@ class Cobtener_coord_brigada extends CI_Controller {
 
     if($id_rol_estructura == "00"  &&   $cod_estado=='todos'   ){
 
-        $resultado=   $this->Registro_brigada->obtener_brigadas();
+        $resultado=   $this->Brigadas_estructuras_model->obtener_brigadas();
       
         //   echo json_encode($resultado);
         // exit;
 
     }else  {
-        $resultado=   $this->Registro_brigada->obtener_brigada_coord($cod_estado,$cod_municipio,$cod_parroquia,$id_rol_estructura);
+        $resultado=   $this->Brigadas_estructuras_model->obtener_brigada_coord($cod_estado,$cod_municipio,$cod_parroquia,$id_rol_estructura);
 
        
     }

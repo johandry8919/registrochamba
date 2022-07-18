@@ -1,6 +1,6 @@
 
                         <!-- ROW-1 -->
-                        <div class="row">
+                     <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
@@ -103,16 +103,16 @@
                                     <div class="card-body">
                                         <div class="d-flex mx-auto text-center justify-content-center mb-4">
                                             <div class="d-flex text-center justify-content-center me-3"><span
-                                                    class="dot-label bg-primary my-auto"></span>Registros completados</div>
-                                            <div class="d-flex text-center justify-content-center"><span
-                                                    class="dot-label bg-secondary my-auto"></span>Nuevos usuarios</div>
+                                                    class="dot-label bg-primary my-auto"></span>Historico</div>
+                                     
                                         </div>
                                         <div class="chartjs-wrapper-demo">
-                                            <canvas id="transactions" class="chart-dropshadow"></canvas>
+                                            <canvas id="chartBar1" class="chart-dropshadow"></canvas>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
                             <!-- COL END -->
                             <!-- div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
                                 <div class="card overflow-hidden">

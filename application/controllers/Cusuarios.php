@@ -19,12 +19,12 @@ class Cusuarios extends CI_Controller {
             redirect('inicio');
         }        
         // $this->load->view('layouts/head');
-		$this->load->view('usuarios/NuevoRegistro');
+		//$this->load->view('usuarios/NuevoRegistro');
 	}
 
     public function Vinicio()
     {
-        if (!$this->session->userdata('id_usuario')) {
+        if ($this->session->userdata('id_rol')!=1) {
             redirect('iniciosesion');
         }
 
@@ -353,6 +353,7 @@ class Cusuarios extends CI_Controller {
                                     'email' => $resultado3->email,
                                     'activo' => $resultado3->activo,
                                     'fecha_reg' => $resultado3->fecha_reg,
+                                    'id_rol' => 1,
                                     'codigo' => $resultado3->codigo
                                 );
 
@@ -440,6 +441,7 @@ class Cusuarios extends CI_Controller {
                         'cedula' => $resultado->cedula,
                         'email' => $resultado->email,
                         'activo' => $resultado->activo,
+                        "id_rol"=>1,
                         'fecha_reg' => $resultado->fecha_reg,
                         'codigo' => $resultado->codigo
                     );
@@ -473,6 +475,7 @@ class Cusuarios extends CI_Controller {
         $this->session->unset_userdata('id_usuario');
         $this->session->unset_userdata('cedula');
         $this->session->unset_userdata('email');
+        $this->session->unset_userdata('id_rol');
         $this->session->unset_userdata('activo');
         $this->session->unset_userdata('fecha_reg');
         $this->session->unset_userdata('codigo_verificacion');

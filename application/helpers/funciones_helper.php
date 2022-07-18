@@ -93,7 +93,7 @@ function ruta_actual(){
 
 function codigo_brigada_estructura(){
 	$ci = & get_instance();
-	$id_brigada=$ci->Registro_brigada->obtener_id_brigada();
+	$id_brigada=$ci->Brigadas_estructuras_model->obtener_id_brigada();
      return date("dmYs").'-'. $id_brigada;     
 }
  function tiene_acceso($perfil,$id_rol=false){

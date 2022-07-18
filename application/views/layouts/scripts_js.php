@@ -31,7 +31,7 @@
             <?php if (is_numeric($valor_constante_js)): ?>
                 var <?php echo $constante_js ?> = <?php echo $valor_constante_js ?>;
             <?php else: ?>
-                var <?php echo $constante_js ?> = "<?php echo $valor_constante_js ?>";
+                var <?php echo $constante_js ?> = '<?php echo $valor_constante_js ?>';
             <?php endif; ?>
         <?php endforeach; ?>
     </script>
