@@ -113,6 +113,7 @@ $route['admin/registro/estructuras/(:num)'] = 'Cadmin/actualizar_estructuras/$1'
 $route['admin/limpar_qr'] = 'Cadmin/limpar_qr';
 $route['admin/listar_brigada'] = 'Cadmin/listar_brigada';
 
+$route['admin/empresas'] = 'Cadmin/listar_empresas_entes';
 $route['admin/registro/empresas'] = 'Cadmin/registro_empresas';
 $route['admin/registro/universidades'] = 'Cadmin/registro_universidades';
 $route['admin/registro/universidades/(:num)'] = 'Cadmin/editar_universidades/$1';

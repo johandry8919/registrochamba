@@ -1034,9 +1034,14 @@ class Cadmin extends CI_Controller
     {
 
 
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
-        }
+   //verificar acceso
+   $permitidos =  obtener_roles(['admin','estructura']);
+   $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
+   if (!$tiene_acceso) {
+       echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+       exit();
+   }
+
         $ofertas = $this->Oferta_empleo_model->obtener_ofertas();
 
         $estados = $this->Musuarios->getEstados();
