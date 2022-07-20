@@ -18,7 +18,7 @@ class Cbuscar_estructuras extends CI_Controller {
     
    
 
-        if (!tiene_acceso(['admin'.'estructura'])) {
+        if (!tiene_acceso(['admin','estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }

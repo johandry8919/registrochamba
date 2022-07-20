@@ -19,7 +19,7 @@ class Cactualizar_estatus_chambista extends CI_Controller {
    
 
     
-        if (!tiene_acceso(['admin'.'estructura',4,5])) {
+        if (!tiene_acceso(['admin','estructura',4,5])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }

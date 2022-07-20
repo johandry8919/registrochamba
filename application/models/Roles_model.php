@@ -47,6 +47,8 @@
             $this->db->where('perfil', $perfil);
             $this->db->where('tbl_roles.activo', 1);
             $query = $this->db->get("tbl_roles");
+
+          //  print_r($this->db->last_query());
     
             if ($query->num_rows()) $valor = $query->result();
             else $valor = [];

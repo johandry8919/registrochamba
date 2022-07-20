@@ -96,12 +96,13 @@ function codigo_brigada_estructura(){
 	$id_brigada=$ci->Brigadas_estructuras_model->obtener_id_brigada();
      return date("dmYs").'-'. $id_brigada;     
 }
- function tiene_acceso($perfil,$id_rol=false){
+ function tiene_acceso($perfil){
 
 
 	     //verificar acceso
 		 $ci = & get_instance();
 		 $permitidos =  obtener_roles($perfil); 
+
 		 $tiene_acceso=in_array($ci->session->userdata('id_rol'),$permitidos,false);
 	 return 	 $tiene_acceso;
 
@@ -121,11 +122,12 @@ function tiene_permiso($nombre_permiso){
 
 		if(is_array($perfil)){
 
+			
+
 			foreach($perfil as $p){
 
 				if(is_string($p)){
-					
-
+									
 			
 				$roles=array_merge($roles,$ci->Roles_model->obtener_roles($p));
 					
@@ -145,11 +147,9 @@ function tiene_permiso($nombre_permiso){
 
 		}
 
-
-		
 	
 	
-
+	
 		$array_rol=[];
 		foreach ($roles as $rol){
 		 $array_rol[]=$rol->id_rol;
