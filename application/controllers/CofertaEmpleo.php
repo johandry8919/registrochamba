@@ -42,10 +42,7 @@ class CofertaEmpleo extends CI_Controller
 
     public function publicar_oferta_admin(){
 
-        $permitidos = [2,3];        
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-        if ( !$tiene_acceso) {
+        if (!tiene_acceso(['admin','estructura',4,5])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
@@ -97,14 +94,9 @@ class CofertaEmpleo extends CI_Controller
     public function listar_oferta_admin(){
 
           
-        $permitidos = array(2,3);        
-        $tiene_acceso=in_array(2,$permitidos,false);
-
-        if ( !$tiene_acceso) {
-           
-            
-            json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-          
+        if (!tiene_acceso(['admin','estructura',4,5])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
         }
 
         $ofertas = $this->Oferta_empleo_model->obtener_ofertas();
@@ -138,13 +130,11 @@ class CofertaEmpleo extends CI_Controller
 
     public function crear_oferta(){
 
-        $permitidos = [2,3,5];        
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-        if ( !$tiene_acceso) {
+        if (!tiene_acceso(['admin','estructura',4,5])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
+       
         $this->form_validation->set_rules('id_instruccion', 'instruccion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_profesion', 'profesion', 'trim|required|strip_tags');
         $this->form_validation->set_rules('id_area_form', 'area de formacion', 'trim|required|strip_tags');
@@ -261,13 +251,12 @@ class CofertaEmpleo extends CI_Controller
     public function ver_oferta_admin(){
 
           
-        $permitidos = [2,3,5];        
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-        if ( !$tiene_acceso) {
+        if (!tiene_acceso(['admin','estructura',4,5])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
+
+      
 
         $id_oferta = strip_tags(trim($this->uri->segment(4)));
         $oferta = $this->Oferta_empleo_model->obtener_oferta($id_oferta);
@@ -317,19 +306,10 @@ class CofertaEmpleo extends CI_Controller
 public function  editar_oferta(){
 
 
-    if (!$this->session->userdata('id_rol')) {
-        redirect('admin/login');
+    if (!tiene_acceso(['admin','estructura',4,5])) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
     }
-    $id_rol = $this->session->userdata('id_rol');
-
-
-    $permitidos = [2,3,5];        
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-        if ( !$tiene_acceso) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
-        }
 
 
     $id_oferta = strip_tags(trim($this->uri->segment(3)));
@@ -361,7 +341,7 @@ public function  editar_oferta(){
         "chambista_ofertas" => $chambista_ofertas,
         "id_oferta" => $id_oferta,
         "areaform"     =>   $this->Musuarios->getAreaForm(),
-        "id_rol" => $id_rol,
+        $id_rol = $this->session->userdata('id_rol'),
         "rangoedad" => $rango_edad,
 
         "ficheros_js" => [recurso("editar_oferta_js")],
@@ -379,19 +359,14 @@ public function  editar_oferta(){
 public function  editar_oferta_admin(){
 
 
-    if (!$this->session->userdata('id_rol')) {
-        redirect('admin/login');
+   
+    if (!tiene_acceso(['admin','estructura',4,5])) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
     }
     $id_rol = $this->session->userdata('id_rol');
 
 
-    $permitidos = [2,3,5];        
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-        if ( !$tiene_acceso) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
-        }
 
 
     $id_oferta = strip_tags(trim($this->uri->segment(4)));
@@ -479,13 +454,12 @@ public function  editar_oferta_admin(){
 }
 
 public function update_oferta(){
-    $permitidos = [2,3,4,5];        
-    $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-    if ( !$tiene_acceso) {
+ 
+    if (!tiene_acceso(['admin','estructura',4,5])) {
         echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
         exit();
     }
+
 
     $this->form_validation->set_rules('id_instruccion', 'instruccion', 'trim|required|strip_tags');
     $this->form_validation->set_rules('id_profesion', 'profesion', 'trim|required|strip_tags');

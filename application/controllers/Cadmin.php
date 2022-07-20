@@ -2747,91 +2747,17 @@ class Cadmin extends CI_Controller
     {
 
 
-        $permitidos = [2, 3, 5];
-        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
-
-        if (!$tiene_acceso) {
+        if (!tiene_acceso( ['admin','estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
 
 
 
-
-
-        if ($this->session->userdata('id_rol') == 3) {
-
-            $id_oferta = strip_tags(trim($this->uri->segment(3)));
+           $id_oferta = strip_tags(trim($this->uri->segment(3)));
             $datos = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_oferta);
 
-
-            if ($datos == false) {
-                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
-                redirect('estructuras/listar_empresas');
-
-                exit();
-            }
-
-            $nombres = $datos[0]->nombre_razon_social;
-            $oferta = $datos[0];
-
-
-
-
-
-
-            $breadcrumb = (object) [
-                "menu" => "Estrucutura",
-                "menu_seleccion" => "Ver oferta"
-
-
-            ];
-
-            $chambista_ofertas = $this->Ofertas_chambistas_model->obtener_chambista_oferta($oferta->id_oferta);
-
-
-
-            $profesion_oficio = $this->Estructuras_model->profesion_oficio();
-            $estatus_oferta_chambista = $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
-            $rango_edad = $this->Estructuras_model->rango_Edad();
-
-
-
-
-            $output = [
-                "menu_lateral"      =>   "estructuras",
-                "breadcrumb"        =>   $breadcrumb,
-                "title"             => "Oferta de emplo " . $nombres,
-                "vista_principal"   => "admin/ver_oferta",
-                "ficheros_js" => [recurso("accordion_js"), recurso("ver_oferta_js")],
-                "oferta" => $oferta,
-                "estatus_oferta_chambista" => $estatus_oferta_chambista,
-                "profesion_oficio" => $profesion_oficio,
-                "chambista_ofertas" => $chambista_ofertas,
-                "id_oferta" => $id_oferta,
-                "datatable"             => true,
-                "areaform"     =>   $this->Musuarios->getAreaForm(),
-                "rangoedad" => $rango_edad,
-
-
-
-
-
-            ];
-
-            $this->load->view("main", $output);
-        } else {
-
-            $id_oferta = strip_tags(trim($this->uri->segment(3)));
-            $datos = $this->Oferta_empleo_model->obtener_ofertas_empresa($id_oferta);
-
-            if ($datos == false) {
-                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
-                redirect('admin/empresas');
-
-                exit();
-            }
-
+            
 
 
 
@@ -2879,7 +2805,7 @@ class Cadmin extends CI_Controller
             ];
 
             $this->load->view("main", $output);
-        }
+        
     }
     public function ver_oferta_unervesidad()
     {
@@ -2898,60 +2824,7 @@ class Cadmin extends CI_Controller
         $id_oferta = strip_tags(trim($this->uri->segment(3)));
         $oferta = $this->Oferta_universida_model->obtener_oferta_uner($id_oferta);
 
-        if ($this->session->userdata('id_rol') == 3) {
-            $breadcrumb = (object) [
-                "menu" => "Estructuras",
-                "menu_seleccion" => "Ver oferta"
-
-
-            ];
-
-            if ($oferta == false) {
-                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
-                redirect('estructuras/lista_universidad');
-
-                exit();
-            }
-
-
-            $chambista_ofertas = $this->Oferta_universida_model->obtener_solicitud_chambista($oferta->id_solicitud);
-
-
-
-
-
-
-            $profesion_oficio = $this->Estructuras_model->profesion_oficio();
-            $estatus_oferta_chambista = $this->Estatus_oferta_model->obtener_estatus_oferta_chambista();
-            $rango_edad = $this->Estructuras_model->rango_Edad();
-
-
-
-            $ruta = strip_tags(trim($this->uri->segment(1)));
-            $output = [
-                "menu_lateral"      =>   $ruta,
-                "breadcrumb"        =>   $breadcrumb,
-                "title"             => "Oferta de emplo " . $oferta->nombre_razon_social,
-                "vista_principal"   => "admin/ver_oferta_univerdidad",
-                "ficheros_js" => [recurso("accordion_js"), recurso("ver_oferta_universidad_js")],
-                "oferta" => $oferta,
-                "estatus_oferta_chambista" => $estatus_oferta_chambista,
-                "profesion_oficio" => $profesion_oficio,
-                "chambista_ofertas" => $chambista_ofertas,
-                "id_oferta" => $id_oferta,
-                "constantes_js" => ["ruta" => $ruta],
-                "datatable"             => true,
-                "areaform"     =>   $this->Musuarios->getAreaForm(),
-                "rangoedad" => $rango_edad,
-
-
-
-
-
-            ];
-
-            $this->load->view("main", $output);
-        } else {
+   
 
             $id_oferta = strip_tags(trim($this->uri->segment(3)));
             $oferta = $this->Oferta_universida_model->obtener_oferta_uner($id_oferta);
@@ -2965,14 +2838,7 @@ class Cadmin extends CI_Controller
 
             $chambista_ofertas = $this->Oferta_universida_model->obtener_solicitud_chambista($oferta->id_solicitud);
 
-            if ($oferta == false) {
-                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
-                redirect('admin/universidades');
-
-                exit();
-            }
-
-
+        
 
 
 
@@ -3007,7 +2873,7 @@ class Cadmin extends CI_Controller
             ];
 
             $this->load->view("main", $output);
-        }
+        
     }
 
 
@@ -3029,12 +2895,7 @@ class Cadmin extends CI_Controller
 
         $ofertas = $this->Oferta_universida_model->obtener_ofertas_unirversidad($id_empresa);
 
-        if ($ofertas == false) {
-            $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
-            redirect('admin/universidades');
-
-            exit();
-        }
+        
         // echo json_encode($id_empresa);
         // exit;
 

@@ -53,7 +53,7 @@
                                                         >
                                                     <span class="fs-6">
                                                 
-                                                        <a class="text-white"
+                                                        <a class="text-white"  data-bs-toggle="tooltip" data-bs-original-title="Ver ofertas" 
                                                             href="ofertas-estudios-universidades/<?php echo $empresa->id_empresas?>">
                                                             <i
                                                             data-bs-toggle="tooltip" data-bs-original-title="Ver oferta "class="side-menu__icon fe fe-eye"></i>

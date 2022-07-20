@@ -813,12 +813,6 @@ public function  update_empresas_representante(){
 
         $ofertas = $this->Oferta_universida_model->obtener_ofertas_unirversidad($id_empresa);
 
-        if ($ofertas == false) {
-                $this->session->set_flashdata('mensajeerror', 'Aun no ah ofertado ');
-                redirect('admin/universidades');
-
-                exit();
-            }
         // echo json_encode($id_empresa);
         // exit;
 

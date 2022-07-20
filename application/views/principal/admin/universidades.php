@@ -58,7 +58,7 @@
                                                         <a class="text-white"
                                                             href="<?php base_url()?>usuarios/<?php echo $empresa->id_empresas?>">
                                                             <i
-                                                            data-bs-toggle="tooltip" data-bs-original-title="Ver oferta "class="side-menu__icon fe fe-eye"></i>
+                                                            data-bs-toggle="tooltip" data-bs-original-title="Ver ofertas" class="side-menu__icon fe fe-eye"></i>
                                                             
                                                         </a>
                                                     </span>

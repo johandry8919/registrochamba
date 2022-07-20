@@ -65,6 +65,7 @@
                                                 <button type="button" class="btn btn-sm btn-primary ">
                                                     <span class="fs-6">
                                                         <a class="text-white"
+                                                        data-bs-toggle="tooltip" data-bs-original-title="Editar oferta" 
                                                             href="<?php base_url()?>editar/empresa/<?php echo $empresa->id_empresas?>">&#9998;</a>
                                                     </span>
                                                 </button>
@@ -76,7 +77,7 @@
                                                 >
                                                     <span class="fs-6">
                                                 
-                                                        <a class="text-white"
+                                                        <a class="text-white"  data-bs-toggle="tooltip" data-bs-original-title="Ver ofertas" 
                                                             href="<?php base_url()?>oferta-empleo-empresa/<?php echo $empresa->id_empresas?>">
                                                             <i
                                                             data-bs-toggle="tooltip" data-bs-original-title="<?php echo"Cantidad de oferta"." : ". $empresa->cantidad_oferta?> "class="side-menu__icon fe fe-eye"></i>

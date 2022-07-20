@@ -62,14 +62,14 @@
                                             <div class="btn-list">
                                                 <button type="button" class="btn btn-sm btn-primary ">
                                                     <span class="fs-6">
-                                                        <a class="text-white"
+                                                        <a class="text-white"  data-bs-toggle="tooltip" data-bs-original-title="Editar oferta" 
                                                             href="<?php echo base_url().ruta_actual()?>/editaOfertas/<?php echo $oferta->id_solicitud?>">&#9998;</a>
                                                     </span>
                                                 </button>
 
                                                 <button type="button" class="btn btn-sm btn-success ">
                                                     <span class="fs-6">
-                                                        <a class="text-white"
+                                                        <a class="text-white"     data-bs-toggle="tooltip" data-bs-original-title="Ver oferta" 
                                                             href="<?php echo  base_url().ruta_actual()?>/ver_ofertas/<?php echo $oferta->id_solicitud ?>">
                                                             <i class="side-menu__icon fe fe-eye"></i>
                                                             

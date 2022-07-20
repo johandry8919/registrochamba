@@ -41,8 +41,9 @@ class CofertaUniversidades extends CI_Controller
 
     public function universidad_oferta_admin()
     {
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
+        if (!tiene_acceso(['admin','estructura',4,5])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
         }
       
         $id_empresa= strip_tags(trim($this->uri->segment(3)));
@@ -81,9 +82,8 @@ class CofertaUniversidades extends CI_Controller
     {
 
 
-        if (!$this->session->userdata('id_rol')) {
+        if (!tiene_acceso(['admin','estructura',4,5])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            redirect('admin/login');
             exit();
         }
 
@@ -137,8 +137,9 @@ class CofertaUniversidades extends CI_Controller
     public function  editar_oferta()
     {
 
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
+        if (!tiene_acceso(['admin','estructura',4,5])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
         }
 
         $id_oferta = strip_tags(trim($this->uri->segment(3)));
@@ -187,8 +188,9 @@ class CofertaUniversidades extends CI_Controller
     public function  editar_oferta_admin()
     {
 
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
+        if (!tiene_acceso(['admin','estructura',4,5])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
         }
 
         $id_oferta = strip_tags(trim($this->uri->segment(4)));
@@ -270,8 +272,9 @@ class CofertaUniversidades extends CI_Controller
 
     public function listar_oferta_admin()
     {
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
+        if (!tiene_acceso(['admin','estructura',4,5])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
         }
         $id_rol = $this->session->userdata('id_rol');
 
@@ -316,13 +319,8 @@ class CofertaUniversidades extends CI_Controller
     {
 
 
-
-        $permitidos = [2, 3, 4];
-        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
-
-        if (!$tiene_acceso) {
+        if (!tiene_acceso(['admin','estructura',4,5])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            redirect('admin/login');
             exit();
         }
          
@@ -373,10 +371,8 @@ class CofertaUniversidades extends CI_Controller
 
 
 
-
-        if (!$this->session->userdata('id_rol')) {
+        if (!tiene_acceso(['admin','estructura',4,5])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            redirect('admin/login');
             exit();
         }
          
@@ -425,12 +421,8 @@ class CofertaUniversidades extends CI_Controller
 
     public function update_oferta()
     {
-        $permitidos = [2, 3, 4];
-        $tiene_acceso = in_array($this->session->userdata('id_rol'), $permitidos, false);
-        if (!$tiene_acceso) {
+        if (!tiene_acceso(['admin','estructura',4,5])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            redirect('admin/login');
-
             exit();
         }
         $this->form_validation->set_rules('mencion', 'mencion', 'trim|required|strip_tags');

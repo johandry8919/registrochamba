@@ -50,7 +50,8 @@
                                             <div class="btn-list">
                                                 <button type="button" class="btn btn-sm btn-primary ">
                                                     <span class="fs-6">
-                                                        <a class="text-white"
+                                                        <a class="text-white" data-bs-toggle="tooltip" data-bs-original-title="Editar oferta" 
+                                                        data-bs-toggle="tooltip" data-bs-original-title="Editar Oferta oferta" 
                                                             href="<?php echo base_url()?>admin/editarOferta/<?php echo $oferta->id_oferta?>">&#9998;</a>
                                                     </span>
                                                 </button>
@@ -59,7 +60,7 @@
                                                     <span class="fs-6">
                                                         <a class="text-white"
                                                             href="<?php echo base_url().ruta_actual()?>/ver_oferta/<?php echo $oferta->id_oferta ?>">
-                                                            <i class="side-menu__icon fe fe-eye"></i>
+                                                            <i data-bs-toggle="tooltip" data-bs-original-title="Ver oferta"  class="side-menu__icon fe fe-eye"></i>
                                                             
                                                         </a>
                                                     </span>

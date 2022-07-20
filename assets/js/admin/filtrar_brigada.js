@@ -35,16 +35,16 @@ async function obtener_coordenadas_empresa(accion) {
                          <div class="btn-list">
                              <button type="button" class="btn btn-sm btn-primary ">
                                  <span class="fs-6">
-                                     <a class="text-white"
+                                     <a class="text-white" data-bs-toggle="tooltip" data-bs-original-title="Editar ofertas" 
                                          href="editar/estructuras/${element.id_brigada}">&#9998;</a>
                                  </span>
                              </button>
 
                              <button type="button" class="btn btn-sm btn-success ">
                                  <span class="fs-6">
-                                     <a class="text-white"
+                                     <a class="text-white" data-bs-toggle="tooltip" data-bs-original-title="Ver Integrantes" 
                                          href="ver/estructura-brigada/${element.id_brigada} ">
-                                         <i class="side-menu__icon fe fe-eye"></i>
+                                         <i class="side-menu__icon fe fe-eye"> Integrantes</i>
                                          
                                      </a>
                                  </span>
