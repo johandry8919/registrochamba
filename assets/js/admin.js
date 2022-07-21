@@ -117,7 +117,7 @@ console.log(reporte_estados)
 
 if(reporte_estados.valor)
 var max = Math.max(...reporte_estados.valor);
-console.log(...reporte_estados.valor)
+
     /* Bar-Chart1 */
 
     var ctx = document.getElementById("chartBar1").getContext('2d');
