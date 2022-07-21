@@ -326,7 +326,7 @@ class CofertaUniversidades extends CI_Controller
          
             $id_oferta = strip_tags(trim($this->uri->segment(3)));
             $oferta =  $this->Oferta_universida_model->obtener_oferta($id_oferta);
-            print_r( $oferta );
+     
         $breadcrumb = (object) [
             "menu" => "Admin",
             "menu_seleccion" => "Ver oferta"
