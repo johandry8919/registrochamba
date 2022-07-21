@@ -95,10 +95,26 @@
                         
                         <!-- ROW-2 -->
                         <div class="row">
+
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Usuarios</h3>
+                                    <div class="form-group">
+                                    <select class="form-control" id="select-estructura">
+
+                                    <option  value="0">Todas</option>
+                                    <?php 
+                                    
+                                    foreach ($roles as $rol):?>
+                                    <option value="<?php echo $rol->id_rol?>"
+                                   <?php if(isset($_GET['idrol']) && $_GET['idrol'] == $rol->id_rol) echo "selected";?>
+                                    
+                                    
+                                    > <?php echo $rol->nombre?></option>
+                                    <?php endforeach;?>
+                                    </select>
+                                    </div>                    
+                              
                                     </div>
                                     <div class="card-body">
                                         <div class="d-flex mx-auto text-center justify-content-center mb-4">

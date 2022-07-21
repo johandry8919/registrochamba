@@ -52,10 +52,19 @@ class Cadmin extends CI_Controller
         ];
 
 
+        $id_brigada=0;
+
+
+            if(isset($_GET['idrol']))
+            $id_brigada=$_GET['idrol'];
+
+
+   
 
 
 
-          $resultado_reporte = $this->Brigadas_estructuras_model-> obtener_brigadas_x_estados();
+          $resultado_reporte = $this->Brigadas_estructuras_model-> obtener_brigadas_x_estados($id_brigada);
+       
           $cabecera = array(); 
           foreach($resultado_reporte as $key=> $row){
 
@@ -66,7 +75,8 @@ class Cadmin extends CI_Controller
                         }
 
           $resultado_reporte =$cabecera;
-   
+          
+        
         $total_usuarios = $this->Dasboard_admin_model->obtener_total_usuarios_registrados();
         $completados    = $this->Dasboard_admin_model->obtener_registros_completados();
         $total_empresas = $this->Dasboard_admin_model->obtener_empresas_registradas();
@@ -78,7 +88,7 @@ class Cadmin extends CI_Controller
             "breadcrumb"      =>   $breadcrumb,
             "title"             => "Registro de estructuras",
             "vista_principal"   => "admin/inicio",
-       
+            "roles" =>   $this->Roles_model->obtener_roles('estructura'),
             "total_usuarios" => $total_usuarios,
             "constantes_js"=> ["reporte_estados"=>json_encode($resultado_reporte)],
             "completados" => $completados,

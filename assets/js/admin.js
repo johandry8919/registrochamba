@@ -113,13 +113,15 @@ function index() {
 
 
 reporte_estados=JSON.parse(reporte_estados);
+console.log(reporte_estados)
 
-
+if(reporte_estados.valor)
 var max = Math.max(...reporte_estados.valor);
-
+console.log(...reporte_estados.valor)
     /* Bar-Chart1 */
-    console.log(reporte_estados)
+
     var ctx = document.getElementById("chartBar1").getContext('2d');
+    if(reporte_estados.valor)
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -174,3 +176,11 @@ var max = Math.max(...reporte_estados.valor);
             },
         }
     });
+
+    $("#select-estructura").change(function () {
+
+       var id_rol =  $(this).val();
+
+       location.href ='?idrol='+id_rol;
+
+    })

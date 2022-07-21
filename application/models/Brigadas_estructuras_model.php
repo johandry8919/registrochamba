@@ -308,16 +308,19 @@
 
 
         
-        public function obtener_brigadas_x_estados(){
+        public function obtener_brigadas_x_estados($id_rol){
 
             $this->db->select(' count(estado.nombre) as total,estado.nombre as estado
             
             ');
+              if($id_rol !='0')
+                $this->db->where('id_rol_estructura',$id_rol);
+
                $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_brigadas_estructuras.codigoestado');
                $this->db->group_by('estado');
 
             $query = $this->db->get("tbl_brigadas_estructuras");
-    
+ 
             if ($query->num_rows()) $valor = $query->result();
             else $valor = [];
     
