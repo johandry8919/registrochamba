@@ -32,7 +32,7 @@ $(function(e) {
         eliminar_chambista();
     });
 
-	$("#cambiar_estatus_chambista").click(function(e) {
+	$(".cambiar_estatus_chambista").click(function(e) {
 
 		$("#modal_estatus_chambistas").modal('show');
 
@@ -190,7 +190,7 @@ function actualizar_estatus_chambista(){
 }
 
 function eliminar_chambista(){
-var id_oferta_chambista=$("#eliminar-chambista").data('id_oferta_chambista'); 
+var id_oferta_chambista=$(".eliminar-chambista").data('id_oferta_chambista'); 
 
 $.ajax({
 	dataType: "json",

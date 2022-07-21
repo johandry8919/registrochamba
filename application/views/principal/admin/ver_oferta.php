@@ -310,13 +310,9 @@
                                     <tr>
                                         <td>
                                             <div class="btn-list">
-                                                <button type="button"  id="eliminar-chambista" class="btn btn-sm btn-danger "
-                                                data-id_oferta_chambista="<?php  echo $oferta->id_oferta_chambista ?>"
-                                                >
-                                                <i class="fe fe-trash-2"></i>
-                                                </button>
+                                            
 
-                                                <button type="button"  id="cambiar_estatus_chambista" class="btn btn-sm btn-info "
+                                                <button type="button"  id="cambiar_estatus_chambista" class="btn btn-sm btn-info cambiar_estatus_chambista "
                                                 data-id_oferta_chambista="<?php  echo $oferta->id_oferta_chambista ?>"
                                                 data-estatus="<?php  echo $oferta->estatus ?>"
                                                 data-nombres="<?php  echo $oferta->nombres ?>"
@@ -325,6 +321,8 @@
                                                 >
                                                 <i class="fe fe-check-square"></i>
                                                 </button>
+
+
                                                 <a  target="_blank" href="<?php echo base_url()?>descargarpdfusuarios/<?php echo  $oferta->id_usuario?>"  id="descargar_pdf" class="btn btn-sm btn-primary "
                                                 data-id_oferta_chambista="<?php  echo $oferta->id_oferta_chambista ?>"
                                                 data-estatus="<?php  echo $oferta->estatus ?>"
@@ -334,6 +332,12 @@
                                                 >
                                                 <i class="fe fe-pdf">Curriculum</i>
                                             </a>
+
+                                            <button type="button"  id="eliminar-chambista" class="btn btn-sm btn-danger eliminar-chambista"
+                                                data-id_oferta_chambista="<?php  echo $oferta->id_oferta_chambista ?>"
+                                                >
+                                                <i class="fe fe-trash-2"></i>
+                                                </button>
                                             </div>
 
                        

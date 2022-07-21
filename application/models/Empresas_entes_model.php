@@ -80,14 +80,23 @@
         public function obtener_empresas($id_tipo_empresa = 1){
            
 
-            $this->db->select(' tbl_empresas_entes.*,
-            re.id_usuario, re.id_usuario_registro, re.cedula, re.nombre as noombre_representante, 
-            re.apellidos as apellido_representante, re.tlf_celular as celular_representante,tbl_empresas_entes.direccion,
+            $this->db->select(' distinct(tbl_empresas_entes.id_empresas), 
+            tbl_empresas_entes.id_tipo_empresas_universidades, 
+            tbl_empresas_entes.id_usuario_registro, 
+            tbl_empresas_entes.nombre_razon_social, tbl_empresas_entes.rif, 
+            tbl_empresas_entes.email, tbl_empresas_entes.actividad_economica, 
+            tbl_empresas_entes.instagram, tbl_empresas_entes.twitter,
+            tbl_empresas_entes.facebook,  tbl_empresas_entes.created_on,
+   
+            re.id_usuario,  re.cedula, re.nombre as noombre_representante, 
+            re.apellidos as apellido_representante, re.tlf_celular as celular_representante,
+            
+      
             
             re.tlf_local as tlf_local_representante, re.email as email_representante, re.cargo, productivo,
-            re.id_representantes,estado.nombre as nombre_estado ,re.direccion,
+            re.id_representantes,estado.nombre as nombre_estado ,tbl_empresas_entes.direccion,
             
-            count(tbl_ofertas_empleo.id_oferta) as cantidad_oferta,id_nivel_instruccion as intruccionAcademica,
+            count(tbl_ofertas_empleo.id_oferta) as cantidad_oferta,  
             municipio.nombre as municipio,parroquia.nombre as parroquia
   
                     
@@ -99,21 +108,24 @@
             $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_empresas_entes.codigomunicipio');
             $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_empresas_entes.codigoparroquia');  
             $this->db->join('tbl_ofertas_empleo', 'tbl_ofertas_empleo.id_empresa_ente = tbl_empresas_entes.id_empresas','left');
-            $this->db->group_by('tbl_empresas_entes.id_empresas, 
-            tbl_empresas_entes.id_tipo_empresas_universidades,
-             tipo_empresa,  nombre_razon_social, tbl_empresas_entes.rif, tbl_empresas_entes.tlf_celular, tbl_empresas_entes.tlf_local, tbl_empresas_entes.email, actividad_economica, id_sector_economico, instagram, twitter, facebook, 
-             tbl_empresas_entes.codigoestado, tbl_empresas_entes.codigomunicipio,
-             tbl_empresas_entes.codigoparroquia, tbl_empresas_entes.latitud, tbl_empresas_entes.longitud, tbl_empresas_entes.direccion, tbl_ofertas_empleo,
-
-             re.id_usuario, re.id_usuario_registro, re.cedula,  noombre_representante, 
+            $this->db->group_by(' 
+        
+            id_empresas, 
+            id_tipo_empresas_universidades, 
+             
+            nombre_razon_social, rif, 
+            tbl_empresas_entes.email, tbl_empresas_entes.actividad_economica, 
+            instagram, twitter,
+            facebook,  tbl_empresas_entes.created_on,
+             id_usuario,  cedula,  noombre_representante, 
              apellido_representante,  celular_representante,tbl_empresas_entes.direccion,
              tlf_local_representante, email_representante, re.cargo, productivo,
-             re.id_representantes, nombre_estado, re.direccion,
-             cantidad_oferta, intruccionAcademica, municipio, parroquia
+             re.id_representantes, nombre_estado, 
+             cantidad_oferta,  municipio, parroquia
             ');
             $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
             $query = $this->db->get("tbl_empresas_entes");
-    
+       
             if ($query->num_rows()) $valor = $query->result();
             else $valor = [];
     
@@ -261,7 +273,7 @@
             
             re.tlf_local as tlf_local_representante, re.email as email_representante, re.cargo, productivo,
 
-            count(tbl_ofertas_empleo.id_oferta) as cantidad_oferta,id_nivel_instruccion as intruccionAcademica
+            count(tbl_ofertas_empleo.id_oferta) as cantidad_oferta
   
                     
             ');
@@ -280,7 +292,7 @@
              apellido_representante,  celular_representante,tbl_empresas_entes.direccion,
              tlf_local_representante, email_representante, re.cargo, productivo,
              re.id_representantes, nombre_estado, re.direccion,
-             cantidad_oferta, intruccionAcademica
+             cantidad_oferta
             ');
             $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
             $query = $this->db->get("tbl_empresas_entes");

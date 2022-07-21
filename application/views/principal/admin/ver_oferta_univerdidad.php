@@ -271,13 +271,13 @@
                                     <tr>
                                         <td>
                                             <div class="btn-list">
-                                                <button type="button"  id="eliminar-chambista" class="btn btn-sm btn-danger "
+                                                <button type="button"  id="eliminar-chambista" class="btn btn-sm btn-danger eliminar-chambista"
                                                 data-id_oferta_chambista="<?php  echo $oferta->id_solicitud_chambista ?>"
                                                 >
                                                 <i class="fe fe-trash-2"></i>
                                                 </button>
 
-                                                <button type="button"  id="cambiar_estatus_chambista" class="btn btn-sm btn-info "
+                                                <button type="button"  id="cambiar_estatus_chambista" class="btn  cambiar_estatus_chambista btn-sm btn-info "
                                                 data-id_oferta_chambista="<?php  echo $oferta->id_solicitud_chambista ?>"
                                                 data-estatus="<?php  echo $oferta->estatus ?>"
                                                 data-nombres="<?php  echo $oferta->nombres ?>"

@@ -27,12 +27,12 @@ $(function(e) {
 
 	
 	
-	$("#eliminar-chambista").click(function(e) {
+	$(".eliminar-chambista").click(function(e) {
 
         eliminar_chambista();
     });
 
-	$("#cambiar_estatus_chambista").click(function(e) {
+	$(".cambiar_estatus_chambista").click(function(e) {
 
 		$("#modal_estatus_chambistas").modal('show');
 
