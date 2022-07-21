@@ -1886,12 +1886,8 @@ class Cadmin extends CI_Controller
     public function buscar_chambista()
     {
 
-        if ($this->session->userdata('id_rol') != 2) {
-            echo  json_encode([
-                "resultado" => false, "mensaje" => "acceso n  o autorizado",
-                "rol_usuario" => $this->session->userdata('id_rol')
-
-            ]);
+        if (!tiene_acceso(['estructura','admin'])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
 
