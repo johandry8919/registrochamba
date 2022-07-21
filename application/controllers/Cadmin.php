@@ -2888,10 +2888,11 @@ class Cadmin extends CI_Controller
     {
 
 
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
+       
+        if (!tiene_acceso(['estructura','admin'])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
         }
-
         $id_empresa = strip_tags(trim($this->uri->segment(3)));
 
 

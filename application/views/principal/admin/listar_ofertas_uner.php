@@ -92,16 +92,7 @@
                                 </tbody>
                             </table>
                         </div>
-                            <?php if(!isset($ofertas[0]->id_solicitud)):?>
-                        <div class="row">
-                <div class="col-md-12">
-                    <div class="alert alert-danger">
-                        No hay oferta que mostrar 
-               
-                    </div>
-                </div>
-                </div>
-            <?php endif;?>
+                        
                     </div>
                 </div>
             
