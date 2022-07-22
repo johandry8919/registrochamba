@@ -125,7 +125,13 @@
              
                     <?php foreach ($integrantes as $integrante) : ?>
                         <tr>
-                            <td><a class="text-white  btn btn-primary" href="  <?php echo base_url().'admin/registro/estructuras/'.$integrante->id_estructura ?>"> &#9998;</a></td>
+                            <td>
+                         <a class="text-white  btn btn-primary sm-btn btn-sm" href="  <?php echo base_url().'admin/registro/estructuras/'.$integrante->id_estructura ?>"> &#9998;</a>
+                         <button type="button" class="btn btn-sm btn-danger btn-eliminar-integrante" data-id="<?php echo $integrante->id_estructura?>">
+                                              <i class="side-menu__icon fe fe-trash-2"></i>
+                                              </button>
+                        
+                        </td>
                             <td><?php echo $integrante->nombre ?></td>
                             <td><?php echo $integrante->apellidos ?></td>
                             <td><?php echo $integrante->cedula ?></td>

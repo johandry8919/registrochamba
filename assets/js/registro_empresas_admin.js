@@ -251,9 +251,9 @@
 	$("#razon_social").on("keyup", function () {
 		"use strict";
 		var nombres = $(this).val();
-		var expresion = /^[a-zA-Z-_\.]+$/;
+		var expresion = /^[a-zA-Z0-9-_\.]+$/;
 
-		if (expresion.test(nombres)) {
+		if (nombres) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");

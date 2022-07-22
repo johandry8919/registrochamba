@@ -1469,10 +1469,13 @@ class Cadmin extends CI_Controller
 
     public function registro_universidades()
     {
-        if (!$this->session->userdata('id_rol')) {
+
+
+        if (!tiene_acceso(['estructura','admin'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
+
         $estados = $this->Musuarios->getEstados();
         $datos['estados'] = $estados;
 
@@ -1508,17 +1511,17 @@ class Cadmin extends CI_Controller
                 recurso("moment_js"), recurso("bootstrap-material-datetimepicker_js"),
                 recurso("bootstrap-datepicker_js"), recurso("bootstrap-select_js"),
                 recurso("mapa_mabox_js"),
-                recurso("universidades_js"),
+          
 
             ],
 
 
             "ficheros_js" => [
-                recurso("datospersonales_js"), recurso("validacion_datospersonales_js")
+                recurso("datospersonales_js"), recurso("validacion_datospersonales_js"), 
+                 recurso("universidades_js")
 
             ],
             "ficheros_css" => [recurso("mapa_mabox_css")],
-            recurso("universidades_js"),
 
         ];
 

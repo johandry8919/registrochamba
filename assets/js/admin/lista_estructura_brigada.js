@@ -37,3 +37,68 @@ var table = $('#basic-datatable').DataTable({
 
     language: idioma_espanol
 });
+
+
+
+
+$(".btn-eliminar-integrante").click(function (e) {
+
+ var id_estructura= $(this).data('id')
+  Swal.fire({
+    title: '¿Estas seguro?',
+    text: "¡No podrás revertir esto!!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Si, Eliminar!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+
+
+      $.ajax({
+        dataType: "json",
+        data: {id_estructura
+           
+        },
+
+        url: base_url + "ajax/Cbuscar_estructuras/eliminar_estructura",
+        type: "post",
+        beforeSend: function () {
+            //$("#cod_municipio").selectpicker('refresh');
+        },
+        success: function (respuesta) {
+            
+
+            if (respuesta.resultado == true) {
+              Swal.fire(
+                'Eliminado!',
+                'Se completo esta accion con exito',
+                'success'
+              )
+
+              setTimeout(() => {
+
+                location.reload();
+                
+              }, 200);
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: respuesta.mensaje,
+                });
+            }
+        },
+        error: function (xhr, err) {
+            console.log(err);
+            alert("ocurrio un error intente de nuevo");
+        },
+    });
+
+    
+    }
+  })
+
+
+})

@@ -114,17 +114,9 @@
             $this->db->update('tbl_estructuras', $datas);
             return true;
 
-
-
-
-
-
-           
-
-
-            
             
         }
+        
 
         public function verificarSiUsuarioExiste($cedula,$correo,$rol_usuario){
 
@@ -204,7 +196,18 @@
     }
 
    
+    public function actualizar_estructura($id_estructura,$datos){
+           
+        $this->db->where('id_estructura', $id_estructura);
+ 
+        $this->db->update('tbl_estructuras', $datos);
+        if($this->db->affected_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
 
+    }
  
 	public function getEditEstruturaID($id){
         $this->db->select('public.tbl_estructuras.*,
@@ -337,7 +340,7 @@
         reponsabilidad.descripcion as reponsabilidad
         ');
        
-    
+        $this->db->where('tbl_estructuras.activo',1);
         $this->db->where('id_brigada_estructura',$id);
         $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_estructuras.codigoestado');
         $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_estructuras.codigomunicipio');

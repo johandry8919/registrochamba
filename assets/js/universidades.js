@@ -355,7 +355,7 @@ $("#razon_social").on("keyup", function () {
 
 	var expresion = /^[a-zA-Z\s]*$/;
 
-	if (expresion.test(razon_social)) {
+	if (razon_social) {
 		$("#razon_social")
 			.removeClass("is-invalid error-input")
 			.addClass("is-valid valid-input");
