@@ -49,7 +49,7 @@
     $config['recursos']['editar_oferta_uner_js'] = "assets/js/admin/editar_oferta_uner.js?v=1.0.7";
     $config['recursos']['admin_cambiarClave_js'] = "assets/js/admin/admin_cambiarClave.js?v=1.0.7";
     $config['recursos']['cambiarclave_estruct_empre_js'] = "assets/js/admin/cambiarclave_estruct_empre.js?v=1.0.7";
-    $config['recursos']['reportes_js'] = "assets/js/admin/reportes.js?v=1.0.7";
+    $config['recursos']['reportes_js'] = "assets/js/admin/reportes.js?v=1.0.8";
     $config['recursos']['reporte_estruturas_js'] = "assets/js/admin/reporte_estruturas.js?v=1.0.9";
 
     
