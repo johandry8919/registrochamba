@@ -182,7 +182,7 @@ agregarMapa(latitud, longitud, 5);
 
 			
            
-		
+			arr_map=[];
 				var latitud_e = $(" option:selected", $('#cod_estado')).attr("data-latitud");
 				var longitud_e = $("option:selected", $('#cod_estado')).attr("data-longitud");
             data.forEach(element => {

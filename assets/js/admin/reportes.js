@@ -140,6 +140,7 @@ async function obtener_coordenadas_empresa(accion) {
             let data =respuesta.res;
 
 			console.log(data);
+			arr_map= [];
 			var latitud_e = $(" option:selected", $('#cod_estado')).attr("data-latitud");
 			var longitud_e = $("option:selected", $('#cod_estado')).attr("data-longitud");
             data.forEach(element => {
