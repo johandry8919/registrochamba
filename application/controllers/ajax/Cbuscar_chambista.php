@@ -21,6 +21,8 @@ class Cbuscar_chambista extends CI_Controller {
             exit();
         }
 
+         
+
     $this->form_validation->set_rules('cedula', 'cedula', 'trim|required|strip_tags');  
     $this->form_validation->set_error_delimiters('*', '');
     //reglas de validación

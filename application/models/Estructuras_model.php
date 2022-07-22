@@ -144,6 +144,7 @@
         $this->db->from('public.tbl_estructuras');
         $this->db->where('cedula',$cedula);
         $this->db->or_where('email', $correo);
+        $this->db->where('tbl_estructuras.activo',1);
        // $this->db->where('id_rol', $rol_usuario);
         $resultado = $this->db->get();
 
@@ -161,7 +162,7 @@
         $this->db->select('count(*) AS cantidad');
         $this->db->from('public.tbl_estructuras');
         $this->db->where('cedula',$cedula);
-        
+        $this->db->where('tbl_estructuras.activo',1);
        // $this->db->where('id_rol', $rol_usuario);
         $resultado = $this->db->get();
 

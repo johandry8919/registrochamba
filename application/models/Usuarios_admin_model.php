@@ -112,7 +112,8 @@ class Usuarios_admin_model extends CI_Model
         $this->db->select('usuarios_admin.id_usuarios_admin, id_rol, cedula, email, token, password, activo, created_on, nombre
             ');
         $this->db->where('upper(email)', $email);
-        $this->db->where('id_rol', $id_rol);
+      //  $this->db->where('id_rol', $id_rol);
+        $this->db->where_in('usuarios_admin.activo', 1);
         $query = $this->db->get("usuarios_admin");
 
         if ($query->num_rows()) $valor = $query->row();

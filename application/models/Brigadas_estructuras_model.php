@@ -242,6 +242,7 @@
                 $this->db->where("id_rol_estructura", $id_rol_estructura);
             }
 
+            $this->db->where('tbl_estructuras.activo',1);
             $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_brigadas_estructuras.codigoestado');
             $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_brigadas_estructuras.codigomunicipio');
             $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_brigadas_estructuras.codigoparroquia'); 

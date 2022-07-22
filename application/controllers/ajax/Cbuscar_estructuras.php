@@ -17,9 +17,6 @@ class Cbuscar_estructuras extends CI_Controller
 
 
 
-
-
-
         if (!tiene_acceso(['admin', 'estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
@@ -59,6 +56,12 @@ class Cbuscar_estructuras extends CI_Controller
             exit();
         }
 
+
+        //verificar si tiene permiso
+        if (!tiene_permiso('permiso_eliminar')) {
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+            exit();
+        }
 
         $this->form_validation->set_rules('id_estructura', 'id_estructura', 'trim|required|strip_tags');
         $this->form_validation->set_error_delimiters('*', '');

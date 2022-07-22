@@ -524,13 +524,15 @@ class Cadmin extends CI_Controller
     public function registro_usuarios()
     {
 
-        if (!$this->session->userdata('id_rol')) {
-            redirect('admin/login');
+        
+        if (!tiene_acceso(['admin'])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
         }
 
         $breadcrumb = (object) [
             "menu" => "Admin",
-            "menu_seleccion" => "Registrar usuario admin"
+            "menu_seleccion" => "Registrar usuarios"
 
         ];
         $roles =  $this->Roles_model->obtener_roles('admin');

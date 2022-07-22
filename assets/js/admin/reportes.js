@@ -143,12 +143,17 @@ async function obtener_coordenadas_empresa(accion) {
 			var latitud_e = $(" option:selected", $('#cod_estado')).attr("data-latitud");
 			var longitud_e = $("option:selected", $('#cod_estado')).attr("data-longitud");
             data.forEach(element => {
+
+					var COLOR='#8B4293';
+				if(ielement.d_tipo_empresas_universidades){
+					COLOR='#ce1616';
+				}
                 
                 let puntero ={
                     'type': 'Feature',
                     'properties': {
 					'marker-color': '#8B4293',
-                    'description':`<strong>Empresa: ${element.nombre_razon_social}</strong>
+                    'description':`<strong> ${element.nombre_razon_social}</strong>
 					<p>RIF:${element.rif}</p>
 					<p>Representante:${element.noombre_representante}  ${element.apellido_representante}</p>
 					<p><strong>Cantidad ofertas</strong>:${element.cantidad_oferta}</p>
