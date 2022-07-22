@@ -145,7 +145,7 @@ async function obtener_coordenadas_empresa(accion) {
             data.forEach(element => {
 
 					var COLOR='#8B4293';
-				if(ielement.d_tipo_empresas_universidades){
+				if(element.d_tipo_empresas_universidades){
 					COLOR='#ce1616';
 				}
                 
