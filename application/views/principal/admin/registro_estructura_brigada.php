@@ -183,6 +183,8 @@
                                 <div class="border border-3" id="map"></div>
 
                                 <pre id="coordinates" class="coordinates"></pre>
+                                <button type="button" id="seleccion-ubicacion" class="btn btn-icon ubicacion-c btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tu ubicación"><i class="fe fe-map-pin"></i></button>
+
                             </div>
 
                             <div class="col-md-8">
