@@ -87,7 +87,7 @@
             tbl_empresas_entes.email, tbl_empresas_entes.actividad_economica, 
             tbl_empresas_entes.instagram, tbl_empresas_entes.twitter,
             tbl_empresas_entes.facebook,  tbl_empresas_entes.created_on,
-   
+            tbl_empresas_entes.latitud, tbl_empresas_entes.longitud,
             re.id_usuario,  re.cedula, re.nombre as noombre_representante, 
             re.apellidos as apellido_representante, re.tlf_celular as celular_representante,
             
@@ -97,7 +97,7 @@
             re.id_representantes,estado.nombre as nombre_estado ,tbl_empresas_entes.direccion,
             
             count(tbl_ofertas_empleo.id_oferta) as cantidad_oferta,  
-            municipio.nombre as municipio,parroquia.nombre as parroquia
+            municipio.nombre as municipio,parroquia.nombre as parroquia, tbl_empresas_entes.latitud, tbl_empresas_entes.longitud
   
                     
             ');
