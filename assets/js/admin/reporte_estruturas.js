@@ -216,7 +216,7 @@ agregarMapa(latitud, longitud, 5);
 				console.log(latitud_e,longitud_e)
 
 				if($('#cod_estado').val()=='todos'){
-					agregarMapa(latitud, longitud, 10);
+					agregarMapa(latitud, longitud, 20);
 				}else{
 
 					agregarMapa(latitud_e, longitud_e, 10);
