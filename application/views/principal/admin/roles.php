@@ -39,7 +39,9 @@
 
                                        
                                             <div class="btn-list">
-                                                <button type="button" id="btn-editar<?php  echo $rol->id_rol ?>" data-id_rol="<?php  echo $rol->id_rol ?>" class="btn btn-sm btn-primary btn-editar "
+                                            <button type="button"  class=" btn btn-sm btn-primary btn-editar_rol " data-id_rol="<?php  echo $rol->id_rol ?>" onclick="editar_rol(<?php  echo $rol->id_rol ?>)" value="Editar" name="edit">&#9998;</button>
+
+                                                <button type="button" id="btn-editar<?php  echo $rol->id_rol ?>" data-id_rol="<?php  echo $rol->id_rol ?>" class="btn btn-sm btn-info btn-editar "
                                                 
                                            
                                                 
@@ -112,6 +114,41 @@
 
                                 </div>
                             </div>
+
+                            <div class="modal fade" id="modal_editar_rol">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content modal-content-demo modal-md">
+                                    <form id="form-nuevo-rol">
+                                    <div class="modal-header justify-content-between row">
+                                        
+                                        <h6 class="modal-title">editar rol</h6>
+                                        
+                                        <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <div class="row">
+                                        <div class="col-4">
+                                            <div class="form-group">
+                                                <label class="form-label">Nombre rol</label>
+
+                                                <input type="text" class="form-control"  placeholder="nombre rol" id="nombre_rol_e">
+                                            </div>
+                                        </div>
+                                      </div>
+                                       
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary   btn-actualizar-nombre-rol">Guardar</button> 
+                                        
+                                        
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                                    </div>
+                                    </div>
+                                    </form>
+
+                                </div>
+                            </div>
+     
      
 
 

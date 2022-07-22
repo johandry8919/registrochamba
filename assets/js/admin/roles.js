@@ -6,6 +6,16 @@ $(".btn-editar").click(function (e) {
 	$("#id_rol").val(id_rol);
 });
 
+
+$(".btn-editar_rol").click(function (e) {
+	var id_rol = $(this).data("id_rol");
+
+	$("#id_rol").val(id_rol);
+
+
+	$("#modal_editar_rol").modal("show");
+});
+
 $(".btn-guardar-menu").click(function (e) {
 	guardar_cambios();
 });
@@ -20,6 +30,12 @@ $(".btn-guardar-rol").click(function (e) {
   });
   
 
+  $(".btn-actualizar-nombre-rol").click(function (e) {
+	$("#modal_nuevo_rol").modal("hide");
+	actualizar_nombre_rol()
+
+  });
+  
   $("#tipo_rol").change(function (e) {
 
 	if($(this).val()=='admin')
@@ -29,6 +45,46 @@ $(".btn-guardar-rol").click(function (e) {
 
   });
 
+
+  function editar_rol(id_rol){
+
+
+
+	$.ajax({
+		dataType: "json",
+		data: {
+			id_rol,
+		},
+
+		url: base_url + "ajax/Cobterner_permisos_rol/obtener_rol",
+		type: "post",
+		beforeSend: function () {
+			//$("#cod_municipio").selectpicker('refresh');
+		},
+		success: function (respuesta) {
+	
+		
+
+			if (respuesta.resultado == true) {
+				$("#modal_editar_rol").modal("show");
+				$("#nombre_rol_e").val(respuesta.res.nombre)
+
+				
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: respuesta.mensaje,
+				});
+			}
+		},
+		error: function (xhr, err) {
+			console.log(err);
+			alert("ocurrio un error intente de nuevo");
+		},
+	});
+
+  }
 
   
   
@@ -376,6 +432,61 @@ function guardar_rol_permiso(){
 				Swal.fire({
 					icon: "success",
 					title: "Registro Exitoso",
+					text: "Presione OK para continuar",
+				}).then((result) => {
+
+				 location.reload();
+					
+				});
+			
+			
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: respuesta.mensaje,
+				});
+			}
+		},
+		error: function (xhr, err) {
+			console.log(err);
+			alert("ocurrio un error intente de nuevo");
+		},
+	});
+	
+}
+
+
+function actualizar_nombre_rol(){
+
+    var nombre_rol=	$("#nombre_rol_e").val()
+	var id_rol = $("#id_rol").val();
+	if(nombre_rol==""){
+
+		alert("el nombre del rol es requerido")
+	}
+
+	$.ajax({
+		dataType: "json",
+		data: {
+			id_rol,
+			nombre_rol
+                   
+		},
+
+		url: base_url + "Roles/actualizar_rol",
+		type: "post",
+		beforeSend: function () {
+			//$("#cod_municipio").selectpicker('refresh');
+		},
+		success: function (respuesta) {
+			console.log(respuesta);
+			$("#modalrol").modal("hide");
+
+			if (respuesta.resultado == true) {
+				Swal.fire({
+					icon: "success",
+					title: "Actualizacion Exitosa",
 					text: "Presione OK para continuar",
 				}).then((result) => {
 

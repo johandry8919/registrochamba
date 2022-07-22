@@ -58,13 +58,16 @@ class Roles extends CI_Controller
 
     public function guardar_menu_rol(){
 
-        $permitidos =  obtener_roles('admin'); 
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-        if ( !$tiene_acceso) {
+      //verificar acceso
+      if (!tiene_acceso('admin')) {
         echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
         exit();
-        }
+    }
+    //verificar si tiene permiso
+    if (!tiene_permiso('permiso_guardar')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        exit();
+    }
 
         $this->form_validation->set_rules('id_rol', 'id_rol', 'trim|required|strip_tags');  
      //   $this->form_validation->set_rules('array_menu', 'array_menu', 'trim|required');  
@@ -130,13 +133,16 @@ class Roles extends CI_Controller
 
 public function guardar_permiso_rol(){
 
-    $permitidos =  obtener_roles('admin'); 
-    $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-    if ( !$tiene_acceso) {
-    echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-    exit();
-    }
+        //verificar acceso
+        if (!tiene_acceso('admin')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+        exit();
+        }
+        //verificar si tiene permiso
+        if (!tiene_permiso('permiso_guardar')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        exit();
+        }
 
     $this->form_validation->set_rules('id_rol', 'id_rol', 'trim|required|strip_tags');  
     $this->form_validation->set_rules('guardar_permiso', 'guardar_permiso', 'trim|required|strip_tags');  
@@ -180,13 +186,16 @@ public function guardar_permiso_rol(){
 
     public function guardar_rol(){
 
-        $permitidos =  obtener_roles('admin'); 
-        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
-
-        if ( !$tiene_acceso) {
+      //verificar acceso
+      if (!tiene_acceso('admin')) {
         echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
         exit();
-        }
+    }
+    //verificar si tiene permiso
+    if (!tiene_permiso('permiso_guardar')) {
+        echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+        exit();
+    }
 
         $this->form_validation->set_rules('nombre_rol', 'nombre_rol', 'trim|required|strip_tags');  
      //   $this->form_validation->set_rules('array_menu', 'array_menu', 'trim|required');  
@@ -219,5 +228,50 @@ public function guardar_permiso_rol(){
         }
     }
 
+    public function actualizar_rol(){
+
+        $this->form_validation->set_rules('id_rol', 'id_rol', 'trim|required|strip_tags');  
+        $this->form_validation->set_rules('nombre_rol', 'guardar_permiso', 'trim|required|strip_tags');  
+    
+     //   $this->form_validation->set_rules('array_menu', 'array_menu', 'trim|required');  
+        $this->form_validation->set_error_delimiters('*', '');
+        $this->form_validation->set_message('required', 'El campo %s es requerido');
+        if (!$this->form_validation->run()) {
+        $mensaje_error = validation_errors();
+        echo  json_encode(["resultado" =>false,"mensaje"=> $mensaje_error]);
+        exit;
+        }
+        //verificar acceso
+        if (!tiene_acceso('admin')) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+        //verificar si tiene permiso
+        if (!tiene_permiso('permiso_guardar')) {
+            echo  json_encode(["resultado" => false, "mensaje" => "No tienes permiso para ejecutatar esta accion"]);
+            exit();
+        }
+
+            //Menu_model
+    $id_rol = $_POST['id_rol'];
+    $nombre_rol = $_POST['nombre_rol'];
+
+
+
+
+    $resultado=$this->Roles_model->actualizar_rol($id_rol,[
+        'nombre'=>  $nombre_rol 
+
+    ]);
+
+    
+    if ($resultado ) {
+
+        echo  json_encode(["resultado" => true, "mensaje" =>  'actualizacion exitosa']);
+    } else {
+        echo  json_encode(["resultado" => false, "mensaje" => 'No se completo la actualizacion']);
+    }
+
+    }
 
 }
