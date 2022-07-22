@@ -301,6 +301,8 @@ function agregarMapa(lat = "8.2321", long = "-66.406", zoom = 13, data=[]) {
 					features:JSON.parse(JSON.stringify(arr_map))
 				},
 			});
+
+			
 			// Add a layer showing the places.
 			map.addLayer({
 				id: "places",
