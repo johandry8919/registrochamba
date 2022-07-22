@@ -152,7 +152,7 @@ async function obtener_coordenadas_empresa(accion) {
                 let puntero ={
                     'type': 'Feature',
                     'properties': {
-					'marker-color': '#8B4293',
+					'marker-color': COLOR,
                     'description':`<strong> ${element.nombre_razon_social}</strong>
 					<p>RIF:${element.rif}</p>
 					<p>Representante:${element.noombre_representante}  ${element.apellido_representante}</p>
