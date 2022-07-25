@@ -1,6 +1,3 @@
-<?php      ?>
-
-
 
 <!-- #END# Page Loader -->
 <!-- Overlay For Sidebars -->
@@ -10,11 +7,7 @@
 
 <section class="content">
     <div class="container">
- 
-   
-        
 
-    
         <?php if ($this->session->flashdata('mensajeexito')) { ?>
             <div class="row">
                 <div class="col-md-4">
@@ -420,9 +413,9 @@
                                         if(isset($datos->codigomunicipio)){
                                         echo '<small>Seleccione un estado para cambiar</small>'; 
                                         }
-                                    ?>                                               
+                                    ?>
                                 </div>
-                                
+
                             </div>
 
                             <div class="col-md-4">

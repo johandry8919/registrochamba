@@ -107,19 +107,15 @@ class Empresas extends CI_Controller
     public function index()
     {
 
-        $breadcrumb = (object) [
-            "menu" => "Empresas",
-            "menu_seleccion" => "Inicio"
-        ];
 
         $output = [
             "menu_lateral" => "empresas",
-            "breadcrumb"      =>   $breadcrumb,
             "title"             => "Inicio",
             "vista_principal"   => "empresas/inicio",
             "librerias_js" => [],
             "ficheros_js" => [],
             "ficheros_css" => [],
+            "ficheros_css" => [recurso("animacion_fondo_css"), recurso("animacion_fondo_css")],
 
 
         ];
