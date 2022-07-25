@@ -180,6 +180,8 @@ $route['universidad/ofertas'] = 'Universidades/listar_oferta_universidades';
 $route['empresas/editarOferta/(:num)'] = 'Empresas/editar_oferta/$1';
 $route['universidad/editaOfertas/(:num)'] = 'Universidades/editar_oferta/$1';
 $route['eempresas/ver_oferta/(:num)'] = 'Empresas/ver_ofertas';
+$route['empresas/datos_empresa'] = 'Empresas/datos_empresa';
+$route['empresas/datos_universidad'] = 'Universidades/datos_universidad';
 
 $route['estructuras/editarOferta/(:num)'] = 'Estructuras/editar_oferta_empresas/$1';
 $route['estructura/lista_universidad'] = 'Estructuras/lista_universidad';

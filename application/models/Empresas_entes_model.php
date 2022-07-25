@@ -132,7 +132,7 @@
 
             return $valor;
         }
-
+      
         public function obtener_universidades($id_tipo_empresa = 2){
            
 
@@ -405,6 +405,65 @@ public function obtener_Estructuras($id = 3){
     $query = $this->db->get("tbl_empresas_entes");
 
     if ($query->num_rows()) $valor = $query->result();
+    else $valor = [];
+
+
+    return $valor;
+}
+public function obtener_empresas_universidad_id($id_tipo_empresa = 1 ,$id_usuario){
+           
+
+    $this->db->select(' distinct(tbl_empresas_entes.id_empresas), 
+    tbl_empresas_entes.id_tipo_empresas_universidades, 
+    tbl_empresas_entes.id_usuario_registro, 
+    tbl_empresas_entes.nombre_razon_social, tbl_empresas_entes.rif, 
+    tbl_empresas_entes.email, tbl_empresas_entes.actividad_economica, 
+    tbl_empresas_entes.instagram, tbl_empresas_entes.twitter,
+    tbl_empresas_entes.facebook,  tbl_empresas_entes.created_on,
+    tbl_empresas_entes.latitud, tbl_empresas_entes.longitud,
+    re.id_usuario,  re.cedula, re.nombre as noombre_representante, 
+    re.apellidos as apellido_representante, re.tlf_celular as celular_representante,tbl_empresas_entes.tlf_celular as tlf_celular_empresa,tbl_empresas_entes.id_sector_economico,
+    tbl_empresas_entes.codigoestado,
+    tbl_empresas_entes.codigomunicipio,
+    tbl_empresas_entes.codigoparroquia,
+    
+
+    
+    re.tlf_local as tlf_local_representante, re.email as email_representante, re.cargo, productivo,
+    re.id_representantes,estado.nombre as nombre_estado ,tbl_empresas_entes.direccion,re.direccion as direccion_representante,
+    
+    count(tbl_ofertas_empleo.id_oferta) as cantidad_oferta,  
+    municipio.nombre as nombre_municipio ,parroquia.nombre as nombre_parroquia, tbl_empresas_entes.latitud, tbl_empresas_entes.longitud,
+
+            
+    ');
+    $this->db->where("id_usuario", $id_usuario);
+    $this->db->where("id_tipo_empresas_universidades", $id_tipo_empresa);
+    $this->db->join('tbl_representantes_empresas_entes re', 're.id_empresas_entes = tbl_empresas_entes.id_empresas');
+    $this->db->join('tbl_sector_productivo sp', 'sp.id = tbl_empresas_entes.id_sector_economico');
+    $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_empresas_entes.codigoestado');
+    $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_empresas_entes.codigomunicipio');
+    $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_empresas_entes.codigoparroquia');  
+    $this->db->join('tbl_ofertas_empleo', 'tbl_ofertas_empleo.id_empresa_ente = tbl_empresas_entes.id_empresas','left');
+    $this->db->group_by(' 
+
+    id_empresas, 
+    id_tipo_empresas_universidades, 
+     
+    nombre_razon_social, rif, 
+    tbl_empresas_entes.email, tbl_empresas_entes.actividad_economica, 
+    instagram, twitter,
+    facebook,  tbl_empresas_entes.created_on,
+     id_usuario,  cedula,  noombre_representante, 
+     apellido_representante,  celular_representante,tbl_empresas_entes.direccion,
+     tlf_local_representante, email_representante, re.cargo, productivo,
+     re.id_representantes, nombre_estado, 
+     cantidad_oferta,  nombre_municipio, nombre_parroquia, tbl_empresas_entes.tlf_celular
+    ');
+    $this->db->order_by("tbl_empresas_entes.id_empresas", "desc");
+    $query = $this->db->get("tbl_empresas_entes");
+
+    if ($query->num_rows()) $valor = $query->row();
     else $valor = [];
 
 

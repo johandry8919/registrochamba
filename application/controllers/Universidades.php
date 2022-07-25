@@ -18,6 +18,7 @@ class Universidades extends CI_Controller
         $this->load->model('Estatus_oferta_model');
         $this->load->model('Ofertas_chambistas_model');
         $this->load->model('Estructuras_model');
+        $this->load->model('Empresas_entes_model');
     }
 
 
@@ -313,4 +314,71 @@ class Universidades extends CI_Controller
             echo  json_encode(["resultado" => false, "mensaje" => 'Ocurrio un error']);
         }
     }
+
+    public function datos_universidad(){
+
+          
+        $permitidos = [4,5];        
+        $tiene_acceso=in_array($this->session->userdata('id_rol'),$permitidos,false);
+
+        if ( !$tiene_acceso) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+        $estados = $this->Musuarios->getEstados();
+
+        $id_usuario = $this->session->userdata('id_usuario');
+
+
+
+        $sectorProductivo = $this->Mprofesion_oficio->SectorProductivo();
+
+        $datos  = $this->Empresas_entes_model->obtener_empresas_universidad_id(2,$id_usuario);
+
+        // echo json_encode($datos);
+        // exit;
+
+        $breadcrumb = (object) [
+            "menu" => " universidad",
+            "menu_seleccion" => "datos de la universidad"
+
+
+        ];
+    
+
+      
+        $output = [
+            "menu_lateral"      =>   "universidades",
+            "breadcrumb"        =>   $breadcrumb,
+            "title"             => "",
+            "vista_principal"   => "admin/editar_universidades",
+            "sectorProductivo" => $sectorProductivo,
+            "datos" => $datos,
+            "estados"=> $estados,
+
+            "librerias_js" => [
+                recurso("moment_js"), recurso("bootstrap-material-datetimepicker_js"),
+                recurso("jquery_steps_js"),  recurso("parsleyjs_js"),
+                recurso("bootstrap-datepicker_js"), recurso("bootstrap-select_js"), recurso("jquery_easing_js")
+
+
+
+            ],
+
+
+            "ficheros_js" => [
+                recurso("datosempresa_js"), recurso("mapa_mabox_js")
+            ],
+            "ficheros_css" => [recurso("mapa_mabox_css"), recurso("estructuras_css")],
+           
+        
+     
+     
+
+
+        ];
+
+        $this->load->view("main", $output);
+    
+}
 }
