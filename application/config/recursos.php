@@ -95,6 +95,7 @@
     $config['recursos']['style_css'] = "assets/css/style.min.css?v=1.0.5";
     $config['recursos']['login_css'] = "assets/css/login.min.css?v=1.0.0";
     $config['recursos']['mapbox_css'] = "assets/plugins/mapbox/maplibre-gl.css?v=1.0.5";
+    $config['recursos']['animacion_fondo_css'] = "assets/css/animacion_fondo.css?v=1.0.5";
 
     
 ?>

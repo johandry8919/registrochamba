@@ -351,7 +351,7 @@ class Universidades extends CI_Controller
             "menu_lateral"      =>   "universidades",
             "breadcrumb"        =>   $breadcrumb,
             "title"             => "",
-            "vista_principal"   => "admin/editar_universidades",
+            "vista_principal"   => "universidades/editar_universidades",
             "sectorProductivo" => $sectorProductivo,
             "datos" => $datos,
             "estados"=> $estados,
