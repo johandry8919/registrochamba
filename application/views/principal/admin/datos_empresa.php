@@ -1,20 +1,12 @@
-<?php      ?>
-
 
 
 <!-- #END# Page Loader -->
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
-<!-- #END# Overlay For Sidebars -->
 
-
-<section class="content">
+<section class="">
     <div class="container">
- 
-   
-        
 
-    
         <?php if ($this->session->flashdata('mensajeexito')) { ?>
             <div class="row">
                 <div class="col-md-4">
@@ -49,14 +41,14 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row clearfix">
-                            <div class="card-title">REGISTRO DE CENTRO DE ESTUDIO Y UNIVERSIDADES</div>
+                            <div class="card-title">DATOS  DE LA EMPRESAS U ORGANISMO PÚBLICOS</div>
 
 
                         </div>
                     </div>
 
 
-                    <div class="card-body">
+                    <div class="card-body mt-0">
                        
 
 
@@ -136,12 +128,17 @@
 
 
                                 <div class="col-md-4 ">
-                                    <label class="form-label">Sector de Especialización</label>
+                                    <label class="form-label">Sector economico</label>
                                     <div class="form-group">
-                                        <div class="form-line">
-                                            <select class="form-control show-tick" id="sector_economico" name="sector_economico" data-parsley-error-message="Este campo es requerido">
-                                                <option value="">Seleccione una opción</option>
-                                                <?php if(isset($sectorProductivo)): ?>
+                                        <select
+                                       
+
+                                        required class="form-control show-tick " id="sector_economico" name="sector_economico" required>
+                                            <option value="0">Seleccione una opcion</option>
+
+                                           
+                                     
+                                            <?php if(isset($sectorProductivo)): ?>
                                                             <?php foreach ($sectorProductivo as $key => $profesion):?>
                                                                
                                                                 <?php  if($profesion->id == $datos->id_sector_economico):?>
@@ -155,19 +152,20 @@
                                                            endforeach;
                                                         endif;
                                                     ?>
-
-                                            </select>
-                                        </div>
+                                        </select>  
                                     </div>
 
                                 </div>
                                 <div class="col-md-4 ">
-                                    <label class="form-label">Tipo de institución</label>
+                                    <label class="form-label">Tipo de propiedad</label>
                                     <div class="form-group">
                                         <div class="form-line">
-                                            <select class="form-control show-tick" id="actividad_economica" name="actividad_economica" data-parsley-error-message="Este campo es requerido">
+                                            <select
+                                            required
+                                            
+
+                                            class="form-control show-tick" id="actividad_economica" name="actividad_economica">
                                                 <option value="">Seleccione una opción</option>
-                                              
                                                 <option <?php if (isset($datos->actividad_economica) and $datos->actividad_economica == 'PUBLICA') {
                                                 echo 'selected';
                                             } ?> value="PUBLICA">PUBLICA</option>
@@ -411,7 +409,7 @@
                                         <option value="">Seleccione un Municipio</option>
                                         <?php
                                             if(isset($datos->codigomunicipio)){
-                                                echo "<option selected value='".$datos->codigomunicipio."'>".$datos->nombre_municipio."</option>";     
+                                                echo "<option selected value='".$datos->codigomunicipio."'>".$datos->municipio."</option>";     
                                             }
                                         ?>
                                         </select>
@@ -435,7 +433,7 @@
                                         <option value="">Seleccione una Parroquia</option>
                                         <?php
                                             if(isset($datos->codigoparroquia)){
-                                                echo "<option selected value='".$datos->codigoparroquia."' data-latitud=".$datos->latitud."  data-longitud=".$datos->longitud."  >".$datos->nombre_parroquia."</option>";     
+                                                echo "<option selected value='".$datos->codigoparroquia."' data-latitud=".$datos->latitud."  data-longitud=".$datos->longitud."  >".$datos->parroquia."</option>";     
                                             }
                                         ?>
                                         </select>
@@ -461,7 +459,7 @@
                                         <label class="form-label"> Dirección Especifica</label>
                                         <div class="form-group">
                                             <div class="form-line">
-                                                <textarea maxlength="255" rows="2" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="100" placeholder="Por favor indica donde resides..." data-parsley-error-message="Este campo es requerido" required autofocus><?php if (isset($datos->direccion)) echo $datos->direccion; ?></textarea>
+                                                <textarea maxlength="255" rows="2" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="100" placeholder="Por favor indica donde resides..." data-parsley-error-message="Este campo es requerido" required autofocus><?php if (isset($datos->direccion_representante)) echo $datos->direccion_representante; ?></textarea>
                                             </div>
                                         </div>
 
@@ -522,8 +520,8 @@
                 </div>
 
                 
-                <input type="hidden" name="id_empresas_entes" id="id_empresas_entes" value="<?php if(isset($datos->id_empresas_entes))echo $datos->id_empresas_entes ; ?>">
-                <input type="hidden" name="id_representante" id="id_representante" value="<?php echo $datos->id_representantes; ?>">
+                <!-- <input type="hidden" name="id_empresas_entes" id="id_empresas_entes" value="<?php echo $datos->id_empresas_entes; ?>">
+                <input type="hidden" name="id_representante" id="id_representante" value="<?php echo $datos->id_representantes; ?>"> -->
 
 
 

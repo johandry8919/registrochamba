@@ -42,6 +42,9 @@
                                          <li><a href="<?php echo base_url();?>universidad/ofertas"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
                                          >Consultar Ofertas</a></li>
+                                         <li><a href="<?php echo base_url();?>empresas/datos_universidad"
+                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
+                                         >Datos de la universidad</a></li>
                                
 
                                   
