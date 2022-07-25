@@ -445,7 +445,7 @@ class Empresas extends CI_Controller
 
         $sectorProductivo = $this->Mprofesion_oficio->SectorProductivo();
 
-        $datos  = $this->Empresas_entes_model->obtener_empresas_id(1, $id_usuario);
+        $datos  = $this->Empresas_entes_model->obtener_empresas_universidad_id(1, $id_usuario);
 
         $breadcrumb = (object) [
             "menu" => "Empresa",
