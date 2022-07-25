@@ -106,9 +106,9 @@
                     <div class="main-container ">
 
                         <!-- PAGE-HEADER -->
-                        <div class="page-header">
 
-                            <?php  if(isset($breadcrumb)): ?>
+                        <?php  if(isset($breadcrumb)): ?>
+                        <div class="page-header">             
                             <h1 class="page-title"></h1>
                             <div>
                                 <ol class="breadcrumb">
@@ -119,10 +119,9 @@
                                     endif; 
                                      ?></li>
                                 </ol>
-                            </div>
-
-                            <?php  endif; ?>
+                            </div>                           
                         </div> 
+                        <?php  endif; ?>
                         <!-- PAGE-HEADER END -->
 
                         <!-- ROW-1 OPEN -->
