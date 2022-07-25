@@ -42,6 +42,19 @@
                                          <li><a href="<?php echo base_url();?>universidad/ofertas"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
                                          >Consultar Ofertas</a></li>
+                               
+                               
+
+                                  
+                                </ul>
+                            </li>
+                            <li class="slide <?php if($this->uri->segment(1)=='estructuras' || $this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
+                                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
+                                        class="side-menu__icon fe fe-user-plus"></i><span
+                                        class="side-menu__label">Datos de la universidad</span><i
+                                        class="angle fe fe-chevron-right"></i></a>
+                                <ul class="slide-menu">
+                      
                                          <li><a href="<?php echo base_url();?>empresas/datos_universidad"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
                                          >Datos de la universidad</a></li>
