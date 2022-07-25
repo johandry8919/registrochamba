@@ -318,3 +318,9 @@ function agregarMarker(lat, lon, map, marker) {
 }
 
 
+$("#rango_fecha").change(function(e){
+
+	$("#modal-fecha-chambista").modal("show");
+
+})
+

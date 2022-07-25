@@ -175,4 +175,43 @@ error_reporting(E_ALL);
         // $this->load->view('layouts/head');
 	
 	}
+
+
+    public function chambistas()
+	{
+        if (!tiene_acceso(['admin'])) {
+            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+            exit();
+        }
+
+      
+            $breadcrumb = (object) [
+            "menu" => "admin",
+            "menu_seleccion" => "Reporte Chambista"
+
+
+        ];
+    
+        $estados = $this->Musuarios->getEstados();
+
+        $output = [
+            "menu_lateral"      =>'admin',
+            "estados" =>  $estados,
+            "breadcrumb"        =>   $breadcrumb,
+       
+            "title"             => "Nueva oferta",
+            "vista_principal"   => "reportes/reporte_chambista",
+            "ficheros_js" => [recurso("reporte_chambista_js")],
+                 
+            "ficheros_css" => [recurso("mapa_mabox_css")]
+     
+     
+
+
+        ];
+
+        $this->load->view("main", $output);
+        // $this->load->view('layouts/head');
+	
+	}
 }
