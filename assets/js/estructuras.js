@@ -458,10 +458,10 @@ $("#nombres").on(
 	"keyup",
 	function () {
 		"use strict";
-		var apellidos_representante = $(this).val();
+		var nombres = $(this).val();
 		var expresion = /^[a-zA-Z-_\.]+$/;
 
-		if (expresion.test(apellidos_representante)) {
+		if (nombres) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
