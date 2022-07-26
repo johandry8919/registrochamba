@@ -320,7 +320,25 @@ function agregarMarker(lat, lon, map, marker) {
 
 $("#rango_fecha").change(function(e){
 
-	$("#modal-fecha-chambista").modal("show");
+	var seleccion_fecha = $(this).val();
 
+
+	if(seleccion_fecha==2)
+	$("#modal-fecha-chambista").modal("show");
+	else
+	$("#modal-fecha-chambista").modal("hide");
 })
+
+$("#btn-fecha").click(function(e){
+
+	$("#modal-fecha-chambista").modal("hide");
+
+	var fecha_inicio = $("#fecha_inicio").val()
+	var fecha_fin = $("#fecha_fin").val()
+
+	$("#f-inicio").html(fecha_inicio)
+	$("#f-fin").html(fecha_fin)
+
+
+});
 

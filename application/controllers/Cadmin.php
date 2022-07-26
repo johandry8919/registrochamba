@@ -674,8 +674,8 @@ class Cadmin extends CI_Controller
 
 
             "ficheros_js" => [
-                recurso("datospersonales_js"), recurso("validacion_datospersonales_js"), recurso("mapa_mabox_js"),
-                recurso("estructuras_js")
+                recurso("datospersonales_js"), recurso("validacion_datospersonales_js"),
+                recurso("estructuras_js"), recurso("mapa_mabox_js")
             ],
             "ficheros_css" => [recurso("mapa_mabox_css"), recurso("estructuras_css")],
 

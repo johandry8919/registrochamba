@@ -354,6 +354,7 @@
                                 <div class="row">
                                 <div class="col-md-4">
                                 <label  class="form-label">Estado</label>
+                                
                                 <div class="form-group">
                                     <div class="form-line">
                                         <select class="form-control show-tick" 
@@ -364,11 +365,9 @@
                                     <?php
                                         if(isset($estados)){
                                             foreach ($estados as $key => $estado) {
-                                                if(isset($estado->codigoestado) and $estado->codigoestado == $datos->codigoestado){
-                                                    echo "<option selected value='".$estado->codigoestado."'  data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";     
-                                                }else{
+                                              
                                                     echo "<option value='".$estado->codigoestado."' data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";
-                                                }
+                                                
                                             }
                                         }
                                     ?>

@@ -64,6 +64,7 @@
     <label class="form-label">Fecha de registro</label>
     <div class="form-group">
         <div class="form-line">
+           
             <select data-parsley-error-message="Este campo es requerido"
              required class="form-control show-tick" id="rango_fecha" name="empresa" 
              required data-parsley-error-message="Este campo es requerido">
@@ -71,6 +72,7 @@
                 <option value="2">Seleccionar fecha</option>
 
             </select>
+            <small id="f-inicio"> </small>  / <small id="f-fin"> </small>
         </div>
 
 
@@ -98,23 +100,34 @@
                     <div class="row">
                     
 
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="form-group">
                                         <label>Fecha de incio</label>
-                                    <input readonly
-                                     class="input100 border-start-0 ms-0 form-control" type="text" id="fecha_inicio" maxlength="200" name="fecha_fin" value="" placeholder="fecha_nac" required autofocus>
+                                        <div class="wrap-input100 validate-input input-group">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fe fe-calendar" aria-hidden="true"></i>
+                                                </a>
+                                    <input 
+                                     class="input100 border-start-0 ms-0 form-control" type="date" id="fecha_inicio" maxlength="200" name="fecha_fin" value="" placeholder="Fecha inicio" required autofocus>
+                                 </div>
                               </div>
 
                         </div>
                       
 
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="form-group">
                                         <label>Fecha de fin</label>
-                                    <input readonly
-                                     class="input100 border-start-0 ms-0 form-control" type="text" id="fecha_inicio" maxlength="200" name="fecha_fin" value="" placeholder="fecha_nac" required autofocus>
-                              </div>
 
+                                        <div class="wrap-input100 validate-input input-group">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fe fe-calendar" aria-hidden="true"></i>
+                                                </a>
+                                    <input 
+                                     class="input100 border-start-0 ms-0 form-control" type="date" id="fecha_fin" maxlength="200" name="fecha_fin" value="" placeholder="Fecha fin" required autofocus>
+                          
+                                    </div>
+                          </div>
                         </div>
 
                     </div>
@@ -124,7 +137,7 @@
               
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" id="btn-postular">Postular</button> <button class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" id="btn-fecha">Seleccionar</button> <button class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
