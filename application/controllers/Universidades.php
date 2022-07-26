@@ -26,19 +26,15 @@ class Universidades extends CI_Controller
     public function index()
     {
 
-        $breadcrumb = (object) [
-            "menu" => "Universidades",
-            "menu_seleccion" => "Inicio"
-        ];
-
+   
         $output = [
             "menu_lateral" => "universidades",
-            "breadcrumb"      =>   $breadcrumb,
             "title"             => "Inicio",
             "vista_principal"   => "universidades/inicio",
             "librerias_js" => [],
             "ficheros_js" => [],
             "ficheros_css" => [],
+            "ficheros_css" => [recurso("animacion_fondo_css"), recurso("animacion_fondo_css")],
 
 
         ];
