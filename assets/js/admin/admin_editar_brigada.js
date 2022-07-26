@@ -111,7 +111,7 @@ $("#nombre_brigada").on(
 
 		var expresion = /^[a-zA-Z\s]*$/;
 
-		if (expresion.test(nombres)) {
+		if (nombres) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
@@ -133,7 +133,7 @@ $("#nombre_comunidad").on(
 
 		var expresion = /^[a-zA-Z\s]*$/;
 
-		if (expresion.test(nombres)) {
+		if (nombres) {
 			$(this)
 				.removeClass("is-invalid error-input")
 				.addClass("is-valid valid-input");
