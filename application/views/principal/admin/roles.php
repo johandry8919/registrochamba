@@ -25,7 +25,7 @@
                                                 <thead>
                                                     <tr>
                                                     <th class="wd-15p border-bottom-0">Acciones</th>
-                                                        <th class="wd-15p border-bottom-0">Nombre</th>
+                                                        <th class="wd-15p border-bottom-0">Nombres</th>
                                                         <th class="wd-15p border-bottom-0">Perfil</th>
                                                     
                                                       
