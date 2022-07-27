@@ -1,8 +1,20 @@
 
 
-<?php if (isset($datepicker) && $datepicker): ?>
-    <script type="text/javascript" src="<?php echo recurso("datepicker_js"); ?>"></script>
-    <script type="text/javascript" src="<?php echo recurso("datepicker_es_js"); ?>"></script>
+<?php if (isset($datatable) && $datatable): ?>
+
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/js/jszip.min.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/js/buttons.html5.min.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/js/buttons.print.min.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/js/buttons.colVis.min.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/dataTables.responsive.min.js"></script>
+    <script src="<?php echo  base_url()?>assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
+
 <?php endif; ?>
 
 
@@ -19,7 +31,7 @@
             <?php if (is_numeric($valor_constante_js)): ?>
                 var <?php echo $constante_js ?> = <?php echo $valor_constante_js ?>;
             <?php else: ?>
-                var <?php echo $constante_js ?> = "<?php echo $valor_constante_js ?>";
+                var <?php echo $constante_js ?> = '<?php echo $valor_constante_js ?>';
             <?php endif; ?>
         <?php endforeach; ?>
     </script>

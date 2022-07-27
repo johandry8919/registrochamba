@@ -19,12 +19,12 @@ class Cusuarios extends CI_Controller {
             redirect('inicio');
         }        
         // $this->load->view('layouts/head');
-		$this->load->view('usuarios/NuevoRegistro');
+		//$this->load->view('usuarios/NuevoRegistro');
 	}
 
     public function Vinicio()
     {
-        if (!$this->session->userdata('id_usuario')) {
+        if ($this->session->userdata('id_rol')!=1) {
             redirect('iniciosesion');
         }
 
@@ -217,26 +217,26 @@ class Cusuarios extends CI_Controller {
 
     public function enviarEmailRecuperacion($datos,$resultado,$link) {
 
-      /*  $config = array(
+      $config = array(
            'protocol' => 'smtp',
             'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'desarrollotestingweb@gmail.com',
-            'smtp_pass' => 'pruebas123',
+            'smtp_user' => 'noresponder.chambajuvenil@gmail.com',
+            'smtp_pass' => 'xthuameievcykqcj',
             'smtp_port' => '465',
             'smtp_crypto' => 'ssl', 
             'smtp_timeout' => '7',
             'mailtype' => 'html',
             'wordwrap' => TRUE, 
             'charset' => 'utf-8'
-    );*/
+    );
 
     $config = array();
        
         //$config['mailpath']     = "/usr/bin/sendmail"; // or "/usr/sbin/sendmail"
         $config['protocol']     = "smtp"; 
         $config['smtp_host']    = "smtp.gmail.com";
-        $config['smtp_user']    =  'desarrollotestingweb@gmail.com';
-        $config['smtp_pass']    = "pruebas123";
+        $config['smtp_user']    =  'noresponder.chambajuvenil@gmail.com';
+        $config['smtp_pass']    = "xthuameievcykqcj";
         $config['smtp_port']    =  465;
         $config['smtp_crypto']  = 'ssl';
      
@@ -263,7 +263,7 @@ class Cusuarios extends CI_Controller {
 
 
         $this->email->initialize($config);
-        $this->email->from('desarrollotestingweb@gmail.com', 'Chamba Juvenil');
+        $this->email->from('noresponder.chambajuvenil@gmail.com');
         $this->email->to($datos['email']);
         $this->email->subject($asunto);
         $this->email->message($mensaje);
@@ -353,6 +353,7 @@ class Cusuarios extends CI_Controller {
                                     'email' => $resultado3->email,
                                     'activo' => $resultado3->activo,
                                     'fecha_reg' => $resultado3->fecha_reg,
+                                    'id_rol' => 1,
                                     'codigo' => $resultado3->codigo
                                 );
 
@@ -440,6 +441,7 @@ class Cusuarios extends CI_Controller {
                         'cedula' => $resultado->cedula,
                         'email' => $resultado->email,
                         'activo' => $resultado->activo,
+                        "id_rol"=>1,
                         'fecha_reg' => $resultado->fecha_reg,
                         'codigo' => $resultado->codigo
                     );
@@ -473,6 +475,7 @@ class Cusuarios extends CI_Controller {
         $this->session->unset_userdata('id_usuario');
         $this->session->unset_userdata('cedula');
         $this->session->unset_userdata('email');
+        $this->session->unset_userdata('id_rol');
         $this->session->unset_userdata('activo');
         $this->session->unset_userdata('fecha_reg');
         $this->session->unset_userdata('codigo_verificacion');

@@ -270,7 +270,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-5 ">
+                        <!-- <div class="col-12 col-lg-5 ">
 
 
 
@@ -281,8 +281,8 @@
                                     <span class="custom-switch-description">Otro</span>
                                 </label>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-10">
+                        </div> -->
+                        <div class="col-12 col-lg-5">
                             <div class="form-group">
                                 <label class="custom-switch form-switch me-5">
                                     <input <?php echo $brigadas1 ?> id="id_brigada" name="id_brigada" type="radio" value="1" class="custom-switch-input">

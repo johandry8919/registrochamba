@@ -62,6 +62,106 @@
 		return $recurso;
 		
 	}
+
+	function oberner_menu() {
+		
+		$ci = & get_instance();
+		
+		if (!$ci->session->userdata('id_rol')) {
+            redirect('admin/login');
+        }
+		$id_rol= $ci->session->userdata('id_rol');
+		$menus = $ci->Menu_model->obtener_menu($id_rol);
+		$array_menu=[];
+		foreach ($menus as $menu){
+			$menu->sub_menu=$ci->Menu_model->obtener_sub_menu($menu->id_menu,$id_rol);
+	
+
+		
+		}
+
+
+		return $menus;
+		
+	}
+function ruta_actual(){
+	$ci = & get_instance();
+	$ruta = strip_tags(trim($ci->uri->segment(1)));
+
+	return $ruta;
+}
+
+function codigo_brigada_estructura(){
+	$ci = & get_instance();
+	$id_brigada=$ci->Brigadas_estructuras_model->obtener_id_brigada();
+     return date("dmYs").'-'. $id_brigada;     
+}
+ function tiene_acceso($perfil){
+
+
+	     //verificar acceso
+		 $ci = & get_instance();
+		 $permitidos =  obtener_roles($perfil); 
+
+		 $tiene_acceso=in_array($ci->session->userdata('id_rol'),$permitidos,false);
+	 return 	 $tiene_acceso;
+
+		 
+ }
+
+
+function tiene_permiso($nombre_permiso){
+	$ci = & get_instance();
+	return $ci->session->userdata($nombre_permiso);
+}
+
+	function obtener_roles($perfil) {
+		
+		$ci = & get_instance();
+		$roles=[];
+
+		if(is_array($perfil)){
+
+			
+
+			foreach($perfil as $p){
+
+				if(is_string($p)){
+									
+			
+				$roles=array_merge($roles,$ci->Roles_model->obtener_roles($p));
+					
+
+				}else{
+					$roles[]=(object)["id_rol"=>$p];
+				}
+				
+
+
+			}
+
+
+		}else{
+
+			$roles =  $ci->Roles_model->obtener_roles($perfil);
+
+		}
+
+	
+	
+	
+		$array_rol=[];
+		foreach ($roles as $rol){
+		 $array_rol[]=$rol->id_rol;
+ 
+		}
+ 
+	
+
+
+		return $array_rol;
+		
+	}
 	
 	function obtener_configuracion ($nombre_configuracion) {
 		
@@ -78,7 +178,7 @@
 	
 	function generar_uuid (){
 		
-		$uuid = sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+		$uuid = sprintf('%04X%04X-%04X-%04X-%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
 		
 		$uuid = strtolower($uuid);
 

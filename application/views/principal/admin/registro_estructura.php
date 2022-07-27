@@ -1,494 +1,545 @@
 
-<?php      ?>
 
 
-  
 <!-- #END# Page Loader -->
 <!-- Overlay For Sidebars -->
 <div class="overlay"></div>
 <!-- #END# Overlay For Sidebars -->
 
 <section class="content">
-    <div class="container-fluid">
 
-  
 
-    <?php if($this->session->flashdata('mensajeexito')){ ?>
-    <div class="row">
-    <div class="col-md-12">
-        <div class="alert alert-success">  <?php echo $this->session->flashdata('mensajeexito'); ?>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+    <?php if ($this->session->flashdata('mensajeexito')) { ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
-    <?php }?>
-    <?php if($this->session->flashdata('mensajeerror')){ ?>
-            <div class="row">
+    <?php } ?>
+    <?php if ($this->session->flashdata('mensajeerror')) { ?>
+        <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
             </div>
-            </div>
-            <br>
-    <?php }?> 
-    <?php if($this->session->flashdata('mensaje')){ ?>
-            <div class="row">
+        </div>
+        <br>
+    <?php } ?>
+    <?php if ($this->session->flashdata('mensaje')) { ?>
+        <div class="row">
             <div class="col-md-12">
                 <div class="alert alert-info"> <?php echo $this->session->flashdata('mensaje'); ?>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                 </div>
             </div>
-            </div>
-            <br>
-    <?php }?> 
-        <div class="row clearfix">
-            <div class="col-xs-12">
+        </div>
+        <br>
+    <?php } ?>
+    <form method="post" id="form-estructuras">
+        <div class="row ">
+            <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header">
-                        <div class="row clearfix">
-                            <div class="card-title">ESTRUCTURA</div>
-
-                              
-                            </div>
+                    <div class="card-header border-bottom-0">
+                        <div class="card-title">
+                            Registro de integrante de estructura - <?php echo $brigada_estructura->codigo ?> - (<?php echo $brigada_estructura->nombre_brigada ?> )
+                            
                         </div>
-
-             
+                    </div>
                     <div class="card-body">
-                        <div id="real_time_chart" class="">
-                            
-                                <form ">
-                                    <div class="row ">
-                                        <div class="col-md-6">
+                        <div id="wizard2">
+                            <h3>Datos personales</h3>
+                            <section>
+                                <div class=" row ">
+                                    <div class=" col-md-6">
 
-                                            <div class="form-group">
-                                                <label class="form-label">Nombre</label> 
-                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                        <i class="mdi mdi-account" aria-hidden="true"></i>
-                                                    </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="nombres" maxlength="30"  name="nombres" value="" placeholder="Ingrese su Nombre" required autofocus>
-                                                   
-                                                </div>
-        
-                                            </div>
-                                                  
-                                            
-
-                                        </div><!--col-->
-
-                                        <div class="col-md-6">
-
-                                            <div class="form-group">
-                                                <label class="form-label">Apellidos</label> 
-                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                        <i class="mdi mdi-account" aria-hidden="true"></i>
-                                                    </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos" maxlength="30"  name="apellidos" value="" placeholder="Ingreses sus Apellidos" required autofocus>
-                                                   
-                                                </div>
-        
-                                            </div>
-                                                  
-                                            
-
-                                        </div><!--col-->
-
-                                        <div class="col-md-6">
-
-                                            <div class="form-group">
-                                                <label class="form-label">Cédula de Identidad</label> 
-                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
-                                                    </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="apellidos" maxlength="30"  name="apellidos" value="" placeholder="Cédula de Identidad" required autofocus>
-                                                   
-                                                </div>
-        
-                                            </div>
-                                                  
-                                            
-
-    </div>
-                                        <div class="col-md-6">
-
-                                            <div class="form-group">
-                                                <label class="form-label">Nivel Académico</label> 
-                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="fa fa-mortar-board" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-mortar-board" aria-label="fa fa-mortar-board"></i>
-                                                    </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="" maxlength="30"  name="" value="" placeholder="Nivel Académico" required autofocus>
-                                                   
-                                                </div>
-        
-                                            </div>
-                                                  
-                                            
-
-    </div>
-                                    
-                                    </div><!--row-->
-
-                            
-                                    </div><!--row-->
-
-                                  
-                                    <div class="row ">
-                                        <div class="col-md-4">
-
-                                            <div class="form-group">
-                                                <label class="form-label">Telf Móvil</label> 
-                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                        <i class="fe fe-phone" aria-hidden="true"></i>
-                                                    </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil" maxlength="11"  name="telf_movil" value="" placeholder="Ingrese su telefono" required autofocus>
-                                                   
-                                                </div>
-        
-                                            </div>
-                                                  
-                                            
-
-                                        </div><!--col-->
-
-                                        <div class="col-md-4">
-
-                                            <div class="form-group">
-                                                <label class="form-label">Teléfono Coorporativo (Si Posee)</label> 
-                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                        <i class="fe fe-phone-call" aria-hidden="true"></i>
-                                                    </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local" maxlength="30"  name="telf_local" value="<?php if(isset($registroviejo->telf_local)) echo ucwords($registroviejo->telf_local);?>" placeholder="Telefono Local" required autofocus>
-                                                   
-                                                </div>
-        
-                                            </div>
-                                                  
-                                            
-
-                                        </div><!--col-->
-                                        <div class="col-md-4">
-                                            <label  class="form-label">Correo</label>
-                                            <div class="form-group">
-                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                    <i class="zmdi zmdi-email" aria-hidden="true"></i>
-                                </a>
-                                <input class="input100 border-start-0 ms-0 form-control" type="email" placeholder="Email">
-                            </div>
-    </div>
-                                                
-                                             
-                                        </div>
-                                        
-                                    
-
-                                    
-                                    </div><!--row-->
-                                    <div class="row ">
-                                        <div class="col-md-4">
-
-                                            <div class="form-group">
-                                                <label class="form-label">Fecha de Nacimiento</label> 
-                                                <div class="wrap-input100 validate-input input-group" >
-                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                        <i class="fe fe-calendar" aria-hidden="true"></i>
-                                                    </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" type="date" id="datepicker"   name="datepicker" value="" placeholder="F. Nacimiento" required autofocus>
-                                                   
-                                                </div>
-        
-                                            </div>
-                                                  
-                                            
-
-                                        </div><!--col-->
-
-                                        <div class="col-md-4">
                                         <div class="form-group">
-                                            <label class="form-label">Edad</label> 
+                                            <label class="form-label">Nombre</label>
+                                            <div class="wrap-input100 validate-input input-group">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="mdi mdi-account" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" data-parsley-error-message="Este campo es requerido" type="text" id="nombres" maxlength="30" name="nombres" value="<?php if(isset($datos->nombre)) echo ucwords($datos->nombre);?>" placeholder="Ingrese su Nombre" required autofocus>
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <!--col-->
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Apellidos</label>
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="mdi mdi-account" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" data-parsley-error-message="Este campo es requerido" type="text" id="apellidos" maxlength="30" name="apellidos" value="<?php if(isset($datos->apellidos)) echo ucwords($datos->apellidos);?>" placeholder="Ingreses sus Apellidos" required autofocus>
+                                            </div>
+                                      </div>
+
+
+
+                                    </div>
+                                    <!--col-->
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Cédula de Identidad</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
+                                                </a>
+                                                <input  class="input100 border-start-0 ms-0 form-control" type="text" id="cedula" maxlength="30" name="cedula" value="<?php if(isset($datos->cedula)) echo ucwords($datos->cedula);?>" placeholder="Cédula de Identidad" required autofocus data-parsley-error-message="Este campo es requerido"
+                                                >
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                   
+                                   
+                                    <div class="col-md-4">
+                                        <div class="form-group ">
+                                            <label class="form-label">Nivel academico</label>
+                                        
+                                        </div>
+                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
+                                                </a>
+                                                <select class=" form-control show-tick" id="id_nivel_academico" name="id_nivel_academico" data-parsley-error-message="Este campo es requerido" required autofocus >
+                                                    <option value="">Selecciones una opción</option>
+                                                    <?php if(isset($academica)): ?>
+                                                            <?php foreach ($academica as $key => $academicas):?>
+                                                               
+                                                                <?php  if($academicas->id_instruccion == $datos->id_nivel_academico):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$academicas->id_instruccion."'>".$academicas->nivel."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$academicas->id_instruccion."'>".$academicas->nivel."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+
+
+                                                </select>
+                                               
+
+                                            </div>
+                                          
+                                    </div>
+                                    <div class="col-md-4 ">
+                                                <label  class="form-label text_center">Género</label><br>
+                                                <div class="form-group">
+                                                    <div class="form">
+                                                        <input name="genero" type="radio" id="genero" value="F" <?php if(isset($datos->genero)){ if(trim($datos->genero)=='F'){echo 'checked';}}?>/>
+                                                        <label for="genero">Femenino</label>
+                                                        <input name="genero" type="radio" id="genero" value="M" <?php if(isset($datos->genero)){ if(trim($datos->genero)=='M'){echo 'checked';}}?>/>
+                                                        <label for="genero2">Masculino</label><br>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                </div>
+                                <!--row-->
+                                <div class="row ">
+                                    <div class="col-md-4">
+
+                                        <div class="form-group">
+                                            <label class="form-label">Telf Móvil</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fe fe-phone" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_movil" maxlength="11" name="telf_movil" value="<?php if(isset($datos->tlf_celular)) echo ucwords($datos->tlf_celular);?>" placeholder="Ingrese su telefono" required autofocus data-parsley-error-message="Este campo es requerido">
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <!--col-->
+
+                                    <div class="col-md-4">
+
+                                        <div class="form-group">
+                                            <label class="form-label">Teléfono Coorporativo (Si Posee)</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fe fe-phone-call" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="telf_local" maxlength="30" name="telf_local" value="<?php if (isset($datos->tlf_coorparativo)) echo ucwords($datos->tlf_coorparativo); ?>" placeholder="Telefono Local"  autofocus data-parsley-error-message="Este campo es requerido">
+
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                    <!--col-->
+                                    <div class="col-md-4">
+                                        <label class="form-label">Correo</label>
+                                        <div class="form-group">
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="zmdi zmdi-email" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control"value="<?php if(isset($datos->email)) echo ucwords($datos->email);?>" id="correo1" type="email" name="email1" placeholder="Email" data-parsley-error-message="Este campo es requerido" required autofocus>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row ">
+                                    <div class="col-md-4">
+
+                                        <div class="form-group">
+                                            <label class="form-label">Fecha de Nacimiento</label>
+                                            <div class="wrap-input100 validate-input input-group">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="fe fe-calendar" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="edad" maxlength="2"  name="edad" value="" placeholder="edad" required autofocus>
-                                               
+                                                <input class="input100 form-control" type="date" id="fecha_nac" name="fecha_nac" value="<?php if(isset($datos->fecha_nac)) echo ucwords($datos->fecha_nac);?>" placeholder="F. Nacimiento" required autofocus data-parsley-error-message="Este campo es requerido">
+
                                             </div>
-    
+
                                         </div>
-                                    </div><!--col-->
+
+
+
+                                    </div>
+                                    <!--col-->
+
                                     <div class="col-md-4">
-                                    <div class="form-group">
-                                                <label class="form-label">Profesión u Oficio *</label> 
+                                            <div class="form-group">
+                                                <label class="form-label">Edad</label> 
                                                 <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                     <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                    <i class="fa fa-ship" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-ship" aria-label="fa fa-ship"></i>
+                                                        <i class="fe fe-calendar" aria-hidden="true"></i>
                                                     </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="" maxlength="30"  name="" value="" placeholder="Nivel Académico" required autofocus>
+                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="edad" maxlength="2"  name="edad" value="<?php if(isset($datos->edad)) echo ucwords($datos->edad);?>" placeholder="edad" required autofocus>
                                                    
                                                 </div>
         
                                             </div>
-                                    </div><!--col-->
-
-
-                                  
-
-                           
-                                 
-                                    <div class="row ">   
-                                    <div class="col-md-4">
-                                    <div class="form-group">
-                                                <label class="form-label">Talla de Pantalón *</label> 
-                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                        <i class="mdi mdi-account" aria-hidden="true"></i>
-                                                    </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" type="text" id="" maxlength="30"  name="" value="" placeholder="Talla de Pantalón" required autofocus>
-                                                   
-                                                </div>
-        
-                                            </div>
-                                    </div><!--col-->
+                                        </div>
+                                    <!--col-->
                                    
-                                       
-                                        <div class="col-md-4">
-                                        <div class="form-group">
-                                                <label class="form-label">Talla de Camisa*</label> 
-                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                        <i class="mdi mdi-account" aria-hidden="true"></i>
-                                                    </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" 
-                                                    type="text" id="" maxlength="5"  
-                                                    name="" 
-                                                    value="" 
-                                                    placeholder="Talla de Camisa" required autofocus>
-                                                   
-                                                </div>
-        
-                                            </div>
-                                          
-                                            
-                                        </div>
-                                        <div class="col-md-4">
-                                        <div class="form-group">
-                                                <label class="form-label">Nº de Calzado</label> 
-                                                <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                                    <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                        <i class="mdi mdi-account" aria-hidden="true"></i>
-                                                    </a>
-                                                    <input class="input100 border-start-0 ms-0 form-control" 
-                                                    type="number" id="" maxlength="5"  
-                                                    name="" 
-                                                    value="" 
-                                                    placeholder="Nº de Calzado" required autofocus>
-                                                   
-                                                </div>
-        
-                                            </div>
-                                          
-                                            
-                                        </div>
-                                    
-                                  
-                                  
-
-                                       
-                                    </div><!--row-->
-                                                          
-                                    <div class="row ">
                                     <div class="col-md-4">
-                                            <label  class="form-label">Estado</label>
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <select class="form-control show-tick" id="cod_estado" name="cod_estado">
+                                        <div class="form-group">
+                                            <label class="form-label">Profesión u Oficio </label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fa fa-ship" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-ship" aria-label="fa fa-ship"></i>
+                                                </a>
+                                            
+                                                    <select class="form-control show-tick" id="id_profesion_oficio" name="id_profesion_oficio" data-parsley-error-message="Este campo es requerido" required autofocus>
                                                     <option value="">Seleccione una opción</option>
-                                                <?php
-                                                    if(isset($estados)){
-                                                        foreach ($estados as $key => $estado) {
-                                                            if(isset($registroviejo->codigoestado) and $registroviejo->codigoestado == $estado->codigoestado){
-                                                                echo "<option selected value='".$estado->codigoestado."'>".$estado->nombre."</option>";     
-                                                            }else{
-                                                                echo "<option value='".$estado->codigoestado."'>".$estado->nombre."</option>";
-                                                            }
-                                                        }
-                                                    }
-                                                ?>
-                                                    </select>
-                                                 </div>
-                                            </div>
-                                        </div>
-
-                                    <div class="col-md-12">
-                                                <label  class="form-label">Si pertenece a la Estructura Municipal, Indicar ¿A que Municipio Pertenece?</label>
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" id="cod_municipio" name="cod_municipio">
-                                                        <option value="">Seleccione un Municipio</option>
-                                                        <?php
-                                                            if(isset($registroviejo->municipio)){
-                                                                echo "<option selected value='".$registroviejo->codigomunicipio."'>".$registroviejo->municipio."</option>";     
-                                                            }
-                                                        ?>
-                                                        </select>
-                                                    </div>
-                                                    <?php
-                                                        if(isset($registroviejo->estado)){
-                                                        echo '<small>Seleccione un estado para cambiar</small>'; 
-                                                        }
-                                                    ?>                                                    
-                                                </div>
-                                                
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <label  class="form-label">Si pertenece a la Estructura Parroquial, Indicar ¿A que Parroquia Pertenece?</label>
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <select class="form-control show-tick" id="cod_parroquia" name="cod_parroquia">
-                                                        <option value="">Seleccione una Parroquia</option>
-                                                        <?php
-                                                            if(isset($registroviejo->parroquia)){
-                                                                echo "<option selected value='".$registroviejo->codigoparroquia."'>".$registroviejo->parroquia."</option>";     
-                                                            }
-                                                        ?>
-                                                        </select>
-                                                    </div>
-                                                    <?php
-                                                        if(isset($registroviejo->estado)){
-                                                        echo '<small>Seleccione un estado para cambiar</small>'; 
-                                                        }
+                                                    <?php if(isset($responsabilidad_estructuras)): ?>
+                                                            <?php foreach ($profesion_oficio as $key => $profesion):?>
+                                                               
+                                                                <?php  if($profesion->id_profesion == $datos->id_profesion_oficio):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$profesion->id_profesion."'>".$profesion->desc_profesion."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
                                                     ?>
-                                                </div>
-                                                
-                                            </div>
-                                    <div class="col-md-12">
-                                        <label  class="form-label">¿responsabilidad que desempeña dentro de su estructura ?</label>
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <select class="form-control show-tick" id="movimiento_sociales" name="movimiento_sociales">
-                                                        <option value="">Seleccione una opción</option>
-                                                        <option value="0">Responsable Estadal de la Gran Misión Chamba Juvenil Saber y Trabajo</option>
-                                                        <option value="0">Responsable de Sala de la Gran Misión Chamba Juvenil Saber y Trabajo</option>
-                                                        <option value="0">Responsable Municipal de la GMCJSYT</option>
-                                                        <option value="0">Responsable Parroquial de la GMCJSYT</option>
-                                                        <option value="0">Responsable Vertice 1 ( Registro y Actualizacion de Datos)</option>
-                                                        <option value="0">Responsable Vértice 2 (Organizativo - Brigadas)</option>
-                                                        <option value="0">Responsable Vértice 3 (Formación)</option>
-                                                        <option value="0">Responsable Vértice 4 (Inserción Laboral)</option>
-                                                        <option value="0">Responsable Vértice 5 (Productivo - Emprendimiento)</option>
-                                                        <option value="0">Estructura Parroquial (Brigadista)</option>
-                                                        <option value="0">Responsable Vértice 6 (En lo Social -Vivienda)</option>
-                                                        <option value="0">Responsable Vértice 7 (Debate Nacional de Ley)</option>
-                                                        <option value="0">Responsable Vértice 8 (Comunicacional).</option>
-                                                     
 
-                                                    </select>
-                                                </div>
+
+                                                </select>
+
                                             </div>
-                                            
+
                                         </div>
-                                        <div class="col-md-6 align-items-end">
-                                            <label  class="form-label">¿A que estructura Pertenece?</label>
-                                            <div class="form-group">
-                                                <div class="form-line">
-                                                    <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
+                                    </div>
+                                    <!--col-->
+
+                                </div>
+
+                            </section>
+                            <h3>Direccion - Geolocalización</h3>
+                            <section>
+                                <div class="row ">
+
+                          
+
+                                    <div class="col-12 col-md-4">
+                                        <label class="form-label">¿responsabilidad en estructura ?</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select class="form-control show-tick" id="cod_responsabilidad" name="cod_responsabilidad" data-parsley-error-message="Este campo es requerido" required autofocus>
                                                     <option value="">Seleccione una opción</option>
-                                                    <option value="1">Estructura Estadal</option>
-                                                    <option value="2">Estructura Municipal</option>
-                                                    <option value="3">Estructura Parroquial</option>
-                                                    
-                                                    </select>
-                                                </div>
+                                                    <?php if(isset($responsabilidad_estructuras)): ?>
+                                                            <?php foreach ($responsabilidad_estructuras as $key => $movimiento):?>
+                                                               
+                                                                <?php  if($movimiento->id_tipos == $datos->id_responsabilidad_estructura):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$movimiento->id_tipos."'>".$movimiento->descripcion."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$movimiento->id_tipos."'>".$movimiento->descripcion."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+
+
+                                                </select>
                                             </div>
-                                            
                                         </div>
-                                    
-                                     
-                                  
 
-                                       
-                                    </div><!--row-->
-                        
-
-                                 
-                            
-                        <div class="row justify-content-center "> 
-                        <div class="col-md-8 justify-content-center">
-                                    <div class="small">Seleccione en el mapa su ubicación exacta</div>
-                                    <div class="border border-3" id="map"></div>
+                                    </div>
                              
-                                    <pre id="coordinates" class="coordinates"></pre>
+
+                                    
+
+                                    <div class="col-12 col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Talla de pantalon</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                <i class="mdi mdi-account-outline" data-bs-toggle="tooltip" title="" data-bs-original-title="mdi-account-outline" aria-label="mdi-account-outline"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="talla_pantalon"
+                                                data-parsley-error-message="Este campo es requerido" required  name="talla_pantalon" value="<?php if(isset($datos->talla_pantalon)) echo ucwords($datos->talla_pantalon);?>" placeholder="Talla de pantalon" required autofocus data-parsley-error-message="Este campo es requerido"/>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Talla de Camisa</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                <i class="fa fa-user-md" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-user-md" aria-label="fa fa-user-md"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" type="text" id="talla_camisa" maxlength="30" name="talla_camisa" value="<?php if(isset($datos->talla_camisa)) echo ucwords($datos->talla_camisa);?>" placeholder="talla_camisa" required autofocus data-parsley-error-message="Este campo es requerido">
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+                                </div>
+                                <!--row-->
+
+                                <div class="row">
+                                <div class="col-md-4">
+                                <label  class="form-label">Estado</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control show-tick" 
+                                        
+                                        data-parsley-error-message="Este campo es requerido"
+                                        id="cod_estado" name="cod_estado" required>
+                                        <option value="Estado">Seleccione una opción</option>
+                                    <?php
+                                        if(isset($estados)){
+                                            foreach ($estados as $key => $estado) {
+                                                if(isset($estado->codigoestado) and $estado->codigoestado == $datos->codigoestado){
+                                                    echo "<option selected value='".$estado->codigoestado."'  data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";     
+                                                }else{
+                                                    echo "<option value='".$estado->codigoestado."' data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";
+                                                }
+                                            }
+                                        }
+                                    ?>
+                                        </select>
+                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label  class="form-label">Municipio</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select
+                                        data-parsley-error-message="Este campo es requerido" required
+                                        class="form-control show-tick" id="cod_municipio" name="cod_municipio"    required                                     data-parsley-error-message="Este campo es requerido">
+                                        <option value="municipio">Seleccione un Municipio</option>
+                                        <?php
+                                            if(isset($datos_empresa->municipio)){
+                                                echo "<option selected value='".$datos_empresa->codigomunicipio."'>".$datos_empresa->municipio."</option>";     
+                                            }
+                                        ?>
+                                        </select>
+                                    </div>
+                                    <?php
+                                        if(isset($datos->estado)){
+                                        echo '<small>Seleccione un estado para cambiar</small>'; 
+                                        }
+                                    ?>                                                    
                                 </div>
                                 
-                        <div class="col-md-8">
-                        <div class="form-group">
-                                        <label class="form-label">Latitud</label> 
-                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="mdi mdi-map" aria-hidden="true"></i>
-                                            </a>
-                                            <input readonly  class="input100 border-start-0 ms-0 form-control" type="text" id="latitud"   name="latitud" value="<?php if(isset($registroviejo->latitud)) echo ucwords($registroviejo->latitud);?>" placeholder="latitud" required autofocus>
-                                           
-                                        </div>
+                            </div>
 
+                            <div class="col-md-4">
+                                <label  class="form-label">Parroquia</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control show-tick"
+                                        data-parsley-error-message="Este campo es requerido"
+                                        id="cod_parroquia" name="cod_parroquia" required>
+                                        <option value="parroquia">Seleccione una Parroquia</option>
+                                        <?php
+                                            if(isset($datos->parroquia)){
+                                                echo "<option selected value='".$datos_empresa->codigoparroquia."' data-latitud=".$datos->latitud."  data-longitud=".$datos->longitud."  >".$datos->parroquia."</option>";     
+                                            }
+                                        ?>
+                                        </select>
                                     </div>
-                                          
-                                    
-
-                                    <div class="form-group">
-                                        <label class="form-label">Longitud</label> 
-                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
-                                            <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
-                                                <i class="mdi mdi-map" aria-hidden="true"></i>
-                                            </a>
-                                            <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud"   name="longitud" value="<?php if(isset($registroviejo->longitud)) echo ucwords($registroviejo->longitud);?>" placeholder="longitud" required autofocus>
-                                           
-                                        </div>
-
-                                    </div>
-                            
-                        </div>
-                      
-
-                        
-
-                              
+                                    <?php
+                                        if(isset($datos_empresa->estado)){
+                                        echo '<small>Seleccione un estado para cambiar</small>'; 
+                                        }
+                                    ?>
+                                </div>
                                 
                             </div>
-                          
-  
-                        </div>
-                                             
-                                    <div class="row  justify-content-center  mt-2">
-                                        <div class="col-md-12 ">
-                                            <button class="btn btn-primary btn-block" id="boton" type="botton">Guardar</button>
+
+
+                                </div>
+                                <!--row-->
+
+
+
+
+                                <div class="row ">
+                               
+                                    <div class="col-md-4">
+                                        <label class="form-label"> Dirección Especifica</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea maxlength="255" rows="4" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..." data-parsley-error-message="Este campo es requerido" required autofocus><?php if (isset($datos->direccion)) echo $datos->direccion; ?></textarea>
+                                            </div>
                                         </div>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <div class="form-group">
+                                            <label class="form-label">Latitud</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="mdi mdi-map" aria-hidden="true"></i>
+                                                </a>
+                                                <input readonly class="input100 border-start-0 ms-0 form-control" type="text" id="latitud" name="latitud" value="<?php if (isset($datos->latitud))
+                                                                                                                                                                        echo $datos->latitud ?>" placeholder="latitud" required autofocus>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-4">
+
+                                
+                                        <div class="form-group">
+                                            <label class="form-label">Longitud</label>
+                                            <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="mdi mdi-map" aria-hidden="true"></i>
+                                                </a>
+                                                <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud" name="longitud" value="<?php if (isset($datos->longitud))
+                                                                                                                                                                        echo $datos->longitud ?>" placeholder="longitud" required autofocus data-parsley-error-message="Este campo es requerido" required autofocus>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                        
+                                    </div>
+
+
+                                   
+
+                                        
+                                
+                                    <div class="col-md-12 justify-content-center">
+                                      
+                                    
+                                        <div class="small">Seleccione en el mapa su ubicación exacta</div>
+                                        <div id="map"></div>
+
+                                        <pre id="coordinates" class="coordinates"></pre>
+                                        <button type="button" id="seleccion-ubicacion" class="btn btn-icon ubicacion-c btn-success" data-bs-toggle="tooltip" data-bs-placement="top" title="Tu ubicación"><i class="fe fe-map-pin"></i></button>
 
                                     </div>
-                                  
-                                </form>                       
-                        </div>
-           
+                             
+                         
 
+                                
+
+                            </section>
+
+                    
+
+                                    <?php if(!$datos){
+                                        echo '<h3 >Asignar Contraseña</h3>';
+                                        echo '<section>';
+                                        echo '<div class="form-group">';
+                                        echo '<input type="email" readonly id="correo2" name="email2" class="form-control" placeholder="Email" data-parsley-error-message="Este campo es requerido" required autofocus />';
+                                        echo '</div>';
+                                        echo '<div class="form-group">';
+                                        echo '<input id="password" type="text" name="Password" class="form-control" placeholder="Password" data-parsley-error-message="Este campo es requerido" required autofocus>';
+                                        echo '</div>';
+                                     
+                                        
+                                        echo '</section>';
+
+
+                                    }?>
+                                
+
+                                   
+                            </div>
+                        </div>
+
+                        </div>
                     </div>
                 </div>
-            </div>              
+            </div>
         </div>
-    </div>
 
-        
+    </form>
 
 
-   
-        
+    <input type="hidden" name="id_brigada_estructua" id="id_brigada_estructua" value="<?php echo $id_brigada_estructura;?>">
+
+
+
+
 
 
 </section>
-<script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>
+<script type="text/javascript">
+    var base_url = "<?php echo base_url(); ?>";
+</script>

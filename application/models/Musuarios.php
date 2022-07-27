@@ -25,7 +25,8 @@ class Musuarios extends CI_Model
 	public function getEstados(){
 
 		$this->db->from('tbl_estado');
-		$this->db->where('activo','1');
+		$this->db->where('activo','1');		
+		$this->db->where('codigoestado !=','26');
 		$query = $this->db->get();
 
 			if ($query->num_rows() > 0) 
@@ -43,7 +44,30 @@ class Musuarios extends CI_Model
 		$this->db->limit(1);
 /* 		$this->db2->where('cedula',$this->session->userdata('cedula')); */
 		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
-		$this->db->where('codigo',$this->session->userdata('codigo'));
+		//$this->db->where('codigo',$this->session->userdata('codigo'));
+		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado','left');
+		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio','left');
+		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia','left');
+		$resultado = $this->db->get('tbl_usuarios_personales');
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->row();
+		}else{
+			return FALSE;
+		}
+	}
+	public function getUsuarioRegistradoPersonale($id_usuario){
+
+		$this->db->select(' tbl_usuarios_personales.*,
+							tbl_estado.nombre AS estado, 
+							tbl_municipio.nombre AS municipio, 
+							tbl_parroquia.nombre AS parroquia							
+							');
+		$this->db->limit(1);
+/* 		$this->db2->where('cedula',$this->session->userdata('cedula')); */
+		$this->db->where('id_usuario',$id_usuario);
+		// $this->db->where('codigo',$codigo);
 		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado');
 		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio');
 		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia');
@@ -79,6 +103,49 @@ class Musuarios extends CI_Model
 		}
 	}
 
+
+	
+	public function getUsuarioChambistaCedula($cedula){
+
+		$this->db->select(' tbl_usuarios_personales.*,
+							tbl_estado.nombre AS estado, 
+							tbl_municipio.nombre AS municipio, 
+							tbl_parroquia.nombre AS parroquia,cedula							
+							');
+		$this->db->limit(1);
+		$this->db->where('cedula',$cedula);
+		$this->db->join('tbl_usuarios', 'tbl_usuarios.id_usuario = tbl_usuarios_personales.id_usuario');
+		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado');
+
+		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio');
+		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia');
+		$query = $this->db->get('tbl_usuarios_personales');
+
+		if ($query->num_rows()) $valor = $query->row();
+		else $valor = false;
+		return $valor;
+	}
+
+		
+	public function getUsuarioChambistaID($id){
+
+		$this->db->select(' tbl_usuarios_personales.*,
+							tbl_estado.nombre AS estado, 
+							tbl_municipio.nombre AS municipio, 
+							tbl_parroquia.nombre AS parroquia,cedula,							
+							');
+		$this->db->limit(1);
+		$this->db->where('tbl_usuarios.id_usuario',$id);
+		$this->db->join('tbl_usuarios', 'tbl_usuarios.id_usuario = tbl_usuarios_personales.id_usuario');
+		$this->db->join('tbl_estado', 'tbl_estado.codigoestado = tbl_usuarios_personales.codigoestado');
+		$this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_usuarios_personales.codigomunicipio');
+		$this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_usuarios_personales.codigoparroquia');
+		$query = $this->db->get('tbl_usuarios_personales');
+
+		if ($query->num_rows()) $valor = $query->row();
+		else $valor = false;
+		return $valor;
+	}
 	public function getUsuarioRegistradoAcademico(){
 
 		$this->db->select('*');
@@ -118,6 +185,25 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}
 	}
+	public function AcademicoConsulta($id__exp_lab){
+
+		$this->db->select(' *');
+
+		$this->db->where('activo', 1);
+
+		$this->db->where('id_usuario',$id__exp_lab);
+		$this->db->join('tbl_instruccion', 'tbl_instruccion.id_instruccion = tbl_usuarios_academicos.id_instruccion');
+		$this->db->join('tbl_estado_inst', 'tbl_estado_inst.id_estado_inst = tbl_usuarios_academicos.id_estado_inst');
+		$resultado = $this->db->get('tbl_usuarios_academicos');
+		
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->result();
+		}else{
+			return FALSE;
+		}
+	}
 
 	public function getUsuarioRegistradoExperiencia(){
 
@@ -126,6 +212,23 @@ class Musuarios extends CI_Model
 		$this->db->where('activo',1);
 		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
 		$this->db->where('codigo',$this->session->userdata('codigo'));
+		$this->db->join('tbl_sector_empresas', 'tbl_sector_empresas.id_sector_empresa = tbl_usuarios_experiencia_laboral.area');
+		$resultado = $this->db->get('tbl_usuarios_experiencia_laboral');
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->result();
+		}else{
+			return FALSE;
+		}
+	}
+	public function getUsuarioRegistradoExperiencias($id_usuario){
+
+		$this->db->select(' *');
+
+		$this->db->where('activo',1);
+		$this->db->where('id_usuario',$id_usuario);
+		// $this->db->where('codigo',$codigo);
 		$this->db->join('tbl_sector_empresas', 'tbl_sector_empresas.id_sector_empresa = tbl_usuarios_experiencia_laboral.area');
 		$resultado = $this->db->get('tbl_usuarios_experiencia_laboral');
 
@@ -194,10 +297,66 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}
 	}	
+	public function getAcademi_canbistascaID($id_usu_aca){
+
+		$this->db->select(' *');
+
+		$this->db->limit(1);
+		$this->db->where('id_usu_aca',$id_usu_aca);
+		$this->db->where('activo',1);
+		$this->db->join('tbl_instruccion', 'tbl_instruccion.id_instruccion = tbl_usuarios_academicos.id_instruccion');
+		$this->db->join('tbl_estado_inst', 'tbl_estado_inst.id_estado_inst = tbl_usuarios_academicos.id_estado_inst');
+		$resultado = $this->db->get('tbl_usuarios_academicos');
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->row();
+		}else{
+			return FALSE;
+		}
+	}	
+	public function getAcademica_chambistasID($id){
+
+		$this->db->select('tbl_usuarios_academicos. *');
+
+		$this->db->limit(1);
+		$this->db->where('id_usuario',$id);
+		$this->db->where('activo',1);
+		$this->db->join('tbl_instruccion', 'tbl_instruccion.id_instruccion = tbl_usuarios_academicos.id_instruccion');
+		$this->db->join('tbl_estado_inst', 'tbl_estado_inst.id_estado_inst = tbl_usuarios_academicos.id_estado_inst');
+		$query = $this->db->get('tbl_usuarios_academicos');
+
+
+		if ($query->num_rows()) $valor = $query->row();
+		else $valor = false;
+		return $valor;
+	}	
 
 	public function registroproductivo($data){
 
 		$this->db->trans_begin();
+		
+		$this->db->insert('tbl_usuarios_productivos',$data);
+
+
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			return true;
+		}
+
+
+	}
+	public function registroproductivos($data){
+
+		$this->db->trans_begin();
+		$this->db->where('id_usuario',$data['id_usuario']);
+
 
 		$this->db->insert('tbl_usuarios_productivos',$data);
 
@@ -260,6 +419,11 @@ class Musuarios extends CI_Model
 	}
 
 	public function registrarPersonales($data){
+		$latitud = $data['latitud'];
+			$longitud = $data['longitud'];
+		
+			$latitud = number_format($latitud,18, '.', '.');
+			$longitud = number_format($longitud, 18, '.', '.');
 
 		$jovenes = array(
 				/* 'nac' => $data['nac'], */
@@ -280,9 +444,14 @@ class Musuarios extends CI_Model
 				'aborigen' => $data['aborigen'],
 				'hijo' => $data['hijo'],
 				'hijo' => $data['hijo'],
+				'id_movimiento_religioso' => $data['id_movimiento_religioso'],
+				'id_movimiento_sociales' => $data['id_movimiento_sociales'],
+				'longitud' => $longitud,
+				'latitud' => $latitud,
 				'codigo' => $this->session->userdata('codigo'),
 				'id_usuario' => $this->session->userdata('id_usuario'),
 				 'id_profesion_oficio' => $data['id_profesion_oficio'],
+				 
 				 'edad' => $data['edad']
 		);
 
@@ -430,8 +599,25 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}
 	}
+	public function actualizarAcademicos($data){
+
+		$this->db->where('id_usu_aca', $data['id_usu_aca']);
+		$this->db->where('id_usuario', $data['id_usuario']);
+		$this->db->update('tbl_usuarios_academicos', $data);
+			
+		if ($this->db->affected_rows()) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}
+	}
 
 	public function actualizarPersonales($data){
+			// 		guardar una latitud, por ejemplo, tomada del Google Maps, 
+			$latitud = $data['latitud'];
+			$longitud = $data['longitud'];
+		
+			
 			$jovenes = array(
 				/* 'nac' => $data['nac'], */
 				'nombres' => $data['nombres'],
@@ -449,10 +635,15 @@ class Musuarios extends CI_Model
 				'genero' => $data['genero'],
 				'estcivil' => $data['estcivil'],
 				'aborigen' => $data['aborigen'],
+				'id_movimiento_religioso' => $data['id_movimiento_religioso'],
+				'id_movimiento_sociales' => $data['id_movimiento_sociales'],
 				'hijo' => $data['hijo'],
+				'longitud' => $longitud,
+				'latitud' => $latitud,
 				'codigo' => $this->session->userdata('codigo'),
 				'id_usuario' => $this->session->userdata('id_usuario'),
 				'id_profesion_oficio' => $data['id_profesion_oficio'],
+			
 				'edad' => $data['edad']
 		);
 
@@ -467,6 +658,34 @@ class Musuarios extends CI_Model
 		}
 
 	}
+	public function actualizarChambista($data,$id){
+			// 		guardar una latitud, por ejemplo, tomada del Google Maps, 
+		
+		
+		$this->db->where('id_usuario', $id);
+		$this->db->update('tbl_usuarios_personales', $data);
+			
+		if ($this->db->affected_rows()) {
+			return true;
+		}else {
+			return false;
+		}
+
+	}
+
+	public function update_chambista($datos,$id){
+        
+		$this->db->where('id_usuario_personal', $id);
+        $this->db->update('public.tbl_usuarios_personales', $datos);
+
+        if($this->db->affected_rows() > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+
+}
 
 	public function actualizarPorcentajePerfil(){
 		$porcentaje_perfil = 0;
@@ -637,6 +856,20 @@ class Musuarios extends CI_Model
 		}			
 	}
 
+	public function eliminarchambas($id_usuario){
+
+		$this->db->where('id_usuario', $id_usuario);
+		// $this->db->where('codigo', $this->session->userdata('codigo'));
+		
+		$this->db->delete('tbl_usuarios_productivos');
+
+		if ($this->db->affected_rows()) {
+			return TRUE;
+		}else {
+			return FALSE;
+		}			
+	}
+
 	public function eliminarbrigada($id_brigada){
 
 		$this->db->where('id_brigada', $id_brigada);
@@ -707,6 +940,30 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}			
 	}
+	public function consultaradmin($datos){
+
+		$this->db->from('public.usuarios_admin');
+		$this->db->where('id_usuarios_admin',$datos['id_admin']);
+		$resultado = $this->db->get();
+
+		if ($resultado->num_rows() > 0) {
+			return $resultado->result();
+		}else{
+			return FALSE;
+		}			
+	}
+	public function consultarEstructura($datos){
+
+		$this->db->from('public.tbl_estructuras');
+		$this->db->where('id_usuario',$datos['id_admin']);
+		$resultado = $this->db->get();
+
+		if ($resultado->num_rows() > 0) {
+			return $resultado->result();
+		}else{
+			return FALSE;
+		}			
+	}
 	public function cambiarPasswordJoven($datos){
 
 		$data = array(
@@ -715,6 +972,38 @@ class Musuarios extends CI_Model
 
 		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
 		$this->db->update('public.tbl_usuarios', $data);
+
+		if ($this->db->affected_rows()) {
+			return TRUE;
+		}else{
+			return FALSE;
+			}
+
+	}
+	public function cambiarPasswor_admin($datos){
+
+		$data = array(
+		        'password' => $datos['new_password']
+		);
+
+		$this->db->where('id_usuarios_admin',$datos['id_admin']);
+		$this->db->update('public.usuarios_admin', $data);
+
+		if ($this->db->affected_rows()) {
+			return TRUE;
+		}else{
+			return FALSE;
+			}
+
+	}
+	public function cambiarPasswor_estructura($datos){
+
+		$data = array(
+		        'password' => $datos['new_password'],
+		);
+
+		$this->db->where('id_usuario',$datos['id_admin']);
+		$this->db->update('public.estructuras', $data);
 
 		if ($this->db->affected_rows()) {
 			return TRUE;
@@ -885,6 +1174,20 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}	
 	}
+	public function getUsuariosProductivos($id_usuario){
+		$this->db->limit(1);
+		$this->db->join('tbl_chambas', 'tbl_chambas.id_chamba = tbl_usuarios_productivos.tipo_chamba',"LEFT");
+		$this->db->where('id_usuario',$id_usuario);
+		// $this->db->where('codigo',$this->session->userdata('codigo'));
+		$resultado = $this->db->get('public.tbl_usuarios_productivos');
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->row();
+		}else{
+			return FALSE;
+		}	
+	}
 
 	public function getUsuariosVivienda(){
 		$this->db->limit(1);
@@ -974,7 +1277,9 @@ class Musuarios extends CI_Model
 		else
 		{
 		        $this->db->trans_commit();
-		        return TRUE;
+	            $insert_id = $this->db->insert_id();
+
+				return  $insert_id;
 		}		
 	}
 
@@ -992,7 +1297,7 @@ class Musuarios extends CI_Model
 		if ($query->num_rows() > 0) 
 			return $query->result();
 		else
-			return false;
+			return [];
 	}
 
 	public function getParroquias($data){
@@ -1000,7 +1305,7 @@ class Musuarios extends CI_Model
 		$codigoestado = $data['codigoestado'];
 		$codigomunicipio = $data['codigomunicipio'];
 
-		$this->db->select('codigoparroquia, nombre');
+		$this->db->select('*');
 		$this->db->from('tbl_parroquia');
 		$this->db->order_by('nombre', 'ASC');
 		$this->db->where('codigoestado', $codigoestado);
@@ -1010,7 +1315,7 @@ class Musuarios extends CI_Model
 		if ($query->num_rows() > 0) 
 			return $query->result();
 		else
-			return false;
+			return [];
 	}
 
 	public function verificarCodigoUsuario($codigo){
@@ -1029,6 +1334,20 @@ class Musuarios extends CI_Model
 		$this->db->limit(1);
 		$this->db->where('codigo',$this->session->userdata('codigo'));
 		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
+		$resultado = $this->db->get('public.tbl_usuarios');
+
+
+		if ($resultado->result() > 0) {
+			return $resultado->row();
+		}else{
+			return FALSE;
+		}	
+	}
+	public function getUsuarios($id_usuario){
+
+		$this->db->limit(1);
+		
+		$this->db->where('id_usuario',$id_usuario);
 		$resultado = $this->db->get('public.tbl_usuarios');
 
 

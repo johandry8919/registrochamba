@@ -110,3 +110,77 @@ function index() {
         }
     });
 }
+
+
+reporte_estados=JSON.parse(reporte_estados);
+console.log(reporte_estados)
+
+if(reporte_estados.valor)
+var max = Math.max(...reporte_estados.valor);
+
+    /* Bar-Chart1 */
+
+    var ctx = document.getElementById("chartBar1").getContext('2d');
+    if(reporte_estados.valor)
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: reporte_estados.campo,
+            datasets: [{
+                label: 'Estructuras',
+                data:reporte_estados.valor,
+                borderWidth: 2,
+                backgroundColor: '#6c5ffc',
+                borderColor: '#6c5ffc',
+                borderWidth: 2.0,
+                pointBackgroundColor: '#ffffff',
+
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            legend: {
+                display: true
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: max,
+                        fontColor: "#9ba6b5",
+                    },
+                    gridLines: {
+                        color: 'rgba(119, 119, 142, 0.2)'
+                    }
+                }],
+                xAxes: [{
+                    barPercentage: 0.4,
+                    barValueSpacing: 0,
+                    barDatasetSpacing: 0,
+                    barRadius: 0,
+                    ticks: {
+                        display: true,
+                        fontColor: "#9ba6b5",
+                    },
+                    gridLines: {
+                        display: false,
+                        color: 'rgba(119, 119, 142, 0.2)'
+                    }
+                }]
+            },
+            legend: {
+                labels: {
+                    fontColor: "#9ba6b5"
+                },
+            },
+        }
+    });
+
+    $("#select-estructura").change(function () {
+
+       var id_rol =  $(this).val();
+
+       location.href ='?idrol='+id_rol;
+
+    })

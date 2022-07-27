@@ -422,18 +422,28 @@ a.text-primary:focus {
     border-color: var(--primary-bg-color) !important;
 }
 
-.login-img {
-    position: relative;
-    background-image: url(../images/media/bg2.jpg);
+.fondo-login {
+  
+
+    background-image: url(../images/fondo.png);
+
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+
+
+
 }
 
+/*
 .login-img::before {
     content: "";
     background: linear-gradient(to right, var(--primary06) 0%, #05c3fb91 100%);
     height: 100%;
     width: 100%;
     position: absolute;
-}
+}*/
 
 .avatar {
     background: var(--primary02) no-repeat center/cover;

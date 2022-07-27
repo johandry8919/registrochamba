@@ -1,4 +1,5 @@
 <div class="app-header header sticky">
+   
                 <div class="container-fluid main-container">
                     <div class="d-flex">
                   
@@ -6,7 +7,7 @@
                         <!-- sidebar-toggle-->
                         <a class="logo-horizontal " href="<?php echo base_url();?>">
                             <img src="<?php echo base_url();?>/assets/images/brand/logo.png" class="header-brand-img desktop-logo" alt="logo">
-                            <img src="<?php echo base_url();?>/assets/images/brand/logo-3.png" class="header-brand-img light-logo1" alt="logo">
+                            <img src="<?php echo base_url();?>/img/logo-nuevo-chamba.png" class="header-brand-img light-logo1" alt="logo">
                         </a>
 
                         <div class="d-flex order-lg-2 ms-auto header-right-icons">
@@ -79,7 +80,7 @@
                                                 </div>
                                                 <div class="dropdown-divider m-0"></div>
                                                 <a class="dropdown-item" href="<?php echo base_url();?>cambiarclave">
-                                                    <i class="dropdown-icon fe fe-user"></i>  Cambiar Contraseña
+                                                    <i class="dropdown-icon fe fe-user"></i>  Cambiar Contraseñas
                                                 </a>
                                               
                                            

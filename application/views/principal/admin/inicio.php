@@ -1,6 +1,6 @@
 
                         <!-- ROW-1 -->
-                        <div class="row">
+                     <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-12 col-xl-3">
@@ -9,7 +9,7 @@
                                                 <div class="d-flex">
                                                     <div class="mt-2">
                                                         <h6 class="">Total usuarios registrados</h6>
-                                                        <h2 class="mb-0 number-font">44,278</h2>
+                                                        <h2 class="mb-0 number-font"><?php echo $total_usuarios->total ?></h2>
                                                     </div>
                                                     <div class="ms-auto">
                                                         <div class="chart-wrapper mt-1">
@@ -18,9 +18,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <span class="text-muted fs-12"><span class="text-secondary"><i
+                                                <!--span class="text-muted fs-12"><span class="text-secondary"><i
                                                             class="fe fe-arrow-up-circle  text-secondary"></i> 5%</span>
-                                                   Ultima semana</span>
+                                                   Ultima semana</span-->
                                             </div>
                                         </div>
                                     </div>
@@ -29,8 +29,8 @@
                                             <div class="card-body">
                                                 <div class="d-flex">
                                                     <div class="mt-2">
-                                                        <h6 class="">Sin emplemos</h6>
-                                                        <h2 class="mb-0 number-font">67,987</h2>
+                                                        <h6 class="">Registros Completados</h6>
+                                                        <h2 class="mb-0 number-font"><?php echo $completados->total ?></h2>
                                                     </div>
                                                     <div class="ms-auto">
                                                         <div class="chart-wrapper mt-1">
@@ -39,9 +39,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <span class="text-muted fs-12"><span class="text-pink"><i
+                                                <!--span class="text-muted fs-12"><span class="text-pink"><i
                                                             class="fe fe-arrow-down-circle text-pink"></i> 0.75%</span>
-                                                   Ultimos 6 dias</span>
+                                                   Ultimos 6 dias</span-->
                                             </div>
                                         </div>
                                     </div>
@@ -51,7 +51,7 @@
                                                 <div class="d-flex">
                                                     <div class="mt-2">
                                                         <h6 class="">Total Empresas</h6>
-                                                        <h2 class="mb-0 number-font">$76,965</h2>
+                                                        <h2 class="mb-0 number-font"><?php echo $total_empresas->total ?></h2>
                                                     </div>
                                                     <div class="ms-auto">
                                                         <div class="chart-wrapper mt-1">
@@ -60,9 +60,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <span class="text-muted fs-12"><span class="text-warning"><i
+                                                <!--span class="text-muted fs-12"><span class="text-warning"><i
                                                             class="fe fe-arrow-up-circle text-warning"></i> 0.6%</span>
-                                                   Ultima semana</span>
+                                                   Ultima semana</span-->
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                                                 <div class="d-flex">
                                                     <div class="mt-2">
                                                         <h6 class="">Total Universidades</h6>
-                                                        <h2 class="mb-0 number-font">$59,765</h2>
+                                                        <h2 class="mb-0 number-font"><?php echo $total_universidades->total ?></h2>
                                                     </div>
                                                     <div class="ms-auto">
                                                         <div class="chart-wrapper mt-1">
@@ -81,9 +81,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <span class="text-muted fs-12"><span class="text-warning"><i
+                                                <!--span class="text-muted fs-12"><span class="text-warning"><i
                                                             class="fe fe-arrow-up-circle text-warning"></i> 0.6%</span>
-                                                   Ultima semana</span>
+                                                   Ultima semana</span-->
                                             </div>
                                         </div>
                                     </div>
@@ -95,26 +95,42 @@
                         
                         <!-- ROW-2 -->
                         <div class="row">
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-9">
+
+                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Registros por mes</h3>
+                                    <div class="form-group">
+                                    <select class="form-control" id="select-estructura">
+
+                                    <option  value="0">Todas</option>
+                                    <?php 
+                                    
+                                    foreach ($roles as $rol):?>
+                                    <option value="<?php echo $rol->id_rol?>"
+                                   <?php if(isset($_GET['idrol']) && $_GET['idrol'] == $rol->id_rol) echo "selected";?>
+                                    
+                                    
+                                    > <?php echo $rol->nombre?></option>
+                                    <?php endforeach;?>
+                                    </select>
+                                    </div>                    
+                              
                                     </div>
                                     <div class="card-body">
                                         <div class="d-flex mx-auto text-center justify-content-center mb-4">
                                             <div class="d-flex text-center justify-content-center me-3"><span
-                                                    class="dot-label bg-primary my-auto"></span>Registros completados</div>
-                                            <div class="d-flex text-center justify-content-center"><span
-                                                    class="dot-label bg-secondary my-auto"></span>Nuevos usuarios</div>
+                                                    class="dot-label bg-primary my-auto"></span>Historico</div>
+                                     
                                         </div>
                                         <div class="chartjs-wrapper-demo">
-                                            <canvas id="transactions" class="chart-dropshadow"></canvas>
+                                            <canvas id="chartBar1" class="chart-dropshadow"></canvas>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            
                             <!-- COL END -->
-                            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
+                            <!-- div class="col-sm-12 col-md-12 col-lg-12 col-xl-3">
                                 <div class="card overflow-hidden">
                                     <div class="card-body pb-0 bg-recentorder">
                                         <h3 class="card-title text-white">Usuarios creados</h3>
@@ -153,7 +169,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div -->
                             <!-- COL END -->
                         </div>
                         <!-- ROW-2 END -->

@@ -25,7 +25,7 @@
     <link href="<?php echo base_url(); ?>assets/css/dark-style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/transparent-style.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/css/skin-modes.css" rel="stylesheet" />
-
+    <link href="<?php echo base_url()?>assets/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <!--- FONT-ICONS CSS -->
     <link href="<?php echo base_url(); ?>/assets/css/icons.css" rel="stylesheet" />
 
@@ -34,7 +34,7 @@
 
 </head>
 
-<body class="app sidebar-mini ltr">
+<body class="app sidebar-mini ltr fondo-login">
 
     <!-- BACKGROUND-IMAGE -->
     <div class="login-img">
@@ -89,7 +89,7 @@
                 <!-- CONTAINER OPEN -->
                 <div class="col col-login mx-auto mt-7">
                     <div class="text-center">
-                        <img src="<?php echo base_url(); ?>/img/logo-principal.png" class="header-brand-img" alt="" width="50" style="
+                        <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50" style="
   height:200px; 
 
 
@@ -117,7 +117,7 @@
                                     <div class="tab-content">
 
                                         <div class="tab-pane active" id="tab5">
-                                            <form class="login100-form validate-form" id="sign_in" method="POST" action="<?php echo base_url(); ?>Cusuarios/ingresarUsuario">
+                                            <form class="login100-form validate-form" id="formulario-login" method="POST" action="<?php echo base_url(); ?>Cusuarios/ingresarUsuario">
 
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
@@ -131,7 +131,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="<?php echo set_value('password'); ?>" maxlength="16" placeholder="Contraseña" required autofocus id="password" n type="password" placeholder="Password">
+                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="<?php echo set_value('password'); ?>" maxlength="16" placeholder="Contraseña" required autofocus id="password"  type="password" placeholder="Password">
                                             </div>
                                             <div class="text-end pt-4">
                                                 <p class="mb-0"><a href="<?php echo base_url(); ?>recuperarclave" class="text-primary ms-1">Olvido su contraseña?</a></p>
@@ -139,8 +139,8 @@
                                             <div class="container-login100-form-btn">
 
 
-                                                <a type="submit" href="<?php echo base_url(); ?>admin/inicio" class="login100-form-btn btn-primary">
-                                                    Ingresar
+                                                <button type="submit"  id="loginbtn" class="btn btn-primary login100-form-btn btn-primary btn">
+                                                    Ingresar </button>
 </a>
                                             </div>
                                          
@@ -152,28 +152,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php if ($this->session->flashdata('mensajeexito')) { ?>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="alert alert-success"> <?php echo $this->session->flashdata('mensajeexito'); ?></div>
-                                    </div>
-                                </div>
-                            <?php } ?>
-                            <?php if ($this->session->flashdata('mensajeerror')) { ?>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?></div>
-                                    </div>
-                                </div>
-                                <br>
-                            <?php } ?>
-                            <?php if (isset($mensaje2)) { ?>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="alert alert-success"> <?php echo $mensaje2; ?></div>
-                                    </div>
-                                </div>
-                            <?php } ?>
+                          
 
                
                     </div>
@@ -205,9 +184,11 @@
     <!-- Color Theme js -->
     <script src="<?php echo base_url(); ?>assets/js/themeColors.js"></script>
 
+    <script src="<?php echo base_url();?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- CUSTOM JS -->
     <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
-
+    <script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>
+    <script src="<?php echo base_url(); ?>assets/js/usuarios_admin.js"></script>
 </body>
 
 </html>

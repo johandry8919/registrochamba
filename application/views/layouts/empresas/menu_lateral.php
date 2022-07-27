@@ -4,7 +4,7 @@
                     <div class="side-header pt-6">
                         <a class="header-brand1" href="<?php echo base_url();?>">
                           
-                            <img src="<?php echo base_url();?>/img/logo-principal.png" class="header-brand-img" alt="" width="50"
+                            <img src="<?php echo base_url();?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50"
                             style="height:100px; " class="header-brand-img light-logo1 "
                                 alt="logo">
                         </a>
@@ -39,9 +39,31 @@
                                      class="slide-item <?php if($this->uri->segment(1)=='nuevaoferta' || $this->uri->segment(1)=='nuevaoferta') echo 'active';?>"
                                          >Nueva Oferta Empleo</a></li>
 
-                                         <li><a href="#"
+                                         <li><a href="<?php echo base_url();?>empresas/ofertas"
                                      class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
                                          >Consultar Ofertas</a></li>
+
+                                 
+                               
+
+                                  
+                                </ul>
+                            </li>
+                            <li class="slide <?php if($this->uri->segment(1)=='estructuras' || $this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
+                                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
+                                        class="side-menu__icon fe fe-user-plus"></i><span
+                                        class="side-menu__label">Datos de la Empresa</span><i
+                                        class="angle fe fe-chevron-right"></i></a>
+                                <ul class="slide-menu">
+                                    
+                               
+                                            
+                                  
+
+
+                                         <li><a href="<?php echo base_url();?>empresas/datos_empresa"
+                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
+                                         >Datos de la Empresa</a></li>
                                
 
                                   

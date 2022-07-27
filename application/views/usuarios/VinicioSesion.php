@@ -25,7 +25,7 @@
     <link href="<?php echo base_url(); ?>assets/css/dark-style.css" rel="stylesheet" />
     <link href="<?php echo base_url(); ?>assets/css/transparent-style.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>assets/css/skin-modes.css" rel="stylesheet" />
-
+    <link href="<?php echo base_url()?>assets/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
     <!--- FONT-ICONS CSS -->
     <link href="<?php echo base_url(); ?>/assets/css/icons.css" rel="stylesheet" />
 
@@ -34,7 +34,12 @@
 
 </head>
 
-<body class="app sidebar-mini ltr">
+
+<style>
+
+
+</style>
+<body class="app sidebar-mini ltr fondo-login">
 
     <!-- BACKGROUND-IMAGE -->
     <div class="login-img">
@@ -77,16 +82,16 @@
                                      
                                    
                                         <!-- SIDE-MENU -->
-                                        <div class="dropdown d-flex profile-1">
+                                        <div class="dropdown d-flex profile-1 bg-light">
                                             <a href="javascript:void(0)" data-bs-toggle="dropdown"
                                                 class="nav-link leading-none d-flex">
                                                 <i class="side-menu__icon fe fe-settings display-7"></i>
                                             </a>
-                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
                                               
                                                 <div class="dropdown-divider m-0"></div>
-                                                <a class="dropdown-item" href="<?php echo base_url();?>admin/login">
-                                                    <i class="dropdown-icon fe fe-user"></i>  ingresar admin
+                                                <a class="dropdown-item " href="<?php echo base_url();?>admin/login">
+                                                    <i class="dropdown-icon fe fe-user "></i>  ingresar admin
                                                 </a>
                                               
                                            
@@ -105,13 +110,8 @@
                 <!-- CONTAINER OPEN -->
                 <div class="col col-login mx-auto mt-7">
                     <div class="text-center">
-                        <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50" style="
-  height:200px; 
-
-
-
-">
-                    </div>
+                    <img src="<?php echo base_url(); ?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt=""  style="width:50% ">
+                          </div>
                 </div>
 
                 <div class="container-login100">
@@ -140,7 +140,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="email" type="email" placeholder="Correo electrónico" id="email" value="test1@gmail.com">
+                                                <input class="input100 border-start-0 form-control ms-0" name="email" type="email" placeholder="Correo electrónico" id="email" value="">
                                                 <?php echo form_error('email'); ?>
 
                                             </div>
@@ -148,7 +148,7 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-eye text-muted" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="123456" maxlength="16" placeholder="Contraseña" required autofocus id="password" n type="password" placeholder="Password">
+                                                <input class="input100 border-start-0 form-control ms-0" name="password" value="" maxlength="16" placeholder="Contraseña" required autofocus id="password" n type="password" placeholder="Password">
                                             </div>
                                             <div class="text-end pt-4">
                                                 <p class="mb-0"><a href="<?php echo base_url(); ?>recuperarclave" class="text-primary ms-1">Olvido su contraseña?</a></p>
@@ -167,6 +167,7 @@
                                         </div>
                                
                                         <div class="tab-pane " id="tab6">
+                                            <form method="post" action id="form-estructura"> 
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
@@ -187,16 +188,19 @@
                                             <div class="container-login100-form-btn">
 
 
-                                                <a href="<?php echo base_url(); ?>estructuras/inicio"  class=" btn btn-block login100-form-btn2 btn-success">
+                                                <button type="submit" id="btn-estructura"
+                                                    
+                                                    class=" btn btn-block login100-form-btn2 btn-success">
                                                     Ingresar
-                                                </a>
+                                                </button>
                                             </div>
-                                         
+                                        </form>
 
                                         </div>
 
 
                                         <div class="tab-pane " id="tab7">
+                                            <form action="Post" id="login-empresa">
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="zmdi zmdi-email text-muted" aria-hidden="true"></i>
@@ -217,11 +221,11 @@
                                             <div class="container-login100-form-btn">
 
 
-                                                <a href="<?php echo base_url(); ?>empresas/inicio"  class=" btn btn-block login100-form-btn2 btn-info">
+                                                <button type="submit" class="btn  btn-block login100-form-btn2 btn-info">
                                                     Ingresar
-                                                </a>
+                                                </button>
                                             </div>
-                                           
+                                        </form>
 
                                         </div>
                                     </div>
@@ -279,10 +283,11 @@
 
     <!-- Color Theme js -->
     <script src="<?php echo base_url(); ?>assets/js/themeColors.js"></script>
-
+    <script src="<?php echo base_url();?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
     <!-- CUSTOM JS -->
     <script src="<?php echo base_url(); ?>assets/js/custom.js"></script>
-
+    <script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>
+    <script src="<?php echo base_url(); ?>assets/js/login_inicio.js"></script>
 </body>
 
 </html>

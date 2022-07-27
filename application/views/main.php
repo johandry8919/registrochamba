@@ -24,6 +24,8 @@
     <link href="<?php echo base_url();?>assets/css/dark-style.css" rel="stylesheet" />
     <link href="<?php echo base_url();?>assets/css/transparent-style.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/skin-modes.css" rel="stylesheet" />
+    <link href="<?php echo base_url()?>assets/plugins/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
 
 
     <!--- FONT-ICONS CSS -->
@@ -32,10 +34,14 @@
     <!-- COLOR SKIN CSS -->
     <link id="theme" rel="stylesheet" type="text/css" media="all"
         href="<?php echo base_url();?>/assets/colors/color1.css" />
-
-
-
-    <?php $this->load->view("layouts/estilos_css"); ?>
+    <!--maxbox  -->
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+        <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css' rel='stylesheet' />
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+   
+    
+        <?php $this->load->view("layouts/estilos_css"); ?>
 
 
 </head>
@@ -54,19 +60,38 @@
         <div class="page-main">
 
             <!-- app-Header  menu superior-->
-            <?php $this->load->view("layouts/menu_superior"); ?>
+            
+            <?php    if(isset($menu_lateral) && $menu_lateral=='estructuras'): 
+            
+           $this->load->view("layouts/menu_superior"); 
+           elseif( isset($menu_lateral) && $menu_lateral=='admin'):           
+          $this->load->view("layouts/admin/menu_superior");
+            elseif( isset($menu_lateral) && $menu_lateral=='empresas'):           
+               $this->load->view("layouts/menu_superior");                            
+                                   
+            else:
+                $this->load->view("layouts/menu_superior");
+
+            endif;
+
+            ?>
+         
             <!-- /app-Header -->
 
             <!--APP-SIDEBAR Menu Lateral-->
 
-            <?php    if(isset($menu_lateral) && $menu_lateral=='estructuras'): 
+            <?php    if(isset($menu_lateral) && $menu_lateral=='estructuras'):
+            $this->load->view("layouts/estructuras/menu_superior"); 
             
             $this->load->view("layouts/estructuras/menu_lateral");    
            elseif( isset($menu_lateral) && $menu_lateral=='admin'):           
             $this->load->view("layouts/admin/menu_lateral");   
             elseif( isset($menu_lateral) && $menu_lateral=='empresas'):           
                 $this->load->view("layouts/empresas/menu_lateral");                                
-                                   
+                $this->load->view("layouts/empresas/menu_superior");               
+             elseif( isset($menu_lateral) && $menu_lateral=='universidades'):           
+             $this->load->view("layouts/universidades/menu_lateral");                                
+                   
             else:
     		$this->load->view("layouts/menu_lateral"); 
 
@@ -78,12 +103,12 @@
                 <div class="side-app">
 
                     <!-- CONTAINER -->
-                    <div class="main-container container-fluid">
+                    <div class="main-container ">
 
                         <!-- PAGE-HEADER -->
-                        <div class="page-header">
 
-                            <?php  if(isset($breadcrumb)): ?>
+                        <?php  if(isset($breadcrumb)): ?>
+                        <div class="page-header">             
                             <h1 class="page-title"></h1>
                             <div>
                                 <ol class="breadcrumb">
@@ -94,10 +119,9 @@
                                     endif; 
                                      ?></li>
                                 </ol>
-                            </div>
-
-                            <?php  endif; ?>
+                            </div>                           
                         </div> 
+                        <?php  endif; ?>
                         <!-- PAGE-HEADER END -->
 
                         <!-- ROW-1 OPEN -->
@@ -143,6 +167,7 @@
     <!-- JQUERY JS -->
     <script src="<?php echo base_url('assets/js/jquery.min.js');?>"></script>
 
+
     <!-- BOOTSTRAP JS -->
     <script src="<?php echo base_url();?>assets/plugins/bootstrap/js/popper.min.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -158,8 +183,8 @@
 
     <!-- Perfect SCROLLBAR JS-->
 
-
-
+    <script src="<?php echo base_url();?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+   
   
     <script src="<?php echo base_url();?>plugins/jquery-validation/jquery.validate.js"></script>
     <script src="<?php echo base_url();?>plugins/jquery-validation/localization/messages_es.js"></script>
@@ -168,15 +193,15 @@
     <script src="<?php echo base_url();?>assets/plugins/chart/Chart.bundle.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/chart/rounded-barchart.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/chart/utils.js"></script>
-    <script src="<?php echo base_url();?>/assets/js/admin.js"></script>
+
     <script src="<?php echo base_url();?>assets/js/themeColors.js"></script>
 
     <!-- CUSTOM JS -->
     <script src="<?php echo base_url();?>assets/js/custom.js"></script>
 
-    <script type="text/javascript" src="https://popupsmart.com/freechat.js"></script><script> window.start.init({ title: "Hola Como estas? ✌️", message: "¿Cómo podemos ayudarte? Simplemente envíenos un mensaje ahora para obtener ayuda.", color: "#FA764F", position: "right", placeholder: "ingresa tu mensaje", withText: "escribe a qui", viaWhatsapp: "O escribe  via Whatsapp", gty: "Go to your", awu: "and write us", connect: "Connect now",  button: "Pregunta aqui", device: "everywhere",  services: [{"name":"whatsapp","content":null}]})</script>
+    <!--script type="text/javascript" src="https://popupsmart.com/freechat.js"></script><script> window.start.init({ title: "Hola Como estas? ✌️", message: "¿Cómo podemos ayudarte? Simplemente envíenos un mensaje ahora para obtener ayuda.", color: "#FA764F", position: "right", placeholder: "ingresa tu mensaje", withText: "escribe a qui", viaWhatsapp: "O escribe  via Whatsapp", gty: "Go to your", awu: "and write us", connect: "Connect now",  button: "Pregunta aqui", device: "everywhere",  services: [{"name":"whatsapp","content":null}]})</script -->
 
-
+    <script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>
 
     <!-- Sticky js -->
     <script src="<?php echo base_url();?>/assets/js/sticky.js"></script>

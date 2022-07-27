@@ -19,91 +19,40 @@
                             <li class="sub-category">
                                 <h3>home</h3>
                             </li>
+                              <?php 
                               
+                              $ruta_actual="admin";
+                             if (tiene_acceso('estructura'))   $ruta_actual="estructuras";
+                              ?>
                             <li class="slide">
                                 <a class="side-menu__item 
                                  <?php if($this->uri->segment(1)=='inicio' || $this->uri->segment(1)=='inicio') echo 'active';?>
-                                " data-bs-toggle="slide" href="<?php echo base_url();?>admin/inicio"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Incio</span></a>
+                                " data-bs-toggle="slide" href="<?php echo base_url().$ruta_actual?>/inicio"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Incio</span></a>
                             </li>
                                   
-                            <li class="slide <?php if($this->uri->segment(1)=='datospersonales' || $this->uri->segment(1)=='formacionacademica' || $this->uri->segment(1)=='formacionacademicaform' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
-                                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
-                                        class="side-menu__icon fe fe-user-plus"></i><span
-                                        class="side-menu__label">Registros</span><i
+                            <?php foreach(oberner_menu() as $menu): ?> 
+                            <li class="slide ">
+
+                                <?php if(count($menu->sub_menu) > 0): ?> 
+                                <a class="side-menu__item" data-bs-toggle="slide" href="<?php echo $menu->ruta_menu ?>"><i
+                                        class="side-menu__icon <?php echo $menu->icono ?>"></i><span
+                                        class="side-menu__label"><?php echo $menu->nombre_menu ?></span><i
                                         class="angle fe fe-chevron-right"></i></a>
+                                        <?php endif; ?>    
                                 <ul class="slide-menu">
-                                    
-                                    <li ><a href="<?php echo base_url();?>admin/registro/estructuras"
-                                            class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
-                                            >Estructura</a></li>
-                                            
-                                    <li><a href="<?php echo base_url();?>admin/registro/empresas"
+                                <?php foreach( $menu->sub_menu as $sub): ?> 
+                                <li><a href="<?php echo base_url().$sub->ruta?>"
                                      class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
-                                         >Empresas u organismo publico</a></li>
-
-                                         <li><a href="<?php echo base_url();?>admin/registro/universidades"
-                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
-                                         >Centro de Estuios y Universidades</a></li>
-                               
-
-                                  
-                                </ul>
-                            </li>
-
+                                         > <?php echo $sub->nombre_submenu?> </a>
                                         
-                            <li class="slide <?php if($this->uri->segment(1)=='datospersonales' || $this->uri->segment(1)=='formacionacademica' || $this->uri->segment(1)=='formacionacademicaform' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
-                                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
-                                        class="side-menu__icon fe fe-eye"></i><span
-                                        class="side-menu__label">Consultas</span><i
-                                        class="angle fe fe-eye"></i></a>
-                                <ul class="slide-menu">
-                                                     
-                                    <li ><a href="#"
-                                        class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
-                                        >Chambista</a></li>
-                                    <li ><a href="#"
-                                            class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
-                                            >Estructura</a></li>
-                                            
-                                    <li><a href="#"
-                                     class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
-                                         >Empresas u organismo publico</a></li>
-
-                                         <li><a href="#"
-                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
-                                         >Centro de Estuios y Universidades</a></li>
-                               
-
-                                  
+                                </li>
+                             <?php endforeach; ?> 
                                 </ul>
                             </li>
-
-                            <li class="slide <?php if($this->uri->segment(1)=='datospersonales' || $this->uri->segment(1)=='formacionacademica' || $this->uri->segment(1)=='formacionacademicaform' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
-                                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
-                                        class="side-menu__icon fe fe-database"></i><span
-                                        class="side-menu__label">Reportes</span><i
-                                        class="angle fe fe-chevron-right"></i></a>
-                                <ul class="slide-menu">
-                                    
-                                    <li ><a href="<?php echo base_url();?>/admin/registro/estructuras"
-                                            class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
-                                            >Estructura</a></li>
-                                            
-                                    <li><a href="<?php echo base_url();?>/admin/registro/empresas"
-                                     class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
-                                         >Empresas u organismo publico</a></li>
-
-                                         <li><a href="<?php echo base_url();?>/admin/registro/universidades"
-                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
-                                         >Centro de Estuios y Universidades</a></li>
-                                         <li ><a href="#"
-                                            class="slide-item <?php if($this->uri->segment(1)=='estructuras') echo 'active';?>"
-                                            >Chambista</a></li>
-
-                                  
-                                </ul>
-                            </li>
-                          
+                            <?php endforeach; ?> 
+                                        
+                 
+                                
                         </ul>
                         <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
                                 width="24" height="24" viewBox="0 0 24 24">

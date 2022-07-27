@@ -1,3 +1,14 @@
+// validar todos los campos de datos_personales 
+
+
+
+
+
+
+
+
+
+
 $('#estcivil').change(function(){
     /*  $('#guevo').html('<option value="1">1</option><option value="2">2</option>'); */
     //console.log($("#guevo").selectpicker('val','<option value="1">1</option><option value="2">2</option>'));
@@ -110,17 +121,4 @@ language: 'es',
 defaultDate:'2000-06-01'
 });
 
-var currentValue = 0;
-function click_estado_formacion(myRadio) {
-
-    currentValue = myRadio.value;
-    if(currentValue==3){
-        $(".c-estudios").removeClass("d-none");
-
-    }else{
-        $(".c-estudios").addClass("d-none");
-    }
-
-
-}
 

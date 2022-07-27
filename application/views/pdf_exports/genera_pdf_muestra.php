@@ -109,7 +109,7 @@ p{
 <div class="container">
 
     <div class="banner">
-      <img src="<?php echo getcwd().'/img/cintillo-gobierno-bolivariano-instituto--768x49.png'?>" alt="banner" width="720">
+      <img src="<?php echo FCPATH.'/img/cintillo-gobierno-bolivariano-instituto--768x49.png'?>" alt="banner" width="720">
     </div>
 
     <header>
@@ -117,10 +117,11 @@ p{
             <h1>Curriculum Vitae <?= $usuario->cedula;?></h1>
         </div>
         <div class="hola">
-            <img src="<?php echo getcwd().'/qr_code/'.$imgqr; ?>" alt="qr" class="" width="150">
+            <img src="<?php echo  FCPATH.'/qr_code/'.$imgqr; ?>" alt="qr" class="" width="150">
+           
         </div>
          <div class="hola2">
-         <img src="<?php echo getcwd().'/img/logo-nuevo-chamba.png'?>" alt="logo" class="logo">
+         <img src="<?php echo  FCPATH.'/img/logo-nuevo-chamba.png'?>" alt="logo" class="logo">
         </div>    
     </header>
 <?php

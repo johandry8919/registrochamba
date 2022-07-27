@@ -1,10 +1,11 @@
 <div class="sticky">
+  
                 <div class="app-sidebar__overlay" data-bs-toggle="sidebar"></div>
                 <div class="app-sidebar">
                     <div class="side-header pt-6">
                         <a class="header-brand1" href="<?php echo base_url();?>">
                           
-                            <img src="<?php echo base_url();?>/img/logo-principal.png" class="header-brand-img" alt="" width="50"
+                            <img src="<?php echo base_url();?>/img/logo-nuevo-chamba.png" class="header-brand-img" alt="" width="50"
                             style="height:100px; " class="header-brand-img light-logo1 "
                                 alt="logo">
                         </a>
@@ -26,55 +27,31 @@
                                 " data-bs-toggle="slide" href="<?php echo base_url();?>estructuras/inicio"><i class="side-menu__icon fe fe-home"></i><span class="side-menu__label">Incio</span></a>
                             </li>
 
-                            <li class="slide <?php if($this->uri->segment(1)=='estructuras' || $this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
-                                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
-                                        class="side-menu__icon fe fe-user-plus"></i><span
-                                        class="side-menu__label">Registros</span><i
+                   
+                            <?php foreach(oberner_menu() as $menu): ?> 
+                            <li class="slide ">
+
+                                <?php if(count($menu->sub_menu) > 0): ?> 
+                                <a class="side-menu__item" data-bs-toggle="slide" href="<?php echo $menu->ruta_menu ?>"><i
+                                        class="side-menu__icon <?php echo $menu->icono ?>"></i><span
+                                        class="side-menu__label"><?php echo $menu->nombre_menu ?></span><i
                                         class="angle fe fe-chevron-right"></i></a>
+                                        <?php endif; ?>    
                                 <ul class="slide-menu">
-                                    
-                               
-                                            
-                                    <li><a href="<?php echo base_url();?>estructuras/registro/empresas"
+                                <?php foreach( $menu->sub_menu as $sub): ?> 
+                                <li><a href="<?php echo base_url().$sub->ruta?>"
                                      class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
-                                         >Empresas u organismo publico</a></li>
-
-                                         <li><a href="<?php echo base_url();?>estructuras/registro/universidades"
-                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
-                                         >Centro de Estuios y Universidades</a></li>
-                               
-
-                                  
+                                         > <?php echo $sub->nombre_submenu?> </a>
+                                        
+                                </li>
+                             <?php endforeach; ?> 
                                 </ul>
                             </li>
+                            <?php endforeach; ?> 
 
-                            <li class="slide <?php if($this->uri->segment(1)=='seguimiento' || $this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='experiencialaboral' || $this->uri->segment(1)=='experiencialaboralform' || $this->uri->segment(1)=='redessociales' || $this->uri->segment(1)=='redessociales' ) echo 'is-expanded';?>">
-                                <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)"><i
-                                        class="side-menu__icon fe fe-user-plus"></i><span
-                                        class="side-menu__label">Seguimiento</span><i
-                                        class="angle fe fe-chevron-right"></i></a>
-                                <ul class="slide-menu">
-                                    
-                                    <li><a href="<?php echo base_url();?>estructuras/registro/empresas"
-                                        class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
-                                            >Consultar empresas registradas</a></li>
-   
-                                            <li><a href="<?php echo base_url();?>estructuras/registro/universidades"
-                                        class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
-                                            >Consultar instituciones registradas</a></li>
-                                            
-                                    <li><a href="<?php echo base_url();?>estructuras/registro/empresas"
-                                     class="slide-item <?php if($this->uri->segment(1)=='empresas' || $this->uri->segment(1)=='empresas') echo 'active';?>"
-                                         >Consultar solicitudes de empleo</a></li>
-
-                                         <li><a href="<?php echo base_url();?>estructuras/registro/universidades"
-                                     class="slide-item <?php if($this->uri->segment(1)=='universidades' || $this->uri->segment(1)=='universidades') echo 'active';?>"
-                                         >Consultar solicitudes de estudios</a></li>
-                               
-
-                                  
-                                </ul>
-                            </li>
+                       
+                                        
+                    
 
                         </ul>
                         <div class="slide-right" id="slide-right"><svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"

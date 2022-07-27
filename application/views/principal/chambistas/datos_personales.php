@@ -14,20 +14,34 @@
 <!--script src="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.js"></script>
 <link href="https://unpkg.com/maplibre-gl@2.1.9/dist/maplibre-gl.css" rel="stylesheet" /-->
     <section class="content">
-        <div class="container-fluid">
+   
+        
+   
+        <div class="">
+        <?php if(!isset($id_usuario)):?>
+            <?php if($this->session->flashdata('mensajeexito')){ ?>
+                <div class="row">
+                <div class="col-md-12">
+                    <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeexito'); ?>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    </div>
+                </div>
+                </div>
+                <br>
+        <?php }?> 
+     <?php  ?>
+     <?php endif;?>
+     
 
-      
+       
 
-        <?php if($this->session->flashdata('mensajeexito')){ ?>
-        <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-success">  <?php echo $this->session->flashdata('mensajeexito'); ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
-            </div>
-        </div>
-        </div>
-        <?php }?>
-        <?php if($this->session->flashdata('mensajeerror')){ ?>
+
+
+
+        
+       
+        <?php if(!isset($id_usuario)):?>
+            <?php if($this->session->flashdata('mensajeerror')){ ?>
                 <div class="row">
                 <div class="col-md-12">
                     <div class="alert alert-danger"> <?php echo $this->session->flashdata('mensajeerror'); ?>
@@ -37,6 +51,9 @@
                 </div>
                 <br>
         <?php }?> 
+     <?php  ?>
+     <?php endif;?>
+       
         <?php if($this->session->flashdata('mensaje')){ ?>
                 <div class="row">
                 <div class="col-md-12">
@@ -62,7 +79,12 @@
                         <div class="card-body">
                             <div id="real_time_chart" class="">
                                 
-                                    <form id="datospersonales" method="POST" action="<?php echo base_url();?>Cchambistas/datospersonales">
+                                    <form id="datospersonales" method="POST" action="<?php if(!isset($id_usuario)){
+                                         echo base_url()."Cchambistas/datospersonales";
+                                       
+                                    }?>">
+                                       
+                                    
                                         <div class="row ">
                                             <div class="col-md-6">
 
@@ -139,7 +161,7 @@
                                                          <div class="form-group">
                                                     <label class="form-label">Estado civil</label>
                                                         <select class="form-control form-select"  id="estcivil" name="estcivil">
-                                                            <option value="">Seleccione una opción</option>
+                                                            <option value="0">Seleccione una opción</option>
                                                             <option <?php if(isset($registroviejo->estcivil)){ if(trim($registroviejo->estcivil)=='casado'){echo 'selected';}}?> value="casado">Casado(A)</option>
                                                             <option <?php if(isset($registroviejo->estcivil)){ if(trim($registroviejo->estcivil)=='soltero'){echo 'selected';}}?> value="soltero">Soltero(A)</option>
                                                             <option <?php if(isset($registroviejo->estcivil)){ if(trim($registroviejo->estcivil)=='concubino'){echo 'selected';}}?> value="concubino">Concubino(A)</option>
@@ -191,15 +213,16 @@
 
                                             </div><!--col-->
                                             <div class="col-md-4">
+                                               
                                                 <label class="form-label"> Profesión Oficio</label>
                                                 <div class="form-group">
-                                           
+                                                                                     
 
                                                 
                                                         <select required class="form-control show-tick" id="id_profesion" name="id_profesion">
-                                                            <option value="">Seleccione una Profesión u Oficio</option>
+                                                            <option value="0">Seleccione una Profesión u Oficio</option>
 
-                                                           
+                                                          
                                                      
                                                          <?php if(isset($profesion_oficio)): ?>
                                                             <?php foreach ($profesion_oficio as $key => $profesion):?>
@@ -235,7 +258,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="aborigen" name="aborigen">
-                                                        <option value="">Seleccione una opción</option>
+                                                        <option value="0">Seleccione una opción</option>
                                                     <?php
                                                         if(isset($aborigenes)){
                                                             foreach ($aborigenes as $key => $aborigen) {
@@ -281,7 +304,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="empleo" name="empleo">
-                                                                <option value="">Seleccione una opción</option>
+                                                                <option value="0">Seleccione una opción</option>
                                                                 <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='no-tengo-empleo') echo "selected";?> value="no-tengo-empleo">No tengo empleo</option>
                                                                 <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='buscando-empleo') echo "selected";?> value="buscando-empleo">Estoy buscando trabajo</option>
                                                                 <option <?php if(isset($registroviejo->empleo) and $registroviejo->empleo=='estoy-trabajando') echo "selected";?> value="estoy-trabajando">Estoy Trabajando actualmente</option>
@@ -294,19 +317,31 @@
 
                                            
                                         </div><!--row-->
+                                       
                                                               
                                         <div class="row ">   
                                             <div class="col-md-4">
                                                 <label  class="form-label">Movimiento Religioso</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso">
-                                                        <option value="">Seleccione una opción</option>
-                                                        <option value="">Ninguno</option>
+                                                        <select class="form-control show-tick" id="id_movimiento_religioso" name="id_movimiento_religioso" require>
+                                                        <option value="" >Seleccione una opción</option>
+                                                    
                                                      
-                                                        <option value="0">Catolico</option>
-                                                        <option value="0">Cristiano</option>
-                                                        <option value="">Otro</option>
+                                                        <?php if(isset($movimientogeligioso)): ?>
+                                                            <?php foreach ($movimientogeligioso as $key => $geligioso):?>
+                                                               
+                                                                <?php  if($registroviejo->id_movimiento_religioso == $geligioso->id_religion):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$geligioso->id_religion."'>".$geligioso->religion."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$geligioso->id_religion."'>".$geligioso->religion."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -316,58 +351,23 @@
                                             <label  class="form-label">Movimiento Sociales</label>
                                                 <div class="form-group">
                                                     <div class="form-line">
-                                                        <select class="form-control show-tick" id="movimiento_sociales" name="movimiento_sociales">
-                                                            <option value="">Seleccione una opción</option>
-                                                            <option value="1">Movimientos de la Juventud.</option>
-                                                            <option value="2">Movimientos de las Mujeres y del Feminismo</option>
-                                                            <option value="3">Clase Obrera.
-                                                            </option>
-
-                                                            <option value="4">Comunas y Comuneros.
-
-                                                            </option>
-                                                            <option value="5">Salud
-
-                                                            </option>
-                                                            <option value="6">Educación
-
-                                                            </option>
-                                                            <option value="7">Comunicadores
-
-                                                            </option>
-                                                            <option value="8">Cultura
-
-
-                                                            </option>
-                                                            <option value="9">Deportistas
-
-
-                                                            </option>
-                                                            <option value="10">Campesinos
-
-
-                                                            </option>
-                                                            <option value="11">Defensa de los Derechos Humanos
-
-
-                                                            </option>
-                                                            <option value="12">Originarios de los Pueblos Indígenas de Venezuela
-
-                                                            </option>
-                                                            <option value="13">Religiosos del País
-
-                                                            </option>
-
-                                                            <option value="14">Sexodiversidad
-
-                                                            </option>
-                                                            <option value="15">Defensa de los Animales
-
-                                                            </option>
-                                                            <option value="16">Profesionales y Técnicos del País
-
-
-                                                            </option>
+                                                        <select class="form-control show-tick" id="id_movimiento_sociales" name="id_movimiento_sociales">
+                                                            <option value="0">Seleccione una opción</option>
+                                                            <?php if(isset($movimientos)): ?>
+                                                            <?php foreach ($movimientos as $key => $movimiento):?>
+                                                               
+                                                                <?php  if($registroviejo->id_movimiento_sociales == $movimiento->id_movimiento):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$movimiento->id_movimiento."'>".$movimiento->sociales."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$movimiento->id_movimiento."'>".$movimiento->sociales."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+                                                           
                                                         </select>
                                                     </div>
                                                 </div>
@@ -422,14 +422,14 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_estado" name="cod_estado">
-                                                        <option value="">Seleccione una opción</option>
+                                                        <option value="0">Seleccione una opción</option>
                                                     <?php
                                                         if(isset($estados)){
                                                             foreach ($estados as $key => $estado) {
                                                                 if(isset($registroviejo->codigoestado) and $registroviejo->codigoestado == $estado->codigoestado){
-                                                                    echo "<option selected value='".$estado->codigoestado."'>".$estado->nombre."</option>";     
+                                                                    echo "<option selected value='".$estado->codigoestado."'  data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";     
                                                                 }else{
-                                                                    echo "<option value='".$estado->codigoestado."'>".$estado->nombre."</option>";
+                                                                    echo "<option value='".$estado->codigoestado."' data-latitud=".$estado->latitud."  data-longitud=".$estado->longitud." >".$estado->nombre."</option>";
                                                                 }
                                                             }
                                                         }
@@ -443,7 +443,7 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_municipio" name="cod_municipio">
-                                                        <option value="">Seleccione un Municipio</option>
+                                                        <option value="0">Seleccione un Municipio</option>
                                                         <?php
                                                             if(isset($registroviejo->municipio)){
                                                                 echo "<option selected value='".$registroviejo->codigomunicipio."'>".$registroviejo->municipio."</option>";     
@@ -464,10 +464,10 @@
                                                 <div class="form-group">
                                                     <div class="form-line">
                                                         <select class="form-control show-tick" id="cod_parroquia" name="cod_parroquia">
-                                                        <option value="">Seleccione una Parroquia</option>
+                                                        <option value="0">Seleccione una Parroquia</option>
                                                         <?php
                                                             if(isset($registroviejo->parroquia)){
-                                                                echo "<option selected value='".$registroviejo->codigoparroquia."'>".$registroviejo->parroquia."</option>";     
+                                                                echo "<option selected value='".$registroviejo->codigoparroquia."' data-latitud=".$registroviejo->latitud."  data-longitud=".$registroviejo->longitud."  >".$registroviejo->parroquia."</option>";     
                                                             }
                                                         ?>
                                                         </select>
@@ -491,16 +491,15 @@
                                         <textarea maxlength="255" rows="4" class="form-control no-resize zindex" class="direccion" name="direccion" id="direccion" maxlength="250" placeholder="Por favor indica donde resides..."><?php if(isset($registroviejo->direccion)) echo $registroviejo->direccion;?></textarea>
                                         </div>
                                     </div>
-
-                            
-
+                                               
                                         <div class="form-group">
                                             <label class="form-label">Latitud</label> 
                                             <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="mdi mdi-map" aria-hidden="true"></i>
                                                 </a>
-                                                <input readonly  class="input100 border-start-0 ms-0 form-control" type="text" id="latitud"   name="latitud" value="<?php if(isset($registroviejo->latitud)) echo ucwords($registroviejo->latitud);?>" placeholder="latitud" required autofocus>
+                                                <input readonly  class="input100 border-start-0 ms-0 form-control" type="text" id="latitud"   name="latitud" value="<?php if(isset($registroviejo->latitud))
+                                                echo$registroviejo->latitud?>" placeholder="latitud" required autofocus>
                                                
                                             </div>
     
@@ -514,7 +513,8 @@
                                                 <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
                                                     <i class="mdi mdi-map" aria-hidden="true"></i>
                                                 </a>
-                                                <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud"   name="longitud" value="<?php if(isset($registroviejo->longitud)) echo ucwords($registroviejo->longitud);?>" placeholder="longitud" required autofocus>
+                                                <input class="input100 border-start-0 ms-0 form-control" readonly type="text" id="longitud"   name="longitud" value="<?php if(isset($registroviejo->longitud))
+                                                echo $registroviejo->longitud?>" placeholder="longitud" required autofocus>
                                                
                                             </div>
     
@@ -527,13 +527,15 @@
                                     <div id="map"></div>
                              
                                     <pre id="coordinates" class="coordinates"></pre>
+                                    <button type="button" id="seleccion-ubicacion" class="btn btn-icon ubicacion-c btn-success"  data-bs-toggle="tooltip" data-bs-placement="top" title="Tu ubicación"><i class="fe fe-map-pin"></i></button>
+
                                 </div>
       
                             </div>
                                                  
                                         <div class="row  justify-content-center  mt-2">
-                                            <div class="col-md-4 ">
-                                                <button class="btn btn-primary btn-block" id="boton" type="botton">Guardar</button>
+                                            <div class="col-12 col-lg-12 ">
+                                                <button class="btn btn-primary btn-block" id="buton" type="botton">Guardar</button>
                                             </div>
 
                                         </div>
@@ -553,7 +555,9 @@
 
        
             
-
+              
+        <input type="hidden" name="id_usuario" id="id_usuario" value="<?php if(isset($id_usuario)){echo $id_usuario;}
+                                ?>">                                          
 
     </section>
     <script type="text/javascript"> var base_url = "<?php echo base_url();?>";</script>

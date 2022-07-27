@@ -134,11 +134,12 @@ class Cchambistas extends CI_Controller
         if (!$this->session->userdata('id_usuario')) {
             redirect('iniciosesion');
         }
-        // $this->load->view('layouts/head');
-        // $this->load->view('chambistas/VcambiarClave');
+        
+       
         $output = [
             "title"             => "cambiarClave",
              "vista_principal"   => "chambistas/cambiarClave",
+             
              
 
         ];
@@ -151,13 +152,23 @@ class Cchambistas extends CI_Controller
         if (!$this->session->userdata('id_usuario')) {
             redirect('iniciosesion');
         }
+        
 
         $res = $this->Musuarios->getUsuariosVivienda();
         $data['viviendajoven'] = $res;
+        $breadcrumb =(object) [
+            "menu" => "Registro viviendajoven",
+            "menu_seleccion" => "viviendajoven"
+ 
+                ];
+    
         $output = [
             "title"             => "Viviendajoven",
              "vista_principal"   => "chambistas/Viviendajoven",
              "viviendajoven" => $res,
+             "breadcrumb"  => $breadcrumb,
+             
+
            "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
 
 
@@ -257,6 +268,8 @@ class Cchambistas extends CI_Controller
         }
 
 
+;
+
         $estados = $this->Musuarios->getEstados();
         $aborigenes = $this->Musuarios->getAborigenes();
         $datos['estados'] = $estados;
@@ -266,6 +279,7 @@ class Cchambistas extends CI_Controller
 
         //if($registroviejo){
         $registronuevo = $this->Musuarios->getUsuarioRegistradoPersonal();
+
         if ($registronuevo) {
             //$this->session->set_flashdata('mensaje', 'Datos Personales');                    
             $datos['registroviejo'] = $registronuevo;
@@ -279,6 +293,8 @@ class Cchambistas extends CI_Controller
         //}
 
         $profesiones= $this->Mprofesion_oficio->getprofesion();
+        $movimiento_religioso= $this->Mprofesion_oficio->movimiento_religioso();
+        $movimiento_sociales= $this->Mprofesion_oficio->movimiento_sociales();
 
     
  
@@ -300,18 +316,20 @@ class Cchambistas extends CI_Controller
              "aborigenes"      => $aborigenes,
              "registroviejo"   =>  $datos['registroviejo'],
              "profesion_oficio" =>    $profesiones,
+             "movimientogeligioso" =>$movimiento_religioso,
+             "movimientos" => $movimiento_sociales,
             
             
-             "librerias_css" => [recurso("mapbox_css")],
+             "librerias_css" =>[] ,
 
           
            "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"),
             recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js"),
-            recurso("mapbox_js"), recurso("mapa_mabox_js"),
+            recurso("mapa_mabox_js"),
         ],
 
 
-           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")],
+           "ficheros_js" => [recurso("datospersonales_js"), recurso("validar_js"), ],
            "ficheros_css" => [recurso("mapa_mabox_css")],
 
            
@@ -352,6 +370,12 @@ class Cchambistas extends CI_Controller
             redirect('iniciosesion');
         }
 
+        $breadcrumb =(object) [
+            "menu" => "brigadas",
+            "menu_seleccion" => "Brigadas"
+ 
+                ];
+
         $res = $this->Musuarios->getBrigadasUsuario();
         $data['brigadas'] = $res;
 
@@ -359,6 +383,7 @@ class Cchambistas extends CI_Controller
             "title"            => "brigadas",
              "vista_principal" => "chambistas/brigadas",
              "brigadas"        => $data['brigadas'] = $res,
+             "breadcrumb"      =>   $breadcrumb,
 
 
 
@@ -372,18 +397,44 @@ class Cchambistas extends CI_Controller
         if (!$this->session->userdata('id_usuario')) {
             redirect('iniciosesion');
         }
+        $registronuevo = $this->Musuarios->getUsuarioRegistradoPersonal();
+        if ($registronuevo) {
+            //$this->session->set_flashdata('mensaje', 'Datos Personales');                    
+            $datos['registroviejo'] = $registronuevo;
+        } else {
+            $registroviejo = $this->Mpcj->getUsuarioRegistradoPcjViejo();
+            $datos['registroviejo'] = $registroviejo;
+            if ($registroviejo) {
+                $this->session->set_flashdata('mensaje', 'Usted ya se encontraba registrado previamente por favor complete sus datos para poder ser tomado en cuenta');
+            }
+        }
 
         $res = $this->Musuarios->getUsuariosProductivo();
         $data['usuarioproductivo'] = $res;
-        //var_dump($data['redesusuario']);exit;
+        $profesiones= $this->Mprofesion_oficio->getprofesion();
+
+        $emprendedor= $this->Mprofesion_oficio->emprendedor();
+        $SectorProductivo= $this->Mprofesion_oficio->SectorProductivo();
+ 
 
         // $this->load->view('layouts/head');
         // $this->load->view('chambistas/Vproductivo', $data);
+        $breadcrumb =(object) [
+            "menu" => "Registro productivo",
+            "menu_seleccion" => "productivo"
+ 
+                ];
 
         $output = [
             "title"            => "productivo",
              "vista_principal" => "chambistas/productivo",
              "usuarioproductivo"        => $data['usuarioproductivo'],
+             "breadcrumb"      =>   $breadcrumb,
+             "emprendedor" => $emprendedor,
+             "profesion_oficio"   => $profesiones,
+             "registroviejo"   =>  $datos['registroviejo'],
+             "sectorProductivo" => $SectorProductivo,
+            
              
 
 
@@ -424,8 +475,22 @@ class Cchambistas extends CI_Controller
         $data['usuarioacademico'] = $usuarioacademico;
         $data['redessociales'] = $redessociales;
 
-        $this->load->view('layouts/head');
-        $this->load->view('chambistas/Vcv', $data);
+        // $this->load->view('layouts/head');
+        // $this->load->view('chambistas/Vcv', $data);
+        $output = [
+            "title"            => "Cv",
+             "vista_principal" => "chambistas/Cv",
+             "personal"        => $data,
+             "usuario"        => $data,
+             "usuarioexperiencia" =>$data,
+             "usuarioacademico"    => $data,
+             "redessociales"       => $data,
+            
+             
+
+
+        ];
+         $this->load->view("main", $output);
     }
 
     public function registrobrigadas()
@@ -462,7 +527,7 @@ class Cchambistas extends CI_Controller
 
                 
             );
-            print_r($data);
+           
 
             if (!$this->Musuarios->getBrigadasUsuario($data)) {
 
@@ -569,6 +634,10 @@ class Cchambistas extends CI_Controller
         $this->form_validation->set_rules('agrourbana-patio', 'Patio', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('agrourbana-rubro', 'Rubro', 'trim|min_length[2]|strip_tags');
         $this->form_validation->set_rules('financiamiento-agrourbana', 'Agrourbana', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('id_area_desarrollo_emprendedor', 'emprendedor_nombre', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('que_esta_desarrollando', 'queEstaDesarroLLando', 'trim|min_length[2]|strip_tags');
+        $this->form_validation->set_rules('id_sector_productivo', 'SectorProductivo', 'trim|min_length[2]|strip_tags');
+    
 
         $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
         //delimitadores de errores
@@ -608,10 +677,24 @@ class Cchambistas extends CI_Controller
                 'agrourbana-patio' => $this->input->post('agrourbana-patio'),
                 'agrourbana-rubro' => $this->input->post('agrourbana-rubro'),
                 'financiamiento-agrourbana' => $this->input->post('financiamiento-agrourbana'),
+                // Emprendedor
+                'id_area_desarrollo_emprendedor' => $this->input->post('emprendedor_nombre'),
+                // queEstaDesarroLLando
+                'que_esta_desarrollando' => $this->input->post('queEstaDesarroLLando'),
+                // desarrollo_proyecto_tecnologico
+                'desarrollo_proyecto_tecnologico' => $this->input->post('proyecto_tecnologico'),
+                // id_servicios_profesionales
+                'id_servicios_profesionales' => $this->input->post('idservicios'),
+                // Sector_Productivo
+                'id_sector_productivo' => $this->input->post('SectorProductivo'),
+
+
+
 
                 'codigo' => $this->session->userdata('codigo'),
                 'id_usuario' => $this->session->userdata('id_usuario')
             );
+            
 
             if (!$this->Musuarios->getUsuariosProductivo($data)) {
 
@@ -705,6 +788,8 @@ class Cchambistas extends CI_Controller
             redirect('iniciosesion');
         }
 
+      
+
         $this->form_validation->set_rules('nombres', 'Nombres', 'trim|required|strip_tags');
         $this->form_validation->set_rules('apellidos', 'Apellidos', 'trim|required|strip_tags');
         $this->form_validation->set_rules('cod_estado', 'Estado', 'trim|numeric|required|strip_tags');
@@ -728,12 +813,14 @@ class Cchambistas extends CI_Controller
         $this->form_validation->set_rules('edad', 'Edad', 'trim|numeric|required|strip_tags');
         $this->form_validation->set_rules('latitud', 'latitud', 'trim|required|strip_tags');
         $this->form_validation->set_rules('longitud', 'longitud', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_movimiento_religioso', 'Movimiento religioso', 'trim|required|strip_tags');
+        $this->form_validation->set_rules('id_movimiento_sociales', 'Movimiento Sociales', 'trim|required|strip_tags');
 
-        $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
+        // $this->form_validation->set_error_delimiters('<p class="red">', '</p>');
         //delimitadores de errores
 
         //reglas de validación
-        $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+        // $this->form_validation->set_message('required', 'Debe llenar el campo %s');
         //reglas de validación
 
 
@@ -748,7 +835,7 @@ class Cchambistas extends CI_Controller
 
 
             $data = array(
-                'nombres' => $this->input->post('nombres'),
+            'nombres' => $this->input->post('nombres'),
                 'apellidos' => $this->input->post('apellidos'),
                 /*'nac' => $this->input->post('nac'), 
             'cedula' => $this->input->post('cedula'), */
@@ -762,6 +849,12 @@ class Cchambistas extends CI_Controller
                 'direccion' => $this->input->post('direccion'),
                 'estudio' => $this->input->post('estudio'),
                 'empleo' => $this->input->post('empleo'),
+                'id_movimiento_religioso' => $this->input->post('id_movimiento_religioso'),
+                'id_movimiento_sociales' => $this->input->post('id_movimiento_sociales'),
+                 'latitud' => $this->input->post('latitud'),
+                'longitud' => $this->input->post('longitud'),
+               
+
                 /* 			'instruccion' => $this->input->post('instruccion'),
 			'estado_inst' => $this->input->post('estado_inst'), */
                 /* 			'organizacion' => $this->input->post('organizacion'),
@@ -770,8 +863,9 @@ class Cchambistas extends CI_Controller
                 'genero' => $this->input->post('genero'),
                 'estcivil' => $this->input->post('estcivil'),
                 'aborigen' => $this->input->post('aborigen'),
-                'hijo' => $this->input->post('hijo'),
                 'id_profesion_oficio' => $this->input->post('id_profesion'),
+                'hijo' => $this->input->post('hijo'),
+                // movimiento_religioso
                 'edad' => $this->input->post('edad'),
                 /* 			'id_productiva' => $this->input->post('productiva'),
 			'id_subproductiva' => $this->input->post('id_subact_productiva'),
@@ -783,6 +877,10 @@ class Cchambistas extends CI_Controller
 			'nombre_inst' => $this->input->post('nombre_inst') */
             );
 
+         
+
+     
+
             if (!$this->Musuarios->getUsuarioRegistradoPersonal()) {
 
                 if ($this->Musuarios->registrarPersonales($data)) {
@@ -792,8 +890,9 @@ class Cchambistas extends CI_Controller
                     $this->session->set_flashdata('mensajeerror', 'Ocurrio un error guardando intente de nuevo.');
                     redirect('datospersonales');
                 }
-            } else {
+            } else {                
                 if ($this->Musuarios->actualizarPersonales($data)) {
+                    
                     $this->session->set_flashdata('mensajeexito', 'Datos actualizados correctamente.');
                     redirect('inicio');
                 } else {
@@ -865,7 +964,7 @@ class Cchambistas extends CI_Controller
 
         $usuarioacademico = $this->Musuarios->getUsuarioRegistradoAcademico();
 
-        // $data['usuarioacademico'] = $usuarioacademico;
+        $data['usuarioacademico'] = $usuarioacademico;
 
 
         // $this->load->view('layouts/head');
@@ -903,8 +1002,9 @@ class Cchambistas extends CI_Controller
             $acausuario = $this->Musuarios->getAcademicaID($id_usu_aca);
     
         }
-        $res2 = $this->Musuarios->getAreaForm();
-        $data['areaform'] = $res2;
+   
+    
+     
         //var_dump($data['acausuario']);exit;
 
         // $this->load->view('layouts/head');
@@ -913,13 +1013,14 @@ class Cchambistas extends CI_Controller
         $output = [
             "title"            => "formacionacademicaform",
              "vista_principal" => "chambistas/formacionacademicaform",
-             "areaform"      =>  $res2,
+             "areaform"      =>   $this->Musuarios->getAreaForm(),
              "acausuario" => $acausuario,
 
            "librerias_js" => [recurso("moment_js"),recurso("bootstrap-material-datetimepicker_js"), recurso("bootstrap-datepicker_js"),recurso("bootstrap-select_js")],
+           "ficheros_js" => [recurso("area_formacion_js")]
 
 
-           "ficheros_js" => [recurso("datospersonales_js"), recurso("validacion_datospersonales_js")]
+          
 
 
         ];
@@ -1081,7 +1182,7 @@ class Cchambistas extends CI_Controller
 
     public function getMunicipios()
     {
-        sleep(rand(1,4));
+    
         $data = array(
             'codigoestado' => $this->input->post('codigoestado'),
         );
@@ -1098,7 +1199,7 @@ class Cchambistas extends CI_Controller
 
     public function getParroquias()
     {
-	sleep(rand(1,4));
+
         $data = array(
             'codigoestado' => $this->input->post('codigoestado'),
             'codigomunicipio' => $this->input->post('codigomunicipio'),
@@ -1108,7 +1209,7 @@ class Cchambistas extends CI_Controller
 
         $html2 = '<option value="">Seleccione una parroquia</option>';
         for ($i = 0; $i < count($parroquias, 0); $i++) {
-            $html2 .= "<option value=" . $parroquias[$i]->codigoparroquia . ">" . ucwords(mb_strtolower($parroquias[$i]->nombre)) . "</option>";
+            $html2 .= "<option value=" . $parroquias[$i]->codigoparroquia . "  data-latitud=".$parroquias[$i]->latitud."  data-longitud=".$parroquias[$i]->longitud." >" . ucwords(mb_strtolower($parroquias[$i]->nombre)) . "</option>";
         }
         $respuesta2 = array("htmloption2" => $html2);
         echo json_encode($respuesta2);

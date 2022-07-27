@@ -590,3 +590,5 @@ if (window.innerWidth < 992) {
     body.classList.remove('icontext-menu');
     body.classList.remove('closed-leftmenu');
 }
+
+

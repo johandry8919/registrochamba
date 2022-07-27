@@ -64,7 +64,12 @@ $route['inicio'] = 'Cusuarios/Vinicio';
 
 
 /*Cchambistas*/
+
 $route['cambiarclave'] = 'Cchambistas/VcambiarClave';
+$route['admin/cambiarclave'] = 'Cadmin/admin_cambiarClave';
+$route['estructuras/cambiarclave'] = 'Estructuras/cambiarClave';
+$route['empresas/cambiarclave'] = 'Empresas/cambiarClave';
+$route['admin/cambiarclaves'] = 'Cadmin/estructuras_empresa';
 $route['datospersonales'] = 'Cchambistas/Vdatospersonales';
 $route['formacionacademica'] = 'Cchambistas/Vformacionacademica';
 $route['formacionacademicaform'] = 'Cchambistas/Vformacionacademica_form';
@@ -73,12 +78,14 @@ $route['experiencialaboral'] = 'Cchambistas/Vexperiencialaboral';
 $route['experiencialaboralform/(:num)'] = 'Cchambistas/Vexperiencialaboral_form/$1';
 $route['experiencialaboralform'] = 'Cchambistas/Vexperiencialaboral_form';
 $route['descargarpdfusuario'] = 'Cchambistas/pdf';
+$route['descargarpdfusuarios/(:num)'] = 'Cadmin/pdfCadmin/$1';
 $route['eliminarexp/(:num)'] = 'Cchambistas/eliminarexp/$1';
 $route['eliminaracademico/(:num)'] = 'Cchambistas/eliminaracademico/$1';
 $route['redessociales'] = 'Cchambistas/Vredessociales';
 $route['brigadas'] = 'Cchambistas/Vbrigadas';
 $route['productivo'] = 'Cchambistas/Vproductivo';
 $route['eliminarchamba/(:num)'] = 'Cchambistas/eliminarchamba/$1';
+$route['eliminarchambas/(:num)'] = 'Cadmin/eliminarchamba/$1';
 $route['eliminarbrigada/(:num)'] = 'Cchambistas/eliminarbrigada/$1';
 $route['eliminarvivienda/(:num)'] = 'Cchambistas/eliminarvivienda/(:num)';
 $route['insercion'] = 'Cchambistas/Vinsercion';
@@ -95,12 +102,96 @@ $route['adm'] = 'Cadministrador/VinicioSesion';
 
 $route['inicioadm'] = 'Cadmin/inicio';*/
 $route['admin/login'] = 'Cadmin/login';
-$route['admin/registro/estructuras'] = 'Cadmin/registro_estructura';
+
+
+$route['admin/registro/estructuras'] = 'Cadmin/estructura_brigada';
+$route['admin/editar/estructuras/(:num)'] = 'Cadmin/editar_brigada/$1';
+
+$route['admin/registro/integrante-estructura/(:num)'] = 'Cadmin/registro_estructura';
+
+$route['admin/registro/estructuras/(:num)'] = 'Cadmin/actualizar_estructuras/$1';
+$route['admin/limpar_qr'] = 'Cadmin/limpar_qr';
+$route['admin/listar_brigada'] = 'Cadmin/listar_brigada';
+
+$route['admin/empresas'] = 'Cadmin/listar_empresas_entes';
 $route['admin/registro/empresas'] = 'Cadmin/registro_empresas';
 $route['admin/registro/universidades'] = 'Cadmin/registro_universidades';
+$route['admin/registro/universidades/(:num)'] = 'Cadmin/editar_universidades/$1';
 $route['admin/inicio'] = 'Cadmin';
+$route['admin/registro/usuarios'] = 'Cadmin/registro_usuarios';
+$route['admin/usuarios'] = 'Cadmin/listar_usuarios_admin';
 $route['admin'] = 'Cadmin';
+$route['admin/usuarios'] = 'Cadmin/listar_usuarios_admin';
+$route['admin/ver/estructura-brigada/(:num)'] = 'Cadmin/ver_estrutura_brigada';
 
+$route['admin/editar/empresa/(:num)'] = 'Cadmin/editar_empresa/$1';
+$route['admin/roles'] = 'Roles';
+   
+//$route['admin/Roles'] = 'Cadmin/listar_usuarios_admin';
+
+//ofertas de empleos
+$route['admin/nueva_oferta/(:num)'] = 'CofertaEmpleo/publicar_oferta_admin';
+
+$route['admin/oferta_universidad/(:num)'] = 'CofertaUniversidades/universidad_oferta_admin/$1';
+
+
+$route['admin/ofertas'] = 'CofertaEmpleo/listar_oferta_admin';
+
+$route['admin/ofertasUniversidad'] = 'CofertaUniversidades/listar_oferta_admin';
+
+$route['admin/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta';
+$route['admin/oferta-empleo-empresa/(:num)'] = 'CofertaEmpleo/listar_ofertas_empleo_empresa';
+$route['admin/usuario/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta_admin';
+
+$route['admin/usuarios/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas_admin';
+$route['admin/universidad/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas_admin';
+$route['admin/usuarios/editaOfertas/(:num)'] = 'CofertaUniversidades/editar_oferta_admin';
+
+$route['admin/usuario/editarOferta/(:num)'] = 'CofertaEmpleo/editar_oferta_admin';
+$route['estructuras/usuario/ver_oferta/(:num)'] = 'CofertaEmpleo/ver_oferta_admin';
+$route['estructuras/usuario/editarOferta/(:num)'] = 'CofertaEmpleo/editar_oferta_admin';
+$route['estructuras/usuarios/editaOfertas/(:num)'] = 'CofertaUniversidades/editar_oferta_admin';
+
+
+
+$route['admin/usuarios/(:num)'] = 'Cadmin/listar_oferta_universidades';
+
+$route['estructuras/ofertas-estudios-universidades/(:num)'] = 'Estructuras/listar_oferta_universidades';
+$route['estructuras/usuarios/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas_admin';
+$route['estructuras/oferta-empleo-empresa/(:num)'] = 'CofertaEmpleo/listar_ofertas_empleo_empresa';
+
+
+
+$route['admin/ver_ofertas/(:num)'] = 'CofertaUniversidades/ver_ofertas';
+
+$route['estructuras/listar_empresas'] = 'Estructuras/listar_empresas';
+$route['estructuras/nueva_ofertas/(:num)'] = 'Estructuras/publicar_oferta_admin';
+$route['estructuras/oferta_universidad/(:num)'] = 'Estructuras/universidad_oferta_admin/$1';
+$route['estructuras/nueva_oferta/(:num)'] = 'CofertaEmpleo/publicar_oferta_admin';
+$route['estructuras/ofertasUniversidad'] = 'Estructuras/listar_ofertas_estructura';
+$route['admin/editaOfertas/(:num)'] = 'CofertaUniversidades/editar_oferta/$1';
+$route['admin/editarOferta/(:num)'] = 'CofertaEmpleo/editar_oferta/$1';
+$route['estructuras/editaOfertas/(:num)'] = 'Estructuras/editar_oferta/$1';
+$route['estructuras/ver_oferta/(:num)'] = 'Estructuras/ver_oferta_empresas';
+$route['estructuras/ver_ofertas/(:num)'] = 'Estructuras/ver_ofertas_universidad';
+$route['estructuras/ofertas'] = 'estructuras/listar_oferta_admin';
+$route['empresas/ofertas'] = 'Empresas/listar_oferta_empresas';
+$route['universidad/ofertas'] = 'Universidades/listar_oferta_universidades';
+$route['empresas/editarOferta/(:num)'] = 'Empresas/editar_oferta/$1';
+$route['universidad/editaOfertas/(:num)'] = 'Universidades/editar_oferta/$1';
+$route['eempresas/ver_oferta/(:num)'] = 'Empresas/ver_ofertas';
+$route['empresas/datos_empresa'] = 'Empresas/datos_empresa';
+$route['empresas/datos_universidad'] = 'Universidades/datos_universidad';
+
+$route['estructuras/editarOferta/(:num)'] = 'Estructuras/editar_oferta_empresas/$1';
+$route['estructura/lista_universidad'] = 'Estructuras/lista_universidad';
+
+/**Oferta universidades */
+$route['admin/ver_oferta_universidad/(:num)'] = 'CofertaUniversidades/ver_oferta';
+//cambista
+$route['admin/chambista/buscar'] = 'Cadmin/buscar_chambista';
+$route['admin/editar_chambista/(:num)'] = 'Cadmin/editar_chambista/$1';
+$route['admin/editar_formacion/(:num)'] = 'Cadmin/editar_formacion/$1';
 /*Administrador*/
 
 
@@ -110,8 +201,12 @@ $route['translate_uri_dashes'] = FALSE;
 //Estructuras
 $route['estructuras/registro/estructuras'] = 'Estructuras/registro_estructura';
 $route['estructuras/registro/empresas'] = 'Estructuras/registro_empresas';
+$route['estructuras/registro/empresas/(:num)'] = 'Estructuras/editar_empresas/$1';
 $route['estructuras/registro/universidades'] = 'Estructuras/registro_universidades';
+$route['estructuras/registro/universidades/(:num)'] = 'Estructuras/editar_universidades/$1';
 $route['estructuras/inicio'] = 'Estructuras';
+$route['admin/estructuras'] = 'Cadmin/listar_brigada';
+
 
 /*Cestructuras*/
 
@@ -119,10 +214,26 @@ $route['estructuras/inicio'] = 'Estructuras';
 //Estructuras
 $route['estructuras/registro/estructuras'] = 'Estructuras/registro_estructura';
 $route['estructuras/registro/empresas'] = 'Estructuras/registro_empresas';
+$route['estructuras/registro/empresas/(:num)'] = 'Estructuras/editar_empresas/$1';
 $route['estructuras/registro/universidades'] = 'Estructuras/registro_universidades';
 $route['estructuras/inicio'] = 'Estructuras';
 
 /*Empresas*/
 $route['empresas/inicio'] = 'Empresas';
 $route['empresas/nuevaoferta'] = 'Empresas/nuevaoferta';
+$route['universidad/nuevaoferta'] = 'Universidades/universidad_oferta_admin';
 /*Empresas*/
+
+/**Universidades */
+$route['universidades/inicio'] = 'Universidades';
+$route['admin/universidades'] = 'Cadmin/universidades';
+$route['universidad/ver_ofertas/(:num)'] = 'Universidades/ver_ofertas';
+
+/**REPORTE ***/
+
+$route['admin/reportes/empresas_mapa'] = 'Creportes/empresas_mapa';
+$route['admin/reportes/estructuras_mapa'] = 'Creportes/etructura_mapa';
+$route['admin/reportes/chambistas'] = 'Creportes/chambistas';
+$route['admin/reportes/excel_empresas'] = 'Creportes/exportar_excel_empresas';
+$route['admin/reportes/excel_estructura'] = 'Creportes/exportar_excel_estructuras';
+
