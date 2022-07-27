@@ -1,3 +1,6 @@
+
+<form id="form-map">
+
 <div class="row">
 
 
@@ -68,7 +71,7 @@
             <select data-parsley-error-message="Este campo es requerido"
              required class="form-control show-tick" id="rango_fecha" name="empresa" 
              required data-parsley-error-message="Este campo es requerido">
-                <option value="1">Todos</option>
+                <option value="1">Seleccione una fecha</option>
                 <option value="2">Seleccionar fecha</option>
 
             </select>
@@ -84,6 +87,8 @@
     </div>
 </div>
 </div>
+</form>
+
 
     <!-- MODALCHAMBISTA -->
     <div class="modal fade" id="modal-fecha-chambista">
@@ -146,4 +151,19 @@
  
     <div class="container">
         <div class="map" id="map"></div>
+    </div>
+    <br>
+    <hr>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                
+            </div>
+            <div class="table-responsive tabla-resultados">
+
+</div>
+
+        </div>
+
     </div>

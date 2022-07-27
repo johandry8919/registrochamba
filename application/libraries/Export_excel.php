@@ -40,5 +40,47 @@ class Export_excel{
         echo '<td style="border:1px #888 solid;color:#555;">'.$val.'</td>';              
     }
 
+    function escribirFila($val) {
+        return '<td style="border:1px #888 solid;color:#555;">'.$val.'</td>';              
+    }
+
+
+
+
+    function crear_excel($array, $filename) {
+    
+
+        $tabla='';
+        $h = array();
+        foreach($array as $row){
+            foreach($row as $key=>$val){
+                if(!in_array($key, $h)){
+                    $h[] = $key;   
+                }
+            }
+        }
+        $tabla.= '<table id="tabla-reporte">
+     
+        <thead>
+        <tr>';
+        foreach($h as $key) {
+            $key = ucwords($key);
+            $tabla.='<th style="border:1px #888 solid;background-color:#72177B;color:white;">'.$key.'</th>';
+        }
+        $tabla.= '</tr>
+        </thead>
+        ';
+
+        foreach($array as $row){
+            $tabla.=  ' <tr>';
+            foreach($row as $val)
+            $tabla.= $this->escribirFila($val);   
+        }
+        $tabla.= '</tr> </tbody>';
+        $tabla.= '</table>';
+
+
+   return $tabla;
+    }
 }
 ?>
