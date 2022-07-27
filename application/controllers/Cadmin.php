@@ -428,9 +428,9 @@ class Cadmin extends CI_Controller
             "roles" => $roles,
             "ficheros_js" => [recurso("listar_usuario_admin_js")],
             "ficheros_js" => [recurso("Edit-rol_js"),recurso("rolesUsuarios_js")],
-            "constantes_js" => ["ID_ROL" => $this->session->userdata('id_rol')],
-
             "constantes_js" => ["ID_USUARIO" => $this->session->userdata('id_usuario')],
+
+         
            
 
         ];

@@ -11,18 +11,41 @@
 		var id_rol = $("#id_rol").val();
 		if (id_rol === "4" || id_rol === "5") {
 			Swal.fire({
-				title: "Acceso denegado",
-				icon: "error",
+				title: '¿Estas seguro?',
+				text: "¡No podrás revertir esto!!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Si, Eliminar!'
+			  })
+		}else{
+			Swal.fire({
+				title: '¿Estas seguro?',
+				text: "¡No podrás revertir esto!!",
+				icon: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'Si, Eliminar!'
+			  }).then((result) => {
+				if (result.isConfirmed) {
+			
+			
+		
 
-				focusConfirm: false,
-				confirmButtonText: '<i class="fa fa-thumbs-up fs-5"></i> ',
-				confirmButtonAriaLabel: "Thumbs up, great!",
-			});
-		} else {
-			var id_usuario = $(this).data("id_usuario");
+					  var id_usuario = $(this).data("id_usuario");
+						eliminar_usuario(id_usuario);
+			
+				
+				}
+			  })
 
-			eliminar_usuario(id_usuario);
+			 
 		}
+
+
+		
 	});
 })(jQuery);
 
