@@ -292,7 +292,7 @@ function buscarParroquia() {
 						"respuesta =" +
 						xhr.responseText
 				);
-				//alert("ocurrio un error intente de nuevo");
+				
 			},
 		});
 	}
