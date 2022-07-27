@@ -1,4 +1,4 @@
-        
+
         <div class="row row-sm ">
             <div class="col-lg-12">
                 <div class="card">
@@ -10,6 +10,9 @@
                                                     <select class="form-control" id="tipo_rol">
                                                         <option value="admin" <?php if(isset($_GET['p']) && $_GET['p'] =='admin') echo 'selected' ?>>Admin</option>
                                                         <option value="estructura" <?php if(isset($_GET['p']) && $_GET['p'] =='estructura') echo 'selected' ?>>Estructura</option>
+                                                        <option value="universidades" <?php if(isset($_GET['p']) && $_GET['p'] =='universidades') echo 'selected' ?>>Universidades</option>
+                                                        <option value="empresas" <?php if(isset($_GET['p']) && $_GET['p'] =='empresas') echo 'selected' ?>>Empresas</option>
+                                                        
                                                     </select>
 
                                             
@@ -39,7 +42,9 @@
                                          
                                               <button id="edit_rol" type="button"  class=" btn btn-sm btn-primary " data-bs-target="#modalQuill" data-bs-toggle="modal" value="Editar" name="edit" onclick="Editar(<?php echo $usuario->id_usuarios_admin?>)">Editar</button>
                                               
-                                              <button <?php if($usuario->id_usuarios_admin == $id_usuario_admin) echo "disabled"?> class="btn btn-sm btn-danger btn-eliminar-usuario" data-id_usuario="<?php echo $usuario->id_usuarios_admin?>">
+                                              <button <?php if($usuario->id_usuarios_admin == $id_usuario_admin) echo "disabled"?> class="btn btn-sm btn-danger btn-eliminar-usuario" data-id_usuario="<?php echo $usuario->id_usuarios_admin?>
+                                              
+                                              ">
                                               <i class="side-menu__icon fe fe-trash-2"></i>
                                               </button>
                                             </div>
@@ -104,7 +109,9 @@
 
         </div>
 
-
+        <input type="hidden" name="" id="id_rol" value="<?php if (isset($usuarios)) {
+                                                                                    echo $usuarios[0]->id_rol;
+                                                                                } ?>">
 
 
 

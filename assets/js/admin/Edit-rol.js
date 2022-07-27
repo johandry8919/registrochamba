@@ -1,29 +1,30 @@
-
+// var id_rol = $(this).data("id_usuario")
 
 (function ($) {
 	$("#form-editar_usuarios").submit(function (e) {
 		e.preventDefault();
 
 		editar_usuarios();
-	
 	});
 
-	
-$(".btn-eliminar-usuario").click(function (e) {
-    
-	var id_usuario = $(this).data("id_usuario");
-	eliminar_usuario(id_usuario)
+	$(".btn-eliminar-usuario").click(function (e) {
+		var id_rol = $("#id_rol").val();
+		if (id_rol === "4" || id_rol === "5") {
+			Swal.fire({
+				title: "Acceso denegado",
+				icon: "error",
 
-});
+				focusConfirm: false,
+				confirmButtonText: '<i class="fa fa-thumbs-up fs-5"></i> ',
+				confirmButtonAriaLabel: "Thumbs up, great!",
+			});
+		} else {
+			var id_usuario = $(this).data("id_usuario");
 
-
+			eliminar_usuario(id_usuario);
+		}
+	});
 })(jQuery);
-
-
-
-
-
-
 
 var idioma_espanol = {
 	sProcessing: "Procesando...",
@@ -65,23 +66,18 @@ var table = $("#basic-datatable").DataTable({
 	language: idioma_espanol,
 });
 
-
 function CierraPopup() {
 	$("#modalQuill").modal("hide"); //ocultamos el modal
 	$("body").removeClass("modal-open"); //eliminamos la clase del body para poder hacer scroll
 	$(".modal-backdrop").remove(); //eliminamos el backdrop del modal
 }
 
-
-
-
-
 function Editar(id_usuarios_admin) {
 	var roles = $("#roles").val();
 
 	$.ajax({
 		dataType: "json",
-		data: {id_usuarios_admin, roles },
+		data: { id_usuarios_admin, roles },
 
 		url: base_url + "ajax/Edit_rol",
 		type: "post",
@@ -187,7 +183,6 @@ function Editar(id_usuarios_admin) {
 	});
 }
 
-
 function editar_usuarios() {
 	var nombre = $("#nombre").val();
 	var cedula = $("#cedula").val();
@@ -198,7 +193,7 @@ function editar_usuarios() {
 	var roles = $("#roles").val();
 	var cargo = $("#cargog").val();
 	var perfil = $("#perfil").val();
-	var nombre_rol =  $("#nombre_rol").val()
+	var nombre_rol = $("#nombre_rol").val();
 	CierraPopup();
 	$.ajax({
 		dataType: "json",
@@ -224,29 +219,18 @@ function editar_usuarios() {
 			//$("#cod_municipio").selectpicker('refresh');
 		},
 		success: function (respuesta) {
-
-	
-
-			var datos = respuesta.datos;			
+			var datos = respuesta.datos;
 			if (respuesta.resultado == true) {
-
-				thml_usuario(datos)
+				thml_usuario(datos);
 
 				Swal.fire({
-					title: '<strong>Datos actualizado</strong>',
-					icon: 'success',
-					
+					title: "<strong>Datos actualizado</strong>",
+					icon: "success",
+
 					focusConfirm: false,
-					confirmButtonText:
-					  '<i class="fa fa-thumbs-up fs-5"></i> ',
-					confirmButtonAriaLabel: 'Thumbs up, great!',
-
-					
-				  })
-
-				
-				
-			
+					confirmButtonText: '<i class="fa fa-thumbs-up fs-5"></i> ',
+					confirmButtonAriaLabel: "Thumbs up, great!",
+				});
 			} else {
 				Swal.fire({
 					icon: "error",
@@ -261,15 +245,14 @@ function editar_usuarios() {
 		},
 	});
 }
-function eliminar_usuario(id_usuario){
-
+function eliminar_usuario(id_usuario) {
 	var perfil = $("#tipo_rol").val();
 
 	$.ajax({
 		dataType: "json",
 		data: {
 			id_usuario,
-			perfil
+			perfil,
 		},
 
 		url: base_url + "ajax/Edit_rol/eliminar_usuario",
@@ -281,13 +264,10 @@ function eliminar_usuario(id_usuario){
 			//$("#cod_municipio").selectpicker('refresh');
 		},
 		success: function (respuesta) {
+			var datos = respuesta.datos;
 
-			var datos = respuesta.datos
-			
 			if (respuesta.resultado == true) {
-
-				thml_usuario(datos)
-
+				thml_usuario(datos);
 
 				// table.destroy();
 				Swal.fire({
@@ -297,7 +277,6 @@ function eliminar_usuario(id_usuario){
 				}).then((result) => {
 					/* Read more about isConfirmed, isDenied below */
 					if (result.isConfirmed) {
-						
 					}
 				});
 			} else {
@@ -314,15 +293,13 @@ function eliminar_usuario(id_usuario){
 		},
 	});
 }
-function thml_usuario(datos){
-	var disabled = ""
-				var dataTable = ""
-				datos.forEach((element => {
-				
-					if (element.id_usuarios_admin == ID_USUARIO) disabled = "disabled";
-					
+function thml_usuario(datos) {
+	var disabled = "";
+	var dataTable = "";
+	datos.forEach((element) => {
+		if (element.id_usuarios_admin == ID_USUARIO) disabled = "disabled";
 
-			 		dataTable += `
+		dataTable += `
 					
 									 <tr>
 										 <td>
@@ -349,18 +326,13 @@ function thml_usuario(datos){
 		
 			
 					 
-					 `
+					 `;
 
-					 disabled = ""
-				}))
+		disabled = "";
+	});
 
+	$("#basic-datatable tbody").html("");
+	var htmlTags = dataTable;
 
-				$("#basic-datatable tbody").html("");
-				var htmlTags = dataTable
-				
-
-				$("#basic-datatable tbody").append(htmlTags);
-
-
-	
+	$("#basic-datatable tbody").append(htmlTags);
 }

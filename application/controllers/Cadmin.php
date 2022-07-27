@@ -389,14 +389,25 @@ class Cadmin extends CI_Controller
             if ($_GET['p'] == "estructura") {
                 $perfil = "estructura";
             }
+            if  ($_GET['p'] == "universidades") {
+                $perfil = "universidades";
+            }
+            if  ($_GET['p'] == "empresas") {
+                $perfil = "empresas";
+            }
         }
 
 
+
         $id_roles =  obtener_roles($perfil);
+     
 
 
         $roles =  $this->Roles_model->obtener_roles($perfil);
         $usuarios = $this->Usuarios_admin_model->obtener_usuarios($id_roles);
+        
+        // echo json_encode($roles);
+        // exit;
         
         
 
@@ -417,7 +428,10 @@ class Cadmin extends CI_Controller
             "roles" => $roles,
             "ficheros_js" => [recurso("listar_usuario_admin_js")],
             "ficheros_js" => [recurso("Edit-rol_js"),recurso("rolesUsuarios_js")],
+            "constantes_js" => ["ID_ROL" => $this->session->userdata('id_rol')],
+
             "constantes_js" => ["ID_USUARIO" => $this->session->userdata('id_usuario')],
+           
 
         ];
 
@@ -958,6 +972,7 @@ class Cadmin extends CI_Controller
             "instagram"    => $this->input->post('instagram'),
             "twitter"      => $this->input->post('twitter'),
             "facebook"     => $this->input->post('facebook'),
+          
 
             "codigoestado"      => $this->input->post('cod_estado'),
             "codigomunicipio"   => $this->input->post('cod_municipio'),
@@ -1009,6 +1024,7 @@ class Cadmin extends CI_Controller
             "cedula"  => $cedula_representante,
             "email"   => $email_representante,
             "password" => $password,
+            "cargo" => $this->input->post('cargo'),
         ]);
 
 
@@ -1649,6 +1665,8 @@ class Cadmin extends CI_Controller
             "cedula"  => $cedula_representante,
             "email"   => $email_representante,
             "password" => $password,
+            "cargo" => $this->input->post('cargo'),
+            "nombre" => $this->input->post('nombre_representante'),
         ]);
 
 
