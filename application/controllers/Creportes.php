@@ -17,7 +17,8 @@ class Creportes extends CI_Controller
         $this->load->model('Brigadas_estructuras_model');
         $this->load->model('Mreportes');
 
-        set_time_limit(500);
+        ini_set('max_execution_time', 500);
+        set_time_limit(1200);
         //$this->load->library('security');
         //$this->output->enable_profiler(TRUE);
     }

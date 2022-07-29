@@ -284,12 +284,13 @@
             if($cod_estado != 'todos')
             $this->db->where("estado.codigoestado", $cod_estado);
 
+          
 
             $this->db->join('tbl_roles roles', 'roles.id_rol = tbl_brigadas_estructuras.id_rol_estructura'); 
             $this->db->join('tbl_estado estado', 'estado.codigoestado = tbl_brigadas_estructuras.codigoestado');
             $this->db->join('tbl_municipio municipio', 'municipio.codigomunicipio = tbl_brigadas_estructuras.codigomunicipio');
             $this->db->join('tbl_parroquia parroquia', 'parroquia.codigoparroquia = tbl_brigadas_estructuras.codigoparroquia'); 
-            $this->db->join('tbl_estructuras', 'tbl_estructuras.id_brigada_estructura = tbl_brigadas_estructuras.id_brigada','left'); 
+            $this->db->join('tbl_estructuras', 'tbl_estructuras.id_brigada_estructura = tbl_brigadas_estructuras.id_brigada AND tbl_estructuras.activo=1','left'); 
             
             $this->db->group_by('tbl_brigadas_estructuras.id_brigada, tbl_brigadas_estructuras.id_usuario_registro, tbl_brigadas_estructuras.nombre_brigada, tbl_brigadas_estructuras.nombre_sector,
             tbl_brigadas_estructuras.codigoestado, tbl_brigadas_estructuras.codigomunicipio, tbl_brigadas_estructuras.codigoparroquia, 

@@ -42,7 +42,7 @@ class Cobterner_menu_rol extends CI_Controller {
 
     $id_rol =$_POST['id_rol'];
 
-    $resultado = $this->Menu_model->obtener_menu_perfil($_POST['tipo_rol'],$id_rol);
+    $resultado = $this->Menu_model->obtener_menu_perfil('admin',$id_rol);
 
 
       if($resultado)

@@ -125,7 +125,7 @@
                                         <!-- Tabs -->
                                         <ul class="nav panel-tabs">
                                             <li class="mx-0"><a href="#tab5" class="active" data-bs-toggle="tab">Chambista</a></li>
-                                            <li class="mx-0"><a href="#tab6" data-bs-toggle="tab">Estructura</a></li>
+
                                             <li class="mx-0"><a href="#tab7" data-bs-toggle="tab">Institución/Empresas</a></li>
                                         </ul>
                                     </div>
