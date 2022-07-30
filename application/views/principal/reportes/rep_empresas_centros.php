@@ -8,6 +8,13 @@
 
 
                 <div class="row">
+                    <div class="col-12 col-md-12 text-center">
+                    <div class="btn-group">
+                            <button class="btn btn-primary" type="submit" name="1" id="consultarmap">Consultar</button>
+                            <button class="btn btn-info" type="submit" name="2" id="descargar_ reporte">Descargar Excel</button>
+
+                        </div>
+                    </div>
 
 
                     <div class="col-3">
@@ -82,14 +89,14 @@
 
 
                         </div>
-                        <div class="btn-group">
-                            <button class="btn btn-primary" type="submit" name="1" id="consultarmap">Consultar</button>
-                            <button class="btn btn-info" type="submit" name="2" id="descargar_ reporte">Descargar Excel</button>
-
-                        </div>
+                        
                     </div>
                 </div>
             </form>
+
+            <!-- <?php print_r($id_rol)?> -->
+            <input type="hidden" name="id_rol" id="id_rol" value="<?php echo $id_rol;?>">
+
 
             <hr>
             <div class="row">

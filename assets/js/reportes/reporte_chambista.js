@@ -154,14 +154,16 @@ async function obtener_reporte_chambista(accion) {
 	var cod_parroquia = $("#cod_parroquia").val();
 	var fecha_inicio = $("#fecha_inicio").val();
 	var fecha_fin = $("#fecha_fin").val();
+	var id_nivel_academico = $("#id_nivel_academico").val();
+	var id_area_form = $("#id_area_form").val();
 
 	var sweet_loader = '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
 	if(accion==2)
-		location.href=base_url+'admin/reportes/excel_chambistas?cod_estado='+cod_estado+'&cod_municipio='+cod_municipio+'&cod_parroquia='+cod_parroquia+'&fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin
+		location.href=base_url+'admin/reportes/excel_chambistas?cod_estado='+cod_estado+'&cod_municipio='+cod_municipio+'&cod_parroquia='+cod_parroquia+'&fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&id_area_form='+id_area_form+'&id_nivel_academico='+id_nivel_academico
 		else		
 	$.ajax({
 		dataType: "json",
-		data: { cod_estado, cod_municipio, cod_parroquia, fecha_inicio,fecha_fin },
+		data: { cod_estado, cod_municipio, cod_parroquia, fecha_inicio,fecha_fin,id_nivel_academico,id_area_form },
 
 		url: base_url + "Creportes/obtener_reporte_chambista",
 		type: "post",
@@ -288,6 +290,9 @@ function agregarMapa(lat = "8.2321", long = "-66.406", zoom = 13, data=[]) {
 			center: [long, lat], // starting position [lng, lat]
 			zoom: zoom, // starting zoom
 		});
+		map.on('style.load', () => {
+			map.setFog({}); // Set the default atmosphere style
+			});
 
 	
 
