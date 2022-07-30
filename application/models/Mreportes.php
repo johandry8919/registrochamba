@@ -13,9 +13,12 @@ class Mreportes extends CI_Model
 
 
 
-    public function obtener_datos_personales($estado,$municipio,$parroquia,$fecha_inicio,$fecha_fin){
+    public function obtener_datos_personales($estado,$municipio,$parroquia,$fecha_inicio,$fecha_fin ,$id_nivel_academico,$id_area_form){
 
-        $this->db->select(' distinct(tbl_usu.id_usuario), tbl_usu.cedula, tbl_usu.email,  tbl_usu.porcentaje_perfil, tbl_usu.registro_anterior,
+        $this->db->select(' distinct(tbl_usu.id_usuario), tbl_usu.cedula,
+      
+        
+        tbl_usu.email,  tbl_usu.porcentaje_perfil, tbl_usu.registro_anterior,
         tbl_dp.nombres, tbl_dp.apellidos, tbl_dp.fecha_nac, tbl_dp.telf_cel, tbl_dp.telf_local, 
          empleo, direccion, cne,
         tbl_dp.estudio, tbl_dp.genero, tbl_dp.estcivil, tbl_dp.aborigen, tbl_dp.hijo,  
@@ -26,7 +29,12 @@ class Mreportes extends CI_Model
 	 terreno_siembra, sembrando, rubro, financiamiento,  pesquera_inspector_pescador, pesquera_pescador, pesquera_refrigeracion, pesquera_financiamiento, emprendimiento, iniciar_emprendimiento, emprendimiento_empresa,
 	 "financiamiento-emprendimiento", "agrourbana-terrenos",
 	 "agrourbana-patio", "agrourbana-rubro", "financiamiento-agrourbana", nombre_chamba,
-	 id_area_desarrollo_emprendedor, desarrollo_proyecto_tecnologico, id_sector_productivo, id_servicios_profesionales, que_esta_desarrollando
+	 id_area_desarrollo_emprendedor, desarrollo_proyecto_tecnologico, id_sector_productivo, id_servicios_profesionales, que_esta_desarrollando,
+   tbl_acade.titulo_carrera,
+
+
+  
+
 	
                 
         ');
@@ -42,12 +50,27 @@ class Mreportes extends CI_Model
       }
 
       if($parroquia !='01'){
-        $this->db->where('bl_parroquia.codigoparroquia ', $parroquia);
+        $this->db->where('tbl_parroquia.codigoparroquia ', $parroquia);
       }
+      if($id_nivel_academico !='02'){
+        $this->db->where("tbl_acade.id_instruccion" , $id_nivel_academico);
+      }
+      if($id_area_form !='02'){
+        $this->db->where("tbl_acade.id_area_form" , $id_area_form);
+      }
+  
 
+
+
+ 
+      
       $this->db->where(" tbl_dp.creado >='$fecha_inicio'");
       $this->db->where(" to_char(tbl_dp.creado,'YYYY-MM-DD') <='$fecha_fin'");
         $this->db->join('tbl_usuarios tbl_usu', ' tbl_usu.id_usuario=tbl_dp.id_usuario');
+
+        $this->db->join('tbl_usuarios_academicos tbl_acade', ' tbl_acade.id_usuario=tbl_dp.id_usuario');
+
+
         $this->db->join('tbl_estado ', ' tbl_estado.codigoestado = tbl_dp.codigoestado ');
         $this->db->join('tbl_municipio', 'tbl_municipio.codigomunicipio = tbl_dp.codigomunicipio');
         $this->db->join('tbl_parroquia', 'tbl_parroquia.codigoparroquia = tbl_dp.codigoparroquia ');
@@ -58,6 +81,8 @@ class Mreportes extends CI_Model
         $this->db->join('tbl_brigadas', 'tbl_usuarios_brigadas.id_brigada = tbl_brigadas.id_brigada','left');
         $this->db->join('tbl_usuarios_productivos', 'tbl_usuarios_productivos.id_usuario = tbl_usu.id_usuario','left');
         $this->db->join('tbl_chambas', 'tbl_chambas.id_chamba = tbl_usuarios_productivos.tipo_chamba','left');
+
+    
 
         $query = $this->db->get("tbl_usuarios_personales tbl_dp");
    //  echo $this->db->last_query();
