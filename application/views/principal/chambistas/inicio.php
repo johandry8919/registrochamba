@@ -1,5 +1,5 @@
 
-<section class="container-fluid">
+
 
     <div class="col-xs-12 col-md-12 text-center ">
         <?php if ($this->session->flashdata('mensajeexito')) { ?>
@@ -466,7 +466,7 @@
             </h4>
         </div>
     </div>
-</section>
+
 
 
 

@@ -227,7 +227,7 @@
                                                          <?php if(isset($profesion_oficio)): ?>
                                                             <?php foreach ($profesion_oficio as $key => $profesion):?>
                                                                
-                                                                <?php  if($registroviejo->id_profesion_oficio == $profesion->id_profesion):?>
+                                                                <?php  if(isset($registroviejo->id_profesion_oficio) && $registroviejo->id_profesion_oficio == $profesion->id_profesion):?>
                                                                 
                                                                  
                                                                  
@@ -282,7 +282,7 @@
                                                         <select class="form-control show-tick" id="hijo" name="hijo">
                                                     <?php
                                                         for ($i=0; $i < 16; $i++) { 
-                                                            if($i==$registroviejo->hijo){
+                                                            if(isset($registroviejo->hijo) && $i==$registroviejo->hijo){
                                                                 if($i==0){
                                                                     echo "<option selected value='".$i."'>--Ninguno--</option>";
                                                                 }else{
@@ -331,7 +331,7 @@
                                                         <?php if(isset($movimientogeligioso)): ?>
                                                             <?php foreach ($movimientogeligioso as $key => $geligioso):?>
                                                                
-                                                                <?php  if($registroviejo->id_movimiento_religioso == $geligioso->id_religion):?>
+                                                                <?php  if(isset($registroviejo->id_movimiento_religioso) && $registroviejo->id_movimiento_religioso == $geligioso->id_religion):?>
                                                                 
                                                                  
                                                                  
@@ -356,7 +356,7 @@
                                                             <?php if(isset($movimientos)): ?>
                                                             <?php foreach ($movimientos as $key => $movimiento):?>
                                                                
-                                                                <?php  if($registroviejo->id_movimiento_sociales == $movimiento->id_movimiento):?>
+                                                                <?php  if(isset($registroviejo->id_movimiento_sociales)  && $registroviejo->id_movimiento_sociales  == $movimiento->id_movimiento):?>
                                                                 
                                                                  
                                                                  

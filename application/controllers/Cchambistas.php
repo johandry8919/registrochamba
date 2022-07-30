@@ -796,7 +796,6 @@ class Cchambistas extends CI_Controller
         $this->form_validation->set_rules('cod_municipio', 'Municipio', 'trim|numeric|required|strip_tags');
         $this->form_validation->set_rules('cod_parroquia', 'Parroquia', 'trim|numeric|required|strip_tags');
         $this->form_validation->set_rules('telf_movil', 'Movil', 'trim|min_length[11]|max_length[11]|numeric|required|strip_tags');
-        $this->form_validation->set_rules('telf_local', 'Local', 'trim|min_length[11]|max_length[11]|numeric|required|strip_tags');
         /* $this->form_validation->set_rules('correo', 'Correo', 'trim|required|valid_email|strip_tags'); */
         /*         $this->form_validation->set_rules('cedula', 'Cédula', 'trim|min_length[7]|max_length[8]|strip_tags');
         $this->form_validation->set_rules('nac', 'Nacionalidad', 'trim|max_length[1]|required|strip_tags'); */
@@ -820,7 +819,7 @@ class Cchambistas extends CI_Controller
         //delimitadores de errores
 
         //reglas de validación
-        // $this->form_validation->set_message('required', 'Debe llenar el campo %s');
+      $this->form_validation->set_message('required', 'Debe llenar el campo %s');
         //reglas de validación
 
 
