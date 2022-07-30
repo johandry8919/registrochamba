@@ -2,6 +2,13 @@
 <form id="form-map">
 
 <div class="row">
+<div class="col-md-12 text-center">
+<div class="btn-group">
+        <button class="btn btn-primary" type="submit" name="1" id="consultarmap">Consultar</button>
+        <button class="btn btn-info" type="submit" name="2" id="descargar_ reporte">Descargar Excel</button>
+
+    </div>
+</div>
 
 
 <div class="col-3">
@@ -66,7 +73,7 @@
 <div class="col-md-3">
     <label class="form-label">Fecha de registro</label>
     <div class="form-group">
-        <div class="form-line">
+        <div class="">
            
             <select data-parsley-error-message="Este campo es requerido"
              required class="form-control show-tick" id="rango_fecha" name="empresa" 
@@ -75,18 +82,84 @@
                 <option value="2">Seleccionar fecha</option>
 
             </select>
-            <small id="f-inicio"> </small>  / <small id="f-fin"> </small>
+            <small id="f-inicio"> </small>  <small id="f-fin"> </small>
         </div>
 
 
     </div>
-    <div class="btn-group">
-        <button class="btn btn-primary" type="submit" name="1" id="consultarmap">Consultar</button>
-        <button class="btn btn-info" type="submit" name="2" id="descargar_ reporte">Descargar Excel</button>
 
-    </div>
+
+    
 </div>
+
+
+
+    <!-- Nivel Académico -->
+   
+<div class="col-md-6">
+                                        <div class="form-group ">
+                                            <label class="form-label">Nivel academico</label>
+                                        
+                                        </div>
+                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
+                                                </a>
+                                                <select class=" form-control show-tick" id="id_nivel_academico" name="id_nivel_academico" data-parsley-error-message="Este campo es requerido" required autofocus >
+                                                    <option value="02">Todos</option>
+                                                    <?php if(isset($academica)): ?>
+                                                            <?php foreach ($academica as $key => $academicas):?>
+                                                               
+                                                                <?php  if($academicas->id_instruccion == $datos->id_nivel_academico):?>
+                                                                
+                                                                 
+                                                                 
+                                                                    <?php    echo "<option selected value='".$academicas->id_instruccion."'>".$academicas->nivel."</option>";     
+                                                               else:
+                                                                    echo "<option value='".$academicas->id_instruccion."'>".$academicas->nivel."</option>";
+                                                                endif;
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+
+
+                                                </select>
+                                               
+
+                                            </div>
+                                          
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                <div class="form-group">
+                                <label class="form-label">Área de Formación</label>
+                                </div>
+
+                                    <select class="form-control select2-selection__rendered" id="id_area_form"
+                                        name="id_area_form">
+                                        <option value="02">Todos</option>
+                                        <?php
+                                    foreach ($areaform as $key => $value) {
+                                        if (isset($acausuario) && $value->id_area_form == $acausuario->id_area_form) {
+                                            echo "<option selected value='" . $value->id_area_form . "'>$value->nombre</option>";
+                                        } else {
+                                            echo "<option value='" . $value->id_area_form . "'>$value->nombre</option>";
+                                        }
+                                    }
+                                    ?>
+                                    </select>
+
+                             
+
+                            </div>
+
+
+                          
+
 </div>
+
+
 </form>
 
 
@@ -136,6 +209,7 @@
                         </div>
 
                     </div>
+                    
 
           
           
@@ -147,6 +221,8 @@
             </div>
         </div>
     </div>
+
+    
 
  
     <div class="container">

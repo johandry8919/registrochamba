@@ -46,6 +46,7 @@ class Creportes extends CI_Controller
             "title"             => "Nueva oferta",
             "vista_principal"   => "reportes/rep_empresas_centros",
             "ficheros_js" => [recurso("reportes_js")],
+            "id_rol" => $this->session->userdata('id_rol'),
 
 
             "ficheros_css" => [recurso("mapa_mabox_css")]
@@ -180,10 +181,13 @@ class Creportes extends CI_Controller
             exit();
         }
 
+        
+    
 
         $breadcrumb = (object) [
             "menu" => "admin",
-            "menu_seleccion" => "Reporte Chambista"
+            "menu_seleccion" => "Reporte Chambista",
+            
 
 
         ];
@@ -206,6 +210,9 @@ class Creportes extends CI_Controller
 
 
         $estados = $this->Musuarios->getEstados();
+            // echo json_encode($academica);
+        // exit;
+
 
         $output = [
             "menu_lateral"      => 'admin',
@@ -217,7 +224,10 @@ class Creportes extends CI_Controller
             "vista_principal"   => "reportes/reporte_chambista",
             "ficheros_js" => [recurso("reporte_chambista_js")],
 
-            "ficheros_css" => [recurso("mapa_mabox_css")]
+            "ficheros_css" => [recurso("mapa_mabox_css")],
+           
+            "academica" => $this->Estructuras_model->instruccion_academica(),
+            "areaform"      =>   $this->Musuarios->getAreaForm(),
 
 
 
@@ -253,6 +263,8 @@ class Creportes extends CI_Controller
         $estados = $_REQUEST['cod_estado'];
         $municipio = $_REQUEST['cod_municipio'];
         $parroquia = $_REQUEST['cod_parroquia'];
+        $id_nivel_academico = $_REQUEST['id_nivel_academico'];
+        $id_area_form = $_REQUEST['id_area_form'];
         $fecha_inicio = fecha_to_sql($_REQUEST['fecha_inicio']);
         $fecha_fin = fecha_to_sql($_REQUEST['fecha_fin']);
 
@@ -275,9 +287,14 @@ class Creportes extends CI_Controller
             exit;
         }
 
+      
 
 
-        $datos_personales = $this->Mreportes->obtener_datos_personales($estados, $municipio, $parroquia, $fecha_inicio, $fecha_fin);
+        $datos_personales = $this->Mreportes->obtener_datos_personales($estados, $municipio, $parroquia, $fecha_inicio, $fecha_fin ,$id_nivel_academico,$id_area_form);
+
+        //   echo json_encode( $datos_personales);
+        // exit;
+
 
         if ($datos_personales) {
 
@@ -334,8 +351,11 @@ class Creportes extends CI_Controller
         $estados = $_REQUEST['cod_estado'];
         $municipio = $_REQUEST['cod_municipio'];
         $parroquia = $_REQUEST['cod_parroquia'];
+        $id_nivel_academico = $_REQUEST['id_nivel_academico'];
+        $id_area_form = $_REQUEST['id_area_form'];
         $fecha_inicio = fecha_to_sql($_REQUEST['fecha_inicio']);
         $fecha_fin = fecha_to_sql($_REQUEST['fecha_fin']);
+      
 
         $datetime1 = new DateTime($fecha_inicio);
         $datetime2 = new DateTime($fecha_fin);
@@ -358,7 +378,7 @@ class Creportes extends CI_Controller
 
 
 
-        $datos_personales = $this->Mreportes->obtener_datos_personales($estados, $municipio, $parroquia, $fecha_inicio, $fecha_fin);
+        $datos_personales = $this->Mreportes->obtener_datos_personales($estados, $municipio, $parroquia, $fecha_inicio, $fecha_fin,$id_nivel_academico,$id_area_form);
 
         if ($datos_personales) {
 
