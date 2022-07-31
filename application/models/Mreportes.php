@@ -65,7 +65,7 @@ class Mreportes extends CI_Model
       $this->db->where(" to_char(tbl_dp.creado,'YYYY-MM-DD') <='$fecha_fin'");
         $this->db->join('tbl_usuarios tbl_usu', ' tbl_usu.id_usuario=tbl_dp.id_usuario');
 
-        $this->db->join('tbl_usuarios_academicos tbl_acade', ' tbl_acade.id_usuario=tbl_dp.id_usuario');
+        $this->db->join('tbl_usuarios_academicos tbl_acade', ' tbl_acade.id_usuario=tbl_dp.id_usuario','left');
 
 
         $this->db->join('tbl_estado ', ' tbl_estado.codigoestado = tbl_dp.codigoestado ');
