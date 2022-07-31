@@ -281,10 +281,12 @@ class Creportes extends CI_Controller
 
         $diferencia_meses = $intervalMeses + $intervalAnos;
 
-        if ($diferencia_meses > 1) {
+        if ($id_nivel_academico == 02  && $id_area_form ==02 ) {
 
+            if( $diferencia_meses>1){ 
             echo  json_encode(["resultado" => false, "mensaje" => 'Solo pude seleccionar maximo un mes']);
             exit;
+        }
         }
 
       
@@ -370,10 +372,12 @@ class Creportes extends CI_Controller
 
         $diferencia_meses = $intervalMeses + $intervalAnos;
 
-        if ($diferencia_meses > 1) {
+        if ($id_nivel_academico == 02  && $id_area_form ==02 ) {
 
+            if( $diferencia_meses>1){ 
             echo  json_encode(["resultado" => false, "mensaje" => 'Solo pude seleccionar maximo un mes']);
             exit;
+        }
         }
 
 

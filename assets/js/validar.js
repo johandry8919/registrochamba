@@ -1,15 +1,22 @@
-(function ($) {
+
 	$("#datospersonales").submit(function (e) {
-		registrar();
+	
 		e.preventDefault();
+
+
+		 if(registrar())
+		 e.currentTarget.submit();
+
+
+		
+		
 	});
 
 	function registrar() {
 		var nombres = $("#nombres").val();
 		var apellidos = $("#apellidos").val();
 		var edad = $("#edad").val();
-
-		var edad = parseInt(edad);
+		 edad = parseInt(edad);
 		var telf_movil = $("#telf_movil").val();
 		var telf_movil = parseInt(telf_movil);
 		var telf_local = $("#telf_local").val();
@@ -20,15 +27,11 @@
 		var cod_parroquia = $("#cod_parroquia").val();
 		var id_movimiento_sociales = $("#id_movimiento_sociales").val();
         var direccion = $("#direccion").val()
-
-		var direccion = $("#direccion").val();
-
-		
 		// estcivil es un select
 		var estcivil = $("#estcivil").val();
 		var aborigen = $("#aborigen").val();
-		var empleo = $("#empleo").val();
-		
+		var empleo = $("#empleo").val();		
+		var genero = $("#genero").val();
 		var id_profesion = $("#id_profesion").val();
 		var hijos = $("#hijos").val();
 		var hijos = parseInt(hijos);
@@ -38,46 +41,57 @@
 		if (nombres == "" || expresion.test(nombres) == false) {
 			$("#nombres").focus();
             
+			return false;
 
 		} else if (apellidos == "" || expresion.test(apellidos) == false) {
 			$("#apellidos").focus();
+			return false;
 		} else if (edad == 0) {
 			$("#edad").focus();
+			return false;
 		} else if (direccion == "") {
 			$("#direccion").focus();
-		} else if (hijos == 0) {
-			$("#hijos").focus();
+			return false;
 		} else if (estcivil == "" || estcivil == 0) {
 			$("#estcivil").focus();
+			return false;
 		} else if (expresion.test(telf_movil) == true) {
 			$("#telf_movil").focus();
-		} else if (expresion.test(telf_local) == true) {
-			$("#telf_local").focus();
+			return false;
 		} else if (id_profesion == "" || id_profesion == 0) {
 			$("#id_profesion").focus();
+			return false;
 		} else if (aborigen == "" || aborigen == 0) {
 			$("#aborigen").focus();
+			return false;
+		} else if (genero == "" ) {
+			$("#genero").focus();
+			return false;
 		} else if (empleo == "" || empleo == 0) {
 			$("#empleo").focus();
+			return false;
 		} else if (id_movimiento_religioso == "" || id_movimiento_religioso == 0) {
 			$("#id_movimiento_religioso").focus();
+			return false;
 		} else if (estado == "" || estado == 0) {
 			$("#cod_estado").focus();
+			return false;
 		} else if (cod_municipio == "" || cod_municipio == 0) {
 			$("#cod_municipio").focus();
+			return false;
 		} else if (cod_parroquia == "" || cod_parroquia == 0) {
 			$("#cod_parroquia").focus();
+			return false;
 		} else if (id_movimiento_sociales == 0) {
 			$("#id_movimiento_sociales").focus();
+			return false;
 		} else if(direccion == ""){
             $("#direccion").focus();
+			return false;
 
-        }else {
-			$("#edad").css("border-color", "success");
+        }
 
-			// aser un submit normal
-			$("#datospersonales").submit();
-		}
+		return true;
 	}
 
 	$("#nombres").on("keyup", function () {
@@ -241,7 +255,7 @@
 				.addClass("is-valid valid-input");
 		} else {
 			$(this).removeClass("is-invalid error-input").addClass("is-valid");
-			$("#telf_movil,datepicker")
+			$("#telf_movil")
 				.removeClass("is-valid")
 				.addClass("is-invalid");
 		}
@@ -374,4 +388,4 @@
 			$(this).removeClass("is-valid").addClass("is-invalid error-input");
 		}
 	});
-})(jQuery);
+

@@ -28,10 +28,7 @@ class Mreportes extends CI_Model
         nombre_brigadas, tbl_municipio.nombre as municipio,tbl_parroquia.nombre as parroquia,
 	 terreno_siembra, sembrando, rubro, financiamiento,  pesquera_inspector_pescador, pesquera_pescador, pesquera_refrigeracion, pesquera_financiamiento, emprendimiento, iniciar_emprendimiento, emprendimiento_empresa,
 	 "financiamiento-emprendimiento", "agrourbana-terrenos",
-	 "agrourbana-patio", "agrourbana-rubro", "financiamiento-agrourbana", nombre_chamba,
-	 id_area_desarrollo_emprendedor, desarrollo_proyecto_tecnologico, id_sector_productivo, id_servicios_profesionales, que_esta_desarrollando,
-   tbl_acade.titulo_carrera,
-
+	 "agrourbana-patio", "agrourbana-rubro", "financiamiento-agrourbana", nombre_chamba
 
   
 
@@ -50,13 +47,13 @@ class Mreportes extends CI_Model
       }
 
       if($parroquia !='01'){
-        $this->db->where('tbl_parroquia.codigoparroquia ', $parroquia);
+        $this->db->where('tbl_parroquia.codigoparroquia ',$parroquia);
       }
       if($id_nivel_academico !='02'){
-        $this->db->where("tbl_acade.id_instruccion" , $id_nivel_academico);
+        $this->db->where("tbl_acade.id_instruccion" ,$id_nivel_academico);
       }
       if($id_area_form !='02'){
-        $this->db->where("tbl_acade.id_area_form" , $id_area_form);
+        $this->db->where("tbl_acade.id_area_form" ,$id_area_form);
       }
   
 
@@ -85,7 +82,7 @@ class Mreportes extends CI_Model
     
 
         $query = $this->db->get("tbl_usuarios_personales tbl_dp");
-   //  echo $this->db->last_query();
+   // echo $this->db->last_query();
         if ($query->num_rows() ) 
         {
             

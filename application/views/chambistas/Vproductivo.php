@@ -84,6 +84,7 @@
                             </div>
                             <?php 
                             if(isset($usuarioproductivo)){
+                    
                             ?>
                             <div class="row clearfix">
                                 <div class="col-xs-12 col-md-6 col-md-offset-3">

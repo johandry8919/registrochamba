@@ -110,14 +110,12 @@
                                                     <?php if(isset($academica)): ?>
                                                             <?php foreach ($academica as $key => $academicas):?>
                                                                
-                                                                <?php  if($academicas->id_instruccion == $datos->id_nivel_academico):?>
-                                                                
+                                                                                                  
                                                                  
                                                                  
-                                                                    <?php    echo "<option selected value='".$academicas->id_instruccion."'>".$academicas->nivel."</option>";     
-                                                               else:
+                                                                    <?php   
                                                                     echo "<option value='".$academicas->id_instruccion."'>".$academicas->nivel."</option>";
-                                                                endif;
+                                                                
                                                            endforeach;
                                                         endif;
                                                     ?>
