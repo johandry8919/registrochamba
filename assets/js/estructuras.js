@@ -32,7 +32,7 @@
 					var fecha_nac = $("#fecha_nac").parsley();
 					var edad = $("#edad").parsley();
 					var id_profesion_oficio = $("#id_profesion_oficio").parsley();
-					var expresion = /^[a-zA-Z-_\.]+$/;
+					var expresion = /^[a-z\d\-_\s]+$/i;
 				
 
 					if (
@@ -459,7 +459,7 @@ $("#nombres").on(
 	function () {
 		"use strict";
 		var nombres = $(this).val();
-		var expresion = /^[a-zA-Z-_\.]+$/;
+		var expresion = /^[a-z\d\-_\s]+$/i;
 
 		if (nombres) {
 			$(this)
@@ -475,7 +475,7 @@ $("#apellidos").on(
 	function () {
 		"use strict";
 		var apellidos_representante = $(this).val();
-		var expresion = /^[a-zA-Z-_\.]+$/;
+		var expresion = /^[a-z\d\-_\s]+$/i;
 
 		if (expresion.test(apellidos_representante)) {
 			$(this)

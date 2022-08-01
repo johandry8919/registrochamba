@@ -265,7 +265,7 @@
 	$("#nombre_representante").on("keyup", function () {
 		"use strict";
 		var nombre_representante = $(this).val();
-		var expresion = /^[a-zA-Z-_\.]+$/;
+		var expresion = /^[a-z\d\-_\s]+$/i;
 
 		if (expresion.test(nombre_representante)) {
 			$(this)
@@ -278,7 +278,7 @@
 	$("#cargo").on("keyup", function () {
 		"use strict";
 		var cargo = $(this).val();
-		var expresion = /^[a-zA-Z-_\.]+$/;
+		var expresion = /^[a-z\d\-_\s]+$/i;
 
 		if (expresion.test(cargo)) {
 			$(this)
@@ -292,7 +292,7 @@
 	$("#apellidos_representante").on("keyup", function () {
 		"use strict";
 		var apellidos_representante = $(this).val();
-		var expresion = /^[a-zA-Z-_\.]+$/;
+		var expresion = /^[a-z\d\-_\s]+$/i;
 
 		if (expresion.test(apellidos_representante)) {
 			$(this)
@@ -435,7 +435,7 @@
 	$("#direccion").on("keyup", function () {
 		"use strict";
 		var direccion_especifica = $(this).val();
-		var expresion = /^[a-zA-Z0-9\s]*$/;
+		var expresion = /^[a-z\d\-_\s]+$/i;
 
 		if (direccion_especifica) {
 			$(this)

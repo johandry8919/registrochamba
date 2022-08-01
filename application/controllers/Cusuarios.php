@@ -43,6 +43,7 @@ class Cusuarios extends CI_Controller {
         $usuariobrigada = $this->Musuarios->getBrigadasUsuario();
 
 
+
         $data['personal']= $personal;
         $data['usuario']= $usuario;
         $data['usuarioexperiencia']= $usuarioexperiencia;

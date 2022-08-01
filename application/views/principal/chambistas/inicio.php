@@ -40,7 +40,8 @@
 
                 <div class="card-header">
                     <div class="card-title animate__animated animate__bounce"> Progreso de Perfil:</div>
-
+                    
+                    
 
                 </div>
 
@@ -227,7 +228,7 @@
 
                     <?php } ?>
                     <!-- Productivo - Emprender -->
-
+                        
                     <?php if (isset($usuarioproductivo) and !empty($usuarioproductivo)) { ?>
 
                         <div class="col-12  d-grid gap-2 ">
@@ -258,7 +259,7 @@
                                
                                 <div class="row">
                                 <div class="col-10 col-md-11">
-                               <a href="<?php echo base_url() ?>brigadas" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title text-red">Productivo - Emprender</p></a>
+                               <a href="<?php echo base_url() ?>productivo" class="link-primary text-white"><p data-bs-toggle="tooltip" data-bs-original-title="Se añade a tu CV"  class="card-title text-red">Productivo - Emprender</p></a>
 
                               
 

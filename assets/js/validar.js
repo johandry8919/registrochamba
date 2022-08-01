@@ -35,7 +35,8 @@
 		var id_profesion = $("#id_profesion").val();
 		var hijos = $("#hijos").val();
 		var hijos = parseInt(hijos);
-		var expresion = /^[a-zA-Z-_\.]+$/;
+		var telefono = /^[a-zA-Z-_\.]+$/;
+		var expresion = /^[a-z\d\-_\s]+$/i;
         
 
 		if (nombres == "" || expresion.test(nombres) == false) {
@@ -55,7 +56,7 @@
 		} else if (estcivil == "" || estcivil == 0) {
 			$("#estcivil").focus();
 			return false;
-		} else if (expresion.test(telf_movil) == true) {
+		} else if (telefono.test(telf_movil) == true) {
 			$("#telf_movil").focus();
 			return false;
 		} else if (id_profesion == "" || id_profesion == 0) {
@@ -97,7 +98,8 @@
 	$("#nombres").on("keyup", function () {
 		"use strict";
 		var apellidos_representante = $(this).val();
-		var expresion = /^[a-zA-Z-_\.]+$/;
+		// var expresion = /^[a-zA-Z- -_\.]+$/;
+		var expresion = /^[\w\-\s]+$/
 
 		if (expresion.test(apellidos_representante)) {
 			$(this)
@@ -110,7 +112,7 @@
 	$("#apellidos").on("keyup", function () {
 		"use strict";
 		var apellidos_representante = $(this).val();
-		var expresion = /^[a-zA-Z-_\.]+$/;
+		var expresion = /^[\w\-\s]+$/;
 
 		if (expresion.test(apellidos_representante)) {
 			$(this)
@@ -378,7 +380,7 @@
 	$("#direccion").on("keyup", function () {
 		"use strict";
 		var direccion = $(this).val();
-		var expresion = /^[a-zA-Z0-9-_\.]+$/;
+		var expresion = /^[\w\-\s]+$/;
 
 		if (expresion.test(direccion)) {
 			$(this)
