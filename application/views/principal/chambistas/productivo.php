@@ -57,24 +57,29 @@
 
                     <?php
                     if (isset($usuarioproductivo)) {
+
+                   
+                       
                     ?>
-                        <div class="container-fluid">
+                        <div class="container-fluid " >
                             <div class="row  mt-2 mb-2  ">
                                 <div class="col-12 border alert alert-success  col-md-6 col-lg-6 ">Seleccionaste: <?php
-                                                                                                                    if (isset($usuarioproductivo) and $usuarioproductivo != "") {
-                                                                                                                        echo "$usuarioproductivo->nombre_chamba";
+                                                                                                                    if (isset($usuarioproductivo) ) {
+                                                                                                                        if($usuarioproductivo->nombre_chamba=="")
+                                                                                                                         echo "Ninguno";
+                                                                                                                         else
+                                                                                                                        echo $usuarioproductivo->nombre_chamba;
                                                                                                                     }
                                                                                                                     ?>
                                     <?php
                                         if(!isset($id_usuario)){
-                                            if (isset($usuarioproductivo) and $usuarioproductivo != "") {
-
-                                                echo '<a href="' . base_url() . 'eliminarchamba/' . $usuarioproductivo->id_chamba . '"><i class=" btn-close fs-6" aria-label="Close"></i></a>';
-                                            }
+                                            if (isset($usuarioproductivo)) 
+                                                echo '<a href="' . base_url() . 'eliminarchamba/' . $usuarioproductivo->id_productivo . '"><i class=" btn-close fs-6" aria-label="Close"></i></a>';
+                                            
                                         }else{
-                                            if (isset($usuarioproductivo) and $usuarioproductivo != "") {
+                                            if (isset($usuarioproductivo) ) {
 
-                                                echo '<a href="' . base_url() . 'eliminarchambas/' . $id_usuario . '"><i class=" btn-close fs-6" aria-label="Close"></i></a>';
+                                                echo '<a href="' . base_url() . 'eliminarchambas/' . $usuarioproductivo->id_productivo . '"><i class=" btn-close fs-6" aria-label="Close"></i></a>';
                                             }
                                         }
                                     ?>
@@ -165,7 +170,7 @@
                                                             <div class="form-line">
                                                                 <input type="text"
                                                                 placeholder=" que rubros produces"
-                                                                class="form-control" id="rubro" name="rubro" maxlength="100" required autofocus value="<?php if (isset($registroviejo->nombres)) echo ucwords($registroviejo->nombres); ?>">
+                                                                class="form-control" id="rubro" name="rubro" maxlength="100" required autofocus value="<?php  if (isset($usuarioproductivo)) echo $usuarioproductivo->rubro ?>">
                                                             </div>
                                                         </div>
                                                     </div>

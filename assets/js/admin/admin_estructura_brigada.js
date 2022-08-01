@@ -291,6 +291,7 @@ function buscarParroquia() {
 						xhr.status +
 						"respuesta =" +
 						xhr.responseText
+						
 				);
 				
 			},

@@ -55,6 +55,7 @@ a.text-primary:focus {
     color: var(--primary-bg-color) !important;
 }
 
+
 .table-primary {
     background-color: #d2cdf9;
 }

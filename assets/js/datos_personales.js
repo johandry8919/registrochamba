@@ -112,6 +112,7 @@ function obtenerProfesionOficio() {
     
     }
     
+
 $('.datepicker').bootstrapMaterialDatePicker({
 format: 'YYYY-MM-DD',
 locale: 'es',
@@ -121,4 +122,21 @@ language: 'es',
 defaultDate:'2000-06-01'
 });
 
+$("#datepicker").change(function () {
+    var edad=calcularEdad($(this).val())
+    $("#edad").val(edad)
+});
+
+function calcularEdad(fecha) {
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+    }
+
+    return edad;
+}
 

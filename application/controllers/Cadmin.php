@@ -485,8 +485,9 @@ class Cadmin extends CI_Controller
 
         $password = trim($this->input->post('password'));
 
-        $roles = obtener_roles('admin');
+        $roles = obtener_roles(['admin','estructura']);
         $resultado = $this->Usuarios_admin_model->validarEmailUsuarioRol($email, $roles);
+     
         //crear, modificar, eliminar, vincular
         if ($resultado) {
 
@@ -688,8 +689,8 @@ class Cadmin extends CI_Controller
 
 
             "ficheros_js" => [
-                recurso("datospersonales_js"), recurso("validacion_datospersonales_js"), recurso("mapa_mabox_js"),
-                recurso("estructuras_js")
+                recurso("datospersonales_js"), recurso("validacion_datospersonales_js"),
+                recurso("estructuras_js"), recurso("mapa_mabox_js")
             ],
             "ficheros_css" => [recurso("mapa_mabox_css"), recurso("estructuras_css")],
 
@@ -754,8 +755,9 @@ class Cadmin extends CI_Controller
             echo  json_encode(["resultado" => false, "mensaje" => $mensaje_error]);
             exit;
         }
+        $brigada_estructura =  $this->Brigadas_estructuras_model->obtener_brigada_id($this->input->post('id_brigada_estructura'));
 
-            $rol_usuario =$this->input->post('id_estructura');
+            $rol_usuario =$brigada_estructura->id_rol_estructura;
             //verificar que el usuario no exita. si exite no debes registrarse
             $validacion_usuario = $this->Estructuras_model->verificarSiUsuarioExiste($this->input->post('cedula'), strtoupper(trim($this->input->post('email1'))), $rol_usuario);
       
@@ -781,7 +783,7 @@ class Cadmin extends CI_Controller
         $datos_usuario['password'] = $pass_cifrado;
         $datos_usuario['activo'] = 1;
         // $datos_usuario['registro_anterior'] = 0;
-        $datos_usuario['id_rol'] = $this->input->post('id_estructura');
+        $datos_usuario['id_rol']  =$brigada_estructura->id_rol_estructura;
         $datos_usuario['nombre'] = $this->input->post('nombres') . " " . $this->input->post('apellidos');
 
 
@@ -838,7 +840,7 @@ class Cadmin extends CI_Controller
     {
 
         //verificar acceso
-        if (!tiene_acceso('admin')) {
+        if (!tiene_acceso(['admin','estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
@@ -1947,7 +1949,7 @@ class Cadmin extends CI_Controller
 
 
         //verificar acceso
-        if (!tiene_acceso('admin')) {
+        if (!tiene_acceso(['admin','estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
@@ -2060,8 +2062,9 @@ class Cadmin extends CI_Controller
 
     public function update_chambistas()
     {
-        //verificar acceso
-        if (!tiene_acceso('admin')) {
+     
+         //verificar acceso
+         if (!tiene_acceso(['admin','estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
@@ -2181,11 +2184,11 @@ class Cadmin extends CI_Controller
 
 
 
-        //verificar acceso
-        if (!tiene_acceso('admin')) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
-        }
+           //verificar acceso
+        if (!tiene_acceso(['admin','estructura'])) {
+           echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+           exit();
+       }
         //optener el id id_usu_aca hidden del formulario
 
         //verificar si tiene permiso
@@ -2242,11 +2245,11 @@ class Cadmin extends CI_Controller
 
     public function registroformacionacademica()
     {
-        //verificar acceso
-        if (!tiene_acceso('admin')) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
-        }
+            //verificar acceso
+            if (!tiene_acceso(['admin','estructura'])) {
+                echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+                exit();
+            }
         //optener el id id_usu_aca hidden del formulario
 
         //verificar si tiene permiso
@@ -2287,11 +2290,11 @@ class Cadmin extends CI_Controller
 
     public function registroproductivo()
     {
-        //verificar acceso
-        if (!tiene_acceso('admin')) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
-        }
+            //verificar acceso
+            if (!tiene_acceso(['admin','estructura'])) {
+                echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+                exit();
+            }
         //optener el id id_usu_aca hidden del formulario
 
         //verificar si tiene permiso
@@ -2419,11 +2422,11 @@ class Cadmin extends CI_Controller
     {
 
 
-        //verificar acceso
-        if (!tiene_acceso('admin')) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
-        }
+            //verificar acceso
+        if (!tiene_acceso(['admin','estructura'])) {
+           echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+           exit();
+       }
         //optener el id id_usu_aca hidden del formulario
 
         //verificar si tiene permiso
@@ -2556,7 +2559,8 @@ class Cadmin extends CI_Controller
     {
 
         //verificar acceso
-        if (!tiene_acceso('admin')) {
+          //verificar acceso
+          if (!tiene_acceso(['admin','estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
@@ -2614,7 +2618,8 @@ class Cadmin extends CI_Controller
         // }
 
         //verificar acceso
-        if (!tiene_acceso('admin')) {
+         //verificar acceso
+         if (!tiene_acceso(['admin','estructura'])) {
             echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
             exit();
         }
@@ -2750,10 +2755,11 @@ class Cadmin extends CI_Controller
     {
 
         //verificar acceso
-        if (!tiene_acceso('admin')) {
-            echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
-            exit();
-        }
+            //verificar acceso
+            if (!tiene_acceso(['admin','estructura'])) {
+                echo  json_encode(["resultado" => false, "mensaje" => "acceso no autorizado"]);
+                exit();
+            }
         //optener el id id_usu_aca hidden del formulario
 
 

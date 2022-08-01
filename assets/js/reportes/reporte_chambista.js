@@ -1,6 +1,37 @@
 ///Estado
 var arr_map= [];
-
+var idioma_espanol = {
+    "sProcessing":     "Procesando...",
+  "sLengthMenu": 'Mostrar <select>'+
+    '<option value="10">10</option>'+
+    '<option value="20">20</option>'+
+    '<option value="30">30</option>'+
+    '<option value="40">40</option>'+
+    '<option value="50">50</option>'+
+    '<option value="-1">All</option>'+
+    '</select> registros',    
+  "sZeroRecords":    "No se encontraron resultados",
+  "sEmptyTable":     "Ningún dato disponible en esta tabla",
+  "sInfo":           "Mostrando del (_START_ al _END_) de un total de _TOTAL_ registros",
+  "sInfoEmpty":      "Mostrando del 0 al 0 de un total de 0 registros",
+  "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+  "sInfoPostFix":    "",
+  "sSearch":         "Buscar:",
+  "sUrl":            "",
+  "sInfoThousands":  ",",
+  "sLoadingRecords": "Por favor espere - cargando...",
+  "oPaginate": {
+    "sFirst":    "Primero",
+    "sLast":     "Último",
+    "sNext":     "Siguiente",
+    "sPrevious": "Anterior"
+  },
+  "oAria": {
+    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+  },
+  scrollX: "100%"
+}
 
 $("#cod_estado").change(function () {
 	buscarMunicipios();
@@ -17,7 +48,7 @@ $("#form-map").submit(function (e) {
 	const accion =e.originalEvent.submitter.name;
 
 
-		obtener_coordenadas_empresa(accion);
+		obtener_reporte_chambista(accion);
 	
 
 });
@@ -117,47 +148,69 @@ agregarMapa(latitud, longitud, 5);
 
  
 
-async function obtener_coordenadas_empresa(accion) {
+async function obtener_reporte_chambista(accion) {
 	var cod_estado = $("#cod_estado").val();
 	var cod_municipio = $("#cod_municipio").val();
 	var cod_parroquia = $("#cod_parroquia").val();
-	var empresa = $("#empresa").val();
-
-
-
+	var fecha_inicio = $("#fecha_inicio").val();
+	var fecha_fin = $("#fecha_fin").val();
+	var id_nivel_academico = $("#id_nivel_academico").val();
+	var id_area_form = $("#id_area_form").val();
+	$('.tabla-resultados').html('')
+	var sweet_loader = '<div class="sweet_loader"><svg viewBox="0 0 140 140" width="140" height="140"><g class="outline"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="rgba(0,0,0,0.1)" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></g><g class="circle"><path d="m 70 28 a 1 1 0 0 0 0 84 a 1 1 0 0 0 0 -84" stroke="#71BBFF" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="200" stroke-dasharray="300"></path></g></svg></div>';
+	if(accion==2)
+		location.href=base_url+'admin/reportes/excel_chambistas?cod_estado='+cod_estado+'&cod_municipio='+cod_municipio+'&cod_parroquia='+cod_parroquia+'&fecha_inicio='+fecha_inicio+'&fecha_fin='+fecha_fin+'&id_area_form='+id_area_form+'&id_nivel_academico='+id_nivel_academico
+		else		
 	$.ajax({
 		dataType: "json",
-		data: { cod_estado, cod_municipio, cod_parroquia, empresa },
+		data: { cod_estado, cod_municipio, cod_parroquia, fecha_inicio,fecha_fin,id_nivel_academico,id_area_form },
 
-		url: base_url + "ajax/Cobtener_coord_empresas",
+		url: base_url + "Creportes/obtener_reporte_chambista",
 		type: "post",
 		beforeSend: function () {
-			//$("#cod_municipio").selectpicker('refresh');
+			swal.fire({
+				html: '<h5>Espere un momento, consultando ...<br> Puede demorar unos minutos no cierre esta pestaña</h5>',
+				showConfirmButton: false,
+				onRender: function() {
+					 // there will only ever be one sweet alert open.
+					 $('.swal2-content').prepend(sweet_loader);
+				}
+			})
 		},
 		success: function (respuesta) {
 			if (respuesta.resultado == true) {
+				swal.fire({
+					icon: 'success',
+					html: '<h5>Se encontraron resultados en su busqueda!</h5>',
+					showConfirmButton: false,
+					timer: 1500
+				});
 				//console.log(respuesta.res);
             let data =respuesta.res;
 
-			console.log(data);
+			$('.tabla-resultados').html(respuesta.excel);
+			var table = $('#tabla-reporte').DataTable({
+				dom: 'Bfrtip',
+			
+				language: idioma_espanol
+			});
+			
+	
 			arr_map= [];
 			var latitud_e = $(" option:selected", $('#cod_estado')).attr("data-latitud");
 			var longitud_e = $("option:selected", $('#cod_estado')).attr("data-longitud");
             data.forEach(element => {
 
 					var COLOR='#8B4293';
-				if(element.id_tipo_empresas_universidades==2){
-					COLOR='#ce1616';
-				}
-                
+				
                 let puntero ={
                     'type': 'Feature',
                     'properties': {
 					'marker-color': COLOR,
-                    'description':`<strong> ${element.nombre_razon_social}</strong>
-					<p>RIF:${element.rif}</p>
-					<p>Representante:${element.noombre_representante}  ${element.apellido_representante}</p>
-					<p><strong>Cantidad ofertas</strong>:${element.cantidad_oferta}</p>
+                    'description':`<strong> ${element.nombres}  ${element.apellidos}</strong>
+					<p>Situación laboral:${element.empleo}</p>
+					<p>telefonos:${element.telf_cel}  ${element.telf_local}</p>
+				
 					
 				
 					`
@@ -189,12 +242,10 @@ async function obtener_coordenadas_empresa(accion) {
 			
 
 				
-		if(accion==2)
-		location.href=base_url+'admin/reportes/excel_empresas?cod_estado='+cod_estado+'&cod_municipio='+cod_municipio+'&cod_parroquia='+cod_parroquia+'&empresa='+empresa
-
-
+	
 
 			} else {
+				$("#rango_fecha option[value=1]").attr("selected",true);
 				Swal.fire({
 					icon: "error",
 					title: "Oops...",
@@ -239,6 +290,9 @@ function agregarMapa(lat = "8.2321", long = "-66.406", zoom = 13, data=[]) {
 			center: [long, lat], // starting position [lng, lat]
 			zoom: zoom, // starting zoom
 		});
+		map.on('style.load', () => {
+			map.setFog({}); // Set the default atmosphere style
+			});
 
 	
 
@@ -320,7 +374,39 @@ function agregarMarker(lat, lon, map, marker) {
 
 $("#rango_fecha").change(function(e){
 
-	$("#modal-fecha-chambista").modal("show");
+	var seleccion_fecha = $(this).val();
 
+
+	if(seleccion_fecha==2)
+	$("#modal-fecha-chambista").modal("show");
+	else
+	$("#modal-fecha-chambista").modal("hide");
 })
+
+$("#btn-fecha").click(function(e){
+
+
+
+	var fecha_inicio = $("#fecha_inicio").val()
+	var fecha_fin = $("#fecha_fin").val()
+
+
+
+	if(Date.parse(fecha_fin) < Date.parse(fecha_inicio)) {
+
+		alert("La fecha final debe ser mayor a la fecha inicial");
+	$("#fecha_inicio").val("")
+ $("#fecha_fin").val("")
+
+	 }else{
+		$("#modal-fecha-chambista").modal("hide");
+		$("#f-inicio").html(fecha_inicio)
+		$("#f-fin").html(fecha_fin)
+//$("#rango_fecha option[value=1]").attr("selected",true);
+	 }
+
+});
+
+
+
 

@@ -19,7 +19,7 @@ class Cusuarios extends CI_Controller {
             redirect('inicio');
         }        
         // $this->load->view('layouts/head');
-		//$this->load->view('usuarios/NuevoRegistro');
+	$this->load->view('usuarios/NuevoRegistro');
 	}
 
     public function Vinicio()
@@ -41,6 +41,7 @@ class Cusuarios extends CI_Controller {
         $usuarioproductivo = $this->Musuarios->getUsuariosProductivo();
         $usuariovivienda = $this->Musuarios->getUsuariosVivienda();
         $usuariobrigada = $this->Musuarios->getBrigadasUsuario();
+
 
 
         $data['personal']= $personal;

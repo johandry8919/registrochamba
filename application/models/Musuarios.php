@@ -842,9 +842,9 @@ class Musuarios extends CI_Model
 			return FALSE;
 		}			
 	}
-	public function eliminarchamba($id_chamba){
+	public function eliminarchamba($id_productivo){
 
-		$this->db->where('tipo_chamba', $id_chamba);
+		$this->db->where('id_productivo', $id_productivo);
 		$this->db->where('codigo', $this->session->userdata('codigo'));
 		$this->db->where('id_usuario', $this->session->userdata('id_usuario'));
 		$this->db->delete('tbl_usuarios_productivos');
@@ -1161,7 +1161,10 @@ class Musuarios extends CI_Model
 	}
 
 	public function getUsuariosProductivo(){
+		
+           
 		$this->db->limit(1);
+		
 		$this->db->join('tbl_chambas', 'tbl_chambas.id_chamba = tbl_usuarios_productivos.tipo_chamba',"LEFT");
 		$this->db->where('id_usuario',$this->session->userdata('id_usuario'));
 		$this->db->where('codigo',$this->session->userdata('codigo'));

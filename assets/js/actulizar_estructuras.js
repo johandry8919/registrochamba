@@ -430,7 +430,7 @@ $("#nombres,#apellidos,#id_nivel_academico,#id_profesion_oficio").on(
 		"use strict";
 		var nombres = $(this).val();
 
-		var expresion = /^[a-zA-Z\s]*$/;
+		var expresion = /^[a-z\d\-_\s]+$/i;
 
 		if (expresion.test(nombres)) {
 			$(this)

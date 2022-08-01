@@ -1,6 +1,9 @@
 ///Estado
-var arr_map= [];
+var arr_map = [];
+var arr_id = [];
+let id = (arr_id = []);
 
+console.log(id);
 
 $("#cod_estado").change(function () {
 	buscarMunicipios();
@@ -14,12 +17,9 @@ $("#cod_municipio").change(function () {
 $("#form-map").submit(function (e) {
 	e.preventDefault();
 
-	const accion =e.originalEvent.submitter.name;
+	const accion = e.originalEvent.submitter.name;
 
-
-		obtener_coordenadas_empresa(accion);
-	
-
+	obtener_coordenadas_empresa(accion);
 });
 
 function buscarMunicipios() {
@@ -113,17 +113,11 @@ var longitud = "-66.406";
 
 agregarMapa(latitud, longitud, 5);
 
-
-
- 
-
 async function obtener_coordenadas_empresa(accion) {
 	var cod_estado = $("#cod_estado").val();
 	var cod_municipio = $("#cod_municipio").val();
 	var cod_parroquia = $("#cod_parroquia").val();
 	var empresa = $("#empresa").val();
-
-
 
 	$.ajax({
 		dataType: "json",
@@ -137,70 +131,66 @@ async function obtener_coordenadas_empresa(accion) {
 		success: function (respuesta) {
 			if (respuesta.resultado == true) {
 				//console.log(respuesta.res);
-            let data =respuesta.res;
+				var datas = respuesta.res;
 
-			console.log(data);
-			arr_map= [];
-			var latitud_e = $(" option:selected", $('#cod_estado')).attr("data-latitud");
-			var longitud_e = $("option:selected", $('#cod_estado')).attr("data-longitud");
-            data.forEach(element => {
-
-					var COLOR='#8B4293';
-				if(element.id_tipo_empresas_universidades==2){
-					COLOR='#ce1616';
-				}
-                
-                let puntero ={
-                    'type': 'Feature',
-                    'properties': {
-					'marker-color': COLOR,
-                    'description':`<strong> ${element.nombre_razon_social}</strong>
+				arr_map = [];
+				arr_id = [];
+				var latitud_e = $(" option:selected", $("#cod_estado")).attr(
+					"data-latitud"
+				);
+				var longitud_e = $("option:selected", $("#cod_estado")).attr(
+					"data-longitud"
+				);
+				datas.forEach((element) => {
+					let puntero = {
+						type: "Feature",
+						properties: {
+							"marker-color": "#8B4293",
+							description: `<strong> ${element.nombre_razon_social}</strong>
 					<p>RIF:${element.rif}</p>
 					<p>Representante:${element.noombre_representante}  ${element.apellido_representante}</p>
 					<p><strong>Cantidad ofertas</strong>:${element.cantidad_oferta}</p>
 					
 				
-					`
-					
-                    },
-                    'geometry': {
-                    'type': 'Point',
-                    'coordinates': [element.longitud, element.latitud]
-                    }
-                    }
+					`,
+						},
+						geometry: {
+							type: "Point",
+							coordinates: [element.longitud, element.latitud],
+						},
+					};
 
-					latitud_e =element.latitud;
-					longitud_e=element.longitud;
-        
-                arr_map.push(puntero);
-              
-                
-            });
+					latitud_e = element.latitud;
+					longitud_e = element.longitud;
 
+					arr_map.push(puntero);
+					arr_id.push(element);
+				});
 
-		
-		
-				if($('#cod_estado').val()=='todos'){
+				if ($("#cod_estado").val() == "todos") {
 					agregarMapa(latitud, longitud, 5);
-				}else{
-
+				} else {
 					agregarMapa(latitud_e, longitud_e, 10);
 				}
-			
 
-				
-		if(accion==2)
-		location.href=base_url+'admin/reportes/excel_empresas?cod_estado='+cod_estado+'&cod_municipio='+cod_municipio+'&cod_parroquia='+cod_parroquia+'&empresa='+empresa
-
-
-
+				if (accion == 2)
+					location.href =
+						base_url +
+						"admin/reportes/excel_empresas?cod_estado=" +
+						cod_estado +
+						"&cod_municipio=" +
+						cod_municipio +
+						"&cod_parroquia=" +
+						cod_parroquia +
+						"&empresa=" +
+						empresa;
 			} else {
 				Swal.fire({
 					icon: "error",
 					title: "Oops...",
 					text: respuesta.mensaje,
 				});
-				arr_map=[];
+				arr_map = [];
 				agregarMapa(latitud, longitud, 5);
 			}
 		},
@@ -210,7 +200,6 @@ async function obtener_coordenadas_empresa(accion) {
 		},
 	});
 }
-
 
 $("#cod_estado").change(function () {
 	let latitud_e = $("option:selected", $(this)).attr("data-latitud");
@@ -226,7 +215,7 @@ $("#cod_parroquia").change(function () {
 	// agregarMapa(latitud_e, longitud_e, (zoom = 12));
 });
 
-function agregarMapa(lat = "8.2321", long = "-66.406", zoom = 13, data=[]) {
+function agregarMapa(lat = "8.2321", long = "-66.406", zoom = 13, data = []) {
 	document.getElementById("map").innerHTML = "";
 	if (!mapboxgl.supported()) {
 		alert("Your browser does not support MapLibre GL");
@@ -240,30 +229,113 @@ function agregarMapa(lat = "8.2321", long = "-66.406", zoom = 13, data=[]) {
 			zoom: zoom, // starting zoom
 		});
 
-	
+		const size = 200;
+
+		var color = "";
+		var empresas = $("#empresa").val();
+		if (empresas == "2") color = "rgb(233, 68, 255)";
+		else {
+			color = "rgba(255, 100, 100, 1)";
+		}
+
+		const pulsingDot = {
+			width: size,
+			height: size,
+			data: new Uint8Array(size * size * 4),
+
+			// When the layer is added to the map,
+			// get the rendering context for the map canvas.
+			onAdd: function () {
+				const canvas = document.createElement("canvas");
+				canvas.width = this.width;
+				canvas.height = this.height;
+				this.context = canvas.getContext("2d");
+			},
+
+			// Call once before every frame where the icon will be used.
+			render: function () {
+				const duration = 1000;
+				const t = (performance.now() % duration) / duration;
+
+				const radius = (size / 2) * 0.3;
+				const outerRadius = (size / 2) * 0.7 * t + radius;
+				const context = this.context;
+
+				// Draw the outer circle.
+				context.clearRect(0, 0, this.width, this.height);
+				context.beginPath();
+				context.arc(
+					this.width / 2,
+					this.height / 2,
+					outerRadius,
+					0,
+					Math.PI * 2
+				);
+				context.fillStyle = `rgba(255, 200, 200, ${1 - t})`;
+				context.fill();
+
+				// Draw the inner circle.
+				context.beginPath();
+				context.arc(this.width / 2, this.height / 2, radius, 0, Math.PI * 2);
+				context.fillStyle = color;
+				context.strokeStyle = "white";
+				context.lineWidth = 2 + 4 * (1 - t);
+				context.fill();
+				context.stroke();
+
+				// Update this image's data with data from the canvas.
+				this.data = context.getImageData(0, 0, this.width, this.height).data;
+
+				// Continuously repaint the map, resulting
+				// in the smooth animation of the dot.
+				map.triggerRepaint();
+
+				// Return `true` to let the map know that the image was updated.
+				return true;
+			},
+		};
 
 		map.addControl(new mapboxgl.NavigationControl());
 
-
-
 		map.on("load", () => {
+			// map.addSource("places", {
+			// 	type: "geojson",
+			// 	data: {
+			// 		type: "FeatureCollection",
+			// 		features:JSON.parse(JSON.stringify(arr_map))
+			// 	},
+			// });
+			// // Add a layer showing the places.
+			// // var color='';
+			// // if(empresas_universidades==2){
+			// // 	color='#ce1616';
+			// // }
+			// map.addLayer({
+			// 	id: "places",
+			// 	type: "circle",
+			// 	source: "places",
+			// 	paint: {
+			// 		"circle-color": "rgba(255, 100, 100, 1)",
+			// 		"circle-radius": 6,
+			// 		"circle-stroke-width": 2,
+			// 		"circle-stroke-color": "#ffffff",
+			// 	},
+			// });
+			map.addImage("pulsing-dot", pulsingDot, { pixelRatio: 4 });
+
 			map.addSource("places", {
 				type: "geojson",
 				data: {
 					type: "FeatureCollection",
-					features:JSON.parse(JSON.stringify(arr_map))
+					features: JSON.parse(JSON.stringify(arr_map)),
 				},
 			});
-			// Add a layer showing the places.
 			map.addLayer({
 				id: "places",
-				type: "circle",
+				type: "symbol",
 				source: "places",
-				paint: {
-					"circle-color": "#4264fb",
-					"circle-radius": 6,
-					"circle-stroke-width": 2,
-					"circle-stroke-color": "#ffffff",
+				layout: {
+					"icon-image": "pulsing-dot",
 				},
 			});
 
@@ -316,5 +388,3 @@ function agregarMarker(lat, lon, map, marker) {
 		input_longitud.value = lgn;
 	});
 }
-
-

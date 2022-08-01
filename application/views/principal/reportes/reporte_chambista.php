@@ -1,4 +1,14 @@
+
+<form id="form-map">
+
 <div class="row">
+<div class="col-md-12 text-center">
+<div class="btn-group">
+        <button class="btn btn-primary" type="submit" name="1" id="consultarmap">Consultar</button>
+        <button class="btn btn-info" type="submit" name="2" id="descargar_ reporte">Descargar Excel</button>
+
+    </div>
+</div>
 
 
 <div class="col-3">
@@ -63,25 +73,93 @@
 <div class="col-md-3">
     <label class="form-label">Fecha de registro</label>
     <div class="form-group">
-        <div class="form-line">
+        <div class="">
+           
             <select data-parsley-error-message="Este campo es requerido"
              required class="form-control show-tick" id="rango_fecha" name="empresa" 
              required data-parsley-error-message="Este campo es requerido">
-                <option value="1">Todos</option>
+                <option value="1">Seleccione una fecha</option>
                 <option value="2">Seleccionar fecha</option>
 
             </select>
+            <small id="f-inicio"> </small>  <small id="f-fin"> </small>
         </div>
 
 
     </div>
-    <div class="btn-group">
-        <button class="btn btn-primary" type="submit" name="1" id="consultarmap">Consultar</button>
-        <button class="btn btn-info" type="submit" name="2" id="descargar_ reporte">Descargar Excel</button>
 
-    </div>
+
+    
 </div>
+
+
+
+    <!-- Nivel Académico -->
+   
+<div class="col-md-6">
+                                        <div class="form-group ">
+                                            <label class="form-label">Nivel academico</label>
+                                        
+                                        </div>
+                                        <div class="wrap-input100 validate-input input-group" data-bs-validate="Valid email is required: ex@abc.xyz">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fa fa-address-card" data-bs-toggle="tooltip" title="" data-bs-original-title="fa fa-address-card" aria-label="fa fa-address-card"></i>
+                                                </a>
+                                                <select class=" form-control show-tick" id="id_nivel_academico" name="id_nivel_academico" data-parsley-error-message="Este campo es requerido" required autofocus >
+                                                    <option value="02">Todos</option>
+                                                    <?php if(isset($academica)): ?>
+                                                            <?php foreach ($academica as $key => $academicas):?>
+                                                               
+                                                                                                  
+                                                                 
+                                                                 
+                                                                    <?php   
+                                                                    echo "<option value='".$academicas->id_instruccion."'>".$academicas->nivel."</option>";
+                                                                
+                                                           endforeach;
+                                                        endif;
+                                                    ?>
+
+
+                                                </select>
+                                               
+
+                                            </div>
+                                          
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                <div class="form-group">
+                                <label class="form-label">Área de Formación</label>
+                                </div>
+
+                                    <select class="form-control select2-selection__rendered" id="id_area_form"
+                                        name="id_area_form">
+                                        <option value="02">Todos</option>
+                                        <?php
+                                    foreach ($areaform as $key => $value) {
+                                        if (isset($acausuario) && $value->id_area_form == $acausuario->id_area_form) {
+                                            echo "<option selected value='" . $value->id_area_form . "'>$value->nombre</option>";
+                                        } else {
+                                            echo "<option value='" . $value->id_area_form . "'>$value->nombre</option>";
+                                        }
+                                    }
+                                    ?>
+                                    </select>
+
+                             
+
+                            </div>
+
+
+                          
+
 </div>
+
+
+</form>
+
 
     <!-- MODALCHAMBISTA -->
     <div class="modal fade" id="modal-fecha-chambista">
@@ -98,39 +176,68 @@
                     <div class="row">
                     
 
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="form-group">
                                         <label>Fecha de incio</label>
-                                    <input readonly
-                                     class="input100 border-start-0 ms-0 form-control" type="text" id="fecha_inicio" maxlength="200" name="fecha_fin" value="" placeholder="fecha_nac" required autofocus>
+                                        <div class="wrap-input100 validate-input input-group">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fe fe-calendar" aria-hidden="true"></i>
+                                                </a>
+                                    <input 
+                                     class="input100 border-start-0 ms-0 form-control" type="date" id="fecha_inicio" maxlength="200" name="fecha_fin" value="" placeholder="Fecha inicio" required autofocus>
+                                 </div>
                               </div>
 
                         </div>
                       
 
-                        <div class="col-4">
+                        <div class="col-6">
                             <div class="form-group">
                                         <label>Fecha de fin</label>
-                                    <input readonly
-                                     class="input100 border-start-0 ms-0 form-control" type="text" id="fecha_inicio" maxlength="200" name="fecha_fin" value="" placeholder="fecha_nac" required autofocus>
-                              </div>
 
+                                        <div class="wrap-input100 validate-input input-group">
+                                                <a href="javascript:void(0)" class="input-group-text bg-white text-muted">
+                                                    <i class="fe fe-calendar" aria-hidden="true"></i>
+                                                </a>
+                                    <input 
+                                     class="input100 border-start-0 ms-0 form-control" type="date" id="fecha_fin" maxlength="200" name="fecha_fin" value="" placeholder="Fecha fin" required autofocus>
+                          
+                                    </div>
+                          </div>
                         </div>
 
                     </div>
+                    
 
           
           
               
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" id="btn-postular">Postular</button> <button class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" id="btn-fecha">Seleccionar</button> <button class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
                 </div>
             </div>
         </div>
     </div>
 
+    
+
  
     <div class="container">
         <div class="map" id="map"></div>
+    </div>
+    <br>
+    <hr>
+
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                
+            </div>
+            <div class="table-responsive tabla-resultados">
+
+</div>
+
+        </div>
+
     </div>

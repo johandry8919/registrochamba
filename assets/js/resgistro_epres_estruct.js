@@ -224,7 +224,7 @@
 	$('#razon_social').on('keyup', function () {
 		"use strict";
 		var nombres = $(this).val();
-		var expresion = /^[a-zA-Z\s]*$/;
+		var expresion = /^[a-z\d\-_\s]+$/i;
 	  
 		if (expresion.test(nombres)) {
 			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
@@ -235,7 +235,7 @@
 	$('#razon_social, #nombre_representante, #apellidos_representante, #cargo').on('keyup', function () {
 		"use strict";
 		var nombres = $(this).val();
-		var expresion = /^[a-zA-Z\s]*$/;
+		var expresion = /^[a-z\d\-_\s]+$/i;
 	  
 		if (expresion.test(nombres)) {
 			$(this).removeClass('is-invalid error-input').addClass('is-valid valid-input');
@@ -362,7 +362,7 @@ $("#cod_parroquia").on("change", function () {
 $("#direccion_empresa").on("keyup", function () {
 	"use strict";
 	var direccion_empresa_especifica = $(this).val();
-	var expresion = /^[a-zA-Z0-9\s]*$/;
+	var expresion = /^[a-z\d\-_\s]+$/i;
 
 	if (direccion_empresa_especifica) {
 		$(this)
